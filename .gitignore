@@ -1,0 +1,8 @@
+.DS_store
+
+## User settings
+csv2svg.xcodeproj/project.xcworkspace/
+csv2svg.xcodeproj/xcuserdata/
+csv2svg.xcodeproj/xcshareddata/
+## app icons
+iconGen*/
