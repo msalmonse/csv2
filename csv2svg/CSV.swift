@@ -8,20 +8,18 @@
 import Foundation
 
 class CSV {
-    let url: URL
-    
     var data: [[String]] = []
     
     init(_ name: String) throws {
-        url = URL(fileURLWithPath: name)
+        let url = URL(fileURLWithPath: name)
         do {
-            try self.loadData()
+            try self.loadData(url)
         } catch {
             throw(error)
         }
     }
     
-    func loadData() throws {
+    func loadData(_ url: URL) throws {
         do {
             let contents = try String(contentsOf: url)
             for row in contents.components(separatedBy: "\n") {
