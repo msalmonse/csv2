@@ -10,6 +10,6 @@ import Foundation
 let csvName = CommandLine.argc > 1 ? CommandLine.arguments[1] : "/Users/mesa/xcode/Fibonacci/timing.csv"
 let jsonName = CommandLine.argc > 2 ? CommandLine.arguments[2] : csvName + ".json"
 
-let settings = Settings(jsonName)
+let settings = try? Settings.load(jsonName)
 
-let csv = try CSV(csvName)
+let csv = try? CSV(csvName)
