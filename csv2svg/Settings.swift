@@ -7,6 +7,16 @@
 
 import Foundation
 
+// Default values for Settings
+private struct Default {
+    // svg width and height
+    static let height = 500
+    static let width = 500
+    
+    // svg title
+    static let title = ""
+}
+
 class Settings: Codable {
     // svg width and height
     let height: Int
@@ -19,9 +29,9 @@ class Settings: Codable {
         do {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
-            height = (try? container.decodeIfPresent(Int.self, forKey: .height)) ?? 500
-            width = (try? container.decodeIfPresent(Int.self, forKey: .width)) ?? 500
-            title = (try? container.decodeIfPresent(String.self, forKey: .title)) ?? ""
+            height = (try? container.decodeIfPresent(Int.self, forKey: .height)) ?? Default.height
+            width = (try? container.decodeIfPresent(Int.self, forKey: .width)) ?? Default.width
+            title = (try? container.decodeIfPresent(String.self, forKey: .title)) ?? Default.title
         } catch {
             print(error)
             throw(error)
