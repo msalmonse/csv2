@@ -8,9 +8,11 @@
 import Foundation
 
 class Settings {
-    let plistURL: URL
+    // svg width and height
+    let height = 0
+    let width = 0
     
     init(_ name: String) {
-        plistURL = URL(fileURLWithPath: name)
+        print(name)
     }
 }
