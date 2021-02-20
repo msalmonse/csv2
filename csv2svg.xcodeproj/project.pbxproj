@@ -63,10 +63,10 @@
 		C40A3AFD25DC01180016EB6D /* csv2svg */ = {
 			isa = PBXGroup;
 			children = (
-				C40A3AFE25DC01180016EB6D /* main.swift */,
-				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
 				C49B7D6F25DC055400CEAB8C /* CSV.swift */,
+				C40A3AFE25DC01180016EB6D /* main.swift */,
 				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
+				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
 			);
 			path = csv2svg;
 			sourceTree = "<group>";
