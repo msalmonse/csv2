@@ -7,16 +7,6 @@
 
 import Foundation
 
-// Default values for Settings
-private struct Default {
-    // svg width and height
-    static let height = 500
-    static let width = 500
-    
-    // svg title
-    static let title = ""
-}
-
 class Settings: Codable {
     // svg width and height
     let height: Int
@@ -25,28 +15,43 @@ class Settings: Codable {
     // svg title
     let title: String
     
-    required init(from decoder: Decoder) throws {
-        do {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            height = (try? container.decodeIfPresent(Int.self, forKey: .height)) ?? Default.height
-            width = (try? container.decodeIfPresent(Int.self, forKey: .width)) ?? Default.width
-            title = (try? container.decodeIfPresent(String.self, forKey: .title)) ?? Default.title
-        } catch {
-            print(error)
-            throw(error)
-        }
+    // Index for x values in csv data
+    let index: Int
+
+    // convenience function to decode a keyed Int
+    private static func keyedIntValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys,
+        defaultValue: Int
+    ) -> Int {
+        if (container == nil) { return defaultValue }
+        return (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? defaultValue
+    }
+
+    // convenience function to decode a keyed Int
+    private static func keyedStringValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys,
+        defaultValue: String
+    ) -> String {
+        if (container == nil) { return defaultValue }
+        return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? defaultValue
+    }
+
+    required init(from decoder: Decoder) {
+        let container = try? decoder.container(keyedBy: CodingKeys.self)
+
+        height = Settings.keyedIntValue(from: container, forKey: .height, defaultValue: 500)
+        index = Settings.keyedIntValue(from: container, forKey: .index, defaultValue: 0)
+        title = Settings.keyedStringValue(from: container, forKey: .title, defaultValue: "")
+        width = Settings.keyedIntValue(from: container, forKey: .width, defaultValue: 500)
     }
 
     static func load(_ name: String) throws -> Settings {
         let url = URL(fileURLWithPath: name)
-        do {
-            let data = try Data(contentsOf: url)
-            let decoder = JSONDecoder()
-            let settings = try decoder.decode(Settings.self, from: data)
-            return settings
-        } catch {
-            throw(error)
-        }
+        let data = (try? Data(contentsOf: url)) ?? Data()
+        let decoder = JSONDecoder()
+        let settings = try decoder.decode(Settings.self, from: data)
+        return settings
     }
 }
