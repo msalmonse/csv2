@@ -6,20 +6,23 @@
 //
 
 import XCTest
+@testable import csv2svg
 
 class csv2svgTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testSettings() throws {
+        let tmpJson = FileManager.default.temporaryDirectory.appendingPathComponent("test.json")
+        do {
+            try settingsJSON.write(to: tmpJson, atomically: true, encoding: .utf8)
+        } catch {
+            XCTFail("Error writing to file: \(error)")
+            return
+        }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let settings = try? Settings.load(tmpJson.path)
+        
+        XCTAssertNotNil(settings)
+        XCTAssertEqual(settings!.index, 1)
     }
 
     func testPerformanceExample() throws {
@@ -30,3 +33,12 @@ class csv2svgTests: XCTestCase {
     }
 
 }
+
+let settingsJSON = """
+{
+    "index": 1,
+    "height": 499,
+    "width": 501,
+    "title": "Test title"
+}
+"""
