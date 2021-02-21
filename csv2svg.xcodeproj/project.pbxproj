@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C40A3AFF25DC01180016EB6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A3AFE25DC01180016EB6D /* main.swift */; };
 		C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
+		C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */; };
 		C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
 		C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
 /* End PBXBuildFile section */
@@ -29,12 +30,22 @@
 		C40A3AFB25DC01180016EB6D /* csv2svg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = csv2svg; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40A3AFE25DC01180016EB6D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C46A3A7125DE8B4C00F6783A /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
+		C48B822725E28F7E00EAEAE3 /* csv2svgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = csv2svgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2svgTests.swift; sourceTree = "<group>"; };
+		C48B822B25E28F7E00EAEAE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C49B7D6C25DC03B500CEAB8C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C49B7D6F25DC055400CEAB8C /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C40A3AF825DC01180016EB6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C48B822425E28F7E00EAEAE3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -48,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				C40A3AFD25DC01180016EB6D /* csv2svg */,
+				C48B822825E28F7E00EAEAE3 /* csv2svgTests */,
 				C40A3AFC25DC01180016EB6D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				C40A3AFB25DC01180016EB6D /* csv2svg */,
+				C48B822725E28F7E00EAEAE3 /* csv2svgTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +82,15 @@
 				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
 			);
 			path = csv2svg;
+			sourceTree = "<group>";
+		};
+		C48B822825E28F7E00EAEAE3 /* csv2svgTests */ = {
+			isa = PBXGroup;
+			children = (
+				C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */,
+				C48B822B25E28F7E00EAEAE3 /* Info.plist */,
+			);
+			path = csv2svgTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +113,23 @@
 			productReference = C40A3AFB25DC01180016EB6D /* csv2svg */;
 			productType = "com.apple.product-type.tool";
 		};
+		C48B822625E28F7E00EAEAE3 /* csv2svgTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C48B822E25E28F7E00EAEAE3 /* Build configuration list for PBXNativeTarget "csv2svgTests" */;
+			buildPhases = (
+				C48B822325E28F7E00EAEAE3 /* Sources */,
+				C48B822425E28F7E00EAEAE3 /* Frameworks */,
+				C48B822525E28F7E00EAEAE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = csv2svgTests;
+			productName = csv2svgTests;
+			productReference = C48B822725E28F7E00EAEAE3 /* csv2svgTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -101,6 +140,9 @@
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					C40A3AFA25DC01180016EB6D = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					C48B822625E28F7E00EAEAE3 = {
 						CreatedOnToolsVersion = 12.4;
 					};
 				};
@@ -119,9 +161,20 @@
 			projectRoot = "";
 			targets = (
 				C40A3AFA25DC01180016EB6D /* csv2svg */,
+				C48B822625E28F7E00EAEAE3 /* csv2svgTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C48B822525E28F7E00EAEAE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C40A3AF725DC01180016EB6D /* Sources */ = {
@@ -132,6 +185,14 @@
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
 				C40A3AFF25DC01180016EB6D /* main.swift in Sources */,
 				C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C48B822325E28F7E00EAEAE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +332,40 @@
 			};
 			name = Release;
 		};
+		C48B822C25E28F7E00EAEAE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = csv2svgTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.mesme.csv2svgTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C48B822D25E28F7E00EAEAE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = csv2svgTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.mesme.csv2svgTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -288,6 +383,15 @@
 			buildConfigurations = (
 				C40A3B0325DC01180016EB6D /* Debug */,
 				C40A3B0425DC01180016EB6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C48B822E25E28F7E00EAEAE3 /* Build configuration list for PBXNativeTarget "csv2svgTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C48B822C25E28F7E00EAEAE3 /* Debug */,
+				C48B822D25E28F7E00EAEAE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
