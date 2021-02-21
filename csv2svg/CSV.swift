@@ -9,6 +9,7 @@ import Foundation
 
 class CSV {
     var data: [[String]] = []
+    var values: [[Double?]] = []
     
     init(_ name: String) throws {
         let url = URL(fileURLWithPath: name)
@@ -28,6 +29,15 @@ class CSV {
             }
         } catch {
             throw(error)
+        }
+        
+        for row in data {
+            var valueRow: [Double?] = []
+            for cell in row {
+                let value = Double(cell)
+                valueRow.append(value)
+            }
+            values.append(valueRow)
         }
     }
 }
