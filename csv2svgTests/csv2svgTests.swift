@@ -22,23 +22,64 @@ class csv2svgTests: XCTestCase {
         let settings = try? Settings.load(tmpJson.path)
         
         XCTAssertNotNil(settings)
-        XCTAssertEqual(settings!.index, 1)
+        XCTAssertEqual(settings!.index, testIndex)
+        XCTAssertEqual(settings!.height, testHeight)
+        XCTAssertEqual(settings!.title, testTitle)
+        XCTAssertEqual(settings!.width, testWidth)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
+    func testCSV() throws {
+        let tmpCsv = FileManager.default.temporaryDirectory.appendingPathComponent("test.csv")
+        do {
+            try csvData.write(to: tmpCsv, atomically: true, encoding: .utf8)
+        } catch {
+            XCTFail("Error writing to file: \(error)")
+            return
+        }
+
+        let csv = try? CSV(tmpCsv.path)
+        
+        XCTAssertNotNil(csv)
+        XCTAssertEqual(csv!.data.count, 4)
+        for row in csv!.data {
+            XCTAssertEqual(row.count, 4)
+        }
+    }
+
+    func testSettingsPerformance() throws {
         measure {
-            // Put the code you want to measure the time of here.
+            try? testSettings()
+        }
+    }
+    
+    func testCSVperformance() throws {
+        measure {
+            try? testCSV()
         }
     }
 
 }
 
+// Values for JSON tests
+let testIndex = 1
+let testHeight = 499
+let testTitle = "Test title"
+let testWidth = 501
+
+// JSON string for tests
 let settingsJSON = """
 {
-    "index": 1,
-    "height": 499,
-    "width": 501,
-    "title": "Test title"
+    "index": \(testIndex),
+    "height": \(testHeight),
+    "width": \(testWidth),
+    "title": "\(testTitle)"
 }
+"""
+
+// CSV string for tests
+let csvData = """
+n,Array,Iterative,Recursive
+1,100.1,120.4,110.1
+9,100.1,129.9,5220.6
+32,100.1,152.7,
 """
