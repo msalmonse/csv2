@@ -10,6 +10,8 @@
 		C40A3AFF25DC01180016EB6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A3AFE25DC01180016EB6D /* main.swift */; };
 		C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
 		C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */; };
+		C48B823625E2967100EAEAE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
+		C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
 		C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
 		C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
 /* End PBXBuildFile section */
@@ -192,7 +194,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C48B823625E2967100EAEAE3 /* Settings.swift in Sources */,
 				C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */,
+				C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
