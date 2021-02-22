@@ -26,6 +26,8 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(settings!.height, testHeight)
         XCTAssertEqual(settings!.title, testTitle)
         XCTAssertEqual(settings!.width, testWidth)
+        XCTAssertNil(settings!.xMax)
+        XCTAssertEqual(settings!.yMax, testYMax)
     }
 
     func testCSV() throws {
@@ -44,6 +46,10 @@ class csv2svgTests: XCTestCase {
         for row in csv!.data {
             XCTAssertEqual(row.count, 4)
         }
+        
+        let (min, max) = csv!.columnMinMax(3)
+        XCTAssertEqual(min, 110.1)
+        XCTAssertEqual(max, 5220.6)
     }
 
     func testSettingsPerformance() throws {
@@ -65,6 +71,7 @@ let testIndex = 1
 let testHeight = 499
 let testTitle = "Test title"
 let testWidth = 501
+let testYMax = 25000.25
 
 // JSON string for tests
 let settingsJSON = """
@@ -72,7 +79,8 @@ let settingsJSON = """
     "index": \(testIndex),
     "height": \(testHeight),
     "width": \(testWidth),
-    "title": "\(testTitle)"
+    "title": "\(testTitle)",
+    "yMax": \(testYMax)
 }
 """
 
