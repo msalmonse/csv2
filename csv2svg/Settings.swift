@@ -68,7 +68,11 @@ class Settings: Codable {
         let url = URL(fileURLWithPath: name)
         let data = (try? Data(contentsOf: url)) ?? Data()
         let decoder = JSONDecoder()
-        let settings = try decoder.decode(Settings.self, from: data)
-        return settings
+        do {
+            return try decoder.decode(Settings.self, from: data)
+        } catch {
+            print(error)
+            throw error
+        }
     }
 }
