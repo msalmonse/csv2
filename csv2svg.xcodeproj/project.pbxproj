@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C40A3AFF25DC01180016EB6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A3AFE25DC01180016EB6D /* main.swift */; };
+		C4255F3F25E423A7002DFE80 /* SvgPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* SvgPath.swift */; };
+		C4255F4425E428B0002DFE80 /* SvgPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* SvgPath.swift */; };
+		C4255F4725E428B5002DFE80 /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
 		C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
 		C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */; };
 		C48B823625E2967100EAEAE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
@@ -31,6 +34,7 @@
 /* Begin PBXFileReference section */
 		C40A3AFB25DC01180016EB6D /* csv2svg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = csv2svg; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40A3AFE25DC01180016EB6D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C4255F3E25E423A7002DFE80 /* SvgPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgPath.swift; sourceTree = "<group>"; };
 		C46A3A7125DE8B4C00F6783A /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
 		C48B822725E28F7E00EAEAE3 /* csv2svgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = csv2svgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2svgTests.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 				C40A3AFE25DC01180016EB6D /* main.swift */,
 				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
 				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
+				C4255F3E25E423A7002DFE80 /* SvgPath.swift */,
 			);
 			path = csv2svg;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
 				C40A3AFF25DC01180016EB6D /* main.swift in Sources */,
 				C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */,
+				C4255F3F25E423A7002DFE80 /* SvgPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +201,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C48B823625E2967100EAEAE3 /* Settings.swift in Sources */,
+				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,
+				C4255F4425E428B0002DFE80 /* SvgPath.swift in Sources */,
 				C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */,
 				C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */,
 			);

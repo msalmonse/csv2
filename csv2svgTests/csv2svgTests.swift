@@ -51,6 +51,11 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(min, 110.1)
         XCTAssertEqual(max, 5220.6)
     }
+    
+    func testSvgPath() {
+        let path = SVG.svgPath(pathPoints)
+        XCTAssertEqual(path, pathTag)
+    }
 
     func testSettingsPerformance() throws {
         measure {
@@ -91,3 +96,15 @@ n,Array,Iterative,Recursive
 9,100.1,129.9,5220.6
 32,100.1,152.7,
 """
+
+// SVG path
+let pathPoints = [
+    SVG.point(x: 0, y: 1),
+    SVG.point(x: 1, y: 2),
+    SVG.point(x: 2, y: 4),
+    SVG.point(x: 3, y: 8),
+    SVG.point(x: 4, y: 16),
+    SVG.point(x: 5, y: 32)
+]
+
+let pathTag = "<path d=\" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 L 3.0,8.0 L 4.0,16.0 L 5.0,32.0\" />"
