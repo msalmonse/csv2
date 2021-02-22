@@ -20,6 +20,29 @@ class CSV {
         }
     }
     
+    // Calculate the min and max of a column
+    func columnMinMax(
+        _ col: Int,
+        min initMin: Double = Double.greatestFiniteMagnitude,
+        max initMax: Double = -Double.greatestFiniteMagnitude
+    ) -> (min: Double, max: Double) {
+        var min = initMin
+        var max = initMax
+
+        if col >= 0 {
+            for row in values {
+                if col < row.count {
+                    if let value = row[col] {
+                        if min > value { min = value }
+                        if max < value { max = value }
+                    }
+                }
+            }
+        }
+        
+        return (min: min, max: max)
+    }
+
     func loadData(_ url: URL) throws {
         do {
             let contents = try String(contentsOf: url)
