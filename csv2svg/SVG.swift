@@ -28,15 +28,15 @@ class SVG {
         self.settings = settings
     }
 
-    func printSvgLineGroup() {
-        print("<g >")
-        print("</g>")
+    func svgLineGroup() -> [String] {
+        return [ "<g >", "</g>" ]
     }
     
-    func gen() {
-        print(xmlTag)
-        print(svgTag)
-        printSvgLineGroup()
-        print(svgTagEnd)
+    func gen() -> [String] {
+        var result: [String] = [ xmlTag, svgTag ]
+        result.append(contentsOf: svgLineGroup())
+        result.append(svgTagEnd)
+        
+        return result
     }
 }

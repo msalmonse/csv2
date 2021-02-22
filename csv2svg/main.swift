@@ -15,4 +15,4 @@ let settings = try? Settings.load(jsonName)
 let csv = try? CSV(csvName)
 
 let svg = SVG(csv!, settings!)
-svg.gen()
+_ = svg.gen().map { print($0) }
