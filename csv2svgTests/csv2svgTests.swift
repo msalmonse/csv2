@@ -31,13 +31,23 @@ class csv2svgTests: XCTestCase {
         }
         
         let (min, max) = csv.columnMinMax(3)
-        XCTAssertEqual(min, 110.1)
+        XCTAssertEqual(min, -110.1)
         XCTAssertEqual(max, 5220.6)
     }
     
     func testSvgPath() {
         let path = SVG.svgPath(pathPoints)
         XCTAssertEqual(path, pathTag)
+    }
+    
+    func testSvgSides() {
+        let csv = CSV(csvData)
+        var svg = try? SVG(csv, Settings.load(settingsJSON))
+        XCTAssertNotNil(svg)
+        XCTAssertEqual(svg!.edges.top, testYMax)
+        XCTAssertEqual(svg!.edges.bottom, -110.1)
+        XCTAssertEqual(svg!.edges.left, 1)
+        XCTAssertEqual(svg!.edges.right, 32)
     }
 
     func testSettingsPerformance() throws {
@@ -75,19 +85,19 @@ let settingsJSON = """
 // CSV string for tests
 let csvData = """
 n,Array,Iterative,Recursive
-1,100.1,120.4,110.1
+1,100.1,120.4,-110.1
 9,100.1,129.9,5220.6
 32,100.1,152.7,
 """
 
 // SVG path
 let pathPoints = [
-    SVG.point(x: 0, y: 1),
-    SVG.point(x: 1, y: 2),
-    SVG.point(x: 2, y: 4),
-    SVG.point(x: 3, y: 8),
-    SVG.point(x: 4, y: 16),
-    SVG.point(x: 5, y: 32)
+    SVG.Point(x: 0, y: 1),
+    SVG.Point(x: 1, y: 2),
+    SVG.Point(x: 2, y: 4),
+    SVG.Point(x: 3, y: 8),
+    SVG.Point(x: 4, y: 16),
+    SVG.Point(x: 5, y: 32)
 ]
 
 let pathTag = "<path d=\" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 L 3.0,8.0 L 4.0,16.0 L 5.0,32.0\" />"
