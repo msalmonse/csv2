@@ -8,13 +8,19 @@
 import Foundation
 
 extension SVG {
-
+    
+    /// A point on the svg plane
+    
     struct point {
         let x: Double
         let y: Double
     }
 
-    // plot a path from a list of points
+    /// plot a path from a list of points
+    /// - Parameters:
+    ///   - points: a list of the points on path
+    ///   - stroke: contents of the stroke paramater of the path
+    /// - Returns: a path element
 
     static func svgPath(_ points: [point], stroke: String? = nil) -> String {
         func pathPoint(_ ml: String, _ p: point) -> String {
