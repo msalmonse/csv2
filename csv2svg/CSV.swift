@@ -11,16 +11,31 @@ class CSV {
     var data: [[String]] = []
     var values: [[Double?]] = []
     
-    init(_ name: String) throws {
-        let url = URL(fileURLWithPath: name)
+    /// Initialize CSV from a URL
+    /// - Parameter url: location of data
+    /// - Throws: whatever String throws
+    init(_ url: URL) throws {
         do {
-            try self.loadData(url)
+            try self.loadFromUrl(url)
         } catch {
             throw(error)
         }
     }
     
-    // Calculate the min and max of a column
+    /// Initialize CSV from a String
+    /// - Parameter contents: the data to load into the string
+
+    init(_ contents: String){
+        self.loadFrom(contents)
+    }
+    
+    /// Calculate the min and max of a column
+    /// - Parameters:
+    ///   - col: the column number
+    ///   - initMin: the initial minimum value, usually from a previous run
+    ///   - initMax: the initial maximum value, usually from a previous run
+    /// - Returns: a tuple with the minimum and maximum values
+    
     func columnMinMax(
         _ col: Int,
         min initMin: Double = Double.greatestFiniteMagnitude,
@@ -42,18 +57,28 @@ class CSV {
         
         return (min: min, max: max)
     }
-
-    func loadData(_ url: URL) throws {
+    
+    /// Load data from a URL
+    /// - Parameter url: data location
+    /// - Throws: whatever String throws
+    
+    func loadFromUrl(_ url: URL) throws {
         do {
-            let contents = try String(contentsOf: url)
-            for row in contents.components(separatedBy: "\n") {
-                let cols = row.components(separatedBy: ",")
-                data.append(cols)
-            }
+            loadFrom(try String(contentsOf: url))
         } catch {
             throw(error)
         }
-        
+    }
+    
+    /// Load data from a string
+    /// - Parameter contents: the string containing data
+    
+    func loadFrom(_ contents: String) {
+        for row in contents.components(separatedBy: "\n") {
+            let cols = row.components(separatedBy: ",")
+            data.append(cols)
+        }
+
         for row in data {
             var valueRow: [Double?] = []
             for cell in row {
