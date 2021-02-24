@@ -14,6 +14,7 @@
 		C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
 		C480847C25E4E97300BD0A24 /* SvgColumnPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */; };
 		C480848025E6776900BD0A24 /* SvgSides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* SvgSides.swift */; };
+		C480848325E6809400BD0A24 /* SvgSides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* SvgSides.swift */; };
 		C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */; };
 		C48B823625E2967100EAEAE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
 		C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
@@ -209,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C48B823625E2967100EAEAE3 /* Settings.swift in Sources */,
+				C480848325E6809400BD0A24 /* SvgSides.swift in Sources */,
 				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,
 				C4255F4425E428B0002DFE80 /* SvgPath.swift in Sources */,
 				C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */,

@@ -11,15 +11,7 @@ import XCTest
 class csv2svgTests: XCTestCase {
 
     func testSettings() throws {
-        let tmpJson = FileManager.default.temporaryDirectory.appendingPathComponent("test.json")
-        do {
-            try settingsJSON.write(to: tmpJson, atomically: true, encoding: .utf8)
-        } catch {
-            XCTFail("Error writing to file: \(error)")
-            return
-        }
-
-        let settings = try? Settings.load(tmpJson.path)
+        let settings = try? Settings.load(settingsJSON)
         
         XCTAssertNotNil(settings)
         XCTAssertEqual(settings!.index, testIndex)
@@ -31,23 +23,14 @@ class csv2svgTests: XCTestCase {
     }
 
     func testCSV() throws {
-        let tmpCsv = FileManager.default.temporaryDirectory.appendingPathComponent("test.csv")
-        do {
-            try csvData.write(to: tmpCsv, atomically: true, encoding: .utf8)
-        } catch {
-            XCTFail("Error writing to file: \(error)")
-            return
-        }
-
-        let csv = try? CSV(tmpCsv.path)
-        
-        XCTAssertNotNil(csv)
-        XCTAssertEqual(csv!.data.count, 4)
-        for row in csv!.data {
+        let csv = CSV(csvData)
+    
+        XCTAssertEqual(csv.data.count, 4)
+        for row in csv.data {
             XCTAssertEqual(row.count, 4)
         }
         
-        let (min, max) = csv!.columnMinMax(3)
+        let (min, max) = csv.columnMinMax(3)
         XCTAssertEqual(min, 110.1)
         XCTAssertEqual(max, 5220.6)
     }
