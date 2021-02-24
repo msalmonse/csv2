@@ -12,7 +12,7 @@ let jsonName = CommandLine.argc > 2 ? CommandLine.arguments[2] : csvName + ".jso
 
 let settings = try? Settings.load(jsonName)
 
-let csv = try? CSV(csvName)
+let csv = try? CSV(URL(fileURLWithPath: csvName))
 
 let svg = SVG(csv!, settings!)
 _ = svg.gen().map { print($0) }
