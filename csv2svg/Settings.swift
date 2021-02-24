@@ -28,8 +28,17 @@ class Settings: Codable {
     let xMin: Double?
     let yMax: Double?
     let yMin: Double?
+    
+    // Data is grouped in columns?
+    let inColumns = true
 
-    // convenience function to decode a keyed Int
+    /// Convenience function to decode a keyed Int
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: the key into the decoded data
+    ///   - defaultValue: the default value
+    /// - Returns: decoded or default value
+    
     private static func keyedIntValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
         forKey key: CodingKeys,
@@ -39,7 +48,13 @@ class Settings: Codable {
         return (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? defaultValue
     }
 
-    // convenience function to decode a keyed Int
+    /// Convenience function to decode a keyed String
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: the key into the decoded data
+    ///   - defaultValue: the default value
+    /// - Returns: decoded or default value
+
     private static func keyedStringValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
         forKey key: CodingKeys,
