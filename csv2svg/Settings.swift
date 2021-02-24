@@ -78,17 +78,32 @@ class Settings: Codable {
         yMax = try? container?.decodeIfPresent(Double.self, forKey: .yMax)
         yMin = try? container?.decodeIfPresent(Double.self, forKey: .yMin)
     }
-
+    
+    /// Load contents of file into object
+    /// - Parameter url: file path
+    /// - Throws:
+    /// - Returns: a new Setting
+    
     static func load(_ url: URL) throws -> Settings {
         let data = (try? Data(contentsOf: url)) ?? Data()
         return try Self.loadFrom(data)
     }
     
+    /// Load contents of String into object
+    /// - Parameter contents: JSON string
+    /// - Throws:
+    /// - Returns: a new Setting
+
     static func load(_ contents: String) throws -> Settings {
         let data = contents.data(using: .utf8) ?? Data()
         return try Self.loadFrom(data)
     }
     
+    /// Load from data into object
+    /// - Parameter data: JSON data
+    /// - Throws:
+    /// - Returns: a new Setting
+ 
     static func loadFrom(_ data: Data) throws -> Settings {
         let decoder = JSONDecoder()
         do {
