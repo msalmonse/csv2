@@ -8,6 +8,23 @@
 import Foundation
 
 class SVG {
+
+    /// A point on the svg plane
+    
+    struct Point {
+        let x: Double
+        let y: Double
+    }
+    
+    /// The edges of the plane
+    
+    struct Plane {
+        let top: Double
+        let bottom: Double
+        let left: Double
+        let right: Double
+    }
+
     let csv: CSV
     let settings: Settings
     
@@ -15,10 +32,7 @@ class SVG {
     let index: Int
     
     // The four sides of the plane
-    let top: Double
-    let bottom: Double
-    let left: Double
-    let right: Double
+    let edges: Plane
 
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
@@ -38,7 +52,7 @@ class SVG {
         
         self.index = settings.index - 1
         
-        (top, bottom, left, right) = SVG.sidesFromColumns(csv, settings)
+        edges = SVG.sidesFromColumns(csv, settings)
     }
 
     func svgLineGroup() -> [String] {

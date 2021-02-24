@@ -8,8 +8,7 @@
 import Foundation
 
 extension SVG {
-    static func sidesFromColumns(_ csv: CSV, _ settings: Settings)
-    -> (top: Double, bottom: Double, left: Double, right: Double) {
+    static func sidesFromColumns(_ csv: CSV, _ settings: Settings) -> Plane {
         let index = settings.index - 1
         var top: Double
         var bottom: Double
@@ -51,6 +50,6 @@ extension SVG {
             top = settings.yMax ?? max
         }
 
-        return (top: top, bottom: bottom, left: left, right: right)
+        return Plane(top: top, bottom: bottom, left: left, right: right)
     }
 }
