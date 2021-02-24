@@ -29,13 +29,31 @@ class CSV {
         self.loadFrom(contents)
     }
     
+    /// Return a column of values
+    /// - Parameter col: column index
+    /// - Returns: list of values
+    
+    func columnValues(_ col: Int) -> [Double?] {
+        var result: [Double?] = []
+
+        for row in values {
+            if col < 0 || col >= row.count {
+                result.append(nil)
+            } else {
+                result.append(row[col])
+            }
+        }
+        
+        return result
+    }
+
     /// Calculate the min and max of a column
     /// - Parameters:
     ///   - col: the column number
     ///   - initMin: the initial minimum value, usually from a previous run
     ///   - initMax: the initial maximum value, usually from a previous run
     /// - Returns: a tuple with the minimum and maximum values
-    
+
     func columnMinMax(
         _ col: Int,
         min initMin: Double = Double.greatestFiniteMagnitude,
@@ -44,20 +62,16 @@ class CSV {
         var min = initMin
         var max = initMax
 
-        if col >= 0 {
-            for row in values {
-                if col < row.count {
-                    if let value = row[col] {
-                        if min > value { min = value }
-                        if max < value { max = value }
-                    }
-                }
+        for value in columnValues(col) {
+            if value != nil {
+                if min > value! { min = value! }
+                if max < value! { max = value! }
             }
         }
         
         return (min: min, max: max)
     }
-    
+
     /// Load data from a URL
     /// - Parameter url: data location
     /// - Throws: whatever String throws
