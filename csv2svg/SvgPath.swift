@@ -8,6 +8,19 @@
 import Foundation
 
 extension SVG {
+    
+    /// path commands
+    
+    enum PathCommand {
+        case moveTo(x: Double, y: Double), lineTo(x: Double, y:Double)
+        
+        func command() -> String {
+            switch self {
+            case .moveTo(let x, let y): return String(format: " M %.1f,%.1f", x, y)
+            case .lineTo(let x, let y): return String(format: " L %.1f,%.1f", x, y)
+            }
+        }
+    }
 
     /// plot a path from a list of points
     /// - Parameters:
@@ -15,19 +28,15 @@ extension SVG {
     ///   - stroke: contents of the stroke paramater of the path
     /// - Returns: a path element
 
-    static func svgPath(_ points: [Point], stroke: String? = nil) -> String {
-        func pathPoint(_ ml: String, _ p: Point) -> String {
-            return String(format: " %@ %.1f,%.1f", ml, p.x, p.y)
-        }
-        
+    static func svgPath(_ points: [PathCommand], stroke: String? = nil) -> String {
+
         // a path needs 2 points
         guard points.count >= 2 else { return "" }
 
         var result = "<path d=\""
 
-        result += pathPoint("M", points[0])
-        for i in 1..<points.count {
-            result += pathPoint("L", points[i])
+        for p in points {
+            result += p.command()
         }
         result += "\" "
 

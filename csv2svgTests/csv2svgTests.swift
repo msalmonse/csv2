@@ -92,12 +92,12 @@ n,Array,Iterative,Recursive
 
 // SVG path
 let pathPoints = [
-    SVG.Point(x: 0, y: 1),
-    SVG.Point(x: 1, y: 2),
-    SVG.Point(x: 2, y: 4),
-    SVG.Point(x: 3, y: 8),
-    SVG.Point(x: 4, y: 16),
-    SVG.Point(x: 5, y: 32)
+    SVG.PathCommand.moveTo(x: 0, y: 1),
+    SVG.PathCommand.lineTo(x: 1, y: 2),
+    SVG.PathCommand.lineTo(x: 2, y: 4),
+    SVG.PathCommand.lineTo(x: 3, y: 8),
+    SVG.PathCommand.moveTo(x: 4, y: 16),
+    SVG.PathCommand.lineTo(x: 5, y: 32)
 ]
 
-let pathTag = "<path d=\" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 L 3.0,8.0 L 4.0,16.0 L 5.0,32.0\" />"
+let pathTag = "<path d=\" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 L 3.0,8.0 M 4.0,16.0 L 5.0,32.0\" />"
