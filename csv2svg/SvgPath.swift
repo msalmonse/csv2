@@ -16,8 +16,8 @@ extension SVG {
         
         func command() -> String {
             switch self {
-            case .moveTo(let x, let y): return String(format: " M %.1f,%.1f", x, y)
-            case .lineTo(let x, let y): return String(format: " L %.1f,%.1f", x, y)
+            case .moveTo(let x, let y): return String(format: "M %.1f,%.1f", x, y)
+            case .lineTo(let x, let y): return String(format: "L %.1f,%.1f", x, y)
             }
         }
     }
@@ -33,16 +33,14 @@ extension SVG {
         // a path needs 2 points
         guard points.count >= 2 else { return "" }
 
-        var result = "<path d=\""
+        var result = [ "<path d=\"" ]
 
-        for p in points {
-            result += p.command()
-        }
-        result += "\" "
+        result.append(contentsOf: points.map{ $0.command() })
+        result.append("\"")
 
-        result += "/>"
+        result.append("/>")
 
-        return result
+        return result.joined(separator: " ")
     }
 
 }

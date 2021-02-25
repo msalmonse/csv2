@@ -100,4 +100,4 @@ let pathPoints = [
     SVG.PathCommand.lineTo(x: 5, y: 32)
 ]
 
-let pathTag = "<path d=\" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 L 3.0,8.0 M 4.0,16.0 L 5.0,32.0\" />"
+let pathTag = "<path d=\" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 L 3.0,8.0 M 4.0,16.0 L 5.0,32.0 \" />"
