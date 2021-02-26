@@ -56,7 +56,11 @@ class SVG {
     }
 
     func svgLineGroup() -> [String] {
-        return [ "<g >", "</g>" ]
+        var result = [ "<g>"]
+        result.append(contentsOf: columnPlot())
+        result.append("</g>")
+        
+        return result
     }
     
     func gen() -> [String] {
