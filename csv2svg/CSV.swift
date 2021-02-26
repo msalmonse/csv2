@@ -11,6 +11,10 @@ class CSV {
     var data: [[String]] = []
     var values: [[Double?]] = []
     
+    /// Number of rows and columns
+    var colCt = 0
+    var rowCt = 0
+    
     /// Initialize CSV from a URL
     /// - Parameter url: location of data
     /// - Throws: whatever String throws
@@ -88,10 +92,14 @@ class CSV {
     /// - Parameter contents: the string containing data
     
     func loadFrom(_ contents: String) {
+        var colMax = 0
         for row in contents.components(separatedBy: "\n") {
             let cols = row.components(separatedBy: ",")
             data.append(cols)
+            if cols.count > colMax { colMax = cols.count }
         }
+        colCt = colMax
+        rowCt = data.count
 
         for row in data {
             var valueRow: [Double?] = []
