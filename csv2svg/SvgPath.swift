@@ -12,12 +12,18 @@ extension SVG {
     /// path commands
     
     enum PathCommand {
-        case moveTo(x: Double, y: Double), lineTo(x: Double, y:Double)
+        case
+            moveTo(x: Double, y: Double),
+            horizTo(x: Double),
+            lineTo(x: Double, y:Double),
+            vertTo(y: Double)
         
         func command() -> String {
             switch self {
             case .moveTo(let x, let y): return String(format: "M %.1f,%.1f", x, y)
+            case .horizTo(let x): return String(format: "H %0.1f", x)
             case .lineTo(let x, let y): return String(format: "L %.1f,%.1f", x, y)
+            case .vertTo(let y): return String(format: "V %0.1f", y)
             }
         }
     }
