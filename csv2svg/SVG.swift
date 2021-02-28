@@ -31,8 +31,10 @@ class SVG {
     // Row or column to use for x values
     let index: Int
     
-    // The four sides of the plane
-    let edges: Plane
+    // The four sides of the data plane
+    let dataEdges: Plane
+    // and the plot plane
+    let plotEdges: Plane
 
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
@@ -52,11 +54,15 @@ class SVG {
         
         self.index = settings.index - 1
         
-        edges = SVG.sidesFromColumns(csv, settings)
+        dataEdges = SVG.sidesFromColumns(csv, settings)
+        plotEdges = Plane(
+            top: 100, bottom: Double(settings.height),
+            left: 100, right: Double(settings.width)
+        )
     }
 
     func svgLineGroup(_ ts: TransScale) -> [String] {
-        var result = [ "<g>"]
+        var result = [ "<g clip-path=\"url(#plotable)\" >"]
         result.append(contentsOf: columnPlot(ts))
         result.append("</g>")
         
@@ -64,14 +70,10 @@ class SVG {
     }
     
     func gen() -> [String] {
-        let ts = TransScale(
-            from: edges,
-            to: Plane(top: 100, bottom: Double(settings.height),
-                      left: 100, right: Double(settings.width)
-            )
-        )
+        let ts = TransScale(from: dataEdges, to: plotEdges)
 
         var result: [String] = [ xmlTag, svgTag ]
+        result.append(contentsOf: svgDefs())
         result.append(contentsOf: svgLineGroup(ts))
         result.append(svgTagEnd)
         
