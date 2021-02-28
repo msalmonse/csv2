@@ -12,6 +12,8 @@
 		C4255F3F25E423A7002DFE80 /* SvgPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* SvgPath.swift */; };
 		C4255F4425E428B0002DFE80 /* SvgPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* SvgPath.swift */; };
 		C4255F4725E428B5002DFE80 /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
+		C449F44C25EC131E006C67EB /* SvgDefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC225EBBCC700503486 /* SvgDefs.swift */; };
+		C449F44F25EC1325006C67EB /* SvgText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC825EBCE7300503486 /* SvgText.swift */; };
 		C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
 		C480847C25E4E97300BD0A24 /* SvgColumnPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */; };
 		C480848025E6776900BD0A24 /* SvgSides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* SvgSides.swift */; };
@@ -232,6 +234,8 @@
 				C480848325E6809400BD0A24 /* SvgSides.swift in Sources */,
 				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,
 				C424513E25E980A7005BE7DC /* SvgColumnPlot.swift in Sources */,
+				C449F44C25EC131E006C67EB /* SvgDefs.swift in Sources */,
+				C449F44F25EC1325006C67EB /* SvgText.swift in Sources */,
 				C4255F4425E428B0002DFE80 /* SvgPath.swift in Sources */,
 				C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */,
 				C4EA5D2B25EB90C900E104E0 /* SvgColours.swift in Sources */,
