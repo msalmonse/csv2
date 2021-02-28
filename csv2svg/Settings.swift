@@ -31,6 +31,9 @@ class Settings: Codable {
     
     // Data is grouped in columns?
     let inColumns = true
+    
+    // Path colours
+    let colours: [String]
 
     /// Convenience function to decode a keyed Int
     /// - Parameters:
@@ -77,6 +80,15 @@ class Settings: Codable {
         xMin = try? container?.decodeIfPresent(Double.self, forKey: .xMin)
         yMax = try? container?.decodeIfPresent(Double.self, forKey: .yMax)
         yMin = try? container?.decodeIfPresent(Double.self, forKey: .yMin)
+        
+        var coloursContainer = try? container?.nestedUnkeyedContainer(forKey: .colours)
+        var colours: [String] = []
+        if coloursContainer != nil {
+            while !coloursContainer!.isAtEnd {
+                colours.append((try? coloursContainer?.decode(String.self)) ?? "")
+            }
+        }
+        self.colours = colours
     }
     
     /// Load contents of file into object
