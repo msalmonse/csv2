@@ -43,7 +43,7 @@ extension SVG {
         var result = [ "<path d=\"" ]
 
         result.append(contentsOf: points.map{ $0.command() })
-        result.append("\" style=\"stroke: \(strokeColour)\" />")
+        result.append("\" style=\"stroke: \(strokeColour); fill: none\" />")
 
         return result.joined(separator: " ")
     }
