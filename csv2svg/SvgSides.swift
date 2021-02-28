@@ -27,6 +27,12 @@ extension SVG {
                 max = Double(csv.data.count)
             } else {
                 (min, max) = csv.columnMinMax(index)
+                // if min and max don't include 0 then include 0 if one is close
+                if min > 0 && max > 0 {
+                    if min < max/20.0 { min = 0.0 }
+                } else if min < 0 && max < 0 {
+                    if max < min/20.0 { max = 0.0 }
+                }
             }
 
             left = settings.xMin ?? min
@@ -44,6 +50,12 @@ extension SVG {
                 if i != index {
                     (min, max) = csv.columnMinMax(i, min: min, max: max)
                 }
+            }
+            // if min and max don't include 0 then include 0 if one is close
+            if min > 0 && max > 0 {
+                if min < max/20.0 { min = 0.0 }
+            } else if min < 0 && max < 0 {
+                if max < min/20.0 { max = 0.0 }
             }
 
             bottom = settings.yMin ?? min
