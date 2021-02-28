@@ -56,7 +56,7 @@ class SVG {
         
         dataEdges = SVG.sidesFromColumns(csv, settings)
         plotEdges = Plane(
-            top: 10, bottom: Double(settings.height - (settings.title == "" ? 100 : 200)),
+            top: 10, bottom: Double(settings.height - (settings.title == "" ? 100 : 130)),
             left: 100, right: Double(settings.width)
         )
     }
@@ -90,6 +90,7 @@ class SVG {
         var result: [String] = [ xmlTag, svgTag ]
         result.append(contentsOf: svgDefs())
         result.append(contentsOf: svgLineGroup(ts))
+        if settings.title != "" { result.append(svgTitle()) }
         result.append(svgTagEnd)
         
         return result
