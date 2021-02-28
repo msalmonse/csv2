@@ -47,7 +47,7 @@ extension SVG {
                         pathPoints.append(.lineTo(x: xPos, y: yPos))
                     }
                 }
-                paths.append(Self.svgPath(pathPoints))
+                paths.append(Self.svgPath(pathPoints, stroke: colours[i]))
             }
         }
         return paths

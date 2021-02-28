@@ -35,6 +35,9 @@ class SVG {
     let dataEdges: Plane
     // and the plot plane
     let plotEdges: Plane
+    
+    // path colours
+    let colours: [String]
 
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
@@ -59,6 +62,18 @@ class SVG {
             top: 10, bottom: Double(settings.height - (settings.title == "" ? 100 : 130)),
             left: 100, right: Double(settings.width)
         )
+        
+        // Initialize path columns
+        let ct = settings.inColumns ? csv.colCt : csv.rowCt
+        var colours: [String] = []
+        for i in 0..<ct {
+            if i < settings.colours.count && settings.colours[i] != "" {
+                colours.append(settings.colours[i])
+            } else {
+                colours.append(SVG.Colours.nextColour())
+            }
+        }
+        self.colours = colours
     }
     
     /// Draw axes
