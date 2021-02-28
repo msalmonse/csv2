@@ -40,6 +40,15 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(path, pathTag)
     }
 
+    func testSvgTransScale() {
+        let from = SVG.Plane(top: 1000, bottom: 0, left: -1000, right: 1000)
+        let to = SVG.Plane(top: 0, bottom: 1000, left: 0, right: 1000)
+        let ts = SVG.TransScale(from: from, to: to)
+        
+        XCTAssertEqual(ts.xpos(0), 500)
+        XCTAssertEqual(ts.ypos(500), 500)
+    }
+
     func testSvgSides() {
         let csv = CSV(csvData)
         var svg = try? SVG(csv, Settings.load(settingsJSON))
