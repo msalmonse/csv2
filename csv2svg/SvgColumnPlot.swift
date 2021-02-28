@@ -21,8 +21,9 @@ extension SVG {
     }
 
     /// Plot the non-index and non header columns
+    /// - Parameter ts: a TransScale object
     /// - Returns: An array of the path elements for the columns
-    
+
     func columnPlot(_ ts: TransScale) -> [String] {
         var paths: [String] = []
 
