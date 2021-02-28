@@ -55,17 +55,24 @@ class SVG {
         edges = SVG.sidesFromColumns(csv, settings)
     }
 
-    func svgLineGroup() -> [String] {
+    func svgLineGroup(_ ts: TransScale) -> [String] {
         var result = [ "<g>"]
-        result.append(contentsOf: columnPlot())
+        result.append(contentsOf: columnPlot(ts))
         result.append("</g>")
         
         return result
     }
     
     func gen() -> [String] {
+        let ts = TransScale(
+            from: edges,
+            to: Plane(top: 100, bottom: Double(settings.height),
+                      left: 100, right: Double(settings.width)
+            )
+        )
+
         var result: [String] = [ xmlTag, svgTag ]
-        result.append(contentsOf: svgLineGroup())
+        result.append(contentsOf: svgLineGroup(ts))
         result.append(svgTagEnd)
         
         return result

@@ -23,7 +23,7 @@ extension SVG {
     /// Plot the non-index and non header columns
     /// - Returns: An array of the path elements for the columns
     
-    func columnPlot() -> [String] {
+    func columnPlot(_ ts: TransScale) -> [String] {
         var paths: [String] = []
 
         let xValues = xList()
@@ -36,10 +36,14 @@ extension SVG {
                     if xValues[j] == nil || yValues[j] == nil {
                         move = true
                     } else if move {
-                        pathPoints.append(.moveTo(x: xValues[j]!, y: yValues[j]!))
+                        let xPos = ts.xpos(xValues[j]!)
+                        let yPos = ts.ypos(yValues[j]!)
+                        pathPoints.append(.moveTo(x: xPos, y: yPos))
                         move = false
                     } else {
-                        pathPoints.append(.lineTo(x: xValues[j]!, y: yValues[j]!))
+                        let xPos = ts.xpos(xValues[j]!)
+                        let yPos = ts.ypos(yValues[j]!)
+                        pathPoints.append(.lineTo(x: xPos, y: yPos))
                     }
                 }
                 paths.append(Self.svgPath(pathPoints))
