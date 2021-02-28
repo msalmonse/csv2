@@ -23,6 +23,8 @@
 		C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
 		C4EA5D1F25EB7B8A00E104E0 /* SvgTransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* SvgTransScale.swift */; };
 		C4EA5D2225EB7DFD00E104E0 /* SvgTransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* SvgTransScale.swift */; };
+		C4EA5D2825EB8F4D00E104E0 /* SvgColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */; };
+		C4EA5D2B25EB90C900E104E0 /* SvgColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +52,7 @@
 		C49B7D6C25DC03B500CEAB8C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C49B7D6F25DC055400CEAB8C /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		C4EA5D1E25EB7B8A00E104E0 /* SvgTransScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgTransScale.swift; sourceTree = "<group>"; };
+		C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgColours.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,7 @@
 				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
 				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
 				C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */,
+				C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */,
 				C4255F3E25E423A7002DFE80 /* SvgPath.swift */,
 				C480847F25E6776900BD0A24 /* SvgSides.swift */,
 				C4EA5D1E25EB7B8A00E104E0 /* SvgTransScale.swift */,
@@ -206,6 +210,7 @@
 				C480848025E6776900BD0A24 /* SvgSides.swift in Sources */,
 				C40A3AFF25DC01180016EB6D /* main.swift in Sources */,
 				C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */,
+				C4EA5D2825EB8F4D00E104E0 /* SvgColours.swift in Sources */,
 				C4EA5D1F25EB7B8A00E104E0 /* SvgTransScale.swift in Sources */,
 				C4255F3F25E423A7002DFE80 /* SvgPath.swift in Sources */,
 			);
@@ -221,6 +226,7 @@
 				C424513E25E980A7005BE7DC /* SvgColumnPlot.swift in Sources */,
 				C4255F4425E428B0002DFE80 /* SvgPath.swift in Sources */,
 				C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */,
+				C4EA5D2B25EB90C900E104E0 /* SvgColours.swift in Sources */,
 				C4EA5D2225EB7DFD00E104E0 /* SvgTransScale.swift in Sources */,
 				C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */,
 			);

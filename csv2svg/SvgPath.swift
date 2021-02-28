@@ -35,7 +35,7 @@ extension SVG {
     /// - Returns: a path element
 
     static func svgPath(_ points: [PathCommand], stroke: String? = nil) -> String {
-        let strokeColour = stroke ?? "black"
+        let strokeColour = stroke ?? Colours.nextColour()
 
         // a path needs 2 points
         guard points.count >= 2 else { return "" }
