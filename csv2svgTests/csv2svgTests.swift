@@ -14,6 +14,7 @@ class csv2svgTests: XCTestCase {
         let settings = try? Settings.load(settingsJSON)
         
         XCTAssertNotNil(settings)
+        XCTAssertEqual(settings?.colours.count, 3)
         XCTAssertEqual(settings!.index, testIndex)
         XCTAssertEqual(settings!.height, testHeight)
         XCTAssertEqual(settings!.title, testTitle)
@@ -36,7 +37,7 @@ class csv2svgTests: XCTestCase {
     }
     
     func testSvgPath() {
-        let path = SVG.svgPath(pathPoints)
+        let path = SVG.svgPath(pathPoints, stroke: "black")
         XCTAssertEqual(path, pathTag)
     }
 
@@ -53,10 +54,10 @@ class csv2svgTests: XCTestCase {
         let csv = CSV(csvData)
         var svg = try? SVG(csv, Settings.load(settingsJSON))
         XCTAssertNotNil(svg)
-        XCTAssertEqual(svg!.edges.top, testYMax)
-        XCTAssertEqual(svg!.edges.bottom, -110.1)
-        XCTAssertEqual(svg!.edges.left, 1)
-        XCTAssertEqual(svg!.edges.right, 32)
+        XCTAssertEqual(svg!.dataEdges.top, testYMax)
+        XCTAssertEqual(svg!.dataEdges.bottom, -110.1)
+        XCTAssertEqual(svg!.dataEdges.left, 0)
+        XCTAssertEqual(svg!.dataEdges.right, 32)
     }
 
     func testSettingsPerformance() throws {
@@ -83,6 +84,7 @@ let testYMax = 25000.25
 // JSON string for tests
 let settingsJSON = """
 {
+    "colours": [ "silver", "red", "green" ],
     "index": \(testIndex),
     "height": \(testHeight),
     "width": \(testWidth),
