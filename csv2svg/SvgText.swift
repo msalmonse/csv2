@@ -15,12 +15,30 @@ extension SVG {
     func svgTitle() -> String {
         let x = settings.width/2
         let y = settings.height - 5
-        let t = settings.title 
+        let t = settings.title
         return """
             <text x="\(x)" y="\(y)" style="text-anchor: middle; font-size: 25px">\(t)</text>
             """
     }
+
+    /// Add title to the x axis
+    /// - Returns: String to display title
     
+    func xTitle(_ label: String, x: Double, y: Double, size: Int = 12) -> String {
+        return """
+            <text x="\(x)" y="\(y)" style="text-anchor: middle; font-size: \(size)px">\(label)</text>
+            """
+    }
+
+    /// Add title to the y axis
+    /// - Returns: String to display title
+    
+    func yTitle(_ label: String, x: Double, y: Double, size: Int = 12) -> String {
+        return """
+            <text x="\(x)" y="\(y)" style="writing-mode: tb; text-anchor: middle; font-size: \(size)px">\(label)</text>
+            """
+    }
+
     /// Add legends to an SVG
     /// - Parameters:
     ///   - x: mid point of legends

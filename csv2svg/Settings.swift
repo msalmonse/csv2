@@ -12,8 +12,10 @@ class Settings: Codable {
     let height: Int
     let width: Int
     
-    // svg title
+    // svg title, x axis title and y axis title
     let title: String
+    let xTitle: String
+    let yTitle: String
     
     // Header rows and columns
     let headerColumns: Int
@@ -106,6 +108,8 @@ class Settings: Codable {
         index = Self.keyedIntValue(from: container, forKey: .index, defaultValue: 0)
         title = Self.keyedStringValue(from: container, forKey: .title, defaultValue: "")
         width = Self.keyedIntValue(from: container, forKey: .width, defaultValue: 500)
+        xTitle = Self.keyedStringValue(from: container, forKey: .xTitle, defaultValue: "")
+        yTitle = Self.keyedStringValue(from: container, forKey: .yTitle, defaultValue: "")
 
         xMax = try? container?.decodeIfPresent(Double.self, forKey: .xMax)
         xMin = try? container?.decodeIfPresent(Double.self, forKey: .xMin)

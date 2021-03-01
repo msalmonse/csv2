@@ -51,9 +51,12 @@ class SVG {
         if settings.title != "" { bottomOffset += 30 }
         if settings.xTick > 0 { bottomOffset += 20 }
         if settings.names.count > 0 || settings.headers > 0 { bottomOffset += 25 }
+        var leftOffset = 10.0
+        if settings.yTick > 0 { leftOffset += 30 }
+        if settings.yTitle != "" { leftOffset += 12 }
         plotEdges = Plane(
             top: 10, bottom: Double(settings.height - bottomOffset),
-            left: 40, right: Double(settings.width - 8)
+            left: leftOffset, right: Double(settings.width - 8)
         )
         
         // Initialize path columns
@@ -97,7 +100,13 @@ class SVG {
         var result: [String] = [ xmlTag, svgTag ]
         result.append(contentsOf: svgDefs())
         result.append(contentsOf: svgLineGroup(ts))
-        result.append(svgLegends(Double(settings.width)/2.0, plotEdges.bottom + 40.0, size: 15))
+        if settings.xTitle != "" {
+            result.append(xTitle(settings.xTitle, x: plotEdges.hMid, y: plotEdges.bottom + 25.0))
+        }
+        if settings.yTitle != "" {
+            result.append(yTitle(settings.yTitle, x: 15.0, y: plotEdges.vMid))
+        }
+        result.append(svgLegends(Double(settings.width)/2.0, plotEdges.bottom + 40.0))
         if settings.title != "" { result.append(svgTitle()) }
         result.append(svgTagEnd)
         
