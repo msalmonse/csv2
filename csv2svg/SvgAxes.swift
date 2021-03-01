@@ -22,4 +22,54 @@ extension SVG {
         ]
         return Self.svgPath(path, stroke: "Black")
     }
+    
+    /// Draw vertical ticks
+    /// - Parameter ts: scaling and translating object
+    /// - Returns: path for the ticks
+
+    func svgXtick(_ ts: TransScale) -> String {
+        var path: [PathCommand] = []
+        let tick = Double(settings.xTick)
+        var x = tick    // the zero line is plotted by svgAxes
+        let xMax = max(dataEdges.right, -dataEdges.left)
+
+        while x <= xMax {
+            if dataEdges.inHoriz(x) {
+                path.append(.moveTo(x: ts.xpos(x), y: plotEdges.bottom))
+                path.append(.vertTo(y: plotEdges.top))
+            }
+            if dataEdges.inHoriz(-x) {
+                path.append(.moveTo(x: ts.xpos(-x), y: plotEdges.bottom))
+                path.append(.vertTo(y: plotEdges.top))
+            }
+            x += tick
+        }
+ 
+        return Self.svgPath(path, stroke: "Silver")
+    }
+
+    /// Draw horizontal ticks
+    /// - Parameter ts: scaling and translating object
+    /// - Returns: path for the ticks
+
+    func svgYtick(_ ts: TransScale) -> String {
+        var path: [PathCommand] = []
+        let tick = Double(settings.yTick)
+        var y = tick    // the zero line is plotted by svgAxes
+        let yMax = max(dataEdges.top, -dataEdges.bottom)
+
+        while y <= yMax {
+            if dataEdges.inVert(y) {
+                path.append(.moveTo(x: plotEdges.left, y: ts.ypos(y)))
+                path.append(.horizTo(x: plotEdges.right))
+            }
+            if dataEdges.inVert(-y) {
+                path.append(.moveTo(x: plotEdges.left, y: ts.ypos(-y)))
+                path.append(.horizTo(x: plotEdges.right))
+            }
+            y += tick
+        }
+ 
+        return Self.svgPath(path, stroke: "Silver")
+    }
 }

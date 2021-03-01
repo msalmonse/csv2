@@ -23,6 +23,32 @@ class SVG {
         let bottom: Double
         let left: Double
         let right: Double
+        
+        /// Check for value between left and right
+        /// - Parameter x: value to check
+        /// - Returns: value lies in plane
+
+        func inHoriz(_ x: Double) -> Bool {
+            return (left < right) ? (x >= left && x <= right) : (x >= right && x <= left)
+        }
+
+        /// Check for value between top and bottom
+        /// - Parameter y: value to check
+        /// - Returns: value lies in plane
+
+        func inVert(_ y: Double) -> Bool {
+            return (bottom < top) ? (y >= bottom && y <= top) : (y >= top && y <= bottom)
+        }
+
+        /// Check for value between left and right
+        /// - Parameter x: value to check
+        /// - Parameter y: value to check
+        /// - Returns: value lies in plane
+
+        func inPlane(_ x: Double, _ y: Double) -> Bool {
+            return inHoriz(x) && inVert(y)
+        }
+
     }
 
     let csv: CSV
@@ -80,10 +106,12 @@ class SVG {
 
     func svgLineGroup(_ ts: TransScale) -> [String] {
         var result = [ "<g clip-path=\"url(#plotable)\" >"]
-        result.append(svgAxes(ts))
         result.append(contentsOf: columnPlot(ts))
         result.append("</g>")
-        
+        result.append(svgAxes(ts))
+        if settings.xTick > 0 { result.append(svgXtick(ts)) }
+        if settings.yTick > 0 { result.append(svgYtick(ts)) }
+
         return result
     }
     

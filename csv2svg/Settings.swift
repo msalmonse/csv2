@@ -29,6 +29,10 @@ class Settings: Codable {
     let yMax: Double?
     let yMin: Double?
     
+    // Ticks on the x and y axes
+    let xTick: Int
+    let yTick: Int
+
     // Data is grouped in columns?
     let inColumns = true
     
@@ -76,11 +80,15 @@ class Settings: Codable {
         index = Self.keyedIntValue(from: container, forKey: .index, defaultValue: 0)
         title = Self.keyedStringValue(from: container, forKey: .title, defaultValue: "")
         width = Self.keyedIntValue(from: container, forKey: .width, defaultValue: 500)
+
         xMax = try? container?.decodeIfPresent(Double.self, forKey: .xMax)
         xMin = try? container?.decodeIfPresent(Double.self, forKey: .xMin)
         yMax = try? container?.decodeIfPresent(Double.self, forKey: .yMax)
         yMin = try? container?.decodeIfPresent(Double.self, forKey: .yMin)
-        
+
+        xTick = Self.keyedIntValue(from: container, forKey: .xTick, defaultValue: 0)
+        yTick = Self.keyedIntValue(from: container, forKey: .yTick, defaultValue: 0)
+
         var coloursContainer = try? container?.nestedUnkeyedContainer(forKey: .colours)
         var colours: [String] = []
         if coloursContainer != nil {
