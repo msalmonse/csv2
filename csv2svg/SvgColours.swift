@@ -12,13 +12,17 @@ extension SVG {
         static private var next = -1
         static private let names = [
             "#ff0000",      // red
+            "#00ffff",      // aqua
             "#ff00ff",      // magenta
             "#008000",      // green
-            "#00ffff",      // aqua
             "#0000ff",      // blue
             "#dc143c",      // crimson
             "#ffd700",      // gold
             "#f4a460",      // sandywood
+            "#ff8c00",      // darkorange
+            "#8b008b",      // darkmagenta
+            "#b1000d",
+            "#c0ffee"
         ]
         
         static func nextColour() -> String {
