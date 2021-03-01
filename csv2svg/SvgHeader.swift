@@ -16,7 +16,7 @@ extension SVG {
     /// - Returns: column header
 
     static private func columnHeader(_ column: Int, csv: CSV) -> String {
-        if csv.data.count > column && column >= 0 {
+        if csv.data[0].count > column && column >= 0 {
             return csv.data[0][column].replacingOccurrences(of: "\"", with: "")
         }
         return ""
