@@ -29,12 +29,20 @@ class csv2svgTests: XCTestCase {
     
         XCTAssertEqual(csv.data.count, 4)
         for row in csv.data {
-            XCTAssertEqual(row.count, 4)
+            XCTAssertEqual(row.count, 5)
         }
         
         let (min, max) = csv.columnMinMax(3)
         XCTAssertEqual(min, -110.1)
         XCTAssertEqual(max, 5220.6)
+    }
+    
+    func testSVG() throws {
+        let csv = CSV(csvData)
+        let svg = try? SVG(csv, Settings.load(settingsJSON))
+        
+        XCTAssertNotNil(svg)
+        XCTAssertEqual(svg?.names[4], testName)
     }
     
     func testSvgPath() {
@@ -59,7 +67,7 @@ class csv2svgTests: XCTestCase {
 
     func testSvgSides() {
         let csv = CSV(csvData)
-        var svg = try? SVG(csv, Settings.load(settingsJSON))
+        let svg = try? SVG(csv, Settings.load(settingsJSON))
         XCTAssertNotNil(svg)
         XCTAssertEqual(svg!.dataEdges.top, testYMax)
         XCTAssertEqual(svg!.dataEdges.bottom, -110.1)
@@ -93,6 +101,7 @@ let testYMax = 25000.25
 let settingsJSON = """
 {
     "colours": [ "silver", "red", "green" ],
+    "headerRows": 1,
     "index": \(testIndex),
     "height": \(testHeight),
     "names": [ "a", "\(testName)", "c" ],
@@ -104,10 +113,10 @@ let settingsJSON = """
 
 // CSV string for tests
 let csvData = """
-n,Array,Iterative,Recursive
-1,100.1,120.4,-110.1
-9,100.1,129.9,5220.6
-32,100.1,152.7,
+n,Array,Iterative,Recursive,"\(testName)"
+1,100.1,120.4,-110.1, 0.0
+9,100.1,129.9,5220.6, 0.0
+32,100.1,152.7,,
 """
 
 // SVG path
