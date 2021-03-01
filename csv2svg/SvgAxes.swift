@@ -29,23 +29,27 @@ extension SVG {
 
     func svgXtick(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
+        var labels = [""]
         let tick = Double(settings.xTick)
         var x = tick    // the zero line is plotted by svgAxes
         let xMax = max(dataEdges.right, -dataEdges.left)
+        let labelBase = plotEdges.bottom + 12.0
 
         while x <= xMax {
             if dataEdges.inHoriz(x) {
                 path.append(.moveTo(x: ts.xpos(x), y: plotEdges.bottom))
                 path.append(.vertTo(y: plotEdges.top))
+                labels.append(xLabel(label(x), x: ts.xpos(x), y: labelBase))
             }
             if dataEdges.inHoriz(-x) {
                 path.append(.moveTo(x: ts.xpos(-x), y: plotEdges.bottom))
                 path.append(.vertTo(y: plotEdges.top))
+                labels.append(xLabel(label(-x), x: ts.xpos(-x), y: labelBase))
             }
             x += tick
         }
  
-        return Self.svgPath(path, stroke: "Silver")
+        return Self.svgPath(path, stroke: "Silver") + labels.joined(separator: "\n")
     }
 
     /// Draw horizontal ticks
@@ -54,22 +58,26 @@ extension SVG {
 
     func svgYtick(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
+        var labels = [""]
         let tick = Double(settings.yTick)
         var y = tick    // the zero line is plotted by svgAxes
         let yMax = max(dataEdges.top, -dataEdges.bottom)
+        let labelEnd = plotEdges.left - 2
 
         while y <= yMax {
             if dataEdges.inVert(y) {
                 path.append(.moveTo(x: plotEdges.left, y: ts.ypos(y)))
                 path.append(.horizTo(x: plotEdges.right))
+                labels.append(yLabel(label(y), x: labelEnd, y: ts.ypos(y)))
             }
             if dataEdges.inVert(-y) {
                 path.append(.moveTo(x: plotEdges.left, y: ts.ypos(-y)))
                 path.append(.horizTo(x: plotEdges.right))
+                labels.append(yLabel(label(-y), x: labelEnd, y: ts.ypos(-y)))
             }
             y += tick
         }
  
-        return Self.svgPath(path, stroke: "Silver")
+        return Self.svgPath(path, stroke: "Silver") + labels.joined(separator: "\n")
     }
 }
