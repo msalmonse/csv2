@@ -11,12 +11,14 @@ extension SVG {
     class Colours {
         static private var next = -1
         static private let names = [
-            "rgb(255,0,0)",
-            "rgb(255,127,0)",
-            "rgb(0,255,0)",
-            "rgb(0,0,255)",
-            "rgb(127,255,0)",
-            "rgb(0,255,127)"
+            "#ff0000",      // red
+            "#ff00ff",      // magenta
+            "#008000",      // green
+            "#00ffff",      // aqua
+            "#0000ff",      // blue
+            "#dc143c",      // crimson
+            "#ffd700",      // gold
+            "#f4a460",      // sandywood
         ]
         
         static func nextColour() -> String {
