@@ -17,6 +17,7 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(settings?.colours.count, 3)
         XCTAssertEqual(settings!.index, testIndex)
         XCTAssertEqual(settings!.height, testHeight)
+        XCTAssertEqual(settings!.names[1], testName)
         XCTAssertEqual(settings!.title, testTitle)
         XCTAssertEqual(settings!.width, testWidth)
         XCTAssertNil(settings!.xMax)
@@ -83,6 +84,7 @@ class csv2svgTests: XCTestCase {
 // Values for JSON tests
 let testIndex = 1
 let testHeight = 499
+let testName = "Ozzymandis"
 let testTitle = "Test title"
 let testWidth = 501
 let testYMax = 25000.25
@@ -93,6 +95,7 @@ let settingsJSON = """
     "colours": [ "silver", "red", "green" ],
     "index": \(testIndex),
     "height": \(testHeight),
+    "names": [ "a", "\(testName)", "c" ],
     "width": \(testWidth),
     "title": "\(testTitle)",
     "yMax": \(testYMax)

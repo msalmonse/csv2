@@ -38,6 +38,9 @@ class Settings: Codable {
     
     // Path colours
     let colours: [String]
+    
+    // Path names
+    let names: [String]
 
     /// Convenience function to decode a keyed Int
     /// - Parameters:
@@ -71,6 +74,28 @@ class Settings: Codable {
         return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? defaultValue
     }
 
+    /// Convenience function to decode a keyed String
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: the key into the decoded data
+    ///   - defaultValue: the default value
+    /// - Returns: decoded or default value
+
+    private static func keyedStringArray(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys
+    ) -> [String] {
+        var values: [String] = []
+        var arrayContainer = try? container?.nestedUnkeyedContainer(forKey: key)
+        if (arrayContainer != nil) {
+            while !arrayContainer!.isAtEnd {
+                values.append((try? arrayContainer?.decode(String.self)) ?? "")
+            }
+        }
+        
+        return values
+    }
+
     required init(from decoder: Decoder) {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
@@ -89,14 +114,8 @@ class Settings: Codable {
         xTick = Self.keyedIntValue(from: container, forKey: .xTick, defaultValue: 0)
         yTick = Self.keyedIntValue(from: container, forKey: .yTick, defaultValue: 0)
 
-        var coloursContainer = try? container?.nestedUnkeyedContainer(forKey: .colours)
-        var colours: [String] = []
-        if coloursContainer != nil {
-            while !coloursContainer!.isAtEnd {
-                colours.append((try? coloursContainer?.decode(String.self)) ?? "")
-            }
-        }
-        self.colours = colours
+        colours = Self.keyedStringArray(from: container, forKey: .colours)
+        names = Self.keyedStringArray(from: container, forKey: .names)
     }
     
     /// Load contents of file into object

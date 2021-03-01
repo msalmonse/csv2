@@ -64,6 +64,9 @@ class SVG {
     
     // path colours
     let colours: [String]
+    
+    // path tags
+    let names: [String]
 
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
@@ -92,14 +95,23 @@ class SVG {
         // Initialize path columns
         let ct = settings.inColumns ? csv.colCt : csv.rowCt
         var colours: [String] = []
+        var names: [String] = []
         for i in 0..<ct {
             if i < settings.colours.count && settings.colours[i] != "" {
                 colours.append(settings.colours[i])
             } else {
                 colours.append(SVG.Colours.nextColour())
             }
+            if i < settings.names.count && settings.names[i] != "" {
+                names.append(settings.names[i])
+            } else if (settings.inColumns ? settings.headerRows : settings.headerColumns) > 0 {
+                names.append(SVG.headerText(i, csv: csv, inColumn: settings.inColumns))
+            } else {
+                names.append("")
+            }
         }
         self.colours = colours
+        self.names = names
     }
 
     
