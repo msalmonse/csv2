@@ -11,6 +11,7 @@
 		C40CD42C25ECD60F003944FA /* SvgAxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD42B25ECD60F003944FA /* SvgAxes.swift */; };
 		C40CD43625ED007A003944FA /* SvgAxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD42B25ECD60F003944FA /* SvgAxes.swift */; };
 		C40CD43A25ED025F003944FA /* SvgHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD43925ED025F003944FA /* SvgHeader.swift */; };
+		C40CD43D25ED02BE003944FA /* SvgHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD43925ED025F003944FA /* SvgHeader.swift */; };
 		C424513E25E980A7005BE7DC /* SvgColumnPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */; };
 		C4255F3F25E423A7002DFE80 /* SvgPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* SvgPath.swift */; };
 		C4255F4425E428B0002DFE80 /* SvgPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* SvgPath.swift */; };
@@ -246,6 +247,7 @@
 				C449F44C25EC131E006C67EB /* SvgDefs.swift in Sources */,
 				C40CD43625ED007A003944FA /* SvgAxes.swift in Sources */,
 				C449F44F25EC1325006C67EB /* SvgText.swift in Sources */,
+				C40CD43D25ED02BE003944FA /* SvgHeader.swift in Sources */,
 				C4255F4425E428B0002DFE80 /* SvgPath.swift in Sources */,
 				C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */,
 				C4EA5D2B25EB90C900E104E0 /* SvgColours.swift in Sources */,
