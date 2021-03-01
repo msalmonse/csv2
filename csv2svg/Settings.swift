@@ -18,6 +18,7 @@ class Settings: Codable {
     // Header rows and columns
     let headerColumns: Int
     let headerRows: Int
+    var headers: Int { return inColumns ? headerRows : headerColumns }
     
     // Index for x values in csv data
     let index: Int
