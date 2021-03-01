@@ -23,7 +23,13 @@ class SVG {
         let bottom: Double
         let left: Double
         let right: Double
-        
+
+        /// Horizontal midpoint
+        var hMid: Double { get { return (left + right)/2.0 } }
+
+        /// Vertical midpoint
+        var vMid: Double { get { return (top + bottom)/2.0 } }
+
         /// Check for value between left and right
         /// - Parameter x: value to check
         /// - Returns: value lies in plane
@@ -133,6 +139,7 @@ class SVG {
         var result: [String] = [ xmlTag, svgTag ]
         result.append(contentsOf: svgDefs())
         result.append(contentsOf: svgLineGroup(ts))
+        result.append(svgLegends(Double(settings.width)/2.0, plotEdges.bottom + 50.0, size: 15))
         if settings.title != "" { result.append(svgTitle()) }
         result.append(svgTagEnd)
         
