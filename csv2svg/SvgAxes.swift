@@ -33,18 +33,17 @@ extension SVG {
         let tick = Double(settings.xTick)
         var x = tick    // the zero line is plotted by svgAxes
         let xMax = max(dataEdges.right, -dataEdges.left)
-        let labelBase = plotEdges.bottom + 12.0
 
         while x <= xMax {
             if dataEdges.inHoriz(x) {
                 path.append(.moveTo(x: ts.xpos(x), y: plotEdges.bottom))
                 path.append(.vertTo(y: plotEdges.top))
-                labels.append(xLabel(label(x), x: ts.xpos(x), y: labelBase))
+                labels.append(xLabel(label(x), x: ts.xpos(x), y: xTicksY))
             }
             if dataEdges.inHoriz(-x) {
                 path.append(.moveTo(x: ts.xpos(-x), y: plotEdges.bottom))
                 path.append(.vertTo(y: plotEdges.top))
-                labels.append(xLabel(label(-x), x: ts.xpos(-x), y: labelBase))
+                labels.append(xLabel(label(-x), x: ts.xpos(-x), y: xTicksY))
             }
             x += tick
         }

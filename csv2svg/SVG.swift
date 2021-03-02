@@ -21,7 +21,17 @@ class SVG {
     let dataEdges: Plane
     // and the plot plane
     let plotEdges: Plane
+
+    // Vertical positions
+    let titleY: Double
+    let legendY: Double
+    let xTitleY: Double
+    let xTicksY: Double
     
+    // Horizontal positions
+    let yTitleX: Double
+    let yTickX: Double
+
     // path colours
     let colours: [String]
     
@@ -47,16 +57,30 @@ class SVG {
         self.index = settings.index - 1
         
         dataEdges = SVG.sidesFromColumns(csv, settings)
-        var bottomOffset = 10
-        if settings.title != "" { bottomOffset += 30 }
-        if settings.xTick > 0 { bottomOffset += 20 }
-        if settings.names.count > 0 || settings.headers > 0 { bottomOffset += 25 }
-        var leftOffset = 10.0
-        if settings.yTick > 0 { leftOffset += 30 }
-        if settings.yTitle != "" { leftOffset += 12 }
+
+        // Calculate vertical positions
+        var pos = Double(settings.height - 5)
+        titleY = pos
+        if settings.title != "" { pos -= 40 }
+        legendY = pos
+        if settings.names.count > 0 || settings.headers > 0 { pos -= 25 }
+        xTitleY = pos
+        if settings.xTitle != "" { pos -= 12 }
+        xTicksY = pos
+        if settings.xTick > 0 { pos -= 20 }
+        let bottomY = pos
+
+        // Calculate horizontal positions
+        pos = 5
+        if settings.yTitle != "" { pos += 12 }
+        yTitleX = pos
+        if settings.yTick > 0 { pos += 30 }
+        yTickX = pos
+        pos += 2
+
         plotEdges = Plane(
-            top: 10, bottom: Double(settings.height - bottomOffset),
-            left: leftOffset, right: Double(settings.width - 8)
+            top: 10, bottom: bottomY,
+            left: pos, right: Double(settings.width - 8)
         )
         
         // Initialize path columns
@@ -101,12 +125,12 @@ class SVG {
         result.append(contentsOf: svgDefs())
         result.append(contentsOf: svgLineGroup(ts))
         if settings.xTitle != "" {
-            result.append(xTitle(settings.xTitle, x: plotEdges.hMid, y: plotEdges.bottom + 25.0))
+            result.append(xTitle(settings.xTitle, x: plotEdges.hMid, y: xTitleY))
         }
         if settings.yTitle != "" {
-            result.append(yTitle(settings.yTitle, x: 15.0, y: plotEdges.vMid))
+            result.append(yTitle(settings.yTitle, x: yTitleX, y: plotEdges.vMid))
         }
-        result.append(svgLegends(Double(settings.width)/2.0, plotEdges.bottom + 40.0))
+        result.append(svgLegends(Double(settings.width)/2.0, legendY))
         if settings.title != "" { result.append(svgTitle()) }
         result.append(svgTagEnd)
         
