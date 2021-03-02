@@ -104,7 +104,7 @@ class CSV {
         for row in data {
             var valueRow: [Double?] = []
             for cell in row {
-                let value = Double(cell)
+                let value = Double(cell.replacingOccurrences(of: " ", with: ""))
                 valueRow.append(value)
             }
             values.append(valueRow)

@@ -114,8 +114,8 @@ let settingsJSON = """
 // CSV string for tests
 let csvData = """
 n,Array,Iterative,Recursive,"\(testName)"
-1,100.1,120.4,-110.1, 0.0
-9,100.1,129.9,5220.6, 0.0
+1,100.1,120.4, -110.1,0.0
+9,100.1,129.9,5220.6 ,0.0
 32,100.1,152.7,,
 """
 
