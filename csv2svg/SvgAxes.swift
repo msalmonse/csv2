@@ -20,7 +20,7 @@ extension SVG {
             .moveTo(x: ts.xpos(0), y: plotEdges.bottom),
             .vertTo(y: plotEdges.top)
         ]
-        return Self.svgPath(path, stroke: "Black")
+        return Self.svgPath(path, stroke: "Black", width: 2)
     }
     
     /// Draw vertical ticks
