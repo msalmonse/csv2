@@ -1,6 +1,6 @@
 # Settings
 
-The settings file is JSON encoded and the following tags are supported:
+The settings file is JSON encoded and the following tags are supported, the data type and default value are shown in parathenses.
 
 #### colours (Array of Strings)
 The colours to be used to plot the column or row. The index, if present, must be included although never used.
