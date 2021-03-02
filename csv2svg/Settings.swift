@@ -129,7 +129,7 @@ class Settings: Codable {
     /// - Returns: a new Setting
     
     static func load(_ url: URL) throws -> Settings {
-        let data = (try? Data(contentsOf: url)) ?? Data()
+        let data = (try? Data(contentsOf: url)) ?? "{}".data(using: .utf8) ?? Data()
         return try Self.loadFrom(data)
     }
     
