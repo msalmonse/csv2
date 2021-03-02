@@ -153,7 +153,7 @@ class Settings: Codable {
         do {
             return try decoder.decode(Settings.self, from: data)
         } catch {
-            print(error)
+            print(error, to: &standardError)
             throw error
         }
     }

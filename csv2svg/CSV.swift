@@ -22,6 +22,7 @@ class CSV {
         do {
             try self.loadFromUrl(url)
         } catch {
+            print(error, to: &standardError)
             throw(error)
         }
     }
