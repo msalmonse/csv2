@@ -49,6 +49,11 @@ class SVG {
         }
     }
     let svgTagEnd = "</svg>"
+    let comment = """
+    <!--
+        Created by csv2svg: https://github.com/msalmonse/csv2svg
+      -->
+    """
 
     init(_ csv: CSV, _ settings: Settings) {
         self.csv = csv
@@ -121,7 +126,7 @@ class SVG {
     func gen() -> [String] {
         let ts = TransScale(from: dataEdges, to: plotEdges)
 
-        var result: [String] = [ xmlTag, svgTag ]
+        var result: [String] = [ xmlTag, svgTag, comment ]
         result.append(contentsOf: svgDefs())
         result.append(contentsOf: svgLineGroup(ts))
         if settings.xTitle != "" {
