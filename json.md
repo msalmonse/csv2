@@ -7,10 +7,10 @@ The colours to be used to plot the column or row. The index, if present, must be
 Columns or rows that aren't defined are assigned a colour sequentially from an internal list.
 
 #### headerColumns (Int 0)
-The number of columns that do not contain data.<sup>[1]("#fn1")</sup>
+The number of columns that do not contain data.<sup>[1](#fn1)</sup>
 
 #### headerRows (Int 0)
-The number of rows that do not contain data.<sup>[1]("#fn1")</sup>
+The number of rows that do not contain data.<sup>[1](#fn1)</sup>
 
 #### height (Int 500)
 The height of the generated SVG
@@ -33,10 +33,10 @@ The title attached to the SVG
 The width of the generated SVG.
 
 #### xMax (Double)
-The maximum value for the abscissa.<sup>[2]("#fn2")</sup>
+The maximum value for the abscissa.<sup>[2](#fn2)</sup>
 
 #### xMin (Double)
-The minimum value for the abscissa.<sup>[2]("#fn2")</sup>
+The minimum value for the abscissa.<sup>[2](#fn2)</sup>
 
 #### xTick (Int 0)
 How often to print the abscissa values and draw a line.
@@ -45,10 +45,10 @@ How often to print the abscissa values and draw a line.
 The title attached to the abscissa.
 
 #### yMax (Double)
-The maximum value for the ordinate. [^2]
+The maximum value for the ordinate.<sup>[2](#fn2)</sup>
 
 #### yMin (Double)
-The minimum value for the ordinate. [^2]
+The minimum value for the ordinate.<sup>[2](#fn2)</sup>
 
 #### yTick (Int 0)
 How often to print the ordinate values and draw a line.
