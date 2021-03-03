@@ -11,7 +11,7 @@ extension SVG {
 
     /// Add title to the svg
     /// - Returns: String to display title
-    
+
     func svgTitle() -> String {
         let x = settings.width/2
         let y = titleY
@@ -23,7 +23,7 @@ extension SVG {
 
     /// Add title to the x axis
     /// - Returns: String to display title
-    
+
     func xTitle(_ label: String, x: Double, y: Double, size: Int = 12) -> String {
         return """
             <text x="\(x)" y="\(y)" style="text-anchor: middle; font-size: \(size)px">\(label)</text>
@@ -32,7 +32,7 @@ extension SVG {
 
     /// Add title to the y axis
     /// - Returns: String to display title
-    
+
     func yTitle(_ label: String, x: Double, y: Double, size: Int = 12) -> String {
         return """
             <text x="\(x)" y="\(y)" style="writing-mode: tb; text-anchor: middle; font-size: \(size)px">\(label)</text>
@@ -51,19 +51,17 @@ extension SVG {
         var legends = [
             "<text x=\"\(x)\" y=\"\(y)\" style=\"text-anchor: middle; font-size: \(size)px\">"
         ]
-        
-        for i in 0..<iMax {
-            if i != index {
-                let text = names[i]
-                let colour = colours[i]
-                legends.append("<tspan dx=\"\(size)px\" fill=\"\(colour)\">\(text)</tspan>")
-            }
+
+        for i in 0..<iMax where i != index {
+            let text = names[i]
+            let colour = colours[i]
+            legends.append("<tspan dx=\"\(size)px\" fill=\"\(colour)\">\(text)</tspan>")
         }
         legends.append("</text>")
-        
+
         return legends.joined()
     }
-    
+
     /// Format a value suitable to be used as a label
     /// - Parameter value: value to format
     /// - Returns: formatted string
@@ -79,6 +77,7 @@ extension SVG {
     ///   - y: y position
     ///   - size: font size
     /// - Returns: text string
+
     func xLabel(_ label: String, x: Double, y: Double, size: Int = 10) -> String {
         return """
             <text x="\(x)" y="\(y)" style="text-anchor: middle; font-size: \(size)px">\(label)</text>
@@ -92,6 +91,9 @@ extension SVG {
     ///   - y: y position
     ///   - size: font size
     /// - Returns: text string
+
+    // swiftlint:disable line_length
+
     func yLabel(_ label: String, x: Double, y: Double, size: Int = 10) -> String {
         return """
             <text x="\(x)" y="\(y)" dominant-baseline="middle" style="text-anchor: end; font-size: \(size)px">\(label)</text>

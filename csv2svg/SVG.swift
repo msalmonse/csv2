@@ -9,14 +9,12 @@ import Foundation
 
 class SVG {
 
-    
-
     let csv: CSV
     let settings: Settings
-    
+
     // Row or column to use for x values
     let index: Int
-    
+
     // The four sides of the data plane
     let dataEdges: Plane
     // and the plot plane
@@ -27,40 +25,38 @@ class SVG {
     let legendY: Double
     let xTitleY: Double
     let xTicksY: Double
-    
+
     // Horizontal positions
     let yTitleX: Double
     let yTickX: Double
 
     // path colours
     let colours: [String]
-    
+
     // path tags
     let names: [String]
 
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
     var svgTag: String {
-        get {
-            return String(
+        String(
                 format: "<svg width=\"%d\" height=\"%d\" xmlns=\"http://www.w3.org/2000/svg\">",
                 settings.width, settings.height
-            )
-        }
+        )
     }
     let svgTagEnd = "</svg>"
     let comment = """
     <!--
-        Created by csv2svg: https://github.com/msalmonse/csv2svg
+        Created by \(appName) \(appVersion) (\(appBuild)): https://github.com/msalmonse/csv2svg
       -->
     """
 
     init(_ csv: CSV, _ settings: Settings) {
         self.csv = csv
         self.settings = settings
-        
+
         self.index = settings.index - 1
-        
+
         dataEdges = SVG.sidesFromColumns(csv, settings)
 
         // Calculate vertical positions
@@ -87,7 +83,7 @@ class SVG {
             top: 10, bottom: bottomY,
             left: pos, right: Double(settings.width - 8)
         )
-        
+
         // Initialize path columns
         let ct = settings.inColumns ? csv.colCt : csv.rowCt
         var colours: [String] = []
@@ -110,8 +106,6 @@ class SVG {
         self.names = names
     }
 
-    
-
     func svgLineGroup(_ ts: TransScale) -> [String] {
         var result = [ "<g clip-path=\"url(#plotable)\" >"]
         result.append(contentsOf: columnPlot(ts))
@@ -122,7 +116,7 @@ class SVG {
 
         return result
     }
-    
+
     func gen() -> [String] {
         let ts = TransScale(from: dataEdges, to: plotEdges)
 
@@ -138,7 +132,7 @@ class SVG {
         result.append(svgLegends(Double(settings.width)/2.0, legendY))
         if settings.title != "" { result.append(svgTitle()) }
         result.append(svgTagEnd)
-        
+
         return result
     }
 }

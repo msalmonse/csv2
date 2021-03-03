@@ -8,16 +8,16 @@
 import Foundation
 
 extension SVG {
-    
+
     /// path commands
-    
+
     enum PathCommand {
         case
             moveTo(x: Double, y: Double),
             horizTo(x: Double),
-            lineTo(x: Double, y:Double),
+            lineTo(x: Double, y: Double),
             vertTo(y: Double)
-        
+
         func command() -> String {
             switch self {
             case .moveTo(let x, let y): return String(format: "M %.1f,%.1f", x, y)
@@ -42,7 +42,7 @@ extension SVG {
 
         var result = [ "<path d=\"" ]
 
-        result.append(contentsOf: points.map{ $0.command() })
+        result.append(contentsOf: points.map { $0.command() })
         result.append("\" style=\"stroke: \(strokeColour); fill: none; stroke-width: \(width)\" />")
 
         return result.joined(separator: " ")

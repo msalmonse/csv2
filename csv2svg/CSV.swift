@@ -10,11 +10,11 @@ import Foundation
 class CSV {
     var data: [[String]] = []
     var values: [[Double?]] = []
-    
+
     /// Number of rows and columns
     var colCt = 0
     var rowCt = 0
-    
+
     /// Initialize CSV from a URL
     /// - Parameter url: location of data
     /// - Throws: whatever String throws
@@ -26,18 +26,18 @@ class CSV {
             throw(error)
         }
     }
-    
+
     /// Initialize CSV from a String
     /// - Parameter contents: the data to load into the string
 
-    init(_ contents: String){
+    init(_ contents: String) {
         self.loadFrom(contents)
     }
-    
+
     /// Return a column of values
     /// - Parameter col: column index
     /// - Returns: list of values
-    
+
     func columnValues(_ col: Int) -> [Double?] {
         var result: [Double?] = []
 
@@ -48,7 +48,7 @@ class CSV {
                 result.append(row[col])
             }
         }
-        
+
         return result
     }
 
@@ -67,20 +67,18 @@ class CSV {
         var min = initMin
         var max = initMax
 
-        for value in columnValues(col) {
-            if value != nil {
-                if min > value! { min = value! }
-                if max < value! { max = value! }
-            }
+        for value in columnValues(col) where value != nil {
+            if min > value! { min = value! }
+            if max < value! { max = value! }
         }
-        
+
         return (min: min, max: max)
     }
 
     /// Load data from a URL
     /// - Parameter url: data location
     /// - Throws: whatever String throws
-    
+
     func loadFromUrl(_ url: URL) throws {
         do {
             loadFrom(try String(contentsOf: url))
@@ -88,10 +86,10 @@ class CSV {
             throw(error)
         }
     }
-    
+
     /// Load data from a string
     /// - Parameter contents: the string containing data
-    
+
     func loadFrom(_ contents: String) {
         var colMax = 0
         for row in contents.components(separatedBy: "\n") {

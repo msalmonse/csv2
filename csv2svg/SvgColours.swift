@@ -24,7 +24,7 @@ extension SVG {
             "#b1000d",
             "#c0ffee"
         ]
-        
+
         static func nextColour() -> String {
             next += 1
             if next >= names.count { next = 0 }

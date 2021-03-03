@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482B9FC25EE8D4D00E51A50 /* stderr.swift */; };
+		C407EA8C25EFD00F009E18E7 /* BundledData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C407EA8B25EFD00F009E18E7 /* BundledData.swift */; };
+		C407EA8F25EFD0C2009E18E7 /* BundledData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C407EA8B25EFD00F009E18E7 /* BundledData.swift */; };
 		C40A3AFF25DC01180016EB6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A3AFE25DC01180016EB6D /* main.swift */; };
 		C40CD42C25ECD60F003944FA /* SvgAxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD42B25ECD60F003944FA /* SvgAxes.swift */; };
 		C40CD43625ED007A003944FA /* SvgAxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD42B25ECD60F003944FA /* SvgAxes.swift */; };
@@ -52,6 +54,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C407EA8B25EFD00F009E18E7 /* BundledData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledData.swift; sourceTree = "<group>"; };
 		C40A3AFB25DC01180016EB6D /* csv2svg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = csv2svg; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40A3AFE25DC01180016EB6D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C40CD42B25ECD60F003944FA /* SvgAxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgAxes.swift; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		C40A3AFD25DC01180016EB6D /* csv2svg */ = {
 			isa = PBXGroup;
 			children = (
+				C407EA8B25EFD00F009E18E7 /* BundledData.swift */,
 				C49B7D6F25DC055400CEAB8C /* CSV.swift */,
 				C40A3AFE25DC01180016EB6D /* main.swift */,
 				C482B9FC25EE8D4D00E51A50 /* stderr.swift */,
@@ -289,6 +293,7 @@
 				C480847C25E4E97300BD0A24 /* SvgColumnPlot.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
 				C480848025E6776900BD0A24 /* SvgSides.swift in Sources */,
+				C407EA8C25EFD00F009E18E7 /* BundledData.swift in Sources */,
 				C49A7EC325EBBCC700503486 /* SvgDefs.swift in Sources */,
 				C40CD42C25ECD60F003944FA /* SvgAxes.swift in Sources */,
 				C49A7EC925EBCE7300503486 /* SvgText.swift in Sources */,
@@ -311,6 +316,7 @@
 				C480848325E6809400BD0A24 /* SvgSides.swift in Sources */,
 				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,
 				C424513E25E980A7005BE7DC /* SvgColumnPlot.swift in Sources */,
+				C407EA8F25EFD0C2009E18E7 /* BundledData.swift in Sources */,
 				C449F44C25EC131E006C67EB /* SvgDefs.swift in Sources */,
 				C40CD43625ED007A003944FA /* SvgAxes.swift in Sources */,
 				C449F44F25EC1325006C67EB /* SvgText.swift in Sources */,

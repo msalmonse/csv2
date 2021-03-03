@@ -18,7 +18,7 @@ extension SVG {
         result.append("<rect x=\"\(x)\" y=\"\(y)\" width=\"\(w)\" height=\"\(h)\" />")
         result.append("</clipPath>")
         result.append("</defs>")
-        
+
         return result
     }
 }

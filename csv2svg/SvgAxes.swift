@@ -12,7 +12,7 @@ extension SVG {
     /// Draw axes
     /// - Parameter ts: scaling and tranlating object
     /// - Returns: paths with axes
-    
+
     func svgAxes(_ ts: TransScale) -> String {
         let path: [PathCommand] = [
             .moveTo(x: plotEdges.left, y: ts.ypos(0.0)),
@@ -22,7 +22,7 @@ extension SVG {
         ]
         return Self.svgPath(path, stroke: "Black", width: settings.strokeWidth)
     }
-    
+
     /// Draw vertical ticks
     /// - Parameter ts: scaling and translating object
     /// - Returns: path for the ticks
@@ -47,7 +47,7 @@ extension SVG {
             }
             x += tick
         }
- 
+
         return Self.svgPath(path, stroke: "Silver") + labels.joined(separator: "\n")
     }
 
@@ -76,7 +76,7 @@ extension SVG {
             }
             y += tick
         }
- 
+
         return Self.svgPath(path, stroke: "Silver") + labels.joined(separator: "\n")
     }
 }

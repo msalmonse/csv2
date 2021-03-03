@@ -9,22 +9,22 @@ import Foundation
 
 extension SVG {
     /// translate and scale a point
-    
+
     struct TransScale {
         private let xMult: Double
         private let xOffset: Double
         private let yMult: Double
         private let yOffset: Double
-        
+
         init(from: Plane, to: Plane) {
             // a*max + b == right
             // a*min + b == left
             // a*(max - min) == right - left
             // similaly for top and bottom
-            
+
             xMult = (to.right - to.left)/(from.right - from.left)
             xOffset = to.left - xMult * from.left
-            
+
             yMult = (to.top - to.bottom)/(from.top - from.bottom)
             yOffset = to.bottom - yMult * from.bottom
         }

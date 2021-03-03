@@ -8,7 +8,7 @@
 import Foundation
 
 extension SVG {
-    
+
     /// Extract name from column header
     /// - Parameters:
     ///   - column: column number
@@ -21,7 +21,7 @@ extension SVG {
         }
         return ""
     }
-    
+
     /// Extract name from row or header column
     /// - Parameters:
     ///   - i: row or column number
