@@ -26,6 +26,9 @@ If it is less than or equal to zero then the absica is 0 for the first vale of e
 The plotted column or rows are assigned names from this array or the first header row or column respectively.
 The name are included with the colours associated with the plots.
 
+#### strokeWidth (Int 2)
+The width of the plotted paths
+
 #### title (String)
 The title attached to the SVG
 
