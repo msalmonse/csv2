@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482B9FC25EE8D4D00E51A50 /* stderr.swift */; };
 		C40A3AFF25DC01180016EB6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A3AFE25DC01180016EB6D /* main.swift */; };
 		C40CD42C25ECD60F003944FA /* SvgAxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD42B25ECD60F003944FA /* SvgAxes.swift */; };
 		C40CD43625ED007A003944FA /* SvgAxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD42B25ECD60F003944FA /* SvgAxes.swift */; };
@@ -149,6 +150,8 @@
 				C40A3AF725DC01180016EB6D /* Sources */,
 				C40A3AF825DC01180016EB6D /* Frameworks */,
 				C40A3AF925DC01180016EB6D /* CopyFiles */,
+				C407EA8225EF981B009E18E7 /* ShellScript */,
+				C407EA8325EF984D009E18E7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -241,6 +244,40 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null\nthen\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi its path.\n";
 		};
+		C407EA8225EF981B009E18E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "GIT_RELEASE_VERSION=$(git describe --tags --always --dirty)\nCOMMITS=$(git rev-list HEAD | wc -l)\nCOMMITS=$(($COMMITS))\ndefaults write \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH%.*}\" \"CFBundleShortVersionString\" \"${GIT_RELEASE_VERSION#*v}\"\ndefaults write \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH%.*}\" \"CFBundleVersion\" \"${COMMITS}\"\n";
+		};
+		C407EA8325EF984D009E18E7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null\nthen\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -282,6 +319,7 @@
 				C4255F4425E428B0002DFE80 /* SvgPath.swift in Sources */,
 				C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */,
 				C4EA5D2B25EB90C900E104E0 /* SvgColours.swift in Sources */,
+				C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */,
 				C4EA5D2225EB7DFD00E104E0 /* SvgTransScale.swift in Sources */,
 				C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */,
 			);
