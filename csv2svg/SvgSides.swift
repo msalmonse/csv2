@@ -8,10 +8,15 @@
 import Foundation
 
 extension SVG {
-    static func sidesFromColumns(_ csv: CSV, _ settings: Settings) -> Plane {
+
+    /// Calculate the left and right sides of the column data
+    /// - Parameters:
+    ///   - csv: csv values
+    ///   - settings: settings
+    /// - Returns: the left and right sides
+
+    static func lrFromColumns(_ csv: CSV, _ settings: Settings) -> (l: Double, r: Double) {
         let index = settings.index - 1
-        var top: Double
-        var bottom: Double
         var left: Double
         var right: Double
 
@@ -39,6 +44,20 @@ extension SVG {
             right = settings.xMax ?? max
         }
 
+        return (l: left, r: right)
+    }
+
+    /// Calculate the top and bottom valuesof the column data
+    /// - Parameters:
+    ///   - csv: csv values
+    ///   - settings: settings
+    /// - Returns: the top and bottom sides
+
+    static func tbFromColumns(_ csv: CSV, _ settings: Settings) -> (t: Double, b: Double) {
+        let index = settings.index - 1
+        var top: Double
+        var bottom: Double
+
         if settings.yMax != nil && settings.yMin != nil {
             bottom = settings.yMin!
             top = settings.yMax!
@@ -59,6 +78,13 @@ extension SVG {
             bottom = settings.yMin ?? min
             top = settings.yMax ?? max
         }
+
+        return (t: top, b: bottom)
+    }
+
+    static func sidesFromColumns(_ csv: CSV, _ settings: Settings) -> Plane {
+        let (left, right) = lrFromColumns(csv, settings)
+        let (top, bottom) = tbFromColumns(csv, settings)
 
         return Plane(top: top, bottom: bottom, left: left, right: right)
     }
