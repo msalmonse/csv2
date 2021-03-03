@@ -42,6 +42,9 @@ class Settings: Codable {
     // Path colours
     let colours: [String]
     
+    // Path stroke width
+    let strokeWidth: Int
+    
     // Path names
     let names: [String]
 
@@ -106,6 +109,7 @@ class Settings: Codable {
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows, defaultValue: 0)
         height = Self.keyedIntValue(from: container, forKey: .height, defaultValue: 500)
         index = Self.keyedIntValue(from: container, forKey: .index, defaultValue: 0)
+        strokeWidth = Self.keyedIntValue(from: container, forKey: .strokeWidth, defaultValue: 2)
         title = Self.keyedStringValue(from: container, forKey: .title, defaultValue: "")
         width = Self.keyedIntValue(from: container, forKey: .width, defaultValue: 500)
         xTitle = Self.keyedStringValue(from: container, forKey: .xTitle, defaultValue: "")
