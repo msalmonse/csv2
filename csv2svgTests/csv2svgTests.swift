@@ -12,7 +12,7 @@ class csv2svgTests: XCTestCase {
 
     func testSettings() throws {
         let settings = try? Settings.load(settingsJSON)
-        
+
         XCTAssertNotNil(settings)
         XCTAssertEqual(settings?.colours.count, 3)
         XCTAssertEqual(settings!.index, testIndex)
@@ -26,25 +26,25 @@ class csv2svgTests: XCTestCase {
 
     func testCSV() throws {
         let csv = CSV(csvData)
-    
+
         XCTAssertEqual(csv.data.count, 4)
         for row in csv.data {
             XCTAssertEqual(row.count, 5)
         }
-        
+
         let (min, max) = csv.columnMinMax(3)
         XCTAssertEqual(min, -110.1)
         XCTAssertEqual(max, 5220.6)
     }
-    
+
     func testSVG() throws {
         let csv = CSV(csvData)
         let svg = try? SVG(csv, Settings.load(settingsJSON))
-        
+
         XCTAssertNotNil(svg)
         XCTAssertEqual(svg?.names[4], testName)
     }
-    
+
     func testSvgPath() {
         let path = SVG.svgPath(pathPoints, stroke: "black")
         XCTAssertEqual(path, pathTag)
@@ -80,7 +80,7 @@ class csv2svgTests: XCTestCase {
             try? testSettings()
         }
     }
-    
+
     func testCSVperformance() throws {
         measure {
             try? testCSV()
@@ -131,5 +131,5 @@ let pathPoints = [
 ]
 
 let pathTag = """
-<path d=" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 " style="stroke: black; fill: none" />
+<path d=" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 " style="stroke: black; fill: none; stroke-width: 2" />
 """
