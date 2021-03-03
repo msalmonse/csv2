@@ -131,5 +131,5 @@ let pathPoints = [
 ]
 
 let pathTag = """
-<path d=" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 " style="stroke: black; fill: none; stroke-width: 2" />
+<path d=" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 " style="stroke: black; fill: none; stroke-width: 1" />
 """
