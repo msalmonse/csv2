@@ -47,7 +47,7 @@ class SVG {
     let svgTagEnd = "</svg>"
     let comment = """
     <!--
-        Created by \(appName) \(appVersion) (\(appBuild)): https://github.com/msalmonse/csv2svg
+        Created by \(AppInfo.name): \(AppInfo.version) (\(AppInfo.build)) \(AppInfo.origin)
       -->
     """
 
