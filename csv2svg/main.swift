@@ -7,7 +7,11 @@
 
 import Foundation
 
-if CommandLine.argc < 2 { exit(0) }
+if CommandLine.argc < 2 {
+    print("\(AppInfo.name): \(AppInfo.version) (\(AppInfo.build)) Built at \(AppInfo.builtAt)", to: &standardError)
+    print("Usage:\n\t\(AppInfo.name) <csv file> [json file]\n", to: &standardError)
+    exit(0)
+}
 
 let csvName = CommandLine.arguments[1]
 let jsonName = CommandLine.argc > 2 ? CommandLine.arguments[2] : csvName + ".json"
