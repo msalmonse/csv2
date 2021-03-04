@@ -40,18 +40,6 @@
 		C4EA5D2B25EB90C900E104E0 /* SvgColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		C40A3AF925DC01180016EB6D /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		C40A3AFB25DC01180016EB6D /* csv2svg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = csv2svg; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40A3AFE25DC01180016EB6D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -150,11 +138,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C40A3B0225DC01180016EB6D /* Build configuration list for PBXNativeTarget "csv2svg" */;
 			buildPhases = (
-				C407EA8325EF984D009E18E7 /* ShellScript */,
 				C45053B125F0C9C4003FC346 /* ShellScript */,
 				C40A3AF725DC01180016EB6D /* Sources */,
+				C407EA8325EF984D009E18E7 /* ShellScript */,
 				C40A3AF825DC01180016EB6D /* Frameworks */,
-				C40A3AF925DC01180016EB6D /* CopyFiles */,
+				C4448A7E25F1258400F23CB1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -264,6 +252,24 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null\nthen\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		C4448A7E25F1258400F23CB1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# env | sort\nln -sf \"$BUILT_PRODUCTS_DIR/csv2svg\" test\n";
+		};
 		C45053B125F0C9C4003FC346 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -280,7 +286,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "if [[ -x ${PROJECT_DIR}/autoversion.sh ]]\nthen\n    ${PROJECT_DIR}/autoversion.sh\nelse\n    echo autoversion.sh missing\nfi\n";
+			shellScript = "# env | sort > /tmp/xcode-env\nif [[ -x ${PROJECT_DIR}/autoversion.sh ]]\nthen\n    ${PROJECT_DIR}/autoversion.sh\nelse\n    echo autoversion.sh missing\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
