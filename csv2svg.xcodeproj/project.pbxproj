@@ -3,13 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482B9FC25EE8D4D00E51A50 /* stderr.swift */; };
-		C407EA8C25EFD00F009E18E7 /* BundledData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C407EA8B25EFD00F009E18E7 /* BundledData.swift */; };
-		C407EA8F25EFD0C2009E18E7 /* BundledData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C407EA8B25EFD00F009E18E7 /* BundledData.swift */; };
 		C40A3AFF25DC01180016EB6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A3AFE25DC01180016EB6D /* main.swift */; };
 		C40CD42C25ECD60F003944FA /* SvgAxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD42B25ECD60F003944FA /* SvgAxes.swift */; };
 		C40CD43625ED007A003944FA /* SvgAxes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD42B25ECD60F003944FA /* SvgAxes.swift */; };
@@ -23,6 +21,7 @@
 		C4255F4725E428B5002DFE80 /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
 		C449F44C25EC131E006C67EB /* SvgDefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC225EBBCC700503486 /* SvgDefs.swift */; };
 		C449F44F25EC1325006C67EB /* SvgText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC825EBCE7300503486 /* SvgText.swift */; };
+		C45053C125F0E865003FC346 /* appinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45053C025F0E865003FC346 /* appinfo.swift */; };
 		C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
 		C480847C25E4E97300BD0A24 /* SvgColumnPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */; };
 		C480848025E6776900BD0A24 /* SvgSides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* SvgSides.swift */; };
@@ -54,13 +53,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C407EA8B25EFD00F009E18E7 /* BundledData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundledData.swift; sourceTree = "<group>"; };
 		C40A3AFB25DC01180016EB6D /* csv2svg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = csv2svg; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40A3AFE25DC01180016EB6D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C40CD42B25ECD60F003944FA /* SvgAxes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgAxes.swift; sourceTree = "<group>"; };
 		C40CD43925ED025F003944FA /* SvgHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgHeader.swift; sourceTree = "<group>"; };
 		C40CD44025ED2390003944FA /* SvgPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgPlane.swift; sourceTree = "<group>"; };
 		C4255F3E25E423A7002DFE80 /* SvgPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgPath.swift; sourceTree = "<group>"; };
+		C45053C025F0E865003FC346 /* appinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appinfo.swift; sourceTree = "<group>"; };
 		C46A3A7125DE8B4C00F6783A /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
 		C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgColumnPlot.swift; sourceTree = "<group>"; };
 		C480847F25E6776900BD0A24 /* SvgSides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgSides.swift; sourceTree = "<group>"; };
@@ -97,6 +96,7 @@
 		C40A3AF225DC01180016EB6D = {
 			isa = PBXGroup;
 			children = (
+				C45053C025F0E865003FC346 /* appinfo.swift */,
 				C40A3AFD25DC01180016EB6D /* csv2svg */,
 				C48B822825E28F7E00EAEAE3 /* csv2svgTests */,
 				C40A3AFC25DC01180016EB6D /* Products */,
@@ -115,7 +115,6 @@
 		C40A3AFD25DC01180016EB6D /* csv2svg */ = {
 			isa = PBXGroup;
 			children = (
-				C407EA8B25EFD00F009E18E7 /* BundledData.swift */,
 				C49B7D6F25DC055400CEAB8C /* CSV.swift */,
 				C40A3AFE25DC01180016EB6D /* main.swift */,
 				C482B9FC25EE8D4D00E51A50 /* stderr.swift */,
@@ -151,11 +150,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C40A3B0225DC01180016EB6D /* Build configuration list for PBXNativeTarget "csv2svg" */;
 			buildPhases = (
+				C407EA8325EF984D009E18E7 /* ShellScript */,
+				C45053B125F0C9C4003FC346 /* ShellScript */,
 				C40A3AF725DC01180016EB6D /* Sources */,
 				C40A3AF825DC01180016EB6D /* Frameworks */,
 				C40A3AF925DC01180016EB6D /* CopyFiles */,
-				C407EA8225EF981B009E18E7 /* ShellScript */,
-				C407EA8325EF984D009E18E7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -248,23 +247,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null\nthen\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		C407EA8225EF981B009E18E7 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "GIT_RELEASE_VERSION=$(git describe --tags --always --dirty)\nCOMMITS=$(git rev-list HEAD | wc -l)\nCOMMITS=$(($COMMITS))\ndefaults write \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH%.*}\" \"CFBundleShortVersionString\" \"${GIT_RELEASE_VERSION#*v}\"\ndefaults write \"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH%.*}\" \"CFBundleVersion\" \"${COMMITS}\"\n";
-		};
 		C407EA8325EF984D009E18E7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -282,6 +264,24 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null\nthen\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		C45053B125F0C9C4003FC346 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [[ -x ${PROJECT_DIR}/autoversion.sh ]]\nthen\n    ${PROJECT_DIR}/autoversion.sh\nelse\n    echo autoversion.sh missing\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -289,11 +289,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C45053C125F0E865003FC346 /* appinfo.swift in Sources */,
 				C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */,
 				C480847C25E4E97300BD0A24 /* SvgColumnPlot.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
 				C480848025E6776900BD0A24 /* SvgSides.swift in Sources */,
-				C407EA8C25EFD00F009E18E7 /* BundledData.swift in Sources */,
 				C49A7EC325EBBCC700503486 /* SvgDefs.swift in Sources */,
 				C40CD42C25ECD60F003944FA /* SvgAxes.swift in Sources */,
 				C49A7EC925EBCE7300503486 /* SvgText.swift in Sources */,
@@ -316,7 +316,6 @@
 				C480848325E6809400BD0A24 /* SvgSides.swift in Sources */,
 				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,
 				C424513E25E980A7005BE7DC /* SvgColumnPlot.swift in Sources */,
-				C407EA8F25EFD0C2009E18E7 /* BundledData.swift in Sources */,
 				C449F44C25EC131E006C67EB /* SvgDefs.swift in Sources */,
 				C40CD43625ED007A003944FA /* SvgAxes.swift in Sources */,
 				C449F44F25EC1325006C67EB /* SvgText.swift in Sources */,
