@@ -4,8 +4,8 @@
 appinfo.swift
 
 ## User settings
-cvs2svg.xcodeproj/project.xcworkspace/
-cvs2svg.xcodeproj/xcuserdata/
-cvs2svg.xcodeproj/xcshareddata/
+csv2svg.xcodeproj/project.xcworkspace/
+csv2svg.xcodeproj/xcuserdata/
+csv2svg.xcodeproj/xcshareddata/
 ## app icons
 iconGen*/
