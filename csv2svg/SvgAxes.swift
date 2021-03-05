@@ -14,12 +14,17 @@ extension SVG {
     /// - Returns: paths with axes
 
     func svgAxes(_ ts: TransScale) -> String {
-        let path: [PathCommand] = [
-            .moveTo(x: plotEdges.left, y: ts.ypos(0.0)),
-            .horizTo(x: plotEdges.right),
-            .moveTo(x: ts.xpos(0), y: plotEdges.bottom),
-            .vertTo(y: plotEdges.top)
-        ]
+        var path: [PathCommand] = []
+
+        if dataEdges.inVert(0.0) {
+            path.append(.moveTo(x: plotEdges.left, y: ts.ypos(0.0)))
+            path.append(.horizTo(x: plotEdges.right))
+        }
+        if dataEdges.inHoriz(0.0) {
+            path.append(.moveTo(x: ts.xpos(0), y: plotEdges.bottom))
+            path.append(.vertTo(y: plotEdges.top))
+        }
+
         return Self.svgPath(path, stroke: "Black", width: settings.strokeWidth)
     }
 
