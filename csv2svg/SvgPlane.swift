@@ -30,6 +30,12 @@ extension SVG {
         /// Vertical midpoint
         var vMid: Double { (top + bottom)/2.0 }
 
+        /// height i.e. top - bottom
+        var height: Double { top > bottom ? top - bottom : bottom - top }
+
+        /// width i.e. right - left
+        var width: Double { left > right ? left - right : right - left }
+
         /// Check for value between left and right
         /// - Parameter x: value to check
         /// - Returns: value lies in plane
