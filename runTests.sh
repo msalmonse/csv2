@@ -13,6 +13,7 @@ makeSVG () {
     csv="$datadir/$1.csv"
     json="$datadir/$2.json"
     svg="$svgdir/$1-data+$2-json.svg"
+    echo >&2 "Generating $svg"
     ./test/csv2svg "$csv" "$json" > "$svg" \
     && echo "$3" > "$svg.txt"
 }
