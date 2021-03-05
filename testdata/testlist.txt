@@ -1,0 +1,2 @@
+column none Column data with no JSON settings
+column ticks-index Column data with ticks and index
