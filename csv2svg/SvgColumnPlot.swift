@@ -32,18 +32,22 @@ extension SVG {
             var pathPoints: [PathCommand] = []
             let yValues = csv.columnValues(i)
             var move = true
+            var single = false      // single point
             for j in 0..<csv.rowCt {
                 if xValues[j] == nil || yValues[j] == nil {
                     move = true
+                    if single { pathPoints.append(.circle(r: Double(settings.strokeWidth)/2.0))}
                 } else if move {
                     let xPos = ts.xpos(xValues[j]!)
                     let yPos = ts.ypos(yValues[j]!)
                     pathPoints.append(.moveTo(x: xPos, y: yPos))
                     move = false
+                    single = true
                 } else {
                     let xPos = ts.xpos(xValues[j]!)
                     let yPos = ts.ypos(yValues[j]!)
                     pathPoints.append(.lineTo(x: xPos, y: yPos))
+                    single = false
                 }
             }
             paths.append(Self.svgPath(pathPoints, stroke: colours[i], width: settings.strokeWidth))
