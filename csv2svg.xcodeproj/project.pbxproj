@@ -61,6 +61,7 @@
 		C48B822725E28F7E00EAEAE3 /* csv2svgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = csv2svgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2svgTests.swift; sourceTree = "<group>"; };
 		C48B822B25E28F7E00EAEAE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C492BE0A25F2B7490042A11E /* big.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = big.csv; path = testdata/big.csv; sourceTree = "<group>"; };
 		C49A7EC225EBBCC700503486 /* SvgDefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgDefs.swift; sourceTree = "<group>"; };
 		C49A7EC825EBCE7300503486 /* SvgText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgText.swift; sourceTree = "<group>"; };
 		C49B7D6C25DC03B500CEAB8C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -114,16 +115,16 @@
 			children = (
 				C49B7D6F25DC055400CEAB8C /* CSV.swift */,
 				C40A3AFE25DC01180016EB6D /* main.swift */,
-				C482B9FC25EE8D4D00E51A50 /* stderr.swift */,
 				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
+				C482B9FC25EE8D4D00E51A50 /* stderr.swift */,
 				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
-				C40CD44025ED2390003944FA /* SvgPlane.swift */,
 				C40CD42B25ECD60F003944FA /* SvgAxes.swift */,
 				C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */,
 				C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */,
 				C49A7EC225EBBCC700503486 /* SvgDefs.swift */,
 				C40CD43925ED025F003944FA /* SvgHeader.swift */,
 				C4255F3E25E423A7002DFE80 /* SvgPath.swift */,
+				C40CD44025ED2390003944FA /* SvgPlane.swift */,
 				C480847F25E6776900BD0A24 /* SvgSides.swift */,
 				C49A7EC825EBCE7300503486 /* SvgText.swift */,
 				C4EA5D1E25EB7B8A00E104E0 /* SvgTransScale.swift */,
@@ -134,9 +135,10 @@
 		C48B722D25F215B800B0752E /* testdata */ = {
 			isa = PBXGroup;
 			children = (
-				C48B723225F2197600B0752E /* ticks-index.json */,
+				C492BE0A25F2B7490042A11E /* big.csv */,
 				C48B723025F2172200B0752E /* column.csv */,
 				C48B722F25F2171300B0752E /* testlist.txt */,
+				C48B723225F2197600B0752E /* ticks-index.json */,
 			);
 			name = testdata;
 			sourceTree = "<group>";
