@@ -27,6 +27,7 @@
 		C480848025E6776900BD0A24 /* SvgSides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* SvgSides.swift */; };
 		C480848325E6809400BD0A24 /* SvgSides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* SvgSides.swift */; };
 		C482B9FD25EE8D4D00E51A50 /* stderr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482B9FC25EE8D4D00E51A50 /* stderr.swift */; };
+		C48B723825F28A5E00B0752E /* appinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45053C025F0E865003FC346 /* appinfo.swift */; };
 		C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */; };
 		C48B823625E2967100EAEAE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
 		C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
@@ -341,6 +342,7 @@
 				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,
 				C424513E25E980A7005BE7DC /* SvgColumnPlot.swift in Sources */,
 				C449F44C25EC131E006C67EB /* SvgDefs.swift in Sources */,
+				C48B723825F28A5E00B0752E /* appinfo.swift in Sources */,
 				C40CD43625ED007A003944FA /* SvgAxes.swift in Sources */,
 				C449F44F25EC1325006C67EB /* SvgText.swift in Sources */,
 				C40CD44225ED2390003944FA /* SvgPlane.swift in Sources */,
