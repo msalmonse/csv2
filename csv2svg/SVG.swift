@@ -107,12 +107,13 @@ class SVG {
     }
 
     func svgLineGroup(_ ts: TransScale) -> [String] {
-        var result = [ "<g clip-path=\"url(#plotable)\" >"]
-        result.append(contentsOf: columnPlot(ts))
-        result.append("</g>")
+        var result: [String] = []
         result.append(svgAxes(ts))
         if settings.xTick > 0 { result.append(svgXtick(ts)) }
         if settings.yTick > 0 { result.append(svgYtick(ts)) }
+        result.append("<g clip-path=\"url(#plotable)\" >")
+        result.append(contentsOf: columnPlot(ts))
+        result.append("</g>")
 
         return result
     }
