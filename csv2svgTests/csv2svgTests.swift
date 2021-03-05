@@ -127,10 +127,12 @@ let pathPoints = [
     SVG.PathCommand.horizTo(x: 3.0),
     SVG.PathCommand.vertTo(y: 8.0),
     SVG.PathCommand.moveTo(x: 4, y: 16),
-    SVG.PathCommand.lineTo(x: 5, y: 32)
+    SVG.PathCommand.lineTo(x: 5, y: 32),
+    SVG.PathCommand.moveBy(dx: -2, dy: -2),
+    SVG.PathCommand.circle(r: 3)
 ]
 
 // swiftlint:disable line_length
 let pathTag = """
-<path d=" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 " style="stroke: black; fill: none; stroke-width: 1" />
+<path d=" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 m -2.0,-2.0 m -3.0,0.0 a 3.0,3.0,0.0,1,1,0.0,6.0 a 3.0,3.0,0.0,1,1,0.0,-6.0 m 3.0,0.0 " style="stroke: black; fill: none; stroke-width: 1" />
 """

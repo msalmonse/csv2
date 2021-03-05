@@ -13,13 +13,30 @@ extension SVG {
 
     enum PathCommand {
         case
-            moveTo(x: Double, y: Double),
-            horizTo(x: Double),
-            lineTo(x: Double, y: Double),
-            vertTo(y: Double)
+            arc(rx: Double, ry: Double, rot: Double, large: Bool, sweep: Bool, dx: Double, dy: Double),
+                                                    // Draw an arc
+            circle(r: Double),                      // Draw a circle of radius r
+            moveBy(dx: Double, dy: Double),         // Move by dx and dy
+            moveTo(x: Double, y: Double),           // Move absolute to x,y
+            horizTo(x: Double),                     // Draw line horizontally to x
+            lineTo(x: Double, y: Double),           // Draw line to x,y
+            vertTo(y: Double)                       // Draw line vertically to y
 
         func command() -> String {
             switch self {
+            case .arc(let rx, let ry, let rot, let large, let sweep, let dx, let dy):
+                return String(
+                    format: "a %.1f,%.1f,%.1f,%d,%d,%.1f,%.1f",
+                    rx, ry, rot, large ? 1 : 0, sweep ? 1 : 0, dx, dy
+                )
+            case .circle(let r):
+                return [
+                    Self.moveBy(dx: -r, dy: 0),
+                    Self.arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: 2 * r),
+                    Self.arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: -2 * r),
+                    Self.moveBy(dx: r, dy: 0)
+                ].map { $0.command()}.joined(separator: " ")
+            case .moveBy(let dx, let dy): return String(format: "m %.1f,%.1f", dx, dy)
             case .moveTo(let x, let y): return String(format: "M %.1f,%.1f", x, y)
             case .horizTo(let x): return String(format: "H %0.1f", x)
             case .lineTo(let x, let y): return String(format: "L %.1f,%.1f", x, y)
