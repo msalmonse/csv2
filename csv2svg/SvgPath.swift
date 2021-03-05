@@ -31,10 +31,8 @@ extension SVG {
                 )
             case .circle(let r):
                 return [
-                    Self.moveBy(dx: -r, dy: 0),
                     Self.arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: 2 * r),
-                    Self.arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: -2 * r),
-                    Self.moveBy(dx: r, dy: 0)
+                    Self.arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: -2 * r)
                 ].map { $0.command()}.joined(separator: " ")
             case .moveBy(let dx, let dy): return String(format: "m %.1f,%.1f", dx, dy)
             case .moveTo(let x, let y): return String(format: "M %.1f,%.1f", x, y)
