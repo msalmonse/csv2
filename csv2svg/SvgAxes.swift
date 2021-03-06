@@ -31,15 +31,15 @@ extension SVG {
     /// Normalize tick value
     /// - Parameters:
     ///   - tick: tick specified
-    ///   - diff: data value range
-    ///   - pixels: plottable dimension
+    ///   - dataDiff: data value range
+    ///   - posDiff: plottable dimension
     /// - Returns: new tick value
 
-    func tickNorm(_ tick: Int, diff: Double, pixels: Double) -> Double {
+    func tickNorm(_ tick: Int, dataDiff: Double, posDiff: Double) -> Double {
+        let dpp = dataDiff/posDiff  // data per pixel - how much data does each pixel show
         let spacing = Double(tick)
-        print("Diff: \(diff), Pixels: \(pixels), tick: \(tick) -> \((pixels/diff)*spacing)", to: &standardError)
-        if (pixels/diff) * spacing > 15.0 { return spacing }
-        return Double.greatestFiniteMagnitude
+        if spacing/dpp > 15.0 { return spacing }
+        return (15.0 * dpp).rounded(.awayFromZero)
     }
 
     /// Draw vertical ticks
@@ -49,7 +49,7 @@ extension SVG {
     func svgXtick(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
         var labels = [""]
-        let tick = tickNorm(settings.xTick, diff: dataEdges.width, pixels: plotEdges.width)
+        let tick = tickNorm(settings.xTick, dataDiff: dataEdges.width, posDiff: plotEdges.width)
         var x = tick    // the zero line is plotted by svgAxes
         let xMax = max(dataEdges.right, -dataEdges.left)
 
@@ -77,7 +77,7 @@ extension SVG {
     func svgYtick(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
         var labels = [""]
-        let tick = tickNorm(settings.yTick, diff: dataEdges.height, pixels: plotEdges.height)
+        let tick = tickNorm(settings.yTick, dataDiff: dataEdges.height, posDiff: plotEdges.height)
         var y = tick    // the zero line is plotted by svgAxes
         let yMax = max(dataEdges.top, -dataEdges.bottom)
         let labelEnd = plotEdges.left - 2
