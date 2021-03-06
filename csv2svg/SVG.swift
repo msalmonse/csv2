@@ -74,14 +74,14 @@ class SVG {
         xTitleY = pos
         if settings.xTitle != "" { pos -= Double(SVG.axesSize) * 1.25 }
         xTicksY = pos
-        if settings.xTick > 0 { pos -= Double(SVG.labelSize) * 1.25 }
+        if settings.xTick >= 0 { pos -= Double(SVG.labelSize) * 1.25 }
         let bottomY = pos
 
         // Calculate horizontal positions
         pos = 5
         if settings.yTitle != "" { pos += Double(SVG.axesSize) * 1.25 }
         yTitleX = pos
-        if settings.yTick > 0 { pos += Double(SVG.labelSize) * 3.0 }
+        if settings.yTick >= 0 { pos += Double(SVG.labelSize) * 3.0 }
         yTickX = pos
         pos += 2
 
@@ -115,8 +115,8 @@ class SVG {
     func svgLineGroup(_ ts: TransScale) -> [String] {
         var result: [String] = []
         result.append(svgAxes(ts))
-        if settings.xTick > 0 { result.append(svgXtick(ts)) }
-        if settings.yTick > 0 { result.append(svgYtick(ts)) }
+        if settings.xTick >= 0 { result.append(svgXtick(ts)) }
+        if settings.yTick >= 0 { result.append(svgYtick(ts)) }
         result.append("<g clip-path=\"url(#plotable)\" >")
         result.append(contentsOf: columnPlot(ts))
         result.append("</g>")
