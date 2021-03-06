@@ -31,7 +31,7 @@ extension SVG {
                 min = 0.0
                 max = Double(csv.data.count)
             } else {
-                (min, max) = csv.columnMinMax(index)
+                (min, max) = csv.columnMinMax(index, from: settings.headerRows)
                 // if min and max don't include 0 then include 0 if one is close
                 if min > 0 && max > 0 {
                     if min < max/20.0 { min = 0.0 }
@@ -66,7 +66,7 @@ extension SVG {
             var max: Double = -Double.greatestFiniteMagnitude
 
             for i in settings.headerColumns..<csv.data.count where i != index {
-                (min, max) = csv.columnMinMax(i, min: min, max: max)
+                (min, max) = csv.columnMinMax(i, from: settings.headerRows, min: min, max: max)
             }
             // if min and max don't include 0 then include 0 if one is close
             if min > 0 && max > 0 {

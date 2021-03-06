@@ -35,13 +35,15 @@ class CSV {
     }
 
     /// Return a column of values
-    /// - Parameter col: column index
+    /// - Parameters:
+    ///   - col: the column number
+    ///   - from: the first row to fetch data from
     /// - Returns: list of values
 
-    func columnValues(_ col: Int) -> [Double?] {
+    func columnValues(_ col: Int, from row1: Int = 0) -> [Double?] {
         var result: [Double?] = []
 
-        for row in values {
+        for row in values[row1...] {
             if col < 0 || col >= row.count {
                 result.append(nil)
             } else {
@@ -55,19 +57,21 @@ class CSV {
     /// Calculate the min and max of a column
     /// - Parameters:
     ///   - col: the column number
+    ///   - from: the first row to fetch data from
     ///   - initMin: the initial minimum value, usually from a previous run
     ///   - initMax: the initial maximum value, usually from a previous run
     /// - Returns: a tuple with the minimum and maximum values
 
     func columnMinMax(
         _ col: Int,
+        from row1: Int = 0,
         min initMin: Double = Double.greatestFiniteMagnitude,
         max initMax: Double = -Double.greatestFiniteMagnitude
     ) -> (min: Double, max: Double) {
         var min = initMin
         var max = initMax
 
-        for value in columnValues(col) where value != nil {
+        for value in columnValues(col, from: row1) where value != nil {
             if min > value! { min = value! }
             if max < value! { max = value! }
         }
