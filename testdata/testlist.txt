@@ -1,3 +1,4 @@
 column none Column data with no JSON settings
 column ticks-index Column data with ticks and index
-big ticks-index Big data
+big ticks-index Big data with ticks and index
+little ticks-index Little data with ticks and index
