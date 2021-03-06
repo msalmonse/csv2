@@ -32,15 +32,15 @@ extension SVG {
     /// - Parameters:
     ///   - tick: tick specified
     ///   - dpp: data per pixel - how much data does each pixel show
-    ///   - minSize: minimum number of pixels between ticks
+    ///   - minSize: minimum number of pixels between ticks allowed
     /// - Returns: new tick value
 
-    func tickNorm(_ tick: Int, dpp: Double, minSize: Double) -> Double {
+    private func tickNorm(_ tick: Int, dpp: Double, minSize: Double) -> Double {
         let dataSpan = Double(tick)
         if dataSpan/dpp > minSize { return dataSpan }
         let raw = minSize * dpp
         // calculate the power of 10 less than the raw tick
-        let pow10 = exp(log10(raw).rounded(.down) * log(10)).rounded(.down)
+        let pow10 = exp(floor(log10(raw)) * log(10))
         // return the tick as an an integer times the power of 10
         return ceil(raw/pow10) * pow10
     }
