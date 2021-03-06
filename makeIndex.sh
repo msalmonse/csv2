@@ -13,6 +13,9 @@ cat <<EOD
 <html>
 <head>
     <title>SVG test results</title>
+    <style>
+        img { border: outset }
+    </style>
 </head>
 <body>
 EOD
