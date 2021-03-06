@@ -38,7 +38,11 @@ extension SVG {
     func tickNorm(_ tick: Int, dpp: Double, minSize: Double) -> Double {
         let dataSpan = Double(tick)
         if dataSpan/dpp > minSize { return dataSpan }
-        return (minSize * dpp).rounded(.awayFromZero)
+        let raw = minSize * dpp
+        // calculate the power of 10 less than the raw tick
+        let pow10 = exp(log10(raw).rounded(.down) * log(10)).rounded(.down)
+        // return the tick as an an integer times the power of 10
+        return ceil(raw/pow10) * pow10
     }
 
     /// Draw vertical ticks
