@@ -33,7 +33,7 @@ extension SVG {
             let yValues = csv.columnValues(i)
             var move = true
             var single = false      // single point
-            for j in 0..<csv.rowCt {
+            for j in settings.headerRows..<csv.rowCt {
                 if xValues[j] == nil || yValues[j] == nil {
                     move = true
                     if single { pathPoints.append(.circle(r: Double(settings.strokeWidth)/2.0))}
