@@ -67,7 +67,7 @@ extension SVG {
     /// - Returns: formatted string
 
     func label(_ value: Double) -> String {
-        if abs(value) >= 10000 { return String(format: "%.1e", value) }
+        if abs(value) >= 10000000 { return String(format: "%.1e", value) }
         return String(format: "%.0f", value)
     }
 
