@@ -64,6 +64,7 @@
 		C492BE0A25F2B7490042A11E /* big.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = big.csv; path = testdata/big.csv; sourceTree = "<group>"; };
 		C492BE0F25F3A2A10042A11E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C492BE1025F3A2A10042A11E /* json.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = json.md; sourceTree = "<group>"; };
+		C492BE1325F3CA280042A11E /* little.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = little.csv; path = testdata/little.csv; sourceTree = "<group>"; };
 		C49A7EC225EBBCC700503486 /* SvgDefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgDefs.swift; sourceTree = "<group>"; };
 		C49A7EC825EBCE7300503486 /* SvgText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgText.swift; sourceTree = "<group>"; };
 		C49B7D6C25DC03B500CEAB8C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 			children = (
 				C492BE0A25F2B7490042A11E /* big.csv */,
 				C48B723025F2172200B0752E /* column.csv */,
+				C492BE1325F3CA280042A11E /* little.csv */,
 				C48B722F25F2171300B0752E /* testlist.txt */,
 				C48B723225F2197600B0752E /* ticks-index.json */,
 			);
