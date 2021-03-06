@@ -9,6 +9,12 @@ import Foundation
 
 class SVG {
 
+    // Font sizes
+    static let axesSize = 12
+    static let labelSize = 10
+    static let legendSize = 13
+    static let titleSize = 25
+
     let csv: CSV
     let settings: Settings
 
@@ -62,20 +68,20 @@ class SVG {
         // Calculate vertical positions
         var pos = Double(settings.height - 5)
         titleY = pos
-        if settings.title != "" { pos -= 40 }
+        if settings.title != "" { pos -= Double(SVG.titleSize) * 1.25 }
         legendY = pos
-        if settings.names.count > 0 || settings.headers > 0 { pos -= 25 }
+        pos -= Double(SVG.legendSize) * 1.25
         xTitleY = pos
-        if settings.xTitle != "" { pos -= 12 }
+        if settings.xTitle != "" { pos -= Double(SVG.axesSize) * 1.25 }
         xTicksY = pos
-        if settings.xTick > 0 { pos -= 20 }
+        if settings.xTick > 0 { pos -= Double(SVG.labelSize) * 1.25 }
         let bottomY = pos
 
         // Calculate horizontal positions
         pos = 5
-        if settings.yTitle != "" { pos += 12 }
+        if settings.yTitle != "" { pos += Double(SVG.axesSize) * 1.25 }
         yTitleX = pos
-        if settings.yTick > 0 { pos += 30 }
+        if settings.yTick > 0 { pos += Double(SVG.labelSize) * 3.0 }
         yTickX = pos
         pos += 2
 
