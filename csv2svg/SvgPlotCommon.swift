@@ -12,7 +12,6 @@ extension SVG {
     /// - Parameters:
     ///   - xValues: abscissa values
     ///   - yValues: ordinate values
-    ///   - from: first value to plot
     ///   - stroke: stroke colour
     ///   - ts: TranScale object
     /// - Returns: Path String
@@ -20,14 +19,13 @@ extension SVG {
     func plotCommon(
         _ xValues: [Double?],
         _ yValues: [Double?],
-        from: Int,
         stroke: String,
         ts: TransScale
     ) -> String {
         var pathPoints: [PathCommand] = []
         var move = true
         var single = false      // single point
-        for i in from..<xValues.count {
+        for i in settings.headers..<xValues.count {
             if xValues[i] == nil || yValues[i] == nil {
                 move = true
                 if single { pathPoints.append(.circle(r: Double(settings.strokeWidth)/2.0))}
