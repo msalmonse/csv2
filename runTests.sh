@@ -17,6 +17,9 @@ makeSVG () {
     ./test/csv2svg "$csv" "$json" > "$svg" \
     && echo "$3" > "$svg.txt"
 }
+
+./test/csv2svg
+
 sort $datadir/testlist.txt \
 | while read csv json msg
 do
