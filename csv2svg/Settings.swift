@@ -125,7 +125,7 @@ class Settings: Codable {
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns, defaultValue: 0)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows, defaultValue: 0)
         height = Self.keyedIntValue(from: container, forKey: .height, defaultValue: 500)
-        inColumns = Self.keyedBoolValue(from: container, forKey: .index, defaultValue: Settings.inColumnsDefault)
+        inColumns = Self.keyedBoolValue(from: container, forKey: .inColumns, defaultValue: Settings.inColumnsDefault)
         index = Self.keyedIntValue(from: container, forKey: .index, defaultValue: 0)
         strokeWidth = Self.keyedIntValue(from: container, forKey: .strokeWidth, defaultValue: 2)
         title = Self.keyedStringValue(from: container, forKey: .title, defaultValue: "")
