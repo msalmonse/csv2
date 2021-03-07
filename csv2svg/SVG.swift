@@ -114,11 +114,8 @@ class SVG {
 
     func svgLineGroup(_ ts: TransScale) -> [String] {
         var result: [String] = []
-        result.append(svgAxes(ts))
-        if settings.xTick >= 0 { result.append(svgXtick(ts)) }
-        if settings.yTick >= 0 { result.append(svgYtick(ts)) }
         result.append("<g clip-path=\"url(#plotable)\" >")
-        result.append(contentsOf: columnPlot(ts))
+        result.append(contentsOf: settings.inColumns ? columnPlot(ts) : rowPlot(ts))
         result.append("</g>")
 
         return result
@@ -129,6 +126,9 @@ class SVG {
 
         var result: [String] = [ xmlTag, svgTag, comment ]
         result.append(contentsOf: svgDefs())
+        result.append(svgAxes(ts))
+        if settings.xTick >= 0 { result.append(svgXtick(ts)) }
+        if settings.yTick >= 0 { result.append(svgYtick(ts)) }
         result.append(contentsOf: svgLineGroup(ts))
         if settings.xTitle != "" {
             result.append(xTitle(settings.xTitle, x: plotEdges.hMid, y: xTitleY))

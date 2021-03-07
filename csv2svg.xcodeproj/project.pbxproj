@@ -19,6 +19,9 @@
 		C4255F3F25E423A7002DFE80 /* SvgPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* SvgPath.swift */; };
 		C4255F4425E428B0002DFE80 /* SvgPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* SvgPath.swift */; };
 		C4255F4725E428B5002DFE80 /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
+		C446E80925F4BAA3007B1A05 /* SvgRowPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E80825F4BAA3007B1A05 /* SvgRowPlot.swift */; };
+		C446E80E25F4BAC1007B1A05 /* SvgRowPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E80825F4BAA3007B1A05 /* SvgRowPlot.swift */; };
+		C446E81225F4BE4B007B1A05 /* SvgPlotCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E81125F4BE4B007B1A05 /* SvgPlotCommon.swift */; };
 		C449F44C25EC131E006C67EB /* SvgDefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC225EBBCC700503486 /* SvgDefs.swift */; };
 		C449F44F25EC1325006C67EB /* SvgText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC825EBCE7300503486 /* SvgText.swift */; };
 		C45053C125F0E865003FC346 /* appinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45053C025F0E865003FC346 /* appinfo.swift */; };
@@ -48,6 +51,8 @@
 		C40CD43925ED025F003944FA /* SvgHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgHeader.swift; sourceTree = "<group>"; };
 		C40CD44025ED2390003944FA /* SvgPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgPlane.swift; sourceTree = "<group>"; };
 		C4255F3E25E423A7002DFE80 /* SvgPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgPath.swift; sourceTree = "<group>"; };
+		C446E80825F4BAA3007B1A05 /* SvgRowPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgRowPlot.swift; sourceTree = "<group>"; };
+		C446E81125F4BE4B007B1A05 /* SvgPlotCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgPlotCommon.swift; sourceTree = "<group>"; };
 		C45053C025F0E865003FC346 /* appinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appinfo.swift; sourceTree = "<group>"; };
 		C46A3A7125DE8B4C00F6783A /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
 		C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgColumnPlot.swift; sourceTree = "<group>"; };
@@ -130,6 +135,8 @@
 				C40CD43925ED025F003944FA /* SvgHeader.swift */,
 				C4255F3E25E423A7002DFE80 /* SvgPath.swift */,
 				C40CD44025ED2390003944FA /* SvgPlane.swift */,
+				C446E81125F4BE4B007B1A05 /* SvgPlotCommon.swift */,
+				C446E80825F4BAA3007B1A05 /* SvgRowPlot.swift */,
 				C480847F25E6776900BD0A24 /* SvgSides.swift */,
 				C49A7EC825EBCE7300503486 /* SvgText.swift */,
 				C4EA5D1E25EB7B8A00E104E0 /* SvgTransScale.swift */,
@@ -324,11 +331,13 @@
 			files = (
 				C45053C125F0E865003FC346 /* appinfo.swift in Sources */,
 				C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */,
+				C446E80925F4BAA3007B1A05 /* SvgRowPlot.swift in Sources */,
 				C480847C25E4E97300BD0A24 /* SvgColumnPlot.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
 				C480848025E6776900BD0A24 /* SvgSides.swift in Sources */,
 				C49A7EC325EBBCC700503486 /* SvgDefs.swift in Sources */,
 				C40CD42C25ECD60F003944FA /* SvgAxes.swift in Sources */,
+				C446E81225F4BE4B007B1A05 /* SvgPlotCommon.swift in Sources */,
 				C49A7EC925EBCE7300503486 /* SvgText.swift in Sources */,
 				C40CD44125ED2390003944FA /* SvgPlane.swift in Sources */,
 				C40CD43A25ED025F003944FA /* SvgHeader.swift in Sources */,
@@ -357,6 +366,7 @@
 				C40CD43D25ED02BE003944FA /* SvgHeader.swift in Sources */,
 				C4255F4425E428B0002DFE80 /* SvgPath.swift in Sources */,
 				C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */,
+				C446E80E25F4BAC1007B1A05 /* SvgRowPlot.swift in Sources */,
 				C4EA5D2B25EB90C900E104E0 /* SvgColours.swift in Sources */,
 				C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */,
 				C4EA5D2225EB7DFD00E104E0 /* SvgTransScale.swift in Sources */,

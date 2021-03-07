@@ -37,7 +37,7 @@ class Settings: Codable {
     let yTick: Int
 
     // Data is grouped in columns?
-    let inColumns = true
+    let inColumns: Bool
 
     // Path colours
     let colours: [String]
@@ -64,6 +64,22 @@ class Settings: Codable {
         return (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? defaultValue
     }
 
+    /// Convenience function to decode a keyed Bool
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: the key into the decoded data
+    ///   - defaultValue: the default value
+    /// - Returns: decoded or default value
+
+    private static func keyedBoolValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys,
+        defaultValue: Bool
+    ) -> Bool {
+        if container == nil { return defaultValue }
+        return (try? container!.decodeIfPresent(Bool.self, forKey: key)) ?? defaultValue
+    }
+
     /// Convenience function to decode a keyed String
     /// - Parameters:
     ///   - container: decoded data container
@@ -80,7 +96,7 @@ class Settings: Codable {
         return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? defaultValue
     }
 
-    /// Convenience function to decode a keyed String
+    /// Convenience function to decode a keyed String Array
     /// - Parameters:
     ///   - container: decoded data container
     ///   - key: the key into the decoded data
@@ -108,6 +124,7 @@ class Settings: Codable {
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns, defaultValue: 0)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows, defaultValue: 0)
         height = Self.keyedIntValue(from: container, forKey: .height, defaultValue: 500)
+        inColumns = Self.keyedBoolValue(from: container, forKey: .index, defaultValue: true)
         index = Self.keyedIntValue(from: container, forKey: .index, defaultValue: 0)
         strokeWidth = Self.keyedIntValue(from: container, forKey: .strokeWidth, defaultValue: 2)
         title = Self.keyedStringValue(from: container, forKey: .title, defaultValue: "")

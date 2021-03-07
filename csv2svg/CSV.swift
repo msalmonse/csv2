@@ -79,6 +79,47 @@ class CSV {
         return (min: min, max: max)
     }
 
+    /// Return a row of values
+    /// - Parameters:
+    ///   - col: the row number
+    ///   - from: the first column to fetch data from
+    /// - Returns: list of values
+
+    func rowValues(_ row: Int, from col1: Int = 0) -> [Double?] {
+        var result: [Double?] = []
+
+        if row >= 0 && row < values.count {
+            result.append(contentsOf: values[row][col1...])
+        }
+
+        return result
+    }
+
+    /// Calculate the min and max of a row
+    /// - Parameters:
+    ///   - row: the column number
+    ///   - from: the first row to fetch data from
+    ///   - initMin: the initial minimum value, usually from a previous run
+    ///   - initMax: the initial maximum value, usually from a previous run
+    /// - Returns: a tuple with the minimum and maximum values
+
+    func rowMinMax(
+        _ row: Int,
+        from col1: Int = 0,
+        min initMin: Double = Double.greatestFiniteMagnitude,
+        max initMax: Double = -Double.greatestFiniteMagnitude
+    ) -> (min: Double, max: Double) {
+        var min = initMin
+        var max = initMax
+
+        for value in rowValues(row, from: col1) where value != nil {
+            if min > value! { min = value! }
+            if max < value! { max = value! }
+        }
+
+        return (min: min, max: max)
+    }
+
     /// Load data from a URL
     /// - Parameter url: data location
     /// - Throws: whatever String throws

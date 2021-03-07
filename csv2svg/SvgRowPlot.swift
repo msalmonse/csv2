@@ -1,8 +1,8 @@
 //
-//  SvgColumnPlot.swift
+//  SvgRowPlot.swift
 //  csv2svg
 //
-//  Created by Michael Salmon on 2021-02-23.
+//  Created by Michael Salmon on 2021-03-07.
 //
 
 import Foundation
@@ -13,25 +13,25 @@ extension SVG {
     /// - Returns: list of x values
     private func xList() -> [Double?] {
         if index < 0 {
-            return (-settings.headerRows..<csv.data.count).map { Double($0) }
+            return (-settings.headerColumns..<csv.data.count).map { Double($0) }
         } else {
-            return csv.columnValues(index)
+            return csv.rowValues(index)
         }
 
     }
 
-    /// Plot the non-index and non header columns
+    /// Plot the non-index and non header rows
     /// - Parameter ts: a TransScale object
     /// - Returns: An array of the path elements for the columns
 
-    func columnPlot(_ ts: TransScale) -> [String] {
+    func rowPlot(_ ts: TransScale) -> [String] {
         var paths: [String] = []
 
         let xValues = xList()
-        for i in 0..<csv.colCt where i != index {
-            let yValues = csv.columnValues(i)
+        for i in 0..<csv.rowCt where i != index {
+            let yValues = csv.rowValues(i)
             paths.append(
-                plotCommon(xValues, yValues, from: settings.headerRows, stroke: colours[i], ts: ts)
+                plotCommon(xValues, yValues, from: settings.headerColumns, stroke: colours[i], ts: ts)
             )
         }
         return paths
