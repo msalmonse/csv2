@@ -26,7 +26,7 @@ extension SVG {
         var move = true
         var single = false      // single point
         for i in settings.headers..<xValues.count {
-            if xValues[i] == nil || yValues[i] == nil {
+            if xValues[i] == nil || i >= yValues.count || yValues[i] == nil {
                 move = true
                 if single { pathPoints.append(.circle(r: Double(settings.strokeWidth)/2.0))}
             } else if move {
