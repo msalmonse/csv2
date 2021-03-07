@@ -50,11 +50,26 @@ class csv2svgTests: XCTestCase {
     }
 
     func testSVG() throws {
+        let printDiff = true
         let csv = CSV(csvData)
-        let svg = try? SVG(csv, Settings.load(settingsJSON))
+        var svg = try? SVG(csv, Settings.load(settingsJSON))
 
         XCTAssertNotNil(svg)
         XCTAssertEqual(svg?.names[4], testName)
+
+        let csvPlot = CSV(plotData)
+
+        Settings.inColumnsDefault = true
+        svg = try? SVG(csvPlot, Settings.load(settingsJSON))
+        XCTAssertNotNil(svg)
+        let colPlot = svg?.gen()
+
+        Settings.inColumnsDefault = false
+        svg = try? SVG(csvPlot, Settings.load(settingsJSON))
+        XCTAssertNotNil(svg)
+        let rowPlot = svg?.gen()
+
+        if printDiff { print(colPlot!.difference(from: rowPlot!)) }
     }
 
     func testSvgPath() {
@@ -80,6 +95,7 @@ class csv2svgTests: XCTestCase {
     func testSvgSides() {
         let csv = CSV(csvData)
 
+        Settings.inColumnsDefault = true
         var svg = try? SVG(csv, Settings.load(settingsJSON))
         XCTAssertNotNil(svg)
         XCTAssertEqual(svg!.dataEdges.top, testYMax)
@@ -139,6 +155,15 @@ let csvData = """
 9,100.1,129.9,5220.6 ,0.0
 32,100.1,152.7,,
 "\(testName)",,,,0.0
+"""
+
+// CSV data for plot test
+let plotData = """
+1,2,3,4,5
+2,1,5,8,12
+3,5,6,11,19
+4,8,11,,11
+5,12,19,11,20
 """
 
 // SVG path
