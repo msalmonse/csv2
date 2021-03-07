@@ -11,10 +11,10 @@ import XCTest
 class csv2svgTests: XCTestCase {
 
     func testSettings() throws {
-        let settings = try? Settings.load(settingsJSON)
-
+        var settings = try? Settings.load(settingsJSON(true))
         XCTAssertNotNil(settings)
-        XCTAssertEqual(settings?.colours.count, 3)
+        XCTAssertEqual(settings!.colours.count, 3)
+        XCTAssertTrue(settings!.inColumns)
         XCTAssertEqual(settings!.index, testIndex)
         XCTAssertEqual(settings!.height, testHeight)
         XCTAssertEqual(settings!.names[1], testName)
@@ -22,6 +22,10 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(settings!.width, testWidth)
         XCTAssertNil(settings!.xMax)
         XCTAssertEqual(settings!.yMax, testYMax)
+
+        settings = try? Settings.load(settingsJSON(false))
+        XCTAssertNotNil(settings)
+        XCTAssertFalse(settings!.inColumns)
     }
 
     func testCSV() throws {
@@ -52,20 +56,18 @@ class csv2svgTests: XCTestCase {
     func testSVG() throws {
         let printDiff = true
         let csv = CSV(csvData)
-        var svg = try? SVG(csv, Settings.load(settingsJSON))
+        var svg = try? SVG(csv, Settings.load(settingsJSON(true)))
 
         XCTAssertNotNil(svg)
         XCTAssertEqual(svg?.names[4], testName)
 
         let csvPlot = CSV(plotData)
 
-        Settings.inColumnsDefault = true
-        svg = try? SVG(csvPlot, Settings.load(settingsJSON))
+        svg = try? SVG(csvPlot, Settings.load(settingsJSON(true)))
         XCTAssertNotNil(svg)
         let colPlot = svg?.gen()
 
-        Settings.inColumnsDefault = false
-        svg = try? SVG(csvPlot, Settings.load(settingsJSON))
+        svg = try? SVG(csvPlot, Settings.load(settingsJSON(false)))
         XCTAssertNotNil(svg)
         let rowPlot = svg?.gen()
 
@@ -95,16 +97,14 @@ class csv2svgTests: XCTestCase {
     func testSvgSides() {
         let csv = CSV(csvData)
 
-        Settings.inColumnsDefault = true
-        var svg = try? SVG(csv, Settings.load(settingsJSON))
+        var svg = try? SVG(csv, Settings.load(settingsJSON(true)))
         XCTAssertNotNil(svg)
         XCTAssertEqual(svg!.dataEdges.top, testYMax)
         XCTAssertEqual(svg!.dataEdges.bottom, -110.1)
         XCTAssertEqual(svg!.dataEdges.left, 0)
         XCTAssertEqual(svg!.dataEdges.right, 32)
 
-        Settings.inColumnsDefault = false
-        svg = try? SVG(csv, Settings.load(settingsJSON))
+        svg = try? SVG(csv, Settings.load(settingsJSON(false)))
         XCTAssertNotNil(svg)
         XCTAssertEqual(svg!.dataEdges.top, testYMax)
         XCTAssertEqual(svg!.dataEdges.bottom, -110.1)
@@ -135,18 +135,21 @@ let testWidth = 501
 let testYMax = 25000.25
 
 // JSON string for tests
-let settingsJSON = """
-{
-    "colours": [ "silver", "red", "green" ],
-    "headerRows": 1,
-    "index": \(testIndex),
-    "height": \(testHeight),
-    "names": [ "a", "\(testName)", "c" ],
-    "width": \(testWidth),
-    "title": "\(testTitle)",
-    "yMax": \(testYMax)
+func settingsJSON(_ cols: Bool) -> String {
+    return """
+        {
+            "colours": [ "silver", "red", "green" ],
+            "headerRows": 1,
+            "inColumns": \(cols),
+            "index": \(testIndex),
+            "height": \(testHeight),
+            "names": [ "a", "\(testName)", "c" ],
+            "width": \(testWidth),
+            "title": "\(testTitle)",
+            "yMax": \(testYMax)
+        }
+        """
 }
-"""
 
 // CSV string for tests
 let csvData = """
