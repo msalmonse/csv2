@@ -103,9 +103,9 @@ class SVG {
             if i < settings.names.count && settings.names[i] != "" {
                 names.append(settings.names[i])
             } else if settings.headers > 0 {
-                names.append(SVG.headerText(i, csv: csv, inColumn: settings.inColumns))
+                names.append(SVG.headerText(i, csv: csv, inColumns: settings.inColumns))
             } else {
-                names.append(SVG.headerText(i, csv: nil, inColumn: settings.inColumns))
+                names.append(SVG.headerText(i, csv: nil, inColumns: settings.inColumns))
             }
         }
         self.colours = colours
