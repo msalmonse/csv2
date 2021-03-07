@@ -1,6 +1,6 @@
 {
     "headerColumns": 1,
-    "inColumns": true,
+    "inColumns": false,
     "index": 1,
     "xTick": 1,
     "yTick": 0
