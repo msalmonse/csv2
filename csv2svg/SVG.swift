@@ -63,7 +63,7 @@ class SVG {
 
         self.index = settings.index - 1
 
-        dataEdges = SVG.sidesFromColumns(csv, settings)
+        dataEdges = SVG.sidesFromData(csv, settings)
 
         // Calculate vertical positions
         var pos = Double(settings.height - 5)

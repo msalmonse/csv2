@@ -27,14 +27,26 @@ class csv2svgTests: XCTestCase {
     func testCSV() throws {
         let csv = CSV(csvData)
 
-        XCTAssertEqual(csv.data.count, 4)
+        XCTAssertEqual(csv.data.count, 5)
         for row in csv.data {
             XCTAssertEqual(row.count, 5)
         }
 
-        let (min, max) = csv.columnMinMax(3)
+        var (min, max) = csv.columnMinMax(3)
         XCTAssertEqual(min, -110.1)
         XCTAssertEqual(max, 5220.6)
+
+        (min, max) = csv.columnMinMax(2, from: 2)
+        XCTAssertEqual(min, 129.9)
+        XCTAssertEqual(max, 152.7)
+
+        (min, max) = csv.rowMinMax(0, min: 0.0, max: 1000.0)
+        XCTAssertEqual(min, -1.0)
+        XCTAssertEqual(max, 1000.0)
+
+        (min, max) = csv.rowMinMax(3, from: 1)
+        XCTAssertEqual(min, 100.1)
+        XCTAssertEqual(max, 152.7)
     }
 
     func testSVG() throws {
@@ -67,12 +79,21 @@ class csv2svgTests: XCTestCase {
 
     func testSvgSides() {
         let csv = CSV(csvData)
-        let svg = try? SVG(csv, Settings.load(settingsJSON))
+
+        var svg = try? SVG(csv, Settings.load(settingsJSON))
         XCTAssertNotNil(svg)
         XCTAssertEqual(svg!.dataEdges.top, testYMax)
         XCTAssertEqual(svg!.dataEdges.bottom, -110.1)
         XCTAssertEqual(svg!.dataEdges.left, 0)
         XCTAssertEqual(svg!.dataEdges.right, 32)
+
+        Settings.inColumnsDefault = false
+        svg = try? SVG(csv, Settings.load(settingsJSON))
+        XCTAssertNotNil(svg)
+        XCTAssertEqual(svg!.dataEdges.top, testYMax)
+        XCTAssertEqual(svg!.dataEdges.bottom, -110.1)
+        XCTAssertEqual(svg!.dataEdges.left, -1.0)
+        XCTAssertEqual(svg!.dataEdges.right, 35.0)
     }
 
     func testSettingsPerformance() throws {
@@ -113,10 +134,11 @@ let settingsJSON = """
 
 // CSV string for tests
 let csvData = """
-n,Array,Iterative,Recursive,"\(testName)"
+-1,1,9,35,"\(testName)"
 1,100.1,120.4, -110.1,0.0
 9,100.1,129.9,5220.6 ,0.0
 32,100.1,152.7,,
+"\(testName)",,,,0.0
 """
 
 // SVG path

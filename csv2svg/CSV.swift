@@ -120,6 +120,27 @@ class CSV {
         return (min: min, max: max)
     }
 
+    /// Calculate the min and max of a row or column
+    /// - Parameters:
+    ///   - inColumns: use columnMinMax()?
+    ///   - rc: the row or column number
+    ///   - from: the first row to fetch data from
+    ///   - initMin: the initial minimum value, usually from a previous run
+    ///   - initMax: the initial maximum value, usually from a previous run
+    /// - Returns: a tuple with the minimum and maximum values
+
+    func minMax(
+        _ inColumns: Bool,
+        _ rc: Int,
+        from col1: Int = 0,
+        min initMin: Double = Double.greatestFiniteMagnitude,
+        max initMax: Double = -Double.greatestFiniteMagnitude
+    ) -> (min: Double, max: Double) {
+        return inColumns
+            ? columnMinMax(rc, from: col1, min: initMin, max: initMax)
+            : rowMinMax(rc, from: col1, min: initMin, max: initMax)
+    }
+
     /// Load data from a URL
     /// - Parameter url: data location
     /// - Throws: whatever String throws
