@@ -43,6 +43,8 @@
 		C4EA5D2225EB7DFD00E104E0 /* SvgTransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* SvgTransScale.swift */; };
 		C4EA5D2825EB8F4D00E104E0 /* SvgColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */; };
 		C4EA5D2B25EB90C900E104E0 /* SvgColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */; };
+		C4FE49FB25F643E30076EF5E /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4FE49FA25F643E30076EF5E /* ArgumentParser */; };
+		C4FE49FF25F6440F0076EF5E /* options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE49FE25F6440F0076EF5E /* options.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +83,7 @@
 		C4EA5D1E25EB7B8A00E104E0 /* SvgTransScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgTransScale.swift; sourceTree = "<group>"; };
 		C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgColours.swift; sourceTree = "<group>"; };
 		C4FE49F225F6036A0076EF5E /* bipolar.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = bipolar.csv; path = testdata/bipolar.csv; sourceTree = "<group>"; };
+		C4FE49FE25F6440F0076EF5E /* options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = options.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4FE49FB25F643E30076EF5E /* ArgumentParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +134,7 @@
 			children = (
 				C49B7D6F25DC055400CEAB8C /* CSV.swift */,
 				C40A3AFE25DC01180016EB6D /* main.swift */,
+				C4FE49FE25F6440F0076EF5E /* options.swift */,
 				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
 				C482B9FC25EE8D4D00E51A50 /* stderr.swift */,
 				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
@@ -192,6 +197,9 @@
 			dependencies = (
 			);
 			name = csv2svg;
+			packageProductDependencies = (
+				C4FE49FA25F643E30076EF5E /* ArgumentParser */,
+			);
 			productName = csv2svg;
 			productReference = C40A3AFB25DC01180016EB6D /* csv2svg */;
 			productType = "com.apple.product-type.tool";
@@ -240,6 +248,9 @@
 				Base,
 			);
 			mainGroup = C40A3AF225DC01180016EB6D;
+			packageReferences = (
+				C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
 			productRefGroup = C40A3AFC25DC01180016EB6D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -342,6 +353,7 @@
 				C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */,
 				C446E80925F4BAA3007B1A05 /* SvgRowPlot.swift in Sources */,
 				C480847C25E4E97300BD0A24 /* SvgColumnPlot.swift in Sources */,
+				C4FE49FF25F6440F0076EF5E /* options.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
 				C480848025E6776900BD0A24 /* SvgSides.swift in Sources */,
 				C49A7EC325EBBCC700503486 /* SvgDefs.swift in Sources */,
@@ -585,6 +597,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C4FE49FA25F643E30076EF5E /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C40A3AF325DC01180016EB6D /* Project object */;
 }

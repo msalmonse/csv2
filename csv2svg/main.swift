@@ -7,14 +7,22 @@
 
 import Foundation
 
-if CommandLine.argc < 2 {
-    print("\(AppInfo.name): \(AppInfo.version) (\(AppInfo.build)) Built at \(AppInfo.builtAt)", to: &standardError)
-    print("Usage:\n\t\(AppInfo.name) <csv file> [json file]\n", to: &standardError)
-    exit(0)
+let options = Options.parseOrExit()
+
+if options.version {
+    print("\(AppInfo.name): \(AppInfo.version) (\(AppInfo.build)) Built at \(AppInfo.builtAt)",
+          to: &standardError)
 }
 
-let csvName = CommandLine.arguments[1]
-let jsonName = CommandLine.argc > 2 ? CommandLine.arguments[2] : csvName + ".json"
+if options.files.count == 0 { exit(0) }
+
+let csvName = options.files[0]
+let jsonName = options.files.count > 1 ? options.files[1] : csvName + ".json"
+
+if options.verbose {
+    print(csvName, to: &standardError)
+    print(jsonName, to: &standardError)
+}
 
 let settings = try? Settings.load(URL(fileURLWithPath: jsonName))
 
