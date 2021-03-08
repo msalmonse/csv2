@@ -41,8 +41,10 @@ extension SVG {
         let raw = minSize * dpp
         // calculate the power of 10 less than the raw tick
         let pow10 = exp(floor(log10(raw)) * log(10))
+        var norm = ceil(raw/pow10) * pow10
+        if norm > 0.1 && norm < 1.0 { norm = 1.0 }  // < .01 is where labels use e format
         // return the tick as an an integer times the power of 10
-        return ceil(raw/pow10) * pow10
+        return norm
     }
 
     /// Draw vertical ticks
