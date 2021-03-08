@@ -30,6 +30,13 @@ class csv2svgTests: XCTestCase {
         XCTAssertFalse(settings!.inColumns)
         XCTAssertTrue(settings!.inRows)
         XCTAssertTrue(settings!.rowGrouping)
+
+        Settings.Defaults.rowGrouping = true
+        settings = try? Settings.load(settingsJSON(true))
+        XCTAssertNotNil(settings)
+        XCTAssertTrue(settings!.inColumns)
+        XCTAssertFalse(settings!.inRows)
+        XCTAssertFalse(settings!.rowGrouping)
     }
 
     func testCSV() throws {
@@ -58,13 +65,18 @@ class csv2svgTests: XCTestCase {
     }
 
     func testSVG() throws {
-        let printDiff = false
         let csv = CSV(csvData)
         var svg = try? SVG(csv, Settings.load(settingsJSON(true)))
 
         XCTAssertNotNil(svg)
         XCTAssertEqual(svg?.names[4], testName)
 
+        svg = try? SVG(csv, Settings.load(settingsJSON(false)))
+
+        XCTAssertNotNil(svg)
+        XCTAssertEqual(svg?.names[4], "Row 5")
+
+        /*
         let csvPlot = CSV(plotData)
 
         svg = try? SVG(csvPlot, Settings.load(settingsJSON(true)))
@@ -75,17 +87,16 @@ class csv2svgTests: XCTestCase {
         XCTAssertNotNil(svg)
         let rowPlot = svg!.gen()
 
-        // XCTAssertEqual(colPlot, rowPlot)
+        XCTAssertEqual(colPlot, rowPlot)
 
-        if printDiff {
-            print(colPlot.difference(from: rowPlot))
-            if colPlot.count == rowPlot.count {
-                for i in 0..<colPlot.count {
-                    print("Index: \(i)")
-                    print(colPlot[i].difference(from: rowPlot[i]))
-                }
+        print(colPlot.difference(from: rowPlot))
+        if colPlot.count == rowPlot.count {
+            for i in 0..<colPlot.count {
+                print("Index: \(i)")
+                print(colPlot[i].difference(from: rowPlot[i]))
             }
         }
+        */
     }
 
     func testSvgPath() {

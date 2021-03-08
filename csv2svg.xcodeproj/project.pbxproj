@@ -45,6 +45,8 @@
 		C4EA5D2B25EB90C900E104E0 /* SvgColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */; };
 		C4FE49FB25F643E30076EF5E /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4FE49FA25F643E30076EF5E /* ArgumentParser */; };
 		C4FE49FF25F6440F0076EF5E /* options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE49FE25F6440F0076EF5E /* options.swift */; };
+		C4FE4A0525F66E2C0076EF5E /* SettingsDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE4A0425F66E2C0076EF5E /* SettingsDefaults.swift */; };
+		C4FE4A0A25F675190076EF5E /* SettingsDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE4A0425F66E2C0076EF5E /* SettingsDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +86,7 @@
 		C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgColours.swift; sourceTree = "<group>"; };
 		C4FE49F225F6036A0076EF5E /* bipolar.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = bipolar.csv; path = testdata/bipolar.csv; sourceTree = "<group>"; };
 		C4FE49FE25F6440F0076EF5E /* options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = options.swift; sourceTree = "<group>"; };
+		C4FE4A0425F66E2C0076EF5E /* SettingsDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +139,7 @@
 				C40A3AFE25DC01180016EB6D /* main.swift */,
 				C4FE49FE25F6440F0076EF5E /* options.swift */,
 				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
+				C4FE4A0425F66E2C0076EF5E /* SettingsDefaults.swift */,
 				C482B9FC25EE8D4D00E51A50 /* stderr.swift */,
 				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
 				C40CD42B25ECD60F003944FA /* SvgAxes.swift */,
@@ -351,6 +355,7 @@
 			files = (
 				C45053C125F0E865003FC346 /* appinfo.swift in Sources */,
 				C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */,
+				C4FE4A0525F66E2C0076EF5E /* SettingsDefaults.swift in Sources */,
 				C446E80925F4BAA3007B1A05 /* SvgRowPlot.swift in Sources */,
 				C480847C25E4E97300BD0A24 /* SvgColumnPlot.swift in Sources */,
 				C4FE49FF25F6440F0076EF5E /* options.swift in Sources */,
@@ -381,6 +386,7 @@
 				C424513E25E980A7005BE7DC /* SvgColumnPlot.swift in Sources */,
 				C449F44C25EC131E006C67EB /* SvgDefs.swift in Sources */,
 				C48B723825F28A5E00B0752E /* appinfo.swift in Sources */,
+				C4FE4A0A25F675190076EF5E /* SettingsDefaults.swift in Sources */,
 				C40CD43625ED007A003944FA /* SvgAxes.swift in Sources */,
 				C449F44F25EC1325006C67EB /* SvgText.swift in Sources */,
 				C446E81D25F4E0F7007B1A05 /* SvgPlotCommon.swift in Sources */,
