@@ -158,7 +158,7 @@ class CSV {
 
     func loadFrom(_ contents: String) {
         var colMax = 0
-        for row in contents.components(separatedBy: "\n") {
+        for row in contents.components(separatedBy: "\n") where row != "" {
             let cols = row.components(separatedBy: ",")
             data.append(cols)
             if cols.count > colMax { colMax = cols.count }
