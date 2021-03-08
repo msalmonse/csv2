@@ -58,7 +58,6 @@ class SVG {
     """
 
     init(_ csv: CSV, _ settings: Settings) {
-        print("Row grouping: \(settings.inRows)", to: &standardError)
         self.csv = csv
         self.settings = settings
 
