@@ -56,6 +56,8 @@ class Settings: Codable {
 
     private static func intDefault(_ key: CodingKeys) -> Int {
         switch key {
+        case .headerColumns: return Defaults.headers
+        case .headerRows: return Defaults.headers
         case .height: return Defaults.height
         case .index: return Defaults.index
         case .strokeWidth: return Defaults.strokeWidth

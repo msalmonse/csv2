@@ -10,6 +10,7 @@ import ArgumentParser
 
 struct Options: ParsableCommand {
     @Flag(name: .shortAndLong, help: "Add debug info") var debug = false
+    @Option(name: .long, help: "Default header rows or columns") var headers = 0
     @Option(name: .long, help: "Default svg height") var height = 0
     @Option(name: .long, help: "Default index row or column") var index = 0
     @Flag(name: .long, help: "Default to grouping data by rows") var rows = false

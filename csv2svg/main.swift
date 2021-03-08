@@ -25,6 +25,7 @@ if options.verbose {
 }
 
 // Change defaults based on command line
+Settings.Defaults.headers = options.headers
 Settings.Defaults.height = options.height
 Settings.Defaults.index = options.index
 Settings.Defaults.rowGrouping = options.rows
