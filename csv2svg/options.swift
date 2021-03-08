@@ -10,9 +10,12 @@ import ArgumentParser
 
 struct Options: ParsableCommand {
     @Flag(name: .shortAndLong, help: "Add debug info") var debug = false
-    @Option(name: .shortAndLong, help: "Default index row or column") var index = 0
-    @Flag(name: .shortAndLong, help: "Default to grouping data by rows") var rows = false
+    @Option(name: .long, help: "Default svg height") var height = 0
+    @Option(name: .long, help: "Default index row or column") var index = 0
+    @Flag(name: .long, help: "Default to grouping data by rows") var rows = false
+    @Option(name: .long, help: "Default stroke width") var stroke = 2
     @Flag(name: .shortAndLong, help: "Add extra information") var verbose = false
     @Flag(name: [.customShort("V"), .long], help: "Display version and exit") var version = false
+    @Option(name: .long, help: "Default svg width") var width = 0
     @Argument(help: "CSV file and optionally JSON file") var files: [String] = []
 }

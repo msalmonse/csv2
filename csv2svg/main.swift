@@ -24,6 +24,13 @@ if options.verbose {
     print(jsonName, to: &standardError)
 }
 
+// Change defaults based on command line
+Settings.Defaults.height = options.height
+Settings.Defaults.index = options.index
+Settings.Defaults.rowGrouping = options.rows
+Settings.Defaults.strokeWidth = options.stroke
+Settings.Defaults.width = options.width
+
 let settings = try? Settings.load(URL(fileURLWithPath: jsonName))
 
 let csv = try? CSV(URL(fileURLWithPath: csvName))
