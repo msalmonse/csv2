@@ -18,18 +18,22 @@ cat <<EOD
     </style>
 </head>
 <body>
+<table>
 EOD
 
 for f in svg/*.svg
 do
     cat <<EOD
-<h3>$(cat "$f.txt")</h3>
-<img src="$(basename "$f")" />
+<tr>
+<th>$(cat "$f.txt")</th>
+<td><img src="$(basename "$f")" /></td>
+</tr>
 EOD
 done
 
 # Footers
 cat <<EOD
+</table>
 </body>
 </head>
 EOD
