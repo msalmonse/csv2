@@ -36,9 +36,10 @@ class Settings: Codable {
     let xTick: Int
     let yTick: Int
 
-    // Data is grouped in columns?
-    let inColumns: Bool
-    static var inColumnsDefault = true
+    // Data is grouped in rows?
+    let rowGrouping: Bool
+    var inColumns: Bool { return !rowGrouping }
+    var inRows: Bool { return rowGrouping }
 
     // Path colours
     let colours: [String]
@@ -125,8 +126,8 @@ class Settings: Codable {
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns, defaultValue: 0)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows, defaultValue: 0)
         height = Self.keyedIntValue(from: container, forKey: .height, defaultValue: 500)
-        inColumns = Self.keyedBoolValue(from: container, forKey: .inColumns, defaultValue: Settings.inColumnsDefault)
         index = Self.keyedIntValue(from: container, forKey: .index, defaultValue: 0)
+        rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping, defaultValue: false)
         strokeWidth = Self.keyedIntValue(from: container, forKey: .strokeWidth, defaultValue: 2)
         title = Self.keyedStringValue(from: container, forKey: .title, defaultValue: "")
         width = Self.keyedIntValue(from: container, forKey: .width, defaultValue: 500)

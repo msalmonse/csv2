@@ -25,10 +25,19 @@ extension SVG {
             "#c0ffee"
         ]
 
+        /// Get the colour in the sequence
+        /// - Returns: next colour
+
         static func nextColour() -> String {
             next += 1
             if next >= names.count { next = 0 }
             return names[ next ]
+        }
+
+        /// Reset the colour sequence
+
+        static func reset() {
+            next = -1
         }
     }
 }

@@ -15,9 +15,6 @@ The number of rows that do not contain data.<sup>[1](#fn1)</sup>
 #### height (Int 500)
 The height of the generated SVG
 
-#### inColumn (Bool true)
-Plot the data in columns, currently forced to true.
-
 #### index (Int 0)
 The column or row that contains the absissa data with the leftmost column or top row being 1.<br/>
 If it is less than or equal to zero then the absica is 0 for the first vale of each plot and so on.
@@ -25,6 +22,9 @@ If it is less than or equal to zero then the absica is 0 for the first vale of e
 #### names (Array of Strings)
 The plotted column or rows are assigned names from this array or the first header row or column respectively.
 The name are included with the colours associated with the plots.
+
+#### rowGrouping (Bool false)
+The data is grouped in rows
 
 #### strokeWidth (Int 2)
 The width of the plotted paths

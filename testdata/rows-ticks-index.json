@@ -1,7 +1,7 @@
 {
     "headerColumns": 1,
-    "inColumns": false,
     "index": 1,
+    "rowGrouping": true,
     "xTick": 1,
     "yTick": 0
 }

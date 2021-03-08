@@ -15,6 +15,8 @@ class csv2svgTests: XCTestCase {
         XCTAssertNotNil(settings)
         XCTAssertEqual(settings!.colours.count, 3)
         XCTAssertTrue(settings!.inColumns)
+        XCTAssertFalse(settings!.inRows)
+        XCTAssertFalse(settings!.rowGrouping)
         XCTAssertEqual(settings!.index, testIndex)
         XCTAssertEqual(settings!.height, testHeight)
         XCTAssertEqual(settings!.names[1], testName)
@@ -26,6 +28,8 @@ class csv2svgTests: XCTestCase {
         settings = try? Settings.load(settingsJSON(false))
         XCTAssertNotNil(settings)
         XCTAssertFalse(settings!.inColumns)
+        XCTAssertTrue(settings!.inRows)
+        XCTAssertTrue(settings!.rowGrouping)
     }
 
     func testCSV() throws {
@@ -140,7 +144,7 @@ func settingsJSON(_ cols: Bool) -> String {
         {
             "colours": [ "silver", "red", "green" ],
             "headerRows": 1,
-            "inColumns": \(cols),
+            "rowGrouping": \(!cols),
             "index": \(testIndex),
             "height": \(testHeight),
             "names": [ "a", "\(testName)", "c" ],
