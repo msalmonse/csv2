@@ -41,7 +41,7 @@ The maximum value for the abscissa.<sup>[2](#fn2)</sup>
 #### xMin (Double)
 The minimum value for the abscissa.<sup>[2](#fn2)</sup>
 
-#### xTick (Int -1)
+#### xTick (Int 0)
 How often to print the abscissa values and draw a line.<sup>[3](#fn3)</sup>
 
 #### xTitle (String)
@@ -53,8 +53,9 @@ The maximum value for the ordinate.<sup>[2](#fn2)</sup>
 #### yMin (Double)
 The minimum value for the ordinate.<sup>[2](#fn2)</sup>
 
-#### yTick (Int -1)
+#### yTick (Int 0)
 How often to print the ordinate values and draw a line.
+
 #### yTitle (String)
 the title attached to the ordinate
 
@@ -64,4 +65,4 @@ the title attached to the ordinate
 
 <a id="fn2">2</a>: if not defined the min and max are taken from the data.
 
-<a id="fn3">3</a>: setting this to zero will cause the value to be calculated.
+<a id="fn3">3</a>: setting this to -1 will remove the ticks.

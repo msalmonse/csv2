@@ -82,7 +82,8 @@ class SVG {
         pos = 5
         if settings.yTitle != "" { pos += Double(SVG.axesSize) * 1.25 }
         yTitleX = pos
-        if settings.yTick >= 0 { pos += Double(SVG.labelSize) * 3.5 }
+        // Give some extra space for minus sign
+        if settings.yTick >= 0 { pos += Double(SVG.labelSize) * (dataEdges.left < 0.0 ? 3.5 : 4.0) }
         yTickX = pos
         pos += 2
 

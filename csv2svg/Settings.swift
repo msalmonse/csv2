@@ -139,8 +139,8 @@ class Settings: Codable {
         yMax = try? container?.decodeIfPresent(Double.self, forKey: .yMax)
         yMin = try? container?.decodeIfPresent(Double.self, forKey: .yMin)
 
-        xTick = Self.keyedIntValue(from: container, forKey: .xTick, defaultValue: -1)
-        yTick = Self.keyedIntValue(from: container, forKey: .yTick, defaultValue: -1)
+        xTick = Self.keyedIntValue(from: container, forKey: .xTick, defaultValue: 0)
+        yTick = Self.keyedIntValue(from: container, forKey: .yTick, defaultValue: 0)
 
         colours = Self.keyedStringArray(from: container, forKey: .colours)
         names = Self.keyedStringArray(from: container, forKey: .names)
