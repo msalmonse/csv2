@@ -29,7 +29,7 @@ extension SVG {
     /// - Returns: row header
 
     static private func rowHeader(_ row: Int, csv: CSV?) -> String {
-        if csv != nil && csv!.data.count > row && row >= 0 && csv!.data[row][0] != "" {
+        if csv != nil && row >= 0 && row < csv!.rowCt && csv!.data[row][0] != "" {
             return csv!.data[row][0].replacingOccurrences(of: "\"", with: "")
         }
         return String(format: "Row %d", row + 1)

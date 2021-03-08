@@ -29,7 +29,7 @@ extension SVG {
 
             if index < 0 {
                 min = 0.0
-                max = Double(csv.data.count)
+                max = Double(settings.inColumns ? csv.colCt : csv.rowCt)
             } else {
                 (min, max) = csv.minMax(settings.inColumns, index, from: settings.headers)
                 // if min and max don't include 0 then include 0 if one is close
@@ -55,6 +55,7 @@ extension SVG {
 
     static func tbFromData(_ csv: CSV, _ settings: Settings) -> (t: Double, b: Double) {
         let index = settings.index - 1
+        let count = settings.inColumns ? csv.colCt : csv.rowCt
         var top: Double
         var bottom: Double
 
@@ -65,7 +66,7 @@ extension SVG {
             var min: Double = Double.greatestFiniteMagnitude
             var max: Double = -Double.greatestFiniteMagnitude
 
-            for i in settings.headers..<csv.data.count where i != index {
+            for i in settings.headers..<count where i != index {
                 (min, max) =
                     csv.minMax(settings.inColumns, i, from: settings.headers, min: min, max: max)
             }

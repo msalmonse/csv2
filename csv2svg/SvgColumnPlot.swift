@@ -13,7 +13,7 @@ extension SVG {
     /// - Returns: list of x values
     private func xList() -> [Double?] {
         if index < 0 {
-            return (-settings.headerRows..<csv.data.count).map { Double($0) }
+            return (-settings.headerRows..<csv.rowCt).map { Double($0) }
         } else {
             return csv.columnValues(index)
         }
