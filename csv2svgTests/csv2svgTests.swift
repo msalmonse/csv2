@@ -58,7 +58,7 @@ class csv2svgTests: XCTestCase {
     }
 
     func testSVG() throws {
-        let printDiff = true
+        let printDiff = false
         let csv = CSV(csvData)
         var svg = try? SVG(csv, Settings.load(settingsJSON(true)))
 
@@ -74,6 +74,8 @@ class csv2svgTests: XCTestCase {
         svg = try? SVG(csvPlot, Settings.load(settingsJSON(false)))
         XCTAssertNotNil(svg)
         let rowPlot = svg!.gen()
+
+        // XCTAssertEqual(colPlot, rowPlot)
 
         if printDiff {
             print(colPlot.difference(from: rowPlot))
