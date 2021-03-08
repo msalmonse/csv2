@@ -69,13 +69,21 @@ class csv2svgTests: XCTestCase {
 
         svg = try? SVG(csvPlot, Settings.load(settingsJSON(true)))
         XCTAssertNotNil(svg)
-        let colPlot = svg?.gen()
+        let colPlot = svg!.gen()
 
         svg = try? SVG(csvPlot, Settings.load(settingsJSON(false)))
         XCTAssertNotNil(svg)
-        let rowPlot = svg?.gen()
+        let rowPlot = svg!.gen()
 
-        if printDiff { print(colPlot!.difference(from: rowPlot!)) }
+        if printDiff {
+            print(colPlot.difference(from: rowPlot))
+            if colPlot.count == rowPlot.count {
+                for i in 0..<colPlot.count {
+                    print("Index: \(i)")
+                    print(colPlot[i].difference(from: rowPlot[i]))
+                }
+            }
+        }
     }
 
     func testSvgPath() {
