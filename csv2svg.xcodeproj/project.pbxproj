@@ -80,6 +80,7 @@
 		C49B7D6F25DC055400CEAB8C /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		C4EA5D1E25EB7B8A00E104E0 /* SvgTransScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgTransScale.swift; sourceTree = "<group>"; };
 		C4EA5D2725EB8F4D00E104E0 /* SvgColours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgColours.swift; sourceTree = "<group>"; };
+		C4FE49F225F6036A0076EF5E /* bipolar.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = bipolar.csv; path = testdata/bipolar.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +160,7 @@
 				C446E81A25F4D653007B1A05 /* row.csv */,
 				C446E81925F4D653007B1A05 /* rows-ticks-index.json */,
 				C48B722F25F2171300B0752E /* testlist.txt */,
+				C4FE49F225F6036A0076EF5E /* bipolar.csv */,
 			);
 			name = testdata;
 			sourceTree = "<group>";
