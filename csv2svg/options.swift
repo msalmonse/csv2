@@ -9,14 +9,32 @@ import Foundation
 import ArgumentParser
 
 struct Options: ParsableCommand {
-    @Option(name: .shortAndLong, help: "Add debug info") var debug = 0
-    @Option(name: .long, help: "Default header rows or columns") var headers = 0
-    @Option(name: .long, help: "Default svg height") var height = 500
-    @Option(name: .long, help: "Default index row or column") var index = 0
-    @Flag(name: .long, help: "Default to grouping data by rows") var rows = false
-    @Option(name: .long, help: "Default stroke width") var stroke = 2
-    @Flag(name: .shortAndLong, help: "Add extra information") var verbose = false
-    @Flag(name: [.customShort("V"), .long], help: "Display version and exit") var version = false
-    @Option(name: .long, help: "Default svg width") var width = 500
+    @Option(name: .shortAndLong, help: "Add debug info")
+    var debug = 0
+
+    @Option(name: .long, help: "Default header rows or columns")
+    var headers = Settings.Defaults.headers
+
+    @Option(name: .long, help: "Default svg height")
+    var height = Settings.Defaults.height
+
+    @Option(name: .long, help: "Default index row or column")
+    var index = Settings.Defaults.index
+
+    @Flag(name: .long, help: "Default to grouping data by rows")
+    var rows = Settings.Defaults.rowGrouping
+
+    @Option(name: .long, help: "Default stroke width")
+    var stroke = Settings.Defaults.strokeWidth
+
+    @Flag(name: .shortAndLong, help: "Add extra information")
+    var verbose = false
+
+    @Flag(name: [.customShort("V"), .long], help: "Display version and exit")
+    var version = false
+
+    @Option(name: .long, help: "Default svg width")
+    var width = Settings.Defaults.width
+
     @Argument(help: "CSV file and optionally JSON file") var files: [String] = []
 }
