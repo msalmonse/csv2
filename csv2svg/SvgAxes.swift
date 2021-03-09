@@ -37,7 +37,7 @@ extension SVG {
 
     private func tickNorm(_ tick: Int, dpp: Double, minSize: Double) -> Double {
         let dataSpan = Double(tick)
-        if dataSpan/dpp > minSize { return dataSpan }
+        if dpp > 1.0 && dataSpan/dpp > minSize { return dataSpan }
         let raw = minSize * dpp
         // calculate the power of 10 less than the raw tick
         let pow10 = exp(floor(log10(raw)) * log(10))
@@ -55,7 +55,7 @@ extension SVG {
         var path: [PathCommand] = []
         var labels = [""]
         let tick = tickNorm(settings.xTick, dpp: dataEdges.width/plotEdges.width,
-                           minSize: Double(SVG.labelSize * 3))
+                           minSize: Double(SVG.labelSize * 4))
         var x = tick    // the zero line is plotted by svgAxes
         let xMax = max(dataEdges.right, -dataEdges.left)
 
