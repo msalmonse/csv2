@@ -115,9 +115,7 @@
 		C40A3AF225DC01180016EB6D = {
 			isa = PBXGroup;
 			children = (
-				C45323D725F7C990007D741C /* usage.md */,
-				C492BE1025F3A2A10042A11E /* json.md */,
-				C492BE0F25F3A2A10042A11E /* README.md */,
+				C45323DC25F7F7C0007D741C /* Docs */,
 				C48B723525F224EF00B0752E /* makeIndex.sh */,
 				C48B722A25F212C600B0752E /* runTests.sh */,
 				C45053C025F0E865003FC346 /* appinfo.swift */,
@@ -162,6 +160,16 @@
 				C4EA5D1E25EB7B8A00E104E0 /* SvgTransScale.swift */,
 			);
 			path = csv2svg;
+			sourceTree = "<group>";
+		};
+		C45323DC25F7F7C0007D741C /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				C492BE0F25F3A2A10042A11E /* README.md */,
+				C492BE1025F3A2A10042A11E /* json.md */,
+				C45323D725F7C990007D741C /* usage.md */,
+			);
+			name = Docs;
 			sourceTree = "<group>";
 		};
 		C48B722D25F215B800B0752E /* testdata */ = {
