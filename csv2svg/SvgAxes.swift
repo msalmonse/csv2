@@ -87,18 +87,17 @@ extension SVG {
                             minSize: settings.labelSize * 1.25)
         var y = tick    // the zero line is plotted by svgAxes
         let yMax = max(dataEdges.top, -dataEdges.bottom)
-        let labelEnd = plotEdges.left - 2
 
         while y <= yMax {
             if dataEdges.inVert(y) {
                 path.append(.moveTo(x: plotEdges.left, y: ts.ypos(y)))
                 path.append(.horizTo(x: plotEdges.right))
-                labels.append(yLabel(label(y), x: labelEnd, y: ts.ypos(y)))
+                labels.append(yLabel(label(y), x: yTickX, y: ts.ypos(y)))
             }
             if dataEdges.inVert(-y) {
                 path.append(.moveTo(x: plotEdges.left, y: ts.ypos(-y)))
                 path.append(.horizTo(x: plotEdges.right))
-                labels.append(yLabel(label(-y), x: labelEnd, y: ts.ypos(-y)))
+                labels.append(yLabel(label(-y), x: yTickX, y: ts.ypos(-y)))
             }
             y += tick
         }

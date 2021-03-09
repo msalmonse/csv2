@@ -83,7 +83,7 @@ class SVG: ReflectedStringConvertible {
         // Give some extra space for minus sign
         if settings.yTick >= 0 { pos += settings.labelSize * (dataEdges.left < 0.0 ? 3.5 : 4.0) }
         yTickX = pos
-        pos += 2
+        pos += Double(settings.strokeWidth)
 
         plotEdges = Plane(
             top: 10, bottom: bottomY,
