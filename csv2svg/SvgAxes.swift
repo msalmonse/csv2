@@ -55,7 +55,7 @@ extension SVG {
         var path: [PathCommand] = []
         var labels = [""]
         let tick = tickNorm(settings.xTick, dpp: dataEdges.width/plotEdges.width,
-                           minSize: Double(SVG.labelSize * 5))
+                           minSize: Double(SVG.labelSize * 3))
         var x = tick    // the zero line is plotted by svgAxes
         let xMax = max(dataEdges.right, -dataEdges.left)
 
