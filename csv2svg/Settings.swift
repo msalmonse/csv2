@@ -12,6 +12,15 @@ class Settings: Codable, ReflectedStringConvertible {
     let height: Int
     let width: Int
 
+    // base font size
+    let baseFontSize: Double
+
+    // Font sizes
+    var axesSize: Double { return baseFontSize * 1.2 }
+    var labelSize: Double { return baseFontSize }
+    var legendSize: Double { return baseFontSize * 1.3 }
+    var titleSize: Double { return baseFontSize * 2.5 }
+
     // svg title, x axis title and y axis title
     let title: String
     let xTitle: String
@@ -82,6 +91,7 @@ class Settings: Codable, ReflectedStringConvertible {
 
     private static func doubleDefault(_ key: CodingKeys) -> Double {
         switch key {
+        case .baseFontSize: return Defaults.baseFontSize
         case .xMax: return Defaults.xMax
         case .xMin: return Defaults.xMin
         case .yMax: return Defaults.yMax
@@ -186,6 +196,7 @@ class Settings: Codable, ReflectedStringConvertible {
     required init(from decoder: Decoder) {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
+        baseFontSize = Self.keyedDoubleValue(from: container, forKey: .baseFontSize)
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
         height = Self.keyedIntValue(from: container, forKey: .height)

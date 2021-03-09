@@ -2,6 +2,9 @@
 
 The settings file is JSON encoded and the following tags are supported, the data type and default value are shown in parathenses.
 
+#### baseFontSize (Double 10.0)
+The base font size for the SVG, all other font sizes are derived from this value
+
 #### colours (Array of Strings)
 The colours to be used to plot the column or row. The index, if present, must be included although never used.
 Columns or rows that aren't defined are assigned a colour sequentially from an internal list.

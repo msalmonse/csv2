@@ -25,7 +25,7 @@ struct Options: ParsableCommand {
     var rows = Defaults.rowGrouping
 
     @Option(name: .long, help: "Default font size")
-    var size = Defaults.fontSize
+    var size = Defaults.baseFontSize
 
     @Option(name: .long, help: "Default stroke width")
     var stroke = Defaults.strokeWidth
@@ -48,6 +48,7 @@ struct Options: ParsableCommand {
 
 func setDefaultsFromOptions(_ options: Options) {
     // Change defaults based on command line
+    Defaults.baseFontSize = options.size
     Defaults.headers = options.headers
     Defaults.height = options.height
     Defaults.index = options.index

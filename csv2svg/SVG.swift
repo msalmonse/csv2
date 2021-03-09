@@ -8,12 +8,11 @@
 import Foundation
 
 class SVG: ReflectedStringConvertible {
-
-    // Font sizes
-    static let axesSize = 12
-    static let labelSize = 10
-    static let legendSize = 13
-    static let titleSize = 25
+    // font sizes in px
+    var axesPX: String { String(format: "%.1fpx", settings.axesSize) }
+    var labelPX: String { String(format: "%.1fpx", settings.labelSize) }
+    var legendPX: String { String(format: "%.1fpx", settings.legendSize) }
+    var titlePX: String { String(format: "%.1fpx", settings.titleSize) }
 
     let csv: CSV
     let settings: Settings
@@ -68,27 +67,27 @@ class SVG: ReflectedStringConvertible {
         // Calculate vertical positions
         var pos = Double(settings.height - 5)
         titleY = pos
-        if settings.title != "" { pos -= Double(SVG.titleSize) * 1.25 }
+        if settings.title != "" { pos -= settings.titleSize * 1.25 }
         legendY = pos
-        pos -= Double(SVG.legendSize) * 1.25
+        pos -= settings.legendSize * 1.25
         xTitleY = pos
-        if settings.xTitle != "" { pos -= Double(SVG.axesSize) * 1.25 }
+        if settings.xTitle != "" { pos -= settings.axesSize * 1.25 }
         xTicksY = pos
-        if settings.xTick >= 0 { pos -= Double(SVG.labelSize) * 1.25 }
+        if settings.xTick >= 0 { pos -= settings.labelSize * 1.25 }
         let bottomY = pos
 
         // Calculate horizontal positions
         pos = 5
-        if settings.yTitle != "" { pos += Double(SVG.axesSize) * 1.25 }
+        if settings.yTitle != "" { pos += settings.axesSize * 1.25 }
         yTitleX = pos
         // Give some extra space for minus sign
-        if settings.yTick >= 0 { pos += Double(SVG.labelSize) * (dataEdges.left < 0.0 ? 3.5 : 4.0) }
+        if settings.yTick >= 0 { pos += settings.labelSize * (dataEdges.left < 0.0 ? 3.5 : 4.0) }
         yTickX = pos
         pos += 2
 
         plotEdges = Plane(
             top: 10, bottom: bottomY,
-            left: pos, right: Double(settings.width) - Double(SVG.labelSize) * 2.0
+            left: pos, right: Double(settings.width) - settings.labelSize * 2.0
         )
 
         // Initialize path columns
