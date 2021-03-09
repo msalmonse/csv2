@@ -17,12 +17,14 @@ extension SVG {
 
     static func lrFromData(_ csv: CSV, _ settings: Settings) -> (l: Double, r: Double) {
         let index = settings.index - 1
+        let xMaxSet = settings.xMax > Settings.Defaults.maxDefault
+        let xMinSet = settings.xMin < Settings.Defaults.minDefault
         var left: Double
         var right: Double
 
-        if settings.xMax != nil && settings.xMin != nil {
-            left = settings.xMin!
-            right = settings.xMax!
+        if  xMaxSet && xMinSet {
+            left = settings.xMin
+            right = settings.xMax
         } else {
             var min: Double
             var max: Double
@@ -40,8 +42,8 @@ extension SVG {
                 }
             }
 
-            left = settings.xMin ?? min
-            right = settings.xMax ?? max
+            left = xMinSet ? settings.xMin : min
+            right = xMaxSet ? settings.xMax : max
         }
 
         return (l: left, r: right)
@@ -55,13 +57,15 @@ extension SVG {
 
     static func tbFromData(_ csv: CSV, _ settings: Settings) -> (t: Double, b: Double) {
         let index = settings.index - 1
+        let yMaxSet = settings.yMax > Settings.Defaults.maxDefault
+        let yMinSet = settings.yMin < Settings.Defaults.minDefault
         let count = settings.inColumns ? csv.colCt : csv.rowCt
         var top: Double
         var bottom: Double
 
-        if settings.yMax != nil && settings.yMin != nil {
-            bottom = settings.yMin!
-            top = settings.yMax!
+        if yMaxSet && yMinSet {
+            bottom = settings.yMin
+            top = settings.yMax
         } else {
             var min: Double = Double.greatestFiniteMagnitude
             var max: Double = -Double.greatestFiniteMagnitude
@@ -77,8 +81,8 @@ extension SVG {
                 if max < min/20.0 { max = 0.0 }
             }
 
-            bottom = settings.yMin ?? min
-            top = settings.yMax ?? max
+            bottom = yMinSet ? settings.yMin : min
+            top = yMaxSet ? settings.yMax : max
         }
 
         return (t: top, b: bottom)

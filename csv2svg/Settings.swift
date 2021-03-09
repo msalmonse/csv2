@@ -27,10 +27,10 @@ class Settings: Codable {
 
     // minimum and maximum for x and y axes
     // nil means not specified
-    let xMax: Double?
-    let xMin: Double?
-    let yMax: Double?
-    let yMin: Double?
+    let xMax: Double
+    let xMin: Double
+    let yMax: Double
+    let yMin: Double
 
     // Ticks on the x and y axes
     let xTick: Int
@@ -49,6 +49,30 @@ class Settings: Codable {
 
     // Path names
     let names: [String]
+
+    /// Return the integer default for the key
+    /// - Parameter key: Coding key for Settings
+    /// - Returns: integer default value
+
+    private static func doubleDefault(_ key: CodingKeys) -> Double {
+        switch key {
+        default: return 0.0
+        }
+    }
+
+    /// Convenience function to decode a keyed Int
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: the key into the decoded data
+    /// - Returns: decoded or default value
+
+    private static func keyedDoubleValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys
+    ) -> Double {
+        if container == nil { return doubleDefault(key) }
+        return (try? container!.decodeIfPresent(Double.self, forKey: key)) ?? doubleDefault(key)
+    }
 
     /// Return the integer default for the key
     /// - Parameter key: Coding key for Settings
@@ -169,10 +193,10 @@ class Settings: Codable {
         xTitle = Self.keyedStringValue(from: container, forKey: .xTitle)
         yTitle = Self.keyedStringValue(from: container, forKey: .yTitle)
 
-        xMax = try? container?.decodeIfPresent(Double.self, forKey: .xMax)
-        xMin = try? container?.decodeIfPresent(Double.self, forKey: .xMin)
-        yMax = try? container?.decodeIfPresent(Double.self, forKey: .yMax)
-        yMin = try? container?.decodeIfPresent(Double.self, forKey: .yMin)
+        xMax = Self.keyedDoubleValue(from: container, forKey: .xMax)
+        xMin = Self.keyedDoubleValue(from: container, forKey: .xMin)
+        yMax = Self.keyedDoubleValue(from: container, forKey: .yMax)
+        yMin = Self.keyedDoubleValue(from: container, forKey: .yMin)
 
         xTick = Self.keyedIntValue(from: container, forKey: .xTick)
         yTick = Self.keyedIntValue(from: container, forKey: .yTick)
