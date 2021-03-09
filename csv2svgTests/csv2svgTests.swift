@@ -22,7 +22,7 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(settings!.names[1], testName)
         XCTAssertEqual(settings!.title, testTitle)
         XCTAssertEqual(settings!.width, testWidth)
-        XCTAssertEqual(settings!.xMax, Settings.Defaults.maxDefault)
+        XCTAssertEqual(settings!.xMax, Defaults.maxDefault)
         XCTAssertEqual(settings!.yMax, testYMax)
 
         settings = try? Settings.load(settingsJSON(false))
@@ -31,7 +31,7 @@ class csv2svgTests: XCTestCase {
         XCTAssertTrue(settings!.inRows)
         XCTAssertTrue(settings!.rowGrouping)
 
-        Settings.Defaults.rowGrouping = true
+        Defaults.rowGrouping = true
         settings = try? Settings.load(settingsJSON(true))
         XCTAssertNotNil(settings)
         XCTAssertTrue(settings!.inColumns)
