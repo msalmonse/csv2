@@ -12,16 +12,17 @@ svgdir=svg
 makeSVG () {
     csv="$datadir/$1.csv"
     json="$datadir/$2.json"
-    svg="$svgdir/$1-data+$2-json.svg"
+    opts=$(echo $3 | tr , ' ')
+    svg="$svgdir/$1-data+$3-opts+$2-json.svg"
     echo >&2 "Generating $svg"
-    ./test/csv2svg "$csv" "$json" > "$svg" \
-    && echo "$3" > "$svg.txt"
+    ./test/csv2svg ${opts%--} "$csv" "$json" > "$svg" \
+    && echo "$4" > "$svg.txt"
 }
 
 ./test/csv2svg -V
 
 sort $datadir/testlist.txt \
-| while read csv json msg
+| while read csv json opts msg
 do
-    makeSVG "$csv" "$json" "$msg"
+    makeSVG "$csv" "$json" "$opts" "$msg"
 done

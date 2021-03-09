@@ -1,8 +1,10 @@
-column none Column data with no JSON settings
-column columns-ticks-index Column data with ticks and index
-big columns-ticks-index Big data in columns with ticks and index
-little columns-ticks-index Little data in columns with ticks and index
-row rows-ticks-index Row data with ticks and index
-posneg columns-ticks-index Positive and negative data with ticks and index
-bipolar columns-ticks-index Bipolar data in columns
-bipolar rows-ticks-index Bipolar data in rows
+column none -- Column data with no JSON settings
+column none --index=1,--headers=1-- Column data with no JSON settings index but header options
+column none --width=1000-- Column data with no JSON settings but width option
+column columns-ticks-index -- Column data with ticks and index
+big columns-ticks-index -- Big data in columns with ticks and index
+little columns-ticks-index -- Little data in columns with ticks and index
+row rows-ticks-index -- Row data with ticks and index
+posneg columns-ticks-index -- Positive and negative data with ticks and index
+bipolar columns-ticks-index -- Bipolar data in columns
+bipolar rows-ticks-index -- Bipolar data in rows

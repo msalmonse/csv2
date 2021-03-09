@@ -9,6 +9,10 @@ import Foundation
 
 let options = Options.parseOrExit()
 
+if options.debug != 0 {
+    print(options, to: &standardError)
+}
+
 if options.version {
     print("\(AppInfo.name): \(AppInfo.version) (\(AppInfo.build)) Built at \(AppInfo.builtAt)",
           to: &standardError)
