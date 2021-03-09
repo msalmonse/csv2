@@ -17,8 +17,8 @@ extension SVG {
 
     static func lrFromData(_ csv: CSV, _ settings: Settings) -> (l: Double, r: Double) {
         let index = settings.index - 1
-        let xMaxSet = settings.xMax > Settings.Defaults.maxDefault
-        let xMinSet = settings.xMin < Settings.Defaults.minDefault
+        let xMaxSet = settings.xMax > Defaults.maxDefault
+        let xMinSet = settings.xMin < Defaults.minDefault
         var left: Double
         var right: Double
 
@@ -57,8 +57,8 @@ extension SVG {
 
     static func tbFromData(_ csv: CSV, _ settings: Settings) -> (t: Double, b: Double) {
         let index = settings.index - 1
-        let yMaxSet = settings.yMax > Settings.Defaults.maxDefault
-        let yMinSet = settings.yMin < Settings.Defaults.minDefault
+        let yMaxSet = settings.yMax > Defaults.maxDefault
+        let yMinSet = settings.yMin < Defaults.minDefault
         let count = settings.inColumns ? csv.colCt : csv.rowCt
         var top: Double
         var bottom: Double

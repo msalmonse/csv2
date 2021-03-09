@@ -13,19 +13,22 @@ struct Options: ParsableCommand {
     var debug = 0
 
     @Option(name: .long, help: "Default header rows or columns")
-    var headers = Settings.Defaults.headers
+    var headers = Defaults.headers
 
     @Option(name: .long, help: "Default svg height")
-    var height = Settings.Defaults.height
+    var height = Defaults.height
 
     @Option(name: .long, help: "Default index row or column")
-    var index = Settings.Defaults.index
+    var index = Defaults.index
 
     @Flag(name: .long, help: "Default to grouping data by rows")
-    var rows = Settings.Defaults.rowGrouping
+    var rows = Defaults.rowGrouping
+
+    @Option(name: .long, help: "Default font size")
+    var size = Defaults.fontSize
 
     @Option(name: .long, help: "Default stroke width")
-    var stroke = Settings.Defaults.strokeWidth
+    var stroke = Defaults.strokeWidth
 
     @Flag(name: .shortAndLong, help: "Add extra information")
     var verbose = false
@@ -34,7 +37,21 @@ struct Options: ParsableCommand {
     var version = false
 
     @Option(name: .long, help: "Default svg width")
-    var width = Settings.Defaults.width
+    var width = Defaults.width
 
-    @Argument(help: "CSV file and optionally JSON file") var files: [String] = []
+    @Argument(help: "CSV file name") var csvName: String?
+    @Argument(help: "JSON file name") var jsonName: String?
+}
+
+/// Set Settings defaults using options
+/// - Parameter options: Options object
+
+func setDefaultsFromOptions(_ options: Options) {
+    // Change defaults based on command line
+    Defaults.headers = options.headers
+    Defaults.height = options.height
+    Defaults.index = options.index
+    Defaults.rowGrouping = options.rows
+    Defaults.strokeWidth = options.stroke
+    Defaults.width = options.width
 }

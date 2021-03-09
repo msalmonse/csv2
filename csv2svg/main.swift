@@ -18,28 +18,19 @@ if options.version {
           to: &standardError)
 }
 
-if options.files.count == 0 { exit(0) }
-
-let csvName = options.files[0]
-let jsonName = options.files.count > 1 ? options.files[1] : csvName + ".json"
+if options.csvName == nil { exit(0) }
 
 if options.verbose {
-    print(csvName, to: &standardError)
-    print(jsonName, to: &standardError)
+    print(options.csvName ?? "Missing CSV file name", to: &standardError)
+    print(options.jsonName ?? "Missing JSON file name", to: &standardError)
 }
 
-// Change defaults based on command line
-Settings.Defaults.headers = options.headers
-Settings.Defaults.height = options.height
-Settings.Defaults.index = options.index
-Settings.Defaults.rowGrouping = options.rows
-Settings.Defaults.strokeWidth = options.stroke
-Settings.Defaults.width = options.width
+setDefaultsFromOptions(options)
 
-let settings = try? Settings.load(URL(fileURLWithPath: jsonName))
+let settings = try? Settings.load(URL(fileURLWithPath: options.jsonName ?? options.csvName! + ".json"))
 if (options.debug & 2) > 0 { print(settings ?? "Nil settings", to: &standardError) }
 
-let csv = try? CSV(URL(fileURLWithPath: csvName))
+let csv = try? CSV(URL(fileURLWithPath: options.csvName!))
 if (options.debug & 4) > 0 { print(csv ?? "Nil csv", to: &standardError) }
 
 if csv == nil || settings == nil {
