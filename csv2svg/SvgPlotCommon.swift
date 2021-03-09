@@ -28,7 +28,10 @@ extension SVG {
         for i in settings.headers..<xValues.count {
             if xValues[i] == nil || i >= yValues.count || yValues[i] == nil {
                 move = true
-                if single { pathPoints.append(.circle(r: Double(settings.strokeWidth)/2.0))}
+                if single {
+                    pathPoints.append(.circle(r: Double(settings.strokeWidth)/2.0))
+                    single = false
+                }
             } else if move {
                 let xPos = ts.xpos(xValues[i]!)
                 let yPos = ts.ypos(yValues[i]!)
