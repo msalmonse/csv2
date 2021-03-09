@@ -10,6 +10,7 @@ import Foundation
 extension Settings {
     struct Defaults {
         // Setable defaults
+        static var fontSize = 10.0
         static var headers = 0
         static var height = 500
         static var index = 0
