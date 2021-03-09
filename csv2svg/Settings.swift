@@ -50,12 +50,42 @@ class Settings: Codable {
     // Path names
     let names: [String]
 
+    /// Return the boolean default for the key
+    /// - Parameter key: Coding key for Settings
+    /// - Returns: bool default value
+
+    private static func boolDefault(_ key: CodingKeys) -> Bool {
+        switch key {
+        case .rowGrouping: return Defaults.rowGrouping
+        default: return false
+        }
+    }
+
+    /// Convenience function to decode a keyed Bool
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: the key into the decoded data
+    ///   - defaultValue: the default value
+    /// - Returns: decoded or default value
+
+    private static func keyedBoolValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys
+    ) -> Bool {
+        if container == nil { return boolDefault(key) }
+        return (try? container!.decodeIfPresent(Bool.self, forKey: key)) ?? boolDefault(key)
+    }
+
     /// Return the integer default for the key
     /// - Parameter key: Coding key for Settings
     /// - Returns: integer default value
 
     private static func doubleDefault(_ key: CodingKeys) -> Double {
         switch key {
+        case .xMax: return Defaults.xMax
+        case .xMin: return Defaults.xMin
+        case .yMax: return Defaults.yMax
+        case .yMin: return Defaults.yMin
         default: return 0.0
         }
     }
@@ -103,32 +133,6 @@ class Settings: Codable {
     ) -> Int {
         if container == nil { return intDefault(key) }
         return (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? intDefault(key)
-    }
-
-    /// Return the boolean default for the key
-    /// - Parameter key: Coding key for Settings
-    /// - Returns: bool default value
-
-    private static func boolDefault(_ key: CodingKeys) -> Bool {
-        switch key {
-        case .rowGrouping: return Defaults.rowGrouping
-        default: return false
-        }
-    }
-
-    /// Convenience function to decode a keyed Bool
-    /// - Parameters:
-    ///   - container: decoded data container
-    ///   - key: the key into the decoded data
-    ///   - defaultValue: the default value
-    /// - Returns: decoded or default value
-
-    private static func keyedBoolValue(
-        from container: KeyedDecodingContainer<CodingKeys>?,
-        forKey key: CodingKeys
-    ) -> Bool {
-        if container == nil { return boolDefault(key) }
-        return (try? container!.decodeIfPresent(Bool.self, forKey: key)) ?? boolDefault(key)
     }
 
     /// Return the integer default for the key

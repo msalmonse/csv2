@@ -37,8 +37,10 @@ Settings.Defaults.strokeWidth = options.stroke
 Settings.Defaults.width = options.width
 
 let settings = try? Settings.load(URL(fileURLWithPath: jsonName))
+if (options.debug & 2) > 0 { print(settings ?? "Nil settings", to: &standardError) }
 
 let csv = try? CSV(URL(fileURLWithPath: csvName))
+if (options.debug & 4) > 0 { print(csv ?? "Nil csv", to: &standardError) }
 
 if csv == nil || settings == nil {
     print("Error loading data.", to: &standardError)
@@ -46,4 +48,6 @@ if csv == nil || settings == nil {
 }
 
 let svg = SVG(csv!, settings!)
+if (options.debug & 8) > 0 { print(svg, to: &standardError) }
+
 _ = svg.gen().map { print($0) }
