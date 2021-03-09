@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Settings: Codable {
+class Settings: Codable, ReflectedStringConvertible {
     // svg width and height
     let height: Int
     let width: Int

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SVG {
+class SVG: ReflectedStringConvertible {
 
     // Font sizes
     static let axesSize = 12

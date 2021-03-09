@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CSV {
+class CSV: ReflectedStringConvertible {
     var data: [[String]] = []
     var values: [[Double?]] = []
 
@@ -18,6 +18,7 @@ class CSV {
     /// Initialize CSV from a URL
     /// - Parameter url: location of data
     /// - Throws: whatever String throws
+
     init(_ url: URL) throws {
         do {
             try self.loadFromUrl(url)
