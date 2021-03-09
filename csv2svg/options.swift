@@ -39,6 +39,18 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default svg width")
     var width = Defaults.width
 
+    @Option(name: .long, help: "Default abcissa maximum")
+    var xmax = Defaults.xMax
+
+    @Option(name: .long, help: "Default abscissa minimum")
+    var xmin = Defaults.xMin
+
+    @Option(name: .long, help: "Default ordinate maximum")
+    var ymax = Defaults.yMax
+
+    @Option(name: .long, help: "Default ordinate minimum")
+    var ymin = Defaults.yMin
+
     @Argument(help: "CSV file name") var csvName: String?
     @Argument(help: "JSON file name") var jsonName: String?
 }
@@ -55,4 +67,8 @@ func setDefaultsFromOptions(_ options: Options) {
     Defaults.rowGrouping = options.rows
     Defaults.strokeWidth = options.stroke
     Defaults.width = options.width
+    Defaults.xMax = options.xmax
+    Defaults.xMin = options.xmin
+    Defaults.yMax = options.ymax
+    Defaults.yMin = options.ymin
 }
