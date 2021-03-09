@@ -88,7 +88,7 @@ class SVG: ReflectedStringConvertible {
 
         plotEdges = Plane(
             top: 10, bottom: bottomY,
-            left: pos, right: Double(settings.width - 8)
+            left: pos, right: Double(settings.width) - Double(SVG.labelSize) * 2.0
         )
 
         // Initialize path columns
