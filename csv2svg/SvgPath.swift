@@ -51,8 +51,14 @@ extension SVG {
     ///   - stroke: contents of the stroke paramater of the path
     /// - Returns: a path element
 
-    static func svgPath(_ points: [PathCommand], stroke: String? = nil, width: Int = 1) -> String {
+    static func svgPath(
+        _ points: [PathCommand],
+        stroke: String? = nil,
+        width: Int = 1,
+        linecap: String = "round"
+    ) -> String {
         let strokeColour = stroke ?? Colours.nextColour()
+        let style = "stroke: \(strokeColour); fill: none; stroke-width: \(width); stroke-linecap: \(linecap)"
 
         // a path needs 2 points
         guard points.count >= 2 else { return "" }
@@ -60,7 +66,7 @@ extension SVG {
         var result = [ "<path d=\"" ]
 
         result.append(contentsOf: points.map { $0.command() })
-        result.append("\" style=\"stroke: \(strokeColour); fill: none; stroke-width: \(width)\" />")
+        result.append("\" style=\"\(style)\" />")
 
         return result.joined(separator: " ")
     }
