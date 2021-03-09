@@ -65,6 +65,7 @@
 		C446E82025F51DA2007B1A05 /* posneg.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = posneg.csv; path = testdata/posneg.csv; sourceTree = "<group>"; };
 		C45053C025F0E865003FC346 /* appinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appinfo.swift; sourceTree = "<group>"; };
 		C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectedStringConvertable.swift; sourceTree = "<group>"; };
+		C45323D725F7C990007D741C /* usage.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = usage.md; sourceTree = "<group>"; };
 		C46A3A7125DE8B4C00F6783A /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
 		C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgColumnPlot.swift; sourceTree = "<group>"; };
 		C480847F25E6776900BD0A24 /* SvgSides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgSides.swift; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 		C40A3AF225DC01180016EB6D = {
 			isa = PBXGroup;
 			children = (
+				C45323D725F7C990007D741C /* usage.md */,
 				C492BE1025F3A2A10042A11E /* json.md */,
 				C492BE0F25F3A2A10042A11E /* README.md */,
 				C48B723525F224EF00B0752E /* makeIndex.sh */,
