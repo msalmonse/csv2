@@ -55,7 +55,7 @@ struct Options: ParsableCommand {
     @Argument(help: "JSON file name") var jsonName: String?
 }
 
-/// Set Settings defaults using options
+/// Set Settings defaults using options from the command line
 /// - Parameter options: Options object
 
 func setDefaultsFromOptions(_ options: Options) {
