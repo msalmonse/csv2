@@ -51,7 +51,7 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default ordinate minimum")
     var ymin = Defaults.yMin
 
-    @Argument(help: "CSV file name") var csvName: String?
+    @Argument(help: "CSV file name, \"-\" means use stdin") var csvName: String?
     @Argument(help: "JSON file name") var jsonName: String?
 }
 

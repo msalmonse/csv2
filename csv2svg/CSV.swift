@@ -29,10 +29,17 @@ class CSV: ReflectedStringConvertible {
     }
 
     /// Initialize CSV from a String
-    /// - Parameter contents: the data to load into the string
+    /// - Parameter contents: the data as a single string
 
     init(_ contents: String) {
         self.loadFrom(contents)
+    }
+
+    /// Initialize CSV from a String
+    /// - Parameter lines: the data as an array of strings
+
+    init(_ lines: [String]) {
+        self.loadFromLines(lines)
     }
 
     /// Return a column of values
@@ -158,8 +165,15 @@ class CSV: ReflectedStringConvertible {
     /// - Parameter contents: the string containing data
 
     func loadFrom(_ contents: String) {
+        loadFromLines(contents.components(separatedBy: "\n"))
+    }
+
+    /// Load data from a string array
+    /// - Parameter lines: the string array containing data
+
+    func loadFromLines(_ lines: [String]) {
         var colMax = 0
-        for row in contents.components(separatedBy: "\n") where row != "" {
+        for row in lines where row != "" {
             let cols = row.components(separatedBy: ",")
             data.append(cols)
             if cols.count > colMax { colMax = cols.count }

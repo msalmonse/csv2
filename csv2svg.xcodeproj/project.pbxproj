@@ -28,6 +28,8 @@
 		C45053C125F0E865003FC346 /* appinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45053C025F0E865003FC346 /* appinfo.swift */; };
 		C45323CB25F77F01007D741C /* ReflectedStringConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */; };
 		C45323D425F7C6D6007D741C /* ReflectedStringConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */; };
+		C45323E625F8CCC8007D741C /* readlines.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323E525F8CCC8007D741C /* readlines.swift */; };
+		C45323E725F8CCC8007D741C /* readlines.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323E525F8CCC8007D741C /* readlines.swift */; };
 		C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
 		C480847C25E4E97300BD0A24 /* SvgColumnPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */; };
 		C480848025E6776900BD0A24 /* SvgSides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* SvgSides.swift */; };
@@ -68,6 +70,7 @@
 		C45323D725F7C990007D741C /* usage.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = usage.md; sourceTree = "<group>"; };
 		C45323DF25F8A6C3007D741C /* plot.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = plot.csv; path = testdata/plot.csv; sourceTree = "<group>"; };
 		C45323E025F8A74A007D741C /* plot.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = plot.json; path = testdata/plot.json; sourceTree = "<group>"; };
+		C45323E525F8CCC8007D741C /* readlines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = readlines.swift; sourceTree = "<group>"; };
 		C46A3A7125DE8B4C00F6783A /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
 		C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgColumnPlot.swift; sourceTree = "<group>"; };
 		C480847F25E6776900BD0A24 /* SvgSides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgSides.swift; sourceTree = "<group>"; };
@@ -144,6 +147,7 @@
 				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
 				C40A3AFE25DC01180016EB6D /* main.swift */,
 				C4FE49FE25F6440F0076EF5E /* options.swift */,
+				C45323E525F8CCC8007D741C /* readlines.swift */,
 				C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */,
 				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
 				C482B9FC25EE8D4D00E51A50 /* stderr.swift */,
@@ -384,6 +388,7 @@
 				C446E81225F4BE4B007B1A05 /* SvgPlotCommon.swift in Sources */,
 				C49A7EC925EBCE7300503486 /* SvgText.swift in Sources */,
 				C40CD44125ED2390003944FA /* SvgPlane.swift in Sources */,
+				C45323E625F8CCC8007D741C /* readlines.swift in Sources */,
 				C40CD43A25ED025F003944FA /* SvgHeader.swift in Sources */,
 				C40A3AFF25DC01180016EB6D /* main.swift in Sources */,
 				C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */,
@@ -402,6 +407,7 @@
 				C48B823625E2967100EAEAE3 /* Settings.swift in Sources */,
 				C480848325E6809400BD0A24 /* SvgSides.swift in Sources */,
 				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,
+				C45323E725F8CCC8007D741C /* readlines.swift in Sources */,
 				C424513E25E980A7005BE7DC /* SvgColumnPlot.swift in Sources */,
 				C449F44C25EC131E006C67EB /* SvgDefs.swift in Sources */,
 				C48B723825F28A5E00B0752E /* appinfo.swift in Sources */,
