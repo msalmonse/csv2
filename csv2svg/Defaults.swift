@@ -13,14 +13,14 @@ struct Defaults {
     // Setable defaults
     static var baseFontSize = 10.0
     static var headers = 0
-    static var height = 500
+    static var height = 600
     static var index = 0
     static let maxDefault = -Double.greatestFiniteMagnitude
     static let minDefault = Double.greatestFiniteMagnitude
     static var rowGrouping = false
     static var strokeWidth = 2
     static var title = ""
-    static var width = 500
+    static var width = 800
     static var xMax = maxDefault
     static var xMin = minDefault
     static var yMax = maxDefault
