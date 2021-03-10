@@ -74,21 +74,23 @@ class csv2svgTests: XCTestCase {
         svg = try? SVG(csv, Settings.load(settingsJSON(false)))
 
         XCTAssertNotNil(svg)
-        XCTAssertEqual(svg?.names[4], "Row 5")
+        XCTAssertEqual(svg?.names[4], testName)
 
-        /*
         let csvPlot = CSV(plotData)
 
+        SVG.Colours.reset()
         svg = try? SVG(csvPlot, Settings.load(settingsJSON(true)))
         XCTAssertNotNil(svg)
         let colPlot = svg!.gen()
 
+        SVG.Colours.reset()
         svg = try? SVG(csvPlot, Settings.load(settingsJSON(false)))
         XCTAssertNotNil(svg)
         let rowPlot = svg!.gen()
 
         XCTAssertEqual(colPlot, rowPlot)
 
+        /*
         print(colPlot.difference(from: rowPlot))
         if colPlot.count == rowPlot.count {
             for i in 0..<colPlot.count {
@@ -164,6 +166,7 @@ func settingsJSON(_ cols: Bool) -> String {
     return """
         {
             "colours": [ "silver", "red", "green" ],
+            "headerColumns": 1,
             "headerRows": 1,
             "rowGrouping": \(!cols),
             "index": \(testIndex),
