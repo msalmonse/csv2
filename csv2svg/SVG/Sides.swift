@@ -1,5 +1,5 @@
 //
-//  SvgSides.swift
+//  SVG/Sides.swift
 //  csv2svg
 //
 //  Created by Michael Salmon on 2021-02-24.

@@ -1,5 +1,5 @@
 //
-//  SvgGen.swift
+//  SVG/Gen.swift
 //  csv2svg
 //
 //  Created by Michael Salmon on 2021-03-10.
@@ -8,6 +8,23 @@
 import Foundation
 
 extension SVG {
+
+    /// Generate the defs element
+    /// - Returns: the defs elements as a list
+    
+    func svgDefs() -> [String] {
+        let h = String(format: "%.1f", plotEdges.bottom - plotEdges.top)
+        let w = String(format: "%.1f", plotEdges.right - plotEdges.left)
+        let x = String(format: "%.1f", plotEdges.left)
+        let y = String(format: "%.1f", plotEdges.top)
+        var result = ["<defs>"]
+        result.append("<clipPath id=\"plotable\">")
+        result.append("<rect x=\"\(x)\" y=\"\(y)\" width=\"\(w)\" height=\"\(h)\" />")
+        result.append("</clipPath>")
+        result.append("</defs>")
+
+        return result
+    }
 
     /// Generate an SVG group with the plot lines
     /// - Parameter ts: TransScale object
