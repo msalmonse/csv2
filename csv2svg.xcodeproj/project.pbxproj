@@ -66,6 +66,8 @@
 		C45053C025F0E865003FC346 /* appinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appinfo.swift; sourceTree = "<group>"; };
 		C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectedStringConvertable.swift; sourceTree = "<group>"; };
 		C45323D725F7C990007D741C /* usage.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = usage.md; sourceTree = "<group>"; };
+		C45323DF25F8A6C3007D741C /* plot.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = plot.csv; path = testdata/plot.csv; sourceTree = "<group>"; };
+		C45323E025F8A74A007D741C /* plot.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = plot.json; path = testdata/plot.json; sourceTree = "<group>"; };
 		C46A3A7125DE8B4C00F6783A /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
 		C480847B25E4E97300BD0A24 /* SvgColumnPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgColumnPlot.swift; sourceTree = "<group>"; };
 		C480847F25E6776900BD0A24 /* SvgSides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SvgSides.swift; sourceTree = "<group>"; };
@@ -176,14 +178,16 @@
 			isa = PBXGroup;
 			children = (
 				C492BE0A25F2B7490042A11E /* big.csv */,
+				C4FE49F225F6036A0076EF5E /* bipolar.csv */,
 				C48B723025F2172200B0752E /* column.csv */,
 				C48B723225F2197600B0752E /* columns-ticks-index.json */,
 				C492BE1325F3CA280042A11E /* little.csv */,
+				C45323DF25F8A6C3007D741C /* plot.csv */,
+				C45323E025F8A74A007D741C /* plot.json */,
 				C446E82025F51DA2007B1A05 /* posneg.csv */,
 				C446E81A25F4D653007B1A05 /* row.csv */,
 				C446E81925F4D653007B1A05 /* rows-ticks-index.json */,
 				C48B722F25F2171300B0752E /* testlist.txt */,
-				C4FE49F225F6036A0076EF5E /* bipolar.csv */,
 			);
 			name = testdata;
 			sourceTree = "<group>";

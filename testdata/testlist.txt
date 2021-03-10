@@ -10,3 +10,5 @@ row rows-ticks-index -- Row data with ticks and index
 posneg columns-ticks-index -- Positive and negative data with ticks and index
 bipolar columns-ticks-index -- Bipolar data in columns
 bipolar rows-ticks-index -- Bipolar data in rows
+plot plot -- Plot test in columns
+plot plot --rows Plot test in rows

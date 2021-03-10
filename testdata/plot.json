@@ -1,0 +1,11 @@
+{
+    "colours": [ "silver", "red", "green" ],
+    "headerColumns": 1,
+    "headerRows": 1,
+    "index": 1,
+    "height": 499,
+    "names": [ "a", "Ozzymandis", "c" ],
+    "width": 501,
+    "title": "Plot test",
+    "yMax": 25.25
+}
