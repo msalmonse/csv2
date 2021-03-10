@@ -17,7 +17,7 @@ Add debug info (default: 0)
 Default header rows or columns (default: 0)
 
 ####  --height <height>
-Default svg height (default: 500)
+Default svg height (default: 600)
 
 #### --index <index>
 Default index row or column (default: 0)
@@ -38,7 +38,7 @@ Add extra information
 Display version and exit
 
 #### --width <width>
-Default svg width (default: 500)
+Default svg width (default: 800)
 
 ####  -h, --help
 Show help information.

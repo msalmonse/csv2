@@ -15,7 +15,7 @@ The number of columns that do not contain data.<sup>[1](#fn1)</sup>
 #### headerRows (Int 0)
 The number of rows that do not contain data.<sup>[1](#fn1)</sup>
 
-#### height (Int 500)
+#### height (Int 600)
 The height of the generated SVG
 
 #### index (Int 0)
@@ -35,7 +35,7 @@ The width of the plotted paths
 #### title (String)
 The title attached to the SVG
 
-#### width (Int 500)
+#### width (Int 800)
 The width of the generated SVG.
 
 #### xMax (Double)
