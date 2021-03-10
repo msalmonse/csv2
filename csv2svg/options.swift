@@ -39,7 +39,7 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default svg width")
     var width = Defaults.width
 
-    @Option(name: .long, help: "Default abcissa maximum")
+    @Option(name: .long, help: "Default abscissa maximum")
     var xmax = Defaults.xMax
 
     @Option(name: .long, help: "Default abscissa minimum")
