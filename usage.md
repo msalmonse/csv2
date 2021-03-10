@@ -1,5 +1,5 @@
-### USAGE: options [<options>] [<csv-name>] [<json-name>]
-<pre>
+### USAGE: `options [<options>] [<csv-name>] [<json-name>]`
+```
 ARGUMENTS:
   <csv-name>              CSV file name, "-" means use stdin
   <json-name>             JSON file name
@@ -21,4 +21,4 @@ OPTIONS:
   --ymax <ymax>           Default ordinate maximum (default: -inf)
   --ymin <ymin>           Default ordinate minimum (default: inf)
   -h, --help              Show help information.
-</pre>
+```
