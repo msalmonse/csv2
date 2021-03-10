@@ -19,32 +19,39 @@ extension SVG {
     func plotCommon(
         _ xValues: [Double?],
         _ yValues: [Double?],
+        scattered: Bool,
         stroke: String,
         ts: TransScale
     ) -> String {
         var pathPoints: [PathCommand] = []
         var move = true
         var single = false      // single point
+        let width = settings.strokeWidth
+        let shapeWidth = Double(width)/2.0
+
         for i in settings.headers..<xValues.count {
             if xValues[i] == nil || i >= yValues.count || yValues[i] == nil {
                 move = true
                 if single {
-                    pathPoints.append(.circle(r: Double(settings.strokeWidth)/2.0))
+                    pathPoints.append(.circle(r: shapeWidth))
                     single = false
                 }
-            } else if move {
-                let xPos = ts.xpos(xValues[i]!)
-                let yPos = ts.ypos(yValues[i]!)
-                pathPoints.append(.moveTo(x: xPos, y: yPos))
-                move = false
-                single = true
             } else {
                 let xPos = ts.xpos(xValues[i]!)
                 let yPos = ts.ypos(yValues[i]!)
-                pathPoints.append(.lineTo(x: xPos, y: yPos))
-                single = false
+                if scattered {
+                    pathPoints.append(.circleAt(x: xPos, y: yPos, r: shapeWidth))
+                }
+                if move {
+                    pathPoints.append(.moveTo(x: xPos, y: yPos))
+                    move = false
+                    single = true
+                } else {
+                    pathPoints.append(.lineTo(x: xPos, y: yPos))
+                    single = false
+                }
             }
         }
-        return Self.svgPath(pathPoints, stroke: stroke, width: settings.strokeWidth)
+        return Self.svgPath(pathPoints, stroke: stroke, width: width)
     }
 }

@@ -31,7 +31,12 @@ extension SVG {
         for i in 0..<csv.rowCt where i != index {
             let yValues = csv.rowValues(i)
             paths.append(
-                plotCommon(xValues, yValues, stroke: colours[i], ts: ts)
+                plotCommon(
+                    xValues, yValues,
+                    scattered: (settings.scatterPlots >> i) & 1 == 1,
+                    stroke: colours[i],
+                    ts: ts
+                )
             )
         }
         return paths

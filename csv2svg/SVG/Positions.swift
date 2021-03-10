@@ -8,6 +8,9 @@
 import Foundation
 
 extension SVG {
+
+    /// Various layout positions
+
     struct Positions {
         // Vertical positions
         let bottomY: Double

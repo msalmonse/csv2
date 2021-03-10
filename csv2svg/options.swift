@@ -27,6 +27,9 @@ struct Options: ParsableCommand {
     @Flag(name: .long, help: "Default to grouping data by rows")
     var rows = Defaults.rowGrouping
 
+    @Option(name: .long, help: "Default plots to show as scattered")
+    var scattered = Defaults.scattered
+
     @Option(name: .long, help: "Default font size")
     var size = Defaults.baseFontSize
 
@@ -69,6 +72,7 @@ func setDefaultsFromOptions(_ options: Options) {
     Defaults.height = options.height
     Defaults.index = options.index
     Defaults.rowGrouping = options.rows
+    Defaults.scattered = options.scattered
     Defaults.strokeWidth = options.stroke
     Defaults.width = options.width
     Defaults.xMax = options.xmax

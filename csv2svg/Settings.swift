@@ -50,6 +50,9 @@ class Settings: Codable, ReflectedStringConvertible {
     var inColumns: Bool { return !rowGrouping }
     var inRows: Bool { return rowGrouping }
 
+    // Plats to show as scattered
+    let scatterPlots: Int
+
     // Path colours
     let colours: [String]
     // Force unassigned colours to black
@@ -127,6 +130,7 @@ class Settings: Codable, ReflectedStringConvertible {
         case .headerRows: return Defaults.headers
         case .height: return Defaults.height
         case .index: return Defaults.index
+        case .scatterPlots: return Defaults.scattered
         case .strokeWidth: return Defaults.strokeWidth
         case .width: return Defaults.width
         default: return 0
@@ -206,6 +210,7 @@ class Settings: Codable, ReflectedStringConvertible {
         height = Self.keyedIntValue(from: container, forKey: .height)
         index = Self.keyedIntValue(from: container, forKey: .index)
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
+        scatterPlots = Self.keyedIntValue(from: container, forKey: .scatterPlots)
         strokeWidth = Self.keyedIntValue(from: container, forKey: .strokeWidth)
         title = Self.keyedStringValue(from: container, forKey: .title)
         width = Self.keyedIntValue(from: container, forKey: .width)

@@ -39,6 +39,12 @@ The name are included with the colours associated with the plots.
 Option: `--rows`<br/>
 The data is grouped in rows
 
+#### scatterPlots (Int _0_)
+Option: `--scattered`<br/>
+A bit vector of the plots to draw as a scatter plot.
+e.g. _25 == 2<sup>4</sup> + 2<sup>3</sup> + 2<sup>0</sup>_ which would mean that the
+fifth, fourth and first row or column would be plotted as scatter plots
+
 #### strokeWidth (Int _2_)
 Option: `--stroke`<br/>
 The width of the plotted paths

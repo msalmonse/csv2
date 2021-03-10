@@ -11,7 +11,7 @@ extension SVG {
 
     /// Generate the defs element
     /// - Returns: the defs elements as a list
-    
+
     func svgDefs() -> [String] {
         let h = String(format: "%.1f", plotEdges.bottom - plotEdges.top)
         let w = String(format: "%.1f", plotEdges.right - plotEdges.left)

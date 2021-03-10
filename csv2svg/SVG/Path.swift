@@ -14,13 +14,14 @@ extension SVG {
     enum PathCommand {
         case
             arc(rx: Double, ry: Double, rot: Double, large: Bool, sweep: Bool, dx: Double, dy: Double),
-                                                    // Draw an arc
-            circle(r: Double),                      // Draw a circle of radius r
-            moveBy(dx: Double, dy: Double),         // Move by dx and dy
-            moveTo(x: Double, y: Double),           // Move absolute to x,y
-            horizTo(x: Double),                     // Draw line horizontally to x
-            lineTo(x: Double, y: Double),           // Draw line to x,y
-            vertTo(y: Double)                       // Draw line vertically to y
+                                                        // Draw an arc
+            circle(r: Double),                          // Draw a circle of radius r
+            circleAt(x: Double, y: Double,r: Double),   // Draw a circle of radius r
+            moveBy(dx: Double, dy: Double),             // Move by dx and dy
+            moveTo(x: Double, y: Double),               // Move absolute to x,y
+            horizTo(x: Double),                         // Draw line horizontally to x
+            lineTo(x: Double, y: Double),               // Draw line to x,y
+            vertTo(y: Double)                           // Draw line vertically to y
 
         func command() -> String {
             switch self {
@@ -32,6 +33,13 @@ extension SVG {
             case .circle(let r):
                 return [
                     Self.moveBy(dx: 0, dy: -r),
+                    Self.arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: 2 * r),
+                    Self.arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: -2 * r),
+                    Self.moveBy(dx: 0, dy: r)
+                ].map { $0.command()}.joined(separator: " ")
+            case .circleAt(let x, let y, let r):
+                return [
+                    Self.moveTo(x: x, y: y - r),
                     Self.arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: 2 * r),
                     Self.arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: -2 * r),
                     Self.moveBy(dx: 0, dy: r)
