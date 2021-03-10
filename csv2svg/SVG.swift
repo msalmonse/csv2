@@ -25,7 +25,7 @@ class SVG: ReflectedStringConvertible {
     // and the plot plane
     let plotEdges: Plane
 
-    // Positions
+    // Positions for various elements
     let positions: Positions
 
     // path colours
@@ -66,25 +66,7 @@ class SVG: ReflectedStringConvertible {
 
         // Initialize path columns
         let ct = settings.inColumns ? csv.colCt : csv.rowCt
-        var colours: [String] = []
-        var names: [String] = []
-        for i in 0..<ct {
-            if i < settings.colours.count && settings.colours[i] != "" {
-                colours.append(settings.colours[i])
-            } else if settings.black {
-                colours.append("black")
-            } else {
-                colours.append(SVG.Colours.nextColour())
-            }
-            if i < settings.names.count && settings.names[i] != "" {
-                names.append(settings.names[i])
-            } else if settings.headers > 0 {
-                names.append(SVG.headerText(i, csv: csv, inColumns: settings.inColumns))
-            } else {
-                names.append(SVG.headerText(i, csv: nil, inColumns: settings.inColumns))
-            }
-        }
-        self.colours = colours
-        self.names = names
+        self.colours = SVG.plotColours(settings, ct)
+        self.names = SVG.plotNames(settings, csv, ct)
     }
 }
