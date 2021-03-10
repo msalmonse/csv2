@@ -35,12 +35,12 @@ extension SVG {
         if settings.yTick >= 0 { result.append(svgYtick(ts)) }
         result.append(contentsOf: svgLineGroup(ts))
         if settings.xTitle != "" {
-            result.append(xTitle(settings.xTitle, x: plotEdges.hMid, y: xTitleY))
+            result.append(xTitle(settings.xTitle, x: plotEdges.hMid, y: positions.xTitleY))
         }
         if settings.yTitle != "" {
-            result.append(yTitle(settings.yTitle, x: yTitleX, y: plotEdges.vMid))
+            result.append(yTitle(settings.yTitle, x: positions.yTitleX, y: plotEdges.vMid))
         }
-        result.append(svgLegends(Double(settings.width)/2.0, legendY))
+        result.append(svgLegends(Double(settings.width)/2.0, positions.legendY))
         if settings.title != "" { result.append(svgTitle()) }
         result.append(svgTagEnd)
 

@@ -25,15 +25,8 @@ class SVG: ReflectedStringConvertible {
     // and the plot plane
     let plotEdges: Plane
 
-    // Vertical positions
-    let titleY: Double
-    let legendY: Double
-    let xTitleY: Double
-    let xTicksY: Double
-
-    // Horizontal positions
-    let yTitleX: Double
-    let yTickX: Double
+    // Positions
+    let positions: Positions
 
     // path colours
     let colours: [String]
@@ -64,30 +57,11 @@ class SVG: ReflectedStringConvertible {
 
         dataEdges = SVG.sidesFromData(csv, settings)
 
-        // Calculate vertical positions
-        var pos = Double(settings.height - 5)
-        titleY = pos
-        if settings.title != "" { pos -= settings.titleSize * 1.25 }
-        legendY = pos
-        pos -= settings.legendSize * 1.25
-        xTitleY = pos
-        if settings.xTitle != "" { pos -= settings.axesSize * 1.25 }
-        xTicksY = pos
-        if settings.xTick >= 0 { pos -= settings.labelSize * 1.25 }
-        let bottomY = pos
-
-        // Calculate horizontal positions
-        pos = 5
-        if settings.yTitle != "" { pos += settings.axesSize * 1.25 }
-        yTitleX = pos
-        // Give some extra space for minus sign
-        if settings.yTick >= 0 { pos += settings.labelSize * (dataEdges.left < 0.0 ? 3.5 : 4.0) }
-        yTickX = pos
-        pos += Double(settings.strokeWidth)
+        positions = Positions(settings, dataLeft: dataEdges.left)
 
         plotEdges = Plane(
-            top: settings.baseFontSize, bottom: bottomY,
-            left: pos, right: Double(settings.width) - settings.labelSize * 2.0
+            top: settings.baseFontSize, bottom: positions.bottomY,
+            left: positions.leftX, right: Double(settings.width) - settings.labelSize * 2.0
         )
 
         // Initialize path columns

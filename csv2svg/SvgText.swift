@@ -14,7 +14,7 @@ extension SVG {
 
     func svgTitle() -> String {
         let x = settings.width/2
-        let y = titleY
+        let y = positions.titleY
         let t = settings.title
         return """
             <text x="\(x)" y="\(y)" style="text-anchor: middle; font-size: \(titlePX)">\(t)</text>
