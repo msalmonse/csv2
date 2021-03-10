@@ -52,6 +52,8 @@ class Settings: Codable, ReflectedStringConvertible {
 
     // Path colours
     let colours: [String]
+    // Force unassigned colours to black
+    let black: Bool
 
     // Path stroke width
     let strokeWidth: Int
@@ -65,6 +67,7 @@ class Settings: Codable, ReflectedStringConvertible {
 
     private static func boolDefault(_ key: CodingKeys) -> Bool {
         switch key {
+        case .black: return Defaults.black
         case .rowGrouping: return Defaults.rowGrouping
         default: return false
         }
@@ -197,6 +200,7 @@ class Settings: Codable, ReflectedStringConvertible {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
         baseFontSize = Self.keyedDoubleValue(from: container, forKey: .baseFontSize)
+        black = Self.keyedBoolValue(from: container, forKey: .black)
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
         height = Self.keyedIntValue(from: container, forKey: .height)

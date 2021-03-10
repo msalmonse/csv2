@@ -97,6 +97,8 @@ class SVG: ReflectedStringConvertible {
         for i in 0..<ct {
             if i < settings.colours.count && settings.colours[i] != "" {
                 colours.append(settings.colours[i])
+            } else if settings.black {
+                colours.append("black")
             } else {
                 colours.append(SVG.Colours.nextColour())
             }
