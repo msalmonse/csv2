@@ -11,6 +11,7 @@ import Foundation
 
 struct Defaults {
     // Setable defaults
+    static var backgroundColour = ""
     static var baseFontSize = 10.0
     static var black = false
     static var headers = 0

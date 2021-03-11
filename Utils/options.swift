@@ -9,6 +9,9 @@ import Foundation
 import ArgumentParser
 
 struct Options: ParsableCommand {
+    @Option(name: .long, help: "Background colour")
+    var bg = Defaults.backgroundColour
+
     @Flag(name: .long, help: "Set default colour to black")
     var black = Defaults.black
 
@@ -66,6 +69,7 @@ struct Options: ParsableCommand {
 
 func setDefaultsFromOptions(_ options: Options) {
     // Change defaults based on command line
+    Defaults.backgroundColour = options.bg
     Defaults.baseFontSize = options.size
     Defaults.black = options.black
     Defaults.headers = options.headers
