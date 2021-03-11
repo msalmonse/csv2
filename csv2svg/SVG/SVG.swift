@@ -14,6 +14,10 @@ class SVG: ReflectedStringConvertible {
     var legendPX: String { String(format: "%.1fpx", settings.legendSize) }
     var titlePX: String { String(format: "%.1fpx", settings.titleSize) }
 
+    // plot widths
+    let plotWidth: Double
+    var shapeWidth: Double { plotWidth * 1.75 }
+
     let csv: CSV
     let settings: Settings
 
@@ -64,6 +68,7 @@ class SVG: ReflectedStringConvertible {
             left: positions.leftX, right: Double(settings.width) - settings.labelSize * 2.0
         )
 
+        plotWidth = settings.strokeWidth
         // Initialize path columns
         let ct = settings.inColumns ? csv.colCt : csv.rowCt
         self.colours = SVG.plotColours(settings, ct)

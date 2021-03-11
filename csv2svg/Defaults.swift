@@ -20,7 +20,7 @@ struct Defaults {
     static let minDefault = Double.infinity
     static var rowGrouping = false
     static var scattered = 0
-    static var strokeWidth = 2
+    static var strokeWidth = 2.0
     static var title = ""
     static var width = 800
     static var xMax = maxDefault

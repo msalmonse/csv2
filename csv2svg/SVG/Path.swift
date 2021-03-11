@@ -86,14 +86,14 @@ extension SVG {
     static func svgPath(
         _ points: [PathCommand],
         stroke: String? = nil,
-        width: Int = 1,
+        width: Double = 1.0,
         linecap: String = "round"
     ) -> String {
         let strokeColour = stroke ?? Colours.nextColour()
         let style = [
             "stroke: \(strokeColour)",
             "fill: none",
-            "stroke-width: \(width)",
+            "stroke-width: \(width.f(1))",
             "stroke-linecap: \(linecap)"
         ].joined(separator: "; ")
 

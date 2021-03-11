@@ -26,8 +26,6 @@ extension SVG {
         var pathPoints: [PathCommand] = []
         var move = true
         var single = false      // single point
-        let width = settings.strokeWidth
-        let shapeWidth = Double(width)
 
         for i in settings.headers..<xValues.count {
             if xValues[i] == nil || i >= yValues.count || yValues[i] == nil {
@@ -42,7 +40,7 @@ extension SVG {
                 if scattered {
                     pathPoints.append(.moveTo(x: xPos, y: yPos))
                     // pathPoints.append(.circle(r: shapeWidth))
-                    pathPoints.append(.cross(w: shapeWidth))
+                    pathPoints.append(.star(w: shapeWidth))
                 } else if move {
                     pathPoints.append(.moveTo(x: xPos, y: yPos))
                     move = false
@@ -53,6 +51,6 @@ extension SVG {
                 }
             }
         }
-        return Self.svgPath(pathPoints, stroke: stroke, width: width)
+        return Self.svgPath(pathPoints, stroke: stroke, width: plotWidth)
     }
 }

@@ -25,7 +25,7 @@ extension SVG {
             path.append(.vertTo(y: plotEdges.top))
         }
 
-        return Self.svgPath(path, stroke: "Black", width: settings.strokeWidth)
+        return Self.svgPath(path, stroke: "Black", width: plotWidth)
     }
 
     /// Normalize tick value

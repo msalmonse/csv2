@@ -52,6 +52,7 @@ class Settings: Codable, ReflectedStringConvertible {
 
     // Plats to show as scattered
     let scatterPlots: Int
+    let shapes: [String]
 
     // Path colours
     let colours: [String]
@@ -59,7 +60,7 @@ class Settings: Codable, ReflectedStringConvertible {
     let black: Bool
 
     // Path stroke width
-    let strokeWidth: Int
+    let strokeWidth: Double
 
     // Path names
     let names: [String]
@@ -98,6 +99,7 @@ class Settings: Codable, ReflectedStringConvertible {
     private static func doubleDefault(_ key: CodingKeys) -> Double {
         switch key {
         case .baseFontSize: return Defaults.baseFontSize
+        case .strokeWidth: return Defaults.strokeWidth
         case .xMax: return Defaults.xMax
         case .xMin: return Defaults.xMin
         case .yMax: return Defaults.yMax
@@ -131,7 +133,6 @@ class Settings: Codable, ReflectedStringConvertible {
         case .height: return Defaults.height
         case .index: return Defaults.index
         case .scatterPlots: return Defaults.scattered
-        case .strokeWidth: return Defaults.strokeWidth
         case .width: return Defaults.width
         default: return 0
         }
@@ -211,7 +212,7 @@ class Settings: Codable, ReflectedStringConvertible {
         index = Self.keyedIntValue(from: container, forKey: .index)
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
         scatterPlots = Self.keyedIntValue(from: container, forKey: .scatterPlots)
-        strokeWidth = Self.keyedIntValue(from: container, forKey: .strokeWidth)
+        strokeWidth = Self.keyedDoubleValue(from: container, forKey: .strokeWidth)
         title = Self.keyedStringValue(from: container, forKey: .title)
         width = Self.keyedIntValue(from: container, forKey: .width)
         xTitle = Self.keyedStringValue(from: container, forKey: .xTitle)
@@ -227,6 +228,7 @@ class Settings: Codable, ReflectedStringConvertible {
 
         colours = Self.keyedStringArray(from: container, forKey: .colours)
         names = Self.keyedStringArray(from: container, forKey: .names)
+        shapes = Self.keyedStringArray(from: container, forKey: .shapes)
     }
 
     /// Load contents of file into object
