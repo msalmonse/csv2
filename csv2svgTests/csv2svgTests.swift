@@ -139,6 +139,13 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(svg!.dataEdges.right, 35.0)
     }
 
+    func testFormats() {
+        XCTAssertEqual((10.0/3.0).e(2), "3.33e+00")
+        XCTAssertEqual((10.0/3.0).f(2), "3.33")
+        XCTAssertEqual((10.0/3.0).f(0), "3")
+        XCTAssertEqual((10.0/3.0).g(3), "3.33")
+    }
+
     func testSettingsPerformance() throws {
         measure {
             try? testSettings()
