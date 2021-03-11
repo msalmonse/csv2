@@ -9,18 +9,6 @@ import Foundation
 
 extension SVG {
 
-    /// Adjust values to give a bit more room for shapes
-    /// - Parameters:
-    ///   - value: original value
-    ///   - by: how much to move it
-    /// - Returns: adjusted value
-
-    static private func fudge(_ value: Double, by: Double) -> Double {
-        if abs(value/by) < 10.0 { return value }
-        if value > 0 { return value + by }
-        return value - by
-    }
-
     /// Calculate the left and right sides of the data
     /// - Parameters:
     ///   - csv: csv values
@@ -54,8 +42,8 @@ extension SVG {
                 }
             }
 
-            left = xMinSet ? settings.xMin : fudge(min, by: -0.1)
-            right = xMaxSet ? settings.xMax : fudge(max, by: 0.1)
+            left = xMinSet ? settings.xMin : min
+            right = xMaxSet ? settings.xMax : max
         }
 
         return (l: left, r: right)
@@ -93,8 +81,8 @@ extension SVG {
                 if max < min/20.0 { max = 0.0 }
             }
 
-            bottom = yMinSet ? settings.yMin : fudge(min, by: -0.1)
-            top = yMaxSet ? settings.yMax : fudge(max, by: 0.1)
+            bottom = yMinSet ? settings.yMin : min
+            top = yMaxSet ? settings.yMax : max
         }
 
         return (t: top, b: bottom)
