@@ -18,15 +18,15 @@ extension SVG.PathCommand {
         ].map { $0.command()}.joined(separator: " ")
     }
 
-    func drawCross(w: Double) -> String {
+    func drawStar(w: Double) -> String {
         let half = w/2.0
         return [
-            Self.moveBy(dx: -half, dy: -half),
-            .lineBy(dx: -half, dy: -half), .horizBy(dx: w), .lineBy(dx: half, dy: half),     // top
-            .lineBy(dx: half, dy: -half), .vertBy(dy: w), .lineBy(dx: -half, dy: half),      // right
-            .lineBy(dx: half, dy: half), .horizBy(dx: -w), .lineBy(dx: -half, dy: -half),    // bottom
-            .lineBy(dx: -half, dy: half), .vertBy(dy: -w), .lineBy(dx: half, dy: -half),     // left
-            .moveBy(dx: half, dy: half)
+            Self.moveBy(dx: -half, dy: 0.0),
+            .lineBy(dx: -half, dy: -w), .lineBy(dx: w, dy: half),
+            .lineBy(dx: w, dy: -half), .lineBy(dx: -half, dy: w),
+            .lineBy(dx: half, dy: w), .lineBy(dx: -w, dy: -half),
+            .lineBy(dx: -w, dy: half), .lineBy(dx: half, dy: -w),
+            .moveBy(dx: half, dy: 0.0)
         ].map { $0.command()}.joined(separator: " ")
     }
 

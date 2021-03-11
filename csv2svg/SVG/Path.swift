@@ -18,7 +18,6 @@ extension SVG {
             arc(rx: Double, ry: Double, rot: Double, large: Bool, sweep: Bool, dx: Double, dy: Double),
                                                         // Draw an arc
             circle(r: Double),                          // Draw a circle of radius r
-            cross(w: Double),                           // Draw a cross of width 2 * w
             diamond(w: Double),                         // a diamond of width 2 * w
             moveBy(dx: Double, dy: Double),             // Move by dx and dy
             moveTo(x: Double, y: Double),               // Move absolute to x,y
@@ -27,6 +26,7 @@ extension SVG {
             lineBy(dx: Double, dy: Double),             // Draw line by dx,dy
             lineTo(x: Double, y: Double),               // Draw line to x,y
             square(w: Double),                          // Draw a square with sides 2 * w
+            star(w: Double),                            // Draw a star of width 2 * w
             vertBy(dy: Double),                         // Draw line vertically by dy
             vertTo(y: Double)                           // Draw line vertically to y
 
@@ -41,7 +41,6 @@ extension SVG {
                     rx, ry, rot, large ? 1 : 0, sweep ? 1 : 0, dx, dy
                 )
             case .circle(let r): return drawCircle(r: r)
-            case .cross(let w): return drawCross(w: w)
             case .diamond(let w): return drawDiamond(w: w)
             case .moveBy(let dx, let dy): return String(format: "m %.1f,%.1f", dx, dy)
             case .moveTo(let x, let y): return String(format: "M %.1f,%.1f", x, y)
@@ -50,6 +49,7 @@ extension SVG {
             case .lineBy(let dx, let dy): return String(format: "l %.1f,%.1f", dx, dy)
             case .lineTo(let x, let y): return String(format: "L %.1f,%.1f", x, y)
             case .square(let w): return drawSquare(w: w)
+            case .star(let w): return drawStar(w: w)
             case .vertBy(let dy): return String(format: "v %0.1f", dy)
             case .vertTo(let y): return String(format: "V %0.1f", y)
             }
@@ -59,7 +59,7 @@ extension SVG {
     /// The shapes that can be used on a scatter plot
 
     enum ScatterShape {
-        case circle, cross, diamond, square
+        case circle, diamond, square, star
 
         /// Convert an abstract shape to a PathCommand
         /// - Parameter w: the size of the path
@@ -68,9 +68,9 @@ extension SVG {
         func pathCommand(w: Double) -> PathCommand {
             switch self {
             case .circle: return PathCommand.circle(r: w)
-            case .cross: return PathCommand.cross(w: w)
             case .diamond: return PathCommand.diamond(w: w)
             case .square: return PathCommand.square(w: w)
+            case .star: return PathCommand.star(w: w)
             }
         }
     }
