@@ -49,56 +49,11 @@ extension SVG {
             case .horizTo(let x): return String(format: "H %0.1f", x)
             case .lineBy(let dx, let dy): return String(format: "l %.1f,%.1f", dx, dy)
             case .lineTo(let x, let y): return String(format: "L %.1f,%.1f", x, y)
-            case .square(let w): return SVG.drawSquare(w: w)
+            case .square(let w): return drawSquare(w: w)
             case .vertBy(let dy): return String(format: "v %0.1f", dy)
             case .vertTo(let y): return String(format: "V %0.1f", y)
             }
         }
-    }
-
-    private static func drawCircle(r: Double) -> String {
-        return [
-            PathCommand.moveBy(dx: 0, dy: -r),
-            .arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: 2 * r),
-            .arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: -2 * r),
-            .moveBy(dx: 0, dy: r)
-        ].map { $0.command()}.joined(separator: " ")
-    }
-
-    private static func drawCross(w: Double) -> String {
-        let half = w/2.0
-        return [
-            PathCommand.moveBy(dx: -half, dy: -half),
-            .vertBy(dy: -half), .horizBy(dx: w), .vertBy(dy: half),     // top
-            .horizBy(dx: half), .vertBy(dy: w), .horizBy(dx: -half),    // right
-            .vertBy(dy: half), .horizBy(dx: -w), .vertBy(dy: -half),    // bottom
-            .horizBy(dx: -half), .vertBy(dy: -w), .horizBy(dx: half),   // left
-            .moveBy(dx: half, dy: half)
-        ].map { $0.command()}.joined(separator: " ")
-    }
-
-    private static func drawDiamond(w: Double) -> String {
-        return [
-            PathCommand.moveBy(dx: -w, dy: 0.0),
-            .lineBy(dx: w, dy: -w),
-            .lineBy(dx: w, dy: w),
-            .lineBy(dx: -w, dy: w),
-            .lineBy(dx: -w, dy: -w),
-            .moveBy(dx: w, dy: 0.0)
-        ].map { $0.command()}.joined(separator: " ")
-    }
-
-    private static func drawSquare(w: Double) -> String {
-        let w2 = w * 2.0
-        return [
-            PathCommand.moveBy(dx: -w, dy: -w),
-            .horizBy(dx: w2),
-            .vertBy(dy: w2),
-            .horizBy(dx: -w2),
-            .vertBy(dy: -w2),
-            .moveBy(dx: w, dy: w)
-        ].map { $0.command()}.joined(separator: " ")
-
     }
 
     /// The shapes that can be used on a scatter plot
