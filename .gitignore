@@ -5,7 +5,7 @@ appinfo.swift
 
 # tests
 test/
-svg/
+testout/
 
 ## User settings
 csv2svg.xcodeproj/project.xcworkspace/

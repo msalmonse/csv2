@@ -6,7 +6,7 @@
 #  Created by Michael Salmon on 2021-03-05.
 #  
 
-exec > svg/index.html
+exec > testout/index.html
 
 # Headers
 cat <<EOD
@@ -21,7 +21,7 @@ cat <<EOD
 <table>
 EOD
 
-for f in svg/*.svg
+for f in testout/*.svg
 do
     cat <<EOD
 <tr>

@@ -7,7 +7,7 @@
 #
 
 datadir=testdata
-svgdir=svg
+svgdir=testout
 
 makeSVG () {
     csv="$datadir/$1.csv"
