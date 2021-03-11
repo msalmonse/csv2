@@ -30,6 +30,12 @@ extension SVG {
         return colours
     }
 
+    /// Generate a list of names for the plots
+    /// - Parameters:
+    ///   - settings: settings for plot
+    ///   - ct: number of plots
+    /// - Returns: list of names
+
     static func plotNames(_ settings: Settings, _ csv: CSV, _ ct: Int) -> [String] {
         var names: [String] = []
         for i in 0..<ct {
@@ -43,5 +49,30 @@ extension SVG {
         }
 
         return names
+    }
+
+    /// Generate a list of names for the plots
+    /// - Parameters:
+    ///   - settings: settings for plot
+    ///   - ct: number of plots
+    /// - Returns: list of names
+
+    static func plotShapes(_ settings: Settings, _ ct: Int) -> [Shape?] {
+        var shapes: [Shape?] = []
+        for i in 0..<ct {
+            if !settings.scattered(i) {
+                shapes.append(nil)
+            } else {
+                if i < settings.shapes.count && settings.shapes[i] != "" {
+                    shapes.append(
+                        Shape.lookup(settings.shapes[i]) ?? Shape.nextShape()
+                    )
+                } else {
+                    shapes.append(Shape.nextShape())
+                }
+            }
+        }
+
+        return shapes
     }
 }

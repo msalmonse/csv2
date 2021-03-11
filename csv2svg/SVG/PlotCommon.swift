@@ -13,14 +13,15 @@ extension SVG {
     ///   - xValues: abscissa values
     ///   - yValues: ordinate values
     ///   - stroke: stroke colour
+    ///   - shape: the shape to use for scattered pllots
     ///   - ts: TranScale object
     /// - Returns: Path String
 
     func plotCommon(
         _ xValues: [Double?],
         _ yValues: [Double?],
-        scattered: Bool,
         stroke: String,
+        shape: Shape?,
         ts: TransScale
     ) -> String {
         var pathPoints: [PathCommand] = []
@@ -37,10 +38,9 @@ extension SVG {
             } else {
                 let xPos = ts.xpos(xValues[i]!)
                 let yPos = ts.ypos(yValues[i]!)
-                if scattered {
+                if shape != nil {
                     pathPoints.append(.moveTo(x: xPos, y: yPos))
-                    // pathPoints.append(.circle(r: shapeWidth))
-                    pathPoints.append(.star(w: shapeWidth))
+                    pathPoints.append(shape!.pathCommand(w: shapeWidth))
                 } else if move {
                     pathPoints.append(.moveTo(x: xPos, y: yPos))
                     move = false

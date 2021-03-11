@@ -13,12 +13,11 @@ extension SVG {
     /// - Returns: the defs elements as a list
 
     func svgDefs() -> [String] {
-        let strokeWidth = Double(settings.strokeWidth)
         // Make plottable a bit bigger so that shapes aren't clipped
-        let h = String(format: "%.1f", plotEdges.bottom - plotEdges.top + strokeWidth * 2.0)
-        let w = String(format: "%.1f", plotEdges.right - plotEdges.left + strokeWidth * 2.0)
-        let x = String(format: "%.1f", plotEdges.left - strokeWidth)
-        let y = String(format: "%.1f", plotEdges.top - strokeWidth)
+        let h = (plotEdges.bottom - plotEdges.top + shapeWidth * 4.0).f(1)
+        let w = (plotEdges.right - plotEdges.left + shapeWidth * 4.0).f(1)
+        let x = (plotEdges.left - shapeWidth * 2.0).f(1)
+        let y = (plotEdges.top - shapeWidth * 2.0).f(1)
         var result = ["<defs>"]
         result.append("<clipPath id=\"plotable\">")
         result.append("<rect x=\"\(x)\" y=\"\(y)\" width=\"\(w)\" height=\"\(h)\" />")

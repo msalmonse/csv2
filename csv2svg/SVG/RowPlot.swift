@@ -33,8 +33,8 @@ extension SVG {
             paths.append(
                 plotCommon(
                     xValues, yValues,
-                    scattered: (settings.scatterPlots >> i) & 1 == 1,
                     stroke: colours[i],
+                    shape: shapes[i],
                     ts: ts
                 )
             )

@@ -146,6 +146,11 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual((10.0/3.0).g(3), "3.33")
     }
 
+    func testShapes() {
+        XCTAssertEqual(SVG.Shape.lookup("circle"), SVG.Shape.circle)
+        XCTAssertNil(SVG.Shape.lookup("nothing"))
+    }
+
     func testSettingsPerformance() throws {
         measure {
             try? testSettings()

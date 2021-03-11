@@ -38,6 +38,9 @@ class SVG: ReflectedStringConvertible {
     // path tags
     let names: [String]
 
+    // path shapes
+    let shapes: [Shape?]
+
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
     var svgTag: String {
@@ -68,9 +71,10 @@ class SVG: ReflectedStringConvertible {
             left: positions.leftX, right: Double(settings.width) - settings.labelSize * 2.0
         )
 
-        // Initialize path columns
+        // Initialize path info
         let ct = settings.inColumns ? csv.colCt : csv.rowCt
         self.colours = SVG.plotColours(settings, ct)
         self.names = SVG.plotNames(settings, csv, ct)
+        self.shapes = SVG.plotShapes(settings, ct)
     }
 }

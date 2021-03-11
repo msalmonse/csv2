@@ -56,25 +56,6 @@ extension SVG {
         }
     }
 
-    /// The shapes that can be used on a scatter plot
-
-    enum ScatterShape {
-        case circle, diamond, square, star
-
-        /// Convert an abstract shape to a PathCommand
-        /// - Parameter w: the size of the path
-        /// - Returns: a PathCommand to draw the shape
-
-        func pathCommand(w: Double) -> PathCommand {
-            switch self {
-            case .circle: return PathCommand.circle(r: w)
-            case .diamond: return PathCommand.diamond(w: w)
-            case .square: return PathCommand.square(w: w)
-            case .star: return PathCommand.star(w: w)
-            }
-        }
-    }
-
     /// plot a path from a list of points
     /// - Parameters:
     ///   - points: a list of the points on path

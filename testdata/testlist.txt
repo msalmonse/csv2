@@ -1,7 +1,7 @@
 column none -- Column data with no JSON settings
 column none --black Column data with no JSON settings but black option
 column none --index=1,--headers=1 Column data with no JSON but index and header options
-column none --index=1,--headers=1,--scattered=8 Column data with no JSON but index, header and scattered options
+column none --index=1,--headers=1,--scattered=-1 Column data with no JSON but index, header and scattered options
 column none --size=22,--width=1000 Column data with no JSON but width and size options
 column none --stroke=5,--width=800 Column data with no JSON but width and stroke options
 column none --ymax=50 Column data with no JSON but ymax option
