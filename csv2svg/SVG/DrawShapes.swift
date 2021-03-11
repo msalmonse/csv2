@@ -22,10 +22,10 @@ extension SVG.PathCommand {
         let half = w/2.0
         return [
             Self.moveBy(dx: -half, dy: -half),
-            .vertBy(dy: -half), .horizBy(dx: w), .vertBy(dy: half),     // top
-            .horizBy(dx: half), .vertBy(dy: w), .horizBy(dx: -half),    // right
-            .vertBy(dy: half), .horizBy(dx: -w), .vertBy(dy: -half),    // bottom
-            .horizBy(dx: -half), .vertBy(dy: -w), .horizBy(dx: half),   // left
+            .lineBy(dx: -half, dy: -half), .horizBy(dx: w), .lineBy(dx: half, dy: half),     // top
+            .lineBy(dx: half, dy: -half), .vertBy(dy: w), .lineBy(dx: -half, dy: half),      // right
+            .lineBy(dx: half, dy: half), .horizBy(dx: -w), .lineBy(dx: -half, dy: -half),    // bottom
+            .lineBy(dx: -half, dy: half), .vertBy(dy: -w), .lineBy(dx: half, dy: -half),     // left
             .moveBy(dx: half, dy: half)
         ].map { $0.command()}.joined(separator: " ")
     }
