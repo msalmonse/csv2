@@ -27,7 +27,7 @@ extension SVG {
         var move = true
         var single = false      // single point
         let width = settings.strokeWidth
-        let shapeWidth = Double(width)/2.0
+        let shapeWidth = Double(width)
 
         for i in settings.headers..<xValues.count {
             if xValues[i] == nil || i >= yValues.count || yValues[i] == nil {
@@ -40,9 +40,10 @@ extension SVG {
                 let xPos = ts.xpos(xValues[i]!)
                 let yPos = ts.ypos(yValues[i]!)
                 if scattered {
-                    pathPoints.append(.circleAt(x: xPos, y: yPos, r: shapeWidth))
-                }
-                if move {
+                    pathPoints.append(.moveTo(x: xPos, y: yPos))
+                    // pathPoints.append(.circle(r: shapeWidth))
+                    pathPoints.append(.cross(w: shapeWidth))
+                } else if move {
                     pathPoints.append(.moveTo(x: xPos, y: yPos))
                     move = false
                     single = true
