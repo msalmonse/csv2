@@ -3,13 +3,17 @@
 The settings file is [JSON](https://en.wikipedia.org/wiki/JSON) encoded and the following
 tags are supported, the data type and default value are shown in parathenses. Some default values can be set from the command line and these are shown however these are overridden by the JSON file settings.
 
-#### black (Bool _false_)
-**Option:** `--black`<br/>
-Set undefined plot colours to "black"
+#### backgroundColour (String)
+**Option:**`--bg`<bg/>
+The background colour for the svg
 
 #### baseFontSize (Double _10.0_)
 **Option:** `--size`<br/>
 The base font size for the SVG, all other font sizes are derived from this value
+
+#### black (Bool _false_)
+**Option:** `--black`<br/>
+Set undefined plot colours to "black"
 
 #### colours (Array of Strings)
 The colours to be used to plot the column or row. The index, if present, must be included although never used.
