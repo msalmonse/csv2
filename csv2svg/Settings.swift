@@ -54,6 +54,14 @@ class Settings: Codable, ReflectedStringConvertible {
     let scatterPlots: Int
     let shapes: [String]
 
+    /// Test to see if a plot is a scatter plot
+    /// - Parameter plot: plot number
+    /// - Returns: true if a scatter plot
+
+    func  scattered(_ plot: Int) -> Bool {
+        return ((scatterPlots >> plot) & 1) == 1
+    }
+
     // Path colours
     let colours: [String]
     // Force unassigned colours to black
