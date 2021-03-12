@@ -33,6 +33,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default plots to show as scattered")
     var scattered = Defaults.scattered
 
+    @Option(name: .long, help: "Generate an SVG with just the named shape")
+    var show: String = ""
+
     @Option(name: .long, help: "Default font size")
     var size = Defaults.baseFontSize
 

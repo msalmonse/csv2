@@ -43,6 +43,8 @@
 		C453243925FA7968007D741C /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453243725FA7968007D741C /* Shapes.swift */; };
 		C453244125FBDCE1007D741C /* shapes.csv in Resources */ = {isa = PBXBuildFile; fileRef = C453244025FBDCE1007D741C /* shapes.csv */; };
 		C453244525FBE03E007D741C /* shapes.json in Resources */ = {isa = PBXBuildFile; fileRef = C453244425FBE03E007D741C /* shapes.json */; };
+		C453244D25FBEBA6007D741C /* ShowShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453244C25FBEBA6007D741C /* ShowShape.swift */; };
+		C453244E25FBEBA6007D741C /* ShowShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453244C25FBEBA6007D741C /* ShowShape.swift */; };
 		C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
 		C480847C25E4E97300BD0A24 /* ColumnPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847B25E4E97300BD0A24 /* ColumnPlot.swift */; };
 		C480848025E6776900BD0A24 /* Sides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* Sides.swift */; };
@@ -91,6 +93,7 @@
 		C453243725FA7968007D741C /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		C453244025FBDCE1007D741C /* shapes.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = shapes.csv; path = testdata/shapes.csv; sourceTree = "<group>"; };
 		C453244425FBE03E007D741C /* shapes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = shapes.json; path = testdata/shapes.json; sourceTree = "<group>"; };
+		C453244C25FBEBA6007D741C /* ShowShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowShape.swift; sourceTree = "<group>"; };
 		C46A3A7125DE8B4C00F6783A /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
 		C480847B25E4E97300BD0A24 /* ColumnPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnPlot.swift; sourceTree = "<group>"; };
 		C480847F25E6776900BD0A24 /* Sides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sides.swift; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
 				C40A3AFE25DC01180016EB6D /* main.swift */,
 				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
+				C453244C25FBEBA6007D741C /* ShowShape.swift */,
 				C453240125F938D0007D741C /* SVG */,
 			);
 			path = csv2svg;
@@ -427,6 +431,7 @@
 				C480847C25E4E97300BD0A24 /* ColumnPlot.swift in Sources */,
 				C4FE49FF25F6440F0076EF5E /* options.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
+				C453244D25FBEBA6007D741C /* ShowShape.swift in Sources */,
 				C453242525FA2C23007D741C /* DrawShapes.swift in Sources */,
 				C480848025E6776900BD0A24 /* Sides.swift in Sources */,
 				C453242C25FA5D99007D741C /* formats.swift in Sources */,
@@ -479,6 +484,7 @@
 				C453243925FA7968007D741C /* Shapes.swift in Sources */,
 				C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */,
 				C45323FC25F90359007D741C /* PlotInfo.swift in Sources */,
+				C453244E25FBEBA6007D741C /* ShowShape.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

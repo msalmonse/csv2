@@ -74,4 +74,17 @@ extension SVG {
 
         return result
     }
+
+    func shapeGen(name: String) -> [String] {
+        let shape = Shape.lookup(name)
+        var result: [String] = [ xmlTag, svgTag, comment ]
+        let path = [
+            PathCommand.moveTo(x: Double(settings.width/2), y: Double(settings.height/2)),
+            shape!.pathCommand(w: shapeWidth * 10)
+        ]
+        result.append(SVG.svgPath(path))
+        result.append(svgTagEnd)
+
+        return result
+    }
 }

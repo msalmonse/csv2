@@ -8,6 +8,7 @@
 import Foundation
 
 var options = Options.parseOrExit()
+setDefaultsFromOptions(options)
 
 if options.debug != 0 {
     print(options, to: &standardError)
@@ -19,6 +20,11 @@ if options.version {
     exit(0)
 }
 
+if options.show != "" {
+    print(showShape(shape: options.show))
+    exit(0)
+}
+
 // use a csvName of - to mean use stdin
 if options.csvName == "-" { options.csvName = nil }
 
@@ -26,8 +32,6 @@ if options.verbose {
     print(options.csvName ?? "Missing CSV file name", to: &standardError)
     print(options.jsonName ?? "Missing JSON file name", to: &standardError)
 }
-
-setDefaultsFromOptions(options)
 
 let settings = try? Settings.load(URL(fileURLWithPath: options.jsonName ?? ((options.csvName ?? "") + ".json")))
 if (options.debug & 2) > 0 { print(settings ?? "Nil settings", to: &standardError) }
