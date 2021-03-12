@@ -17,6 +17,7 @@ extension SVG {
         case
             arc(rx: Double, ry: Double, rot: Double, large: Bool, sweep: Bool, dx: Double, dy: Double),
                                                         // Draw an arc
+            blade(w: Double),                           // Draw a blade of width 2 * w
             circle(r: Double),                          // Draw a circle of radius r
             diamond(w: Double),                         // a diamond of width 2 * w
             moveBy(dx: Double, dy: Double),             // Move by dx and dy
@@ -25,6 +26,7 @@ extension SVG {
             horizTo(x: Double),                         // Draw line horizontally to x
             lineBy(dx: Double, dy: Double),             // Draw line by dx,dy
             lineTo(x: Double, y: Double),               // Draw line to x,y
+            shuriken(w: Double),                        // Draw shuriken
             square(w: Double),                          // Draw a square with sides 2 * w
             star(w: Double),                            // Draw a star of width 2 * w
             triangle(w: Double),                        // Draw a triangle of width 2 * w
@@ -41,6 +43,7 @@ extension SVG {
                     format: "a %.1f,%.1f,%.1f,%d,%d,%.1f,%.1f",
                     rx, ry, rot, large ? 1 : 0, sweep ? 1 : 0, dx, dy
                 )
+            case .blade(let w): return drawBlade(w: w)
             case .circle(let r): return drawCircle(r: r)
             case .diamond(let w): return drawDiamond(w: w)
             case .moveBy(let dx, let dy): return String(format: "m %.1f,%.1f", dx, dy)
@@ -49,6 +52,7 @@ extension SVG {
             case .horizTo(let x): return String(format: "H %0.1f", x)
             case .lineBy(let dx, let dy): return String(format: "l %.1f,%.1f", dx, dy)
             case .lineTo(let x, let y): return String(format: "L %.1f,%.1f", x, y)
+            case .shuriken(let w): return drawShuriken(w: w)
             case .square(let w): return drawSquare(w: w)
             case .star(let w): return drawStar(w: w)
             case .triangle(let w): return drawTriangle(w: w)

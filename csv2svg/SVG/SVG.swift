@@ -75,6 +75,6 @@ class SVG: ReflectedStringConvertible {
         let ct = settings.inColumns ? csv.colCt : csv.rowCt
         self.colours = SVG.plotColours(settings, ct)
         self.names = SVG.plotNames(settings, csv, ct)
-        self.shapes = SVG.plotShapes(settings, ct)
+        self.shapes = SVG.plotShapes(settings, ct, index: settings.index - 1)
     }
 }

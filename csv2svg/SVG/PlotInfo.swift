@@ -55,12 +55,13 @@ extension SVG {
     /// - Parameters:
     ///   - settings: settings for plot
     ///   - ct: number of plots
+    ///   - index: the row or column with the index
     /// - Returns: list of names
 
-    static func plotShapes(_ settings: Settings, _ ct: Int) -> [Shape?] {
+    static func plotShapes(_ settings: Settings, _ ct: Int, index: Int) -> [Shape?] {
         var shapes: [Shape?] = []
         for i in 0..<ct {
-            if !settings.scattered(i) {
+            if !settings.scattered(i) || i == settings.index - 1 {
                 shapes.append(nil)
             } else {
                 if i < settings.shapes.count && settings.shapes[i] != "" {
