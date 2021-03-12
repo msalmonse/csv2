@@ -28,7 +28,7 @@ extension SVG.PathCommand {
             .arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: 2 * r),
             .arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: -2 * r),
             .moveBy(dx: 0, dy: r)
-        ].map { $0.command()}.joined(separator: " ")
+        ].map { $0.command() }.joined(separator: " ")
     }
 
     func drawDiamond(w: Double) -> String {
@@ -39,7 +39,7 @@ extension SVG.PathCommand {
             .lineBy(dx: -w, dy: w),
             .lineBy(dx: -w, dy: -w),
             .moveBy(dx: w, dy: 0.0)
-        ].map { $0.command()}.joined(separator: " ")
+        ].map { $0.command() }.joined(separator: " ")
     }
 
     func drawShuriken(w: Double) -> String {
@@ -51,7 +51,7 @@ extension SVG.PathCommand {
             .lineBy(dx: half, dy: half), .horizBy(dx: -half), .lineBy(dx: -w, dy: -half),
             .lineBy(dx: -half, dy: half), .vertBy(dy: -half), .lineBy(dx: half, dy: -w)
 ,            .moveBy(dx: half, dy: half)
-        ].map { $0.command()}.joined(separator: " ")
+        ].map { $0.command() }.joined(separator: " ")
     }
 
     func drawSquare(w: Double) -> String {
@@ -63,7 +63,7 @@ extension SVG.PathCommand {
             .horizBy(dx: -w2),
             .vertBy(dy: -w2),
             .moveBy(dx: w, dy: w)
-        ].map { $0.command()}.joined(separator: " ")
+        ].map { $0.command() }.joined(separator: " ")
     }
 
     func drawStar(w: Double) -> String {
@@ -75,7 +75,7 @@ extension SVG.PathCommand {
             .lineBy(dx: half, dy: w), .lineBy(dx: -w, dy: -half),
             .lineBy(dx: -w, dy: half), .lineBy(dx: half, dy: -w),
             .moveBy(dx: half, dy: 0.0)
-        ].map { $0.command()}.joined(separator: " ")
+        ].map { $0.command() }.joined(separator: " ")
     }
 
     func drawTriangle(w: Double) -> String {
@@ -86,6 +86,6 @@ extension SVG.PathCommand {
             .horizBy(dx: -w2),
             .lineBy(dx: w, dy: -w2),
             .moveBy(dx: w, dy: 0.0)
-        ].map { $0.command()}.joined(separator: " ")
+        ].map { $0.command() }.joined(separator: " ")
     }
 }
