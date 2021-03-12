@@ -60,6 +60,7 @@ Recognized names are:
 2. diamond
 3. square
 4. star
+5. triangle
 
 #### strokeWidth (Double _2.0_)
 **Option:** `--stroke`<br/>
