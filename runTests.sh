@@ -18,6 +18,8 @@ makeSVG () {
     && echo "$4" > "$svg.txt"
 }
 
+rm -f $svgdir/*.svg $svgdir/*.svg.txt
+
 ./test/csv2svg -V
 
 sort $datadir/testlist.txt \
