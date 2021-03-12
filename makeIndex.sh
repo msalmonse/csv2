@@ -14,7 +14,7 @@ cat <<EOD
 <head>
     <title>SVG test results</title>
     <style>
-        img { border: ridge }
+        img { border: black solid thin }
     </style>
 </head>
 <body>
