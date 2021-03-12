@@ -51,7 +51,16 @@ extension SVG.PathCommand {
             .vertBy(dy: -w2),
             .moveBy(dx: w, dy: w)
         ].map { $0.command()}.joined(separator: " ")
-
     }
 
+    func drawTriangle(w: Double) -> String {
+        let w2 = w * 2.0
+        return [
+            Self.moveBy(dx: 0.0, dy: -w),
+            .lineBy(dx: w, dy: w2),
+            .horizBy(dx: -w2),
+            .lineBy(dx: w, dy: -w2),
+            .moveBy(dx: w, dy: 0.0)
+        ].map { $0.command()}.joined(separator: " ")
+    }
 }

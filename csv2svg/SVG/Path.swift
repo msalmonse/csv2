@@ -27,6 +27,7 @@ extension SVG {
             lineTo(x: Double, y: Double),               // Draw line to x,y
             square(w: Double),                          // Draw a square with sides 2 * w
             star(w: Double),                            // Draw a star of width 2 * w
+            triangle(w: Double),                        // Draw a triangle of width 2 * w
             vertBy(dy: Double),                         // Draw line vertically by dy
             vertTo(y: Double)                           // Draw line vertically to y
 
@@ -50,6 +51,7 @@ extension SVG {
             case .lineTo(let x, let y): return String(format: "L %.1f,%.1f", x, y)
             case .square(let w): return drawSquare(w: w)
             case .star(let w): return drawStar(w: w)
+            case .triangle(let w): return drawTriangle(w: w)
             case .vertBy(let dy): return String(format: "v %0.1f", dy)
             case .vertTo(let y): return String(format: "V %0.1f", y)
             }
@@ -58,7 +60,7 @@ extension SVG {
 
     /// plot a path from a list of points
     /// - Parameters:
-    ///   - points: a list of the points on path
+    ///   - points: a list of the points or shapes on path
     ///   - stroke: contents of the stroke paramater of the path
     ///   - width: setting for stroke-width, (default 1)
     ///   - linecap: setting for stroke-linecap (default "round")

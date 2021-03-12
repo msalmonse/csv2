@@ -12,7 +12,7 @@ extension SVG {
     /// The shapes that can be used on a scatter plot
 
     enum Shape {
-        case circle, diamond, square, star
+        case circle, diamond, square, star, triangle
 
         static private var next = -1
 
@@ -26,6 +26,7 @@ extension SVG {
             case .diamond: return PathCommand.diamond(w: w)
             case .square: return PathCommand.square(w: w)
             case .star: return PathCommand.star(w: w)
+            case .triangle: return PathCommand.triangle(w: w)
             }
         }
 
@@ -33,11 +34,12 @@ extension SVG {
             "circle":   Self.circle,
             "diamond":  Self.diamond,
             "square":   Self.square,
-            "star":     Self.star
+            "star":     Self.star,
+            "triangle": Self.triangle
         ]
 
         static let numberedShapes = [
-            Self.circle, Self.diamond, Self.square, Self.star
+            Self.circle, Self.diamond, Self.square, Self.star, Self.triangle
         ]
 
         static func lookup(_ name: String) -> Shape? {
