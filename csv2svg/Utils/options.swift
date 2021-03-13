@@ -15,6 +15,9 @@ struct Options: ParsableCommand {
     @Flag(name: .long, help: "Set default colour to black")
     var black = Defaults.black
 
+    @Option(name: .long, help: "Default colour")
+    var colour = "black"
+
     @Option(name: .shortAndLong, help: "Add debug info")
     var debug = 0
 
@@ -32,6 +35,9 @@ struct Options: ParsableCommand {
 
     @Option(name: .long, help: "Default plots to show as scattered")
     var scattered = Defaults.scattered
+
+    @Flag(name: .long, help: "Print a list of shape names")
+    var shapes = false
 
     @Option(name: .long, help: "Generate an SVG with just the named shape")
     var show: String = ""

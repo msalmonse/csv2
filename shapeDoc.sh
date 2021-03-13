@@ -6,7 +6,7 @@
 #  Created by Michael Salmon on 2021-03-12.
 #  
 
-for shape in blade circle diamond shuriken square star triangle
+for shape in $(./test/csv2svg --shapes)
 do
-    ./test/csv2svg --show $shape > shapes/$shape.svg
+    ./test/csv2svg --show $shape "$*" > shapes/$shape.svg
 done

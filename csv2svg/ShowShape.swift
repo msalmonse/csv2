@@ -7,17 +7,17 @@
 
 import Foundation
 
-func showShape(shape: String) -> String {
+func showShape(shape: String, stroke: String) -> String {
     let settings = try? Settings.load(settingsJson)
     let csv = CSV("")
     let svg = SVG(csv, settings!)
-    return svg.shapeGen(name: shape).joined(separator: "\n")
+    return svg.shapeGen(name: shape, stroke: stroke).joined(separator: "\n")
 }
 
 fileprivate let settingsJson = """
 {
     "height": 50,
-    "strokeWidth": 10,
+    "strokeWidth": 8,
     "width": 50
 }
 """

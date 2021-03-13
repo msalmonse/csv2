@@ -68,6 +68,9 @@ extension SVG {
             if next >= numberedShapes.count { next = 0 }
             return numberedShapes[ next ]
         }
-    }
 
+        static func allNames() -> String {
+            return namedShapes.keys.sorted().joined(separator: " ")
+        }
+    }
 }
