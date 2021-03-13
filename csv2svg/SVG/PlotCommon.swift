@@ -36,17 +36,18 @@ extension SVG {
                     single = false
                 }
             } else {
-                let xPos = ts.xpos(xValues[i]!)
-                let yPos = ts.ypos(yValues[i]!)
-                if shape != nil {
-                    pathPoints.append(.moveTo(x: xPos, y: yPos))
+                let pos = ts.pos(x: xValues[i]!, y: yValues[i]!)
+                if pos.y < 0 || pos.y > Double(settings.height) {
+                    move = true
+                } else if shape != nil {
+                    pathPoints.append(.moveTo(x: pos.x, y: pos.y))
                     pathPoints.append(shape!.pathCommand(w: shapeWidth))
                 } else if move {
-                    pathPoints.append(.moveTo(x: xPos, y: yPos))
+                    pathPoints.append(.moveTo(x: pos.x, y: pos.y))
                     move = false
                     single = true
                 } else {
-                    pathPoints.append(.lineTo(x: xPos, y: yPos))
+                    pathPoints.append(.lineTo(x: pos.x, y: pos.y))
                     single = false
                 }
             }

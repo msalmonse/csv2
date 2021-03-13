@@ -29,16 +29,28 @@ extension SVG {
             yOffset = to.bottom - yMult * from.bottom
         }
 
-        /// Calculate to x position on the svg plane from the input plane
+        /// Calculate the position on the svg plane from the data plane
+        /// - Parameters
+        ///     - x: x value
+        ///     - y: y value
+        /// - Returns: y position
+
+        func pos(x: Double, y: Double) -> Point {
+            return Point(x: xpos(x), y: ypos(y))
+        }
+
+        /// Calculate the x position on the svg plane from the data plane
         /// - Parameter x: x value
         /// - Returns: x position
+
         func xpos(_ x: Double) -> Double {
             return x * xMult + xOffset
         }
 
-        /// Calculate to y position on the svg plane from the input plane
+        /// Calculate the y position on the svg plane from the data plane
         /// - Parameter y: y value
         /// - Returns: y position
+
         func ypos(_ y: Double) -> Double {
             return y * yMult + yOffset
         }
