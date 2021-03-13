@@ -15,4 +15,4 @@ bipolar rows-ticks-index -- Bipolar data in rows
 plot plot -- Plot test in columns
 plot plot --rows Plot test in rows
 shapes shapes -- All shapes
-csv csv.csv -- Trig curves
+trig trig -- Trig curves
