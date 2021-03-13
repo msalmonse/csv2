@@ -56,13 +56,13 @@ the list and assigned to scatter plots. If there are too few shape names or they
 looked up the a shape from an internal list is assigned.
 
 Recognized names are:
-1. blade
-1. circle
-2. diamond
-2. shuriken
-3. square
-4. star
-5. triangle
+1. ![blade](shapes/blade.svg) blade
+1. ![circle](shapes/circle.svg) circle
+2. ![diamond](shapes/diamond.svg) diamond
+2. ![shuriken](shapes/shuriken.svg) shuriken
+3. ![square](shapes/square.svg) square
+4. ![star](shapes/star.svg) star
+5. ![triangle](shapes/triangle.svg) triangle
 
 #### strokeWidth (Double _2.0_)
 **Option:** `--stroke`<br/>
