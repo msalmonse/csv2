@@ -106,7 +106,7 @@ the title attached to the ordinate
 
 ### Footnotes
 
-<a id="fn1">1</a>: header columns or rows are used to name the pathe plotted.
+<a id="fn1">1</a>: header columns or rows are used to name the path plotted.
 
 <a id="fn2">2</a>: if not defined the min and max are taken from the data.
 
