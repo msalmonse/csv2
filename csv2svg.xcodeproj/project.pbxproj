@@ -149,7 +149,6 @@
 				C48B722A25F212C600B0752E /* runTests.sh */,
 				C45053C025F0E865003FC346 /* appinfo.swift */,
 				C40A3AFD25DC01180016EB6D /* csv2svg */,
-				C453243025FA5DD6007D741C /* Utils */,
 				C48B822825E28F7E00EAEAE3 /* csv2svgTests */,
 				C40A3AFC25DC01180016EB6D /* Products */,
 				C48B722D25F215B800B0752E /* testdata */,
@@ -174,6 +173,7 @@
 				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
 				C453244C25FBEBA6007D741C /* ShowShape.swift */,
 				C453240125F938D0007D741C /* SVG */,
+				C453243025FA5DD6007D741C /* Utils */,
 			);
 			path = csv2svg;
 			sourceTree = "<group>";
