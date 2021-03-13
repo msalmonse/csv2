@@ -42,8 +42,8 @@ class Settings: Codable, ReflectedStringConvertible {
     let yMin: Double
 
     // Ticks on the x and y axes
-    let xTick: Int
-    let yTick: Int
+    let xTick: Double
+    let yTick: Double
 
     // Data is grouped in rows?
     let rowGrouping: Bool
@@ -235,8 +235,8 @@ class Settings: Codable, ReflectedStringConvertible {
         yMax = Self.keyedDoubleValue(from: container, forKey: .yMax)
         yMin = Self.keyedDoubleValue(from: container, forKey: .yMin)
 
-        xTick = Self.keyedIntValue(from: container, forKey: .xTick)
-        yTick = Self.keyedIntValue(from: container, forKey: .yTick)
+        xTick = Self.keyedDoubleValue(from: container, forKey: .xTick)
+        yTick = Self.keyedDoubleValue(from: container, forKey: .yTick)
 
         colours = Self.keyedStringArray(from: container, forKey: .colours)
         names = Self.keyedStringArray(from: container, forKey: .names)

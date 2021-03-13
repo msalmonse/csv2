@@ -33,11 +33,12 @@ extension SVG {
     ///   - tick: tick specified
     ///   - dpp: data per pixel - how much data does each pixel show
     ///   - minSize: minimum number of pixels between ticks allowed
+    ///   - maxSize: maximum number of pixels between ticks allowed
     /// - Returns: new tick value
 
-    private func tickNorm(_ tick: Int, dpp: Double, minSize: Double) -> Double {
-        let dataSpan = Double(tick)
-        if dpp > 1.0 && dataSpan/dpp > minSize { return dataSpan }
+    private func tickNorm(_ tick: Double, dpp: Double, minSize: Double, maxSize: Double) -> Double {
+        let ppt = tick/dpp      // pixels per tick
+        if ppt >= minSize && ppt <= maxSize { return tick }
         let raw = minSize * dpp
         // calculate the power of 10 less than the raw tick
         let pow10 = exp(floor(log10(raw)) * log(10))
@@ -54,8 +55,12 @@ extension SVG {
     func svgXtick(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
         var labels = [""]
-        let tick = tickNorm(settings.xTick, dpp: dataEdges.width/plotEdges.width,
-                            minSize: settings.labelSize * 4.0)
+        let tick = tickNorm(
+            settings.xTick,
+            dpp: dataEdges.width/plotEdges.width,
+            minSize: settings.labelSize * 3.0,
+            maxSize: plotEdges.width/5.0
+        )
         let eForce = tick < 1
         var x = tick    // the zero line is plotted by svgAxes
         let xMax = max(dataEdges.right, -dataEdges.left)
@@ -84,8 +89,12 @@ extension SVG {
     func svgYtick(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
         var labels = [""]
-        let tick = tickNorm(settings.yTick, dpp: dataEdges.height/plotEdges.height,
-                            minSize: settings.labelSize * 1.25)
+        let tick = tickNorm(
+            settings.yTick,
+            dpp: dataEdges.height/plotEdges.height,
+            minSize: settings.labelSize * 1.25,
+            maxSize: plotEdges.height/5.0
+        )
         let eForce = tick < 1
         var y = tick    // the zero line is plotted by svgAxes
         let yMax = max(dataEdges.top, -dataEdges.bottom)
