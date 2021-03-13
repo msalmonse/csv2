@@ -62,13 +62,16 @@ extension SVG {
     }
 
     /// Format a value suitable to be used as a label
-    /// - Parameter value: value to format
+    /// - Parameters:
+    ///   - value: value to format
+    ///   - eForce: force e format
     /// - Returns: formatted string
 
-    func label(_ value: Double) -> String {
-        if abs(value) >= 10000000 { return String(format: "%.2e", value) }
-        if abs(value) < 1 { return String(format: "%.2e", value) }
-        return String(format: "%.0f", value)
+    func label(_ value: Double, _ eForce: Bool) -> String {
+        if eForce { return value.e(2) }
+        if abs(value) >= 10000000 { return value.e(2) }
+        if abs(value) < 1 { return value.e(2) }
+        return value.f(0)
     }
 
     /// Generate a text string for an x label

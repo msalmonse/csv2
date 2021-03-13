@@ -56,6 +56,7 @@ extension SVG {
         var labels = [""]
         let tick = tickNorm(settings.xTick, dpp: dataEdges.width/plotEdges.width,
                             minSize: settings.labelSize * 4.0)
+        let eForce = tick < 1
         var x = tick    // the zero line is plotted by svgAxes
         let xMax = max(dataEdges.right, -dataEdges.left)
 
@@ -63,12 +64,12 @@ extension SVG {
             if dataEdges.inHoriz(x) {
                 path.append(.moveTo(x: ts.xpos(x), y: plotEdges.bottom))
                 path.append(.vertTo(y: plotEdges.top))
-                labels.append(xLabel(label(x), x: ts.xpos(x), y: positions.xTicksY))
+                labels.append(xLabel(label(x, eForce), x: ts.xpos(x), y: positions.xTicksY))
             }
             if dataEdges.inHoriz(-x) {
                 path.append(.moveTo(x: ts.xpos(-x), y: plotEdges.bottom))
                 path.append(.vertTo(y: plotEdges.top))
-                labels.append(xLabel(label(-x), x: ts.xpos(-x), y: positions.xTicksY))
+                labels.append(xLabel(label(-x, eForce), x: ts.xpos(-x), y: positions.xTicksY))
             }
             x += tick
         }
@@ -85,6 +86,7 @@ extension SVG {
         var labels = [""]
         let tick = tickNorm(settings.yTick, dpp: dataEdges.height/plotEdges.height,
                             minSize: settings.labelSize * 1.25)
+        let eForce = tick < 1
         var y = tick    // the zero line is plotted by svgAxes
         let yMax = max(dataEdges.top, -dataEdges.bottom)
 
@@ -92,12 +94,12 @@ extension SVG {
             if dataEdges.inVert(y) {
                 path.append(.moveTo(x: plotEdges.left, y: ts.ypos(y)))
                 path.append(.horizTo(x: plotEdges.right))
-                labels.append(yLabel(label(y), x: positions.yTickX, y: ts.ypos(y)))
+                labels.append(yLabel(label(y, eForce), x: positions.yTickX, y: ts.ypos(y)))
             }
             if dataEdges.inVert(-y) {
                 path.append(.moveTo(x: plotEdges.left, y: ts.ypos(-y)))
                 path.append(.horizTo(x: plotEdges.right))
-                labels.append(yLabel(label(-y), x: positions.yTickX, y: ts.ypos(-y)))
+                labels.append(yLabel(label(-y, eForce), x: positions.yTickX, y: ts.ypos(-y)))
             }
             y += tick
         }

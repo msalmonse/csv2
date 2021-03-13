@@ -8,6 +8,14 @@
 import Foundation
 extension SVG {
 
+    func posClip(_ pos: Point) -> Point {
+        let minY = Double(settings.height) * -10.0
+        let maxY = Double(settings.height) * 11.0
+        if pos.y < minY { return Point(x: pos.x, y: minY) }
+        if pos.y > maxY { return Point(x: pos.x, y: maxY) }
+        return pos
+    }
+
     /// Plot a series of x and y values
     /// - Parameters:
     ///   - xValues: abscissa values
@@ -36,10 +44,8 @@ extension SVG {
                     single = false
                 }
             } else {
-                let pos = ts.pos(x: xValues[i]!, y: yValues[i]!)
-                if pos.y < 0 || pos.y > Double(settings.height) {
-                    move = true
-                } else if shape != nil {
+                let pos = posClip(ts.pos(x: xValues[i]!, y: yValues[i]!))
+                if shape != nil {
                     pathPoints.append(.moveTo(x: pos.x, y: pos.y))
                     pathPoints.append(shape!.pathCommand(w: shapeWidth))
                 } else if move {
