@@ -173,7 +173,8 @@ class CSV: ReflectedStringConvertible {
 
     func loadFromLines(_ lines: [String]) {
         var colMax = 0
-        for row in lines where row != "" {
+        for var row in lines where row != "" {
+            if row.hasSuffix("\r") { row.removeLast() }
             let cols = row.components(separatedBy: ",")
             data.append(cols)
             if cols.count > colMax { colMax = cols.count }
