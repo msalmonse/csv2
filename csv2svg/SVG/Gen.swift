@@ -55,7 +55,7 @@ extension SVG {
     func gen() -> [String] {
         let ts = TransScale(from: dataEdges, to: plotEdges)
 
-        var result: [String] = [ xmlTag, svgTag, comment ]
+        var result: [String] = [ xmlTag, svgTag ]
         result.append(contentsOf: svgDefs())
         if settings.backgroundColour != "" { result.append(svgBG(settings.backgroundColour)) }
         result.append(svgAxes(ts))
@@ -77,10 +77,10 @@ extension SVG {
 
     func shapeGen(name: String) -> [String] {
         let shape = Shape.lookup(name)
-        var result: [String] = [ xmlTag, svgTag, comment ]
+        var result: [String] = [ xmlTag, svgTag ]
         let path = [
             PathCommand.moveTo(x: Double(settings.width/2), y: Double(settings.height/2)),
-            shape!.pathCommand(w: shapeWidth * 10)
+            shape!.pathCommand(w: shapeWidth)
         ]
         result.append(SVG.svgPath(path))
         result.append(svgTagEnd)

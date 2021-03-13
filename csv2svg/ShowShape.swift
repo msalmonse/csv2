@@ -16,5 +16,8 @@ func showShape(shape: String) -> String {
 
 fileprivate let settingsJson = """
 {
+    "height": 50,
+    "strokeWidth": 10,
+    "width": 50
 }
 """

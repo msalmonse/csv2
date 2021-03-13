@@ -94,6 +94,7 @@
 		C453244025FBDCE1007D741C /* shapes.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = shapes.csv; path = testdata/shapes.csv; sourceTree = "<group>"; };
 		C453244425FBE03E007D741C /* shapes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = shapes.json; path = testdata/shapes.json; sourceTree = "<group>"; };
 		C453244C25FBEBA6007D741C /* ShowShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowShape.swift; sourceTree = "<group>"; };
+		C453245325FBFF27007D741C /* shapeDoc.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = shapeDoc.sh; sourceTree = "<group>"; };
 		C46A3A7125DE8B4C00F6783A /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
 		C480847B25E4E97300BD0A24 /* ColumnPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnPlot.swift; sourceTree = "<group>"; };
 		C480847F25E6776900BD0A24 /* Sides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sides.swift; sourceTree = "<group>"; };
@@ -144,6 +145,7 @@
 			children = (
 				C45323DC25F7F7C0007D741C /* Docs */,
 				C48B723525F224EF00B0752E /* makeIndex.sh */,
+				C453245325FBFF27007D741C /* shapeDoc.sh */,
 				C48B722A25F212C600B0752E /* runTests.sh */,
 				C45053C025F0E865003FC346 /* appinfo.swift */,
 				C40A3AFD25DC01180016EB6D /* csv2svg */,
