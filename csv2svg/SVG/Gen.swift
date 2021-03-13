@@ -30,7 +30,7 @@ extension SVG {
     func svgBG(_ bg: String) -> String {
         return """
             <rect
-                x="0" y="0" width="\(settings.width)" height="\(settings.height)"
+                x="0" y="0" width="\(width.f(0))" height="\(height.f(0))"
                 style="stroke: none; stroke-width: 0; fill: \(bg)"
             />
             """
@@ -68,7 +68,7 @@ extension SVG {
         if settings.yTitle != "" {
             result.append(yTitle(settings.yTitle, x: positions.yTitleX, y: plotEdges.vMid))
         }
-        result.append(svgLegends(Double(settings.width)/2.0, positions.legendY))
+        result.append(svgLegends(width/2.0, positions.legendY))
         if settings.title != "" { result.append(svgTitle()) }
         result.append(svgTagEnd)
 
@@ -79,7 +79,7 @@ extension SVG {
         let shape = Shape.lookup(name)
         var result: [String] = [ xmlTag, svgTag ]
         let path = [
-            PathCommand.moveTo(x: Double(settings.width/2), y: Double(settings.height/2)),
+            PathCommand.moveTo(x: width/2.0, y: height/2.0),
             shape!.pathCommand(w: shapeWidth)
         ]
         result.append(SVG.svgPath(path, stroke: stroke, width: settings.strokeWidth))

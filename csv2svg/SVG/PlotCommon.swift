@@ -8,12 +8,15 @@
 import Foundation
 extension SVG {
 
-    func posClip(_ pos: Point) -> Point {
-        let minY = Double(settings.height) * -10.0
-        let maxY = Double(settings.height) * 11.0
-        if pos.y < minY { return Point(x: pos.x, y: minY) }
-        if pos.y > maxY { return Point(x: pos.x, y: maxY) }
-        return pos
+    func posClip(_ pos: Point) -> (Point, Bool) {
+        var x = pos.x
+        var y = pos.y
+        if x < allowedEdges.left { x = allowedEdges.left }
+        if x > allowedEdges.right { x = allowedEdges.right }
+        if y < allowedEdges.top { y = allowedEdges.top }
+        if y > allowedEdges.bottom { y = allowedEdges.bottom }
+        if x == pos.x && y == pos.y { return (pos, false) }
+        return (Point(x: x, y: y), true)
     }
 
     /// Plot a series of x and y values
@@ -35,17 +38,19 @@ extension SVG {
         var pathPoints: [PathCommand] = []
         var move = true
         var single = false      // single point
+        var clippedBefore = false
 
         for i in settings.headers..<xValues.count {
             if xValues[i] == nil || i >= yValues.count || yValues[i] == nil {
-                move = true
-                if single {
+                if !clippedBefore && single {
                     pathPoints.append(.circle(r: shapeWidth))
-                    single = false
                 }
+                move = true
+                single = false
             } else {
-                let pos = posClip(ts.pos(x: xValues[i]!, y: yValues[i]!))
-                if shape != nil {
+                let (pos, clipped) = posClip(ts.pos(x: xValues[i]!, y: yValues[i]!))
+                if clipped && clippedBefore { move = true }
+                if !clipped && shape != nil {
                     pathPoints.append(.moveTo(x: pos.x, y: pos.y))
                     pathPoints.append(shape!.pathCommand(w: shapeWidth))
                 } else if move {
@@ -56,6 +61,7 @@ extension SVG {
                     pathPoints.append(.lineTo(x: pos.x, y: pos.y))
                     single = false
                 }
+                clippedBefore = clipped
             }
         }
         return Self.svgPath(pathPoints, stroke: stroke, width: plotWidth)

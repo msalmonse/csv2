@@ -26,8 +26,14 @@ class SVG: ReflectedStringConvertible {
 
     // The four sides of the data plane
     let dataEdges: Plane
-    // and the plot plane
+    // the plot plane
     let plotEdges: Plane
+    // and the allowed drawing plain
+    let allowedEdges: Plane
+
+    // Plot area height and width
+    let height: Double
+    let width: Double
 
     // Positions for various elements
     let positions: Positions
@@ -62,13 +68,19 @@ class SVG: ReflectedStringConvertible {
 
         self.index = settings.index - 1
 
+        height = Double(settings.height)
+        width = Double(settings.width)
+        allowedEdges = Plane(
+            top: -0.5 * height, bottom: 1.5 * height,
+            left: -0.5 * width, right: 1.5 * width
+        )
         dataEdges = SVG.sidesFromData(csv, settings)
 
         positions = Positions(settings, dataLeft: dataEdges.left)
 
         plotEdges = Plane(
             top: settings.baseFontSize, bottom: positions.bottomY,
-            left: positions.leftX, right: Double(settings.width) - settings.labelSize * 2.0
+            left: positions.leftX, right: width - settings.labelSize * 2.0
         )
 
         // Initialize path info

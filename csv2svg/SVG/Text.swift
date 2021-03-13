@@ -13,11 +13,11 @@ extension SVG {
     /// - Returns: String to display title
 
     func svgTitle() -> String {
-        let x = settings.width/2
+        let x = width/2.0
         let y = positions.titleY
         let t = settings.title
         return """
-            <text x="\(x)" y="\(y)" style="text-anchor: middle; font-size: \(titlePX)">\(t)</text>
+            <text x="\(x.f(1))" y="\(y.f(1))" style="text-anchor: middle; font-size: \(titlePX)">\(t)</text>
             """
     }
 
