@@ -24,6 +24,7 @@ if options.shapes {
     print(SVG.Shape.allNames())
     exit(0)
 }
+
 if options.show != "" {
     print(showShape(shape: options.show, stroke: options.colour))
     exit(0)
