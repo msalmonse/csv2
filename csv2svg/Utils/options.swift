@@ -71,25 +71,24 @@ struct Options: ParsableCommand {
 
     @Argument(help: "CSV file name, \"-\" means use stdin") var csvName: String?
     @Argument(help: "JSON file name") var jsonName: String?
-}
 
-/// Set Settings defaults using options from the command line
-/// - Parameter options: Options object
+    /// Set Settings defaults using options from the command line
 
-func setDefaultsFromOptions(_ options: Options) {
-    // Change defaults based on command line
-    Defaults.backgroundColour = options.bg
-    Defaults.baseFontSize = options.size
-    Defaults.black = options.black
-    Defaults.headers = options.headers
-    Defaults.height = options.height
-    Defaults.index = options.index
-    Defaults.rowGrouping = options.rows
-    Defaults.scattered = options.scattered
-    Defaults.strokeWidth = options.stroke
-    Defaults.width = options.width
-    Defaults.xMax = options.xmax
-    Defaults.xMin = options.xmin
-    Defaults.yMax = options.ymax
-    Defaults.yMin = options.ymin
+    func setDefaults() {
+        // Change defaults based on command line
+        Defaults.backgroundColour = bg
+        Defaults.baseFontSize = size
+        Defaults.black = black
+        Defaults.headers = headers
+        Defaults.height = height
+        Defaults.index = index
+        Defaults.rowGrouping = rows
+        Defaults.scattered = scattered
+        Defaults.strokeWidth = stroke
+        Defaults.width = width
+        Defaults.xMax = xmax
+        Defaults.xMin = xmin
+        Defaults.yMax = ymax
+        Defaults.yMin = ymin
+    }
 }
