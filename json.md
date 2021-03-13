@@ -4,7 +4,7 @@ The settings file is [JSON](https://en.wikipedia.org/wiki/JSON) encoded and the 
 tags are supported, the data type and default value are shown in parathenses. Some default values can be set from the command line and these are shown however these are overridden by the JSON file settings.
 
 #### backgroundColour (String)
-**Option:**`--bg`<bg/>
+**Option:**`--bg`<br/>
 The background colour for the svg
 
 #### baseFontSize (Double _10.0_)
@@ -28,7 +28,7 @@ The number of columns that do not contain data.<sup>[1](#fn1)</sup>
 The number of rows that do not contain data.<sup>[1](#fn1)</sup>
 
 #### height (Int _600_)
-**Option:** `--height`</br>
+**Option:** `--height`<br/>
 The height of the generated SVG
 
 #### index (Int _0_)
@@ -38,7 +38,7 @@ If it is less than or equal to zero then the absica is 0 for the first vale of e
 
 #### names (Array of Strings)
 The plotted column or rows are assigned names from this array or the first header row or column respectively.
-The name are included with the colours associated with the plots.
+The name are included with the colours associated with the plots under the plot area.
 
 #### rowGrouping (Bool _false_)
 **Option:** `--rows`<br/>
