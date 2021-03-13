@@ -48,7 +48,8 @@ extension SVG {
     func svgLegends(_ x: Double, _ y: Double) -> String {
         let iMax = settings.inColumns ? csv.colCt : csv.rowCt
         var legends = [
-            "<text x=\"\(x)\" y=\"\(y)\" style=\"text-anchor: middle; font-size: \(legendPX)\">"
+            "<text x=\"\(x.f(2))\" y=\"\(y.f(2))\" ",
+            "style=\"text-anchor: middle; font-size: \(legendPX)\">"
         ]
 
         for i in 0..<iMax where i != index {
@@ -83,7 +84,7 @@ extension SVG {
 
     func xLabel(_ label: String, x: Double, y: Double) -> String {
         return """
-            <text x="\(x)" y="\(y)" style="text-anchor: middle; font-size: \(labelPX)">\(label)</text>
+            <text x="\(x.f(2))" y="\(y.f(2))" style="text-anchor: middle; font-size: \(labelPX)">\(label)</text>
             """
     }
 
@@ -98,7 +99,7 @@ extension SVG {
 
     func yLabel(_ label: String, x: Double, y: Double) -> String {
         return """
-            <text x="\(x)" y="\(y)" dominant-baseline="middle" style="text-anchor: end; font-size: \(labelPX)">\(label)</text>
+            <text x="\(x.f(2))" y="\(y.f(2))" dominant-baseline="middle" style="text-anchor: end; font-size: \(labelPX)">\(label)</text>
             """
     }
 }
