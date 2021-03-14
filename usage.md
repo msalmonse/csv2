@@ -21,6 +21,7 @@ OPTIONS:
                           Default data plots with points (default: 0)
   --size <size>           Default font size (default: 10.0)
   --stroke <stroke>       Default stroke width (default: 2.0)
+  -t, --tsv               Use tabs to seperate columns
   -v, --verbose           Add extra information
   -V, --version           Display version and exit
   --width <width>         Default svg width (default: 800)
