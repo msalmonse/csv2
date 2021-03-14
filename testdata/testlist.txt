@@ -16,4 +16,6 @@ plot plot -- Plot test in columns
 plot plot --rows Plot test in rows
 shapes shapes -- All shapes
 trig trig -- Trig curves
+trig trig --showpoints=-1 Trig curves with data points
+trig trig --showpoints=-1,--distance=50 Trig curves with sparse data points
 trig trig2 -- Clipped trig curves

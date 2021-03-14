@@ -14,6 +14,29 @@ extension SVG {
     struct Point {
         let x: Double
         let y: Double
+
+        /// Calculate the distance between two points
+        /// - Parameter other: another point
+        /// - Returns: distance betwwen points
+
+        func distance(_ other: Point) -> Double {
+            let xDiff = x - other.x
+            let yDiff = y - other.y
+            return sqrt(xDiff * xDiff + yDiff * yDiff)
+        }
+
+        /// Are 2 points close to each other
+        /// - Parameters:
+        ///   - other: another point
+        ///   - limit: limit for closeness
+        /// - Returns: are they close
+
+        func close(_ other: Point, limit: Double) -> Bool {
+            return distance(other) < limit
+        }
+
+        // very distant point
+        static var inf: Point { return Point(x: Double.infinity, y: Double.infinity) }
     }
 
     /// The edges of the plane

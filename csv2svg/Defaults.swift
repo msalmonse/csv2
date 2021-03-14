@@ -14,6 +14,7 @@ struct Defaults {
     static var backgroundColour = ""
     static var baseFontSize = 10.0
     static var black = false
+    static var dataPointDistance = 5.0 * strokeWidth
     static var headers = 0
     static var height = 600
     static var index = 0
@@ -21,6 +22,7 @@ struct Defaults {
     static let minDefault = Double.infinity
     static var rowGrouping = false
     static var scattered = 0
+    static var showDataPoints = 0
     static var strokeWidth = 2.0
     static var title = ""
     static var width = 800

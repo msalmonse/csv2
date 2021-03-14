@@ -36,6 +36,7 @@ extension SVG {
                     xValues, yValues,
                     stroke: colours[i],
                     shape: shapes[i],
+                    pointed: settings.pointed(i),
                     ts: ts
                 )
             )

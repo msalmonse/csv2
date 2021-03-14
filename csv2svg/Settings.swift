@@ -52,6 +52,11 @@ class Settings: Codable, ReflectedStringConvertible {
 
     // Plats to show as scattered
     let scatterPlots: Int
+    // show data points
+    let showDataPoints: Int
+    // distance between points
+    let dataPointDistance: Double
+    // Shapes to use for datapoints and scatter plots
     let shapes: [String]
 
     /// Test to see if a plot is a scatter plot
@@ -60,6 +65,14 @@ class Settings: Codable, ReflectedStringConvertible {
 
     func  scattered(_ plot: Int) -> Bool {
         return ((scatterPlots >> plot) & 1) == 1
+    }
+
+    /// Test to see if a plot has data points
+    /// - Parameter plot: plot number
+    /// - Returns: true if has data points
+
+    func  pointed(_ plot: Int) -> Bool {
+        return ((showDataPoints >> plot) & 1) == 1
     }
 
     // Path colours
@@ -109,6 +122,7 @@ class Settings: Codable, ReflectedStringConvertible {
     private static func doubleDefault(_ key: CodingKeys) -> Double {
         switch key {
         case .baseFontSize: return Defaults.baseFontSize
+        case .dataPointDistance: return Defaults.dataPointDistance
         case .strokeWidth: return Defaults.strokeWidth
         case .xMax: return Defaults.xMax
         case .xMin: return Defaults.xMin
@@ -143,6 +157,7 @@ class Settings: Codable, ReflectedStringConvertible {
         case .height: return Defaults.height
         case .index: return Defaults.index
         case .scatterPlots: return Defaults.scattered
+        case .showDataPoints: return Defaults.showDataPoints
         case .width: return Defaults.width
         default: return 0
         }
@@ -218,12 +233,14 @@ class Settings: Codable, ReflectedStringConvertible {
         backgroundColour = Self.keyedStringValue(from: container, forKey: .backgroundColour)
         baseFontSize = Self.keyedDoubleValue(from: container, forKey: .baseFontSize)
         black = Self.keyedBoolValue(from: container, forKey: .black)
+        dataPointDistance = Self.keyedDoubleValue(from: container, forKey: .dataPointDistance)
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
         height = Self.keyedIntValue(from: container, forKey: .height)
         index = Self.keyedIntValue(from: container, forKey: .index)
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
         scatterPlots = Self.keyedIntValue(from: container, forKey: .scatterPlots)
+        showDataPoints = Self.keyedIntValue(from: container, forKey: .showDataPoints)
         strokeWidth = Self.keyedDoubleValue(from: container, forKey: .strokeWidth)
         title = Self.keyedStringValue(from: container, forKey: .title)
         width = Self.keyedIntValue(from: container, forKey: .width)

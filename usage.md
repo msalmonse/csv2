@@ -9,6 +9,7 @@ OPTIONS:
   --black                 Set default colour to black
   --colour <colour>       Default colour (default: black)
   -d, --debug <debug>     Add debug info (default: 0)
+  --distance <distance>   Minimum distance between data points (default: 10.0)
   --headers <headers>     Default header rows or columns (default: 0)
   --height <height>       Default svg height (default: 600)
   --index <index>         Default index row or column (default: 0)
@@ -16,6 +17,8 @@ OPTIONS:
   --scattered <scattered> Default plots to show as scattered (default: 0)
   --shapes                Print a list of shape names
   --show <show>           Generate an SVG with just the named shape
+  --showpoints <showpoints>
+                          Default data plots with points (default: 0)
   --size <size>           Default font size (default: 10.0)
   --stroke <stroke>       Default stroke width (default: 2.0)
   -v, --verbose           Add extra information
@@ -26,4 +29,5 @@ OPTIONS:
   --ymax <ymax>           Default ordinate maximum (default: -inf)
   --ymin <ymin>           Default ordinate minimum (default: inf)
   -h, --help              Show help information.
+
 ```

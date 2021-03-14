@@ -47,6 +47,9 @@ class SVG: ReflectedStringConvertible {
     // path shapes
     let shapes: [Shape?]
 
+    // limit of distance between data points
+    let limit: Double
+
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
     var svgTag: String {
@@ -77,6 +80,8 @@ class SVG: ReflectedStringConvertible {
         dataEdges = SVG.sidesFromData(csv, settings)
 
         positions = Positions(settings, dataLeft: dataEdges.left)
+
+        limit = settings.dataPointDistance
 
         plotEdges = Plane(
             top: settings.baseFontSize, bottom: positions.bottomY,

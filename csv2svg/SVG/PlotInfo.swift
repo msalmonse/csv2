@@ -61,7 +61,8 @@ extension SVG {
     static func plotShapes(_ settings: Settings, _ ct: Int, index: Int) -> [Shape?] {
         var shapes: [Shape?] = []
         for i in 0..<ct {
-            if !settings.scattered(i) || i == settings.index - 1 {
+            // Don't attach a shape if we aren't a scatter plot or a plot with data points or are index
+            if !(settings.scattered(i) || settings.pointed(i)) || i == settings.index - 1 {
                 shapes.append(nil)
             } else {
                 if i < settings.shapes.count && settings.shapes[i] != "" {

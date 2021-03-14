@@ -21,6 +21,9 @@ struct Options: ParsableCommand {
     @Option(name: .shortAndLong, help: "Add debug info")
     var debug = 0
 
+    @Option(name: .long, help: "Minimum distance between data points")
+    var distance = Defaults.dataPointDistance
+
     @Option(name: .long, help: "Default header rows or columns")
     var headers = Defaults.headers
 
@@ -41,6 +44,9 @@ struct Options: ParsableCommand {
 
     @Option(name: .long, help: "Generate an SVG with just the named shape")
     var show: String = ""
+
+    @Option(name: .long, help: "Default data plots with points")
+    var showpoints = Defaults.showDataPoints
 
     @Option(name: .long, help: "Default font size")
     var size = Defaults.baseFontSize
@@ -79,11 +85,13 @@ struct Options: ParsableCommand {
         Defaults.backgroundColour = bg
         Defaults.baseFontSize = size
         Defaults.black = black
+        Defaults.dataPointDistance = distance
         Defaults.headers = headers
         Defaults.height = height
         Defaults.index = index
         Defaults.rowGrouping = rows
         Defaults.scattered = scattered
+        Defaults.showDataPoints = showpoints
         Defaults.strokeWidth = stroke
         Defaults.width = width
         Defaults.xMax = xmax
