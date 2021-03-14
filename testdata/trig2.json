@@ -3,8 +3,8 @@
 	"headerRows": 1,
 	"index": 1,
 	"xTitle": "Degrees",
-	"yMin": -1.5,
-	"yMax": 1.5,
+	"yMin": -0.5,
+	"yMax": 0.5,
 	"xTick": 15,
-	"yTick": 0.25
+	"yTick": 0.05
 }
