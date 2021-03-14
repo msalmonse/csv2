@@ -68,11 +68,11 @@ extension SVG {
     ///   - eForce: force e format
     /// - Returns: formatted string
 
-    func label(_ value: Double, _ eForce: Bool = false) -> String {
-        if eForce { return value.e(2) }
+    func label(_ value: Double, _ f0Force: Bool = false) -> String {
         let v = abs(value)
         if v >= 10000000 { return value.e(2) }
         if v < 0.01 { return value.e(2) }
+        if f0Force { return value.f(0) }
         if v < 10 { return value.f(2) }
         if v < 100 { return value.f(1) }
         return value.f(0)
