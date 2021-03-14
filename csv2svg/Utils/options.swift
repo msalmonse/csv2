@@ -54,6 +54,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default stroke width")
     var stroke = Defaults.strokeWidth
 
+    @Flag(name: .shortAndLong, help: "Use tabs to seperate columns")
+    var tsv = false
+
     @Flag(name: .shortAndLong, help: "Add extra information")
     var verbose = false
 

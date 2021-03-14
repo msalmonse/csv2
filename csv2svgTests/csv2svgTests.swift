@@ -62,6 +62,9 @@ class csv2svgTests: XCTestCase {
         (min, max) = csv.rowMinMax(3, from: 1)
         XCTAssertEqual(min, 100.1)
         XCTAssertEqual(max, 152.7)
+
+        let csvTab = CSV(csvData.replacingOccurrences(of: ",", with: "\t"), separatedBy: "\t")
+        XCTAssertEqual(csv, csvTab)
     }
 
     func testSVG() throws {
@@ -193,11 +196,11 @@ func settingsJSON(_ cols: Bool) -> String {
 
 // CSV string for tests
 let csvData = """
-1,-1,9,35,"\(testName)"
-1,100.1,120.4, -110.1,0.0
-9,100.1,129.9,5220.6 ,0.0
-32,100.1,152.7,,
-"\(testName)",,,,0.0
+1,-1,9,35,"\(testName)"\r
+1,100.1,120.4, -110.1,0.0\r
+9,100.1,129.9,5220.6 ,0.0\r
+32,100.1,152.7,,\r
+"\(testName)",,,,0.0\r
 """
 
 // CSV data for plot test

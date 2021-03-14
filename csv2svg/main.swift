@@ -42,7 +42,10 @@ let jsonUrl = URL(fileURLWithPath: opts.jsonName ?? ((opts.csvName ?? "") + ".js
 let settings = try? Settings.load(jsonUrl)
 if (opts.debug & 2) > 0 { print(settings ?? "Nil settings", to: &standardError) }
 
-let csv = opts.csvName != nil ? (try? CSV(URL(fileURLWithPath: opts.csvName!))) : CSV(readLines())
+let colsep = opts.tsv ? "\t" : ","
+let csv = opts.csvName != nil
+    ? (try? CSV(URL(fileURLWithPath: opts.csvName!), separatedBy: colsep))
+    : CSV(readLines(), separatedBy: colsep)
 if (opts.debug & 4) > 0 { print(csv ?? "Nil csv", to: &standardError) }
 
 if csv == nil || settings == nil {

@@ -7,7 +7,12 @@
 
 import Foundation
 
-class CSV: ReflectedStringConvertible {
+class CSV: ReflectedStringConvertible, Equatable {
+
+    static func == (lhs: CSV, rhs: CSV) -> Bool {
+        return lhs.data == rhs.data
+    }
+
     var data: [[String]] = []
     var values: [[Double?]] = []
 
@@ -19,9 +24,9 @@ class CSV: ReflectedStringConvertible {
     /// - Parameter url: location of data
     /// - Throws: whatever String throws
 
-    init(_ url: URL) throws {
+    init(_ url: URL, separatedBy colsep: String = ",") throws {
         do {
-            try self.loadFromUrl(url)
+            try self.loadFromUrl(url, separatedBy: colsep)
         } catch {
             print(error, to: &standardError)
             throw(error)
@@ -31,15 +36,15 @@ class CSV: ReflectedStringConvertible {
     /// Initialize CSV from a String
     /// - Parameter contents: the data as a single string
 
-    init(_ contents: String) {
-        self.loadFrom(contents)
+    init(_ contents: String, separatedBy colsep: String = ",") {
+        self.loadFrom(contents, separatedBy: colsep)
     }
 
     /// Initialize CSV from a String
     /// - Parameter lines: the data as an array of strings
 
-    init(_ lines: [String]) {
-        self.loadFromLines(lines)
+    init(_ lines: [String], separatedBy colsep: String = ",") {
+        self.loadFromLines(lines, separatedBy: colsep)
     }
 
     /// Return a column of values
@@ -153,9 +158,9 @@ class CSV: ReflectedStringConvertible {
     /// - Parameter url: data location
     /// - Throws: whatever String throws
 
-    func loadFromUrl(_ url: URL) throws {
+    func loadFromUrl(_ url: URL, separatedBy colsep: String = ",") throws {
         do {
-            loadFrom(try String(contentsOf: url))
+            loadFrom(try String(contentsOf: url), separatedBy: colsep)
         } catch {
             throw(error)
         }
@@ -164,18 +169,18 @@ class CSV: ReflectedStringConvertible {
     /// Load data from a string
     /// - Parameter contents: the string containing data
 
-    func loadFrom(_ contents: String) {
-        loadFromLines(contents.components(separatedBy: "\n"))
+    func loadFrom(_ contents: String, separatedBy colsep: String = ",") {
+        loadFromLines(contents.components(separatedBy: "\n"), separatedBy: colsep)
     }
 
     /// Load data from a string array
     /// - Parameter lines: the string array containing data
 
-    func loadFromLines(_ lines: [String]) {
+    func loadFromLines(_ lines: [String], separatedBy colsep: String = ",") {
         var colMax = 0
         for var row in lines where row != "" {
             if row.hasSuffix("\r") { row.removeLast() }
-            let cols = row.components(separatedBy: ",")
+            let cols = row.components(separatedBy: colsep)
             data.append(cols)
             if cols.count > colMax { colMax = cols.count }
         }
