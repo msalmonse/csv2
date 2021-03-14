@@ -33,6 +33,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default index row or column")
     var index = Defaults.index
 
+    @Option(name: .long, help: "Default index row or column")
+    var opacity = Defaults.opacity
+
     @Flag(name: .long, help: "Default to grouping data by rows")
     var rows = Defaults.rowGrouping
 
@@ -92,6 +95,7 @@ struct Options: ParsableCommand {
         Defaults.headers = headers
         Defaults.height = height
         Defaults.index = index
+        Defaults.opacity = opacity
         Defaults.rowGrouping = rows
         Defaults.scattered = scattered
         Defaults.showDataPoints = showpoints

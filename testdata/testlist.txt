@@ -4,6 +4,7 @@ column none --index=1,--headers=1 Column data with no JSON but index and header 
 column none --index=1,--headers=1,--scattered=-1 Column data with no JSON but index, header and scattered options
 column none --bg=gold,--size=22,--width=1000 Column data with no JSON but bg, width and size options
 column none --stroke=5,--width=800 Column data with no JSON but width and stroke options
+column none --opacity=.5,--stroke=5,--width=800 Column data with no JSON but opacity, width and stroke options
 column none --ymax=50 Column data with no JSON but ymax option
 column columns-ticks-index -- Column data with ticks and index
 big columns-ticks-index -- Big data in columns with ticks and index
@@ -17,6 +18,7 @@ plot plot -- Plot test in columns
 plot plot --rows Plot test in rows
 shapes shapes -- All shapes
 trig trig -- Trig curves
+trig trig --opacity=.3 Trig curves with opacity
 trig trig --showpoints=-1 Trig curves with data points
 trig trig --showpoints=-1,--distance=50 Trig curves with sparse data points
 trig trig --showpoints=-1,--distance=0 Trig curves with close data points

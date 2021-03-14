@@ -20,6 +20,7 @@ struct Defaults {
     static var index = 0
     static let maxDefault = -Double.infinity
     static let minDefault = Double.infinity
+    static var opacity = 1.0
     static var rowGrouping = false
     static var scattered = 0
     static var showDataPoints = 0

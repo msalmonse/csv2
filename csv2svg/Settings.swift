@@ -15,6 +15,9 @@ class Settings: Codable, ReflectedStringConvertible {
     // base font size
     let baseFontSize: Double
 
+    // opacity for plots
+    let opacity: Double
+
     // Font sizes
     var axesSize: Double { return baseFontSize * 1.2 }
     var labelSize: Double { return baseFontSize }
@@ -123,6 +126,7 @@ class Settings: Codable, ReflectedStringConvertible {
         switch key {
         case .baseFontSize: return Defaults.baseFontSize
         case .dataPointDistance: return Defaults.dataPointDistance
+        case .opacity: return Defaults.opacity
         case .strokeWidth: return Defaults.strokeWidth
         case .xMax: return Defaults.xMax
         case .xMin: return Defaults.xMin
@@ -238,6 +242,7 @@ class Settings: Codable, ReflectedStringConvertible {
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
         height = Self.keyedIntValue(from: container, forKey: .height)
         index = Self.keyedIntValue(from: container, forKey: .index)
+        opacity = Self.keyedDoubleValue(from: container, forKey: .opacity)
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
         scatterPlots = Self.keyedIntValue(from: container, forKey: .scatterPlots)
         showDataPoints = Self.keyedIntValue(from: container, forKey: .showDataPoints)

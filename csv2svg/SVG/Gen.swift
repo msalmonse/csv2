@@ -42,7 +42,7 @@ extension SVG {
 
     func svgLineGroup(_ ts: TransScale) -> [String] {
         var result: [String] = []
-        result.append("<g clip-path=\"url(#plotable)\" >")
+        result.append("<g clip-path=\"url(#plotable)\" opacity=\"\(settings.opacity.f(2))\">")
         result.append(contentsOf: settings.inColumns ? columnPlot(ts) : rowPlot(ts))
         result.append("</g>")
 
