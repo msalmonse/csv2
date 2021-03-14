@@ -8,7 +8,17 @@
 import Foundation
 extension SVG {
 
-    func posClip(_ pos: Point) -> (Point, Bool) {
+    /// State of the plot
+
+    enum PlotState {
+        case move, moved, online, clipped, clipped2, scatter
+    }
+
+    /// Clip a position if it lies outside bounds
+    /// - Parameter pos: position
+    /// - Returns: new position and indicator of clipping
+
+    private func posClip(_ pos: Point) -> (Point, Bool) {
         var x = pos.x
         var y = pos.y
         if x < allowedEdges.left { x = allowedEdges.left }
@@ -36,32 +46,47 @@ extension SVG {
         ts: TransScale
     ) -> String {
         var pathPoints: [PathCommand] = []
-        var move = true
-        var single = false      // single point
-        var clippedBefore = false
+        var state: PlotState = shape == nil ? .move : .scatter
 
         for i in settings.headers..<xValues.count {
             if xValues[i] == nil || i >= yValues.count || yValues[i] == nil {
-                if !clippedBefore && single {
-                    pathPoints.append(.circle(r: shapeWidth))
+                switch state {
+                case .moved:
+                    pathPoints.append(.circle(r: shapeWidth))   // single data point so mark it
+                    state = .move
+                case .scatter, .clipped2: break
+                default: state = .move
                 }
-                move = true
-                single = false
             } else {
                 let (pos, clipped) = posClip(ts.pos(x: xValues[i]!, y: yValues[i]!))
-                if clipped && clippedBefore { move = true }
-                if !clipped && shape != nil {
-                    pathPoints.append(.moveTo(x: pos.x, y: pos.y))
-                    pathPoints.append(shape!.pathCommand(w: shapeWidth))
-                } else if move {
-                    pathPoints.append(.moveTo(x: pos.x, y: pos.y))
-                    move = false
-                    single = true
-                } else {
-                    pathPoints.append(.lineTo(x: pos.x, y: pos.y))
-                    single = false
+                if !clipped {
+                    // move from a clipped state to an unclipped one
+                    switch state {
+                    case .clipped: state = .online
+                    case .clipped2: state = .move
+                    default: break
+                    }
                 }
-                clippedBefore = clipped
+                switch state {
+                case .move:
+                    pathPoints.append(.moveTo(x: pos.x, y: pos.y))
+                    state = .moved
+                case .moved, .online:
+                    pathPoints.append(.lineTo(x: pos.x, y: pos.y))
+                    state = clipped ? .clipped : .online
+                case .clipped:
+                    // Draw line even if clipped
+                    pathPoints.append(.lineTo(x: pos.x, y: pos.y))
+                    state = clipped ? .clipped2 : .online
+                case .scatter:
+                    if !clipped {
+                        pathPoints.append(.moveTo(x: pos.x, y: pos.y))
+                        pathPoints.append(shape!.pathCommand(w: shapeWidth))
+                    }
+                case .clipped2:
+                    // Ignore all data till we are not clipped
+                    break
+                }
             }
         }
         return Self.svgPath(pathPoints, stroke: stroke, width: plotWidth)
