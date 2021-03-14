@@ -51,13 +51,14 @@ extension SVG {
     ) -> String {
         var pathPoints: [PathCommand] = []
         var state: PlotState = (shape == nil || pointed) ? .move : .scatter
+        let plotShape = shape?.pathCommand(w: shapeWidth) ?? .circle(r: shapeWidth)
         var lastPos = Point.inf
 
         for i in settings.headers..<xValues.count {
             if xValues[i] == nil || i >= yValues.count || yValues[i] == nil {
                 switch state {
                 case .moved:
-                    if !pointed { pathPoints.append(.circle(r: shapeWidth)) } // single data point so mark it
+                    if !pointed { pathPoints.append(plotShape) } // single data point so mark it
                     state = .move
                 case .scatter, .clipped2: break
                 default: state = .move
@@ -77,7 +78,7 @@ extension SVG {
                     state = .moved
                     // Data point?
                     if !clipped && pointed && !pos.close(lastPos, limit: limit) {
-                        pathPoints.append(shape!.pathCommand(w: shapeWidth))
+                        pathPoints.append(plotShape)
                         lastPos = pos
                     }
                 case .moved, .online:
@@ -85,7 +86,7 @@ extension SVG {
                     state = clipped ? .clipped : .online
                     // Data point?
                     if !clipped && pointed && !pos.close(lastPos, limit: limit) {
-                        pathPoints.append(shape!.pathCommand(w: shapeWidth))
+                        pathPoints.append(plotShape)
                         lastPos = pos
                     }
                 case .clipped:
@@ -98,13 +99,13 @@ extension SVG {
                     }
                     // Data point?
                     if !clipped && pointed && !pos.close(lastPos, limit: limit) {
-                        pathPoints.append(shape!.pathCommand(w: shapeWidth))
+                        pathPoints.append(plotShape)
                         lastPos = pos
                     }
                 case .scatter:
                     if !clipped {
                         pathPoints.append(.moveTo(x: pos.x, y: pos.y))
-                        pathPoints.append(shape!.pathCommand(w: shapeWidth))
+                        pathPoints.append(plotShape)
                     }
                 case .clipped2:
                     // Ignore all data till we are not clipped, just move
