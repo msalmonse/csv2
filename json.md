@@ -122,5 +122,5 @@ the title attached to the ordinate
 
 <a id="fn5">5</a>: A bit vector is an integer where each bit represents a plot
 e.g. _25 == 2<sup>4</sup> + 2<sup>3</sup> + 2<sup>0</sup>_ which would mean that the
-fifth, fourth and first row or column would be plotted as scatter plots. A value of -1 means all plots.
+fifth, fourth and first row or column would be enabled. A value of -1 means all plots.
 
