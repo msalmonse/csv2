@@ -78,11 +78,17 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default abscissa minimum")
     var xmin = Defaults.xMin
 
+    @Option(name: .long, help: "Default x tick")
+    var xtick = Defaults.xTick
+
     @Option(name: .long, help: "Default ordinate maximum")
     var ymax = Defaults.yMax
 
     @Option(name: .long, help: "Default ordinate minimum")
     var ymin = Defaults.yMin
+
+    @Option(name: .long, help: "Default y tick")
+    var ytick = Defaults.yTick
 
     @Argument(help: "CSV file name, \"-\" means use stdin") var csvName: String?
     @Argument(help: "JSON file name") var jsonName: String?

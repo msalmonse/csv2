@@ -134,8 +134,10 @@ class Settings: Codable, ReflectedStringConvertible {
         case .strokeWidth: return Defaults.strokeWidth
         case .xMax: return Defaults.xMax
         case .xMin: return Defaults.xMin
+        case .xTick: return Defaults.xTick
         case .yMax: return Defaults.yMax
         case .yMin: return Defaults.yMin
+        case .yTick: return Defaults.yTick
         default: return 0.0
         }
     }

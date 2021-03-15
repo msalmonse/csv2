@@ -30,6 +30,8 @@ struct Defaults {
     static var width = 800
     static var xMax = maxDefault
     static var xMin = minDefault
+    static var xTick = 0.0
     static var yMax = maxDefault
     static var yMin = minDefault
+    static var yTick = 0.0
 }
