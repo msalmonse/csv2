@@ -3,6 +3,7 @@
 	"headerRows": 1,
 	"index": 1,
 	"xTitle": "Degrees",
+	"yTitle": "Function Value",
 	"yMin": -1.5,
 	"yMax": 1.5,
 	"xTick": 15,

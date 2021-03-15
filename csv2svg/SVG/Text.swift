@@ -26,7 +26,9 @@ extension SVG {
 
     func xTitle(_ label: String, x: Double, y: Double) -> String {
         return """
-            <text x="\(x)" y="\(y)" style="text-anchor: middle; font-size: \(axesPX)">\(label)</text>
+            <text x="\(x)" y="\(y)" style="text-anchor: middle; font-size: \(axesPX)">
+            \(label)
+            </text>
             """
     }
 
@@ -34,8 +36,12 @@ extension SVG {
     /// - Returns: String to display title
 
     func yTitle(_ label: String, x: Double, y: Double) -> String {
+        // Rotate () rotates around 0,0 hence we need to start at -x,-y
         return """
-            <text x="\(x)" y="\(y)" style="writing-mode: tb; text-anchor: middle; font-size: \(axesPX)">\(label)</text>
+            <text x="\(-x)" y="\(-y)" style="writing-mode: tb; text-anchor: middle; font-size: \(axesPX)"
+            transform="rotate(180)">
+            \(label)
+            </text>
             """
     }
 
