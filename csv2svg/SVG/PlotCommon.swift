@@ -14,6 +14,20 @@ extension SVG {
         case move, moved, online, clipped, clipped2, scatter
     }
 
+    /// Common state
+
+    private class CommonState {
+        var pathPoints: [PathCommand] = []
+        var lastPos = Point.inf
+        var state: PlotState
+        let plotShape: PathCommand
+
+        init(_ scattered: Bool, _ plotShape: PathCommand) {
+            state = scattered ? .scatter : .move
+            self.plotShape = plotShape
+        }
+    }
+
     /// Clip a position if it lies outside bounds
     /// - Parameter pos: position
     /// - Returns: new position and indicator of clipping
@@ -31,15 +45,13 @@ extension SVG {
 
     /// Plot a series of x and y values
     /// - Parameters:
-    ///   - xValues: abscissa values
+    ///   - xiValues: abscissa values
     ///   - yValues: ordinate values
     ///   - stroke: stroke colour
     ///   - shape: the shape to use for scattered pllots
     ///   - pointed: this plot has data points
     ///   - ts: TranScale object
     /// - Returns: Path String
-
-// swiftlint:disable function_body_length
 
     func plotCommon(
         _ xiValues: [XIvalue],
@@ -49,73 +61,94 @@ extension SVG {
         pointed: Bool = false,
         ts: TransScale
     ) -> String {
-        var pathPoints: [PathCommand] = []
-        var state: PlotState = (shape == nil || pointed) ? .move : .scatter
-        let plotShape = shape?.pathCommand(w: shapeWidth) ?? .circle(r: shapeWidth)
-        var lastPos = Point.inf
+        var commonState = CommonState(
+            (shape != nil && !pointed),
+            shape?.pathCommand(w: shapeWidth) ?? .circle(r: shapeWidth)
+        )
 
         for i in settings.headers..<xiValues.count {
             let x = xiValues[i].x
             let j = xiValues[i].i
             let y = j < yValues.count ? yValues[j] : nil
             if x == nil ||  y == nil {
-                switch state {
+                switch commonState.state {
                 case .moved:
-                    if !pointed { pathPoints.append(plotShape) } // single data point so mark it
-                    state = .move
+                    // single data point so mark it
+                    if !pointed { commonState.pathPoints.append(commonState.plotShape) }
+                    commonState.state = .move
                 case .scatter, .clipped2: break
-                default: state = .move
+                default: commonState.state = .move
                 }
             } else {
                 let (pos, clipped) = posClip(ts.pos(x: x!, y: y!))
-                if !clipped {
-                    // move from a clipped state to an unclipped one
-                    switch state {
-                    case .clipped, .clipped2: state = .online
-                    default: break
-                    }
-                }
-                switch state {
-                case .move:
-                    pathPoints.append(.moveTo(x: pos.x, y: pos.y))
-                    state = .moved
-                    // Data point?
-                    if !clipped && pointed && !pos.close(lastPos, limit: limit) {
-                        pathPoints.append(plotShape)
-                        lastPos = pos
-                    }
-                case .moved, .online:
-                    pathPoints.append(.lineTo(x: pos.x, y: pos.y))
-                    state = clipped ? .clipped : .online
-                    // Data point?
-                    if !clipped && pointed && !pos.close(lastPos, limit: limit) {
-                        pathPoints.append(plotShape)
-                        lastPos = pos
-                    }
-                case .clipped:
-                    // Draw line even if previously clipped but not if clipped now
-                    if clipped {
-                        state = .clipped2
-                    } else {
-                        pathPoints.append(.lineTo(x: pos.x, y: pos.y))
-                        state = clipped ? .clipped2 : .online
-                    }
-                    // Data point?
-                    if !clipped && pointed && !pos.close(lastPos, limit: limit) {
-                        pathPoints.append(plotShape)
-                        lastPos = pos
-                    }
-                case .scatter:
-                    if !clipped {
-                        pathPoints.append(.moveTo(x: pos.x, y: pos.y))
-                        pathPoints.append(plotShape)
-                    }
-                case .clipped2:
-                    // Ignore all data till we are not clipped, just move
-                    pathPoints.append(.moveTo(x: pos.x, y: pos.y))
-                }
+                plotOne(
+                    pos: pos, clipped: clipped,
+                    pointed: pointed,
+                    commonState: &commonState
+                )
             }
         }
-        return Self.svgPath(pathPoints, stroke: stroke, width: plotWidth)
+        return Self.svgPath(commonState.pathPoints, stroke: stroke, width: plotWidth)
+    }
+
+    /// Plot a single point, mainly to reduce the size of plotCommon()
+    /// - Parameters:
+    ///   - pos: position to plot
+    ///   - clipped: has the position been clipped?
+    ///   - pointed: plot data points?
+    ///   - commonState: the state shared with plotCommon
+
+    private func plotOne(
+        pos: Point,
+        clipped: Bool,
+        pointed: Bool,
+        commonState: inout CommonState
+    ) {
+        if !clipped {
+            // move from a clipped state to an unclipped one
+            switch commonState.state {
+            case .clipped, .clipped2: commonState.state = .online
+            default: break
+            }
+        }
+        switch commonState.state {
+        case .move:
+            commonState.pathPoints.append(.moveTo(x: pos.x, y: pos.y))
+            commonState.state = .moved
+            // Data point?
+            if !clipped && pointed && !pos.close(commonState.lastPos, limit: limit) {
+                commonState.pathPoints.append(commonState.plotShape)
+                commonState.lastPos = pos
+            }
+        case .moved, .online:
+            commonState.pathPoints.append(.lineTo(x: pos.x, y: pos.y))
+            commonState.state = clipped ? .clipped : .online
+            // Data point?
+            if !clipped && pointed && !pos.close(commonState.lastPos, limit: limit) {
+                commonState.pathPoints.append(commonState.plotShape)
+                commonState.lastPos = pos
+            }
+        case .clipped:
+            // Draw line even if previously clipped but not if clipped now
+            if clipped {
+                commonState.state = .clipped2
+            } else {
+                commonState.pathPoints.append(.lineTo(x: pos.x, y: pos.y))
+                commonState.state = clipped ? .clipped2 : .online
+            }
+            // Data point?
+            if !clipped && pointed && !pos.close(commonState.lastPos, limit: limit) {
+                commonState.pathPoints.append(commonState.plotShape)
+                commonState.lastPos = pos
+            }
+        case .scatter:
+            if !clipped {
+                commonState.pathPoints.append(.moveTo(x: pos.x, y: pos.y))
+                commonState.pathPoints.append(commonState.plotShape)
+            }
+        case .clipped2:
+            // Ignore all data till we are not clipped, just move
+            commonState.pathPoints.append(.moveTo(x: pos.x, y: pos.y))
+        }
     }
 }
