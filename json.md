@@ -66,9 +66,13 @@ Recognized names are:
 4. ![star](shapes/star.svg) star
 5. ![triangle](shapes/triangle.svg) triangle
 
-**showDataPoints** (**0**)<br/>
-**Option:** `--datapoints`
+**showDataPoints** (Int **0**)<br/>
+**Option:** `--datapoints`<br/>
 A bit vector of the plots to draw with data points.<sup>[5](#fn5)</sup>
+
+**sortx** (Bool **false**)<br/>
+**Option:** `--sortx`<br/>
+Sort the points based on the x value before plotting.
 
 **strokeWidth** (Double **2.0**)<br/>
 **Option:** `--stroke`<br/>
