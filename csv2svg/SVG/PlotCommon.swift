@@ -16,15 +16,95 @@ extension SVG {
 
     /// Common state
 
-    private class CommonState {
+    private class PlotCommonState {
         var pathPoints: [PathCommand] = []
         var lastPos = Point.inf
         var state: PlotState
         let plotShape: PathCommand
 
-        init(_ scattered: Bool, _ plotShape: PathCommand) {
+        let limit: Double
+        let pointed: Bool
+        let ts: TransScale
+
+        init(
+            scattered: Bool,
+            ts: TransScale,
+            limit: Double,
+            pointed: Bool,
+            plotShape: PathCommand
+        ) {
             state = scattered ? .scatter : .move
+            self.ts = ts
+            self.limit = limit
+            self.pointed = pointed
             self.plotShape = plotShape
+        }
+
+        /// Handle an x or y of nil
+
+        func nilPlot() {
+            switch state {
+            case .moved:
+                // single data point so mark it
+                if !pointed { pathPoints.append(plotShape) }
+                state = .move
+            case .scatter, .clipped2: break
+            default: state = .move
+            }
+        }
+
+        /// Plot a single point
+        /// - Parameters:
+        ///   - pos: position to plot
+        ///   - clipped: was pos clipped?
+
+        func plotOne(_ pos: Point, clipped: Bool) {
+            if !clipped {
+                // move from a clipped state to an unclipped one
+                switch state {
+                case .clipped, .clipped2: state = .online
+                default: break
+                }
+            }
+            switch state {
+            case .move:
+                pathPoints.append(.moveTo(x: pos.x, y: pos.y))
+                state = .moved
+                // Data point?
+                if !clipped && pointed && !pos.close(lastPos, limit: limit) {
+                    pathPoints.append(plotShape)
+                    lastPos = pos
+                }
+            case .moved, .online:
+                pathPoints.append(.lineTo(x: pos.x, y: pos.y))
+                state = clipped ? .clipped : .online
+                // Data point?
+                if !clipped && pointed && !pos.close(lastPos, limit: limit) {
+                    pathPoints.append(plotShape)
+                    lastPos = pos
+                }
+            case .clipped:
+                // Draw line even if previously clipped but not if clipped now
+                if clipped {
+                    state = .clipped2
+                } else {
+                    pathPoints.append(.lineTo(x: pos.x, y: pos.y))
+                    state = clipped ? .clipped2 : .online
+                }
+                // Data point?
+                if !clipped && pointed && !pos.close(lastPos, limit: limit) {
+                    pathPoints.append(plotShape)
+                    lastPos = pos
+                }
+            case .scatter:
+                if !clipped {
+                    pathPoints.append(.moveTo(x: pos.x, y: pos.y))
+                    pathPoints.append(plotShape)
+                }
+            case .clipped2:
+                // Ignore all data till we are not clipped, just move
+                pathPoints.append(.moveTo(x: pos.x, y: pos.y))
+            }
         }
     }
 
@@ -61,9 +141,12 @@ extension SVG {
         pointed: Bool = false,
         ts: TransScale
     ) -> String {
-        var commonState = CommonState(
-            (shape != nil && !pointed),
-            shape?.pathCommand(w: shapeWidth) ?? .circle(r: shapeWidth)
+        let state = PlotCommonState(
+            scattered: (shape != nil && !pointed),
+            ts: ts,
+            limit: limit,
+            pointed: pointed,
+            plotShape: shape?.pathCommand(w: shapeWidth) ?? .circle(r: shapeWidth)
         )
 
         for i in settings.headers..<xiValues.count {
@@ -71,84 +154,12 @@ extension SVG {
             let j = xiValues[i].i
             let y = j < yValues.count ? yValues[j] : nil
             if x == nil ||  y == nil {
-                switch commonState.state {
-                case .moved:
-                    // single data point so mark it
-                    if !pointed { commonState.pathPoints.append(commonState.plotShape) }
-                    commonState.state = .move
-                case .scatter, .clipped2: break
-                default: commonState.state = .move
-                }
+                state.nilPlot()
             } else {
                 let (pos, clipped) = posClip(ts.pos(x: x!, y: y!))
-                plotOne(
-                    pos: pos, clipped: clipped,
-                    pointed: pointed,
-                    commonState: &commonState
-                )
+                state.plotOne(pos, clipped: clipped)
             }
         }
-        return Self.svgPath(commonState.pathPoints, stroke: stroke, width: plotWidth)
-    }
-
-    /// Plot a single point, mainly to reduce the size of plotCommon()
-    /// - Parameters:
-    ///   - pos: position to plot
-    ///   - clipped: has the position been clipped?
-    ///   - pointed: plot data points?
-    ///   - commonState: the state shared with plotCommon
-
-    private func plotOne(
-        pos: Point,
-        clipped: Bool,
-        pointed: Bool,
-        commonState: inout CommonState
-    ) {
-        if !clipped {
-            // move from a clipped state to an unclipped one
-            switch commonState.state {
-            case .clipped, .clipped2: commonState.state = .online
-            default: break
-            }
-        }
-        switch commonState.state {
-        case .move:
-            commonState.pathPoints.append(.moveTo(x: pos.x, y: pos.y))
-            commonState.state = .moved
-            // Data point?
-            if !clipped && pointed && !pos.close(commonState.lastPos, limit: limit) {
-                commonState.pathPoints.append(commonState.plotShape)
-                commonState.lastPos = pos
-            }
-        case .moved, .online:
-            commonState.pathPoints.append(.lineTo(x: pos.x, y: pos.y))
-            commonState.state = clipped ? .clipped : .online
-            // Data point?
-            if !clipped && pointed && !pos.close(commonState.lastPos, limit: limit) {
-                commonState.pathPoints.append(commonState.plotShape)
-                commonState.lastPos = pos
-            }
-        case .clipped:
-            // Draw line even if previously clipped but not if clipped now
-            if clipped {
-                commonState.state = .clipped2
-            } else {
-                commonState.pathPoints.append(.lineTo(x: pos.x, y: pos.y))
-                commonState.state = clipped ? .clipped2 : .online
-            }
-            // Data point?
-            if !clipped && pointed && !pos.close(commonState.lastPos, limit: limit) {
-                commonState.pathPoints.append(commonState.plotShape)
-                commonState.lastPos = pos
-            }
-        case .scatter:
-            if !clipped {
-                commonState.pathPoints.append(.moveTo(x: pos.x, y: pos.y))
-                commonState.pathPoints.append(commonState.plotShape)
-            }
-        case .clipped2:
-            // Ignore all data till we are not clipped, just move
-            commonState.pathPoints.append(.moveTo(x: pos.x, y: pos.y))
-        }
+        return Self.svgPath(state.pathPoints, stroke: stroke, width: plotWidth)
     }
 }
