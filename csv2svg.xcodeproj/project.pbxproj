@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C402620925FF3E1D0042AEA5 /* XI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402620825FF3E1D0042AEA5 /* XI.swift */; };
+		C402620A25FF3E1D0042AEA5 /* XI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402620825FF3E1D0042AEA5 /* XI.swift */; };
 		C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482B9FC25EE8D4D00E51A50 /* stderr.swift */; };
 		C40A3AFF25DC01180016EB6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A3AFE25DC01180016EB6D /* main.swift */; };
 		C40CD42C25ECD60F003944FA /* Axes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD42B25ECD60F003944FA /* Axes.swift */; };
@@ -68,6 +70,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C402620825FF3E1D0042AEA5 /* XI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XI.swift; sourceTree = "<group>"; };
 		C40A3AFB25DC01180016EB6D /* csv2svg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = csv2svg; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40A3AFE25DC01180016EB6D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C40CD42B25ECD60F003944FA /* Axes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Axes.swift; sourceTree = "<group>"; };
@@ -220,6 +223,7 @@
 				C45323E525F8CCC8007D741C /* readlines.swift */,
 				C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */,
 				C482B9FC25EE8D4D00E51A50 /* stderr.swift */,
+				C402620825FF3E1D0042AEA5 /* XI.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -440,6 +444,7 @@
 				C453243825FA7968007D741C /* Shapes.swift in Sources */,
 				C40CD42C25ECD60F003944FA /* Axes.swift in Sources */,
 				C446E81225F4BE4B007B1A05 /* PlotCommon.swift in Sources */,
+				C402620925FF3E1D0042AEA5 /* XI.swift in Sources */,
 				C49A7EC925EBCE7300503486 /* Text.swift in Sources */,
 				C40CD44125ED2390003944FA /* Plane.swift in Sources */,
 				C45323E625F8CCC8007D741C /* readlines.swift in Sources */,
@@ -484,6 +489,7 @@
 				C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */,
 				C453242625FA2C23007D741C /* DrawShapes.swift in Sources */,
 				C453243925FA7968007D741C /* Shapes.swift in Sources */,
+				C402620A25FF3E1D0042AEA5 /* XI.swift in Sources */,
 				C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */,
 				C45323FC25F90359007D741C /* PlotInfo.swift in Sources */,
 				C453244E25FBEBA6007D741C /* ShowShape.swift in Sources */,

@@ -37,6 +37,9 @@ class Settings: Codable, ReflectedStringConvertible {
     // Index for x values in csv data
     let index: Int
 
+    // sort the x values before plotting
+    let sortx: Bool
+
     // minimum and maximum for x and y axes
     // nil means not specified
     let xMax: Double
@@ -99,6 +102,7 @@ class Settings: Codable, ReflectedStringConvertible {
         switch key {
         case .black: return Defaults.black
         case .rowGrouping: return Defaults.rowGrouping
+        case .sortx: return Defaults.sortx
         default: return false
         }
     }
@@ -244,6 +248,7 @@ class Settings: Codable, ReflectedStringConvertible {
         index = Self.keyedIntValue(from: container, forKey: .index)
         opacity = Self.keyedDoubleValue(from: container, forKey: .opacity)
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
+        sortx = Self.keyedBoolValue(from: container, forKey: .sortx)
         scatterPlots = Self.keyedIntValue(from: container, forKey: .scatterPlots)
         showDataPoints = Self.keyedIntValue(from: container, forKey: .showDataPoints)
         strokeWidth = Self.keyedDoubleValue(from: container, forKey: .strokeWidth)

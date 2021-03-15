@@ -13,3 +13,8 @@ JSON errors may cause a crash, probably without an error message.<br/>
 Most of the effort was put into generating the SVG.
 
 The [usage](usage.md) is available.
+
+### Limitations
+
+The biggest limitation is the handling of large values. These are clipped and hence the slopes of the plots may
+be wrong. The values are clipped at the edges of a plane twice as wide and twice as high as the SVG.

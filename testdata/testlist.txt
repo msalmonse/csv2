@@ -11,6 +11,7 @@ big columns-ticks-index -- Big data in columns with ticks and index
 little columns-ticks-index -- Little data in columns with ticks and index
 row rows-ticks-index -- Row data with ticks and index
 posneg columns-ticks-index -- Positive and negative data with ticks and index
+posneg columns-ticks-index --sortx Positive and negative data with ticks and index with sortx
 posneg columns-ticks-index --xmin=-0.5 Positive and negative data with ticks and index, xMin of -0.5
 bipolar columns-ticks-index -- Bipolar data in columns
 bipolar rows-ticks-index -- Bipolar data in rows

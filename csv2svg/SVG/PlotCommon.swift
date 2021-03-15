@@ -42,7 +42,7 @@ extension SVG {
 // swiftlint:disable function_body_length
 
     func plotCommon(
-        _ xValues: [Double?],
+        _ xiValues: [XIvalue],
         _ yValues: [Double?],
         stroke: String,
         shape: Shape?,
@@ -54,8 +54,11 @@ extension SVG {
         let plotShape = shape?.pathCommand(w: shapeWidth) ?? .circle(r: shapeWidth)
         var lastPos = Point.inf
 
-        for i in settings.headers..<xValues.count {
-            if xValues[i] == nil || i >= yValues.count || yValues[i] == nil {
+        for i in settings.headers..<xiValues.count {
+            let x = xiValues[i].x
+            let j = xiValues[i].i
+            let y = j < yValues.count ? yValues[j] : nil
+            if x == nil ||  y == nil {
                 switch state {
                 case .moved:
                     if !pointed { pathPoints.append(plotShape) } // single data point so mark it
@@ -64,7 +67,7 @@ extension SVG {
                 default: state = .move
                 }
             } else {
-                let (pos, clipped) = posClip(ts.pos(x: xValues[i]!, y: yValues[i]!))
+                let (pos, clipped) = posClip(ts.pos(x: x!, y: y!))
                 if !clipped {
                     // move from a clipped state to an unclipped one
                     switch state {

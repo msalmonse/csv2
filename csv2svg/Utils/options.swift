@@ -54,6 +54,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default font size")
     var size = Defaults.baseFontSize
 
+    @Flag(name: .long, help: "Sort points by the x values before plotting")
+    var sortx = Defaults.sortx
+
     @Option(name: .long, help: "Default stroke width")
     var stroke = Defaults.strokeWidth
 
@@ -99,6 +102,7 @@ struct Options: ParsableCommand {
         Defaults.rowGrouping = rows
         Defaults.scattered = scattered
         Defaults.showDataPoints = showpoints
+        Defaults.sortx = sortx
         Defaults.strokeWidth = stroke
         Defaults.width = width
         Defaults.xMax = xmax

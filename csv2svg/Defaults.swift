@@ -24,6 +24,7 @@ struct Defaults {
     static var rowGrouping = false
     static var scattered = 0
     static var showDataPoints = 0
+    static var sortx = false
     static var strokeWidth = 2.0
     static var title = ""
     static var width = 800

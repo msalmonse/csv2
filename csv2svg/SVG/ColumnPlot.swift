@@ -10,15 +10,15 @@ import Foundation
 extension SVG {
 
     /// Calculate a list of x values, either a range or a data column
-    /// - Returns: list of x values
+    /// - Returns: list of x and i values
 
-    private func xList() -> [Double?] {
+    private func xiList() -> [XIvalue] {
         if index < 0 {
-            return (-settings.headerRows..<csv.rowCt).map { Double($0) }
+            return (-settings.headerRows..<csv.rowCt).map { XIvalue(x: Double($0), i: $0) }
         } else {
-            return csv.columnValues(index)
+            let val = csv.columnValues(index)
+            return (0 ..< csv.rowCt).map { XIvalue(x: val[$0], i: $0) }
         }
-
     }
 
     /// Plot the non-index and non header columns
@@ -28,12 +28,12 @@ extension SVG {
     func columnPlot(_ ts: TransScale) -> [String] {
         var paths: [String] = []
 
-        let xValues = xList()
+        let xiValues = settings.sortx ? xiList().sorted() : xiList()
         for i in 0..<csv.colCt where i != index {
             let yValues = csv.columnValues(i)
             paths.append(
                 plotCommon(
-                    xValues, yValues,
+                    xiValues, yValues,
                     stroke: colours[i],
                     shape: shapes[i],
                     pointed: settings.pointed(i),
