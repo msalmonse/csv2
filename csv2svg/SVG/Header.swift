@@ -17,7 +17,7 @@ extension SVG {
 
     static private func columnHeader(_ column: Int, csv: CSV?) -> String {
         if csv != nil && csv!.data[0].count > column && column >= 0 && csv!.data[0][column] != "" {
-            return csv!.data[0][column].replacingOccurrences(of: "\"", with: "")
+            return csv!.data[0][column]
         }
         return String(format: "Column %d", column + 1)
     }
@@ -30,7 +30,7 @@ extension SVG {
 
     static private func rowHeader(_ row: Int, csv: CSV?) -> String {
         if csv != nil && row >= 0 && row < csv!.rowCt && csv!.data[row][0] != "" {
-            return csv!.data[row][0].replacingOccurrences(of: "\"", with: "")
+            return csv!.data[row][0]
         }
         return String(format: "Row %d", row + 1)
     }

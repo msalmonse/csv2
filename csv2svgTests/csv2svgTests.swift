@@ -47,6 +47,12 @@ class csv2svgTests: XCTestCase {
             XCTAssertEqual(row.count, 5)
         }
 
+        // Check for embedded space and trailing cr
+        XCTAssertNil(csv.values[0][3], "embedded space")
+        XCTAssertNotNil(csv.values[1][3], "leading space")
+        XCTAssertNotNil(csv.values[2][1], "trailing space")
+        XCTAssertNotNil(csv.values[1][4], "trailing cr")
+
         var (min, max) = csv.columnMinMax(3)
         XCTAssertEqual(min, -110.1)
         XCTAssertEqual(max, 5220.6)
@@ -139,7 +145,7 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(svg!.dataEdges.top, testYMax)
         XCTAssertEqual(svg!.dataEdges.bottom, -110.1)
         XCTAssertEqual(svg!.dataEdges.left, -1.0)
-        XCTAssertEqual(svg!.dataEdges.right, 35.0)
+        XCTAssertEqual(svg!.dataEdges.right, 9.0)
     }
 
     func testFormats() {
@@ -196,9 +202,9 @@ func settingsJSON(_ cols: Bool) -> String {
 
 // CSV string for tests
 let csvData = """
-1,-1,9,35,"\(testName)"\r
+1,-1,9,3 5,"\(testName)"\r
 1,100.1,120.4, -110.1,0.0\r
-9,100.1,129.9,5220.6 ,0.0\r
+9,100.1 ,129.9,5220.6 ,0.0\r
 32,100.1,152.7,,\r
 "\(testName)",,,,0.0\r
 """
