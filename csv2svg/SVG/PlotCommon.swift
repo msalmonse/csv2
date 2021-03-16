@@ -20,33 +20,29 @@ extension SVG {
         var pathPoints: [PathCommand] = []
         var lastPos = Point.inf
         var state: PlotState
-        let plotShape: PathCommand
+        let props: PathProperties
 
         let limit: Double
-        let pointed: Bool
         let ts: TransScale
 
         init(
-            scattered: Bool,
+            props: PathProperties,
             ts: TransScale,
-            limit: Double,
-            pointed: Bool,
-            plotShape: PathCommand
+            limit: Double
         ) {
-            state = scattered ? .scatter : .move
             self.ts = ts
             self.limit = limit
-            self.pointed = pointed
-            self.plotShape = plotShape
+            self.props = props
+            state = props.scattered ? .scatter : .move
         }
 
         /// Handle an x or y of nil
 
-        func nilPlot() {
+        func nilPlot(_ plotShape: PathCommand) {
             switch state {
             case .moved:
                 // single data point so mark it
-                if !pointed { pathPoints.append(plotShape) }
+                if !props.pointed { pathPoints.append(plotShape) }
                 state = .move
             case .scatter, .clipped2: break
             default: state = .move
@@ -58,7 +54,11 @@ extension SVG {
         ///   - pos: position to plot
         ///   - clipped: was pos clipped?
 
-        func plotOne(_ pos: Point, clipped: Bool) {
+        func plotOne(
+            _ pos: Point,
+            clipped: Bool,
+            plotShape: PathCommand
+        ) {
             if !clipped {
                 // move from a clipped state to an unclipped one
                 switch state {
@@ -71,7 +71,7 @@ extension SVG {
                 pathPoints.append(.moveTo(x: pos.x, y: pos.y))
                 state = .moved
                 // Data point?
-                if !clipped && pointed && !pos.close(lastPos, limit: limit) {
+                if !clipped && props.pointed && !pos.close(lastPos, limit: limit) {
                     pathPoints.append(plotShape)
                     lastPos = pos
                 }
@@ -79,7 +79,7 @@ extension SVG {
                 pathPoints.append(.lineTo(x: pos.x, y: pos.y))
                 state = clipped ? .clipped : .online
                 // Data point?
-                if !clipped && pointed && !pos.close(lastPos, limit: limit) {
+                if !clipped && props.pointed && !pos.close(lastPos, limit: limit) {
                     pathPoints.append(plotShape)
                     lastPos = pos
                 }
@@ -92,7 +92,7 @@ extension SVG {
                     state = clipped ? .clipped2 : .online
                 }
                 // Data point?
-                if !clipped && pointed && !pos.close(lastPos, limit: limit) {
+                if !clipped && props.pointed && !pos.close(lastPos, limit: limit) {
                     pathPoints.append(plotShape)
                     lastPos = pos
                 }
@@ -136,30 +136,27 @@ extension SVG {
     func plotCommon(
         _ xiValues: [XIvalue],
         _ yValues: [Double?],
-        stroke: String,
-        shape: Shape?,
-        pointed: Bool = false,
+        _ props: PathProperties,
         ts: TransScale
     ) -> String {
         let state = PlotCommonState(
-            scattered: (shape != nil && !pointed),
+            props: props,
             ts: ts,
-            limit: limit,
-            pointed: pointed,
-            plotShape: shape?.pathCommand(w: shapeWidth) ?? .circle(r: shapeWidth)
+            limit: limit
         )
+        let plotShape = props.shape?.pathCommand(w: shapeWidth) ?? .circle(r: shapeWidth)
 
         for i in settings.headers..<xiValues.count {
             let x = xiValues[i].x
             let j = xiValues[i].i
             let y = j < yValues.count ? yValues[j] : nil
             if x == nil ||  y == nil {
-                state.nilPlot()
+                state.nilPlot(plotShape)
             } else {
                 let (pos, clipped) = posClip(ts.pos(x: x!, y: y!))
-                state.plotOne(pos, clipped: clipped)
+                state.plotOne(pos, clipped: clipped, plotShape: plotShape)
             }
         }
-        return Self.svgPath(state.pathPoints, stroke: stroke, width: plotWidth)
+        return Self.svgPath(state.pathPoints, stroke: props.colour, width: plotWidth)
     }
 }

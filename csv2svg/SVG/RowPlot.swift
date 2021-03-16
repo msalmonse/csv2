@@ -33,9 +33,7 @@ extension SVG {
             paths.append(
                 plotCommon(
                     xiValues, yValues,
-                    stroke: colours[i],
-                    shape: shapes[i],
-                    pointed: settings.pointed(i),
+                    props[i],
                     ts: ts
                 )
             )

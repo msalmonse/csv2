@@ -15,40 +15,41 @@ extension SVG {
     ///   - ct: number of plots
     /// - Returns: list of colours
 
-    static func plotColours(_ settings: Settings, _ ct: Int) -> [String] {
-        var colours: [String] = []
+    static func plotColours(
+        _ settings: Settings,
+        _ ct: Int,
+        _ props: inout [PathProperties]
+        ) {
         for i in 0..<ct {
             if i < settings.colours.count && settings.colours[i] != "" {
-                colours.append(settings.colours[i])
+                props[i].colour = settings.colours[i]
             } else if settings.black {
-                colours.append("black")
+                props[i].colour = "black"
             } else {
-                colours.append(Colours.nextColour())
+                props[i].colour = Colours.nextColour()
             }
         }
-
-        return colours
     }
 
     /// Generate a list of names for the plots
     /// - Parameters:
     ///   - settings: settings for plot
     ///   - ct: number of plots
-    /// - Returns: list of names
 
-    static func plotNames(_ settings: Settings, _ csv: CSV, _ ct: Int) -> [String] {
-        var names: [String] = []
+    static func plotNames(
+        _ settings: Settings,
+        _ csv: CSV, _ ct: Int,
+        _ props: inout [PathProperties]
+    ) {
         for i in 0..<ct {
             if i < settings.names.count && settings.names[i] != "" {
-                names.append(settings.names[i])
+                props[i].name = settings.names[i]
             } else if settings.headers > 0 {
-                names.append(SVG.headerText(i, csv: csv, inColumns: settings.inColumns))
+                props[i].name = SVG.headerText(i, csv: csv, inColumns: settings.inColumns)
             } else {
-                names.append(SVG.headerText(i, csv: nil, inColumns: settings.inColumns))
+                props[i].name = SVG.headerText(i, csv: nil, inColumns: settings.inColumns)
             }
         }
-
-        return names
     }
 
     /// Generate a list of names for the plots
@@ -58,23 +59,32 @@ extension SVG {
     ///   - index: the row or column with the index
     /// - Returns: list of names
 
-    static func plotShapes(_ settings: Settings, _ ct: Int, index: Int) -> [Shape?] {
-        var shapes: [Shape?] = []
+    static func plotShapes(
+        _ settings: Settings,
+        _ ct: Int, index: Int,
+        _ props: inout [PathProperties]
+        ) {
         for i in 0..<ct {
             // Don't attach a shape if we aren't a scatter plot or a plot with data points or are index
-            if !(settings.scattered(i) || settings.pointed(i)) || i == settings.index - 1 {
-                shapes.append(nil)
-            } else {
+            if (settings.scattered(i) || settings.pointed(i)) && i != settings.index - 1 {
                 if i < settings.shapes.count && settings.shapes[i] != "" {
-                    shapes.append(
-                        Shape.lookup(settings.shapes[i]) ?? Shape.nextShape()
-                    )
+                    props[i].shape = Shape.lookup(settings.shapes[i]) ?? Shape.nextShape()
                 } else {
-                    shapes.append(Shape.nextShape())
+                    props[i].shape = Shape.nextShape()
                 }
             }
         }
+    }
 
-        return shapes
+    static func plotFlags(
+        _ settings: Settings,
+        _ ct: Int,
+        _ props: inout [PathProperties]
+    ) {
+        for i in 0..<ct {
+            let mask = 1 << i
+            props[i].pointed = (settings.showDataPoints & mask) == mask
+            props[i].scattered = (settings.scatterPlots & mask) == mask
+        }
     }
 }

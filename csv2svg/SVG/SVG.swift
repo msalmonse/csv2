@@ -38,14 +38,8 @@ class SVG: ReflectedStringConvertible {
     // Positions for various elements
     let positions: Positions
 
-    // path colours
-    let colours: [String]
-
-    // path tags
-    let names: [String]
-
-    // path shapes
-    let shapes: [Shape?]
+    // Path Properties
+    let props: [PathProperties]
 
     // limit of distance between data points
     let limit: Double
@@ -90,8 +84,10 @@ class SVG: ReflectedStringConvertible {
 
         // Initialize path info
         let ct = settings.inColumns ? csv.colCt : csv.rowCt
-        self.colours = SVG.plotColours(settings, ct)
-        self.names = SVG.plotNames(settings, csv, ct)
-        self.shapes = SVG.plotShapes(settings, ct, index: settings.index - 1)
+        var props = Array(repeating: PathProperties(), count: ct)
+        SVG.plotColours(settings, ct, &props)
+        SVG.plotNames(settings, csv, ct, &props)
+        SVG.plotShapes(settings, ct, index: settings.index - 1, &props)
+        self.props = props
     }
 }

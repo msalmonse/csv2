@@ -59,8 +59,8 @@ extension SVG {
         ]
 
         for i in 0..<iMax where i != index {
-            let text = names[i]
-            let colour = colours[i]
+            let text = props[i].name!
+            let colour = props[i].colour!
             legends.append("<tspan dx=\"\(legendPX)\" fill=\"\(colour)\">\(text)</tspan>")
         }
         legends.append("</text>")
