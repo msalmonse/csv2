@@ -157,7 +157,7 @@ extension SVG {
                 state.plotOne(pos, clipped: clipped, plotShape: plotShape)
             }
         }
-        state.nilPlot(plotShape)
+        state.nilPlot(plotShape)        // handle any trailing singletons
         return Self.svgPath(state.pathPoints, stroke: props.colour, width: plotWidth)
     }
 }
