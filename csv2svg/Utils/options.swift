@@ -45,7 +45,7 @@ struct Options: ParsableCommand {
     @Flag(name: .long, help: "Print a list of shape names")
     var shapes = false
 
-    @Option(name: .long, help: "Generate an SVG with just the named shape")
+    @Option(name: .long, help: "Generate an SVG with just the named shape @ 6X strokewidth")
     var show: String = ""
 
     @Option(name: .long, help: "Default data plots with points")

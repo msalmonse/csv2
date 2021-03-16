@@ -17,7 +17,7 @@ OPTIONS:
   --rows                  Default to grouping data by rows
   --scattered <scattered> Default plots to show as scattered (default: 0)
   --shapes                Print a list of shape names
-  --show <show>           Generate an SVG with just the named shape
+  --show <show>           Generate an SVG with just the named shape @ 6X strokewidth
   --showpoints <showpoints>
                           Default data plots with points (default: 0)
   --size <size>           Default font size (default: 10.0)
@@ -29,8 +29,10 @@ OPTIONS:
   --width <width>         Default svg width (default: 800)
   --xmax <xmax>           Default abscissa maximum (default: -inf)
   --xmin <xmin>           Default abscissa minimum (default: inf)
+  --xtick <xtick>         Default x tick (default: 0.0)
   --ymax <ymax>           Default ordinate maximum (default: -inf)
   --ymin <ymin>           Default ordinate minimum (default: inf)
+  --ytick <ytick>         Default y tick (default: 0.0)
   -h, --help              Show help information.
 
 ```
