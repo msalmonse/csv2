@@ -88,6 +88,7 @@ class SVG: ReflectedStringConvertible {
         SVG.plotColours(settings, ct, &props)
         SVG.plotNames(settings, csv, ct, &props)
         SVG.plotShapes(settings, ct, index: settings.index - 1, &props)
+        SVG.plotFlags(settings, ct, &props)
         self.props = props
     }
 }
