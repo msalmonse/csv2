@@ -67,6 +67,8 @@
 		C4F20C0926012A67005D2FE1 /* PathProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C0726012A67005D2FE1 /* PathProperties.swift */; };
 		C4F20C112601DF4D005D2FE1 /* Dash.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C102601DF4D005D2FE1 /* Dash.swift */; };
 		C4F20C122601DF4D005D2FE1 /* Dash.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C102601DF4D005D2FE1 /* Dash.swift */; };
+		C4F20C1626027B7C005D2FE1 /* Legends.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C1526027B7C005D2FE1 /* Legends.swift */; };
+		C4F20C1726027B7C005D2FE1 /* Legends.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C1526027B7C005D2FE1 /* Legends.swift */; };
 		C4FE49FB25F643E30076EF5E /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4FE49FA25F643E30076EF5E /* ArgumentParser */; };
 		C4FE49FF25F6440F0076EF5E /* options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE49FE25F6440F0076EF5E /* options.swift */; };
 		C4FE4A0525F66E2C0076EF5E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE4A0425F66E2C0076EF5E /* Defaults.swift */; };
@@ -125,6 +127,7 @@
 		C4EA5D2725EB8F4D00E104E0 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		C4F20C0726012A67005D2FE1 /* PathProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathProperties.swift; sourceTree = "<group>"; };
 		C4F20C102601DF4D005D2FE1 /* Dash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dash.swift; sourceTree = "<group>"; };
+		C4F20C1526027B7C005D2FE1 /* Legends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Legends.swift; sourceTree = "<group>"; };
 		C4FE49F225F6036A0076EF5E /* bipolar.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = bipolar.csv; path = testdata/bipolar.csv; sourceTree = "<group>"; };
 		C4FE49FE25F6440F0076EF5E /* options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = options.swift; sourceTree = "<group>"; };
 		C4FE4A0425F66E2C0076EF5E /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 				C453242425FA2C23007D741C /* DrawShapes.swift */,
 				C45323EC25F8EF0D007D741C /* Gen.swift */,
 				C40CD43925ED025F003944FA /* Header.swift */,
+				C4F20C1526027B7C005D2FE1 /* Legends.swift */,
 				C4255F3E25E423A7002DFE80 /* Path.swift */,
 				C4F20C0726012A67005D2FE1 /* PathProperties.swift */,
 				C40CD44025ED2390003944FA /* Plane.swift */,
@@ -447,6 +451,7 @@
 				C4FE49FF25F6440F0076EF5E /* options.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
 				C453244D25FBEBA6007D741C /* ShowShape.swift in Sources */,
+				C4F20C1626027B7C005D2FE1 /* Legends.swift in Sources */,
 				C453242525FA2C23007D741C /* DrawShapes.swift in Sources */,
 				C480848025E6776900BD0A24 /* Sides.swift in Sources */,
 				C453242C25FA5D99007D741C /* formats.swift in Sources */,
@@ -487,6 +492,7 @@
 				C4FE4A0A25F675190076EF5E /* Defaults.swift in Sources */,
 				C40CD43625ED007A003944FA /* Axes.swift in Sources */,
 				C449F44F25EC1325006C67EB /* Text.swift in Sources */,
+				C4F20C1726027B7C005D2FE1 /* Legends.swift in Sources */,
 				C446E81D25F4E0F7007B1A05 /* PlotCommon.swift in Sources */,
 				C4F20C0926012A67005D2FE1 /* PathProperties.swift in Sources */,
 				C40CD44225ED2390003944FA /* Plane.swift in Sources */,

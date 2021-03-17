@@ -1,5 +1,5 @@
 column none -- Column data with no JSON settings
-column none --black Column data with no JSON settings but black option
+column none --black,--dashed=-1 Column data with no JSON settings but black and dashed options
 column none --index=1,--headers=1 Column data with no JSON but index and header options
 column none --index=1,--headers=1,--scattered=-1 Column data with no JSON but index, header and scattered options
 column none --bg=gold,--size=22,--width=1000 Column data with no JSON but bg, width and size options

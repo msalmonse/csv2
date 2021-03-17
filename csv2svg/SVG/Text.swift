@@ -45,26 +45,6 @@ extension SVG {
             """
     }
 
-    /// Add legends to an SVG
-    /// - Returns: Text string with all legends
-
-    func svgLegends() -> String {
-        let iMax = settings.inColumns ? csv.colCt : csv.rowCt
-        var legends = [
-            "<text x=\"\" y=\"\" ",
-            "style=\"text-anchor: middle; font-size: \(legendPX)\">"
-        ]
-
-        for i in 0..<iMax where i != index {
-            let text = props[i].name!
-            let colour = props[i].colour!
-            legends.append("<tspan dx=\"\(legendPX)\" fill=\"\(colour)\">\(text)</tspan>")
-        }
-        legends.append("</text>")
-
-        return legends.joined()
-    }
-
     /// Format a value suitable to be used as a label
     /// - Parameters:
     ///   - value: value to format

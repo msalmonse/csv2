@@ -14,6 +14,9 @@ class SVG: ReflectedStringConvertible {
     var legendPX: String { String(format: "%.1fpx", settings.legendSize) }
     var titlePX: String { String(format: "%.1fpx", settings.titleSize) }
 
+    // number of rows or columns
+    var plotCount: Int
+
     // plot widths
     var plotWidth: Double { settings.strokeWidth }
     var shapeWidth: Double { plotWidth * 1.75 }
@@ -82,14 +85,16 @@ class SVG: ReflectedStringConvertible {
             left: positions.leftX, right: positions.rightX
         )
 
+        plotCount = settings.inColumns ? csv.colCt : csv.rowCt
+
         // Initialize path info
-        let ct = settings.inColumns ? csv.colCt : csv.rowCt
-        var props = Array(repeating: PathProperties(), count: ct)
-        SVG.plotFlags(settings, ct, &props)             // setup first so that the other functions can use them
-        SVG.plotColours(settings, ct, &props)
-        SVG.plotDashes(settings, ct, plotEdges.width, &props)
-        SVG.plotNames(settings, csv, ct, &props)
-        SVG.plotShapes(settings, ct, index: settings.index - 1, &props)
+        var props = Array(repeating: PathProperties(), count: plotCount)
+        // setup first so that the other functions can use them
+        SVG.plotFlags(settings, plotCount, &props)
+        SVG.plotColours(settings, plotCount, &props)
+        SVG.plotDashes(settings, plotCount, plotEdges.width, &props)
+        SVG.plotNames(settings, csv, plotCount, &props)
+        SVG.plotShapes(settings, plotCount, index: settings.index - 1, &props)
         self.props = props
     }
 }

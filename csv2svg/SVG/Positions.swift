@@ -14,6 +14,7 @@ extension SVG {
     struct Positions {
         // Vertical positions
         let bottomY: Double
+        let legendY: Double
         let titleY: Double
         let xTicksY: Double
         let xTitleY: Double
@@ -26,8 +27,9 @@ extension SVG {
         let yTitleX: Double
 
         init(_ settings: Settings, dataLeft: Double) {
+            legendY = settings.legendSize * 5.0
             // Calculate vertical positions
-            var pos = Double(settings.height - 5)
+            var pos = Double(settings.height) - settings.titleSize/3.0
             titleY = pos
             if settings.title != "" { pos -= settings.titleSize * 1.25 }
             xTitleY = pos
