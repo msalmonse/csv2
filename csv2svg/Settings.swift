@@ -40,6 +40,9 @@ class Settings: Codable, ReflectedStringConvertible {
     // sort the x values before plotting
     let sortx: Bool
 
+    // Include plot info in svg
+    let legends: Bool
+
     // minimum and maximum for x and y axes
     // nil means not specified
     let xMax: Double
@@ -67,22 +70,6 @@ class Settings: Codable, ReflectedStringConvertible {
     // Shapes to use for datapoints and scatter plots
     let shapes: [String]
 
-    /// Test to see if a plot is a scatter plot
-    /// - Parameter plot: plot number
-    /// - Returns: true if a scatter plot
-
-    func  scattered(_ plot: Int) -> Bool {
-        return ((scatterPlots >> plot) & 1) == 1
-    }
-
-    /// Test to see if a plot has data points
-    /// - Parameter plot: plot number
-    /// - Returns: true if has data points
-
-    func  pointed(_ plot: Int) -> Bool {
-        return ((showDataPoints >> plot) & 1) == 1
-    }
-
     // Dash patterns
     let dashes: [String]
 
@@ -106,6 +93,7 @@ class Settings: Codable, ReflectedStringConvertible {
     private static func boolDefault(_ key: CodingKeys) -> Bool {
         switch key {
         case .black: return Defaults.black
+        case .legends: return Defaults.legends
         case .rowGrouping: return Defaults.rowGrouping
         case .sortx: return Defaults.sortx
         default: return false
@@ -255,6 +243,7 @@ class Settings: Codable, ReflectedStringConvertible {
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
         height = Self.keyedIntValue(from: container, forKey: .height)
         index = Self.keyedIntValue(from: container, forKey: .index)
+        legends = Self.keyedBoolValue(from: container, forKey: .legends)
         opacity = Self.keyedDoubleValue(from: container, forKey: .opacity)
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
         sortx = Self.keyedBoolValue(from: container, forKey: .sortx)

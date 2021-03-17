@@ -36,6 +36,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default index row or column")
     var index = Defaults.index
 
+    @Flag(name: .long, help: "Don't include plot names, colours, dashes and shapes")
+    var nolegends = !Defaults.legends
+
     @Option(name: .long, help: "Default index row or column")
     var opacity = Defaults.opacity
 
@@ -108,6 +111,7 @@ struct Options: ParsableCommand {
         Defaults.headers = headers
         Defaults.height = height
         Defaults.index = index
+        Defaults.legends = !nolegends
         Defaults.opacity = opacity
         Defaults.rowGrouping = rows
         Defaults.scattered = scattered

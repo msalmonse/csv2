@@ -19,6 +19,7 @@ struct Defaults {
     static var headers = 0
     static var height = 600
     static var index = 0
+    static var legends = true
     static let maxDefault = -Double.infinity
     static let minDefault = Double.infinity
     static var opacity = 1.0

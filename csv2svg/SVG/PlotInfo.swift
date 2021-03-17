@@ -88,7 +88,7 @@ extension SVG {
         ) {
         for i in 0..<ct {
             // Don't attach a shape if we aren't a scatter plot or a plot with data points or are index
-            if (settings.scattered(i) || settings.pointed(i)) && i != settings.index - 1 {
+            if (props[i].scattered || props[i].pointed) && i != settings.index - 1 {
                 if i < settings.shapes.count && settings.shapes[i] != "" {
                     props[i].shape = Shape.lookup(settings.shapes[i]) ?? Shape.nextShape()
                 } else {
