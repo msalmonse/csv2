@@ -18,7 +18,7 @@ extension SVG {
             PathCommand.moveTo(x: x, y: y),
             props.shape!.pathCommand(w: shapeWidth)
         ],
-        props)
+        props, width: plotWidth)
     }
 
     private func pointedLine(
@@ -32,7 +32,7 @@ extension SVG {
             props.shape!.pathCommand(w: shapeWidth),
             .horizTo(x: right)
         ],
-        props)
+        props, width: plotWidth)
     }
 
     private func plainLine(
@@ -43,7 +43,7 @@ extension SVG {
             PathCommand.moveTo(x: left, y: y),
             .horizTo(x: right)
         ],
-        props)
+        props, width: plotWidth)
     }
 
     /// Add legends to an SVG
@@ -57,7 +57,7 @@ extension SVG {
         var y = positions.legendY
         let yStep = settings.legendSize * 1.5
         var legends: [String] = [
-            "<text x=\"\(x)\" y=\"\(y)\" font-size=\"\(size)\" font-weight=\"bold\">Legends</text>"
+            "<text x=\"\(x)\" y=\"\(y)\" font-size=\"\(size)\" font-weight=\"bold\">Legends:</text>"
         ]
 
         for i in 0..<iMax where i != index {
@@ -72,7 +72,7 @@ extension SVG {
             if propi.dashed || propi.pointed || propi.scattered { y += yStep }
             switch (propi.dashed, propi.pointed, propi.scattered) {
             case (_,_,true):
-                legends.append(scatteredLine(x, lineY, propi))
+                legends.append(scatteredLine(x + shapeWidth, lineY, propi))
             case (_,true,false):
                 legends.append(pointedLine(x, xMid, width, lineY, propi))
             case (true,_,false):
