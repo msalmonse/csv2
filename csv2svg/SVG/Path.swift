@@ -88,7 +88,7 @@ extension SVG {
         ]
 
         if props.dashed {
-            let dashes = props.dash ?? Dash.nextDash()
+            let dashes = props.dash ?? Dash.nextDash(800.0)
             style.append("stroke-dasharray: \(dashes)")
         }
 

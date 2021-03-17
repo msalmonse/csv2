@@ -87,7 +87,7 @@ class SVG: ReflectedStringConvertible {
         var props = Array(repeating: PathProperties(), count: ct)
         SVG.plotFlags(settings, ct, &props)             // setup first so that the other functions can use them
         SVG.plotColours(settings, ct, &props)
-        SVG.plotDashes(settings, ct, &props)
+        SVG.plotDashes(settings, ct, plotEdges.width, &props)
         SVG.plotNames(settings, csv, ct, &props)
         SVG.plotShapes(settings, ct, index: settings.index - 1, &props)
         self.props = props

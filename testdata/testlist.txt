@@ -16,6 +16,7 @@ posneg columns-ticks-index --xmin=-0.5 Positive and negative data with ticks and
 bipolar columns-ticks-index -- Bipolar data in columns
 bipolar rows-ticks-index -- Bipolar data in rows
 plot plot -- Plot test in columns
+plot plot --dashed=-1 Plot test in columns with dashed lines
 plot plot --rows Plot test in rows
 shapes shapes -- All shapes
 trig trig -- Trig curves

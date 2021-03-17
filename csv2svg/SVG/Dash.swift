@@ -11,21 +11,21 @@ extension SVG {
     class Dash {
         static private var next = -1
         static private let dashList = [
-            "10 15",
-            "5 15 2",
-            "15",
-            "15 5 5",
-            "5 10 15",
-            "25"
+            [ 1.0, 1.0, 2.0, 1.0 ],
+            [ 2.5 ],
+            [ 3.0, 1.0, 2.0, 1.0 ],
+            [ 3.5, 1.5 ],
+            [ 1.0 ]
         ]
 
         /// Get the dash in the sequence
         /// - Returns: next dash
 
-        static func nextDash() -> String {
+        static func nextDash(_ w: Double) -> String {
+            let mult = w * 0.01
             next += 1
             if next >= dashList.count { next = 0 }
-            return dashList[ next ]
+            return dashList[ next ].map { ($0 * mult).f(0) }.joined(separator:  " ")
         }
 
         /// Reset the dash sequence

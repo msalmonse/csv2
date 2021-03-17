@@ -35,18 +35,20 @@ extension SVG {
     /// - Parameters:
     ///   - settings: settings for plot
     ///   - ct: number of plots
+    ///   - width: the plottable width
     /// - Returns: list of dashes
 
     static func plotDashes(
         _ settings: Settings,
         _ ct: Int,
+        _ width: Double,
         _ props: inout [PathProperties]
         ) {
         for i in 0..<ct {
             if i < settings.dashes.count && settings.dashes[i] != "" {
                 props[i].dash = settings.dashes[i]
             } else if props[i].dashed {
-                props[i].dash = Dash.nextDash()
+                props[i].dash = Dash.nextDash(width)
             }
         }
     }
