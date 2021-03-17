@@ -85,10 +85,11 @@ class SVG: ReflectedStringConvertible {
         // Initialize path info
         let ct = settings.inColumns ? csv.colCt : csv.rowCt
         var props = Array(repeating: PathProperties(), count: ct)
+        SVG.plotFlags(settings, ct, &props)             // setup first so that the other functions can use them
         SVG.plotColours(settings, ct, &props)
+        SVG.plotDashes(settings, ct, &props)
         SVG.plotNames(settings, csv, ct, &props)
         SVG.plotShapes(settings, ct, index: settings.index - 1, &props)
-        SVG.plotFlags(settings, ct, &props)
         self.props = props
     }
 }

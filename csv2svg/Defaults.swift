@@ -14,6 +14,7 @@ struct Defaults {
     static var backgroundColour = ""
     static var baseFontSize = 10.0
     static var black = false
+    static var dashedLines = 0
     static var dataPointDistance = 5.0 * strokeWidth
     static var headers = 0
     static var height = 600

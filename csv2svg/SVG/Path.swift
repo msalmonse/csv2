@@ -65,32 +65,36 @@ extension SVG {
     /// plot a path from a list of points
     /// - Parameters:
     ///   - points: a list of the points or shapes on path
-    ///   - stroke: contents of the stroke paramater of the path
+    ///   - properties: plot properties
     ///   - width: setting for stroke-width, (default 1)
     ///   - linecap: setting for stroke-linecap (default "round")
     /// - Returns: a path element
 
     static func svgPath(
         _ points: [PathCommand],
-        stroke: String? = nil,
+        _ props: PathProperties,
         width: Double = 1.0,
         linecap: String = "round"
     ) -> String {
-        let strokeColour = stroke ?? Colours.nextColour()
-        let style = [
+        // a path needs 2 points
+        guard points.count >= 2 else { return "" }
+
+        let strokeColour = props.colour ?? Colours.nextColour()
+        var style = [
             "stroke: \(strokeColour)",
             "fill: none",
             "stroke-width: \(width.f(1))",
             "stroke-linecap: \(linecap)"
-        ].joined(separator: "; ")
+        ]
 
-        // a path needs 2 points
-        guard points.count >= 2 else { return "" }
+        if props.dashed {
+            let dashes = props.dash ?? Dash.nextDash()
+            style.append("stroke-dasharray: \(dashes)")
+        }
 
         var result = [ "<path d=\"" ]
-
         result.append(contentsOf: points.map { $0.command() })
-        result.append("\" style=\"\(style)\" />")
+        result.append("\" style=\"\(style.joined(separator: ";"))\" />")
 
         return result.joined(separator: " ")
     }

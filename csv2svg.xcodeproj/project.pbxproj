@@ -65,6 +65,8 @@
 		C4EA5D2B25EB90C900E104E0 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* Colours.swift */; };
 		C4F20C0826012A67005D2FE1 /* PathProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C0726012A67005D2FE1 /* PathProperties.swift */; };
 		C4F20C0926012A67005D2FE1 /* PathProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C0726012A67005D2FE1 /* PathProperties.swift */; };
+		C4F20C112601DF4D005D2FE1 /* Dash.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C102601DF4D005D2FE1 /* Dash.swift */; };
+		C4F20C122601DF4D005D2FE1 /* Dash.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C102601DF4D005D2FE1 /* Dash.swift */; };
 		C4FE49FB25F643E30076EF5E /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4FE49FA25F643E30076EF5E /* ArgumentParser */; };
 		C4FE49FF25F6440F0076EF5E /* options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE49FE25F6440F0076EF5E /* options.swift */; };
 		C4FE4A0525F66E2C0076EF5E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE4A0425F66E2C0076EF5E /* Defaults.swift */; };
@@ -122,6 +124,7 @@
 		C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransScale.swift; sourceTree = "<group>"; };
 		C4EA5D2725EB8F4D00E104E0 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		C4F20C0726012A67005D2FE1 /* PathProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathProperties.swift; sourceTree = "<group>"; };
+		C4F20C102601DF4D005D2FE1 /* Dash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dash.swift; sourceTree = "<group>"; };
 		C4FE49F225F6036A0076EF5E /* bipolar.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = bipolar.csv; path = testdata/bipolar.csv; sourceTree = "<group>"; };
 		C4FE49FE25F6440F0076EF5E /* options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = options.swift; sourceTree = "<group>"; };
 		C4FE4A0425F66E2C0076EF5E /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
@@ -201,6 +204,7 @@
 				C40CD42B25ECD60F003944FA /* Axes.swift */,
 				C4EA5D2725EB8F4D00E104E0 /* Colours.swift */,
 				C480847B25E4E97300BD0A24 /* ColumnPlot.swift */,
+				C4F20C102601DF4D005D2FE1 /* Dash.swift */,
 				C453242425FA2C23007D741C /* DrawShapes.swift */,
 				C45323EC25F8EF0D007D741C /* Gen.swift */,
 				C40CD43925ED025F003944FA /* Header.swift */,
@@ -439,6 +443,7 @@
 				C4FE4A0525F66E2C0076EF5E /* Defaults.swift in Sources */,
 				C446E80925F4BAA3007B1A05 /* RowPlot.swift in Sources */,
 				C480847C25E4E97300BD0A24 /* ColumnPlot.swift in Sources */,
+				C4F20C112601DF4D005D2FE1 /* Dash.swift in Sources */,
 				C4FE49FF25F6440F0076EF5E /* options.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
 				C453244D25FBEBA6007D741C /* ShowShape.swift in Sources */,
@@ -471,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C48B823625E2967100EAEAE3 /* Settings.swift in Sources */,
+				C4F20C122601DF4D005D2FE1 /* Dash.swift in Sources */,
 				C45323EE25F8EF0D007D741C /* Gen.swift in Sources */,
 				C480848325E6809400BD0A24 /* Sides.swift in Sources */,
 				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,

@@ -19,6 +19,14 @@ Set undefined plot colours to "black"
 The colours to be used to plot the column or row. The index, if present, must be included although never used.
 Columns or rows that aren't defined are assigned a colour sequentially from an internal list.
 
+**dashedLines** (Int **0**)<br/>
+**Option:** `--dashed`<br/>
+A bit vector of the plots to draw as dashed lines.<sup>[5]](#fn5)</sup>
+
+**dashes** (Array of Strings)<br/>
+The dash patterns to be used to plot the column or row. The index, if present, must be included although never used.
+Columns or rows that aren't defined are assigned a pattern sequentially from an internal list.
+
 **dataPointDistance** (Double **10.0**)<br/>
 **Option:** `--distance`<br/>
 The minimum number of pixels between adjacent data points

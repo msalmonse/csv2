@@ -56,7 +56,9 @@ class Settings: Codable, ReflectedStringConvertible {
     var inColumns: Bool { return !rowGrouping }
     var inRows: Bool { return rowGrouping }
 
-    // Plats to show as scattered
+    // Use dashed lines
+    let dashedLines: Int
+    // Plots to show as scattered
     let scatterPlots: Int
     // show data points
     let showDataPoints: Int
@@ -80,6 +82,9 @@ class Settings: Codable, ReflectedStringConvertible {
     func  pointed(_ plot: Int) -> Bool {
         return ((showDataPoints >> plot) & 1) == 1
     }
+
+    // Dash patterns
+    let dashes: [String]
 
     // Path colours
     let colours: [String]
@@ -162,6 +167,7 @@ class Settings: Codable, ReflectedStringConvertible {
 
     private static func intDefault(_ key: CodingKeys) -> Int {
         switch key {
+        case .dashedLines: return Defaults.dashedLines
         case .headerColumns: return Defaults.headers
         case .headerRows: return Defaults.headers
         case .height: return Defaults.height
@@ -243,6 +249,7 @@ class Settings: Codable, ReflectedStringConvertible {
         backgroundColour = Self.keyedStringValue(from: container, forKey: .backgroundColour)
         baseFontSize = Self.keyedDoubleValue(from: container, forKey: .baseFontSize)
         black = Self.keyedBoolValue(from: container, forKey: .black)
+        dashedLines = Self.keyedIntValue(from: container, forKey: .dashedLines)
         dataPointDistance = Self.keyedDoubleValue(from: container, forKey: .dataPointDistance)
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
@@ -268,6 +275,7 @@ class Settings: Codable, ReflectedStringConvertible {
         yTick = Self.keyedDoubleValue(from: container, forKey: .yTick)
 
         colours = Self.keyedStringArray(from: container, forKey: .colours)
+        dashes = Self.keyedStringArray(from: container, forKey: .dashes)
         names = Self.keyedStringArray(from: container, forKey: .names)
         shapes = Self.keyedStringArray(from: container, forKey: .shapes)
     }

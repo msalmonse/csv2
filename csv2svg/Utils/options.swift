@@ -18,6 +18,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default colour")
     var colour = "black"
 
+    @Option(name: .long, help: "Default plots to show as with dashed lines")
+    var dashed = Defaults.dashedLines
+
     @Option(name: .shortAndLong, help: "Add debug info")
     var debug = 0
 
@@ -100,6 +103,7 @@ struct Options: ParsableCommand {
         Defaults.backgroundColour = bg
         Defaults.baseFontSize = size
         Defaults.black = black
+        Defaults.dashedLines = dashed
         Defaults.dataPointDistance = distance
         Defaults.headers = headers
         Defaults.height = height

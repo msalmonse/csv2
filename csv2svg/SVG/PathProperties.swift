@@ -9,11 +9,18 @@ import Foundation
 
 extension SVG {
     struct PathProperties {
-        var colour: String? = nil
-        var dash: String? = nil
-        var name: String? = nil
+        var colour: String?
+        var dash: String?
+        var name: String?
+        var dashed = false
         var pointed = false
         var scattered = false
-        var shape: Shape? = nil
+        var shape: Shape?
+    }
+
+    func pathProperty(withColour colour: String) -> PathProperties {
+        var props = PathProperties()
+        props.colour = colour
+        return props
     }
 }

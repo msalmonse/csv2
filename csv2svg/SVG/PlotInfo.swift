@@ -31,6 +31,26 @@ extension SVG {
         }
     }
 
+    /// Generate a list of dashes for the plots
+    /// - Parameters:
+    ///   - settings: settings for plot
+    ///   - ct: number of plots
+    /// - Returns: list of dashes
+
+    static func plotDashes(
+        _ settings: Settings,
+        _ ct: Int,
+        _ props: inout [PathProperties]
+        ) {
+        for i in 0..<ct {
+            if i < settings.dashes.count && settings.dashes[i] != "" {
+                props[i].dash = settings.dashes[i]
+            } else if props[i].dashed {
+                props[i].dash = Dash.nextDash()
+            }
+        }
+    }
+
     /// Generate a list of names for the plots
     /// - Parameters:
     ///   - settings: settings for plot
@@ -76,6 +96,11 @@ extension SVG {
         }
     }
 
+    /// Calculate the flags for a plot
+    /// - Parameters:
+    ///   - settings: settings
+    ///   - ct: number of plots
+    ///   - props: properties list
     static func plotFlags(
         _ settings: Settings,
         _ ct: Int,
@@ -83,6 +108,7 @@ extension SVG {
     ) {
         for i in 0..<ct {
             let mask = 1 << i
+            props[i].dashed = (settings.dashedLines & mask) == mask
             props[i].pointed = (settings.showDataPoints & mask) == mask
             props[i].scattered = (settings.scatterPlots & mask) == mask
         }

@@ -8,6 +8,7 @@ OPTIONS:
   --bg <bg>               Background colour
   --black                 Set default colour to black
   --colour <colour>       Default colour (default: black)
+  --dashed <dashed>       Default plots to show as with dashed lines (default: 0)
   -d, --debug <debug>     Add debug info (default: 0)
   --distance <distance>   Minimum distance between data points (default: 10.0)
   --headers <headers>     Default header rows or columns (default: 0)

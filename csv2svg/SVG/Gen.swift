@@ -75,6 +75,12 @@ extension SVG {
         return result
     }
 
+    /// Generate an SVG to display a shape
+    /// - Parameters:
+    ///   - name: shape name
+    ///   - stroke: stroke colour
+    /// - Returns: SVG as an array of strings
+
     func shapeGen(name: String, stroke: String) -> [String] {
         let shape = Shape.lookup(name)
         var result: [String] = [ xmlTag, svgTag ]
@@ -82,7 +88,7 @@ extension SVG {
             PathCommand.moveTo(x: width/2.0, y: height/2.0),
             shape!.pathCommand(w: shapeWidth)
         ]
-        result.append(SVG.svgPath(path, stroke: stroke, width: settings.strokeWidth))
+        result.append(SVG.svgPath(path, pathProperty(withColour: stroke), width: settings.strokeWidth))
         result.append(svgTagEnd)
 
         return result
