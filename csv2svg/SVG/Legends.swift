@@ -17,7 +17,8 @@ extension SVG {
         return SVG.svgPath([
             PathCommand.moveTo(x: x, y: y),
             props.shape!.pathCommand(w: shapeWidth)
-        ],props)
+        ],
+        props)
     }
 
     private func pointedLine(
@@ -30,7 +31,19 @@ extension SVG {
             .horizTo(x: mid),
             props.shape!.pathCommand(w: shapeWidth),
             .horizTo(x: right)
-        ],props)
+        ],
+        props)
+    }
+
+    private func plainLine(
+        _ left: Double, _ right: Double, _ y: Double,
+        _ props: PathProperties
+    ) -> String {
+        return SVG.svgPath([
+            PathCommand.moveTo(x: left, y: y),
+            .horizTo(x: right)
+        ],
+        props)
     }
 
     /// Add legends to an SVG
@@ -62,6 +75,8 @@ extension SVG {
                 legends.append(scatteredLine(x, lineY, propi))
             case (_,true,false):
                 legends.append(pointedLine(x, xMid, width, lineY, propi))
+            case (true,_,false):
+                legends.append(plainLine(x, width, lineY, propi))
             default: break
             }
         }
