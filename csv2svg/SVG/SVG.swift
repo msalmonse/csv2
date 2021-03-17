@@ -79,7 +79,7 @@ class SVG: ReflectedStringConvertible {
 
         plotEdges = Plane(
             top: settings.baseFontSize, bottom: positions.bottomY,
-            left: positions.leftX, right: width - settings.labelSize * 2.0
+            left: positions.leftX, right: positions.rightX
         )
 
         // Initialize path info

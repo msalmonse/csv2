@@ -20,7 +20,7 @@ plot plot --dashed=-1 Plot test in columns with dashed lines
 plot plot --rows Plot test in rows
 shapes shapes -- All shapes
 trig trig -- Trig curves
-trig trig --opacity=.3 Trig curves with opacity
+trig trig --opacity=.3,--nolegends Trig curves with opacity and no labels
 trig trig --dashed=-1 Trig curves with dashed lines
 trig trig --showpoints=-1,--xmin=80,--xmax=100 Trig curves with data points from 80...100
 trig trig --showpoints=-1 Trig curves with data points

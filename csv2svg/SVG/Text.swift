@@ -46,15 +46,12 @@ extension SVG {
     }
 
     /// Add legends to an SVG
-    /// - Parameters:
-    ///   - x: mid point of legends
-    ///   - y: baseline height
     /// - Returns: Text string with all legends
 
-    func svgLegends(_ x: Double, _ y: Double) -> String {
+    func svgLegends() -> String {
         let iMax = settings.inColumns ? csv.colCt : csv.rowCt
         var legends = [
-            "<text x=\"\(x.f(2))\" y=\"\(y.f(2))\" ",
+            "<text x=\"\" y=\"\" ",
             "style=\"text-anchor: middle; font-size: \(legendPX)\">"
         ]
 

@@ -58,7 +58,7 @@ extension SVG {
         let tick = tickNorm(
             settings.xTick,
             dpp: dataEdges.width/plotEdges.width,
-            minSize: settings.labelSize * 3.0,
+            minSize: settings.labelSize * 3.5,
             maxSize: plotEdges.width/5.0
         )
         let intTick = (tick.rounded() == tick)

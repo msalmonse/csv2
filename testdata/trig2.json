@@ -3,6 +3,7 @@
 	"headerRows": 1,
 	"index": 1,
 	"xTitle": "Degrees",
+	"xMax": 361,
 	"yMin": -0.5,
 	"yMax": 0.5,
 	"xTick": 15,

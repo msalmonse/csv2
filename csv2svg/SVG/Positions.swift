@@ -14,13 +14,14 @@ extension SVG {
     struct Positions {
         // Vertical positions
         let bottomY: Double
-        let legendY: Double
         let titleY: Double
         let xTicksY: Double
         let xTitleY: Double
 
         // Horizontal positions
         let leftX: Double
+        let legendX: Double
+        let rightX: Double
         let yTickX: Double
         let yTitleX: Double
 
@@ -29,8 +30,6 @@ extension SVG {
             var pos = Double(settings.height - 5)
             titleY = pos
             if settings.title != "" { pos -= settings.titleSize * 1.25 }
-            legendY = pos
-            pos -= settings.legendSize * 1.25
             xTitleY = pos
             if settings.xTitle != "" { pos -= settings.axesSize * 1.25 }
             xTicksY = pos
@@ -46,6 +45,12 @@ extension SVG {
             yTickX = pos
             pos += Double(settings.strokeWidth)
             leftX = pos
+            // legends are on the right
+            pos = Double(settings.width)
+            if settings.legends { pos -= 5 * settings.legendSize }
+            legendX = pos
+            pos -= 2.0 * settings.labelSize
+            rightX = pos
         }
     }
 }
