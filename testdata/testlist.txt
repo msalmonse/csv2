@@ -1,4 +1,6 @@
 column none -- Column data with no JSON settings
+column none --colours,red,blue,green,-- Column data with no JSON settings but colours
+column none --names,a,b,c,d,e,f,g,-- Column data with no JSON settings but names
 column none --width=300 Column data with no JSON settings but narrow
 column none --black,--dashed=-1 Column data with no JSON settings but black and dashed options
 column none --index=1,--headers=1 Column data with no JSON but index and header options
