@@ -49,7 +49,7 @@ extension SVG {
             leftX = pos
             // legends are on the right
             pos = Double(settings.width)
-            if settings.legends { pos -= 5 * settings.legendSize }
+            if settings.legends { pos -= 5.5 * settings.legendSize }
             legendX = pos
             pos -= 2.0 * settings.labelSize
             rightX = pos
