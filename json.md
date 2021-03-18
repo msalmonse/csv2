@@ -16,6 +16,7 @@ The base font size for the SVG, all other font sizes are derived from this value
 Set undefined plot colours to "black"
 
 **colours** (Array of Strings)<br/>
+**Option:** `--colours`<br/><sup>[6]](#fn6)</sup>
 The colours to be used to plot the column or row. The index, if present, must be included although never used.
 Columns or rows that aren't defined are assigned a colour sequentially from an internal list.
 
@@ -24,6 +25,7 @@ Columns or rows that aren't defined are assigned a colour sequentially from an i
 A bit vector of the plots to draw as dashed lines.<sup>[5]](#fn5)</sup>
 
 **dashes** (Array of Strings)<br/>
+**Option:** `--dashes`<br/><sup>[6]](#fn6)</sup>
 The dash patterns to be used to plot the column or row. The index, if present, must be included although never used.
 Columns or rows that aren't defined are assigned a pattern sequentially from an internal list.
 
@@ -49,6 +51,7 @@ The column or row that contains the absissa data with the leftmost column or top
 If it is less than or equal to zero then the absica is 0 for the first vale of each plot and so on.
 
 **names** (Array of Strings)<br/>
+**Option:** `--names`<br/><sup>[6]](#fn6)</sup>
 The plotted column or rows are assigned names from this array or the first header row or column respectively. If not defined in either place then a name is generated.
 The names are included with the colours associated with the plots under the plot area.
 
@@ -61,6 +64,7 @@ The data is grouped in rows
 A bit vector of the plots to draw as scatter plots.<sup>[5]](#fn5)</sup>
 
 **shapes** (Array of Strings)<br/>
+**Option:** `--shapes`<br/><sup>[6]](#fn6)</sup>
 A list of shape names to be used in scatter plots. The names are taken sequentially from
 the list and assigned to scatter plots. If there are too few shape names or they cannot be
 looked up the a shape from an internal list is assigned.
@@ -136,3 +140,5 @@ the title attached to the ordinate
 e.g. _25 == 2<sup>4</sup> + 2<sup>3</sup> + 2<sup>0</sup>_ which would mean that the
 fifth, fourth and first row or column would be enabled. A value of -1 means all plots.
 
+<a id="fn6">6</a>: These options accept a list of words separated by spaces up until the next flag
+or option. If there are none before the file names then a `--` can be used to terminate the list.
