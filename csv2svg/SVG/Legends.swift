@@ -67,6 +67,7 @@ extension SVG {
     /// - Returns: Text string with all legends
 
     func svgLegends() -> String {
+        if positions.legendX >= width { return "<!-- Legends suppressed -->" }
         let size = legendPX
         let x = positions.legendX
         let xRight = width - settings.legendSize/2.0
@@ -85,7 +86,7 @@ extension SVG {
             let text = shortened(propi.name!)
             let colour = propi.colour!
             legends.append(
-                "<text x=\"\(x.f(1))\" y=\"\(y.f(1))\" stroke=\"\(colour)\" font-size=\"\(size)\">\(text)</text>"
+                "<text x=\"\(x.f(1))\" y=\"\(y.f(1))\" stroke=\"\(colour)\"  fill=\"\(colour)\" font-size=\"\(size)\">\(text)</text>"
             )
             let lineY = y + yStep/2.0
             if propi.dashed || propi.pointed || propi.scattered { y += yStep }

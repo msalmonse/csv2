@@ -47,10 +47,21 @@ extension SVG {
             yTickX = pos
             pos += Double(settings.strokeWidth)
             leftX = pos
+
             // legends are on the right
             pos = Double(settings.width)
-            if settings.legends { pos -= 5.5 * settings.legendSize }
-            legendX = pos
+            if !settings.legends {
+                legendX = pos
+            } else {
+                pos -= 5.5 * settings.legendSize
+                if (pos - leftX) >= 0.8 * Double(settings.width) {
+                    legendX = pos
+                } else {
+                    print("Plottable area is too small, legends suppressed.", to: &standardError)
+                    pos += 5.5 * settings.legendSize
+                    legendX = pos + pos
+                }
+            }
             pos -= 2.0 * settings.labelSize
             rightX = pos
         }

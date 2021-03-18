@@ -19,6 +19,7 @@ fileprivate func settingsJson(_ wh: String) -> String {
     return """
         {
             "height": \(wh),
+            "legends": false,
             "width": \(wh)
         }
         """
