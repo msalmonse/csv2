@@ -41,7 +41,7 @@ extension SVG {
         if ppt >= minSize && ppt <= maxSize { return tick }
         let raw = minSize * dpp
         // calculate the power of 10 less than the raw tick
-        let pow10 = exp(floor(log10(raw)) * log(10))
+        let pow10 = pow(10.0, floor(log10(raw)))
         var norm = ceil(raw/pow10) * pow10
         if norm > 0.1 && norm < 1.0 { norm = 1.0 }  // < .01 is where labels use e format
         // return the tick as an an integer times the power of 10
@@ -63,7 +63,7 @@ extension SVG {
         )
         let intTick = (tick.rounded() == tick)
         var x = tick    // the zero line is plotted by svgAxes
-        let xMax = max(dataEdges.right, -dataEdges.left)
+        let xMax = max(dataEdges.right, -dataEdges.left) + tick * 0.5 // fudge a little for strange tick values
 
         while x <= xMax {
             if dataEdges.inHoriz(x) {

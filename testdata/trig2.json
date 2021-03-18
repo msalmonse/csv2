@@ -4,7 +4,7 @@
 	"index": 1,
 	"title": "Trigonometric Functions",
 	"xTitle": "Degrees",
-	"xMax": 361,
+	"xMax": 360,
 	"yMin": -0.5,
 	"yMax": 0.5,
 	"xTick": 15,
