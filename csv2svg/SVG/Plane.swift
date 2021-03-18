@@ -46,6 +46,18 @@ extension SVG {
         let bottom: Double
         let left: Double
         let right: Double
+        // Horizontal and vertical adjustments to cater for floating point comparisons
+        private let hε: Double
+        private let vε: Double
+
+        init(top: Double, bottom: Double, left: Double, right: Double, ε: Double = 1e-6) {
+            self.top = top
+            self.bottom = bottom
+            self.left = left
+            self.right = right
+            hε = abs(right - left) * ε
+            vε = abs(top - bottom) * ε
+        }
 
         /// Horizontal midpoint
         var hMid: Double { (left + right)/2.0 }
@@ -64,7 +76,7 @@ extension SVG {
         /// - Returns: value lies in plane
 
         func inHoriz(_ x: Double) -> Bool {
-            return (left < right) ? (x >= left && x <= right) : (x >= right && x <= left)
+            return (left < right) ? (x + hε >= left && x - hε <= right) : (x + hε >= right && x - hε <= left)
         }
 
         /// Check for value between top and bottom
@@ -72,7 +84,7 @@ extension SVG {
         /// - Returns: value lies in plane
 
         func inVert(_ y: Double) -> Bool {
-            return (bottom < top) ? (y >= bottom && y <= top) : (y >= top && y <= bottom)
+            return (bottom < top) ? (y + vε >= bottom && y - vε <= top) : (y + vε >= top && y - vε <= bottom)
         }
 
         /// Check for value between left and right
