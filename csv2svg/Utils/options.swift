@@ -18,8 +18,16 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default colour")
     var colour = "black"
 
+    @Option(name: .long, parsing: .upToNextOption,
+            help: "Default list of plot colours, multiple entries until the next option")
+    var colours: [String] = []
+
     @Option(name: .long, help: "Default plots to show as with dashed lines")
     var dashed = Defaults.dashedLines
+
+    @Option(name: .long, parsing: .upToNextOption,
+            help: "Default list of plot dash patterns, multiple entries until the next option")
+    var dashes: [String] = []
 
     @Option(name: .shortAndLong, help: "Add debug info")
     var debug = 0
@@ -36,6 +44,10 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default index row or column")
     var index = Defaults.index
 
+    @Option(name: .long, parsing: .upToNextOption,
+            help: "Default list of plot names, multiple entries until the next option")
+    var names: [String] = []
+
     @Flag(name: .long, help: "Don't include plot names, colours, dashes and shapes")
     var nolegends = !Defaults.legends
 
@@ -48,8 +60,12 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default plots to show as scattered")
     var scattered = Defaults.scattered
 
+    @Option(name: .long, parsing: .upToNextOption,
+            help: "Default list of shapes, multiple entries until the next option")
+    var shapes: [String] = []
+
     @Flag(name: .long, help: "Print a list of shape names")
-    var shapes = false
+    var shapenames = false
 
     @Option(name: .long, help: "Generate an SVG with just the named shape @ 6X strokewidth")
     var show: String = ""
@@ -106,15 +122,19 @@ struct Options: ParsableCommand {
         Defaults.backgroundColour = bg
         Defaults.baseFontSize = size
         Defaults.black = black
+        Defaults.colours = colours
         Defaults.dashedLines = dashed
+        Defaults.dashes = dashes
         Defaults.dataPointDistance = distance
         Defaults.headers = headers
         Defaults.height = height
         Defaults.index = index
         Defaults.legends = !nolegends
+        Defaults.names = names
         Defaults.opacity = opacity
         Defaults.rowGrouping = rows
         Defaults.scattered = scattered
+        Defaults.dashes = dashes
         Defaults.showDataPoints = showpoints
         Defaults.sortx = sortx
         Defaults.strokeWidth = stroke

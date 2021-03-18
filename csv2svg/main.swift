@@ -20,7 +20,7 @@ if opts.version {
     exit(0)
 }
 
-if opts.shapes {
+if opts.shapenames {
     print(SVG.Shape.allNames())
     exit(0)
 }

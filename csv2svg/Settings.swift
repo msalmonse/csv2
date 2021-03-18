@@ -182,7 +182,7 @@ class Settings: Codable, ReflectedStringConvertible {
         return (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? intDefault(key)
     }
 
-    /// Return the integer default for the key
+    /// Return the string default for the key
     /// - Parameter key: Coding key for Settings
     /// - Returns: integer default value
 
@@ -209,6 +209,20 @@ class Settings: Codable, ReflectedStringConvertible {
         return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? stringDefault(key)
     }
 
+    /// Return the integer default for the key
+    /// - Parameter key: Coding key for Settings
+    /// - Returns: integer default value
+
+    private static func stringArrayDefault(_ key: CodingKeys) -> [String] {
+        switch key {
+        case .colours: return Defaults.colours
+        case .dashes: return Defaults.dashes
+        case .names: return Defaults.names
+        case .shapes: return Defaults.shapes
+        default: return []
+        }
+    }
+
     /// Convenience function to decode a keyed String Array
     /// - Parameters:
     ///   - container: decoded data container
@@ -222,10 +236,9 @@ class Settings: Codable, ReflectedStringConvertible {
     ) -> [String] {
         var values: [String] = []
         var arrayContainer = try? container?.nestedUnkeyedContainer(forKey: key)
-        if arrayContainer != nil {
-            while !arrayContainer!.isAtEnd {
-                values.append((try? arrayContainer?.decode(String.self)) ?? "")
-            }
+        if arrayContainer == nil { return stringArrayDefault(key) }
+        while !arrayContainer!.isAtEnd {
+            values.append((try? arrayContainer?.decode(String.self)) ?? "")
         }
 
         return values

@@ -14,7 +14,9 @@ struct Defaults {
     static var backgroundColour = ""
     static var baseFontSize = 10.0
     static var black = false
+    static var colours: [String] = []
     static var dashedLines = 0
+    static var dashes: [String] = []
     static var dataPointDistance = 5.0 * strokeWidth
     static var headers = 0
     static var height = 600
@@ -22,9 +24,11 @@ struct Defaults {
     static var legends = true
     static let maxDefault = -Double.infinity
     static let minDefault = Double.infinity
+    static var names: [String] = []
     static var opacity = 1.0
     static var rowGrouping = false
     static var scattered = 0
+    static var shapes: [String] = []
     static var showDataPoints = 0
     static var sortx = false
     static var strokeWidth = 2.0
