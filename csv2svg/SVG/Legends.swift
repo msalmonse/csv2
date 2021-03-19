@@ -9,6 +9,14 @@ import Foundation
 
 extension SVG {
 
+    /// Draw the rectangle under the legends
+    /// - Parameters:
+    ///   - top: rectangle top
+    ///   - bottom: rectangle bottom
+    ///   - left: rectangle left
+    ///   - right: rectangle right
+    /// - Returns: rectangle string
+
     private func bgRect(_ top: Double, _ bottom: Double, _ left: Double, right: Double) -> String {
         let h = bottom - top
         let w = right - left
@@ -16,11 +24,18 @@ extension SVG {
         let y = top
         return """
             <rect
-                x="\(x.f(1))" y="\(y.f(1))" height="\(h.f(1))" width="\(w.f(1))" rx="\(plotWidth * 3.0)"
+                x="\(x.f(1))" y="\(y.f(1))" height="\(h.f(1))" width="\(w.f(1))" rx="\(strokeWidth * 3.0)"
                 fill="silver" opacity=".1" stroke="black" stroke-width="1.5"
             />
             """
     }
+
+    /// Draw the shape used for a scatter plot
+    /// - Parameters:
+    ///   - x: x position
+    ///   - y: y position
+    ///   - props: path properties
+    /// - Returns: path string
 
     private func scatteredLine(
         _ x: Double, _ y: Double,
@@ -31,8 +46,17 @@ extension SVG {
             PathCommand.moveTo(x: x, y: y),
             props.shape!.pathCommand(w: shapeWidth)
         ],
-        props, width: plotWidth)
+        props, width: strokeWidth)
     }
+
+    /// Draw a line for plots with data points
+    /// - Parameters:
+    ///   - left: left end of line
+    ///   - mid: shape position
+    ///   - right: right end of line
+    ///   - y: y position
+    ///   - props: path properties
+    /// - Returns: path string
 
     private func pointedLine(
         _ left: Double, _ mid: Double, _ right: Double, _ y: Double,
@@ -45,8 +69,16 @@ extension SVG {
             props.shape!.pathCommand(w: shapeWidth),
             .horizTo(x: right)
         ],
-        props, width: plotWidth)
+        props, width: strokeWidth)
     }
+
+    /// Draw a plain line
+    /// - Parameters:
+    ///   - left: left end of line
+    ///   - right: right end of line
+    ///   - y: y position
+    ///   - props: path properties
+    /// - Returns: path string
 
     private func plainLine(
         _ left: Double, _ right: Double, _ y: Double,
@@ -56,13 +88,20 @@ extension SVG {
             PathCommand.moveTo(x: left, y: y),
             .horizTo(x: right)
         ],
-        props, width: plotWidth)
+        props, width: strokeWidth)
     }
+
+    /// Shorten a string if required
+    /// - Parameters:
+    ///   - text: text to be shortened
+    ///   - len: maximum length without shortening
+    /// - Returns: shortened? string
 
     private func shortened(_ text: String, len: Int = 10) -> String {
         if text.count <= len { return text }
-        return text.prefix(len) + "…"
+        return text.prefix(len - 1) + "…"
     }
+
     /// Add legends to an SVG
     /// - Returns: Text string with all legends
 
@@ -70,8 +109,9 @@ extension SVG {
         if positions.legendX >= width { return "<!-- Legends suppressed -->" }
         let size = legendPX
         let x = positions.legendX
+        let xLeft = x + settings.legendSize/2.0
         let xRight = width - settings.legendSize/2.0
-        let xMid = (x + xRight)/2.0
+        let xMid = (xLeft + xRight)/2.0
         var y = positions.legendY
         let yStep = settings.legendSize * 1.5
         var legends: [String] = [
@@ -86,17 +126,20 @@ extension SVG {
             let text = shortened(propi.name!)
             let colour = propi.colour!
             legends.append(
-                "<text x=\"\(x.f(1))\" y=\"\(y.f(1))\" stroke=\"\(colour)\"  fill=\"\(colour)\" font-size=\"\(size)\">\(text)</text>"
+                """
+                <text x="\(xLeft.f(1))" y="\(y.f(1))" stroke="\(colour)" fill="\(colour)" font-size="\(size)"
+                >\(text)</text>
+                """
             )
             let lineY = y + yStep/2.0
             if propi.dashed || propi.pointed || propi.scattered { y += yStep }
             switch (propi.dashed, propi.pointed, propi.scattered) {
             case (_,_,true):
-                legends.append(scatteredLine(x + shapeWidth, lineY, propi))
+                legends.append(scatteredLine(xMid - shapeWidth, lineY, propi))
             case (_,true,false):
-                legends.append(pointedLine(x, xMid, xRight, lineY, propi))
+                legends.append(pointedLine(xLeft, xMid, xRight, lineY, propi))
             case (true,_,false):
-                legends.append(plainLine(x, xRight, lineY, propi))
+                legends.append(plainLine(xLeft, xRight, lineY, propi))
             default: break
             }
         }

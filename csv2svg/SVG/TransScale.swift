@@ -33,7 +33,7 @@ extension SVG {
         /// - Parameters
         ///     - x: x value
         ///     - y: y value
-        /// - Returns: y position
+        /// - Returns: x, y point
 
         func pos(x: Double, y: Double) -> Point {
             return Point(x: xpos(x), y: ypos(y))

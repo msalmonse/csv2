@@ -14,10 +14,10 @@ extension SVG {
 
     func svgDefs() -> [String] {
         // Make plottable a bit bigger so that shapes aren't clipped
-        let h = (plotEdges.bottom - plotEdges.top + shapeWidth * 4.0).f(1)
-        let w = (plotEdges.right - plotEdges.left + shapeWidth * 4.0).f(1)
-        let x = (plotEdges.left - shapeWidth * 2.0).f(1)
-        let y = (plotEdges.top - shapeWidth * 2.0).f(1)
+        let h = (plotPlane.bottom - plotPlane.top + shapeWidth * 4.0).f(1)
+        let w = (plotPlane.right - plotPlane.left + shapeWidth * 4.0).f(1)
+        let x = (plotPlane.left - shapeWidth * 2.0).f(1)
+        let y = (plotPlane.top - shapeWidth * 2.0).f(1)
         var result = ["<defs>"]
         result.append("<clipPath id=\"plotable\">")
         result.append("<rect x=\"\(x)\" y=\"\(y)\" width=\"\(w)\" height=\"\(h)\" />")
@@ -53,7 +53,7 @@ extension SVG {
     /// - Returns: array of svg elements
 
     func gen() -> [String] {
-        let ts = TransScale(from: dataEdges, to: plotEdges)
+        let ts = TransScale(from: dataPlane, to: plotPlane)
 
         var result: [String] = [ xmlTag, svgTag ]
         result.append(contentsOf: svgDefs())
@@ -63,10 +63,10 @@ extension SVG {
         if settings.yTick >= 0 { result.append(svgYtick(ts)) }
         result.append(contentsOf: svgLineGroup(ts))
         if settings.xTitle != "" {
-            result.append(xTitle(settings.xTitle, x: plotEdges.hMid, y: positions.xTitleY))
+            result.append(xTitle(settings.xTitle, x: plotPlane.hMid, y: positions.xTitleY))
         }
         if settings.yTitle != "" {
-            result.append(yTitle(settings.yTitle, x: positions.yTitleX, y: plotEdges.vMid))
+            result.append(yTitle(settings.yTitle, x: positions.yTitleX, y: plotPlane.vMid))
         }
         if settings.legends { result.append(svgLegends()) }
         if settings.title != "" { result.append(svgTitle()) }

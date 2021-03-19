@@ -115,10 +115,10 @@ extension SVG {
     private func posClip(_ pos: Point) -> (Point, Bool) {
         var x = pos.x
         var y = pos.y
-        if x < allowedEdges.left { x = allowedEdges.left }
-        if x > allowedEdges.right { x = allowedEdges.right }
-        if y < allowedEdges.top { y = allowedEdges.top }
-        if y > allowedEdges.bottom { y = allowedEdges.bottom }
+        if x < allowedPlane.left { x = allowedPlane.left }
+        if x > allowedPlane.right { x = allowedPlane.right }
+        if y < allowedPlane.top { y = allowedPlane.top }
+        if y > allowedPlane.bottom { y = allowedPlane.bottom }
         if x == pos.x && y == pos.y { return (pos, false) }
         return (Point(x: x, y: y), true)
     }
@@ -158,6 +158,6 @@ extension SVG {
             }
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
-        return Self.svgPath(state.pathPoints, props, width: plotWidth)
+        return Self.svgPath(state.pathPoints, props, width: strokeWidth)
     }
 }

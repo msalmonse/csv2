@@ -18,8 +18,8 @@ class SVG: ReflectedStringConvertible {
     var plotCount: Int
 
     // plot widths
-    var plotWidth: Double { settings.strokeWidth }
-    var shapeWidth: Double { plotWidth * 1.75 }
+    var strokeWidth: Double { settings.strokeWidth }
+    var shapeWidth: Double { strokeWidth * 1.75 }
 
     let csv: CSV
     let settings: Settings
@@ -28,11 +28,11 @@ class SVG: ReflectedStringConvertible {
     let index: Int
 
     // The four sides of the data plane
-    let dataEdges: Plane
+    let dataPlane: Plane
     // the plot plane
-    let plotEdges: Plane
+    let plotPlane: Plane
     // and the allowed drawing plain
-    let allowedEdges: Plane
+    let allowedPlane: Plane
 
     // Plot area height and width
     let height: Double
@@ -70,17 +70,17 @@ class SVG: ReflectedStringConvertible {
 
         height = Double(settings.height)
         width = Double(settings.width)
-        allowedEdges = Plane(
+        allowedPlane = Plane(
             top: -0.5 * height, bottom: 1.5 * height,
             left: -0.5 * width, right: 1.5 * width
         )
-        dataEdges = SVG.sidesFromData(csv, settings)
+        dataPlane = SVG.sidesFromData(csv, settings)
 
-        positions = Positions(settings, dataLeft: dataEdges.left)
+        positions = Positions(settings, dataLeft: dataPlane.left)
 
         limit = settings.dataPointDistance
 
-        plotEdges = Plane(
+        plotPlane = Plane(
             top: settings.baseFontSize, bottom: positions.bottomY,
             left: positions.leftX, right: positions.rightX
         )
@@ -92,7 +92,7 @@ class SVG: ReflectedStringConvertible {
         // setup first so that the other functions can use them
         SVG.plotFlags(settings, plotCount, &props)
         SVG.plotColours(settings, plotCount, &props)
-        SVG.plotDashes(settings, plotCount, plotEdges.width, &props)
+        SVG.plotDashes(settings, plotCount, plotPlane.width, &props)
         SVG.plotNames(settings, csv, plotCount, &props)
         SVG.plotShapes(settings, plotCount, index: settings.index - 1, &props)
         self.props = props

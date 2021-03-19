@@ -16,16 +16,16 @@ extension SVG {
     func svgAxes(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
 
-        if dataEdges.inVert(0.0) {
-            path.append(.moveTo(x: plotEdges.left, y: ts.ypos(0.0)))
-            path.append(.horizTo(x: plotEdges.right))
+        if dataPlane.inVert(0.0) {
+            path.append(.moveTo(x: plotPlane.left, y: ts.ypos(0.0)))
+            path.append(.horizTo(x: plotPlane.right))
         }
-        if dataEdges.inHoriz(0.0) {
-            path.append(.moveTo(x: ts.xpos(0), y: plotEdges.bottom))
-            path.append(.vertTo(y: plotEdges.top))
+        if dataPlane.inHoriz(0.0) {
+            path.append(.moveTo(x: ts.xpos(0), y: plotPlane.bottom))
+            path.append(.vertTo(y: plotPlane.top))
         }
 
-        return Self.svgPath(path, pathProperty(withColour: "Black"), width: plotWidth)
+        return Self.svgPath(path, pathProperty(withColour: "Black"), width: strokeWidth)
     }
 
     /// Normalize tick value
@@ -57,23 +57,23 @@ extension SVG {
         var labels = [""]
         let tick = tickNorm(
             settings.xTick,
-            dpp: dataEdges.width/plotEdges.width,
+            dpp: dataPlane.width/plotPlane.width,
             minSize: settings.labelSize * 3.5,
-            maxSize: plotEdges.width/5.0
+            maxSize: plotPlane.width/5.0
         )
         let intTick = (tick.rounded() == tick)
         var x = tick    // the zero line is plotted by svgAxes
-        let xMax = max(dataEdges.right, -dataEdges.left) + tick * 0.5 // fudge a little for strange tick values
+        let xMax = max(dataPlane.right, -dataPlane.left) + tick * 0.5 // fudge a little for strange tick values
 
         while x <= xMax {
-            if dataEdges.inHoriz(x) {
-                path.append(.moveTo(x: ts.xpos(x), y: plotEdges.bottom))
-                path.append(.vertTo(y: plotEdges.top))
+            if dataPlane.inHoriz(x) {
+                path.append(.moveTo(x: ts.xpos(x), y: plotPlane.bottom))
+                path.append(.vertTo(y: plotPlane.top))
                 labels.append(xLabel(label(x, intTick), x: ts.xpos(x), y: positions.xTicksY))
             }
-            if dataEdges.inHoriz(-x) {
-                path.append(.moveTo(x: ts.xpos(-x), y: plotEdges.bottom))
-                path.append(.vertTo(y: plotEdges.top))
+            if dataPlane.inHoriz(-x) {
+                path.append(.moveTo(x: ts.xpos(-x), y: plotPlane.bottom))
+                path.append(.vertTo(y: plotPlane.top))
                 labels.append(xLabel(label(-x, intTick), x: ts.xpos(-x), y: positions.xTicksY))
             }
             x += tick
@@ -91,23 +91,23 @@ extension SVG {
         var labels = [""]
         let tick = tickNorm(
             settings.yTick,
-            dpp: dataEdges.height/plotEdges.height,
+            dpp: dataPlane.height/plotPlane.height,
             minSize: settings.labelSize * 1.25,
-            maxSize: plotEdges.height/5.0
+            maxSize: plotPlane.height/5.0
         )
         let intTick = (tick.rounded() == tick)
         var y = tick    // the zero line is plotted by svgAxes
-        let yMax = max(dataEdges.top, -dataEdges.bottom)
+        let yMax = max(dataPlane.top, -dataPlane.bottom)
 
         while y <= yMax {
-            if dataEdges.inVert(y) {
-                path.append(.moveTo(x: plotEdges.left, y: ts.ypos(y)))
-                path.append(.horizTo(x: plotEdges.right))
+            if dataPlane.inVert(y) {
+                path.append(.moveTo(x: plotPlane.left, y: ts.ypos(y)))
+                path.append(.horizTo(x: plotPlane.right))
                 labels.append(yLabel(label(y, intTick), x: positions.yTickX, y: ts.ypos(y)))
             }
-            if dataEdges.inVert(-y) {
-                path.append(.moveTo(x: plotEdges.left, y: ts.ypos(-y)))
-                path.append(.horizTo(x: plotEdges.right))
+            if dataPlane.inVert(-y) {
+                path.append(.moveTo(x: plotPlane.left, y: ts.ypos(-y)))
+                path.append(.horizTo(x: plotPlane.right))
                 labels.append(yLabel(label(-y, intTick), x: positions.yTickX, y: ts.ypos(-y)))
             }
             y += tick
