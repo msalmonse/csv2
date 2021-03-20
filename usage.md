@@ -17,6 +17,7 @@ OPTIONS:
   --headers <headers>     Default header rows or columns (default: 0)
   --height <height>       Default svg height (default: 600)
   --index <index>         Default index row or column (default: 0)
+  --include <include>     Default rows or columns to include (default: -1)
   --nameheader <nameheader>
                           Default plot name row or column (default: 1)
   --names <names>         Default list of plot names, multiple entries until the next option

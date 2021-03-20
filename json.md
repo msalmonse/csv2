@@ -45,6 +45,11 @@ The number of rows that do not contain data.<sup>[1](#fn1)</sup>
 **Option:** `--height`<br/>
 The height of the generated SVG
 
+**include** (Int **-1**)<br/>
+**Option:** `--include`<br/>
+A bit vector of the plots to draw.<sup>[5]](#fn5)</sup><br/>
+The default is to draw all.
+
 **index** (Int **0**)<br/>
 **Option:** `--index`<br/>
 The column or row that contains the absissa data with the leftmost column or top row being 1.<br/>
