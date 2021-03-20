@@ -12,13 +12,13 @@ extension SVG {
         static private var next = -1
         static private let colourList = [
             "#ff0000",      // red
-            "#ff00ff",      // magenta
             "#008000",      // green
+            "#ff00ff",      // magenta
             "#0000ff",      // blue
             "#dc143c",      // crimson
             "#f4a460",      // sandywood
-            "#ff8c00",      // darkorange
             "#8b008b",      // darkmagenta
+            "#ff8c00",      // darkorange
             "#b1000d",
             "#c0ffee",
             "#00ffff",      // aqua
