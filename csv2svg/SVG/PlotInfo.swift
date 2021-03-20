@@ -66,10 +66,12 @@ extension SVG {
         for i in 0..<ct {
             if i < settings.names.count && settings.names[i] != "" {
                 props[i].name = settings.names[i]
-            } else if settings.headers > 0 {
-                props[i].name = SVG.headerText(i, csv: csv, inColumns: settings.inColumns)
+            } else if settings.headers > 0 && settings.nameHeader >= 0 {
+                props[i].name =
+                    SVG.headerText(i, csv: csv, inColumns: settings.inColumns, header: settings.nameHeader)
             } else {
-                props[i].name = SVG.headerText(i, csv: nil, inColumns: settings.inColumns)
+                props[i].name =
+                    SVG.headerText(i, csv: nil, inColumns: settings.inColumns, header: settings.nameHeader)
             }
         }
     }
@@ -88,7 +90,7 @@ extension SVG {
         ) {
         for i in 0..<ct {
             // Don't attach a shape if we aren't a scatter plot or a plot with data points or are index
-            if (props[i].scattered || props[i].pointed) && i != settings.index - 1 {
+            if (props[i].scattered || props[i].pointed) && i != settings.index {
                 if i < settings.shapes.count && settings.shapes[i] != "" {
                     props[i].shape = Shape.lookup(settings.shapes[i]) ?? Shape.nextShape()
                 } else {

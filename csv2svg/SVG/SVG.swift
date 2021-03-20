@@ -12,6 +12,7 @@ class SVG: ReflectedStringConvertible {
     var axesPX: String { String(format: "%.1fpx", settings.axesSize) }
     var labelPX: String { String(format: "%.1fpx", settings.labelSize) }
     var legendPX: String { String(format: "%.1fpx", settings.legendSize) }
+    var subTitlePX: String { String(format: "%.1fpx", settings.subTitleSize) }
     var titlePX: String { String(format: "%.1fpx", settings.titleSize) }
 
     // number of rows or columns
@@ -47,6 +48,9 @@ class SVG: ReflectedStringConvertible {
     // limit of distance between data points
     let limit: Double
 
+    // sub title
+    let subTitle: String
+
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
     var svgTag: String {
@@ -66,7 +70,7 @@ class SVG: ReflectedStringConvertible {
         self.csv = csv
         self.settings = settings
 
-        self.index = settings.index - 1
+        self.index = settings.index
 
         height = Double(settings.height)
         width = Double(settings.width)
@@ -94,7 +98,11 @@ class SVG: ReflectedStringConvertible {
         SVG.plotColours(settings, plotCount, &props)
         SVG.plotDashes(settings, plotCount, plotPlane.width, &props)
         SVG.plotNames(settings, csv, plotCount, &props)
-        SVG.plotShapes(settings, plotCount, index: settings.index - 1, &props)
+        SVG.plotShapes(settings, plotCount, index: settings.index, &props)
         self.props = props
+
+        subTitle = settings.subTitle != ""
+            ? settings.subTitle
+            : Self.subTitleText(csv: csv, inColumns: settings.inColumns, header: settings.subTitleHeader)
     }
 }

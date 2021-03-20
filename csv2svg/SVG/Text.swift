@@ -21,6 +21,18 @@ extension SVG {
             """
     }
 
+    /// Add sub title to the svg
+    /// - Returns: String to display sub title
+
+    func svgSubTitle() -> String {
+        let x = width/2.0
+        let y = positions.subTitleY
+        let t = subTitle
+        return """
+            <text x="\(x.f(1))" y="\(y.f(1))" style="text-anchor: middle; font-size: \(subTitlePX)">\(t)</text>
+            """
+    }
+
     /// Add title to the x axis
     /// - Returns: String to display title
 

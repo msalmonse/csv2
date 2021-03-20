@@ -13,11 +13,12 @@ extension SVG {
     /// - Parameters:
     ///   - column: column number
     ///   - csv: csv object
+    ///   - header: the row or column that has the names
     /// - Returns: column header
 
-    static private func columnHeader(_ column: Int, csv: CSV?) -> String {
-        if csv != nil && csv!.data[0].count > column && column >= 0 && csv!.data[0][column] != "" {
-            return csv!.data[0][column]
+    static private func columnHeader(_ column: Int, csv: CSV?, _ header: Int) -> String {
+        if csv != nil && csv!.data[header].count > column && column >= 0 && csv!.data[header][column] != "" {
+            return csv!.data[header][column]
         }
         return String(format: "Column %d", column + 1)
     }
@@ -26,11 +27,12 @@ extension SVG {
     /// - Parameters:
     ///   - row: row number
     ///   - csv: csv object
+    ///   - header: the row or column that has the names
     /// - Returns: row header
 
-    static private func rowHeader(_ row: Int, csv: CSV?) -> String {
-        if csv != nil && row >= 0 && row < csv!.rowCt && csv!.data[row][0] != "" {
-            return csv!.data[row][0]
+    static private func rowHeader(_ row: Int, csv: CSV?, header: Int) -> String {
+        if csv != nil && row >= 0 && row < csv!.rowCt && csv!.data[row][header] != "" {
+            return csv!.data[row][header]
         }
         return String(format: "Row %d", row + 1)
     }
@@ -40,9 +42,31 @@ extension SVG {
     ///   - i: row or column number
     ///   - csv: csv object
     ///   - inColumn: is data arranged in columns
+    ///   - header: the row or column that has the names
     /// - Returns: row or column header
 
-    static func headerText(_ i: Int, csv: CSV?, inColumns: Bool) -> String {
-        return inColumns ? columnHeader(i, csv: csv) : rowHeader(i, csv: csv)
+    static func headerText(_ i: Int, csv: CSV?, inColumns: Bool, header: Int) -> String {
+        return inColumns ? columnHeader(i, csv: csv, header) : rowHeader(i, csv: csv, header: header)
+    }
+
+    /// Extract sub title from row or column
+    /// - Parameters:
+    ///   - csv: csv object
+    ///   - inColumns: is data in rows or columns
+    ///   - header: row or column with the sub title
+    /// - Returns: sub title
+
+    static func subTitleText(csv: CSV?, inColumns: Bool, header: Int) -> String {
+        guard csv != nil && header >= 0 else { return "" }
+        var text: [String] = []
+        if !inColumns {
+            text = csv!.data[header]
+        } else {
+            for row in csv!.data where header < row.count {
+                text.append(row[header])
+            }
+        }
+
+        return text.joined(separator: " ").trimmingCharacters(in: .whitespaces)
     }
 }

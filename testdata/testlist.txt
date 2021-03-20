@@ -18,9 +18,9 @@ posneg columns-ticks-index --sortx Positive and negative data with ticks and ind
 posneg columns-ticks-index --xmin=-0.5 Positive and negative data with ticks and index, xMin of -0.5
 bipolar columns-ticks-index -- Bipolar data in columns
 bipolar rows-ticks-index -- Bipolar data in rows
-plot plot -- Plot test in columns
+plot plot --subtitle=Columns Plot test in columns
 plot plot --dashed=-1 Plot test in columns with dashed lines
-plot plot --rows Plot test in rows
+plot plot --rows,--subtitle=Rows Plot test in rows
 shapes shapes -- All shapes
 trig trig -- Trig curves
 trig trig --opacity=.3,--nolegends Trig curves with opacity and no legends
@@ -29,7 +29,7 @@ trig trig --showpoints=-1,--xmin=80,--xmax=100 Trig curves with data points from
 trig trig --showpoints=-1 Trig curves with data points
 trig trig --showpoints=-1,--distance=50 Trig curves with sparse data points
 trig trig --showpoints=-1,--distance=0 Trig curves with close data points
-trig trig2 -- Clipped trig curves
+trig trig2 --subtitle=Clipped Clipped trig curves
 z none --colour=red,--stroke=15,--show=blade Blade shape
 z none --colour=red,--stroke=15,--show=circle Circle shape
 z none --colour=red,--stroke=15,--show=diamond Diamond shape

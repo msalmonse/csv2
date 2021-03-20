@@ -24,6 +24,7 @@ struct Defaults {
     static var legends = true
     static let maxDefault = -Double.infinity
     static let minDefault = Double.infinity
+    static var nameHeader = 1
     static var names: [String] = []
     static var opacity = 1.0
     static var rowGrouping = false
@@ -32,6 +33,8 @@ struct Defaults {
     static var showDataPoints = 0
     static var sortx = false
     static var strokeWidth = 2.0
+    static var subTitle = ""
+    static var subTitleHeader = 0
     static var title = ""
     static var width = 800
     static var xMax = maxDefault

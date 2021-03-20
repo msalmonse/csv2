@@ -280,7 +280,7 @@
 				C40A3AF725DC01180016EB6D /* Sources */,
 				C407EA8325EF984D009E18E7 /* ShellScript */,
 				C40A3AF825DC01180016EB6D /* Frameworks */,
-				C4448A7E25F1258400F23CB1 /* ShellScript */,
+				C4448A7E25F1258400F23CB1 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -398,7 +398,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null\nthen\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		C4448A7E25F1258400F23CB1 /* ShellScript */ = {
+		C4448A7E25F1258400F23CB1 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -408,6 +408,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (

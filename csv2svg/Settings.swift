@@ -22,9 +22,11 @@ class Settings: Codable, ReflectedStringConvertible {
     var axesSize: Double { return baseFontSize * 1.2 }
     var labelSize: Double { return baseFontSize }
     var legendSize: Double { return baseFontSize * 1.3 }
+    var subTitleSize: Double { return baseFontSize * 1.5 }
     var titleSize: Double { return baseFontSize * 2.5 }
 
-    // svg title, x axis title and y axis title
+    // svg sub-title title, x axis title and y axis title
+    let subTitle: String
     let title: String
     let xTitle: String
     let yTitle: String
@@ -33,6 +35,8 @@ class Settings: Codable, ReflectedStringConvertible {
     let headerColumns: Int
     let headerRows: Int
     var headers: Int { return inColumns ? headerRows : headerColumns }
+    let nameHeader: Int
+    let subTitleHeader: Int
 
     // Index for x values in csv data
     let index: Int
@@ -160,8 +164,10 @@ class Settings: Codable, ReflectedStringConvertible {
         case .headerRows: return Defaults.headers
         case .height: return Defaults.height
         case .index: return Defaults.index
+        case .nameHeader: return Defaults.nameHeader
         case .scatterPlots: return Defaults.scattered
         case .showDataPoints: return Defaults.showDataPoints
+        case .subTitleHeader: return Defaults.subTitleHeader
         case .width: return Defaults.width
         default: return 0
         }
@@ -189,6 +195,7 @@ class Settings: Codable, ReflectedStringConvertible {
     private static func stringDefault(_ key: CodingKeys) -> String {
         switch key {
         case .backgroundColour: return Defaults.backgroundColour
+        case .subTitle: return Defaults.subTitle
         case .title: return Defaults.title
         default: return ""
         }
@@ -255,14 +262,17 @@ class Settings: Codable, ReflectedStringConvertible {
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
         height = Self.keyedIntValue(from: container, forKey: .height)
-        index = Self.keyedIntValue(from: container, forKey: .index)
+        index = Self.keyedIntValue(from: container, forKey: .index) - 1     // use 0 based
         legends = Self.keyedBoolValue(from: container, forKey: .legends)
+        nameHeader = Self.keyedIntValue(from: container, forKey: .nameHeader) - 1   // use 0 based
         opacity = Self.keyedDoubleValue(from: container, forKey: .opacity)
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
         sortx = Self.keyedBoolValue(from: container, forKey: .sortx)
         scatterPlots = Self.keyedIntValue(from: container, forKey: .scatterPlots)
         showDataPoints = Self.keyedIntValue(from: container, forKey: .showDataPoints)
         strokeWidth = Self.keyedDoubleValue(from: container, forKey: .strokeWidth)
+        subTitle = Self.keyedStringValue(from: container, forKey: .subTitle)
+        subTitleHeader = Self.keyedIntValue(from: container, forKey: .subTitleHeader) - 1   // use 0 based
         title = Self.keyedStringValue(from: container, forKey: .title)
         width = Self.keyedIntValue(from: container, forKey: .width)
         xTitle = Self.keyedStringValue(from: container, forKey: .xTitle)

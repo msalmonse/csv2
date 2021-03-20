@@ -44,6 +44,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default index row or column")
     var index = Defaults.index
 
+    @Option(name: .long, help: "Default plot name row or column")
+    var nameheader = Defaults.nameHeader
+
     @Option(name: .long, parsing: .upToNextOption,
             help: "Default list of plot names, multiple entries until the next option")
     var names: [String] = []
@@ -81,6 +84,15 @@ struct Options: ParsableCommand {
 
     @Option(name: .long, help: "Default stroke width")
     var stroke = Defaults.strokeWidth
+
+    @Option(name: .long, help: "Default sub-title row or column")
+    var subheader = Defaults.index
+
+    @Option(name: .long, help: "Default sub-title")
+    var subtitle: String = ""
+
+    @Option(name: .long, help: "Default title")
+    var title: String = ""
 
     @Flag(name: .shortAndLong, help: "Use tabs to seperate columns")
     var tsv = false
@@ -130,6 +142,7 @@ struct Options: ParsableCommand {
         Defaults.height = height
         Defaults.index = index
         Defaults.legends = !nolegends
+        Defaults.nameHeader = nameheader
         Defaults.names = names
         Defaults.opacity = opacity
         Defaults.rowGrouping = rows
@@ -138,6 +151,9 @@ struct Options: ParsableCommand {
         Defaults.showDataPoints = showpoints
         Defaults.sortx = sortx
         Defaults.strokeWidth = stroke
+        Defaults.subTitleHeader = subheader
+        Defaults.subTitle = subtitle
+        Defaults.title = title
         Defaults.width = width
         Defaults.xMax = xmax
         Defaults.xMin = xmin
