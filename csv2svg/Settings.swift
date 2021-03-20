@@ -95,7 +95,7 @@ class Settings: Codable, ReflectedStringConvertible {
     /// Check if a row or column is included
     /// - Parameter i: row or column number
     /// - Returns: true if included
-    
+
     func included(_ i: Int) -> Bool {
         return ((include >> i) & 1) == 1
     }
