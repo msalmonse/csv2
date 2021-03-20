@@ -17,6 +17,8 @@ OPTIONS:
   --headers <headers>     Default header rows or columns (default: 0)
   --height <height>       Default svg height (default: 600)
   --index <index>         Default index row or column (default: 0)
+  --nameheader <nameheader>
+                          Default plot name row or column (default: 1)
   --names <names>         Default list of plot names, multiple entries until the next option
   --nolegends             Don't include plot names, colours, dashes and shapes
   --opacity <opacity>     Default index row or column (default: 1.0)
@@ -30,6 +32,9 @@ OPTIONS:
   --size <size>           Default font size (default: 10.0)
   --sortx                 Sort points by the x values before plotting
   --stroke <stroke>       Default stroke width (default: 2.0)
+  --subheader <subheader> Default sub-title row or column (default: 0)
+  --subtitle <subtitle>   Default sub-title
+  --title <title>         Default title
   -t, --tsv               Use tabs to seperate columns
   -v, --verbose           Add extra information
   -V, --version           Display version and exit

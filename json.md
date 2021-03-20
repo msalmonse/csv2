@@ -48,7 +48,12 @@ The height of the generated SVG
 **index** (Int **0**)<br/>
 **Option:** `--index`<br/>
 The column or row that contains the absissa data with the leftmost column or top row being 1.<br/>
-If it is less than or equal to zero then the absica is 0 for the first vale of each plot and so on.
+If it is less than or equal to zero then the absica is 0 for the first value of each plot and so on.
+
+**nameHeader** (Int **1**)<br/>
+**Option:** `--nameheader`<br/>
+The row or column that contains the names of plots. If it is less than or equal to zero
+the the name is never fetched from the csv.
 
 **names** (Array of Strings)<br/>
 **Option:** `--names`<br/><sup>[6]](#fn6)</sup>
@@ -89,6 +94,18 @@ Sort the points based on the x value before plotting.
 **strokeWidth** (Double **2.0**)<br/>
 **Option:** `--stroke`<br/>
 The width of the plotted paths
+
+**subTitle** (String)<br/>
+**Option:** `--subtitle`<br/>
+The sub-title attached to the SVG
+
+**subTitleHeader** (Int **0**)<br/>
+**Option:** `--subheader`<br/>
+The row or column that contains the sub-title. If it is less than or equal to zero
+the the name is never fetched from the csv. If the sub-title is defined by the option
+above then the csv is not checked. Embedded commas will probably cause problems.<br/>
+**N.B.** leading and trailing double quotes and spaces are stripped from csv data when
+it is read, they have no effect on how the data is interpreted.
 
 **title** (String)<br/>
 **Option:** `--title`<br/>
