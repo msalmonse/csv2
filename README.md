@@ -12,7 +12,7 @@ leading and trailing quotes are just trimmed. Numbers are expected to be in Engl
 JSON errors may cause a crash, probably without an error message.<br/>
 Most of the effort was put into generating the SVG.
 
-The [usage](usage.md) is available.
+The [usage](usage.md) is available as are some [examples](examples/examples.md).
 
 ### Limitations
 
