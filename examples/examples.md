@@ -1,3 +1,5 @@
+<style> img { background: white } </style>
+
 ### csv2svg examples
 
 This [csv](trig.csv) file and [json](trig.json) were combined with `csv2svg trig.csv trig.json > trig.svg` to produce:
@@ -19,3 +21,10 @@ aren't seen. The command `csv2svg --xmin=80 --xmax=120 trig.csv trig.json > trig
 
 Note that the markings on the abscissa have changed and none of the SVG's match the value set in the JSON file.
 This is because the programme checks that the spacing is suitable and adjusts it is required.
+
+Individual plots can be selected using `--include`.
+Here the tan and cot plots are displayed with the command:<br/>
+`csv2svg --include=40 trig.csv trig.json > trig-2plots.svg`<br/>
+The default is to include all plots which is why the default value for `--include` is -1.
+
+![trig function values](trig-2plots.svg)
