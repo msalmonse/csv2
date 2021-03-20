@@ -55,7 +55,7 @@ extension SVG {
     func gen() -> [String] {
         let ts = TransScale(from: dataPlane, to: plotPlane)
 
-        var result: [String] = [ xmlTag, svgTag ]
+        var result: [String] = [ xmlTag, svgTag, comment ]
         result.append(contentsOf: svgDefs())
         if settings.backgroundColour != "" { result.append(svgBG(settings.backgroundColour)) }
         result.append(svgAxes(ts))
