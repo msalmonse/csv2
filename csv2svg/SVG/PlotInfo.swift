@@ -25,7 +25,7 @@ extension SVG {
                 props[i].colour = settings.colours[i]
             } else if settings.black {
                 props[i].colour = "black"
-            } else {
+            } else if props[i].included {
                 props[i].colour = Colours.nextColour()
             }
         }
@@ -47,7 +47,7 @@ extension SVG {
         for i in 0..<ct {
             if i < settings.dashes.count && settings.dashes[i] != "" {
                 props[i].dash = settings.dashes[i]
-            } else if props[i].dashed {
+            } else if props[i].dashed && props[i].included {
                 props[i].dash = Dash.nextDash(width)
             }
         }
@@ -90,7 +90,7 @@ extension SVG {
         ) {
         for i in 0..<ct {
             // Don't attach a shape if we aren't a scatter plot or a plot with data points or are index
-            if (props[i].scattered || props[i].pointed) && i != settings.index {
+            if (props[i].scattered || props[i].pointed) && props[i].included && i != settings.index {
                 if i < settings.shapes.count && settings.shapes[i] != "" {
                     props[i].shape = Shape.lookup(settings.shapes[i]) ?? Shape.nextShape()
                 } else {
@@ -113,6 +113,7 @@ extension SVG {
         for i in 0..<ct {
             let mask = 1 << i
             props[i].dashed = (settings.dashedLines & mask) == mask
+            props[i].included = (settings.include & mask) == mask
             props[i].pointed = (settings.showDataPoints & mask) == mask
             props[i].scattered = (settings.scatterPlots & mask) == mask
         }

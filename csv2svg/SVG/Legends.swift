@@ -120,16 +120,18 @@ extension SVG {
         ]
         y += yStep/2.0
 
-        for i in 0..<props.count where i != index {
+        for i in 0..<props.count where i != index && props[i].included {
             y += yStep
             let propi = props[i]
             let text = shortened(propi.name!)
             let colour = propi.colour!
-            legends.append(
+            legends.append([
                 """
-                <text x="\(xLeft.f(1))" y="\(y.f(1))" stroke="\(colour)" fill="\(colour)" font-size="\(size)"
-                >\(text)</text>
-                """
+                <text x="\(xLeft.f(1))" y="\(y.f(1))" stroke="\(colour)" fill="\(colour)" font-size="\(size)">
+                """,
+                            "\(text)",
+                            "</text>"
+            ].joined()
             )
             let lineY = y + yStep/2.0
             if propi.dashed || propi.pointed || propi.scattered { y += yStep }

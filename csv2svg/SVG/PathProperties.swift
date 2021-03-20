@@ -13,6 +13,7 @@ extension SVG {
         var dash: String?
         var name: String?
         var dashed = false
+        var included = true
         var pointed = false
         var scattered = false
         var shape: Shape?

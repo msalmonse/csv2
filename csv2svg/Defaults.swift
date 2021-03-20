@@ -20,6 +20,7 @@ struct Defaults {
     static var dataPointDistance = 5.0 * strokeWidth
     static var headers = 0
     static var height = 600
+    static var include = -1
     static var index = 0
     static var legends = true
     static let maxDefault = -Double.infinity

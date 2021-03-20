@@ -44,6 +44,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default index row or column")
     var index = Defaults.index
 
+    @Option(name: .long, help: "Default rows or columns to include")
+    var include = Defaults.include
+
     @Option(name: .long, help: "Default plot name row or column")
     var nameheader = Defaults.nameHeader
 
@@ -140,6 +143,7 @@ struct Options: ParsableCommand {
         Defaults.dataPointDistance = distance
         Defaults.headers = headers
         Defaults.height = height
+        Defaults.include = include
         Defaults.index = index
         Defaults.legends = !nolegends
         Defaults.nameHeader = nameheader

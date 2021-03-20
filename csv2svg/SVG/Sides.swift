@@ -56,7 +56,7 @@ extension SVG {
     /// - Returns: the top and bottom sides
 
     static func tbFromData(_ csv: CSV, _ settings: Settings) -> (t: Double, b: Double) {
-        let index = settings.index - 1
+        let index = settings.index
         let yMaxSet = settings.yMax > Defaults.maxDefault
         let yMinSet = settings.yMin < Defaults.minDefault
         let count = settings.inColumns ? csv.colCt : csv.rowCt
@@ -70,7 +70,7 @@ extension SVG {
             var min: Double = Double.greatestFiniteMagnitude
             var max: Double = -Double.greatestFiniteMagnitude
 
-            for i in settings.headers..<count where i != index {
+            for i in settings.headers..<count where i != index && settings.included(i) {
                 (min, max) =
                     csv.minMax(settings.inColumns, i, from: settings.headers, min: min, max: max)
             }

@@ -29,7 +29,7 @@ extension SVG {
         var paths: [String] = []
 
         let xiValues = settings.sortx ? xiList().sorted() : xiList()
-        for i in 0..<csv.colCt where i != index {
+        for i in 0..<csv.colCt where i != index && props[i].included {
             let yValues = csv.columnValues(i)
             paths.append(
                 plotCommon(

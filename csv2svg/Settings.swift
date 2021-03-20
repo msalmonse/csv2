@@ -65,6 +65,8 @@ class Settings: Codable, ReflectedStringConvertible {
 
     // Use dashed lines
     let dashedLines: Int
+    // Which plots to include
+    let include: Int
     // Plots to show as scattered
     let scatterPlots: Int
     // show data points
@@ -89,6 +91,14 @@ class Settings: Codable, ReflectedStringConvertible {
 
     // Path names
     let names: [String]
+
+    /// Check if a row or column is included
+    /// - Parameter i: row or column number
+    /// - Returns: true if included
+    
+    func included(_ i: Int) -> Bool {
+        return ((include >> i) & 1) == 1
+    }
 
     /// Return the boolean default for the key
     /// - Parameter key: Coding key for Settings
@@ -163,6 +173,7 @@ class Settings: Codable, ReflectedStringConvertible {
         case .headerColumns: return Defaults.headers
         case .headerRows: return Defaults.headers
         case .height: return Defaults.height
+        case .include: return Defaults.include
         case .index: return Defaults.index
         case .nameHeader: return Defaults.nameHeader
         case .scatterPlots: return Defaults.scattered
@@ -262,6 +273,7 @@ class Settings: Codable, ReflectedStringConvertible {
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
         height = Self.keyedIntValue(from: container, forKey: .height)
+        include = Self.keyedIntValue(from: container, forKey: .include)
         index = Self.keyedIntValue(from: container, forKey: .index) - 1     // use 0 based
         legends = Self.keyedBoolValue(from: container, forKey: .legends)
         nameHeader = Self.keyedIntValue(from: container, forKey: .nameHeader) - 1   // use 0 based
