@@ -38,3 +38,4 @@ z none --colour=red,--stroke=15,--show=shuriken Shuriken shape
 z none --colour=red,--stroke=15,--show=square Square shape
 z none --colour=red,--stroke=15,--show=star Star shape
 z none --colour=red,--stroke=15,--show=triangle Triangle shape
+timing timing -- Fibonacci timings

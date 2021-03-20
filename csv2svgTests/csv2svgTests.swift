@@ -17,7 +17,7 @@ class csv2svgTests: XCTestCase {
         XCTAssertTrue(settings!.inColumns)
         XCTAssertFalse(settings!.inRows)
         XCTAssertFalse(settings!.rowGrouping)
-        XCTAssertEqual(settings!.index, testIndex)
+        XCTAssertEqual(settings!.index, testIndex - 1)
         XCTAssertEqual(settings!.height, testHeight)
         XCTAssertEqual(settings!.names[1], testName)
         XCTAssertEqual(settings!.title, testTitle)
@@ -138,17 +138,17 @@ class csv2svgTests: XCTestCase {
 
         var svg = try? SVG(csv, Settings.load(settingsJSON(true)))
         XCTAssertNotNil(svg)
-        XCTAssertEqual(svg!.dataEdges.top, testYMax)
-        XCTAssertEqual(svg!.dataEdges.bottom, -110.1)
-        XCTAssertEqual(svg!.dataEdges.left, 0)
-        XCTAssertEqual(svg!.dataEdges.right, 32)
+        XCTAssertEqual(svg!.dataPlane.top, testYMax)
+        XCTAssertEqual(svg!.dataPlane.bottom, -110.1)
+        XCTAssertEqual(svg!.dataPlane.left, 0)
+        XCTAssertEqual(svg!.dataPlane.right, 32)
 
         svg = try? SVG(csv, Settings.load(settingsJSON(false)))
         XCTAssertNotNil(svg)
-        XCTAssertEqual(svg!.dataEdges.top, testYMax)
-        XCTAssertEqual(svg!.dataEdges.bottom, -110.1)
-        XCTAssertEqual(svg!.dataEdges.left, -1.0)
-        XCTAssertEqual(svg!.dataEdges.right, 9.0)
+        XCTAssertEqual(svg!.dataPlane.top, testYMax)
+        XCTAssertEqual(svg!.dataPlane.bottom, -110.1)
+        XCTAssertEqual(svg!.dataPlane.left, -1.0)
+        XCTAssertEqual(svg!.dataPlane.right, 9.0)
     }
 
     func testFormats() {
