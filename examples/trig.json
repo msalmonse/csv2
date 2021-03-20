@@ -1,0 +1,12 @@
+{
+	"headerRows": 2,
+	"index": 1,
+	"subTitleHeader": 2,
+	"title": "Trigonometric Functions",
+	"xTitle": "Degrees",
+	"yTitle": "Function Value",
+	"yMin": -1.5,
+	"yMax": 1.5,
+	"xTick": 15,
+	"yTick": 0.25
+}
