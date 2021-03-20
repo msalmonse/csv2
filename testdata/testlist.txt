@@ -30,6 +30,7 @@ trig trig --showpoints=-1 Trig curves with data points
 trig trig --showpoints=-1,--distance=50 Trig curves with sparse data points
 trig trig --showpoints=-1,--distance=0 Trig curves with close data points
 trig trig2 --subtitle=Clipped Clipped trig curves
+trig trig2 --subheader=1 Clipped trig curves
 z none --colour=red,--stroke=15,--show=blade Blade shape
 z none --colour=red,--stroke=15,--show=circle Circle shape
 z none --colour=red,--stroke=15,--show=diamond Diamond shape

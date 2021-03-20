@@ -32,7 +32,7 @@ extension SVG {
             // Calculate vertical positions
             var pos = Double(settings.height) - settings.baseFontSize
             subTitleY = pos
-            if settings.subTitle != "" { pos -= settings.subTitleSize * 1.25 }
+            if settings.subTitle != "" || settings.subTitleHeader >= 0 { pos -= settings.subTitleSize * 1.25 }
             titleY = pos
             if settings.title != "" { pos -= settings.titleSize * 1.25 }
             xTitleY = pos

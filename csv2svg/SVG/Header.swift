@@ -59,7 +59,7 @@ extension SVG {
     static func subTitleText(csv: CSV?, inColumns: Bool, header: Int) -> String {
         guard csv != nil && header >= 0 else { return "" }
         var text: [String] = []
-        if !inColumns {
+        if inColumns {
             text = csv!.data[header]
         } else {
             for row in csv!.data where header < row.count {
