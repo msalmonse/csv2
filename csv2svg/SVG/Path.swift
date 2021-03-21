@@ -79,22 +79,20 @@ extension SVG {
         // a path needs 2 points
         guard points.count >= 2 else { return "" }
 
-        let strokeColour = props.colour ?? Colours.nextColour()
-        var style = [
-            "stroke: \(strokeColour)",
-            "fill: none",
-            "stroke-width: \(width.f(1))",
-            "stroke-linecap: \(linecap)"
-        ]
+        var style = Style([
+            "stroke": props.colour ?? Colours.nextColour(),
+            "fill": "none",
+            "stroke-width": width.f(1),
+            "stroke-linecap": linecap
+        ])
 
         if props.dashed {
-            let dashes = props.dash ?? Dash.nextDash(800.0)
-            style.append("stroke-dasharray: \(dashes)")
+            style["stroke-dasharray"] = props.dash ?? Dash.nextDash(800.0)
         }
 
         var result = [ "<path d=\"" ]
         result.append(contentsOf: points.map { $0.command() })
-        result.append("\" style=\"\(style.joined(separator: ";"))\" />")
+        result.append("\" \(style) />")
 
         return result.joined(separator: " ")
     }
