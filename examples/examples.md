@@ -4,7 +4,8 @@ This [csv](trig.csv) file and [json](trig.json) were combined with `csv2svg trig
 
 ![trig function values](trig.svg)
 
-It is easy to add data points or scatter plots to the SVG, `csv2svg --showpoints=8 --scattered=16 trig.csv trig.json > trig-points.svg` will add data points to the tan curve and make sin² a scatter plot:
+It is easy to add data points or scatter plots to the SVG,<br/>
+`csv2svg --showpoints=8 --scattered=16 trig.csv trig.json > trig-points.svg` will add data points to the tan curve and make sin² a scatter plot:
 
 ![trig function values](trig-points.svg)
 
