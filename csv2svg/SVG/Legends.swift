@@ -122,6 +122,14 @@ extension SVG {
 
         for i in 0..<props.count where i != index && props[i].included {
             y += yStep
+            if y > height - yStep - yStep {
+                legends.append(
+                    """
+                    <text x="\(xLeft.f(1))" y="\(y.f(1))" stroke="black" font-size="\(size)">…</text>
+                    """
+                )
+                break
+            }
             let propi = props[i]
             let text = shortened(propi.name!)
             let colour = propi.colour!
@@ -129,7 +137,7 @@ extension SVG {
                 """
                 <text x="\(xLeft.f(1))" y="\(y.f(1))" stroke="\(colour)" fill="\(colour)" font-size="\(size)">
                 """,
-                            "\(text)",
+                            text,
                             "</text>"
             ].joined()
             )

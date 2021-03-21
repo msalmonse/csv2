@@ -64,6 +64,10 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default index row or column")
     var opacity = Defaults.opacity
 
+    @Option(name: .long, parsing: .upToNextOption,
+            help: "Generate a random SVG with: #plots [max value [min value]]")
+    var random: [Int] = []
+
     @Flag(name: .long, help: "Default to grouping data by rows")
     var rows = Defaults.rowGrouping
 

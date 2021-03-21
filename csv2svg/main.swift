@@ -47,10 +47,7 @@ let jsonUrl = URL(fileURLWithPath: opts.jsonName ?? ((opts.csvName ?? "") + ".js
 let settings = try? Settings.load(jsonUrl)
 if (opts.debug & 2) > 0 { print(settings ?? "Nil settings", to: &standardError) }
 
-let colsep = opts.tsv ? "\t" : ","
-let csv = opts.csvName != nil
-    ? (try? CSV(URL(fileURLWithPath: opts.csvName!), separatedBy: colsep))
-    : CSV(readLines(), separatedBy: colsep)
+let csv = csvSelect(opts, settings)
 if (opts.debug & 4) > 0 { print(csv ?? "Nil csv", to: &standardError) }
 
 if csv == nil || settings == nil {
@@ -62,3 +59,13 @@ let svg = SVG(csv!, settings!)
 if (opts.debug & 8) > 0 { print(svg, to: &standardError) }
 
 _ = svg.gen().map { print($0) }
+
+func csvSelect(_ opts: Options, _ settings: Settings?) -> CSV? {
+    let colsep = opts.tsv ? "\t" : ","
+
+    switch (opts.csvName != nil, opts.random.count > 0) {
+    case (_, true): return CSV(randomCSV(opts, settings))
+    case (true, false): return try? CSV(URL(fileURLWithPath: opts.csvName!), separatedBy: colsep)
+    case(false, false): return CSV(readLines(), separatedBy: colsep)
+    }
+}

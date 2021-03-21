@@ -24,6 +24,7 @@ OPTIONS:
   --names <names>         Default list of plot names, multiple entries until the next option
   --nolegends             Don't include plot names, colours, dashes and shapes
   --opacity <opacity>     Default index row or column (default: 1.0)
+  --random <random>       Generate a random SVG with: #plots [max value [min value]]
   --rows                  Default to grouping data by rows
   --scattered <scattered> Default plots to show as scattered (default: 0)
   --shapes <shapes>       Default list of shapes, multiple entries until the next option
