@@ -87,9 +87,9 @@ extension SVG {
     ///   - precission: precission in string
     /// - Returns: x and y string
 
-    func xy(_ x: Double, _ y: Double, _ precission: Int = 2) -> String {
+    func xy(_ x: Double, _ y: Double, _ precision: Int = 2) -> String {
         return """
-            x="\(x.f(precission))" y="\(y.f(precission))"
+            x="\(x.f(precision))" y="\(y.f(precision))"
             """
     }
 
