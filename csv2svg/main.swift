@@ -30,6 +30,11 @@ if opts.show != "" {
     exit(0)
 }
 
+if opts.bitmap.count > 0 {
+    print(bitmap(opts.bitmap))
+    exit(0)
+}
+
 // use a csvName of - to mean use stdin
 if opts.csvName == "-" { opts.csvName = nil }
 

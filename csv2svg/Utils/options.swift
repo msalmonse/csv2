@@ -12,6 +12,10 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Background colour")
     var bg = Defaults.backgroundColour
 
+    @Option(name: .long, parsing: .upToNextOption,
+            help: "Convert a list of rows or columns to a bitmap")
+    var bitmap: [Int] = []
+
     @Flag(name: .long, help: "Set default colour to black")
     var black = Defaults.black
 

@@ -163,6 +163,13 @@ class csv2svgTests: XCTestCase {
         XCTAssertNil(SVG.Shape.lookup("nothing"))
     }
 
+    func testBitmap() {
+        XCTAssertEqual(bitmap([]), 0)
+        XCTAssertEqual(bitmap([64]), 0)
+        XCTAssertEqual(bitmap([0]), 0)
+        XCTAssertEqual(bitmap([1,3,5]), 21)
+    }
+
     func testSettingsPerformance() throws {
         measure {
             try? testSettings()
