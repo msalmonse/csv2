@@ -31,9 +31,16 @@ extension SVG {
             }
         }
 
+        /// Generate a semi-colon separated string of the style opts
+        /// - Returns: style opts description
+
         func optsDescription() -> String {
-            return
-                opts.filter { $1 != nil }.map { "\($0): \($1!)"}.joined(separator: ";")
+            var result: [String] = []
+
+            for key in opts.keys.sorted() where opts[key] != nil && opts[key]! != nil {
+                result.append("\(key): \(opts[key]!!)")
+            }
+            return result.joined(separator: ";")
         }
     }
 }
