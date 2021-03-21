@@ -179,9 +179,10 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual("\(style)", style1)
         XCTAssertNil(style["c"])
         XCTAssertNil(style["d"])
-        style["a"] = nil
         style["c"] = "1"
         XCTAssertEqual("\(style)", style2)
+        style["a"] = nil
+        XCTAssertEqual("\(style)", style3)
     }
 
     func testFormats() {
@@ -282,4 +283,5 @@ let pathTag = """
 
 // Checks for style
 let style1 = "style=\"a: b\""
-let style2 = "style=\"c: 1\""
+let style2 = "style=\"a: b;c: 1\""
+let style3 = "style=\"c: 1\""
