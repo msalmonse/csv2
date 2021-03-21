@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import ArgumentParser
 @testable import csv2svg
 
 class csv2svgTests: XCTestCase {
@@ -169,6 +170,20 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(svg!.dataPlane.right, 9.0)
     }
 
+    func testStyle() {
+        var style = SVG.Style([
+            "a": "b",
+            "c": nil
+        ])
+
+        XCTAssertEqual("\(style)", style1)
+        XCTAssertNil(style["c"])
+        XCTAssertNil(style["d"])
+        style["a"] = nil
+        style["c"] = "1"
+        XCTAssertEqual("\(style)", style2)
+    }
+
     func testFormats() {
         XCTAssertEqual((10.0/3.0).e(2), "3.33e+00")
         XCTAssertEqual((10.0/3.0).f(2), "3.33")
@@ -264,3 +279,7 @@ let pathPoints = [
 let pathTag = """
 <path d=" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 m -2.0,-2.0 m 0.0,-3.0 a 3.0,3.0,0.0,1,1,0.0,6.0 a 3.0,3.0,0.0,1,1,0.0,-6.0 m 0.0,3.0 " style="stroke: black;fill: none;stroke-width: 1.0;stroke-linecap: round" />
 """
+
+// Checks for style
+let style1 = "style=\"a: b\""
+let style2 = "style=\"c: 1\""

@@ -52,7 +52,10 @@
 		C46ADD11260714DA0046F427 /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46ADD0F260714DA0046F427 /* Bitmap.swift */; };
 		C46ADD17260737F60046F427 /* examplesMake.sh in Resources */ = {isa = PBXBuildFile; fileRef = C46ADD16260737EE0046F427 /* examplesMake.sh */; };
 		C46ADD2126074CD60046F427 /* RandomCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46ADD2026074CD60046F427 /* RandomCSV.swift */; };
-		C46ADD2226074CD60046F427 /* RandomCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46ADD2026074CD60046F427 /* RandomCSV.swift */; };
+		C46ADD26260766530046F427 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46ADD25260766530046F427 /* Style.swift */; };
+		C46ADD27260766530046F427 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46ADD25260766530046F427 /* Style.swift */; };
+		C46ADD322607776E0046F427 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46ADD312607776E0046F427 /* Styles.swift */; };
+		C46ADD332607776E0046F427 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46ADD312607776E0046F427 /* Styles.swift */; };
 		C480847C25E4E97300BD0A24 /* ColumnPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847B25E4E97300BD0A24 /* ColumnPlot.swift */; };
 		C480848025E6776900BD0A24 /* Sides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* Sides.swift */; };
 		C480848325E6809400BD0A24 /* Sides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* Sides.swift */; };
@@ -113,6 +116,8 @@
 		C46ADD0F260714DA0046F427 /* Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
 		C46ADD16260737EE0046F427 /* examplesMake.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = examplesMake.sh; sourceTree = "<group>"; };
 		C46ADD2026074CD60046F427 /* RandomCSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCSV.swift; sourceTree = "<group>"; };
+		C46ADD25260766530046F427 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		C46ADD312607776E0046F427 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		C480847B25E4E97300BD0A24 /* ColumnPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnPlot.swift; sourceTree = "<group>"; };
 		C480847F25E6776900BD0A24 /* Sides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sides.swift; sourceTree = "<group>"; };
 		C482B9FC25EE8D4D00E51A50 /* stderr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stderr.swift; sourceTree = "<group>"; };
@@ -229,6 +234,8 @@
 				C446E80825F4BAA3007B1A05 /* RowPlot.swift */,
 				C453243725FA7968007D741C /* Shapes.swift */,
 				C480847F25E6776900BD0A24 /* Sides.swift */,
+				C46ADD25260766530046F427 /* Style.swift */,
+				C46ADD312607776E0046F427 /* Styles.swift */,
 				C49A7EC825EBCE7300503486 /* Text.swift */,
 				C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */,
 			);
@@ -473,6 +480,7 @@
 				C40CD42C25ECD60F003944FA /* Axes.swift in Sources */,
 				C446E81225F4BE4B007B1A05 /* PlotCommon.swift in Sources */,
 				C402620925FF3E1D0042AEA5 /* XI.swift in Sources */,
+				C46ADD26260766530046F427 /* Style.swift in Sources */,
 				C49A7EC925EBCE7300503486 /* Text.swift in Sources */,
 				C40CD44125ED2390003944FA /* Plane.swift in Sources */,
 				C4F20C0826012A67005D2FE1 /* PathProperties.swift in Sources */,
@@ -480,6 +488,7 @@
 				C40CD43A25ED025F003944FA /* Header.swift in Sources */,
 				C45323ED25F8EF0D007D741C /* Gen.swift in Sources */,
 				C40A3AFF25DC01180016EB6D /* main.swift in Sources */,
+				C46ADD322607776E0046F427 /* Styles.swift in Sources */,
 				C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */,
 				C4EA5D2825EB8F4D00E104E0 /* Colours.swift in Sources */,
 				C45323CB25F77F01007D741C /* ReflectedStringConvertable.swift in Sources */,
@@ -504,7 +513,6 @@
 				C45323E725F8CCC8007D741C /* readlines.swift in Sources */,
 				C424513E25E980A7005BE7DC /* ColumnPlot.swift in Sources */,
 				C45323F325F8F157007D741C /* Positions.swift in Sources */,
-				C46ADD2226074CD60046F427 /* RandomCSV.swift in Sources */,
 				C48B723825F28A5E00B0752E /* appinfo.swift in Sources */,
 				C4FE4A0A25F675190076EF5E /* Defaults.swift in Sources */,
 				C40CD43625ED007A003944FA /* Axes.swift in Sources */,
@@ -525,7 +533,9 @@
 				C453242625FA2C23007D741C /* DrawShapes.swift in Sources */,
 				C453243925FA7968007D741C /* Shapes.swift in Sources */,
 				C402620A25FF3E1D0042AEA5 /* XI.swift in Sources */,
+				C46ADD332607776E0046F427 /* Styles.swift in Sources */,
 				C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */,
+				C46ADD27260766530046F427 /* Style.swift in Sources */,
 				C45323FC25F90359007D741C /* PlotInfo.swift in Sources */,
 				C453244E25FBEBA6007D741C /* ShowShape.swift in Sources */,
 			);

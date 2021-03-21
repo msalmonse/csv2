@@ -51,6 +51,9 @@ class SVG: ReflectedStringConvertible {
     // sub title
     let subTitle: String
 
+    // Styles to use
+    let styles: [String: Style]
+
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
     var svgTag: String {
@@ -104,5 +107,7 @@ class SVG: ReflectedStringConvertible {
         subTitle = settings.subTitle != ""
             ? settings.subTitle
             : Self.subTitleText(csv: csv, inColumns: settings.inColumns, header: settings.subTitleHeader)
+
+        styles = SVG.styleDict(settings)
     }
 }

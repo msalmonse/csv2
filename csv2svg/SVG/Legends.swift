@@ -24,7 +24,7 @@ extension SVG {
         let y = top
         return """
             <rect
-                x="\(x.f(1))" y="\(y.f(1))" height="\(h.f(1))" width="\(w.f(1))" rx="\(strokeWidth * 3.0)"
+                \(xy(x,y)) height="\(h.f(1))" width="\(w.f(1))" rx="\(strokeWidth * 3.0)"
                 fill="silver" opacity=".1" stroke="black" stroke-width="1.5"
             />
             """
@@ -107,40 +107,29 @@ extension SVG {
 
     func svgLegends() -> String {
         if positions.legendX >= width { return "<!-- Legends suppressed -->" }
-        let size = legendPX
         let x = positions.legendX
         let xLeft = x + settings.legendSize/2.0
         let xRight = width - settings.legendSize/2.0
         let xMid = (xLeft + xRight)/2.0
         var y = positions.legendY
         let yStep = settings.legendSize * 1.5
-        var legends: [String] = [
-            "",     // reserved for background
-            "<text x=\"\(x)\" y=\"\(y)\" font-size=\"\(size)\" font-weight=\"bold\">Legends:</text>"
-        ]
+        var style = styles["legends"]!
+        var legends: [String] = ["", textTag(x, y, "Legends:", style)]
+        style["font-weight"] = nil
         y += yStep/2.0
 
         for i in 0..<props.count where i != index && props[i].included {
             y += yStep
             if y > height - yStep - yStep {
-                legends.append(
-                    """
-                    <text x="\(xLeft.f(1))" y="\(y.f(1))" stroke="black" font-size="\(size)">…</text>
-                    """
-                )
+                style[["fill","stroke"]] = "black"
+                legends.append(textTag(xLeft, y, "…", style))
                 break
             }
             let propi = props[i]
             let text = shortened(propi.name!)
             let colour = propi.colour!
-            legends.append([
-                """
-                <text x="\(xLeft.f(1))" y="\(y.f(1))" stroke="\(colour)" fill="\(colour)" font-size="\(size)">
-                """,
-                            text,
-                            "</text>"
-            ].joined()
-            )
+            style[["fill","stroke"]] = colour
+            legends.append(textTag(xLeft, y, text, style))
             let lineY = y + yStep/2.0
             if propi.dashed || propi.pointed || propi.scattered { y += yStep }
             switch (propi.dashed, propi.pointed, propi.scattered) {

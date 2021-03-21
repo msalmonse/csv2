@@ -15,10 +15,7 @@ extension SVG {
     func svgTitle() -> String {
         let x = width/2.0
         let y = positions.titleY
-        let t = settings.title
-        return """
-            <text x="\(x.f(1))" y="\(y.f(1))" style="text-anchor: middle; font-size: \(titlePX)">\(t)</text>
-            """
+        return textTag(x, y, settings.title, styles["title"]!)
     }
 
     /// Add sub title to the svg
@@ -27,21 +24,14 @@ extension SVG {
     func svgSubTitle() -> String {
         let x = width/2.0
         let y = positions.subTitleY
-        let t = subTitle
-        return """
-            <text x="\(x.f(1))" y="\(y.f(1))" style="text-anchor: middle; font-size: \(subTitlePX)">\(t)</text>
-            """
+        return textTag(x, y, settings.subTitle, styles["subTitle"]!)
     }
 
     /// Add title to the x axis
     /// - Returns: String to display title
 
     func xTitle(_ label: String, x: Double, y: Double) -> String {
-        return """
-            <text x="\(x)" y="\(y)" style="text-anchor: middle; font-size: \(axesPX)">
-            \(label)
-            </text>
-            """
+        return textTag(x, y, label, styles["xTitle"]!)
     }
 
     /// Add title to the y axis
@@ -49,12 +39,7 @@ extension SVG {
 
     func yTitle(_ label: String, x: Double, y: Double) -> String {
         // Rotate () rotates around 0,0 hence we need to start at -x,-y
-        return """
-            <text x="\(-x)" y="\(-y)" style="writing-mode: tb; text-anchor: middle; font-size: \(axesPX)"
-            transform="rotate(180)">
-            \(label)
-            </text>
-            """
+        return textTag(-x, -y, label, styles["yTitle"]!, extra: "transform=\"rotate(180)\"")
     }
 
     /// Format a value suitable to be used as a label
@@ -81,9 +66,7 @@ extension SVG {
     /// - Returns: text string
 
     func xLabel(_ label: String, x: Double, y: Double) -> String {
-        return """
-            <text x="\(x.f(2))" y="\(y.f(2))" style="text-anchor: middle; font-size: \(labelPX)">\(label)</text>
-            """
+        return textTag(x, y, label, styles["xLabel"]!)
     }
 
     /// Generate a text string for a y label
@@ -93,11 +76,33 @@ extension SVG {
     ///   - y: y position
     /// - Returns: text string
 
-    // swiftlint:disable line_length
-
     func yLabel(_ label: String, x: Double, y: Double) -> String {
+        return textTag(x, y, label, styles["yLabel"]!)
+    }
+
+    /// Generate x and y string
+    /// - Parameters:
+    ///   - x: x value
+    ///   - y: y value
+    ///   - precission: precission in string
+    /// - Returns: x and y string
+
+    func xy(_ x: Double, _ y: Double, _ precission: Int = 2) -> String {
         return """
-            <text x="\(x.f(2))" y="\(y.f(2))" dominant-baseline="middle" style="text-anchor: end; font-size: \(labelPX)">\(label)</text>
+            x="\(x.f(precission))" y="\(y.f(precission))"
             """
+    }
+
+    /// Generate a <text> string
+    /// - Parameters:
+    ///   - x: x position
+    ///   - y: y position
+    ///   - text: text to display
+    ///   - style: tag style
+    ///   - extra: any extra options for <text>
+    /// - Returns: <text> string
+
+    func textTag(_ x: Double, _ y: Double, _ text: String, _ style: Style, extra: String = "") -> String {
+        return "<text \(xy(x,y)) \(style) \(extra)>\(text)</text>"
     }
 }
