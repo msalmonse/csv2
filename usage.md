@@ -6,6 +6,7 @@ ARGUMENTS:
 
 OPTIONS:
   --bg <bg>               Background colour
+  --bitmap <bitmap>       Convert a list of rows or columns to a bitmap
   --black                 Set default colour to black
   --colour <colour>       Default colour (default: black)
   --colours <colours>     Default list of plot colours, multiple entries until the next option
