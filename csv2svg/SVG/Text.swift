@@ -24,7 +24,7 @@ extension SVG {
     func svgSubTitle() -> String {
         let x = width/2.0
         let y = positions.subTitleY
-        return textTag(x, y, settings.subTitle, styles["subTitle"]!)
+        return textTag(x, y, subTitle, styles["subTitle"]!)
     }
 
     /// Add title to the x axis

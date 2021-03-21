@@ -40,7 +40,7 @@ z none --colour=red,--stroke=15,--show=square Square shape
 z none --colour=red,--stroke=15,--show=star Star shape
 z none --colour=red,--stroke=15,--show=triangle Triangle shape
 timing timing -- Fibonacci timings
-none none --rows,--random,50,1000,--verbose Random data, 50 plots in rows
+none none --size=6,--rows,--random,50,1000,--verbose Random data, 50 plots in rows with tiny font
 none none --rows,--random,100,1000,10,--verbose Random data, 100 plots in rows
 none none --showpoints=-1,--rows,--random,100,1000,10,--verbose Random data, 100 plots in rows with datapoints
 none none --showpoints=-1,--rows,--random=12,--verbose Random data, 12 plots in rows with datapoints
