@@ -69,12 +69,12 @@ extension SVG {
             if dataPlane.inHoriz(x) {
                 path.append(.moveTo(x: ts.xpos(x), y: plotPlane.bottom))
                 path.append(.vertTo(y: plotPlane.top))
-                labels.append(xLabel(label(x, intTick), x: ts.xpos(x), y: positions.xTicksY))
+                labels.append(xLabelText(label(x, intTick), x: ts.xpos(x), y: positions.xTicksY))
             }
             if dataPlane.inHoriz(-x) {
                 path.append(.moveTo(x: ts.xpos(-x), y: plotPlane.bottom))
                 path.append(.vertTo(y: plotPlane.top))
-                labels.append(xLabel(label(-x, intTick), x: ts.xpos(-x), y: positions.xTicksY))
+                labels.append(xLabelText(label(-x, intTick), x: ts.xpos(-x), y: positions.xTicksY))
             }
             x += tick
         }
@@ -103,12 +103,12 @@ extension SVG {
             if dataPlane.inVert(y) {
                 path.append(.moveTo(x: plotPlane.left, y: ts.ypos(y)))
                 path.append(.horizTo(x: plotPlane.right))
-                labels.append(yLabel(label(y, intTick), x: positions.yTickX, y: ts.ypos(y)))
+                labels.append(yLabelText(label(y, intTick), x: positions.yTickX, y: ts.ypos(y)))
             }
             if dataPlane.inVert(-y) {
                 path.append(.moveTo(x: plotPlane.left, y: ts.ypos(-y)))
                 path.append(.horizTo(x: plotPlane.right))
-                labels.append(yLabel(label(-y, intTick), x: positions.yTickX, y: ts.ypos(-y)))
+                labels.append(yLabelText(label(-y, intTick), x: positions.yTickX, y: ts.ypos(-y)))
             }
             y += tick
         }

@@ -63,14 +63,14 @@ extension SVG {
         if settings.yTick >= 0 { result.append(svgYtick(ts)) }
         result.append(contentsOf: svgLineGroup(ts))
         if settings.xTitle != "" {
-            result.append(xTitle(settings.xTitle, x: plotPlane.hMid, y: positions.xTitleY))
+            result.append(xTitleText(settings.xTitle, x: plotPlane.hMid, y: positions.xTitleY))
         }
         if settings.yTitle != "" {
-            result.append(yTitle(settings.yTitle, x: positions.yTitleX, y: plotPlane.vMid))
+            result.append(yTitleText(settings.yTitle, x: positions.yTitleX, y: plotPlane.vMid))
         }
         if settings.legends { result.append(svgLegends()) }
-        if subTitle != "" { result.append(svgSubTitle()) }
-        if settings.title != "" { result.append(svgTitle()) }
+        if subTitle != "" { result.append(subTitleText()) }
+        if settings.title != "" { result.append(titleText()) }
         result.append(svgTagEnd)
 
         return result

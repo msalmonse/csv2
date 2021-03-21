@@ -12,7 +12,7 @@ extension SVG {
     /// Add title to the svg
     /// - Returns: String to display title
 
-    func svgTitle() -> String {
+    func titleText() -> String {
         let x = width/2.0
         let y = positions.titleY
         return textTag(x, y, settings.title, styles["title"]!)
@@ -21,7 +21,7 @@ extension SVG {
     /// Add sub title to the svg
     /// - Returns: String to display sub title
 
-    func svgSubTitle() -> String {
+    func subTitleText() -> String {
         let x = width/2.0
         let y = positions.subTitleY
         return textTag(x, y, subTitle, styles["subTitle"]!)
@@ -30,14 +30,14 @@ extension SVG {
     /// Add title to the x axis
     /// - Returns: String to display title
 
-    func xTitle(_ label: String, x: Double, y: Double) -> String {
+    func xTitleText(_ label: String, x: Double, y: Double) -> String {
         return textTag(x, y, label, styles["xTitle"]!)
     }
 
     /// Add title to the y axis
     /// - Returns: String to display title
 
-    func yTitle(_ label: String, x: Double, y: Double) -> String {
+    func yTitleText(_ label: String, x: Double, y: Double) -> String {
         // Rotate () rotates around 0,0 hence we need to start at -x,-y
         return textTag(-x, -y, label, styles["yTitle"]!, extra: "transform=\"rotate(180)\"")
     }
@@ -65,7 +65,7 @@ extension SVG {
     ///   - y: y position
     /// - Returns: text string
 
-    func xLabel(_ label: String, x: Double, y: Double) -> String {
+    func xLabelText(_ label: String, x: Double, y: Double) -> String {
         return textTag(x, y, label, styles["xLabel"]!)
     }
 
@@ -76,7 +76,7 @@ extension SVG {
     ///   - y: y position
     /// - Returns: text string
 
-    func yLabel(_ label: String, x: Double, y: Double) -> String {
+    func yLabelText(_ label: String, x: Double, y: Double) -> String {
         return textTag(x, y, label, styles["yLabel"]!)
     }
 
