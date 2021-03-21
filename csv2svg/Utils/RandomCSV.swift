@@ -34,10 +34,17 @@ func randomCSV(_ opts: Options, _ settings: Settings?) -> [String] {
     }
 
     var result: [String] = []
+    var y = (min + max)/2.0
+    let ymax = max * 5.0
+    let ymin = min * 5.0
+
     for _ in 0..<count {
         var row: [String] = []
         for _ in 0..<count {
-            row.append(Double.random(in: min...max).f(2))
+            y += Double.random(in: min...max) * Double.random(in: -2.0...2.0)
+            if y > ymax { y = ymax/2.0 }
+            if y < ymin { y = ymin/2.0 }
+            row.append(y.f(2))
         }
         result.append(row.joined(separator: ","))
     }

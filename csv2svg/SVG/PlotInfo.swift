@@ -110,7 +110,7 @@ extension SVG {
         _ ct: Int,
         _ props: inout [PathProperties]
     ) {
-        for i in 0..<ct {
+        for i in 0..<min(ct, Int.bitWidth) {
             let mask = 1 << i
             props[i].dashed = (settings.dashedLines & mask) == mask
             props[i].included = (settings.include & mask) == mask

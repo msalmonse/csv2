@@ -31,7 +31,7 @@ extension SVG {
 
             if index < 0 {
                 min = 0.0
-                max = Double(settings.inColumns ? csv.colCt : csv.rowCt)
+                max = Double(settings.inColumns ? csv.colCt : csv.rowCt) - 1.0
             } else {
                 (min, max) = csv.minMax(settings.inColumns, index, from: settings.headers)
                 // if min and max don't include 0 then include 0 if one is close
