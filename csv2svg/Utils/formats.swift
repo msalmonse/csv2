@@ -33,3 +33,13 @@ extension Double {
         return String(format: "%.*g", precision, self)
     }
 }
+
+extension Int {
+    /// Format an Int
+    /// - Parameter width: string width
+    /// - Returns: formatted  string
+
+    func d(_ width: Int = 1) -> String {
+        return String(format: "%*d", width, self)
+    }
+}

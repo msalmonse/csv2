@@ -74,6 +74,24 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(csv, csvTab)
     }
 
+    func testBigCsv() {
+        var bigCsvData: [String] = []
+
+        for _ in 0..<1000 {
+            var row: [String] = []
+            for _ in 0..<1000 {
+                row.append(Int.random(in: -500...500).d(4))
+            }
+            bigCsvData.append(row.joined(separator: ","))
+        }
+
+        let csv = CSV(bigCsvData)
+        XCTAssertNotNil(csv)
+        let svg = try? SVG(csv, Settings.load("{ \"labels\":false }"))
+        XCTAssertNotNil(svg)
+        XCTAssertFalse(svg!.gen().isEmpty)
+    }
+
     func testSVG() throws {
         let csv = CSV(csvData)
         var svg = try? SVG(csv, Settings.load(settingsJSON(true)))
@@ -168,6 +186,7 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(bitmap([64]), 0)
         XCTAssertEqual(bitmap([0]), 0)
         XCTAssertEqual(bitmap([1,3,5]), 21)
+        XCTAssertEqual(bitmap([1,1,1]), 1)
     }
 
     func testSettingsPerformance() throws {
