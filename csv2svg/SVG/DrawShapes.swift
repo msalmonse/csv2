@@ -44,13 +44,14 @@ extension SVG.PathCommand {
     /// - Returns: path string for a diamond
 
     func drawDiamond(w: Double) -> String {
-        let half = w/2.0
+        let half = w * 0.625
+        let full = half + half
         return [
-            Self.moveBy(dx: -w, dy: 0.0),
-            .lineBy(dx: w, dy: -w),
-            .lineBy(dx: w, dy: w),
-            .lineBy(dx: -w, dy: w),
-            .lineBy(dx: -w, dy: -w),
+            Self.moveBy(dx: -full, dy: 0.0),
+            .lineBy(dx: full, dy: -full),
+            .lineBy(dx: full, dy: full),
+            .lineBy(dx: -full, dy: full),
+            .lineBy(dx: -full, dy: -full),
             .lineBy(dx: half, dy: -half),
             .moveBy(dx: half, dy: half)
         ].map { $0.command() }.joined(separator: " ")
