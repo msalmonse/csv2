@@ -33,8 +33,8 @@ extension SVG.PathCommand {
     func drawCircle(r: Double) -> String {
         return [
             Self.moveBy(dx: 0, dy: -r),
-            .arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: 2 * r),
-            .arc(rx: r, ry: r, rot: 0, large: true, sweep: true, dx: 0.0, dy: -2 * r),
+            .arc(rx: r, ry: r, rot: 0, type: SVG.ArcType.longIn, dx: 0.0, dy: 2 * r),
+            .arc(rx: r, ry: r, rot: 0, type: SVG.ArcType.longIn, dx: 0.0, dy: -2 * r),
             .moveBy(dx: 0, dy: r)
         ].map { $0.command() }.joined(separator: " ")
     }

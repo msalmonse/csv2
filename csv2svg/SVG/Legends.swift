@@ -17,14 +17,14 @@ extension SVG {
     ///   - right: rectangle right
     /// - Returns: rectangle string
 
-    private func bgRect(_ top: Double, _ bottom: Double, _ left: Double, right: Double) -> String {
+    private func legendBG(_ top: Double, _ bottom: Double, _ left: Double, right: Double) -> String {
         let h = bottom - top
         let w = right - left
         let x = left
         let y = top
         return """
             <rect
-                \(xy(x,y)) height="\(h.f(1))" width="\(w.f(1))" rx="\(strokeWidth * 3.0)"
+                \(xy(x,y)) \(wh(w,h)) rx="\(strokeWidth * 3.0)"
                 fill="silver" opacity=".1" stroke="black" stroke-width="1.5"
             />
             """
@@ -42,7 +42,7 @@ extension SVG {
         _ props: PathProperties
     ) -> String {
         guard props.shape != nil else { return "" }
-        return SVG.svgPath([
+        return SVG.path([
             PathCommand.moveTo(x: x, y: y),
             props.shape!.pathCommand(w: shapeWidth)
         ],
@@ -63,7 +63,7 @@ extension SVG {
         _ props: PathProperties
     ) -> String {
         guard props.shape != nil else { return "" }
-        return SVG.svgPath([
+        return SVG.path([
             PathCommand.moveTo(x: left, y: y),
             .horizTo(x: mid),
             props.shape!.pathCommand(w: shapeWidth),
@@ -84,7 +84,7 @@ extension SVG {
         _ left: Double, _ right: Double, _ y: Double,
         _ props: PathProperties
     ) -> String {
-        return SVG.svgPath([
+        return SVG.path([
             PathCommand.moveTo(x: left, y: y),
             .horizTo(x: right)
         ],
@@ -118,32 +118,32 @@ extension SVG {
         style["font-weight"] = nil
         y += yStep/2.0
 
-        for i in 0..<props.count where i != index && props[i].included {
+        for i in 0..<propsList.count where i != index && propsList[i].included {
             y += yStep
             if y > height - yStep - yStep {
                 style[["fill","stroke"]] = "black"
                 legends.append(textTag(xLeft, y, "…", style))
                 break
             }
-            let propi = props[i]
-            let text = shortened(propi.name!)
-            let colour = propi.colour!
+            let propsi = propsList[i]
+            let text = shortened(propsi.name!)
+            let colour = propsi.colour!
             style[["fill","stroke"]] = colour
             legends.append(textTag(xLeft, y, text, style))
             let lineY = y + yStep/2.0
-            if propi.dashed || propi.pointed || propi.scattered { y += yStep }
-            switch (propi.dashed, propi.pointed, propi.scattered) {
+            if propsi.dashed || propsi.pointed || propsi.scattered { y += yStep }
+            switch (propsi.dashed, propsi.pointed, propsi.scattered) {
             case (_,_,true):
-                legends.append(scatteredLine(xMid - shapeWidth, lineY, propi))
+                legends.append(scatteredLine(xMid - shapeWidth, lineY, propsi))
             case (_,true,false):
-                legends.append(pointedLine(xLeft, xMid, xRight, lineY, propi))
+                legends.append(pointedLine(xLeft, xMid, xRight, lineY, propsi))
             case (true,_,false):
-                legends.append(plainLine(xLeft, xRight, lineY, propi))
+                legends.append(plainLine(xLeft, xRight, lineY, propsi))
             default: break
             }
         }
 
-        legends[0] = bgRect(positions.legendY - yStep, y + yStep, x - settings.legendSize, right: width)
+        legends[0] = legendBG(positions.legendY - yStep, y + yStep, x - settings.legendSize, right: width)
 
         return legends.joined(separator: "\n")
     }

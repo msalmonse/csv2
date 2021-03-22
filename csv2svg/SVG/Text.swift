@@ -80,6 +80,19 @@ extension SVG {
         return textTag(x, y, label, styles["yLabel"]!)
     }
 
+    /// Generate width and height string
+    /// - Parameters:
+    ///   - w: width value
+    ///   - h: height value
+    ///   - precission: precission in string
+    /// - Returns: width and height string
+
+    func wh(_ w: Double, _ h: Double, _ precision: Int = 2) -> String {
+        return """
+            width="\(w.f(precision))" height="\(h.f(precision))"
+            """
+    }
+
     /// Generate x and y string
     /// - Parameters:
     ///   - x: x value

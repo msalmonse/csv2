@@ -13,7 +13,7 @@ extension SVG {
     /// - Parameter ts: scaling and tranlating object
     /// - Returns: paths with axes
 
-    func svgAxes(_ ts: TransScale) -> String {
+    func axes(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
 
         if dataPlane.inVert(0.0) {
@@ -25,7 +25,7 @@ extension SVG {
             path.append(.vertTo(y: plotPlane.top))
         }
 
-        return Self.svgPath(path, pathProperty(withColour: "Black"), width: strokeWidth)
+        return Self.path(path, pathProperty(withColour: "Black"), width: strokeWidth)
     }
 
     /// Normalize tick value
@@ -52,7 +52,7 @@ extension SVG {
     /// - Parameter ts: scaling and translating object
     /// - Returns: path for the ticks
 
-    func svgXtick(_ ts: TransScale) -> String {
+    func xTick(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
         var labels = [""]
         let tick = tickNorm(
@@ -79,14 +79,14 @@ extension SVG {
             x += tick
         }
 
-        return Self.svgPath(path, pathProperty(withColour: "Silver")) + labels.joined(separator: "\n")
+        return Self.path(path, pathProperty(withColour: "Silver")) + labels.joined(separator: "\n")
     }
 
     /// Draw horizontal ticks
     /// - Parameter ts: scaling and translating object
     /// - Returns: path for the ticks
 
-    func svgYtick(_ ts: TransScale) -> String {
+    func yTick(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
         var labels = [""]
         let tick = tickNorm(
@@ -113,6 +113,6 @@ extension SVG {
             y += tick
         }
 
-        return Self.svgPath(path, pathProperty(withColour: "Silver")) + labels.joined(separator: "\n")
+        return Self.path(path, pathProperty(withColour: "Silver")) + labels.joined(separator: "\n")
     }
 }

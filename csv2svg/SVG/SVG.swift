@@ -33,7 +33,7 @@ class SVG: ReflectedStringConvertible {
     let positions: Positions
 
     // Path Properties
-    let props: [PathProperties]
+    let propsList: [PathProperties]
 
     // limit of distance between data points
     let limit: Double
@@ -92,7 +92,7 @@ class SVG: ReflectedStringConvertible {
         SVG.plotDashes(settings, plotCount, plotPlane.width, &props)
         SVG.plotNames(settings, csv, plotCount, &props)
         SVG.plotShapes(settings, plotCount, index: settings.index, &props)
-        self.props = props
+        propsList = props
 
         subTitle = settings.subTitle != ""
             ? settings.subTitle
