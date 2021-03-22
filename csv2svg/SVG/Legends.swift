@@ -115,7 +115,7 @@ extension SVG {
         var y = positions.legendY
         let yStep = settings.legendSize * 1.5
         var style = styles["legends"]!
-        var legends: [String] = ["", textTag(x, y, "Legends:", style)]
+        var legends: [String] = ["", textTag(x: x, y: y, text: "Legends:", style: style)]
         style["font-weight"] = nil
         y += yStep/2.0
 
@@ -123,14 +123,14 @@ extension SVG {
             y += yStep
             if y > height - yStep - yStep {
                 style[["fill","stroke"]] = "black"
-                legends.append(textTag(xLeft, y, "…", style))
+                legends.append(textTag(x: xLeft, y: y, text: "…", style: style))
                 break
             }
             let propsi = propsList[i]
             let text = shortened(propsi.name!)
             let colour = propsi.colour!
             style[["fill","stroke"]] = colour
-            legends.append(textTag(xLeft, y, text, style))
+            legends.append(textTag(x: xLeft, y: y, text: text, style: style))
             let lineY = y + yStep/2.0
             if propsi.dashed || propsi.pointed || propsi.scattered { y += yStep }
             switch (propsi.dashed, propsi.pointed, propsi.scattered) {

@@ -12,9 +12,9 @@ import Foundation
 /// - Returns: shape SVG
 
 func showColoursList() -> String {
-    let size = 25.0
+    let size = 2.5 * Defaults.baseFontSize
     let count = Defaults.colours.count + SVG.Colours.count
-    let height = Double(count + 5) * Defaults.baseFontSize * size
+    let height = Double(count + 3)  * size
     let width = Defaults.baseFontSize * 20.0
 
     let settings = try? Settings.load(settingsJson(width, height))

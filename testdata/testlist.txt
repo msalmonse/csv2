@@ -47,3 +47,4 @@ none none --showpoints=-1,--rows,--random=12,--verbose Random data, 12 plots in 
 none none --random,100,1000,10,--verbose Random data, 100 plots in columns
 none none --rows,--random,15,--verbose Random data, 15 plots in rows
 none none --rows,--random,15,--ymin=-50,--verbose Random data, 15 plots, ymin of -50 in rows
+z none --colours,red,green,blue,violet,--bg=cornsilk,--size=15,--colourslist Colours list

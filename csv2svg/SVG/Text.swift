@@ -15,7 +15,7 @@ extension SVG {
     func titleText() -> String {
         let x = width/2.0
         let y = positions.titleY
-        return textTag(x, y, settings.title, styles["title"]!)
+        return textTag(x: x, y: y, text: settings.title, style: styles["title"]!)
     }
 
     /// Add sub title to the svg
@@ -24,14 +24,14 @@ extension SVG {
     func subTitleText() -> String {
         let x = width/2.0
         let y = positions.subTitleY
-        return textTag(x, y, subTitle, styles["subTitle"]!)
+        return textTag(x: x, y: y, text: subTitle, style: styles["subTitle"]!)
     }
 
     /// Add title to the x axis
     /// - Returns: String to display title
 
     func xTitleText(_ label: String, x: Double, y: Double) -> String {
-        return textTag(x, y, label, styles["xTitle"]!)
+        return textTag(x: x, y: y, text: label, style: styles["xTitle"]!)
     }
 
     /// Add title to the y axis
@@ -39,7 +39,7 @@ extension SVG {
 
     func yTitleText(_ label: String, x: Double, y: Double) -> String {
         // Rotate () rotates around 0,0 hence we need to start at -x,-y
-        return textTag(-x, -y, label, styles["yTitle"]!, extra: "transform=\"rotate(180)\"")
+        return textTag(x: -x, y: -y, text: label, style: styles["yTitle"]!, extra: "transform=\"rotate(180)\"")
     }
 
     /// Format a value suitable to be used as a label
@@ -66,7 +66,7 @@ extension SVG {
     /// - Returns: text string
 
     func xLabelText(_ label: String, x: Double, y: Double) -> String {
-        return textTag(x, y, label, styles["xLabel"]!)
+        return textTag(x: x, y: y, text: label, style: styles["xLabel"]!)
     }
 
     /// Generate a text string for a y label
@@ -77,7 +77,7 @@ extension SVG {
     /// - Returns: text string
 
     func yLabelText(_ label: String, x: Double, y: Double) -> String {
-        return textTag(x, y, label, styles["yLabel"]!)
+        return textTag(x: x, y: y, text: label, style: styles["yLabel"]!)
     }
 
     /// Generate width and height string
@@ -115,7 +115,7 @@ extension SVG {
     ///   - extra: any extra options for <text>
     /// - Returns: <text> string
 
-    func textTag(_ x: Double, _ y: Double, _ text: String, _ style: Style, extra: String = "") -> String {
+    func textTag(x: Double, y: Double, text: String, style: Style, extra: String = "") -> String {
         return "<text \(xy(x,y)) \(style) \(extra)>\(text)</text>"
     }
 }
