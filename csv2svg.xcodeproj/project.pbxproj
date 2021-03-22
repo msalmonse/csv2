@@ -17,6 +17,9 @@
 		C40CD43D25ED02BE003944FA /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD43925ED025F003944FA /* Header.swift */; };
 		C40CD44125ED2390003944FA /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD44025ED2390003944FA /* Plane.swift */; };
 		C40CD44225ED2390003944FA /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD44025ED2390003944FA /* Plane.swift */; };
+		C422C5C42608D0CC00676912 /* ShowColoursList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422C5C32608D0CC00676912 /* ShowColoursList.swift */; };
+		C422C5C82608D2EF00676912 /* Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422C5C72608D2EF00676912 /* Rect.swift */; };
+		C422C5CC2608D58500676912 /* ColoursList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422C5CB2608D58500676912 /* ColoursList.swift */; };
 		C424513E25E980A7005BE7DC /* ColumnPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847B25E4E97300BD0A24 /* ColumnPlot.swift */; };
 		C4255F3F25E423A7002DFE80 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* Path.swift */; };
 		C4255F4425E428B0002DFE80 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* Path.swift */; };
@@ -90,6 +93,9 @@
 		C40CD42B25ECD60F003944FA /* Axes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Axes.swift; sourceTree = "<group>"; };
 		C40CD43925ED025F003944FA /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		C40CD44025ED2390003944FA /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		C422C5C32608D0CC00676912 /* ShowColoursList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowColoursList.swift; sourceTree = "<group>"; };
+		C422C5C72608D2EF00676912 /* Rect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rect.swift; sourceTree = "<group>"; };
+		C422C5CB2608D58500676912 /* ColoursList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoursList.swift; sourceTree = "<group>"; };
 		C4255F3E25E423A7002DFE80 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		C446E80825F4BAA3007B1A05 /* RowPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowPlot.swift; sourceTree = "<group>"; };
 		C446E81125F4BE4B007B1A05 /* PlotCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotCommon.swift; sourceTree = "<group>"; };
@@ -219,6 +225,7 @@
 				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
 				C40CD42B25ECD60F003944FA /* Axes.swift */,
 				C4EA5D2725EB8F4D00E104E0 /* Colours.swift */,
+				C422C5CB2608D58500676912 /* ColoursList.swift */,
 				C480847B25E4E97300BD0A24 /* ColumnPlot.swift */,
 				C4F20C102601DF4D005D2FE1 /* Dash.swift */,
 				C453242425FA2C23007D741C /* DrawShapes.swift */,
@@ -231,6 +238,7 @@
 				C446E81125F4BE4B007B1A05 /* PlotCommon.swift */,
 				C45323FA25F90359007D741C /* PlotInfo.swift */,
 				C45323F125F8F157007D741C /* Positions.swift */,
+				C422C5C72608D2EF00676912 /* Rect.swift */,
 				C446E80825F4BAA3007B1A05 /* RowPlot.swift */,
 				C453243725FA7968007D741C /* Shapes.swift */,
 				C480847F25E6776900BD0A24 /* Sides.swift */,
@@ -251,6 +259,7 @@
 				C46ADD2026074CD60046F427 /* RandomCSV.swift */,
 				C45323E525F8CCC8007D741C /* readlines.swift */,
 				C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */,
+				C422C5C32608D0CC00676912 /* ShowColoursList.swift */,
 				C453244C25FBEBA6007D741C /* ShowShape.swift */,
 				C482B9FC25EE8D4D00E51A50 /* stderr.swift */,
 				C402620825FF3E1D0042AEA5 /* XI.swift */,
@@ -483,6 +492,7 @@
 				C46ADD26260766530046F427 /* Style.swift in Sources */,
 				C49A7EC925EBCE7300503486 /* Text.swift in Sources */,
 				C40CD44125ED2390003944FA /* Plane.swift in Sources */,
+				C422C5CC2608D58500676912 /* ColoursList.swift in Sources */,
 				C4F20C0826012A67005D2FE1 /* PathProperties.swift in Sources */,
 				C45323E625F8CCC8007D741C /* readlines.swift in Sources */,
 				C40CD43A25ED025F003944FA /* Header.swift in Sources */,
@@ -496,7 +506,9 @@
 				C482B9FD25EE8D4D00E51A50 /* stderr.swift in Sources */,
 				C45323F225F8F157007D741C /* Positions.swift in Sources */,
 				C4EA5D1F25EB7B8A00E104E0 /* TransScale.swift in Sources */,
+				C422C5C82608D2EF00676912 /* Rect.swift in Sources */,
 				C4255F3F25E423A7002DFE80 /* Path.swift in Sources */,
+				C422C5C42608D0CC00676912 /* ShowColoursList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

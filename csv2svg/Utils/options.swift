@@ -22,6 +22,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default colour")
     var colour = "black"
 
+    @Flag(name: .long, help: "Generate an SVG with all the colours on it")
+    var colourslist = false
+
     @Option(name: .long, parsing: .upToNextOption,
             help: "Default list of plot colours, multiple entries until the next option")
     var colours: [String] = []

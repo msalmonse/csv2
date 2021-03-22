@@ -20,7 +20,7 @@ extension SVG {
         let y = (plotPlane.top - shapeWidth * 2.0)
         var result = ["<defs>"]
         result.append("<clipPath id=\"plotable\">")
-        result.append("<rect \(xy(x,y)) \(wh(w,h)) />")
+        result.append(rectTag(x: x, y: y, width: w, height: h, style: nil))
         result.append("</clipPath>")
         result.append("</defs>")
 
@@ -28,11 +28,12 @@ extension SVG {
     }
 
     func background(_ bg: String) -> String {
-        return """
-            <rect \(xy(0.0,0.0)) \(wh(width,height,0))
-                style="stroke: none; stroke-width: 0; fill: \(bg)"
-            />
-            """
+        let style = Style([
+            "stroke": "none",
+            "stroke-width": "0",
+            "fill": bg
+        ])
+        return rectTag(x: 0.0, y: 0.0, width: width, height: height, style: style, precision: 0)
     }
 
     /// Generate an SVG group with the plot lines
@@ -57,9 +58,9 @@ extension SVG {
         var result: [String] = [ xmlTag, svgTag, comment ]
         result.append(contentsOf: defs())
         if settings.backgroundColour != "" { result.append(background(settings.backgroundColour)) }
-        result.append(axes(ts))
         if settings.xTick >= 0 { result.append(xTick(ts)) }
         if settings.yTick >= 0 { result.append(yTick(ts)) }
+        result.append(axes(ts))
         result.append(contentsOf: lineGroup(ts))
         if settings.xTitle != "" {
             result.append(xTitleText(settings.xTitle, x: plotPlane.hMid, y: positions.xTitleY))

@@ -22,12 +22,13 @@ extension SVG {
         let w = right - left
         let x = left
         let y = top
-        return """
-            <rect
-                \(xy(x,y)) \(wh(w,h)) rx="\(strokeWidth * 3.0)"
-                fill="silver" opacity=".1" stroke="black" stroke-width="1.5"
-            />
-            """
+        let style = Style([
+            "fill": "silver",
+            "fill-opacity": ".1",
+            "stroke": "black",
+            "stroke-width": "1.5"
+        ])
+        return rectTag(x: x, y: y, width: w, height: h, style: style, rx: strokeWidth * 3.0)
     }
 
     /// Draw the shape used for a scatter plot

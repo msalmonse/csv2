@@ -7,6 +7,12 @@
 
 import Foundation
 
+/// Generate a shape SVG
+/// - Parameters:
+///   - shape: shape name
+///   - stroke: stroke colour
+/// - Returns: shape SVG
+
 func showShape(shape: String, stroke: String) -> String {
     let wh = (Defaults.strokeWidth * 6).f(0)
     let settings = try? Settings.load(settingsJson(wh))
@@ -14,6 +20,10 @@ func showShape(shape: String, stroke: String) -> String {
     let svg = SVG(csv, settings!)
     return svg.shapeGen(name: shape, stroke: stroke).joined(separator: "\n")
 }
+
+/// JSON text for display a shape
+/// - Parameter wh: width and height
+/// - Returns: JSON text
 
 fileprivate func settingsJson(_ wh: String) -> String {
     return """
