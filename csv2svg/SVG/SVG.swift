@@ -8,16 +8,6 @@
 import Foundation
 
 class SVG: ReflectedStringConvertible {
-    // font sizes in px
-    var axesPX: String { String(format: "%.1fpx", settings.axesSize) }
-    var labelPX: String { String(format: "%.1fpx", settings.labelSize) }
-    var legendPX: String { String(format: "%.1fpx", settings.legendSize) }
-    var subTitlePX: String { String(format: "%.1fpx", settings.subTitleSize) }
-    var titlePX: String { String(format: "%.1fpx", settings.titleSize) }
-
-    // number of rows or columns
-    var plotCount: Int
-
     // plot widths
     var strokeWidth: Double { settings.strokeWidth }
     var shapeWidth: Double { strokeWidth * 1.75 }
@@ -92,7 +82,7 @@ class SVG: ReflectedStringConvertible {
             left: positions.leftX, right: positions.rightX
         )
 
-        plotCount = settings.inColumns ? csv.colCt : csv.rowCt
+        let plotCount = settings.inColumns ? csv.colCt : csv.rowCt
 
         // Initialize path info
         var props = Array(repeating: PathProperties(), count: plotCount)

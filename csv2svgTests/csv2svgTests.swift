@@ -99,11 +99,13 @@ class csv2svgTests: XCTestCase {
 
         XCTAssertNotNil(svg)
         XCTAssertEqual(svg?.props[4].name, testName)
+        XCTAssertEqual(svg?.subTitle, rowTestSubTitle)
 
         svg = try? SVG(csv, Settings.load(settingsJSON(false)))
 
         XCTAssertNotNil(svg)
         XCTAssertEqual(svg?.props[4].name, testName)
+        XCTAssertEqual(svg?.subTitle, colTestSubTitle)
 
         let csvPlot = CSV(plotData)
 
@@ -224,6 +226,8 @@ class csv2svgTests: XCTestCase {
 let testIndex = 1
 let testHeight = 499
 let testName = "Ozzymandis"
+let rowTestSubTitle = "1 -1 9 3 \" 5 \(testName)"
+let colTestSubTitle = "1 1 9 32 \(testName)"
 let testTitle = "Test title"
 let testWidth = 501
 let testYMax = 25000.25
@@ -240,6 +244,7 @@ func settingsJSON(_ cols: Bool) -> String {
             "height": \(testHeight),
             "names": [ "a", "\(testName)", "c" ],
             "width": \(testWidth),
+            "subTitleHeader": 1,
             "title": "\(testTitle)",
             "yMax": \(testYMax)
         }
