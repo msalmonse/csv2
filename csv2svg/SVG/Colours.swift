@@ -25,6 +25,10 @@ extension SVG {
             "#ffd700"       // gold
         ]
 
+        static var all: [String] { colourList }
+
+        static var count: Int { colourList.count }
+
         /// Get the colour in the sequence
         /// - Returns: next colour
 

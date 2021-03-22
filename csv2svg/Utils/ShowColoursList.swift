@@ -12,14 +12,23 @@ import Foundation
 /// - Returns: shape SVG
 
 func showColoursList() -> String {
-    let settings = try? Settings.load(settingsJson)
+    let size = 25.0
+    let count = Defaults.colours.count + SVG.Colours.count
+    let height = Double(count + 5) * Defaults.baseFontSize * size
+    let width = Defaults.baseFontSize * 20.0
+
+    let settings = try? Settings.load(settingsJson(width, height))
     let csv = CSV("")
     let svg = SVG(csv, settings!)
-    return svg.coloursListGen().joined(separator: "\n")
+    return svg.coloursListGen(size).joined(separator: "\n")
 }
 
-private let settingsJson = """
-{
-    "legends": false
+private func settingsJson(_ w: Double, _ h: Double) -> String {
+    return """
+        {
+            "height": \(h.f(0)),
+            "legends": false,
+            "width": \(w.f(0))
+        }
+        """
 }
-"""
