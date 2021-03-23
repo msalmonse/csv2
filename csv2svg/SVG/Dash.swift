@@ -19,21 +19,30 @@ extension SVG {
             [ 1.0, 1.0, 2.0, 1.0, 3.0, 1.0 ]
         ]
 
-        static func all(_ w: Double) -> [String] {
+        static private func convert(_ dashes: [Double], _ w: Double) -> String {
             let mult = w * 0.01
-            return dashList.map { $0.map { ($0 * mult).f(0) }.joined(separator:  ",") }
+            return dashes.map { ($0 * mult).f(0) }.joined(separator:  ",")
         }
 
+        /// Collect all dash patterns
+        /// - Parameter w: width
+        /// - Returns: All dashes as an array of strings
+
+        static func all(_ w: Double) -> [String] {
+            return dashList.map { convert($0, w) }
+        }
+
+        // Number of dashes
         static var count: Int { dashList.count }
 
         /// Get the dash in the sequence
+        /// - Parameter w: width
         /// - Returns: next dash
 
         static func nextDash(_ w: Double) -> String {
-            let mult = w * 0.01
             next += 1
             if next >= dashList.count { next = 0 }
-            return dashList[ next ].map { ($0 * mult).f(0) }.joined(separator:  ",")
+            return convert(dashList[next], w)
         }
 
         /// Reset the dash sequence
