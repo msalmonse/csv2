@@ -116,6 +116,10 @@ extension SVG {
     /// - Returns: <text> string
 
     func textTag(x: Double, y: Double, text: String, style: Style, extra: String = "") -> String {
-        return "<text \(xy(x,y)) \(style) \(extra)>\(text)</text>"
+        var localStyle = style
+        if settings.fontFamily != "" { localStyle["font-family"] = Defaults.fontFamily }
+        if settings.bold { localStyle["font-weight"] = "bold" }
+        if settings.italic { localStyle["font-style"] = "italic"}
+        return "<text \(xy(x,y)) \(localStyle) \(extra)>\(text)</text>"
     }
 }

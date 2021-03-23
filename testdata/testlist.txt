@@ -21,6 +21,9 @@ bipolar rows-ticks-index -- Bipolar data in rows
 plot plot --subtitle=Columns Plot test in columns
 plot plot --dashed=-1 Plot test in columns with dashed lines
 plot plot --rows;--subtitle=Rows Plot test in rows
+plot plot --rows;--subtitle=Bold;--bold Plot test in rows, bold text
+plot plot --rows;--subtitle=Italic;--italic Plot test in rows, italic text
+plot plot --rows;--subtitle=Helvetica;--font=Helvetica Plot test in rows, Helvetica
 shapes shapes -- All shapes
 trig trig -- Trig curves
 trig trig --include=40 tan and cot curves

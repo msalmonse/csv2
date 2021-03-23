@@ -68,7 +68,7 @@ extension SVG {
         if settings.yTitle != "" {
             result.append(yTitleText(settings.yTitle, x: positions.yTitleX, y: plotPlane.vMid))
         }
-        if settings.legends { result.append(svgLegends()) }
+        if settings.legends { result.append(legend()) }
         if subTitle != "" { result.append(subTitleText()) }
         if settings.title != "" { result.append(titleText()) }
         result.append(svgTagEnd)

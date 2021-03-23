@@ -12,7 +12,8 @@ leading and trailing quotes are just trimmed. Numbers are expected to be in Engl
 JSON errors may cause a crash, probably without an error message.<br/>
 Most of the effort was put into generating the SVG.
 
-The [usage](usage.md) is available as are some [examples](examples/examples.md).
+The [usage](usage.md) is available as are some [examples](examples/examples.md).<br/>
+Some of the options are mainly intended for [testing](Testing.md).
 
 ### Limitations
 
@@ -39,3 +40,6 @@ This command uses the
 [Swift Argument Parser](https://github.com/apple/swift-argument-parser), which is, IMHO,
 excellent but has some limitations itself, in particular I noticed that `-d1` wasn't
 allowed, use `-d 1` instead.
+
+### Bugs
+Way too many options!

@@ -15,6 +15,10 @@ The base font size for the SVG, all other font sizes are derived from this value
 **Option:** `--black`<br/>
 Set undefined plot colours to "black"
 
+**bold** (Bool **false**)<br/>
+**Option:** `--bold`<br/>
+Use bold text.
+
 **colours** (Array of Strings)<br/>
 **Option:** `--colours`<br/><sup>[6]](#fn6)</sup>
 The colours to be used to plot the column or row. The index, if present, must be included although never used.
@@ -35,6 +39,10 @@ Columns or rows that aren't defined are assigned a pattern sequentially from an 
 **dataPointDistance** (Double **10.0**)<br/>
 **Option:** `--distance`<br/>
 The minimum number of pixels between adjacent data points
+
+**fontFamily** (String)<br/>
+**Option:** `--font`<br/>
+The font family to use for text.
 
 **headerColumns** (Int **0**)<br/>
 **Option:** `--headers`<sup>[4](#fn4)</sup><br/>
@@ -57,6 +65,10 @@ The default is to draw all.
 **Option:** `--index`<br/>
 The column or row that contains the absissa data with the leftmost column or top row being 1.<br/>
 If it is less than or equal to zero then the absica is 0 for the first value of each plot and so on.
+
+**italic** (Bool **false**)<br/>
+**Option:** `--italic`<br/>
+Use italic text.
 
 **nameHeader** (Int **1**)<br/>
 **Option:** `--nameheader`<br/>

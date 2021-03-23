@@ -8,16 +8,20 @@ OPTIONS:
   --bg <bg>               Background colour
   --bitmap <bitmap>       Convert a list of rows or columns to a bitmap
   --black                 Set default colour to black
-  --colour <colour>       Default colour (default: black)
+  --bold                  Set default font-weight to bold
+  --colourslist           Generate an SVG with all the colours on it
   --colours <colours>     Default list of plot colours, multiple entries until the next option
   --dashed <dashed>       Default plots to show as with dashed lines (default: 0)
   --dashes <dashes>       Default list of plot dash patterns, multiple entries until the next
                           option
+  --dasheslist            Generate an SVG with all the dashes on it
   -d, --debug <debug>     Add debug info (default: 0)
   --distance <distance>   Minimum distance between data points (default: 10.0)
+  --font <font>           Default font family
   --headers <headers>     Default header rows or columns (default: 0)
   --height <height>       Default svg height (default: 600)
   --index <index>         Default index row or column (default: 0)
+  --italic                Set default colour to black
   --include <include>     Default rows or columns to include (default: -1)
   --nameheader <nameheader>
                           Default plot name row or column (default: 1)

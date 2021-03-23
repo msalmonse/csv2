@@ -25,7 +25,7 @@ extension SVG {
         let style = Style([
             "fill": "silver",
             "fill-opacity": ".1",
-            "stroke": "black",
+            "stroke": "silver",
             "stroke-width": "1.5"
         ])
         return rectTag(x: x, y: y, width: w, height: h, style: style, rx: strokeWidth * 3.0)
@@ -106,7 +106,7 @@ extension SVG {
     /// Add legends to an SVG
     /// - Returns: Text string with all legends
 
-    func svgLegends() -> String {
+    func legend() -> String {
         if positions.legendX >= width { return "<!-- Legends suppressed -->" }
         let x = positions.legendX
         let xLeft = x + settings.legendSize/2.0

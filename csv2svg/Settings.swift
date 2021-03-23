@@ -86,6 +86,11 @@ class Settings: Codable, ReflectedStringConvertible {
     // Background colour
     let backgroundColour: String
 
+    // font related stuff
+    let bold: Bool
+    let fontFamily: String
+    let italic: Bool
+
     // Path stroke width
     let strokeWidth: Double
 
@@ -107,6 +112,8 @@ class Settings: Codable, ReflectedStringConvertible {
     private static func boolDefault(_ key: CodingKeys) -> Bool {
         switch key {
         case .black: return Defaults.black
+        case .bold: return Defaults.bold
+        case .italic: return Defaults.italic
         case .legends: return Defaults.legends
         case .rowGrouping: return Defaults.rowGrouping
         case .sortx: return Defaults.sortx
@@ -206,6 +213,7 @@ class Settings: Codable, ReflectedStringConvertible {
     private static func stringDefault(_ key: CodingKeys) -> String {
         switch key {
         case .backgroundColour: return Defaults.backgroundColour
+        case .fontFamily: return Defaults.fontFamily
         case .subTitle: return Defaults.subTitle
         case .title: return Defaults.title
         default: return ""
@@ -268,13 +276,16 @@ class Settings: Codable, ReflectedStringConvertible {
         backgroundColour = Self.keyedStringValue(from: container, forKey: .backgroundColour)
         baseFontSize = Self.keyedDoubleValue(from: container, forKey: .baseFontSize)
         black = Self.keyedBoolValue(from: container, forKey: .black)
+        bold = Self.keyedBoolValue(from: container, forKey: .bold)
         dashedLines = Self.keyedIntValue(from: container, forKey: .dashedLines)
         dataPointDistance = Self.keyedDoubleValue(from: container, forKey: .dataPointDistance)
+        fontFamily = Self.keyedStringValue(from: container, forKey: .fontFamily)
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
         height = Self.keyedIntValue(from: container, forKey: .height)
         include = Self.keyedIntValue(from: container, forKey: .include)
         index = Self.keyedIntValue(from: container, forKey: .index) - 1     // use 0 based
+        italic = Self.keyedBoolValue(from: container, forKey: .italic)
         legends = Self.keyedBoolValue(from: container, forKey: .legends)
         nameHeader = Self.keyedIntValue(from: container, forKey: .nameHeader) - 1   // use 0 based
         opacity = Self.keyedDoubleValue(from: container, forKey: .opacity)
