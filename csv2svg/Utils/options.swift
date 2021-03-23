@@ -19,6 +19,9 @@ struct Options: ParsableCommand {
     @Flag(name: .long, help: "Set default colour to black")
     var black = Defaults.black
 
+    @Flag(name: .long, help: "Set default font-weight to bold")
+    var bold = Defaults.bold
+
     @Flag(name: .long, help: "Generate an SVG with all the colours on it")
     var colourslist = false
 
@@ -42,6 +45,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Minimum distance between data points")
     var distance = Defaults.dataPointDistance
 
+    @Option(name: .long, help: "Default font family")
+    var font = Defaults.fontFamily
+
     @Option(name: .long, help: "Default header rows or columns")
     var headers = Defaults.headers
 
@@ -50,6 +56,9 @@ struct Options: ParsableCommand {
 
     @Option(name: .long, help: "Default index row or column")
     var index = Defaults.index
+
+    @Flag(name: .long, help: "Set default colour to black")
+    var italic = Defaults.italic
 
     @Option(name: .long, help: "Default rows or columns to include")
     var include = Defaults.include
@@ -148,14 +157,17 @@ struct Options: ParsableCommand {
         Defaults.backgroundColour = bg
         Defaults.baseFontSize = size
         Defaults.black = black
+        Defaults.bold = bold
         Defaults.colours = colours
         Defaults.dashedLines = dashed
         Defaults.dashes = dashes
         Defaults.dataPointDistance = distance
+        Defaults.fontFamily = font
         Defaults.headers = headers
         Defaults.height = height
         Defaults.include = include
         Defaults.index = index
+        Defaults.italic = italic
         Defaults.legends = !nolegends
         Defaults.nameHeader = nameheader
         Defaults.names = names

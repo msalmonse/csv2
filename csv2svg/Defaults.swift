@@ -14,14 +14,17 @@ struct Defaults {
     static var backgroundColour = ""
     static var baseFontSize = 10.0
     static var black = false
+    static var bold = false
     static var colours: [String] = []
     static var dashedLines = 0
     static var dashes: [String] = []
     static var dataPointDistance = 5.0 * strokeWidth
+    static var fontFamily: String = ""
     static var headers = 0
     static var height = 600
     static var include = -1
     static var index = 0
+    static var italic = false
     static var legends = true
     static let maxDefault = -Double.infinity
     static let minDefault = Double.infinity
