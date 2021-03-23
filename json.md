@@ -26,7 +26,10 @@ A bit vector of the plots to draw as dashed lines.<sup>[5]](#fn5)</sup>
 
 **dashes** (Array of Strings)<br/>
 **Option:** `--dashes`<br/><sup>[6]](#fn6)</sup>
-The dash patterns to be used to plot the column or row. The index, if present, must be included although never used.
+The dash patterns to be used to plot the column or row. These are a list of numbers seperated by either a space or a comma.
+Each string forms one dash e.g. `--dashes 1,2,3 "4 5 6"` defines 2 dash patterns.
+[See](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray) for more details.
+The index, if present, must be included although never used.
 Columns or rows that aren't defined are assigned a pattern sequentially from an internal list.
 
 **dataPointDistance** (Double **10.0**)<br/>
