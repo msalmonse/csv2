@@ -98,13 +98,13 @@ class csv2svgTests: XCTestCase {
         var svg = try? SVG(csv, Settings.load(settingsJSON(true)))
 
         XCTAssertNotNil(svg)
-        XCTAssertEqual(svg?.props[4].name, testName)
+        XCTAssertEqual(svg?.propsList[4].name, testName)
         XCTAssertEqual(svg?.subTitle, rowTestSubTitle)
 
         svg = try? SVG(csv, Settings.load(settingsJSON(false)))
 
         XCTAssertNotNil(svg)
-        XCTAssertEqual(svg?.props[4].name, testName)
+        XCTAssertEqual(svg?.propsList[4].name, testName)
         XCTAssertEqual(svg?.subTitle, colTestSubTitle)
 
         let csvPlot = CSV(plotData)

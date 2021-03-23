@@ -76,6 +76,7 @@
 		C4EA5D2B25EB90C900E104E0 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* Colours.swift */; };
 		C4F1B3942609DFFA0035AC62 /* ShowDashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */; };
 		C4F1B3982609E0670035AC62 /* DashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3972609E0670035AC62 /* DashesList.swift */; };
+		C4F1B39B2609E3BE0035AC62 /* Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422C5C72608D2EF00676912 /* Rect.swift */; };
 		C4F20C0826012A67005D2FE1 /* PathProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C0726012A67005D2FE1 /* PathProperties.swift */; };
 		C4F20C0926012A67005D2FE1 /* PathProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C0726012A67005D2FE1 /* PathProperties.swift */; };
 		C4F20C112601DF4D005D2FE1 /* Dash.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C102601DF4D005D2FE1 /* Dash.swift */; };
@@ -554,6 +555,7 @@
 				C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */,
 				C453242625FA2C23007D741C /* DrawShapes.swift in Sources */,
 				C453243925FA7968007D741C /* Shapes.swift in Sources */,
+				C4F1B39B2609E3BE0035AC62 /* Rect.swift in Sources */,
 				C402620A25FF3E1D0042AEA5 /* XI.swift in Sources */,
 				C46ADD332607776E0046F427 /* Styles.swift in Sources */,
 				C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */,
