@@ -19,6 +19,13 @@ extension SVG {
             [ 1.0, 1.0, 2.0, 1.0, 3.0, 1.0 ]
         ]
 
+        static func all(_ w: Double) -> [String] {
+            let mult = w * 0.01
+            return dashList.map { $0.map { ($0 * mult).f(0) }.joined(separator:  ",") }
+        }
+
+        static var count: Int { dashList.count }
+
         /// Get the dash in the sequence
         /// - Returns: next dash
 
@@ -26,7 +33,7 @@ extension SVG {
             let mult = w * 0.01
             next += 1
             if next >= dashList.count { next = 0 }
-            return dashList[ next ].map { ($0 * mult).f(0) }.joined(separator:  " ")
+            return dashList[ next ].map { ($0 * mult).f(0) }.joined(separator:  ",")
         }
 
         /// Reset the dash sequence

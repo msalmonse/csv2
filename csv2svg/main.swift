@@ -28,6 +28,8 @@ if opts.shapenames {
     print(bitmap(opts.bitmap))
 } else if opts.colourslist {
     print(showColoursList())
+} else if opts.dasheslist {
+    print(showDashesList())
 } else {
     // use a csvName of - to mean use stdin
     if opts.csvName == "-" { opts.csvName = nil }

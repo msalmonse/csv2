@@ -33,6 +33,9 @@ struct Options: ParsableCommand {
             help: "Default list of plot dash patterns, multiple entries until the next option")
     var dashes: [String] = []
 
+    @Flag(name: .long, help: "Generate an SVG with all the dashes on it")
+    var dasheslist = false
+
     @Option(name: .shortAndLong, help: "Add debug info")
     var debug = 0
 
