@@ -7,9 +7,9 @@
 
 import Foundation
 
-/// Generate a shape SVG
+/// Generate a colours list SVG
 /// - Parameters:
-/// - Returns: shape SVG
+/// - Returns: colours list SVG
 
 func showColoursList() -> String {
     let size = 2.5 * Defaults.baseFontSize
