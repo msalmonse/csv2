@@ -48,7 +48,7 @@ extension SVG {
             if i < settings.dashes.count && settings.dashes[i] != "" {
                 props[i].dash = settings.dashes[i]
             } else if props[i].dashed && props[i].included {
-                props[i].dash = Dash.nextDash(width)
+                props[i].dash = Dashes.nextDash(width)
             }
         }
     }

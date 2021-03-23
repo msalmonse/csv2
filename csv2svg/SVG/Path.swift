@@ -103,7 +103,7 @@ extension SVG {
         ])
 
         if props.dashed {
-            style["stroke-dasharray"] = props.dash ?? Dash.nextDash(800.0)
+            style["stroke-dasharray"] = props.dash ?? Dashes.nextDash(800.0)
         }
 
         var result = [ "<path d=\"" ]

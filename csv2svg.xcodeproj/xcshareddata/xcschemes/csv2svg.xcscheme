@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--colourslist"
+            argument = "--dasheslist"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

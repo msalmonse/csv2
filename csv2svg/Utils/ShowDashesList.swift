@@ -12,8 +12,8 @@ import Foundation
 /// - Returns: dashes list SVG
 
 func showDashesList() -> String {
-    let size = 2.5 * Defaults.baseFontSize
-    let count = Defaults.colours.count + SVG.Colours.count
+    let size = 2.0 * Defaults.baseFontSize
+    let count = Defaults.dashes.count + SVG.Dashes.count
     let height = Double(count + 3)  * size
     let width = Defaults.baseFontSize * 20.0
 

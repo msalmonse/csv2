@@ -8,7 +8,7 @@
 import Foundation
 
 extension SVG {
-    class Dash {
+    class Dashes {
         static private var next = -1
         static private let dashList = [
             [ 1.0, 1.0, 2.0, 1.0 ],
