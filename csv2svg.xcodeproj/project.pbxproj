@@ -144,6 +144,7 @@
 		C49B7D6F25DC055400CEAB8C /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransScale.swift; sourceTree = "<group>"; };
 		C4EA5D2725EB8F4D00E104E0 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
+		C4F1B3902609D25F0035AC62 /* Testing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Testing.md; sourceTree = "<group>"; };
 		C4F20C0726012A67005D2FE1 /* PathProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathProperties.swift; sourceTree = "<group>"; };
 		C4F20C102601DF4D005D2FE1 /* Dash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dash.swift; sourceTree = "<group>"; };
 		C4F20C1526027B7C005D2FE1 /* Legends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Legends.swift; sourceTree = "<group>"; };
@@ -214,6 +215,7 @@
 			children = (
 				C492BE0F25F3A2A10042A11E /* README.md */,
 				C492BE1025F3A2A10042A11E /* json.md */,
+				C4F1B3902609D25F0035AC62 /* Testing.md */,
 				C45323D725F7C990007D741C /* usage.md */,
 			);
 			name = Docs;

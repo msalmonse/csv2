@@ -44,6 +44,7 @@ none none --size=6;--rows;--random;50;1000;--verbose Random data, 50 plots in ro
 none none --rows;--random;100;1000;10;--verbose Random data, 100 plots in rows
 none none --showpoints=-1;--rows;--random;100;1000;10;--verbose Random data, 100 plots in rows with datapoints
 none none --showpoints=-1;--rows;--random=12;--verbose Random data, 12 plots in rows with datapoints
+none none --showpoints=-1;--random=12;--verbose Random data, 12 plots in columns with datapoints
 none none --random;100;1000;10;--verbose Random data, 100 plots in columns
 none none --rows;--random;15;--verbose Random data, 15 plots in rows
 none none --rows;--random;15;--ymin=-50;--verbose Random data, 15 plots, ymin of -50 in rows
