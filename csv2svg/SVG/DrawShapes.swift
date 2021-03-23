@@ -16,14 +16,16 @@ extension SVG.PathCommand {
     func drawBlade(w: Double) -> String {
         let half = w/2.0
         return [
-            Self.moveBy(dx: -half, dy: 0.0),
+            Self.moveBy(dx: -half, dy: half/2.0),
             .lineBy(dx: -half, dy: -w),
+            .vertBy(dy: -half),
             .horizBy(dx: half),
             .lineBy(dx: w, dy: w),
             .lineBy(dx: half, dy: w),
+            .vertBy(dy: half),
             .horizBy(dx: -half),
             .lineBy(dx: -w, dy: -w),
-            .moveBy(dx: half, dy: 0.0)
+            .moveBy(dx: half, dy: -half/2.0)
         ].map { $0.command()}.joined(separator: " ")
     }
 
