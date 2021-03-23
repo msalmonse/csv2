@@ -18,10 +18,11 @@ extension SVG.PathCommand {
         return [
             Self.moveBy(dx: -half, dy: 0.0),
             .lineBy(dx: -half, dy: -w),
-            .horizBy(dx: w),
-            .lineBy(dx: w, dy: w + w),
-            .horizBy(dx: -w),
-            .lineBy(dx: -half, dy: -w),
+            .horizBy(dx: half),
+            .lineBy(dx: w, dy: w),
+            .lineBy(dx: half, dy: w),
+            .horizBy(dx: -half),
+            .lineBy(dx: -w, dy: -w),
             .moveBy(dx: half, dy: 0.0)
         ].map { $0.command()}.joined(separator: " ")
     }
