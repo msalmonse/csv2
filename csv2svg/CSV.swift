@@ -56,11 +56,13 @@ class CSV: ReflectedStringConvertible, Equatable {
     func columnValues(_ col: Int, from row1: Int = 0) -> [Double?] {
         var result: [Double?] = []
 
-        for row in values[row1...] {
-            if col < 0 || col >= row.count {
-                result.append(nil)
-            } else {
-                result.append(row[col])
+        if row1 < values.count {
+            for row in values[row1...] {
+                if col < 0 || col >= row.count {
+                    result.append(nil)
+                } else {
+                    result.append(row[col])
+                }
             }
         }
 
@@ -101,7 +103,7 @@ class CSV: ReflectedStringConvertible, Equatable {
     func rowValues(_ row: Int, from col1: Int = 0) -> [Double?] {
         var result: [Double?] = []
 
-        if row >= 0 && row < values.count {
+        if row >= 0 && row < values.count && col1 < values[row].count {
             result.append(contentsOf: values[row][col1...])
         }
 

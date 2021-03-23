@@ -45,7 +45,7 @@ if opts.shapenames {
     let csv = csvSelect(opts, settings)
     if (opts.debug & 4) > 0 { print(csv ?? "Nil csv", to: &standardError) }
 
-    if csv == nil || settings == nil {
+    if csv == nil || csv!.colCt == 0 || csv!.rowCt == 0 || settings == nil {
         print("Error loading data.", to: &standardError)
         exit(1)
     }

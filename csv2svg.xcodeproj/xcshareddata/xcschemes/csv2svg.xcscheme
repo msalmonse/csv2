@@ -52,15 +52,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--bold"
+            argument = "${PROJECT_DIR}/testdata/timing.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/testdata/trig.csv"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "${PROJECT_DIR}/testdata/trig.json"
+            argument = "${PROJECT_DIR}/testdata/timing.json"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
