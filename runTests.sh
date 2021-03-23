@@ -12,9 +12,9 @@ svgdir=testout
 makeSVG () {
     csv="$datadir/$1.csv"
     json="$datadir/$2.json"
-    svg="$svgdir/$1-data+$3+$2-json.svg"
+    svg="$svgdir/$1-data+${3//;/,}+$2-json.svg"
     echo >&2 "Generating $svg"
-    ./test/csv2svg ${opts//,/ } "$csv" "$json" > "$svg" \
+    ./test/csv2svg ${3//;/ } "$csv" "$json" > "$svg" \
     && echo "$4" > "$svg.txt"
 }
 
