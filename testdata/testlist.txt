@@ -6,7 +6,7 @@ column none --black;--dashed=-1 Column data with no JSON settings but black and 
 column none --index=1;--headers=1 Column data with no JSON but index and header options
 column none --index=1;--headers=1;--scattered=-1 Column data with no JSON but index, header and scattered options
 column none --bg=gold;--size=22;--width=1000 Column data with no JSON but bg, width and size options
-column none --stroke=5;--width=800 Column data with no JSON but width and stroke options
+column none --stroke=5;--width=800;--dashes=5,7,9;--dashed=-1 Column data with no JSON but dashes, width and stroke options
 column none --opacity=.5;--stroke=5;--width=800 Column data with no JSON but opacity, width and stroke options
 column none --ymax=50 Column data with no JSON but ymax option
 column columns-ticks-index -- Column data with ticks and index
