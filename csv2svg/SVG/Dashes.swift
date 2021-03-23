@@ -25,7 +25,7 @@ extension SVG {
         }
 
         /// Collect all dash patterns
-        /// - Parameter w: width
+        /// - Parameter w: width of plottable plane
         /// - Returns: All dashes as an array of strings
 
         static func all(_ w: Double) -> [String] {
@@ -36,7 +36,7 @@ extension SVG {
         static var count: Int { dashList.count }
 
         /// Get the dash in the sequence
-        /// - Parameter w: width
+        /// - Parameter w: width of plottable plane
         /// - Returns: next dash
 
         static func nextDash(_ w: Double) -> String {

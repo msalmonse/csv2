@@ -104,6 +104,7 @@ extension SVG {
 
         if props.dashed {
             style["stroke-dasharray"] = props.dash ?? Dashes.nextDash(800.0)
+            style["stroke-linecap"] = "butt"
         }
 
         var result = [ "<path d=\"" ]

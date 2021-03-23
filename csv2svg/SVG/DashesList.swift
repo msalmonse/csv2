@@ -9,11 +9,28 @@ import Foundation
 
 extension SVG {
     func dashesListGen(_ step: Double) -> [String] {
-        var style = Style([:])
-        style[["stroke", "fill"]] = Defaults.colours.count > 0 ? Defaults.colours[0] : "Black"
+        var props = PathProperties()
+        props.colour = Defaults.colours.count > 0 ? Defaults.colours[0] : "black"
+        props.dashed = true
+        let style = Style(["stroke": props.colour])
+
+        let xLeft = width * 0.1
+        let xRight = width * 0.6
+        let xText = width * 0.65
+
+        var y = step
+        var yPath: Double { y - step/10.0 }
 
         var result: [String] = [ xmlTag, svgTag ]
         if settings.backgroundColour != "" { result.append(background(settings.backgroundColour)) }
+
+        for dash in Defaults.dashes + SVG.Dashes.all(width * 3.0) {
+            y += step
+            props.dash = dash
+            let points = [ PathCommand.moveTo(x: xLeft, y: yPath), .horizTo(x: xRight) ]
+            result.append(SVG.path(points, props, width: step/5.0, linecap: "butt"))
+            result.append(textTag(x: xText, y: y, text: dash, style: style))
+        }
 
         result.append(svgTagEnd)
         return result
