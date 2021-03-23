@@ -32,13 +32,13 @@ trig trig --showpoints=-1;--distance=50 Trig curves with sparse data points
 trig trig --showpoints=-1;--distance=0 Trig curves with close data points
 trig trig2 --subtitle=Clipped Clipped trig curves
 trig trig2 --subheader=1 Clipped trig curves
-z none --colour=red;--stroke=15;--show=blade Blade shape
-z none --colour=red;--stroke=15;--show=circle Circle shape
-z none --colour=red;--stroke=15;--show=diamond Diamond shape
-z none --colour=red;--stroke=15;--show=shuriken Shuriken shape
-z none --colour=red;--stroke=15;--show=square Square shape
-z none --colour=red;--stroke=15;--show=star Star shape
-z none --colour=red;--stroke=15;--show=triangle Triangle shape
+z none --colours=red;--stroke=15;--show=blade Blade shape
+z none --colours=red;--stroke=15;--show=circle Circle shape
+z none --colours=red;--stroke=15;--show=diamond Diamond shape
+z none --colours=red;--stroke=15;--show=shuriken Shuriken shape
+z none --colours=red;--stroke=15;--show=square Square shape
+z none --colours=red;--stroke=15;--show=star Star shape
+z none --colours=red;--stroke=15;--show=triangle Triangle shape
 timing timing -- Fibonacci timings
 none none --size=6;--rows;--random;50;1000;--verbose Random data, 50 plots in rows with tiny font
 none none --rows;--random;100;1000;10;--verbose Random data, 100 plots in rows

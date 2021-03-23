@@ -19,9 +19,6 @@ struct Options: ParsableCommand {
     @Flag(name: .long, help: "Set default colour to black")
     var black = Defaults.black
 
-    @Option(name: .long, help: "Default colour")
-    var colour = "black"
-
     @Flag(name: .long, help: "Generate an SVG with all the colours on it")
     var colourslist = false
 

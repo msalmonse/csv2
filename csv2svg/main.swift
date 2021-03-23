@@ -23,7 +23,7 @@ if opts.version {
 if opts.shapenames {
     print(SVG.Shape.allNames())
 } else if opts.show != "" {
-    print(showShape(shape: opts.show, stroke: opts.colour))
+    print(showShape(shape: opts.show, stroke: opts.colours.count > 0 ? opts.colours[0] : "black"))
 } else if opts.bitmap.count > 0 {
     print(bitmap(opts.bitmap))
 } else if opts.colourslist {
