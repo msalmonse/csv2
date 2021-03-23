@@ -19,7 +19,7 @@ extension SVG {
         var yRect: Double { y - hRect * 0.8 }
         var style = Style([
                 "font-size": (step * 0.8).f(2),
-                "akignment-baseline": "middle"
+                "alignment-baseline": "middle"
             ]
         )
 
