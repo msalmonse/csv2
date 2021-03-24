@@ -15,8 +15,8 @@ extension SVG {
 
     func axes(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
-        let x0 = settings.logy ? 1.0 : 0.0
-        let y0 = settings.logx ? 1.0 : 0.0
+        let x0 = logy ? 1.0 : 0.0
+        let y0 = logx ? 1.0 : 0.0
 
         if dataPlane.inVert(x0) {
             path.append(.moveTo(x: plotPlane.left, y: ts.ypos(x0)))
@@ -71,7 +71,7 @@ extension SVG {
             dpp: dataPlane.width/plotPlane.width,
             minSize: settings.labelSize * 3.5,
             maxSize: plotPlane.width/5.0,
-            isLog: settings.logx
+            isLog: logx
         )
         let intTick = (tick.rounded() == tick)
         var x = tick    // the zero line is plotted by svgAxes
@@ -89,7 +89,7 @@ extension SVG {
                 labels.append(xLabelText(label(-x, intTick), x: ts.xpos(-x), y: positions.xTicksY))
             }
             x += tick
-            if settings.logx && x > 10.0 * tick {
+            if logx && x > 10.0 * tick {
                 tick *= 10.0
                 x = tick
             }
@@ -110,7 +110,7 @@ extension SVG {
             dpp: dataPlane.height/plotPlane.height,
             minSize: settings.labelSize * 1.25,
             maxSize: plotPlane.height/5.0,
-            isLog: settings.logy
+            isLog: logy
         )
         let intTick = (tick.rounded() == tick)
         var y = tick    // the zero line is plotted by svgAxes
@@ -128,7 +128,7 @@ extension SVG {
                 labels.append(yLabelText(label(-y, intTick), x: positions.yTickX, y: ts.ypos(-y)))
             }
             y += tick
-            if settings.logy && y > 10.0 * tick {
+            if logy && y > 10.0 * tick {
                 tick *= 10.0
                 y = tick
             }

@@ -44,6 +44,10 @@ class SVG: ReflectedStringConvertible {
     // Styles to use
     let styles: [String: Style]
 
+    // log x and y axes
+    var logx: Bool { settings.logx && dataPlane.left > 0.0 }
+    var logy: Bool { settings.logy && dataPlane.bottom > 0.0 }
+
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
     var svgTag: String {
