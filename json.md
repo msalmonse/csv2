@@ -84,7 +84,7 @@ The row or column that contains the names of plots. If it is less than or equal 
 the the name is never fetched from the csv.
 
 **names** (Array of Strings)<br/>
-**Option:** `--names`<br/><sup>[6](#fn6)</sup>
+**Option:** `--names`<sup>[6](#fn6)</sup><br/>
 The plotted column or rows are assigned names from this array or the first header row or column respectively. If not defined in either place then a name is generated.
 The names are included with the colours associated with the plots under the plot area.
 
@@ -97,7 +97,7 @@ The data is grouped in rows
 A bit vector of the plots to draw as scatter plots.<sup>[5](#fn5)</sup>
 
 **shapes** (Array of Strings)<br/>
-**Option:** `--shapes`<br/><sup>[6](#fn6)</sup>
+**Option:** `--shapes`<sup>[6](#fn6)</sup><br/>
 A list of shape names to be used in scatter plots. The names are taken sequentially from
 the list and assigned to scatter plots. If there are too few shape names or they cannot be
 looked up the a shape from an internal list is assigned.
