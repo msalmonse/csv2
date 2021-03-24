@@ -1,5 +1,9 @@
-### USAGE: `options [<options>] [<csv-name>] [<json-name>]`
+### csv2svg
 ```
+OVERVIEW: Generate an SVG using data from a CSV file and settings from a JSON file.
+
+USAGE: csv2svg [<options>] [<csv-name>] [<json-name>]
+
 ARGUMENTS:
   <csv-name>              CSV file name, "-" means use stdin
   <json-name>             JSON file name
@@ -23,6 +27,8 @@ OPTIONS:
   --index <index>         Default index row or column (default: 0)
   --italic                Set default colour to black
   --include <include>     Default rows or columns to include (default: -1)
+  --logx                  Set default for abcissa to log
+  --logy                  Set default for ordinate to log
   --nameheader <nameheader>
                           Default plot name row or column (default: 1)
   --names <names>         Default list of plot names, multiple entries until the next option
@@ -37,6 +43,7 @@ OPTIONS:
   --showpoints <showpoints>
                           Default data plots with points (default: 0)
   --size <size>           Default font size (default: 10.0)
+  --smooth <smooth>       Default smoothing, 0 means none (default: 0.0)
   --sortx                 Sort points by the x values before plotting
   --stroke <stroke>       Default stroke width (default: 2.0)
   --subheader <subheader> Default sub-title row or column (default: 0)
@@ -52,6 +59,7 @@ OPTIONS:
   --ymax <ymax>           Default ordinate maximum (default: -inf)
   --ymin <ymin>           Default ordinate minimum (default: inf)
   --ytick <ytick>         Default y tick (default: 0.0)
+  --version               Show the version.
   -h, --help              Show help information.
 
 ```

@@ -70,6 +70,14 @@ If it is less than or equal to zero then the absica is 0 for the first value of 
 **Option:** `--italic`<br/>
 Use italic text.
 
+**logx** (Bool **false**)<br/>
+**Option:** `--logx`<br/>
+The abcissa uses a logarithmic scale
+
+**logy** (Bool **false**)<br/>
+**Option:** `--logy`<br/>
+The ordinate uses a logarithmic scale
+
 **nameHeader** (Int **1**)<br/>
 **Option:** `--nameheader`<br/>
 The row or column that contains the names of plots. If it is less than or equal to zero
@@ -106,6 +114,12 @@ Recognized names are:
 **showDataPoints** (Int **0**)<br/>
 **Option:** `--datapoints`<br/>
 A bit vector of the plots to draw with data points.<sup>[5](#fn5)</sup>
+
+**smooth** (Double **0.0**)<br/>
+**Option:** `--smooth`<br/>
+Smooth the ordinate values using an
+[Exponential Moving Average](https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average)
+The value for smooth is actually `1 - α` as it makes more sense to me for no smoothing to be `0.0` rather than `1.0`.
 
 **sortx** (Bool **false**)<br/>
 **Option:** `--sortx`<br/>
