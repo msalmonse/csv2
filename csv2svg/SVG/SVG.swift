@@ -96,7 +96,8 @@ class SVG: ReflectedStringConvertible {
 
         subTitle = settings.subTitle != ""
             ? settings.subTitle
-            : Self.subTitleText(csv: csv, inColumns: settings.inColumns, header: settings.subTitleHeader)
+            : plotCount == 0 ? ""
+                : Self.subTitleText(csv: csv, inColumns: settings.inColumns, header: settings.subTitleHeader)
 
         styles = SVG.styleDict(settings)
     }

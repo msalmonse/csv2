@@ -56,13 +56,13 @@ extension SVG {
     ///   - header: row or column with the sub title
     /// - Returns: sub title
 
-    static func subTitleText(csv: CSV?, inColumns: Bool, header: Int) -> String {
-        guard csv != nil && header >= 0 else { return "" }
+    static func subTitleText(csv: CSV, inColumns: Bool, header: Int) -> String {
+        guard header >= 0 else { return "" }
         var text: [String] = []
         if inColumns {
-            text = csv!.data[header]
+            text = csv.data.count > header ? csv.data[header] : []
         } else {
-            for row in csv!.data where header < row.count {
+            for row in csv.data where header < row.count {
                 text.append(row[header])
             }
         }

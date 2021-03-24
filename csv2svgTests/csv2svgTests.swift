@@ -132,6 +132,11 @@ class csv2svgTests: XCTestCase {
         */
     }
 
+    func testEmptyCSV() {
+        let svg = try? SVG(CSV([]), Settings.load(settingsJSON(true)))
+        XCTAssertNotNil(svg)
+    }
+
     func testSvgPath() {
         var props = SVG.PathProperties()
         props.colour = "black"
