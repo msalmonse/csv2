@@ -50,12 +50,18 @@ extension SVG {
         let ppt = tick/dppLocal      // pixels per tick
         if ppt >= minSize && ppt <= maxSize { return tick }
         let raw = minSize * dppLocal
-        // calculate the power of 10 less than the raw tick
-        let pow10 = pow(10.0, floor(log10(raw)))
-        var norm = pow10
-        if !isLog { norm *= ceil(raw/pow10) }
-        if norm > 0.1 && norm < 1.0 { norm = 1.0 }  // < .01 is where labels use e format
-        // return the tick as an an integer times the power of 10
+        var norm = 0.0
+        if raw > 0.0 {
+            // calculate the power of 10 less than the raw tick
+            let pow10 = pow(10.0, floor(log10(raw)))
+            norm = pow10
+            // return the tick as an an integer times the power of 10 if not lag axis
+            if !isLog { norm *= ceil(raw/pow10) }
+            if norm > 0.1 && norm < 1.0 { norm = 1.0 }  // < .1 is where labels use e format
+        } else {
+            // raw is -ve as values are less than zero
+            norm = pow(10.0, floor(log10(dpp * minSize)))
+        }
         return norm
     }
 

@@ -12,6 +12,8 @@ column none --ymax=50 Column data with no JSON but ymax option
 column columns-ticks-index -- Column data with ticks and index
 big columns-ticks-index -- Big data in columns with ticks and index
 little columns-ticks-index -- Little data in columns with ticks and index
+little columns-ticks-index --logy Little data in columns with logy, ticks and index
+little columns-ticks-index --logx;--logy Little data in columns with logx, logy, ticks and index
 row rows-ticks-index -- Row data with ticks and index
 posneg columns-ticks-index -- Positive and negative data with ticks and index
 posneg columns-ticks-index --sortx Positive and negative data with ticks and index with sortx

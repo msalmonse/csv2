@@ -56,11 +56,11 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/testdata/timing.csv"
+            argument = "${PROJECT_DIR}/testdata/little.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/testdata/timing.json"
+            argument = "${PROJECT_DIR}/testdata/columns-ticks-index.json"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

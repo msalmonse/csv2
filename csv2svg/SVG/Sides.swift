@@ -39,9 +39,9 @@ extension SVG {
             } else {
                 (min, max) = csv.minMax(settings.inColumns, index, from: settings.headers)
                 // if min and max don't include 0 then include 0 if one is close
-                if min > 0 && max > 0 {
-                    if min < max/20.0 { min = settings.logx ? 1.0 : 0.0 }
-                } else if min < 0 && max < 0 {
+                if min > 0 && max > 0 && !settings.logx {
+                    if min < max/20.0 { min = 0.0 }
+                } else if min < 0 && max < 0 && !settings.logx {
                     if max < min/20.0 { max = 0.0 }
                 }
             }
@@ -82,9 +82,9 @@ extension SVG {
                     csv.minMax(settings.inColumns, i, from: settings.headers, min: min, max: max)
             }
             // if min and max don't include 0 then include 0 if one is close
-            if min > 0 && max > 0 {
-                if min < max/20.0 { min = settings.logy ? 1.0 : 0.0 }
-            } else if min < 0 && max < 0 {
+            if min > 0 && max > 0 && !settings.logy {
+                if min < max/20.0 { min = 0.0 }
+            } else if min < 0 && max < 0 && !settings.logy {
                 if max < min/20.0 { max = 0.0 }
             }
 
