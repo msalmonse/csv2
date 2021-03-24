@@ -38,6 +38,7 @@ struct Defaults {
     static var shapes: [String] = []
     static var showDataPoints = 0
     static var sortx = false
+    static var smooth = 0.0
     static var strokeWidth = 2.0
     static var subTitle = ""
     static var subTitleHeader = 0

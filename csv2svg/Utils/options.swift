@@ -114,6 +114,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default font size")
     var size = Defaults.baseFontSize
 
+    @Option(name: .long, help: "Default smoothing, 0 means none")
+    var smooth = Defaults.smooth
+
     @Flag(name: .long, help: "Sort points by the x values before plotting")
     var sortx = Defaults.sortx
 
@@ -188,8 +191,8 @@ struct Options: ParsableCommand {
         Defaults.opacity = opacity
         Defaults.rowGrouping = rows
         Defaults.scattered = scattered
-        Defaults.dashes = dashes
         Defaults.showDataPoints = showpoints
+        Defaults.smooth = smooth
         Defaults.sortx = sortx
         Defaults.strokeWidth = stroke
         Defaults.subTitleHeader = subheader

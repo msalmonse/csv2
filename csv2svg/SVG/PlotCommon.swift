@@ -144,15 +144,20 @@ extension SVG {
             ts: ts,
             limit: limit
         )
+        var yPrev = Double.infinity
         let plotShape = props.shape?.pathCommand(w: shapeWidth) ?? .circle(r: shapeWidth)
 
         for i in settings.headers..<xiValues.count {
             let x = xiValues[i].x
             let j = xiValues[i].i
-            let y = j < yValues.count ? yValues[j] : nil
+            var y = j < yValues.count ? yValues[j] : nil
             if x == nil ||  y == nil {
                 state.nilPlot(plotShape)
             } else {
+                if settings.smooth > 0.0 {
+                    if yPrev != Double.infinity { y = (1 - settings.smooth) * y! + yPrev}
+                    yPrev = y! * settings.smooth
+                }
                 let (pos, clipped) = posClip(ts.pos(x: x!, y: y!))
                 state.plotOne(pos, clipped: clipped, plotShape: plotShape)
             }

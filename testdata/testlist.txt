@@ -43,13 +43,15 @@ z none --colours=red;--stroke=15;--show=square Square shape
 z none --colours=red;--stroke=15;--show=star Star shape
 z none --colours=red;--stroke=15;--show=triangle Triangle shape
 timing timing -- Fibonacci timings
+timing timing --smooth=.25 Fibonacci timings, smoothed with .25
 timing timing --logy;--ymin=100 Fibonacci timings, logy
 none none --size=6;--rows;--random;50;1000;--verbose Random data, 50 plots in rows with tiny font
 none none --rows;--random;100;1000;10;--verbose Random data, 100 plots in rows
 none none --showpoints=-1;--rows;--random;100;1000;10;--verbose Random data, 100 plots in rows with datapoints
+none none --showpoints=-1;--random;3;--verbose Random data, 3 plots in rows with datapoints
 none none --showpoints=-1;--rows;--random=12;--verbose Random data, 12 plots in rows with datapoints
 none none --showpoints=-1;--random=12;--verbose Random data, 12 plots in columns with datapoints
-none none --random;100;1000;10;--verbose Random data, 100 plots in columns
+none none --random;100;1000;10;--logy;--verbose Random data, 100 plots in columns, log Y
 none none --rows;--random;15;--verbose Random data, 15 plots in rows
 none none --rows;--random;15;--ymin=-50;--verbose Random data, 15 plots, ymin of -50 in rows
 z none --colours;red;green;blue;violet;--bg=cornsilk;--size=15;--colourslist Colours list

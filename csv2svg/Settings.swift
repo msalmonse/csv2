@@ -44,6 +44,9 @@ class Settings: Codable, ReflectedStringConvertible {
     // sort the x values before plotting
     let sortx: Bool
 
+    // Smooth plots, 0.0 means no smoothing
+    let smooth: Double
+
     // Include plot info in svg
     let legends: Bool
 
@@ -151,6 +154,7 @@ class Settings: Codable, ReflectedStringConvertible {
         case .baseFontSize: return Defaults.baseFontSize
         case .dataPointDistance: return Defaults.dataPointDistance
         case .opacity: return Defaults.opacity
+        case .smooth: return Defaults.smooth
         case .strokeWidth: return Defaults.strokeWidth
         case .xMax: return Defaults.xMax
         case .xMin: return Defaults.xMin
@@ -301,6 +305,7 @@ class Settings: Codable, ReflectedStringConvertible {
         sortx = Self.keyedBoolValue(from: container, forKey: .sortx)
         scatterPlots = Self.keyedIntValue(from: container, forKey: .scatterPlots)
         showDataPoints = Self.keyedIntValue(from: container, forKey: .showDataPoints)
+        smooth = Self.keyedDoubleValue(from: container, forKey: .smooth)
         strokeWidth = Self.keyedDoubleValue(from: container, forKey: .strokeWidth)
         subTitle = Self.keyedStringValue(from: container, forKey: .subTitle)
         subTitleHeader = Self.keyedIntValue(from: container, forKey: .subTitleHeader) - 1   // use 0 based
