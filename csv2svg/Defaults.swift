@@ -26,6 +26,8 @@ struct Defaults {
     static var index = 0
     static var italic = false
     static var legends = true
+    static var logx = false
+    static var logy = false
     static let maxDefault = -Double.infinity
     static let minDefault = Double.infinity
     static var nameHeader = 1

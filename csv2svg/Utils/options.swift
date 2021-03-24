@@ -63,6 +63,12 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default rows or columns to include")
     var include = Defaults.include
 
+    @Flag(name: .long, help: "Set default for abcissa to log")
+    var logx = Defaults.logx
+
+    @Flag(name: .long, help: "Set default for ordinate to log")
+    var logy = Defaults.logy
+
     @Option(name: .long, help: "Default plot name row or column")
     var nameheader = Defaults.nameHeader
 
@@ -169,6 +175,8 @@ struct Options: ParsableCommand {
         Defaults.index = index
         Defaults.italic = italic
         Defaults.legends = !nolegends
+        Defaults.logx = logx
+        Defaults.logy = logy
         Defaults.nameHeader = nameheader
         Defaults.names = names
         Defaults.opacity = opacity

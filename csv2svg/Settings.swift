@@ -97,6 +97,10 @@ class Settings: Codable, ReflectedStringConvertible {
     // Path names
     let names: [String]
 
+    // Lag axes?
+    let logx: Bool
+    let logy: Bool
+
     /// Check if a row or column is included
     /// - Parameter i: row or column number
     /// - Returns: true if included
@@ -115,6 +119,8 @@ class Settings: Codable, ReflectedStringConvertible {
         case .bold: return Defaults.bold
         case .italic: return Defaults.italic
         case .legends: return Defaults.legends
+        case .logx: return Defaults.logx
+        case .logy: return Defaults.logy
         case .rowGrouping: return Defaults.rowGrouping
         case .sortx: return Defaults.sortx
         default: return false
@@ -287,6 +293,8 @@ class Settings: Codable, ReflectedStringConvertible {
         index = Self.keyedIntValue(from: container, forKey: .index) - 1     // use 0 based
         italic = Self.keyedBoolValue(from: container, forKey: .italic)
         legends = Self.keyedBoolValue(from: container, forKey: .legends)
+        logx = Self.keyedBoolValue(from: container, forKey: .logx)
+        logy = Self.keyedBoolValue(from: container, forKey: .logy)
         nameHeader = Self.keyedIntValue(from: container, forKey: .nameHeader) - 1   // use 0 based
         opacity = Self.keyedDoubleValue(from: container, forKey: .opacity)
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
