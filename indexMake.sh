@@ -24,6 +24,7 @@ EOD
 
 for f in testout/*.svg
 do
+    test -s "$f" || continue
     cat <<EOD
 <tr>
 <th>$(cat "$f.txt")</th>

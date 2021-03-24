@@ -43,6 +43,7 @@ z none --colours=red;--stroke=15;--show=square Square shape
 z none --colours=red;--stroke=15;--show=star Star shape
 z none --colours=red;--stroke=15;--show=triangle Triangle shape
 timing timing -- Fibonacci timings
+timing timing --logy;--ymin=100 Fibonacci timings, logy
 none none --size=6;--rows;--random;50;1000;--verbose Random data, 50 plots in rows with tiny font
 none none --rows;--random;100;1000;10;--verbose Random data, 100 plots in rows
 none none --showpoints=-1;--rows;--random;100;1000;10;--verbose Random data, 100 plots in rows with datapoints

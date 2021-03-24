@@ -40,7 +40,7 @@ extension SVG {
                 (min, max) = csv.minMax(settings.inColumns, index, from: settings.headers)
                 // if min and max don't include 0 then include 0 if one is close
                 if min > 0 && max > 0 {
-                    if min < max/20.0 { min = 0.0 }
+                    if min < max/20.0 { min = settings.logx ? 1.0 : 0.0 }
                 } else if min < 0 && max < 0 {
                     if max < min/20.0 { max = 0.0 }
                 }
@@ -83,7 +83,7 @@ extension SVG {
             }
             // if min and max don't include 0 then include 0 if one is close
             if min > 0 && max > 0 {
-                if min < max/20.0 { min = 0.0 }
+                if min < max/20.0 { min = settings.logy ? 1.0 : 0.0 }
             } else if min < 0 && max < 0 {
                 if max < min/20.0 { max = 0.0 }
             }

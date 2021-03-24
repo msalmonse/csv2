@@ -15,13 +15,15 @@ extension SVG {
 
     func axes(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
+        let x0 = settings.logy ? 1.0 : 0.0
+        let y0 = settings.logx ? 1.0 : 0.0
 
-        if dataPlane.inVert(0.0) {
-            path.append(.moveTo(x: plotPlane.left, y: ts.ypos(0.0)))
+        if dataPlane.inVert(x0) {
+            path.append(.moveTo(x: plotPlane.left, y: ts.ypos(x0)))
             path.append(.horizTo(x: plotPlane.right))
         }
-        if dataPlane.inHoriz(0.0) {
-            path.append(.moveTo(x: ts.xpos(0), y: plotPlane.bottom))
+        if dataPlane.inHoriz(y0) {
+            path.append(.moveTo(x: ts.xpos(y0), y: plotPlane.bottom))
             path.append(.vertTo(y: plotPlane.top))
         }
 

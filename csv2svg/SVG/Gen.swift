@@ -53,7 +53,7 @@ extension SVG {
     /// - Returns: array of svg elements
 
     func gen() -> [String] {
-        let ts = TransScale(from: dataPlane, to: plotPlane)
+        let ts = TransScale(from: dataPlane, to: plotPlane, logx: settings.logx, logy: settings.logy)
 
         var result: [String] = [ xmlTag, svgTag, comment ]
         result.append(contentsOf: defs())
