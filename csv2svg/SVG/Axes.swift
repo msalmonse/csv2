@@ -36,15 +36,24 @@ extension SVG {
     ///   - dpp: data per pixel - how much data does each pixel show
     ///   - minSize: minimum number of pixels between ticks allowed
     ///   - maxSize: maximum number of pixels between ticks allowed
+    ///   - isLog: is this tick logarithmic?
     /// - Returns: new tick value
 
-    private func tickNorm(_ tick: Double, dpp: Double, minSize: Double, maxSize: Double) -> Double {
-        let ppt = tick/dpp      // pixels per tick
+    private func tickNorm(
+        _ tick: Double,
+        dpp: Double,
+        minSize: Double,
+        maxSize: Double,
+        isLog: Bool = false
+    ) -> Double {
+        let dppLocal = isLog ? log10(dpp) : dpp
+        let ppt = tick/dppLocal      // pixels per tick
         if ppt >= minSize && ppt <= maxSize { return tick }
-        let raw = minSize * dpp
+        let raw = minSize * dppLocal
         // calculate the power of 10 less than the raw tick
         let pow10 = pow(10.0, floor(log10(raw)))
-        var norm = ceil(raw/pow10) * pow10
+        var norm = pow10
+        if !isLog { norm *= ceil(raw/pow10) }
         if norm > 0.1 && norm < 1.0 { norm = 1.0 }  // < .01 is where labels use e format
         // return the tick as an an integer times the power of 10
         return norm
@@ -57,11 +66,12 @@ extension SVG {
     func xTick(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
         var labels = [""]
-        let tick = tickNorm(
+        var tick = tickNorm(
             settings.xTick,
             dpp: dataPlane.width/plotPlane.width,
             minSize: settings.labelSize * 3.5,
-            maxSize: plotPlane.width/5.0
+            maxSize: plotPlane.width/5.0,
+            isLog: settings.logx
         )
         let intTick = (tick.rounded() == tick)
         var x = tick    // the zero line is plotted by svgAxes
@@ -79,6 +89,10 @@ extension SVG {
                 labels.append(xLabelText(label(-x, intTick), x: ts.xpos(-x), y: positions.xTicksY))
             }
             x += tick
+            if settings.logx && x > 10.0 * tick {
+                tick *= 10.0
+                x = tick
+            }
         }
 
         return Self.path(path, pathProperty(withColour: "Silver")) + labels.joined(separator: "\n")
@@ -91,11 +105,12 @@ extension SVG {
     func yTick(_ ts: TransScale) -> String {
         var path: [PathCommand] = []
         var labels = [""]
-        let tick = tickNorm(
+        var tick = tickNorm(
             settings.yTick,
             dpp: dataPlane.height/plotPlane.height,
             minSize: settings.labelSize * 1.25,
-            maxSize: plotPlane.height/5.0
+            maxSize: plotPlane.height/5.0,
+            isLog: settings.logy
         )
         let intTick = (tick.rounded() == tick)
         var y = tick    // the zero line is plotted by svgAxes
@@ -113,6 +128,10 @@ extension SVG {
                 labels.append(yLabelText(label(-y, intTick), x: positions.yTickX, y: ts.ypos(-y)))
             }
             y += tick
+            if settings.logy && y > 10.0 * tick {
+                tick *= 10.0
+                y = tick
+            }
         }
 
         return Self.path(path, pathProperty(withColour: "Silver")) + labels.joined(separator: "\n")
