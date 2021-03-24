@@ -158,6 +158,17 @@ class csv2svgTests: XCTestCase {
 
         XCTAssertEqual(ts.xpos(1000), 1000)
         XCTAssertEqual(ts.ypos(1000), 0)
+
+        let fromLog = SVG.Plane(top: 10000, bottom: 1, left: 10, right: 100000)
+        let toLog = SVG.Plane(top: 0, bottom: 1000, left: 0, right: 1000)
+        let tsLog = SVG.TransScale(from: fromLog, to: toLog, logx: true, logy: true)
+
+        XCTAssertEqual(tsLog.xpos(10), 0)
+        XCTAssertEqual(tsLog.xpos(1000), 500)
+        XCTAssertEqual(tsLog.xpos(100000), 1000)
+        XCTAssertEqual(tsLog.ypos(1), 1000)
+        XCTAssertEqual(tsLog.ypos(100), 500)
+        XCTAssertEqual(tsLog.ypos(10000), 0)
     }
 
     func testSvgSides() {
