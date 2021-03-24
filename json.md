@@ -20,16 +20,16 @@ Set undefined plot colours to "black"
 Use bold text.
 
 **colours** (Array of Strings)<br/>
-**Option:** `--colours`<br/><sup>[6]](#fn6)</sup>
+**Option:** `--colours`<sup>[6](#fn6)</sup><br/>
 The colours to be used to plot the column or row. The index, if present, must be included although never used.
 Columns or rows that aren't defined are assigned a colour sequentially from an internal list.
 
 **dashedLines** (Int **0**)<br/>
 **Option:** `--dashed`<br/>
-A bit vector of the plots to draw as dashed lines.<sup>[5]](#fn5)</sup>
+A bit vector of the plots to draw as dashed lines.<sup>[5](#fn5)</sup>
 
 **dashes** (Array of Strings)<br/>
-**Option:** `--dashes`<br/><sup>[6]](#fn6)</sup>
+**Option:** `--dashes`<sup>[6](#fn6)</sup><br/>
 The dash patterns to be used to plot the column or row. These are a list of numbers seperated by either a space or a comma.
 Each string forms one dash e.g. `--dashes 1,2,3 "4 5 6"` defines 2 dash patterns.
 [See](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray) for more details.
@@ -58,7 +58,7 @@ The height of the generated SVG
 
 **include** (Int **-1**)<br/>
 **Option:** `--include`<br/>
-A bit vector of the plots to draw.<sup>[5]](#fn5)</sup><br/>
+A bit vector of the plots to draw.<sup>[5](#fn5)</sup><br/>
 The default is to draw all.
 
 **index** (Int **0**)<br/>
@@ -84,7 +84,7 @@ The row or column that contains the names of plots. If it is less than or equal 
 the the name is never fetched from the csv.
 
 **names** (Array of Strings)<br/>
-**Option:** `--names`<br/><sup>[6]](#fn6)</sup>
+**Option:** `--names`<br/><sup>[6](#fn6)</sup>
 The plotted column or rows are assigned names from this array or the first header row or column respectively. If not defined in either place then a name is generated.
 The names are included with the colours associated with the plots under the plot area.
 
@@ -94,10 +94,10 @@ The data is grouped in rows
 
 **scatterPlots** (Int **0**)<br/>
 **Option:** `--scattered`<br/>
-A bit vector of the plots to draw as scatter plots.<sup>[5]](#fn5)</sup>
+A bit vector of the plots to draw as scatter plots.<sup>[5](#fn5)</sup>
 
 **shapes** (Array of Strings)<br/>
-**Option:** `--shapes`<br/><sup>[6]](#fn6)</sup>
+**Option:** `--shapes`<br/><sup>[6](#fn6)</sup>
 A list of shape names to be used in scatter plots. The names are taken sequentially from
 the list and assigned to scatter plots. If there are too few shape names or they cannot be
 looked up the a shape from an internal list is assigned.
@@ -194,4 +194,5 @@ To simplify the calculation the `--bitmap` option can be used e.g.<br/>
 `csv2svg --bitmap 5 4 1` gives `25`.
 
 <a id="fn6">6</a>: These options accept a list of words separated by spaces up until the next flag
-or option. If there are none before the file names then a `--` can be used to terminate the list.
+or option. 
+If there are none before the file names then a `--` can be used to terminate the list.
