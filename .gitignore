@@ -4,6 +4,7 @@
 appinfo.swift
 
 # tests
+test.svg
 generated/
 test/
 testout/
