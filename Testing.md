@@ -27,4 +27,4 @@ The data is random but follows a patterm that is more obvious in when displayed 
 This option lists the names of all the shapes as plain text.
 
 - `--show`<br/>
-Generate an SVG with just the named shape. The width and height are siz time the stroke-width (`--stroke`).
+Generate an SVG with just the named shape. The width and height are six time the stroke-width (`--stroke`).
