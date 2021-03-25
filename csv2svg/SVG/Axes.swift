@@ -60,7 +60,8 @@ extension SVG {
             if norm > 0.1 && norm < 1.0 { norm = 1.0 }  // < .1 is where labels use e format
         } else {
             // raw is -ve as values are less than zero
-            norm = pow(10.0, floor(log10(dpp * minSize)))
+            // make it smaller than we must to get as many ticks as we can
+            norm = pow(10.0, floor(log10(dpp * minSize)) - 1.0)
         }
         return norm
     }
