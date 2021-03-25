@@ -18,5 +18,11 @@ struct AppInfo {
 	static let builtAt = "$(date -u "+%F %T %Z")"
 	static let versionInfo = ${VERSION_INFO_STRING:-0}
 	static let swiftVersion = "${SWIFT_VERSION}"
+	static let archs = "${ARCHS}"
+	static let XcodeVersion = "${XCODE_VERSION_ACTUAL}"
+	static let XcodeProductBuildVersion = "${XCODE_PRODUCT_BUILD_VERSION}"
+	static let SDKnames = "${SDK_NAMES}"
+	static let SDKproductBuildVersion = "${SDK_PRODUCT_BUILD_VERSION}"
+	static let SDKversion = "${SDK_VERSION_ACTUAL}"
 }
 EOD
