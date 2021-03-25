@@ -144,7 +144,7 @@ extension SVG {
             ts: ts,
             limit: limit
         )
-        var yδ = Double.infinity
+        var yɑ = Double.infinity
         let plotShape = props.shape?.pathCommand(w: shapeWidth) ?? .circle(r: shapeWidth)
 
         for i in settings.headers..<xiValues.count {
@@ -155,8 +155,8 @@ extension SVG {
                 state.nilPlot(plotShape)
             } else {
                 if settings.smooth > 0.0 {
-                    if yδ != Double.infinity { y = (1 - settings.smooth) * y! + yδ}
-                    yδ = y! * settings.smooth
+                    if yɑ != Double.infinity { y = (1 - settings.smooth) * y! + yɑ}
+                    yɑ = y! * settings.smooth
                 }
                 let (pos, clipped) = posClip(ts.pos(x: x!, y: y!))
                 state.plotOne(pos, clipped: clipped, plotShape: plotShape)

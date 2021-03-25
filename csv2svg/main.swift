@@ -23,19 +23,20 @@ if opts.version {
 if opts.shapenames {
     print(SVG.Shape.allNames())
 } else if opts.show != "" {
-    print(showShape(shape: opts.show, stroke: opts.colours.count > 0 ? opts.colours[0] : "black"))
+    let colour = opts.colours.count > 0 ? opts.colours[0] : "black"
+    svgOutput(showShape(shape: opts.show, stroke: colour), to: opts.svgName)
 } else if opts.bitmap.count > 0 {
     print(bitmap(opts.bitmap))
 } else if opts.colourslist {
-    print(showColoursList())
+    svgOutput(showColoursList(), to: opts.svgName)
 } else if opts.dasheslist {
-    print(showDashesList())
+    svgOutput(showDashesList(), to: opts.svgName)
 } else {
     // use a csvName of - to mean use stdin
     if opts.csvName == "-" { opts.csvName = nil }
 
     if opts.verbose && opts.random.count == 0 {
-        print(opts.csvName ?? "Missing CSV file name", to: &standardError)
+        print(opts.csvName ?? "Missing CSV file name, using stdin", to: &standardError)
         print(opts.jsonName ?? "Missing JSON file name", to: &standardError)
     }
 
@@ -53,7 +54,7 @@ if opts.shapenames {
     let svg = SVG(csv!, settings!)
     if (opts.debug & 8) > 0 { print(svg, to: &standardError) }
 
-    _ = svg.gen().map { print($0) }
+    svgOutput(svg.gen(), to: opts.svgName)
 }
 
 /// Determine source of CSV data
@@ -81,5 +82,24 @@ private func jsonURL(_ opts: Options) -> URL {
     case (false,_): return URL(fileURLWithPath: opts.jsonName!)
     case (true,false): return URL(fileURLWithPath: opts.csvName! + ".json")
     case (true,true): return URL(fileURLWithPath: "default.json")
+    }
+}
+
+/// Write an SVG as a string array to a file or stdout
+/// - Parameters:
+///   - tagList: the text array
+///   - name: file name
+
+private func svgOutput(_ tagList: [String], to name: String?) {
+    if name == nil {
+        _ = tagList.map { print($0) }
+    } else {
+        let text = tagList.joined(separator: "\n") + "\n"
+        let data = Data(text.utf8)
+        do {
+            try data.write(to: URL(fileURLWithPath: name!))
+        } catch {
+            print(error, to: &standardError)
+        }
     }
 }

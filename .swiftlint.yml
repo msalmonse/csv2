@@ -11,3 +11,6 @@ colon:
 
 cyclomatic_complexity:
   ignores_case_statements: true
+
+function_body_length:
+  warning: 50

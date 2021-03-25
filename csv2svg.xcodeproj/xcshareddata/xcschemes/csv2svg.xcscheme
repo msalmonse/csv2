@@ -52,15 +52,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--logy"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "${PROJECT_DIR}/testdata/little.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "${PROJECT_DIR}/testdata/columns-ticks-index.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "${PROJECT_DIR}/test.svg"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

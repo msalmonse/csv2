@@ -164,6 +164,7 @@ struct Options: ParsableCommand {
 
     @Argument(help: "CSV file name, \"-\" means use stdin") var csvName: String?
     @Argument(help: "JSON file name") var jsonName: String?
+    @Argument(help: "SVG file name, default is to print to terminal") var svgName: String?
 
     /// Set Settings defaults using options from the command line
 

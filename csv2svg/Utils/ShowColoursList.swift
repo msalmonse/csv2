@@ -11,7 +11,7 @@ import Foundation
 /// - Parameters:
 /// - Returns: colours list SVG
 
-func showColoursList() -> String {
+func showColoursList() -> [String] {
     let size = 2.5 * Defaults.baseFontSize
     let count = Defaults.colours.count + SVG.Colours.count
     let height = Double(count + 3)  * size
@@ -20,7 +20,7 @@ func showColoursList() -> String {
     let settings = try? Settings.load(settingsJson(width, height))
     let csv = CSV("")
     let svg = SVG(csv, settings!)
-    return svg.coloursListGen(size).joined(separator: "\n")
+    return svg.coloursListGen(size)
 }
 
 private func settingsJson(_ w: Double, _ h: Double) -> String {

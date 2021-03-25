@@ -11,7 +11,7 @@ import Foundation
 /// - Parameters:
 /// - Returns: dashes list SVG
 
-func showDashesList() -> String {
+func showDashesList() -> [String] {
     let size = 2.0 * Defaults.baseFontSize
     let count = Defaults.dashes.count + SVG.Dashes.count
     let height = Double(count + 2) * size
@@ -20,7 +20,7 @@ func showDashesList() -> String {
     let settings = try? Settings.load(settingsJson(width, height))
     let csv = CSV("")
     let svg = SVG(csv, settings!)
-    return svg.dashesListGen(size).joined(separator: "\n")
+    return svg.dashesListGen(size)
 }
 
 private func settingsJson(_ w: Double, _ h: Double) -> String {
