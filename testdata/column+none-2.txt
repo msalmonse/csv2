@@ -1,0 +1,1 @@
+Column data with no JSON but bg, width and size options

@@ -15,7 +15,7 @@ makeSVG () {
     svg="$svgdir/$1-data+${3//;/,}+$2-json.svg"
     echo >&2 "Generating $svg"
     ./test/csv2svg ${3//;/ } "$csv" "$json" > "$svg" \
-    && echo "$4" > "$svg.txt"
+    && echo "$4" > "${svg/%.svg/.txt}"
 }
 
 rm -f $svgdir/*.svg $svgdir/*.svg.txt

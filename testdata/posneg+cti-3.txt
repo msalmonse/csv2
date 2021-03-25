@@ -1,0 +1,1 @@
+Positive and negative data with ticks and index, xMin of -0.5

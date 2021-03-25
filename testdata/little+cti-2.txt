@@ -1,0 +1,1 @@
+Little data in columns with logx, logy, ticks and index

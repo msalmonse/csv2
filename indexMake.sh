@@ -6,7 +6,9 @@
 #  Created by Michael Salmon on 2021-03-05.
 #  
 
-exec > testout/index.html
+index=${1:-testout/index.html}
+indexdir=$(dirname "$index")
+exec > ${index}
 
 # Headers
 cat <<EOD
@@ -22,12 +24,13 @@ cat <<EOD
 <table>
 EOD
 
-for f in testout/*.svg
+for f in "$indexdir"/*.svg
 do
     test -s "$f" || continue
+    txtf=${f/%.svg/.txt}
     cat <<EOD
 <tr>
-<th>$(cat "$f.txt")</th>
+<th>$(cat "$txtf")</th>
 <td><img src="$(basename "$f")" /></td>
 </tr>
 EOD

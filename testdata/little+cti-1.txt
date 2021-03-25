@@ -1,0 +1,1 @@
+Little data in columns with ticks and index

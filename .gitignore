@@ -4,6 +4,7 @@
 appinfo.swift
 
 # tests
+generated/
 test/
 testout/
 
