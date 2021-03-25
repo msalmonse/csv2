@@ -145,6 +145,7 @@
 		C49A7EC825EBCE7300503486 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		C49B7D6C25DC03B500CEAB8C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C49B7D6F25DC055400CEAB8C /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
+		C4CB7C71260CFF6F00AD2364 /* autoversion.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = autoversion.sh; sourceTree = "<group>"; };
 		C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransScale.swift; sourceTree = "<group>"; };
 		C4EA5D2725EB8F4D00E104E0 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		C4F1B3902609D25F0035AC62 /* Testing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Testing.md; sourceTree = "<group>"; };
@@ -180,12 +181,13 @@
 		C40A3AF225DC01180016EB6D = {
 			isa = PBXGroup;
 			children = (
-				C45323DC25F7F7C0007D741C /* Docs */,
+				C45053C025F0E865003FC346 /* appinfo.swift */,
+				C4CB7C71260CFF6F00AD2364 /* autoversion.sh */,
 				C46ADD16260737EE0046F427 /* examplesMake.sh */,
 				C48B723525F224EF00B0752E /* indexMake.sh */,
-				C453245325FBFF27007D741C /* shapeDoc.sh */,
 				C48B722A25F212C600B0752E /* runTests.sh */,
-				C45053C025F0E865003FC346 /* appinfo.swift */,
+				C453245325FBFF27007D741C /* shapeDoc.sh */,
+				C45323DC25F7F7C0007D741C /* Docs */,
 				C40A3AFD25DC01180016EB6D /* csv2svg */,
 				C48B822825E28F7E00EAEAE3 /* csv2svgTests */,
 				C40A3AFC25DC01180016EB6D /* Products */,
