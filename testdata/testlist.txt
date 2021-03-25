@@ -9,17 +9,17 @@ column none --bg=gold;--size=22;--width=1000 Column data with no JSON but bg, wi
 column none --stroke=5;--width=800;--dashes=5,7,9;--dashed=-1 Column data with no JSON but dashes, width and stroke options
 column none --opacity=.5;--stroke=5;--width=800 Column data with no JSON but opacity, width and stroke options
 column none --ymax=50 Column data with no JSON but ymax option
-column columns-ticks-index -- Column data with ticks and index
-big columns-ticks-index -- Big data in columns with ticks and index
-little columns-ticks-index -- Little data in columns with ticks and index
-little columns-ticks-index --logy Little data in columns with logy, ticks and index
-little columns-ticks-index --logx;--logy Little data in columns with logx, logy, ticks and index
-row rows-ticks-index -- Row data with ticks and index
-posneg columns-ticks-index -- Positive and negative data with ticks and index
-posneg columns-ticks-index --sortx Positive and negative data with ticks and index with sortx
-posneg columns-ticks-index --xmin=-0.5 Positive and negative data with ticks and index, xMin of -0.5
-bipolar columns-ticks-index -- Bipolar data in columns
-bipolar rows-ticks-index -- Bipolar data in rows
+column cti -- Column data with ticks and index
+big cti -- Big data in columns with ticks and index
+little cti -- Little data in columns with ticks and index
+little cti --logy Little data in columns with logy, ticks and index
+little cti --logx;--logy Little data in columns with logx, logy, ticks and index
+row rti -- Row data with ticks and index
+posneg cti -- Positive and negative data with ticks and index
+posneg cti --sortx Positive and negative data with ticks and index with sortx
+posneg cti --xmin=-0.5 Positive and negative data with ticks and index, xMin of -0.5
+bipolar cti -- Bipolar data in columns
+bipolar rti -- Bipolar data in rows
 plot plot --subtitle=Columns Plot test in columns
 plot plot --dashed=-1 Plot test in columns with dashed lines
 plot plot --rows;--subtitle=Rows Plot test in rows
