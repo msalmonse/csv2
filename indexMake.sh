@@ -22,6 +22,7 @@ cat <<EOD
 </head>
 <body>
 <table>
+<tr><th colspan="2" style="text-align: center">$(date '+%F %T %Z')</th></tr>
 EOD
 
 for f in "$indexdir"/*.svg
@@ -30,7 +31,7 @@ do
     txtf=${f/%.svg/.txt}
     cat <<EOD
 <tr>
-<th>$(cat "$txtf")</th>
+<th>$(cat "$txtf")<br/>$(date -r "$f" '+%F %T %Z')</th>
 <td><img src="$(basename "$f")" /></td>
 </tr>
 EOD
