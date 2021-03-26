@@ -39,7 +39,8 @@ extension Int {
     /// - Parameter width: string width
     /// - Returns: formatted  string
 
-    func d(_ width: Int = 1) -> String {
-        return String(format: "%*d", width, self)
+    func d(_ width: Int = 1, zeroFill: Bool = false) -> String {
+        let fmt = zeroFill ? "%0*d" : "%*d"
+        return String(format: fmt, width, self)
     }
 }
