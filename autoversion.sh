@@ -15,6 +15,7 @@ struct AppInfo {
 	static let hash = "$(git rev-parse HEAD)"
 	static let shortHash = "$(git rev-parse --short HEAD)"
 	static let origin = "$(git remote get-url origin)"
+    static let branch = "$(git rev-parse --abbrev-ref HEAD)"
 	static let builtAt = "$(date -u "+%F %T %Z")"
 	static let versionInfo = ${VERSION_INFO_STRING:-0}
 	static let swiftVersion = "${SWIFT_VERSION}"
