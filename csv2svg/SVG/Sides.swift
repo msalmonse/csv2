@@ -16,7 +16,7 @@ extension SVG {
     /// - Returns: the left and right sides
 
     static func lrFromData(_ csv: CSV, _ settings: Settings) -> (l: Double, r: Double) {
-        let count = settings.inColumns ? csv.colCt : csv.rowCt
+        let count = settings.inRows ? csv.colCt : csv.rowCt
         let index = settings.index
         let xMaxSet = settings.xMax > Defaults.maxDefault
         let xMinSet = settings.xMin < Defaults.minDefault
@@ -35,7 +35,7 @@ extension SVG {
 
             if index < 0 {
                 min = 0.0
-                max = Double(count)
+                max = Double(count - 1)
             } else {
                 (min, max) = csv.minMax(settings.inColumns, index, from: settings.headers)
                 // if min and max don't include 0 then include 0 if one is close
