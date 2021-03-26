@@ -6,7 +6,7 @@
 #  Created by Michael Salmon on 2021-03-05.
 #
 
-datadir=testdata
+datadir=data
 svgdir=testout
 
 makeSVG () {

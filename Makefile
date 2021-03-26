@@ -1,7 +1,7 @@
 CSV2SVG = test/csv2svg
-OPTFILES = $(wildcard testdata/*.opts)
-SVGFILES = $(OPTFILES:testdata/%.opts=generated/%.svg)
-TXTFILES = $(OPTFILES:testdata/%.opts=generated/%.txt)
+OPTFILES = $(wildcard data/*.opts)
+SVGFILES = $(OPTFILES:data/%.opts=generated/%.svg)
+TXTFILES = $(OPTFILES:data/%.opts=generated/%.txt)
 
 .PHONY:	all
 
@@ -14,11 +14,11 @@ generated/.made:
 generated/index.html: $(SVGFILES) $(TXTFILES) test.svg indexMake.sh
 	./indexMake.sh $@
 
-generated/%.svg: OPTS = $(shell cat $(@F:%.svg=testdata/%.opts))
-generated/%.svg: testdata/%.csv testdata/%.json testdata/%.opts $(CSV2SVG)
-	-@$(CSV2SVG) $(OPTS) $(@F:%.svg=testdata/%.csv) $(@F:%.svg=testdata/%.json) $@
+generated/%.svg: OPTS = $(shell cat $(@F:%.svg=data/%.opts))
+generated/%.svg: data/%.csv data/%.json data/%.opts $(CSV2SVG)
+	-@$(CSV2SVG) $(OPTS) $(@F:%.svg=data/%.csv) $(@F:%.svg=data/%.json) $@
 
-generated/%.txt: testdata/%.txt
+generated/%.txt: data/%.txt
 	@ cp $< $@
 
 test.svg:

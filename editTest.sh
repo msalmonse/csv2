@@ -8,7 +8,7 @@ EOD
 	exit 0
 fi
 
-dir=testdata
+dir=data
 name="$1+$2-$3"
 
 vi "$dir/$name.opts" "$dir/$name.txt"
