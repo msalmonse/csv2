@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 dest=${PROJECT_DIR:-$PWD}
 name=${1:-$PRODUCT_NAME}
