@@ -28,12 +28,9 @@ extension SVG {
     }
 
     func background(_ bg: String) -> String {
-        let style = Style([
-            "stroke": "none",
-            "stroke-width": "0",
-            "fill": bg
-        ])
-        return rectTag(x: 0.0, y: 0.0, width: width, height: height, style: style, precision: 0)
+        return """
+            <style> svg { background-color: \(bg) } </style>
+            """
     }
 
     /// Generate an SVG group with the plot lines
@@ -85,6 +82,7 @@ extension SVG {
     func shapeGen(name: String, stroke: String) -> [String] {
         let shape = Shape.lookup(name)
         var result: [String] = [ xmlTag, svgTag ]
+        if settings.backgroundColour != "" { result.append(background(settings.backgroundColour)) }
         let path = [
             PathCommand.moveTo(x: width/2.0, y: height/2.0),
             shape!.pathCommand(w: shapeWidth)
