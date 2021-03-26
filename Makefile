@@ -8,10 +8,10 @@ TXTFILES = $(OPTFILES:testdata/%.opts=generated/%.txt)
 all:	generated/.made generated/index.html
 
 generated/.made:
-	mkdir $(@D)
+	-mkdir $(@D)
 	@touch $@
 
-generated/index.html: $(SVGFILES) $(TXTFILES) indexMake.sh
+generated/index.html: $(SVGFILES) $(TXTFILES) test.svg indexMake.sh
 	./indexMake.sh $@
 
 generated/%.svg: OPTS = $(shell cat $(@F:%.svg=testdata/%.opts))
@@ -20,3 +20,6 @@ generated/%.svg: testdata/%.csv testdata/%.json testdata/%.opts $(CSV2SVG)
 
 generated/%.txt: testdata/%.txt
 	@ cp $< $@
+
+test.svg:
+	touch $@

@@ -24,6 +24,15 @@ cat <<EOD
 <table>
 <tr><th colspan="2" style="text-align: center">$(date '+%F %T %Z')</th></tr>
 EOD
+if [[ -s test.svg ]]
+then
+    cat <<EOD
+<tr>
+<th>test.svg<br/>$(date -r test.svg '+%F %T %Z')</th>
+<td><img src="../test.svg" /></td>
+</tr>
+EOD
+fi
 
 for f in "$indexdir"/*.svg
 do
