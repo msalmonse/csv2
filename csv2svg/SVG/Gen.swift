@@ -53,6 +53,7 @@ extension SVG {
         let ts = TransScale(from: dataPlane, to: plotPlane, logx: logx, logy: logy)
 
         var result: [String] = [ xmlTag, svgTag, comment ]
+        result.append(cssStyle())
         result.append(contentsOf: defs())
         if settings.backgroundColour != "" { result.append(background(settings.backgroundColour)) }
         if settings.xTick >= 0 { result.append(xTick(ts)) }
@@ -82,12 +83,11 @@ extension SVG {
     func shapeGen(name: String, stroke: String) -> [String] {
         let shape = Shape.lookup(name)
         var result: [String] = [ xmlTag, svgTag ]
-        if settings.backgroundColour != "" { result.append(background(settings.backgroundColour)) }
         let path = [
             PathCommand.moveTo(x: width/2.0, y: height/2.0),
             shape!.pathCommand(w: shapeWidth)
         ]
-        result.append(SVG.path(path, pathProperty(withColour: stroke), width: settings.strokeWidth))
+        result.append(SVG.path(path, pathProperty(withColour: stroke, andClass: "shape"), width: settings.strokeWidth))
         result.append(svgTagEnd)
 
         return result

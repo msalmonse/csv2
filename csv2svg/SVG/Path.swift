@@ -96,9 +96,6 @@ extension SVG {
         guard points.count >= 2 else { return "" }
 
         var style = Style([
-            "stroke": props.colour ?? Colours.nextColour(),
-            "fill": "none",
-            "stroke-width": width.f(1),
             "stroke-linecap": linecap
         ])
 
@@ -107,7 +104,7 @@ extension SVG {
             style["stroke-linecap"] = "butt"
         }
 
-        var result = [ "<path d=\"" ]
+        var result = [ "<path class=\"\(props.cssClass!)\" d=\"" ]
         result.append(contentsOf: points.map { $0.command() })
         result.append("\" \(style) />")
 

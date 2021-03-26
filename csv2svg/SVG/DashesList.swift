@@ -12,6 +12,7 @@ extension SVG {
         var props = PathProperties()
         props.colour = Defaults.colours.count > 0 ? Defaults.colours[0] : "black"
         props.dashed = true
+        props.cssClass = "dashes"
         let style = Style(["stroke": props.colour])
 
         let xLeft = width * 0.1

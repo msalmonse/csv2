@@ -9,6 +9,28 @@ import Foundation
 
 extension SVG {
 
+    /// Generate a list of classes for the plots
+    /// - Parameters:
+    ///   - settings: settings for plot
+    ///   - ct: number of plots
+    /// - Returns: list of colours
+
+    static func plotClasses(
+        _ settings: Settings,
+        _ ct: Int,
+        _ props: inout [PathProperties]
+        ) {
+        for i in 0..<ct {
+            if i < settings.colours.count && settings.colours[i] != "" {
+                props[i].colour = settings.colours[i]
+            } else if settings.black {
+                props[i].colour = "black"
+            } else if props[i].included {
+                props[i].colour = Colours.nextColour()
+            }
+        }
+    }
+
     /// Generate a list of colours for the plots
     /// - Parameters:
     ///   - settings: settings for plot
@@ -45,11 +67,7 @@ extension SVG {
         _ props: inout [PathProperties]
         ) {
         for i in 0..<ct {
-            if i < settings.dashes.count && settings.dashes[i] != "" {
-                props[i].dash = settings.dashes[i]
-            } else if props[i].dashed && props[i].included {
-                props[i].dash = Dashes.nextDash(width)
-            }
+            props[i].cssClass = "path\(i.d(2, zeroFill: true))"
         }
     }
 

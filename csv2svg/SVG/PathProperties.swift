@@ -10,6 +10,7 @@ import Foundation
 extension SVG {
     struct PathProperties {
         var colour: String?
+        var cssClass: String?
         var dash: String?
         var name: String?
         var dashed = false
@@ -19,9 +20,10 @@ extension SVG {
         var shape: Shape?
     }
 
-    func pathProperty(withColour colour: String) -> PathProperties {
+    func pathProperty(withColour colour: String, andClass cssClass: String) -> PathProperties {
         var props = PathProperties()
         props.colour = colour
+        props.cssClass = cssClass
         return props
     }
 }
