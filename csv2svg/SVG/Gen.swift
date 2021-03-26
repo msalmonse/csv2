@@ -83,6 +83,8 @@ extension SVG {
     func shapeGen(name: String, stroke: String) -> [String] {
         let shape = Shape.lookup(name)
         var result: [String] = [ xmlTag, svgTag ]
+        let shapeCss = "path.shape { stroke: \(stroke) }"
+        result.append(cssStyle(extra: shapeCss))
         let path = [
             PathCommand.moveTo(x: width/2.0, y: height/2.0),
             shape!.pathCommand(w: shapeWidth)

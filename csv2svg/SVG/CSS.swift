@@ -8,14 +8,14 @@
 import Foundation
 
 extension SVG {
-    func cssStyle() -> String {
+    func cssStyle(extra: String = "") -> String {
         var result: [String] = ["<style>"]
         if settings.backgroundColour != "" {
             result.append("svg { background-color: \(settings.backgroundColour) }")
         }
-        result.append("path { stroke-width: \(settings.strokeWidth.f(1)) }")
-        result.append("path.axes { fill: none; stroke: black }")
-        result.append("path.xtick, path.ytick { fill: none; stroke: silver; stroke-width: 1 }")
+        result.append("path { stroke-width: \(settings.strokeWidth.f(1)); fill: none }")
+        result.append("path.axes { stroke: black }")
+        result.append("path.xtick, path.ytick { stroke: silver; stroke-width: 1 }")
 
         var textCSS: [String] = []
         if settings.fontFamily != "" { textCSS.append("font-family: \(settings.fontFamily)") }
@@ -28,6 +28,8 @@ extension SVG {
                 result.append("path.\(cssClass) { fill: none; stroke: \(colour) }")
             }
         }
+
+        if extra != "" { result.append(extra) }
 
         result.append("</style>")
 

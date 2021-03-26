@@ -14,6 +14,7 @@ extension SVG {
         props.dashed = true
         props.cssClass = "dashes"
         let style = Style(["stroke": props.colour])
+        let dashCSS = "path.dashes { stroke: \(props.colour!); stroke-width: \((step/5.0).f(1))"
 
         let xLeft = width * 0.1
         let xRight = width * 0.6
@@ -22,8 +23,7 @@ extension SVG {
         var y = step
         var yPath: Double { y - step/10.0 }
 
-        var result: [String] = [ xmlTag, svgTag ]
-        if settings.backgroundColour != "" { result.append(background(settings.backgroundColour)) }
+        var result: [String] = [ xmlTag, svgTag, cssStyle(extra: dashCSS)]
 
         for dash in Defaults.dashes + SVG.Dashes.all(width * 3.0) {
             y += step
