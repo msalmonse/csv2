@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--random 5 10 --"
+            argument = "--random 5 10 0 15 --"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

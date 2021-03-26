@@ -13,12 +13,13 @@ set the text size.
 Similar to `--colourlist` but for dashes.
 
 - `--random`<br/>
-This option generates random CSV data that is then displayed as normal. There are three
+This option generates random CSV data that is then displayed as normal. There are four
 possible values attached to the option. The first is the number of rows and columns e.g.
 `--random 100` generates a matrix of 100 rows and 100 columns. The optional second
 parameter is the maximum value, if not supplied the a reasonable value is chosen.
 The optional third parameter is the minimum value, if not supplied it is the minus of the
-maximum value.<br/>
+maximum value. The final value is an negative offset to the minimum and maximum
+values as the argument parser has a problem with negative numbers.<br/>
 Due to a limitation in Swift Argument Parser these numbers can't be negative.<br/>
 More than 15 plots aren't really a good idea unless you have a big SVG.<br/>
 The data is random but follows a patterm that is more obvious in when displayed in columns.

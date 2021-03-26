@@ -13,6 +13,9 @@ func randomCSV(_ opts: Options, _ settings: Settings?) -> [String] {
     var min: Double
 
     switch opts.random.count {
+    case 4:
+        max = Double(opts.random[1] - opts.random[3])
+        min = Double(opts.random[2] - opts.random[3])
     case 3:
         max = Double(opts.random[1])
         min = Double(opts.random[2])

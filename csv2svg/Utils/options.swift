@@ -89,7 +89,7 @@ struct Options: ParsableCommand {
     var opacity = Defaults.opacity
 
     @Option(name: .long, parsing: .upToNextOption,
-            help: "Generate a random SVG with: #plots [max value [min value]]")
+            help: "Generate a random SVG with: #plots [max value [min value [-ve offset]]]")
     var random: [Int] = []
 
     @Flag(name: .long, help: "Default to grouping data by rows")
