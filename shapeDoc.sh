@@ -8,5 +8,5 @@
 
 for shape in $(./test/csv2svg --shapenames)
 do
-    ./test/csv2svg --show $shape "$*" > shapes/$shape.svg
+    ./test/csv2svg --show $shape "$@" > shapes/$shape.svg
 done
