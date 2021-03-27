@@ -81,21 +81,21 @@ extension SVG {
     /// plot a path from a list of points
     /// - Parameters:
     ///   - points: a list of the points or shapes on path
-    ///   - properties: plot properties
+    ///   - cssClass: path class
     ///   - width: setting for stroke-width, (default 1)
     ///   - extra: extra options for path
     /// - Returns: a path element
 
     static func path(
         _ points: [PathCommand],
-        _ props: PathProperties,
+        _ cssClass: String,
         extra: String = "",
         width: Double = 1.0
     ) -> String {
         // a path needs 2 points
         guard points.count >= 2 else { return "" }
 
-        var result = [ "<path class=\"\(props.cssClass!)\" d=\"" ]
+        var result = [ "<path class=\"\(cssClass)\" d=\"" ]
         result.append(contentsOf: points.map { $0.command() })
         result.append("\" \(extra)/>")
 

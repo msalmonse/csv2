@@ -19,11 +19,4 @@ extension SVG {
         var scattered = false
         var shape: Shape?
     }
-
-    static func pathProperty(withColour colour: String, andClass cssClass: String) -> PathProperties {
-        var props = PathProperties()
-        props.colour = colour
-        props.cssClass = cssClass
-        return props
-    }
 }
