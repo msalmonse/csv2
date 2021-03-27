@@ -27,7 +27,7 @@ extension SVG {
             path.append(.vertTo(y: plotPlane.top))
         }
 
-        return Self.path(path, pathProperty(withColour: "Black", andClass: "axes"), width: strokeWidth)
+        return Self.path(path, SVG.pathProperty(withColour: "Black", andClass: "axes"))
     }
 
     /// Normalize tick value
@@ -102,7 +102,7 @@ extension SVG {
             }
         }
 
-        return Self.path(path, pathProperty(withColour: "Silver", andClass: "xtick")) + labels.joined(separator: "\n")
+        return Self.path(path, SVG.pathProperty(withColour: "Silver", andClass: "xtick")) + labels.joined(separator: "\n")
     }
 
     /// Draw horizontal ticks
@@ -141,6 +141,6 @@ extension SVG {
             }
         }
 
-        return Self.path(path, pathProperty(withColour: "Silver", andClass: "ytick")) + labels.joined(separator: "\n")
+        return Self.path(path, SVG.pathProperty(withColour: "Silver", andClass: "ytick")) + labels.joined(separator: "\n")
     }
 }

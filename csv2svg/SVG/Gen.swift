@@ -89,7 +89,7 @@ extension SVG {
             PathCommand.moveTo(x: width/2.0, y: height/2.0),
             shape!.pathCommand(w: shapeWidth)
         ]
-        result.append(SVG.path(path, pathProperty(withColour: stroke, andClass: "shape"), width: settings.strokeWidth))
+        result.append(SVG.path(path, SVG.pathProperty(withColour: stroke, andClass: "shape"), width: settings.strokeWidth))
         result.append(svgTagEnd)
 
         return result

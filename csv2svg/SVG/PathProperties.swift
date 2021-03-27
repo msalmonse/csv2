@@ -20,7 +20,7 @@ extension SVG {
         var shape: Shape?
     }
 
-    func pathProperty(withColour colour: String, andClass cssClass: String) -> PathProperties {
+    static func pathProperty(withColour colour: String, andClass cssClass: String) -> PathProperties {
         var props = PathProperties()
         props.colour = colour
         props.cssClass = cssClass
