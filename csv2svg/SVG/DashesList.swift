@@ -26,7 +26,7 @@ extension SVG {
             y += step
             let points = [ PathCommand.moveTo(x: xLeft, y: yPath), .horizTo(x: xRight) ]
             let extra = "style=\"stroke-dasharray: \(dash)\""
-            result.append(SVG.path(points, "dashes", extra: extra, width: step/5.0))
+            result.append(SVG.path(points, cssClass: "dashes", extra: extra, width: step/5.0))
             result.append(textTag(x: xText, y: y, text: dash, cssClass: "dashes"))
         }
 

@@ -163,6 +163,6 @@ extension SVG {
             }
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
-        return Self.path(state.pathPoints, props.cssClass!, width: strokeWidth)
+        return Self.path(state.pathPoints, cssClass: props.cssClass!, width: strokeWidth)
     }
 }

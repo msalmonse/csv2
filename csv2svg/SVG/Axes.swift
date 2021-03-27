@@ -27,7 +27,7 @@ extension SVG {
             path.append(.vertTo(y: plotPlane.top))
         }
 
-        return Self.path(path, "axes")
+        return Self.path(path, cssClass: "axes")
     }
 
     /// Normalize tick value
@@ -102,7 +102,7 @@ extension SVG {
             }
         }
 
-        return Self.path(path, "xtick") + labels.joined(separator: "\n")
+        return Self.path(path, cssClass: "xtick") + labels.joined(separator: "\n")
     }
 
     /// Draw horizontal ticks
@@ -141,6 +141,6 @@ extension SVG {
             }
         }
 
-        return Self.path(path, "ytick") + labels.joined(separator: "\n")
+        return Self.path(path, cssClass: "ytick") + labels.joined(separator: "\n")
     }
 }

@@ -88,7 +88,7 @@ extension SVG {
 
     static func path(
         _ points: [PathCommand],
-        _ cssClass: String,
+        cssClass: String,
         extra: String = "",
         width: Double = 1.0
     ) -> String {

@@ -138,7 +138,7 @@ class csv2svgTests: XCTestCase {
     }
 
     func testSvgPath() {
-        let path = SVG.path(pathPoints, "test")
+        let path = SVG.path(pathPoints, cssClass: "test")
         print(path.difference(from: pathTag))
         XCTAssertEqual(path, pathTag)
     }
