@@ -41,9 +41,6 @@ class SVG: ReflectedStringConvertible {
     // sub title
     let subTitle: String
 
-    // Styles to use
-    let styles: [String: Style]
-
     // log x and y axes
     var logx: Bool { settings.logx && dataPlane.left > 0.0 }
     var logy: Bool { settings.logy && dataPlane.bottom > 0.0 }
@@ -59,7 +56,7 @@ class SVG: ReflectedStringConvertible {
     let svgTagEnd = "</svg>"
     let comment = """
     <!--
-        Created by \(AppInfo.name): \(AppInfo.version) (\(AppInfo.build)) \(AppInfo.origin)
+        Created by \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) \(AppInfo.origin)
       -->
     """
 
@@ -92,6 +89,7 @@ class SVG: ReflectedStringConvertible {
         var props = Array(repeating: PathProperties(), count: plotCount)
         // setup first so that the other functions can use them
         SVG.plotFlags(settings, plotCount, &props)
+        SVG.plotClasses(settings, plotCount, &props)
         SVG.plotColours(settings, plotCount, &props)
         SVG.plotDashes(settings, plotCount, plotPlane.width, &props)
         SVG.plotNames(settings, csv, plotCount, &props)
@@ -102,7 +100,5 @@ class SVG: ReflectedStringConvertible {
             ? settings.subTitle
             : plotCount == 0 ? ""
                 : Self.subTitleText(csv: csv, inColumns: settings.inColumns, header: settings.subTitleHeader)
-
-        styles = SVG.styleDict(settings)
     }
 }

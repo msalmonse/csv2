@@ -15,8 +15,11 @@ if opts.debug != 0 {
 }
 
 if opts.version {
-    print("\(AppInfo.name): \(AppInfo.version) (\(AppInfo.build)) Built at \(AppInfo.builtAt)",
-          to: &standardError)
+    print("""
+        \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) Built at \(AppInfo.builtAt)
+        """,
+        to: &standardError
+    )
     exit(0)
 }
 

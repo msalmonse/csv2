@@ -20,7 +20,7 @@ extension SVG {
         let y = (plotPlane.top - shapeWidth * 2.0)
         var result = ["<defs>"]
         result.append("<clipPath id=\"plotable\">")
-        result.append(rectTag(x: x, y: y, width: w, height: h, style: nil))
+        result.append(rectTag(x: x, y: y, width: w, height: h))
         result.append("</clipPath>")
         result.append("</defs>")
 

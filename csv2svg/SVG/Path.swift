@@ -83,30 +83,21 @@ extension SVG {
     ///   - points: a list of the points or shapes on path
     ///   - properties: plot properties
     ///   - width: setting for stroke-width, (default 1)
-    ///   - linecap: setting for stroke-linecap (default "round")
+    ///   - extra: extra options for path
     /// - Returns: a path element
 
     static func path(
         _ points: [PathCommand],
         _ props: PathProperties,
-        width: Double = 1.0,
-        linecap: String = "round"
+        extra: String = "",
+        width: Double = 1.0
     ) -> String {
         // a path needs 2 points
         guard points.count >= 2 else { return "" }
 
-        var style = Style([
-            "stroke-linecap": linecap
-        ])
-
-        if props.dashed {
-            style["stroke-dasharray"] = props.dash ?? Dashes.nextDash(800.0)
-            style["stroke-linecap"] = "butt"
-        }
-
         var result = [ "<path class=\"\(props.cssClass!)\" d=\"" ]
         result.append(contentsOf: points.map { $0.command() })
-        result.append("\" \(style) />")
+        result.append("\" \(extra)/>")
 
         return result.joined(separator: " ")
     }
