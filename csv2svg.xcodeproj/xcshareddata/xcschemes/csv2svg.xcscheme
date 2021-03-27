@@ -52,15 +52,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--random 5 10 0 15 --dashed=-1 --"
+            argument = "${PROJECT_DIR}/data/little.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/testdata/little.csv"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "${PROJECT_DIR}/testdata/columns-ticks-index.json"
+            argument = "${PROJECT_DIR}/data/columns-ticks-index.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

@@ -28,7 +28,7 @@ extension SVG {
                 let dashes =
                     props.dashed ? "; stroke-dasharray: \(props.dash ?? "-1"); stroke-linecap: butt" : ""
                 result.append("""
-                    path.\(cssClass) { fill: none; stroke: \(colour)\(dashes) }
+                    path.\(cssClass) { stroke: \(colour)\(dashes) }
                     text.\(cssClass) { fill: \(colour); stroke: \(colour) }
                     """
                 )
@@ -41,10 +41,8 @@ extension SVG {
             result.append("<style>\n" + settings.cssExtras.joined(separator: "\n") + "</style>\n")
         }
 
-        if settings.cssInclude != "" {
-            if let include = try? String(contentsOfFile: settings.cssInclude) {
-                result.append("<style>\n" + include + "</style>")
-            }
+        if let include = Defaults.cssIncludeContents {
+            result.append("<style>\n" + include + "</style>")
         }
     }
 
