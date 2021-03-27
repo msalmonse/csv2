@@ -16,6 +16,9 @@ struct Defaults {
     static var black = false
     static var bold = false
     static var colours: [String] = []
+    static var cssClasses: [String] = []
+    static var cssExtras: [String] = []
+    static var cssInclude = ""
     static var dashedLines = 0
     static var dashes: [String] = []
     static var dataPointDistance = 5.0 * strokeWidth

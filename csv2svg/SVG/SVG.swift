@@ -15,6 +15,14 @@ class SVG: ReflectedStringConvertible {
     let csv: CSV
     let settings: Settings
 
+    // font sizes
+    let sizes: FontSizes
+    var axesSize: Double { return sizes.axesSize }
+    var labelSize: Double { return sizes.labelSize }
+    var legendSize: Double { return sizes.legendSize }
+    var subTitleSize: Double { return sizes.subTitleSize }
+    var titleSize: Double { return sizes.titleSize }
+
     // Row or column to use for x values
     let index: Int
 
@@ -63,6 +71,7 @@ class SVG: ReflectedStringConvertible {
     init(_ csv: CSV, _ settings: Settings) {
         self.csv = csv
         self.settings = settings
+        sizes = FontSizes(size: settings.baseFontSize)
 
         self.index = settings.index
 
@@ -74,7 +83,7 @@ class SVG: ReflectedStringConvertible {
         )
         dataPlane = SVG.sidesFromData(csv, settings)
 
-        positions = Positions(settings, dataLeft: dataPlane.left)
+        positions = Positions(settings, dataLeft: dataPlane.left, sizes: sizes)
 
         limit = settings.dataPointDistance
 

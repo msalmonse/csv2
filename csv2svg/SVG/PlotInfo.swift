@@ -21,7 +21,11 @@ extension SVG {
         _ props: inout [PathProperties]
         ) {
         for i in 0..<ct {
-            props[i].cssClass = "path\((i + 1).d(2, zeroFill: true))"
+            if i < settings.cssClasses.count && settings.cssClasses[i] != "" {
+                props[i].cssClass = settings.cssClasses[i]
+            } else {
+                props[i].cssClass = "plot\((i + 1).d(2, zeroFill: true))"
+            }
         }
     }
 

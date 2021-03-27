@@ -18,13 +18,6 @@ class Settings: Codable, ReflectedStringConvertible {
     // opacity for plots
     let opacity: Double
 
-    // Font sizes
-    var axesSize: Double { return baseFontSize * 1.2 }
-    var labelSize: Double { return baseFontSize }
-    var legendSize: Double { return baseFontSize * 1.3 }
-    var subTitleSize: Double { return baseFontSize * 1.5 }
-    var titleSize: Double { return baseFontSize * 2.5 }
-
     // svg sub-title title, x axis title and y axis title
     let subTitle: String
     let title: String
@@ -103,6 +96,11 @@ class Settings: Codable, ReflectedStringConvertible {
     // Lag axes?
     let logx: Bool
     let logy: Bool
+
+    // css related stuff
+    let cssClasses: [String]
+    let cssExtras: [String]
+    let cssInclude: String
 
     /// Check if a row or column is included
     /// - Parameter i: row or column number
@@ -223,6 +221,7 @@ class Settings: Codable, ReflectedStringConvertible {
     private static func stringDefault(_ key: CodingKeys) -> String {
         switch key {
         case .backgroundColour: return Defaults.backgroundColour
+        case .cssInclude: return Defaults.cssInclude
         case .fontFamily: return Defaults.fontFamily
         case .subTitle: return Defaults.subTitle
         case .title: return Defaults.title
@@ -252,6 +251,8 @@ class Settings: Codable, ReflectedStringConvertible {
     private static func stringArrayDefault(_ key: CodingKeys) -> [String] {
         switch key {
         case .colours: return Defaults.colours
+        case .cssClasses: return Defaults.cssClasses
+        case .cssExtras: return Defaults.cssExtras
         case .dashes: return Defaults.dashes
         case .names: return Defaults.names
         case .shapes: return Defaults.shapes
@@ -287,6 +288,9 @@ class Settings: Codable, ReflectedStringConvertible {
         baseFontSize = Self.keyedDoubleValue(from: container, forKey: .baseFontSize)
         black = Self.keyedBoolValue(from: container, forKey: .black)
         bold = Self.keyedBoolValue(from: container, forKey: .bold)
+        cssClasses = Self.keyedStringArray(from: container, forKey: .cssClasses)
+        cssExtras = Self.keyedStringArray(from: container, forKey: .cssExtras)
+        cssInclude = Self.keyedStringValue(from: container, forKey: .cssInclude)
         dashedLines = Self.keyedIntValue(from: container, forKey: .dashedLines)
         dataPointDistance = Self.keyedDoubleValue(from: container, forKey: .dataPointDistance)
         fontFamily = Self.keyedStringValue(from: container, forKey: .fontFamily)
