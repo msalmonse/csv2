@@ -55,6 +55,7 @@ extension SVG {
         if settings.backgroundColour != "" {
             result.append("svg { background-color: \(settings.backgroundColour) }")
         }
+        result.append("g.plotarea { opacity: \(settings.opacity.f(1)) }")
         result.append("path { stroke-width: \(settings.strokeWidth.f(1)); fill: none; stroke-linecap: round }")
         result.append("path.axes { stroke: black }")
         result.append("path.xtick, path.ytick { stroke: silver; stroke-width: 1 }")
