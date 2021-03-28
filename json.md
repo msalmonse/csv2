@@ -19,7 +19,7 @@ Set undefined plot colours to "black"
 **Option:** `--bold`<br/>
 Use bold text.
 
-**cssClasses** (Array of Strings)<br/>
+<a id="cssClasses">**cssClasses** (Array of Strings)</a><br/>
 The elements of the SVG use CSS for styling with each plot having it's own class. The classes in this list are assigned 
 to each row or column in turn including the index. Plots not included in this list are assigned an automatically generated class.<br/>
 For more information see (css.md)[css.md]
