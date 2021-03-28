@@ -56,9 +56,12 @@ extension SVG {
             result.append("svg { background-color: \(settings.backgroundColour) }")
         }
         result.append("g.plotarea { opacity: \(settings.opacity.f(1)) }")
+        result.append("g.plotarea path:hover { stroke-width: \((settings.strokeWidth * 2.5).f(1)) }")
         result.append("path { stroke-width: \(settings.strokeWidth.f(1)); fill: none; stroke-linecap: round }")
         result.append("path.axes { stroke: black }")
-        result.append("path.xtick, path.ytick { stroke: silver; stroke-width: 1 }")
+        result.append(
+            "path.xtick, path.ytick { stroke: silver; stroke-width: \((settings.strokeWidth * 0.5).f(1)) }"
+        )
 
         var textCSS: [String] = []
         if settings.fontFamily != "" { textCSS.append("font-family: \(settings.fontFamily)") }
