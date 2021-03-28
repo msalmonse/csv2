@@ -67,6 +67,7 @@
 		C4C0C462260E589A0072699C /* CSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C461260E589A0072699C /* CSS.swift */; };
 		C4C0C469260F2E530072699C /* CSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C461260E589A0072699C /* CSS.swift */; };
 		C4C0C472260F85E40072699C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C471260F85E40072699C /* Fonts.swift */; };
+		C4C0C4752610C39B0072699C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C471260F85E40072699C /* Fonts.swift */; };
 		C4EA5D1F25EB7B8A00E104E0 /* TransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */; };
 		C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */; };
 		C4EA5D2825EB8F4D00E104E0 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* Colours.swift */; };
@@ -513,6 +514,7 @@
 				C40CD43D25ED02BE003944FA /* Header.swift in Sources */,
 				C4255F4425E428B0002DFE80 /* Path.swift in Sources */,
 				C48B822A25E28F7E00EAEAE3 /* csv2svgTests.swift in Sources */,
+				C4C0C4752610C39B0072699C /* Fonts.swift in Sources */,
 				C453242D25FA5D99007D741C /* formats.swift in Sources */,
 				C45323D425F7C6D6007D741C /* ReflectedStringConvertable.swift in Sources */,
 				C446E80E25F4BAC1007B1A05 /* RowPlot.swift in Sources */,

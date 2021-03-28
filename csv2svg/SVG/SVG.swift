@@ -76,7 +76,7 @@ class SVG: ReflectedStringConvertible {
         sizes = FontSizes(size: settings.baseFontSize)
         self.index = settings.index
         svgID = settings.cssID != "" ? settings.cssID
-            : "SVG-\(Int.random(in: 1...(1 << 24)).x(6,zeroFill: true))"
+            : "ID-\(Int.random(in: 1...(1 << 24)).x(6,zeroFill: true))"
         height = Double(settings.height)
         width = Double(settings.width)
         allowedPlane = Plane(
