@@ -100,6 +100,7 @@ class Settings: Codable, ReflectedStringConvertible {
     // css related stuff
     let cssClasses: [String]
     let cssExtras: [String]
+    let cssID: String
     let cssInclude: String
 
     /// Check if a row or column is included
@@ -221,6 +222,7 @@ class Settings: Codable, ReflectedStringConvertible {
     private static func stringDefault(_ key: CodingKeys) -> String {
         switch key {
         case .backgroundColour: return Defaults.backgroundColour
+        case .cssID: return Defaults.cssID
         case .cssInclude: return Defaults.cssInclude
         case .fontFamily: return Defaults.fontFamily
         case .subTitle: return Defaults.subTitle
@@ -290,6 +292,7 @@ class Settings: Codable, ReflectedStringConvertible {
         bold = Self.keyedBoolValue(from: container, forKey: .bold)
         cssClasses = Self.keyedStringArray(from: container, forKey: .cssClasses)
         cssExtras = Self.keyedStringArray(from: container, forKey: .cssExtras)
+        cssID = Self.keyedStringValue(from: container, forKey: .cssID)
         cssInclude = Self.keyedStringValue(from: container, forKey: .cssInclude)
         dashedLines = Self.keyedIntValue(from: container, forKey: .dashedLines)
         dataPointDistance = Self.keyedDoubleValue(from: container, forKey: .dataPointDistance)

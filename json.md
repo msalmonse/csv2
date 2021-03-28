@@ -29,6 +29,11 @@ For more information see (css.md)[css.md]
 <a id="cssExtras">**cssExtras** (Array of Strings)</a><br/>
 The strings in this array are copied into a `<style>` tag.
 
+<a id="cssID">**cssID** (String)</a><br/>
+**Option:** `--cssid`<br/>
+The style tags of SVG's can affect each other when they are included in an HTML document. For this reason every `<svg>` tag
+has an `id` defined. It can be this id  or a random one.
+
 <a id="cssInclude">**cssInclude** (String)</a><br/>
 **Option:** `--css`<br/>
 The contents of the file named by this string are included in a separate `<style>` tag.

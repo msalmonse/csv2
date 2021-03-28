@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--css test.css"
+            argument = "--css test.css --cssid testsvg"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

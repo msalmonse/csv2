@@ -12,13 +12,16 @@ exec > ${index}
 
 # Headers
 cat <<EOD
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>SVG test results</title>
     <style>
-        img { border: black solid thin }
+        img, svg { border: black solid thin }
 	th { text-align: right }
     </style>
+    <base target="_blank" />
 </head>
 <body>
 <table>
@@ -28,8 +31,10 @@ if [[ -s test.svg ]]
 then
     cat <<EOD
 <tr>
-<th>test.svg<br/>$(date -r test.svg '+%F %T %Z')</th>
-<td><img src="../test.svg" /></td>
+<th><a href="../test.svg">test.svg</a><br/>$(date -r test.svg '+%F %T %Z')</th>
+<td>
+$(tail -n +2 test.svg)
+</td>
 </tr>
 EOD
 fi
@@ -40,8 +45,10 @@ do
     txtf=${f/%.svg/.txt}
     cat <<EOD
 <tr>
-<th>$(cat "$txtf")<br/>$(date -r "$f" '+%F %T %Z')</th>
-<td><img src="$(basename "$f")" /></td>
+<th><a href="${f##*/}">${f##*/}</a><br/>$(cat "$txtf")<br/>$(date -r "$f" '+%F %T %Z')</th>
+<td>
+$(tail -n +2 "$f")
+</td>
 </tr>
 EOD
 done
@@ -51,7 +58,9 @@ do
     cat <<EOD
 <tr>
 <th>$(basename $f .svg)</th>
-<td><img src="../$f" /></td>
+<td>
+<img src="../$f" />
+</td>
 </tr>
 EOD
 done

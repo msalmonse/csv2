@@ -1,2 +1,1 @@
-path.plot03 { stroke-dasharray: 1 2 1 }
-.plotable rect { background-color: cornsilk }
+#testsvg path.plot03 { stroke-dasharray: 4 5 1 }

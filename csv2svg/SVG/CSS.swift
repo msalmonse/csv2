@@ -11,13 +11,13 @@ extension SVG {
     private func cssFonts(_ result: inout [String]) {
         // font sizes and anchors
         result.append("""
-            text.legends { font-size: \(legendSize.f(1))px }
-            text.subtitle { font-size: \(subTitleSize.f(1))px; text-anchor: middle }
-            text.title { font-size: \(titleSize.f(1))px; text-anchor: middle }
-            text.xlabel { font-size: \(labelSize.f(1))px; text-anchor: middle }
-            text.xtitle { font-size: \(axesSize.f(1))px; text-anchor: middle }
-            text.ylabel { font-size: \(labelSize.f(1))px; text-anchor: end; dominant-baseline: middle }
-            text.ytitle { font-size: \(axesSize.f(1))px; text-anchor: middle; writing-mode: tb }
+            #\(svgID) text.legends { font-size: \(legendSize.f(1))px }
+            #\(svgID) text.subtitle { font-size: \(subTitleSize.f(1))px; text-anchor: middle }
+            #\(svgID) text.title { font-size: \(titleSize.f(1))px; text-anchor: middle }
+            #\(svgID) text.xlabel { font-size: \(labelSize.f(1))px; text-anchor: middle }
+            #\(svgID) text.xtitle { font-size: \(axesSize.f(1))px; text-anchor: middle }
+            #\(svgID) text.ylabel { font-size: \(labelSize.f(1))px; text-anchor: end; dominant-baseline: middle }
+            #\(svgID) text.ytitle { font-size: \(axesSize.f(1))px; text-anchor: middle; writing-mode: tb }
             """
         )
     }
@@ -28,8 +28,8 @@ extension SVG {
                 let dashes =
                     props.dashed ? "; stroke-dasharray: \(props.dash ?? "-1"); stroke-linecap: butt" : ""
                 result.append("""
-                    path.\(cssClass) { stroke: \(colour)\(dashes) }
-                    text.\(cssClass) { fill: \(colour); stroke: \(colour) }
+                    #\(svgID) path.\(cssClass) { stroke: \(colour)\(dashes) }
+                    #\(svgID) text.\(cssClass) { fill: \(colour); stroke: \(colour) }
                     """
                 )
             }
@@ -46,28 +46,33 @@ extension SVG {
         }
     }
 
+    private func cssBG(_ result: inout [String]) {
+        let bg = settings.backgroundColour != "" ? settings.backgroundColour : "transparent"
+        result.append("svg#\(svgID) { background-color: \(bg) }")
+    }
+
     /// Generate <style> tags
     /// - Parameter extra: extra tags
     /// - Returns: css information in a string
 
     func cssStyle(extra: String = "") -> String {
         var result: [String] = ["<style>"]
-        if settings.backgroundColour != "" {
-            result.append("svg { background-color: \(settings.backgroundColour) }")
-        }
-        result.append("g.plotarea { opacity: \(settings.opacity.f(1)) }")
-        result.append("g.plotarea path:hover { stroke-width: \((settings.strokeWidth * 2.5).f(1)) }")
-        result.append("path { stroke-width: \(settings.strokeWidth.f(1)); fill: none; stroke-linecap: round }")
-        result.append("path.axes { stroke: black }")
+        cssBG(&result)
+        result.append("#\(svgID) g.plotarea { opacity: \(settings.opacity.f(1)) }")
+        result.append("#\(svgID) g.plotarea path:hover { stroke-width: \((settings.strokeWidth * 2.5).f(1)) }")
         result.append(
-            "path.xtick, path.ytick { stroke: silver; stroke-width: \((settings.strokeWidth * 0.5).f(1)) }"
+            "#\(svgID) path { stroke-width: \(settings.strokeWidth.f(1)); fill: none; stroke-linecap: round }"
+        )
+        result.append("#\(svgID) path.axes { stroke: black }")
+        result.append(
+            "#\(svgID) path.xtick, path.ytick { stroke: silver; stroke-width: 1 }"
         )
 
         var textCSS: [String] = []
         if settings.fontFamily != "" { textCSS.append("font-family: \(settings.fontFamily)") }
         if settings.bold { textCSS.append("font-weight: bold") }
         if settings.italic { textCSS.append("font-style: italic") }
-        if textCSS.count > 0 { result.append("text { " + textCSS.joined(separator: ";") + " }") }
+        if textCSS.count > 0 { result.append("#\(svgID) text { " + textCSS.joined(separator: ";") + " }") }
 
         // Font settings
         cssFonts(&result)

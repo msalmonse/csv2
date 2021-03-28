@@ -53,12 +53,14 @@ class SVG: ReflectedStringConvertible {
     var logx: Bool { settings.logx && dataPlane.left > 0.0 }
     var logy: Bool { settings.logy && dataPlane.bottom > 0.0 }
 
+    // id for this svg
+    let svgID: String
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
     var svgTag: String {
         String(
-                format: "<svg width=\"%d\" height=\"%d\" xmlns=\"http://www.w3.org/2000/svg\">",
-                settings.width, settings.height
+                format: "<svg id=\"%@\" width=\"%d\" height=\"%d\" xmlns=\"http://www.w3.org/2000/svg\">",
+                svgID, settings.width, settings.height
         )
     }
     let svgTagEnd = "</svg>"
@@ -72,9 +74,9 @@ class SVG: ReflectedStringConvertible {
         self.csv = csv
         self.settings = settings
         sizes = FontSizes(size: settings.baseFontSize)
-
         self.index = settings.index
-
+        svgID = settings.cssID != "" ? settings.cssID
+            : "SVG-\(Int.random(in: 1...(1 << 24)).x(6,zeroFill: true))"
         height = Double(settings.height)
         width = Double(settings.width)
         allowedPlane = Plane(

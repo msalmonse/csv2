@@ -18,6 +18,7 @@ struct Defaults {
     static var colours: [String] = []
     static var cssClasses: [String] = []
     static var cssExtras: [String] = []
+    static var cssID = ""
     static var cssInclude = ""
     static var cssIncludeContents: String? = nil
     static var dashedLines = 0
