@@ -89,8 +89,7 @@ extension SVG {
     static func path(
         _ points: [PathCommand],
         cssClass: String,
-        extra: String = "",
-        width: Double = 1.0
+        extra: String = ""
     ) -> String {
         // a path needs 2 points
         guard points.count >= 2 else { return "" }

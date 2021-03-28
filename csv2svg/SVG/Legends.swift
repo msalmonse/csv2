@@ -41,7 +41,7 @@ extension SVG {
             PathCommand.moveTo(x: x, y: y),
             props.shape!.pathCommand(w: shapeWidth)
         ],
-        cssClass: props.cssClass!, width: strokeWidth)
+        cssClass: props.cssClass!)
     }
 
     /// Draw a line for plots with data points
@@ -64,7 +64,7 @@ extension SVG {
             props.shape!.pathCommand(w: shapeWidth),
             .horizTo(x: right)
         ],
-        cssClass: props.cssClass!, width: strokeWidth)
+        cssClass: props.cssClass!)
     }
 
     /// Draw a plain line
@@ -83,7 +83,7 @@ extension SVG {
             PathCommand.moveTo(x: left, y: y),
             .horizTo(x: right)
         ],
-        cssClass: props.cssClass!, width: strokeWidth)
+        cssClass: props.cssClass!)
     }
 
     /// Shorten a string if required
