@@ -14,9 +14,40 @@ e.g.<br/>
 `.plot02 { stroke: black }` will not change anything, it needs to be
 `path.plot02, text.plot02 { stroke: black }`.<br/>
 Also the `fill` for paths is none while for texts it is the same as `stroke` so just
-changing the `stroke` for both may give som surprising results.
+changing the `stroke` for both may give some surprising results.
+
+### The Groups
+There is only one group:
+- **g.plotarea** is used to set the opacity for the plot lines
 
 ### The Paths
 
-**path** `{ stroke-width: 2.0; fill: none; stroke-linecap: round }` sets the default
-styling for all paths. The `stroke-width` is the value set using the [`strokeWidth`](json.md#strokeWidth) tag.
+- **path** `{ stroke-width: 2.0; fill: none; stroke-linecap: round }`<br/>
+sets the default styling for all paths. The `stroke-width` is the value set using the
+[`strokeWidth`](json.md#strokeWidth) tag.
+- **`path.axes`** styles the abscissa and ordinate lines.
+- **`path.plot01`** styles the plot line for plot path for row or column 1 unless it has
+been overridden by [`cssClasses`](json.md#cssClasses). Similarly for `plot02` etc.
+- **`path.xtick`** styles the vertical grid lines
+- **`path.ytick`** styles the horizontal grid lines
+
+### The Rectangles
+There is only one rectangle and it for the legends panel.
+- **`rect.legends`** the legends panel.
+
+### The SVG
+- **`svg`** is used to set the background colour.
+
+### The Texts
+
+- **`text`** The text element is used to style the `font-family`, the `font-weight` and,
+the `font-style`.
+- **`text.legends`** styles the text in the legends panel.
+- **`text.plot01`** styles the text for the plot in the legends panel. These texts have
+both their own class and the `legends`
+- **`text.subtitle`** styles the sub-title text.
+- **`text.title`** styles the title text.
+- **`text.xlabel`** styles the text for the values on the abscissa
+- **`text.xtitle`** styles the text used to describe the abscissa values.
+- **`text.ylabel`** styles the text for the values on the ordinate
+- **`text.ytitle`** styles the text used to describe the ordinate values.

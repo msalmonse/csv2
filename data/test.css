@@ -1,2 +1,2 @@
 path.plot03 { stroke-dasharray: 1 2 1 }
-g.plotarea { background-color: cornsilk }
+.plotable rect { background-color: cornsilk }

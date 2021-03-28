@@ -22,6 +22,8 @@ Use bold text.
 <a id="cssClasses">**cssClasses** (Array of Strings)</a><br/>
 The elements of the SVG use CSS for styling with each plot having it's own class. The classes in this list are assigned
 to each row or column in turn including the index. Plots not included in this list are assigned an automatically generated class.<br/>
+There are no restrictions on the contents so that multiple classes can be attached to a plot by using a space seperated list for
+each entry.<br/>
 For more information see (css.md)[css.md]
 
 <a id="cssExtras">**cssExtras** (Array of Strings)</a><br/>
