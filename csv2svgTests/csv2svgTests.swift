@@ -236,6 +236,7 @@ func settingsJSON(_ cols: Bool) -> String {
     return """
         {
             "colours": [ "silver", "red", "green" ],
+            "cssID": "test",
             "headerColumns": 1,
             "headerRows": 1,
             "rowGrouping": \(!cols),
