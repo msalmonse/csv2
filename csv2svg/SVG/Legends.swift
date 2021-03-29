@@ -108,7 +108,7 @@ extension SVG {
         let xMid = (xLeft + xRight)/2.0
         var y = positions.legendY
         let yStep = legendSize * 1.5
-        var legends: [String] = ["", textTag(x: x, y: y, text: "Legends:", cssClass: "legends")]
+        var legends: [String] = ["", textTag(x: x, y: y, text: "Legends:", cssClass: "legends headline")]
         y += yStep/2.0
 
         for i in 0..<propsList.count where i != index && propsList[i].included {

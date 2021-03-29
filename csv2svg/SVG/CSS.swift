@@ -8,28 +8,29 @@
 import Foundation
 
 extension SVG {
-    private func cssFonts(_ result: inout [String]) {
+    private func cssFonts(_ result: inout [String], id: String) {
         // font sizes and anchors
         result.append("""
-            #\(svgID) text.legends { font-size: \(legendSize.f(1))px }
-            #\(svgID) text.subtitle { font-size: \(subTitleSize.f(1))px; text-anchor: middle }
-            #\(svgID) text.title { font-size: \(titleSize.f(1))px; text-anchor: middle }
-            #\(svgID) text.xlabel { font-size: \(labelSize.f(1))px; text-anchor: middle }
-            #\(svgID) text.xtitle { font-size: \(axesSize.f(1))px; text-anchor: middle }
-            #\(svgID) text.ylabel { font-size: \(labelSize.f(1))px; text-anchor: end; dominant-baseline: middle }
-            #\(svgID) text.ytitle { font-size: \(axesSize.f(1))px; text-anchor: middle; writing-mode: tb }
+            \(id) text.legends { font-size: \(legendSize.f(1))px }
+            \(id) text.legends.headline { font-size: \((legendSize * 1.1).f(1))px; font-weight: bold }
+            \(id) text.subtitle { font-size: \(subTitleSize.f(1))px; text-anchor: middle }
+            \(id) text.title { font-size: \(titleSize.f(1))px; text-anchor: middle }
+            \(id) text.xlabel { font-size: \(labelSize.f(1))px; text-anchor: middle }
+            \(id) text.xtitle { font-size: \(axesSize.f(1))px; text-anchor: middle }
+            \(id) text.ylabel { font-size: \(labelSize.f(1))px; text-anchor: end; dominant-baseline: middle }
+            \(id) text.ytitle { font-size: \(axesSize.f(1))px; text-anchor: middle; writing-mode: tb }
             """
         )
     }
 
-    private func cssProps(_ result: inout [String]) {
+    private func cssProps(_ result: inout [String], id: String) {
         for props in propsList {
             if let cssClass = props.cssClass, let colour = props.colour {
                 let dashes =
                     props.dashed ? "; stroke-dasharray: \(props.dash ?? "-1"); stroke-linecap: butt" : ""
                 result.append("""
-                    #\(svgID) path.\(cssClass) { stroke: \(colour)\(dashes) }
-                    #\(svgID) text.\(cssClass) { fill: \(colour); stroke: \(colour) }
+                    \(id) path.\(cssClass) { stroke: \(colour)\(dashes) }
+                    \(id) text.\(cssClass) { fill: \(colour); stroke: \(colour) }
                     """
                 )
             }
@@ -46,9 +47,9 @@ extension SVG {
         }
     }
 
-    private func cssBG(_ result: inout [String]) {
+    private func cssBG(_ result: inout [String], id: String) {
         let bg = settings.backgroundColour != "" ? settings.backgroundColour : "transparent"
-        result.append("svg#\(svgID) { background-color: \(bg) }")
+        result.append("svg\(id) { background-color: \(bg) }")
     }
 
     /// Generate <style> tags
@@ -56,31 +57,34 @@ extension SVG {
     /// - Returns: css information in a string
 
     func cssStyle(extra: String = "") -> String {
+        let id = svgID != "none" ? "#\(svgID)" : ""
         var result: [String] = ["<style>"]
-        cssBG(&result)
-        result.append("#\(svgID) g.plotarea { opacity: \(settings.opacity.f(1)) }")
-        result.append("#\(svgID) g.plotarea path:hover { stroke-width: \((settings.strokeWidth * 2.5).f(1)) }")
+        cssBG(&result, id: id)
+        result.append("\(id) g.plotarea { opacity: \(settings.opacity.f(1)) }")
+        result.append("\(id) g.plotarea path:hover { stroke-width: \((settings.strokeWidth * 2.5).f(1)) }")
         result.append(
-            "#\(svgID) path { stroke-width: \(settings.strokeWidth.f(1)); fill: none; stroke-linecap: round }"
+            "\(id) path { stroke-width: \(settings.strokeWidth.f(1)); fill: none; stroke-linecap: round }"
         )
-        result.append("#\(svgID) path.axes { stroke: black }")
+        result.append("\(id) path.axes { stroke: black }")
         result.append(
-            "#\(svgID) path.xtick, path.ytick { stroke: silver; stroke-width: 1 }"
+            "\(id) path.xtick, \(id) path.ytick { stroke: silver; stroke-width: 1 }"
         )
 
         var textCSS: [String] = []
         if settings.fontFamily != "" { textCSS.append("font-family: \(settings.fontFamily)") }
         if settings.bold { textCSS.append("font-weight: bold") }
         if settings.italic { textCSS.append("font-style: italic") }
-        if textCSS.count > 0 { result.append("#\(svgID) text { " + textCSS.joined(separator: ";") + " }") }
+        if textCSS.count > 0 { result.append("\(id) text { " + textCSS.joined(separator: ";") + " }") }
 
         // Font settings
-        cssFonts(&result)
+        cssFonts(&result, id: id)
 
         // Individual plot settings
-        cssProps(&result)
+        cssProps(&result, id: id)
 
-        result.append("rect.legends { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5px }")
+        result.append(
+            "\(id) rect.legends { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }"
+        )
 
         if extra != "" { result.append(extra) }
 

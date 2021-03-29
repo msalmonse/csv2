@@ -27,12 +27,6 @@ extension SVG {
         return result
     }
 
-    func background(_ bg: String) -> String {
-        return """
-            <style> svg { background-color: \(bg) } </style>
-            """
-    }
-
     /// Generate an SVG group with the plot lines
     /// - Parameter ts: TransScale object
     /// - Returns: Array of SVG elements
@@ -55,7 +49,6 @@ extension SVG {
         var result: [String] = [ xmlTag, svgTag, comment ]
         result.append(cssStyle())
         result.append(contentsOf: defs())
-        if settings.backgroundColour != "" { result.append(background(settings.backgroundColour)) }
         if settings.xTick >= 0 { result.append(xTick(ts)) }
         if settings.yTick >= 0 { result.append(yTick(ts)) }
         result.append(axes(ts))

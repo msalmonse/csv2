@@ -59,8 +59,8 @@ class SVG: ReflectedStringConvertible {
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
     var svgTag: String {
         String(
-                format: "<svg id=\"%@\" width=\"%d\" height=\"%d\" xmlns=\"http://www.w3.org/2000/svg\">",
-                svgID, settings.width, settings.height
+                format: "<svg %@ width=\"%d\" height=\"%d\" xmlns=\"http://www.w3.org/2000/svg\">",
+            svgID != "none" ? "id=\"\(svgID)\"" : "" , settings.width, settings.height
         )
     }
     let svgTagEnd = "</svg>"
