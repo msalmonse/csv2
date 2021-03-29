@@ -38,6 +38,10 @@ struct Defaults {
     static var nameHeader = 1
     static var names: [String] = []
     static var opacity = 1.0
+    static var reserveBottom = 0.0
+    static var reserveLeft = 0.0
+    static var reserveRight = 0.0
+    static var reserveTop = 0.0
     static var rowGrouping = false
     static var scattered = 0
     static var shapes: [String] = []

@@ -12,6 +12,12 @@ class Settings: Codable, ReflectedStringConvertible {
     let height: Int
     let width: Int
 
+    // reserved space
+    let reserveBottom: Double
+    let reserveLeft: Double
+    let reserveRight: Double
+    let reserveTop: Double
+
     // base font size
     let baseFontSize: Double
 
@@ -153,6 +159,10 @@ class Settings: Codable, ReflectedStringConvertible {
         case .baseFontSize: return Defaults.baseFontSize
         case .dataPointDistance: return Defaults.dataPointDistance
         case .opacity: return Defaults.opacity
+        case .reserveBottom: return Defaults.reserveBottom
+        case .reserveLeft: return Defaults.reserveLeft
+        case .reserveRight: return Defaults.reserveRight
+        case .reserveTop: return Defaults.reserveTop
         case .smooth: return Defaults.smooth
         case .strokeWidth: return Defaults.strokeWidth
         case .xMax: return Defaults.xMax
@@ -308,6 +318,10 @@ class Settings: Codable, ReflectedStringConvertible {
         logy = Self.keyedBoolValue(from: container, forKey: .logy)
         nameHeader = Self.keyedIntValue(from: container, forKey: .nameHeader) - 1   // use 0 based
         opacity = Self.keyedDoubleValue(from: container, forKey: .opacity)
+        reserveBottom = Self.keyedDoubleValue(from: container, forKey: .reserveBottom)
+        reserveLeft = Self.keyedDoubleValue(from: container, forKey: .reserveLeft)
+        reserveRight = Self.keyedDoubleValue(from: container, forKey: .reserveRight)
+        reserveTop = Self.keyedDoubleValue(from: container, forKey: .reserveTop)
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
         sortx = Self.keyedBoolValue(from: container, forKey: .sortx)
         scatterPlots = Self.keyedIntValue(from: container, forKey: .scatterPlots)

@@ -90,7 +90,7 @@ class SVG: ReflectedStringConvertible {
         limit = settings.dataPointDistance
 
         plotPlane = Plane(
-            top: settings.baseFontSize, bottom: positions.bottomY,
+            top: positions.topY, bottom: positions.bottomY,
             left: positions.leftX, right: positions.rightX
         )
 

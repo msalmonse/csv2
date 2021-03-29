@@ -98,6 +98,11 @@ struct Options: ParsableCommand {
             help: "Generate a random SVG with: #plots [max value [min value [-ve offset]]]")
     var random: [Int] = []
 
+    @Option(name: .long, parsing: .upToNextOption,
+            help: "Default reserved left [top [right [bottom]]]")
+    var reserve =
+        [Defaults.reserveLeft, Defaults.reserveTop, Defaults.reserveRight, Defaults.reserveBottom]
+
     @Flag(name: .long, help: "Default to grouping data by rows")
     var rows = Defaults.rowGrouping
 
@@ -198,6 +203,10 @@ struct Options: ParsableCommand {
         Defaults.nameHeader = nameheader
         Defaults.names = names
         Defaults.opacity = opacity
+        if reserve.count >= 1 { Defaults.reserveLeft = opts.reserve[0] }
+        if reserve.count >= 2 { Defaults.reserveTop = opts.reserve[1] }
+        if reserve.count >= 3 { Defaults.reserveRight = opts.reserve[2] }
+        if reserve.count >= 4 { Defaults.reserveBottom = opts.reserve[3] }
         Defaults.rowGrouping = rows
         Defaults.scattered = scattered
         Defaults.showDataPoints = showpoints
