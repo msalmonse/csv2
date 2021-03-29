@@ -35,6 +35,12 @@ struct Options: ParsableCommand {
             help: "Default list of plot colours, multiple entries until the next option")
     var colours: [String] = []
 
+    @Option(name: .long, help: "Default include file for css styling")
+    var css = Defaults.cssInclude
+
+    @Option(name: .long, help: "Default id for SVG")
+    var cssid = Defaults.cssID
+
     @Option(name: .long, help: "Default plots to show as with dashed lines")
     var dashed = Defaults.dashedLines
 
@@ -175,6 +181,8 @@ struct Options: ParsableCommand {
         Defaults.black = black
         Defaults.bold = bold
         Defaults.colours = colours
+        Defaults.cssID = cssid
+        Defaults.cssInclude = css
         Defaults.dashedLines = dashed
         Defaults.dashes = dashes
         Defaults.dataPointDistance = distance

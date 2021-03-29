@@ -20,7 +20,7 @@ extension SVG {
         let y = (plotPlane.top - shapeWidth * 2.0)
         var result = ["<defs>"]
         result.append("<clipPath id=\"plotable\">")
-        result.append(rectTag(x: x, y: y, width: w, height: h, style: nil))
+        result.append(rectTag(x: x, y: y, width: w, height: h))
         result.append("</clipPath>")
         result.append("</defs>")
 
@@ -39,7 +39,7 @@ extension SVG {
 
     func lineGroup(_ ts: TransScale) -> [String] {
         var result: [String] = []
-        result.append("<g clip-path=\"url(#plotable)\" opacity=\"\(settings.opacity.f(2))\">")
+        result.append("<g clip-path=\"url(#plotable)\" class=\"plotarea\">")
         result.append(contentsOf: settings.inColumns ? columnPlot(ts) : rowPlot(ts))
         result.append("</g>")
 
@@ -53,6 +53,7 @@ extension SVG {
         let ts = TransScale(from: dataPlane, to: plotPlane, logx: logx, logy: logy)
 
         var result: [String] = [ xmlTag, svgTag, comment ]
+        result.append(cssStyle())
         result.append(contentsOf: defs())
         if settings.backgroundColour != "" { result.append(background(settings.backgroundColour)) }
         if settings.xTick >= 0 { result.append(xTick(ts)) }
@@ -82,12 +83,13 @@ extension SVG {
     func shapeGen(name: String, stroke: String) -> [String] {
         let shape = Shape.lookup(name)
         var result: [String] = [ xmlTag, svgTag ]
-        if settings.backgroundColour != "" { result.append(background(settings.backgroundColour)) }
+        let shapeCss = "path.shape { stroke: \(stroke) }"
+        result.append(cssStyle(extra: shapeCss))
         let path = [
             PathCommand.moveTo(x: width/2.0, y: height/2.0),
             shape!.pathCommand(w: shapeWidth)
         ]
-        result.append(SVG.path(path, pathProperty(withColour: stroke), width: settings.strokeWidth))
+        result.append(SVG.path(path, cssClass: "shape"))
         result.append(svgTagEnd)
 
         return result

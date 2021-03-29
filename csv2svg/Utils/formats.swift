@@ -36,10 +36,24 @@ extension Double {
 
 extension Int {
     /// Format an Int
-    /// - Parameter width: string width
+    /// - Parameters:
+    ///   - width: string width
+    ///   - zeroFill: fill blanks with zeros
     /// - Returns: formatted  string
 
-    func d(_ width: Int = 1) -> String {
-        return String(format: "%*d", width, self)
+    func d(_ width: Int = 1, zeroFill: Bool = false) -> String {
+        let fmt = zeroFill ? "%0*d" : "%*d"
+        return String(format: fmt, width, self)
+    }
+
+    /// Format an Int in hex
+    /// - Parameters:
+    ///   - width: string width
+    ///   - zeroFill: fill blanks with zeros
+    /// - Returns: formatted  string
+
+    func x(_ width: Int = 1, zeroFill: Bool = false) -> String {
+        let fmt = zeroFill ? "%0*x" : "%*x"
+        return String(format: fmt, width, self)
     }
 }

@@ -19,6 +19,25 @@ Set undefined plot colours to "black"
 **Option:** `--bold`<br/>
 Use bold text.
 
+<a id="cssClasses">**cssClasses** (Array of Strings)</a><br/>
+The elements of the SVG use CSS for styling with each plot having it's own class. The classes in this list are assigned
+to each row or column in turn including the index. Plots not included in this list are assigned an automatically generated class.<br/>
+There are no restrictions on the contents so that multiple classes can be attached to a plot by using a space seperated list for
+each entry.<br/>
+For more information see (css.md)[css.md]
+
+<a id="cssExtras">**cssExtras** (Array of Strings)</a><br/>
+The strings in this array are copied into a `<style>` tag.
+
+<a id="cssID">**cssID** (String)</a><br/>
+**Option:** `--cssid`<br/>
+The style tags of SVG's can affect each other when they are included in an HTML document. For this reason every `<svg>` tag
+has an `id` defined. It can be this id  or a random one.
+
+<a id="cssInclude">**cssInclude** (String)</a><br/>
+**Option:** `--css`<br/>
+The contents of the file named by this string are included in a separate `<style>` tag.
+
 **colours** (Array of Strings)<br/>
 **Option:** `--colours`<sup>[6](#fn6)</sup><br/>
 The colours to be used to plot the column or row. The index, if present, must be included although never used.
@@ -125,7 +144,7 @@ The value for smooth is actually `1 - α` as it makes more sense to me for no sm
 **Option:** `--sortx`<br/>
 Sort the points based on the x value before plotting.
 
-**strokeWidth** (Double **2.0**)<br/>
+<a id="strokeWidth">**strokeWidth** (Double **2.0**)</a><br/>
 **Option:** `--stroke`<br/>
 The width of the plotted paths
 
@@ -194,5 +213,5 @@ To simplify the calculation the `--bitmap` option can be used e.g.<br/>
 `csv2svg --bitmap 5 4 1` gives `25`.
 
 <a id="fn6">6</a>: These options accept a list of words separated by spaces up until the next flag
-or option. 
+or option.
 If there are none before the file names then a `--` can be used to terminate the list.

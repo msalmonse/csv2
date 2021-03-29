@@ -17,20 +17,17 @@ extension SVG {
 
         var y = step + step
         var yRect: Double { y - hRect * 0.8 }
-        var style = Style([
-                "font-size": (step * 0.8).f(2),
-                "alignment-baseline": "middle"
-            ]
-        )
+        let coloursCSS = """
+            text.colours { font-size: \((step * 0.8).f(2)); alignment-baseline: middle }
+            """
 
-        var result: [String] = [ xmlTag, svgTag ]
-        if settings.backgroundColour != "" { result.append(background(settings.backgroundColour)) }
+        var result: [String] = [ xmlTag, svgTag, cssStyle(extra: coloursCSS) ]
 
         for colour in Defaults.colours + Colours.all {
-            style[["fill","stroke"]] = colour
-            result.append(textTag(x: xText, y: y, text: colour, style: style))
+            let extra = "style=\" fill: \(colour); stroke: \(colour) \""
+            result.append(textTag(x: xText, y: y, text: colour, cssClass: "colour", extra: extra))
             result.append(
-                rectTag(x: xRect, y: yRect, width: wRect, height: hRect, style: style, rx: rx))
+                rectTag(x: xRect, y: yRect, width: wRect, height: hRect, extra: extra, rx: rx))
             y += step
         }
 

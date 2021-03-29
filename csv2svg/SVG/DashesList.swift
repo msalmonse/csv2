@@ -9,10 +9,9 @@ import Foundation
 
 extension SVG {
     func dashesListGen(_ step: Double) -> [String] {
-        var props = PathProperties()
-        props.colour = Defaults.colours.count > 0 ? Defaults.colours[0] : "black"
-        props.dashed = true
-        let style = Style(["stroke": props.colour])
+        let colour = Defaults.colours.count > 0 ? Defaults.colours[0] : "black"
+        let dashCSS =
+            "path.dashes { stroke: \(colour); stroke-width: \((step/5.0).f(1)); stroke-linecap: butt }"
 
         let xLeft = width * 0.1
         let xRight = width * 0.6
@@ -21,15 +20,14 @@ extension SVG {
         var y = step
         var yPath: Double { y - step/10.0 }
 
-        var result: [String] = [ xmlTag, svgTag ]
-        if settings.backgroundColour != "" { result.append(background(settings.backgroundColour)) }
+        var result: [String] = [ xmlTag, svgTag, cssStyle(extra: dashCSS)]
 
         for dash in Defaults.dashes + SVG.Dashes.all(width * 3.0) {
             y += step
-            props.dash = dash
             let points = [ PathCommand.moveTo(x: xLeft, y: yPath), .horizTo(x: xRight) ]
-            result.append(SVG.path(points, props, width: step/5.0, linecap: "butt"))
-            result.append(textTag(x: xText, y: y, text: dash, style: style))
+            let extra = "style=\"stroke-dasharray: \(dash)\""
+            result.append(SVG.path(points, cssClass: "dashes", extra: extra))
+            result.append(textTag(x: xText, y: y, text: dash, cssClass: "dashes"))
         }
 
         result.append(svgTagEnd)

@@ -27,7 +27,7 @@ extension SVG {
             path.append(.vertTo(y: plotPlane.top))
         }
 
-        return Self.path(path, pathProperty(withColour: "Black"), width: strokeWidth)
+        return Self.path(path, cssClass: "axes")
     }
 
     /// Normalize tick value
@@ -76,7 +76,7 @@ extension SVG {
         var tick = tickNorm(
             settings.xTick,
             dpp: dataPlane.width/plotPlane.width,
-            minSize: settings.labelSize * 3.5,
+            minSize: labelSize * 3.5,
             maxSize: plotPlane.width/5.0,
             isLog: logx
         )
@@ -102,7 +102,7 @@ extension SVG {
             }
         }
 
-        return Self.path(path, pathProperty(withColour: "Silver")) + labels.joined(separator: "\n")
+        return Self.path(path, cssClass: "xtick") + labels.joined(separator: "\n")
     }
 
     /// Draw horizontal ticks
@@ -115,7 +115,7 @@ extension SVG {
         var tick = tickNorm(
             settings.yTick,
             dpp: dataPlane.height/plotPlane.height,
-            minSize: settings.labelSize * 1.25,
+            minSize: labelSize * 1.25,
             maxSize: plotPlane.height/5.0,
             isLog: logy
         )
@@ -141,6 +141,6 @@ extension SVG {
             }
         }
 
-        return Self.path(path, pathProperty(withColour: "Silver")) + labels.joined(separator: "\n")
+        return Self.path(path, cssClass: "ytick") + labels.joined(separator: "\n")
     }
 }

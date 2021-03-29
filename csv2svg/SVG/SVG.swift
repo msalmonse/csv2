@@ -15,6 +15,14 @@ class SVG: ReflectedStringConvertible {
     let csv: CSV
     let settings: Settings
 
+    // font sizes
+    let sizes: FontSizes
+    var axesSize: Double { return sizes.axesSize }
+    var labelSize: Double { return sizes.labelSize }
+    var legendSize: Double { return sizes.legendSize }
+    var subTitleSize: Double { return sizes.subTitleSize }
+    var titleSize: Double { return sizes.titleSize }
+
     // Row or column to use for x values
     let index: Int
 
@@ -41,34 +49,34 @@ class SVG: ReflectedStringConvertible {
     // sub title
     let subTitle: String
 
-    // Styles to use
-    let styles: [String: Style]
-
     // log x and y axes
     var logx: Bool { settings.logx && dataPlane.left > 0.0 }
     var logy: Bool { settings.logy && dataPlane.bottom > 0.0 }
 
+    // id for this svg
+    let svgID: String
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
     var svgTag: String {
         String(
-                format: "<svg width=\"%d\" height=\"%d\" xmlns=\"http://www.w3.org/2000/svg\">",
-                settings.width, settings.height
+                format: "<svg id=\"%@\" width=\"%d\" height=\"%d\" xmlns=\"http://www.w3.org/2000/svg\">",
+                svgID, settings.width, settings.height
         )
     }
     let svgTagEnd = "</svg>"
     let comment = """
     <!--
-        Created by \(AppInfo.name): \(AppInfo.version) (\(AppInfo.build)) \(AppInfo.origin)
+        Created by \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) \(AppInfo.origin)
       -->
     """
 
     init(_ csv: CSV, _ settings: Settings) {
         self.csv = csv
         self.settings = settings
-
+        sizes = FontSizes(size: settings.baseFontSize)
         self.index = settings.index
-
+        svgID = settings.cssID != "" ? settings.cssID
+            : "ID-\(Int.random(in: 1...(1 << 24)).x(6,zeroFill: true))"
         height = Double(settings.height)
         width = Double(settings.width)
         allowedPlane = Plane(
@@ -77,7 +85,7 @@ class SVG: ReflectedStringConvertible {
         )
         dataPlane = SVG.sidesFromData(csv, settings)
 
-        positions = Positions(settings, dataLeft: dataPlane.left)
+        positions = Positions(settings, dataLeft: dataPlane.left, sizes: sizes)
 
         limit = settings.dataPointDistance
 
@@ -92,6 +100,7 @@ class SVG: ReflectedStringConvertible {
         var props = Array(repeating: PathProperties(), count: plotCount)
         // setup first so that the other functions can use them
         SVG.plotFlags(settings, plotCount, &props)
+        SVG.plotClasses(settings, plotCount, &props)
         SVG.plotColours(settings, plotCount, &props)
         SVG.plotDashes(settings, plotCount, plotPlane.width, &props)
         SVG.plotNames(settings, csv, plotCount, &props)
@@ -102,7 +111,5 @@ class SVG: ReflectedStringConvertible {
             ? settings.subTitle
             : plotCount == 0 ? ""
                 : Self.subTitleText(csv: csv, inColumns: settings.inColumns, header: settings.subTitleHeader)
-
-        styles = SVG.styleDict(settings)
     }
 }

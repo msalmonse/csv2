@@ -9,6 +9,26 @@ import Foundation
 
 extension SVG {
 
+    /// Generate a list of classes for the plots
+    /// - Parameters:
+    ///   - settings: settings for plot
+    ///   - ct: number of plots
+    /// - Returns: list of colours
+
+    static func plotClasses(
+        _ settings: Settings,
+        _ ct: Int,
+        _ props: inout [PathProperties]
+        ) {
+        for i in 0..<ct {
+            if i < settings.cssClasses.count && settings.cssClasses[i] != "" {
+                props[i].cssClass = settings.cssClasses[i]
+            } else {
+                props[i].cssClass = "plot\((i + 1).d(2, zeroFill: true))"
+            }
+        }
+    }
+
     /// Generate a list of colours for the plots
     /// - Parameters:
     ///   - settings: settings for plot

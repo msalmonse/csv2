@@ -138,9 +138,7 @@ class csv2svgTests: XCTestCase {
     }
 
     func testSvgPath() {
-        var props = SVG.PathProperties()
-        props.colour = "black"
-        let path = SVG.path(pathPoints, props)
+        let path = SVG.path(pathPoints, cssClass: "test")
         print(path.difference(from: pathTag))
         XCTAssertEqual(path, pathTag)
     }
@@ -187,21 +185,6 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(svg!.dataPlane.bottom, -110.1)
         XCTAssertEqual(svg!.dataPlane.left, -1.0)
         XCTAssertEqual(svg!.dataPlane.right, 9.0)
-    }
-
-    func testStyle() {
-        var style = SVG.Style([
-            "a": "b",
-            "c": nil
-        ])
-
-        XCTAssertEqual("\(style)", style1)
-        XCTAssertNil(style["c"])
-        XCTAssertNil(style["d"])
-        style["c"] = "1"
-        XCTAssertEqual("\(style)", style2)
-        style["a"] = nil
-        XCTAssertEqual("\(style)", style3)
     }
 
     func testFormats() {
@@ -253,6 +236,7 @@ func settingsJSON(_ cols: Bool) -> String {
     return """
         {
             "colours": [ "silver", "red", "green" ],
+            "cssID": "test",
             "headerColumns": 1,
             "headerRows": 1,
             "rowGrouping": \(!cols),
@@ -300,10 +284,5 @@ let pathPoints = [
 
 // swiftlint:disable line_length
 let pathTag = """
-<path d=" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 m -2.0,-2.0 m 0.0,-3.0 a 3.0,3.0,0.0,1,1,0.0,6.0 a 3.0,3.0,0.0,1,1,0.0,-6.0 m 0.0,3.0 " style="fill: none;stroke: black;stroke-linecap: round;stroke-width: 1.0" />
+<path class="test" d=" M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 m -2.0,-2.0 m 0.0,-3.0 a 3.0,3.0,0.0,1,1,0.0,6.0 a 3.0,3.0,0.0,1,1,0.0,-6.0 m 0.0,3.0 " />
 """
-
-// Checks for style
-let style1 = "style=\"a: b\""
-let style2 = "style=\"a: b;c: 1\""
-let style3 = "style=\"c: 1\""

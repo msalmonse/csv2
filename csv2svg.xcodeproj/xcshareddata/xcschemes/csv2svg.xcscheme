@@ -52,15 +52,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--random 5 10 0 15 --"
+            argument = "--css test.css --cssid testsvg"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/testdata/little.csv"
+            argument = "${PROJECT_DIR}/data/little.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/testdata/columns-ticks-index.json"
+            argument = "${PROJECT_DIR}/data/columns-ticks-index.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

@@ -22,13 +22,7 @@ extension SVG {
         let w = right - left
         let x = left
         let y = top
-        let style = Style([
-            "fill": "silver",
-            "fill-opacity": ".1",
-            "stroke": "silver",
-            "stroke-width": "1.5"
-        ])
-        return rectTag(x: x, y: y, width: w, height: h, style: style, rx: strokeWidth * 3.0)
+        return rectTag(x: x, y: y, width: w, height: h, extra: "class=\"legends\"", rx: strokeWidth * 3.0)
     }
 
     /// Draw the shape used for a scatter plot
@@ -47,7 +41,7 @@ extension SVG {
             PathCommand.moveTo(x: x, y: y),
             props.shape!.pathCommand(w: shapeWidth)
         ],
-        props, width: strokeWidth)
+        cssClass: props.cssClass!)
     }
 
     /// Draw a line for plots with data points
@@ -70,7 +64,7 @@ extension SVG {
             props.shape!.pathCommand(w: shapeWidth),
             .horizTo(x: right)
         ],
-        props, width: strokeWidth)
+        cssClass: props.cssClass!)
     }
 
     /// Draw a plain line
@@ -89,7 +83,7 @@ extension SVG {
             PathCommand.moveTo(x: left, y: y),
             .horizTo(x: right)
         ],
-        props, width: strokeWidth)
+        cssClass: props.cssClass!)
     }
 
     /// Shorten a string if required
@@ -109,28 +103,23 @@ extension SVG {
     func legend() -> String {
         if positions.legendX >= width { return "<!-- Legends suppressed -->" }
         let x = positions.legendX
-        let xLeft = x + settings.legendSize/2.0
-        let xRight = width - settings.legendSize/2.0
+        let xLeft = x + legendSize/2.0
+        let xRight = width - legendSize/2.0
         let xMid = (xLeft + xRight)/2.0
         var y = positions.legendY
-        let yStep = settings.legendSize * 1.5
-        var style = styles["legends"]!
-        var legends: [String] = ["", textTag(x: x, y: y, text: "Legends:", style: style)]
-        style["font-weight"] = nil
+        let yStep = legendSize * 1.5
+        var legends: [String] = ["", textTag(x: x, y: y, text: "Legends:", cssClass: "legends")]
         y += yStep/2.0
 
         for i in 0..<propsList.count where i != index && propsList[i].included {
             y += yStep
             if y > height - yStep - yStep {
-                style[["fill","stroke"]] = "black"
-                legends.append(textTag(x: xLeft, y: y, text: "…", style: style))
+                legends.append(textTag(x: xLeft, y: y, text: "…", cssClass: "legends"))
                 break
             }
             let propsi = propsList[i]
             let text = shortened(propsi.name!)
-            let colour = propsi.colour!
-            style[["fill","stroke"]] = colour
-            legends.append(textTag(x: xLeft, y: y, text: text, style: style))
+            legends.append(textTag(x: xLeft, y: y, text: text, cssClass: "legends \(propsi.cssClass!)"))
             let lineY = y + yStep/2.0
             if propsi.dashed || propsi.pointed || propsi.scattered { y += yStep }
             switch (propsi.dashed, propsi.pointed, propsi.scattered) {
@@ -144,7 +133,7 @@ extension SVG {
             }
         }
 
-        legends[0] = legendBG(positions.legendY - yStep, y + yStep, x - settings.legendSize, right: width)
+        legends[0] = legendBG(positions.legendY - yStep, y + yStep, x - legendSize, right: width)
 
         return legends.joined(separator: "\n")
     }

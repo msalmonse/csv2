@@ -14,7 +14,7 @@ extension SVG {
     ///   - y: y position
     ///   - w: width
     ///   - h: height
-    ///   - style: style for <rect.>
+    ///   - extra: extra options for <rect.>
     ///   - rx: radius
     ///   - precision: precission for x, y, w and h
     /// - Returns: a <rect> string
@@ -22,12 +22,12 @@ extension SVG {
     func rectTag(
         x: Double, y: Double,
         width w: Double, height h: Double,
-        style: Style?,
+        extra: String = "",
         rx: Double = 0.0,
         precision p: Int = 1
     ) -> String {
         return """
-            <rect \(xy(x,y, p)) \(wh(w,h, p)) rx="\(rx.f(p))" \(style?.description ?? "")/>
+            <rect \(xy(x,y, p)) \(wh(w,h, p)) rx="\(rx.f(p))" \(extra) />
             """
     }
 }

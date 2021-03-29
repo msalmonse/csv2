@@ -15,8 +15,11 @@ if opts.debug != 0 {
 }
 
 if opts.version {
-    print("\(AppInfo.name): \(AppInfo.version) (\(AppInfo.build)) Built at \(AppInfo.builtAt)",
-          to: &standardError)
+    print("""
+        \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) Built at \(AppInfo.builtAt)
+        """,
+        to: &standardError
+    )
     exit(0)
 }
 
@@ -40,8 +43,11 @@ if opts.shapenames {
         print(opts.jsonName ?? "Missing JSON file name", to: &standardError)
     }
 
-    let settings = try? Settings.load(jsonURL(opts))
+    let jsonSource = jsonURL(opts)
+    let settings = try? Settings.load(jsonSource)
     if (opts.debug & 2) > 0 { print(settings ?? "Nil settings", to: &standardError) }
+
+    Defaults.cssIncludeContents = includeContents(Defaults.cssInclude, jsonSource)
 
     let csv = csvSelect(opts, settings)
     if (opts.debug & 4) > 0 { print(csv ?? "Nil csv", to: &standardError) }
@@ -102,4 +108,17 @@ private func svgOutput(_ tagList: [String], to name: String?) {
             print(error, to: &standardError)
         }
     }
+}
+
+/// Fetch include contents
+/// - Parameters:
+///   - name: name of include file
+///   - base: base URL
+/// - Returns: include contents
+
+private func includeContents(_ name: String, _ base: URL) -> String? {
+    // First try the name directly
+    if let result = try? String(contentsOf: URL(fileURLWithPath: name)) { return result }
+    let relativePath = base.deletingLastPathComponent().appendingPathComponent(name)
+    return try? String(contentsOf: relativePath)
 }
