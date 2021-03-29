@@ -15,6 +15,8 @@ OPTIONS:
   --bold                  Set default font-weight to bold
   --colourslist           Generate an SVG with all the colours on it
   --colours <colours>     Default list of plot colours, multiple entries until the next option
+  --css <css>             Default include file for css styling
+  --cssid <cssid>         Default id for SVG
   --dashed <dashed>       Default plots to show as with dashed lines (default: 0)
   --dashes <dashes>       Default list of plot dash patterns, multiple entries until the next
                           option
@@ -34,7 +36,8 @@ OPTIONS:
   --names <names>         Default list of plot names, multiple entries until the next option
   --nolegends             Don't include plot names, colours, dashes and shapes
   --opacity <opacity>     Default index row or column (default: 1.0)
-  --random <random>       Generate a random SVG with: #plots [max value [min value]]
+  --random <random>       Generate a random SVG with: #plots [max value [min value [-ve
+                          offset]]]
   --rows                  Default to grouping data by rows
   --scattered <scattered> Default plots to show as scattered (default: 0)
   --shapes <shapes>       Default list of shapes, multiple entries until the next option

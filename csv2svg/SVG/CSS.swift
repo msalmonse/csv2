@@ -12,7 +12,7 @@ extension SVG {
         // font sizes and anchors
         result.append("""
             \(id) text.legends { font-size: \(legendSize.f(1))px }
-            \(id) text.legends.headline { font-size: \((legendSize * 1.1).f(1))px; font-weight: bold }
+            \(id) text.legends.headline { font-size: \((legendSize * 1.25).f(1))px; font-weight: bold }
             \(id) text.subtitle { font-size: \(subTitleSize.f(1))px; text-anchor: middle }
             \(id) text.title { font-size: \(titleSize.f(1))px; text-anchor: middle }
             \(id) text.xlabel { font-size: \(labelSize.f(1))px; text-anchor: middle }
@@ -61,9 +61,9 @@ extension SVG {
         var result: [String] = ["<style>"]
         cssBG(&result, id: id)
         result.append("\(id) g.plotarea { opacity: \(settings.opacity.f(1)) }")
-        result.append("\(id) g.plotarea path:hover { stroke-width: \((settings.strokeWidth * 2.5).f(1)) }")
+        result.append("\(id) g.plotarea path:hover { stroke-width: \((strokeWidth * 2.5).f(1)) }")
         result.append(
-            "\(id) path { stroke-width: \(settings.strokeWidth.f(1)); fill: none; stroke-linecap: round }"
+            "\(id) path { stroke-width: \(strokeWidth.f(1)); fill: none; stroke-linecap: round }"
         )
         result.append("\(id) path.axes { stroke: black }")
         result.append(

@@ -32,7 +32,7 @@ The strings in this array are copied into a `<style>` tag.
 <a id="cssID">**cssID** (String)</a><br/>
 **Option:** `--cssid`<br/>
 The style tags of SVG's can affect each other when they are included in an HTML document. For this reason every `<svg>` tag
-has an `id` defined. It can be this id  or a random one.
+has an `id` defined. It can be this id or a random one. If the `cssID` is set to _"none"_ then no id is added to the SVG.
 
 <a id="cssInclude">**cssInclude** (String)</a><br/>
 **Option:** `--css`<br/>
