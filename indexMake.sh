@@ -53,6 +53,26 @@ $(tail -n +2 "$f")
 EOD
 done
 
+cat <<EOD
+<tr><th colspan="2" style="text-align: center">Examples</th></tr>
+EOD
+
+for f in examples/*.svg
+do
+    cat <<EOD
+<tr>
+<th>$(basename $f .svg)</th>
+<td>
+<img src="../$f" />
+</td>
+</tr>
+EOD
+done
+
+cat <<EOD
+<tr><th colspan="2" style="text-align: center">ICONS</th></tr>
+EOD
+
 for f in shapes/*.svg
 do
     cat <<EOD
