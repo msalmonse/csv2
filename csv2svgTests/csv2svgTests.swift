@@ -17,11 +17,11 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(settings!.plot.colours.count, 3)
         XCTAssertTrue(settings!.inColumns)
         XCTAssertFalse(settings!.inRows)
-        XCTAssertFalse(settings!.rowGrouping)
-        XCTAssertEqual(settings!.index, testIndex - 1)
+        XCTAssertFalse(settings!.csv.rowGrouping)
+        XCTAssertEqual(settings!.csv.index, testIndex - 1)
         XCTAssertEqual(settings!.dim.height, testHeight)
         XCTAssertEqual(settings!.plot.names[1], testName)
-        XCTAssertEqual(settings!.title, testTitle)
+        XCTAssertEqual(settings!.svg.title, testTitle)
         XCTAssertEqual(settings!.dim.width, testWidth)
         XCTAssertEqual(settings!.dim.xMax, Defaults.maxDefault)
         XCTAssertEqual(settings!.dim.yMax, testYMax)
@@ -30,14 +30,14 @@ class csv2svgTests: XCTestCase {
         XCTAssertNotNil(settings)
         XCTAssertFalse(settings!.inColumns)
         XCTAssertTrue(settings!.inRows)
-        XCTAssertTrue(settings!.rowGrouping)
+        XCTAssertTrue(settings!.csv.rowGrouping)
 
         Defaults.rowGrouping = true
         settings = try? Settings.load(settingsJSON(true))
         XCTAssertNotNil(settings)
         XCTAssertTrue(settings!.inColumns)
         XCTAssertFalse(settings!.inRows)
-        XCTAssertFalse(settings!.rowGrouping)
+        XCTAssertFalse(settings!.csv.rowGrouping)
     }
 
     func testCSV() throws {

@@ -50,8 +50,8 @@ class SVG: ReflectedStringConvertible {
     let subTitle: String
 
     // log x and y axes
-    var logx: Bool { settings.logx && dataPlane.left > 0.0 }
-    var logy: Bool { settings.logy && dataPlane.bottom > 0.0 }
+    var logx: Bool { settings.svg.logx && dataPlane.left > 0.0 }
+    var logy: Bool { settings.svg.logy && dataPlane.bottom > 0.0 }
 
     // id for this svg
     let svgID: String
@@ -107,8 +107,8 @@ class SVG: ReflectedStringConvertible {
         SVG.plotShapes(settings, plotCount, index: settings.csv.index, &props)
         propsList = props
 
-        subTitle = !settings.subTitle.isEmpty
-            ? settings.subTitle
+        subTitle = !settings.svg.subTitle.isEmpty
+            ? settings.svg.subTitle
             : plotCount == 0 ? ""
             : Self.subTitleText(csv: csv, inColumns: settings.inColumns, header: settings.csv.subTitleHeader)
     }

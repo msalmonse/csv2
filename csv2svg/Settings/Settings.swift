@@ -20,32 +20,18 @@ class Settings: Decodable, ReflectedStringConvertible {
     // Plot related settings
     let plot: Settings.Plot
 
+    // SVG related settings
+    let svg: Settings.SVG
+
     // svg width and height
     var height: Double { return Double(dim.height) }
     var width: Double { return Double(dim.width) }
 
-    // svg sub-title title, x axis title and y axis title
-    let subTitle: String
-    let title: String
-    let xTitle: String
-    let yTitle: String
-
     // Header rows and columns
     var headers: Int { return inColumns ? csv.headerRows : csv.headerColumns }
 
-
-    // Include plot info in svg
-    let legends: Bool
-
     var inColumns: Bool { return !csv.rowGrouping }
     var inRows: Bool { return csv.rowGrouping }
-
-    // Lag axes?
-    let logx: Bool
-    let logy: Bool
-
-    let logoURL: String
-    let svgInclude: String
 
     /// Check if a row or column is included
     /// - Parameter i: row or column number
@@ -62,16 +48,7 @@ class Settings: Decodable, ReflectedStringConvertible {
         csv = Self.jsonCSV(from: container)
         dim = Self.jsonDimensions(from: container)
         plot = Self.jsonPlot(from: container)
-
-        legends = Self.keyedBoolValue(from: container, forKey: .legends)
-        logoURL = Self.keyedStringValue(from: container, forKey: .logoURL)
-        logx = Self.keyedBoolValue(from: container, forKey: .logx)
-        logy = Self.keyedBoolValue(from: container, forKey: .logy)
-        subTitle = Self.keyedStringValue(from: container, forKey: .subTitle)
-        svgInclude = Self.keyedStringValue(from: container, forKey: .svgInclude)
-        title = Self.keyedStringValue(from: container, forKey: .title)
-        xTitle = Self.keyedStringValue(from: container, forKey: .xTitle)
-        yTitle = Self.keyedStringValue(from: container, forKey: .yTitle)
+        svg = Self.jsonSVG(from: container)
     }
 
     /// Load contents of file into object

@@ -15,7 +15,7 @@ extension SVG {
     func titleText() -> String {
         let x = width/2.0
         let y = positions.titleY
-        return textTag(x: x, y: y, text: settings.title, cssClass: "title")
+        return textTag(x: x, y: y, text: settings.svg.title, cssClass: "title")
     }
 
     /// Add sub title to the svg

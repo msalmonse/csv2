@@ -53,11 +53,12 @@ extension SVG {
             var pos = Double(settings.height) - settings.dim.baseFontSize
             pos -= inRange(0.0..<pos, settings.dim.reserveBottom)
             subTitleY = pos
-            pos -= (!settings.subTitle.isEmpty || settings.csv.subTitleHeader >= 0) ? sizes.subTitleSize * 1.25 : 0.0
+            pos -= (!settings.svg.subTitle.isEmpty || settings.csv.subTitleHeader >= 0)
+                ? sizes.subTitleSize * 1.25 : 0.0
             titleY = pos
-            pos -= (!settings.title.isEmpty) ? sizes.titleSize * 1.25 : 0.0
+            pos -= (!settings.svg.title.isEmpty) ? sizes.titleSize * 1.25 : 0.0
             xTitleY = pos
-            pos -= (!settings.xTitle.isEmpty) ? sizes.axesSize * 1.25 : 0.0
+            pos -= (!settings.svg.xTitle.isEmpty) ? sizes.axesSize * 1.25 : 0.0
             xTicksY = pos
             pos -= (settings.dim.xTick >= 0) ? sizes.labelSize * 1.25 : 0.0
             bottomY = pos
@@ -71,7 +72,7 @@ extension SVG {
             // Calculate horizontal positions
             pos = 5.0
             pos += inRange(0.0..<settings.width, settings.dim.reserveLeft)
-            pos += (!settings.yTitle.isEmpty) ? sizes.axesSize * 1.25 : 0.0
+            pos += (!settings.svg.yTitle.isEmpty) ? sizes.axesSize * 1.25 : 0.0
             yTitleX = pos
             // Give some extra space for minus sign
             pos += (settings.dim.yTick < 0) ? 0.0 : sizes.labelSize * (dataLeft < 0.0 ? 3.5 : 4.0)
@@ -82,7 +83,7 @@ extension SVG {
             // legends are on the right
             pos = settings.width
             pos -= inRange(0.0..<pos, settings.dim.reserveRight)
-            if !settings.legends {
+            if !settings.svg.legends {
                 legendX = pos
             } else {
                 let newpos = pos - 5.5 * sizes.legendSize
