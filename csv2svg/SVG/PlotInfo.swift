@@ -132,10 +132,10 @@ extension SVG {
     ) {
         for i in 0..<min(ct, Int.bitWidth) {
             let mask = 1 << i
-            props[i].dashed = (settings.dashedLines & mask) == mask
-            props[i].included = (settings.include & mask) == mask
-            props[i].pointed = (settings.showDataPoints & mask) == mask
-            props[i].scattered = (settings.scatterPlots & mask) == mask
+            props[i].dashed = settings.dashedLines &== mask
+            props[i].included = settings.include &== mask
+            props[i].pointed = settings.showDataPoints &== mask
+            props[i].scattered = settings.scatterPlots &== mask
         }
     }
 }
