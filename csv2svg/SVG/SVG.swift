@@ -75,7 +75,7 @@ class SVG: ReflectedStringConvertible {
         self.settings = settings
         sizes = FontSizes(size: settings.dim.baseFontSize)
         self.index = settings.index
-        svgID = !settings.cssID.isEmpty ? settings.cssID
+        svgID = !settings.css.id.isEmpty ? settings.css.id
             : "ID-\(Int.random(in: 1...(1 << 24)).x0(6))"
         height = settings.height
         width = settings.width

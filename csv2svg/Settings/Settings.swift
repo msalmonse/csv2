@@ -11,12 +11,12 @@ class Settings: Decodable, ReflectedStringConvertible {
     // Dimension settings
     let dim: Dimensions
 
+    // CSS settings
+    let css: CSS
+
     // svg width and height
     var height: Double { return Double(dim.height) }
     var width: Double { return Double(dim.width) }
-
-    // opacity for plots
-    let opacity: Double
 
     // svg sub-title title, x axis title and y axis title
     let subTitle: String
@@ -68,13 +68,6 @@ class Settings: Decodable, ReflectedStringConvertible {
     let colours: [String]
     // Force unassigned colours to black
     let black: Bool
-    // Background colour
-    let backgroundColour: String
-
-    // font related stuff
-    let bold: Bool
-    let fontFamily: String
-    let italic: Bool
 
     // Path stroke width
     let strokeWidth: Double
@@ -86,11 +79,7 @@ class Settings: Decodable, ReflectedStringConvertible {
     let logx: Bool
     let logy: Bool
 
-    // include stuff
     let cssClasses: [String]
-    let cssExtras: [String]
-    let cssID: String
-    let cssInclude: String
     let logoURL: String
     let svgInclude: String
 
@@ -106,27 +95,21 @@ class Settings: Decodable, ReflectedStringConvertible {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
         dim = Self.newDimension(from: container)
-        backgroundColour = Self.keyedStringValue(from: container, forKey: .backgroundColour)
+        css = Self.newCSS(from: container)
+
         black = Self.keyedBoolValue(from: container, forKey: .black)
-        bold = Self.keyedBoolValue(from: container, forKey: .bold)
         cssClasses = Self.keyedStringArray(from: container, forKey: .cssClasses)
-        cssExtras = Self.keyedStringArray(from: container, forKey: .cssExtras)
-        cssID = Self.keyedStringValue(from: container, forKey: .cssID)
-        cssInclude = Self.keyedStringValue(from: container, forKey: .cssInclude)
         dashedLines = Self.keyedIntValue(from: container, forKey: .dashedLines)
         dataPointDistance = Self.keyedDoubleValue(from: container, forKey: .dataPointDistance)
-        fontFamily = Self.keyedStringValue(from: container, forKey: .fontFamily)
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
         include = Self.keyedIntValue(from: container, forKey: .include)
         index = Self.keyedIntValue(from: container, forKey: .index) - 1     // use 0 based
-        italic = Self.keyedBoolValue(from: container, forKey: .italic)
         legends = Self.keyedBoolValue(from: container, forKey: .legends)
         logoURL = Self.keyedStringValue(from: container, forKey: .logoURL)
         logx = Self.keyedBoolValue(from: container, forKey: .logx)
         logy = Self.keyedBoolValue(from: container, forKey: .logy)
         nameHeader = Self.keyedIntValue(from: container, forKey: .nameHeader) - 1   // use 0 based
-        opacity = Self.keyedDoubleValue(from: container, forKey: .opacity)
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
         sortx = Self.keyedBoolValue(from: container, forKey: .sortx)
         scatterPlots = Self.keyedIntValue(from: container, forKey: .scatterPlots)

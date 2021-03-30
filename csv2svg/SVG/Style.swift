@@ -1,5 +1,5 @@
 //
-//  CSS.swift
+//  Style.swift
 //  csv2svg
 //
 //  Created by Michael Salmon on 2021-03-26.
@@ -38,8 +38,8 @@ extension SVG {
     }
 
     private func cssIncludes(_ result: inout [String]) {
-        if settings.cssExtras.count > 0 {
-            result.append("<style>\n" + settings.cssExtras.joined(separator: "\n") + "</style>\n")
+        if settings.css.extras.count > 0 {
+            result.append("<style>\n" + settings.css.extras.joined(separator: "\n") + "</style>\n")
         }
 
         if let include = Defaults.cssIncludeContents {
@@ -48,7 +48,7 @@ extension SVG {
     }
 
     private func cssBG(_ result: inout [String], id: String) {
-        let bg = settings.backgroundColour.isEmpty ? "transparent" : settings.backgroundColour
+        let bg = settings.css.backgroundColour.isEmpty ? "transparent" : settings.css.backgroundColour
         result.append("svg\(id) { background-color: \(bg) }")
     }
 
@@ -60,7 +60,7 @@ extension SVG {
         let id = svgID != "none" ? "#\(svgID)" : ""
         var result: [String] = ["<style>"]
         cssBG(&result, id: id)
-        result.append("\(id) g.plotarea { opacity: \(settings.opacity.f(1)) }")
+        result.append("\(id) g.plotarea { opacity: \(settings.css.opacity.f(1)) }")
         result.append("\(id) g.plotarea path:hover { stroke-width: \((strokeWidth * 2.5).f(1)) }")
         result.append(
             "\(id) path { stroke-width: \(strokeWidth.f(1)); fill: none; stroke-linecap: round }"
@@ -71,9 +71,9 @@ extension SVG {
         )
 
         var textCSS: [String] = []
-        if !settings.fontFamily.isEmpty { textCSS.append("font-family: \(settings.fontFamily)") }
-        if settings.bold { textCSS.append("font-weight: bold") }
-        if settings.italic { textCSS.append("font-style: italic") }
+        if !settings.css.fontFamily.isEmpty { textCSS.append("font-family: \(settings.css.fontFamily)") }
+        if settings.css.bold { textCSS.append("font-weight: bold") }
+        if settings.css.italic { textCSS.append("font-style: italic") }
         if textCSS.count > 0 { result.append("\(id) text { " + textCSS.joined(separator: ";") + " }") }
 
         // Font settings

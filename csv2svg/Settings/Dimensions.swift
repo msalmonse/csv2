@@ -34,6 +34,10 @@ extension Settings {
         let yTick: Double
     }
 
+    /// Create new Dimensions struct from JSON
+    /// - Parameter container: JSON container
+    /// - Returns: new Dimensions object
+    
     static func newDimension(from container: KeyedDecodingContainer<CodingKeys>?) -> Dimensions {
         return Dimensions(
             height: keyedIntValue(from: container, forKey: .height),
