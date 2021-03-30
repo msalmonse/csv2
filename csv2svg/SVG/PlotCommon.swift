@@ -154,9 +154,9 @@ extension SVG {
             if x == nil ||  y == nil {
                 state.nilPlot(plotShape)
             } else {
-                if settings.smooth > 0.0 {
-                    if yɑ != Double.infinity { y = (1 - settings.smooth) * y! + yɑ}
-                    yɑ = y! * settings.smooth
+                if settings.plot.smooth > 0.0 {
+                    if yɑ != Double.infinity { y = (1 - settings.plot.smooth) * y! + yɑ}
+                    yɑ = y! * settings.plot.smooth
                 }
                 let (pos, clipped) = posClip(ts.pos(x: x!, y: y!))
                 state.plotOne(pos, clipped: clipped, plotShape: plotShape)

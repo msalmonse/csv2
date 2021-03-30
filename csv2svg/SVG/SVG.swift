@@ -9,7 +9,7 @@ import Foundation
 
 class SVG: ReflectedStringConvertible {
     // plot widths
-    var strokeWidth: Double { settings.strokeWidth }
+    var strokeWidth: Double { settings.css.strokeWidth }
     var shapeWidth: Double { strokeWidth * 1.75 }
 
     let csv: CSV
@@ -59,7 +59,7 @@ class SVG: ReflectedStringConvertible {
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
     var svgTag: String {
         String(
-                format: "<svg %@ width=\"%d\" height=\"%d\" xmlns=\"http://www.w3.org/2000/svg\">",
+                format: "<svg %@ width=\"%.0f\" height=\"%.0f\" xmlns=\"http://www.w3.org/2000/svg\">",
             svgID != "none" ? "id=\"\(svgID)\"" : "" , settings.width, settings.height
         )
     }
@@ -87,7 +87,7 @@ class SVG: ReflectedStringConvertible {
 
         positions = Positions(settings, dataLeft: dataPlane.left, sizes: sizes)
 
-        limit = settings.dataPointDistance
+        limit = settings.plot.dataPointDistance
 
         plotPlane = Plane(
             top: positions.topY, bottom: positions.bottomY,

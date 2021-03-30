@@ -8,6 +8,9 @@
 import Foundation
 
 extension Settings {
+
+    /// CSS related settings
+
     struct CSS {
         // Background colour
         let backgroundColour: String
@@ -19,6 +22,9 @@ extension Settings {
         let bold: Bool
         let fontFamily: String
         let italic: Bool
+
+        // Path stroke width
+        let strokeWidth: Double
 
         // include stuff
         let extras: [String]
@@ -37,6 +43,7 @@ extension Settings {
             bold: keyedBoolValue(from: container, forKey: .bold),
             fontFamily: keyedStringValue(from: container, forKey: .fontFamily),
             italic: keyedBoolValue(from: container, forKey: .italic),
+            strokeWidth: keyedDoubleValue(from: container, forKey: .strokeWidth),
             extras: keyedStringArray(from: container, forKey: .cssExtras),
             id: keyedStringValue(from: container, forKey: .cssID),
             include: keyedStringValue(from: container, forKey: .cssInclude)

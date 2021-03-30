@@ -76,7 +76,7 @@ extension SVG {
             // Give some extra space for minus sign
             pos += (settings.dim.yTick < 0) ? 0.0 : sizes.labelSize * (dataLeft < 0.0 ? 3.5 : 4.0)
             yTickX = pos
-            pos += Double(settings.strokeWidth)
+            pos += settings.css.strokeWidth
             leftX = pos
 
             // legends are on the right

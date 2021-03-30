@@ -8,11 +8,14 @@
 import Foundation
 
 class Settings: Decodable, ReflectedStringConvertible {
+    // CSS settings
+    let css: CSS
+
     // Dimension settings
     let dim: Dimensions
 
-    // CSS settings
-    let css: CSS
+    // Plot related settings
+    let plot: Plot
 
     // svg width and height
     var height: Double { return Double(dim.height) }
@@ -34,12 +37,6 @@ class Settings: Decodable, ReflectedStringConvertible {
     // Index for x values in csv data
     let index: Int
 
-    // sort the x values before plotting
-    let sortx: Bool
-
-    // Smooth plots, 0.0 means no smoothing
-    let smooth: Double
-
     // Include plot info in svg
     let legends: Bool
 
@@ -48,38 +45,10 @@ class Settings: Decodable, ReflectedStringConvertible {
     var inColumns: Bool { return !rowGrouping }
     var inRows: Bool { return rowGrouping }
 
-    // Use dashed lines
-    let dashedLines: Int
-    // Which plots to include
-    let include: Int
-    // Plots to show as scattered
-    let scatterPlots: Int
-    // show data points
-    let showDataPoints: Int
-    // distance between points
-    let dataPointDistance: Double
-    // Shapes to use for datapoints and scatter plots
-    let shapes: [String]
-
-    // Dash patterns
-    let dashes: [String]
-
-    // Path colours
-    let colours: [String]
-    // Force unassigned colours to black
-    let black: Bool
-
-    // Path stroke width
-    let strokeWidth: Double
-
-    // Path names
-    let names: [String]
-
     // Lag axes?
     let logx: Bool
     let logy: Bool
 
-    let cssClasses: [String]
     let logoURL: String
     let svgInclude: String
 
@@ -88,22 +57,18 @@ class Settings: Decodable, ReflectedStringConvertible {
     /// - Returns: true if included
 
     func included(_ i: Int) -> Bool {
-        return ((include >> i) & 1) == 1
+        return ((plot.include >> i) & 1) == 1
     }
 
     required init(from decoder: Decoder) {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
-        dim = Self.newDimension(from: container)
         css = Self.newCSS(from: container)
+        dim = Self.newDimension(from: container)
+        plot = Self.newPlot(from: container)
 
-        black = Self.keyedBoolValue(from: container, forKey: .black)
-        cssClasses = Self.keyedStringArray(from: container, forKey: .cssClasses)
-        dashedLines = Self.keyedIntValue(from: container, forKey: .dashedLines)
-        dataPointDistance = Self.keyedDoubleValue(from: container, forKey: .dataPointDistance)
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
-        include = Self.keyedIntValue(from: container, forKey: .include)
         index = Self.keyedIntValue(from: container, forKey: .index) - 1     // use 0 based
         legends = Self.keyedBoolValue(from: container, forKey: .legends)
         logoURL = Self.keyedStringValue(from: container, forKey: .logoURL)
@@ -111,22 +76,12 @@ class Settings: Decodable, ReflectedStringConvertible {
         logy = Self.keyedBoolValue(from: container, forKey: .logy)
         nameHeader = Self.keyedIntValue(from: container, forKey: .nameHeader) - 1   // use 0 based
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
-        sortx = Self.keyedBoolValue(from: container, forKey: .sortx)
-        scatterPlots = Self.keyedIntValue(from: container, forKey: .scatterPlots)
-        showDataPoints = Self.keyedIntValue(from: container, forKey: .showDataPoints)
-        smooth = Self.keyedDoubleValue(from: container, forKey: .smooth)
-        strokeWidth = Self.keyedDoubleValue(from: container, forKey: .strokeWidth)
         subTitle = Self.keyedStringValue(from: container, forKey: .subTitle)
         subTitleHeader = Self.keyedIntValue(from: container, forKey: .subTitleHeader) - 1   // use 0 based
         svgInclude = Self.keyedStringValue(from: container, forKey: .svgInclude)
         title = Self.keyedStringValue(from: container, forKey: .title)
         xTitle = Self.keyedStringValue(from: container, forKey: .xTitle)
         yTitle = Self.keyedStringValue(from: container, forKey: .yTitle)
-
-        colours = Self.keyedStringArray(from: container, forKey: .colours)
-        dashes = Self.keyedStringArray(from: container, forKey: .dashes)
-        names = Self.keyedStringArray(from: container, forKey: .names)
-        shapes = Self.keyedStringArray(from: container, forKey: .shapes)
     }
 
     /// Load contents of file into object

@@ -28,7 +28,7 @@ extension SVG {
     func columnPlot(_ ts: TransScale) -> [String] {
         var paths: [String] = []
 
-        let xiValues = settings.sortx ? xiList().sorted() : xiList()
+        let xiValues = settings.plot.sortx ? xiList().sorted() : xiList()
         for i in 0..<csv.colCt where i != index && propsList[i].included {
             let yValues = csv.columnValues(i)
             paths.append(

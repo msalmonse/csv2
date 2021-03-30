@@ -8,6 +8,8 @@
 import Foundation
 
 extension Settings {
+    /// Dimensions from JSON
+
     struct Dimensions {
         // svg width and height
         let height: Int
@@ -37,7 +39,7 @@ extension Settings {
     /// Create new Dimensions struct from JSON
     /// - Parameter container: JSON container
     /// - Returns: new Dimensions object
-    
+
     static func newDimension(from container: KeyedDecodingContainer<CodingKeys>?) -> Dimensions {
         return Dimensions(
             height: keyedIntValue(from: container, forKey: .height),
@@ -52,6 +54,7 @@ extension Settings {
             yMax: keyedDoubleValue(from: container, forKey: .yMax),
             yMin: keyedDoubleValue(from: container, forKey: .yMin),
             xTick: keyedDoubleValue(from: container, forKey: .xTick),
-            yTick: keyedDoubleValue(from: container, forKey: .yTick))
+            yTick: keyedDoubleValue(from: container, forKey: .yTick)
+        )
     }
 }
