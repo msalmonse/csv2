@@ -49,8 +49,8 @@ extension SVG {
         var result: [String] = [ xmlTag, svgTag, comment ]
         result.append(cssStyle())
         result.append(contentsOf: defs())
-        if settings.xTick >= 0 { result.append(xTick(ts)) }
-        if settings.yTick >= 0 { result.append(yTick(ts)) }
+        if settings.dim.xTick >= 0 { result.append(xTick(ts)) }
+        if settings.dim.yTick >= 0 { result.append(yTick(ts)) }
         result.append(axes(ts))
         result.append(contentsOf: lineGroup(ts))
         if !settings.xTitle.isEmpty {

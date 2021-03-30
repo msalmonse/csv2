@@ -18,14 +18,14 @@ extension SVG {
     static func lrFromData(_ csv: CSV, _ settings: Settings) -> (l: Double, r: Double) {
         let count = settings.inRows ? csv.colCt : csv.rowCt
         let index = settings.index
-        let xMaxSet = settings.xMax > Defaults.maxDefault
-        let xMinSet = settings.xMin < Defaults.minDefault
+        let xMaxSet = settings.dim.xMax > Defaults.maxDefault
+        let xMinSet = settings.dim.xMin < Defaults.minDefault
         var left: Double
         var right: Double
 
         if  xMaxSet && xMinSet {
-            left = settings.xMin
-            right = settings.xMax
+            left = settings.dim.xMin
+            right = settings.dim.xMax
         } else if count == 0 {
             left = 0.0
             right = 0.0
@@ -46,8 +46,8 @@ extension SVG {
                 }
             }
 
-            left = xMinSet ? settings.xMin : min
-            right = xMaxSet ? settings.xMax : max
+            left = xMinSet ? settings.dim.xMin : min
+            right = xMaxSet ? settings.dim.xMax : max
         }
 
         return (l: left, r: right)
@@ -61,15 +61,15 @@ extension SVG {
 
     static func tbFromData(_ csv: CSV, _ settings: Settings) -> (t: Double, b: Double) {
         let index = settings.index
-        let yMaxSet = settings.yMax > Defaults.maxDefault
-        let yMinSet = settings.yMin < Defaults.minDefault
+        let yMaxSet = settings.dim.yMax > Defaults.maxDefault
+        let yMinSet = settings.dim.yMin < Defaults.minDefault
         let count = settings.inColumns ? csv.colCt : csv.rowCt
         var top: Double
         var bottom: Double
 
         if yMaxSet && yMinSet {
-            bottom = settings.yMin
-            top = settings.yMax
+            bottom = settings.dim.yMin
+            top = settings.dim.yMax
         } else if count == 0 {
             top = 0.0
             bottom = 0.0
@@ -88,8 +88,8 @@ extension SVG {
                 if max < min/20.0 { max = 0.0 }
             }
 
-            bottom = yMinSet ? settings.yMin : min
-            top = yMaxSet ? settings.yMax : max
+            bottom = yMinSet ? settings.dim.yMin : min
+            top = yMaxSet ? settings.dim.yMax : max
         }
 
         return (t: top, b: bottom)

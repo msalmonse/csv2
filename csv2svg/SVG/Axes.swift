@@ -74,7 +74,7 @@ extension SVG {
         var path: [PathCommand] = []
         var labels = [""]
         var tick = tickNorm(
-            settings.xTick,
+            settings.dim.xTick,
             dpp: dataPlane.width/plotPlane.width,
             minSize: labelSize * 3.5,
             maxSize: plotPlane.width/5.0,
@@ -113,7 +113,7 @@ extension SVG {
         var path: [PathCommand] = []
         var labels = [""]
         var tick = tickNorm(
-            settings.yTick,
+            settings.dim.yTick,
             dpp: dataPlane.height/plotPlane.height,
             minSize: labelSize * 1.25,
             maxSize: plotPlane.height/5.0,

@@ -50,8 +50,8 @@ extension SVG {
         init(_ settings: Settings, dataLeft: Double, sizes: FontSizes) {
             // Calculate vertical positions
             // Bottom
-            var pos = Double(settings.height) - settings.baseFontSize
-            pos -= inRange(0.0..<pos, settings.reserveBottom)
+            var pos = Double(settings.height) - settings.dim.baseFontSize
+            pos -= inRange(0.0..<pos, settings.dim.reserveBottom)
             subTitleY = pos
             pos -= (!settings.subTitle.isEmpty || settings.subTitleHeader >= 0) ? sizes.subTitleSize * 1.25 : 0.0
             titleY = pos
@@ -59,34 +59,34 @@ extension SVG {
             xTitleY = pos
             pos -= (!settings.xTitle.isEmpty) ? sizes.axesSize * 1.25 : 0.0
             xTicksY = pos
-            pos -= (settings.xTick >= 0) ? sizes.labelSize * 1.25 : 0.0
+            pos -= (settings.dim.xTick >= 0) ? sizes.labelSize * 1.25 : 0.0
             bottomY = pos
 
             // top
-            pos = settings.baseFontSize
-            pos += inRange(0.0..<bottomY, settings.reserveTop)
+            pos = settings.dim.baseFontSize
+            pos += inRange(0.0..<bottomY, settings.dim.reserveTop)
             topY = pos
             legendY = topY + sizes.legendSize * 5.0
 
             // Calculate horizontal positions
             pos = 5.0
-            pos += inRange(0.0..<Double(settings.width), settings.reserveLeft)
+            pos += inRange(0.0..<settings.width, settings.dim.reserveLeft)
             pos += (!settings.yTitle.isEmpty) ? sizes.axesSize * 1.25 : 0.0
             yTitleX = pos
             // Give some extra space for minus sign
-            pos += (settings.yTick < 0) ? 0.0 : sizes.labelSize * (dataLeft < 0.0 ? 3.5 : 4.0)
+            pos += (settings.dim.yTick < 0) ? 0.0 : sizes.labelSize * (dataLeft < 0.0 ? 3.5 : 4.0)
             yTickX = pos
             pos += Double(settings.strokeWidth)
             leftX = pos
 
             // legends are on the right
-            pos = Double(settings.width)
-            pos -= inRange(0.0..<pos, settings.reserveRight)
+            pos = settings.width
+            pos -= inRange(0.0..<pos, settings.dim.reserveRight)
             if !settings.legends {
                 legendX = pos
             } else {
                 let newpos = pos - 5.5 * sizes.legendSize
-                if (newpos - leftX) >= 0.8 * Double(settings.width) {
+                if (newpos - leftX) >= 0.8 * settings.width {
                     pos = newpos
                     legendX = pos
                 } else {

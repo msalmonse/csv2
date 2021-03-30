@@ -8,18 +8,12 @@
 import Foundation
 
 class Settings: Decodable, ReflectedStringConvertible {
+    // Dimension settings
+    let dim: Dimensions
+
     // svg width and height
-    let height: Int
-    let width: Int
-
-    // reserved space
-    let reserveBottom: Double
-    let reserveLeft: Double
-    let reserveRight: Double
-    let reserveTop: Double
-
-    // base font size
-    let baseFontSize: Double
+    var height: Double { return Double(dim.height) }
+    var width: Double { return Double(dim.width) }
 
     // opacity for plots
     let opacity: Double
@@ -48,17 +42,6 @@ class Settings: Decodable, ReflectedStringConvertible {
 
     // Include plot info in svg
     let legends: Bool
-
-    // minimum and maximum for x and y axes
-    // nil means not specified
-    let xMax: Double
-    let xMin: Double
-    let yMax: Double
-    let yMin: Double
-
-    // Ticks on the x and y axes
-    let xTick: Double
-    let yTick: Double
 
     // Data is grouped in rows?
     let rowGrouping: Bool
@@ -122,8 +105,8 @@ class Settings: Decodable, ReflectedStringConvertible {
     required init(from decoder: Decoder) {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
+        dim = Self.newDimension(from: container)
         backgroundColour = Self.keyedStringValue(from: container, forKey: .backgroundColour)
-        baseFontSize = Self.keyedDoubleValue(from: container, forKey: .baseFontSize)
         black = Self.keyedBoolValue(from: container, forKey: .black)
         bold = Self.keyedBoolValue(from: container, forKey: .bold)
         cssClasses = Self.keyedStringArray(from: container, forKey: .cssClasses)
@@ -135,7 +118,6 @@ class Settings: Decodable, ReflectedStringConvertible {
         fontFamily = Self.keyedStringValue(from: container, forKey: .fontFamily)
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
-        height = Self.keyedIntValue(from: container, forKey: .height)
         include = Self.keyedIntValue(from: container, forKey: .include)
         index = Self.keyedIntValue(from: container, forKey: .index) - 1     // use 0 based
         italic = Self.keyedBoolValue(from: container, forKey: .italic)
@@ -145,10 +127,6 @@ class Settings: Decodable, ReflectedStringConvertible {
         logy = Self.keyedBoolValue(from: container, forKey: .logy)
         nameHeader = Self.keyedIntValue(from: container, forKey: .nameHeader) - 1   // use 0 based
         opacity = Self.keyedDoubleValue(from: container, forKey: .opacity)
-        reserveBottom = Self.keyedDoubleValue(from: container, forKey: .reserveBottom)
-        reserveLeft = Self.keyedDoubleValue(from: container, forKey: .reserveLeft)
-        reserveRight = Self.keyedDoubleValue(from: container, forKey: .reserveRight)
-        reserveTop = Self.keyedDoubleValue(from: container, forKey: .reserveTop)
         rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
         sortx = Self.keyedBoolValue(from: container, forKey: .sortx)
         scatterPlots = Self.keyedIntValue(from: container, forKey: .scatterPlots)
@@ -159,17 +137,8 @@ class Settings: Decodable, ReflectedStringConvertible {
         subTitleHeader = Self.keyedIntValue(from: container, forKey: .subTitleHeader) - 1   // use 0 based
         svgInclude = Self.keyedStringValue(from: container, forKey: .svgInclude)
         title = Self.keyedStringValue(from: container, forKey: .title)
-        width = Self.keyedIntValue(from: container, forKey: .width)
         xTitle = Self.keyedStringValue(from: container, forKey: .xTitle)
         yTitle = Self.keyedStringValue(from: container, forKey: .yTitle)
-
-        xMax = Self.keyedDoubleValue(from: container, forKey: .xMax)
-        xMin = Self.keyedDoubleValue(from: container, forKey: .xMin)
-        yMax = Self.keyedDoubleValue(from: container, forKey: .yMax)
-        yMin = Self.keyedDoubleValue(from: container, forKey: .yMin)
-
-        xTick = Self.keyedDoubleValue(from: container, forKey: .xTick)
-        yTick = Self.keyedDoubleValue(from: container, forKey: .yTick)
 
         colours = Self.keyedStringArray(from: container, forKey: .colours)
         dashes = Self.keyedStringArray(from: container, forKey: .dashes)

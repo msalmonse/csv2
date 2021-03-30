@@ -73,12 +73,12 @@ class SVG: ReflectedStringConvertible {
     init(_ csv: CSV, _ settings: Settings) {
         self.csv = csv
         self.settings = settings
-        sizes = FontSizes(size: settings.baseFontSize)
+        sizes = FontSizes(size: settings.dim.baseFontSize)
         self.index = settings.index
         svgID = !settings.cssID.isEmpty ? settings.cssID
             : "ID-\(Int.random(in: 1...(1 << 24)).x0(6))"
-        height = Double(settings.height)
-        width = Double(settings.width)
+        height = settings.height
+        width = settings.width
         allowedPlane = Plane(
             top: -0.5 * height, bottom: 1.5 * height,
             left: -0.5 * width, right: 1.5 * width
