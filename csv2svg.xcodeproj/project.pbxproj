@@ -69,6 +69,8 @@
 		C4C0C472260F85E40072699C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C471260F85E40072699C /* Fonts.swift */; };
 		C4C0C4752610C39B0072699C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C471260F85E40072699C /* Fonts.swift */; };
 		C4C0C4862612E82A0072699C /* CodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C4852612E82A0072699C /* CodingKeys.swift */; };
+		C4C0C48A2612FBCD0072699C /* KeyedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C4892612FBCD0072699C /* KeyedValue.swift */; };
+		C4C0C48B2612FBCD0072699C /* KeyedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C4892612FBCD0072699C /* KeyedValue.swift */; };
 		C4EA5D1F25EB7B8A00E104E0 /* TransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */; };
 		C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */; };
 		C4EA5D2825EB8F4D00E104E0 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* Colours.swift */; };
@@ -134,6 +136,7 @@
 		C4C0C46E260F5F470072699C /* css.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = css.md; sourceTree = "<group>"; };
 		C4C0C471260F85E40072699C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		C4C0C4852612E82A0072699C /* CodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingKeys.swift; sourceTree = "<group>"; };
+		C4C0C4892612FBCD0072699C /* KeyedValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedValue.swift; sourceTree = "<group>"; };
 		C4CB7C71260CFF6F00AD2364 /* autoversion.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = autoversion.sh; sourceTree = "<group>"; };
 		C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransScale.swift; sourceTree = "<group>"; };
 		C4EA5D2725EB8F4D00E104E0 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
@@ -278,8 +281,9 @@
 		C4C0C47C2612DF500072699C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
 				C4C0C4852612E82A0072699C /* CodingKeys.swift */,
+				C4C0C4892612FBCD0072699C /* KeyedValue.swift */,
+				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -461,6 +465,7 @@
 				C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */,
 				C4FE4A0525F66E2C0076EF5E /* Defaults.swift in Sources */,
 				C446E80925F4BAA3007B1A05 /* RowPlot.swift in Sources */,
+				C4C0C48A2612FBCD0072699C /* KeyedValue.swift in Sources */,
 				C46ADD2126074CD60046F427 /* RandomCSV.swift in Sources */,
 				C480847C25E4E97300BD0A24 /* ColumnPlot.swift in Sources */,
 				C4F20C112601DF4D005D2FE1 /* Dashes.swift in Sources */,
@@ -507,6 +512,7 @@
 			files = (
 				C48B823625E2967100EAEAE3 /* Settings.swift in Sources */,
 				C4F20C122601DF4D005D2FE1 /* Dashes.swift in Sources */,
+				C4C0C48B2612FBCD0072699C /* KeyedValue.swift in Sources */,
 				C45323EE25F8EF0D007D741C /* Gen.swift in Sources */,
 				C480848325E6809400BD0A24 /* Sides.swift in Sources */,
 				C46ADD11260714DA0046F427 /* Bitmap.swift in Sources */,
