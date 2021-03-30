@@ -31,6 +31,8 @@ struct Defaults {
     static var index = 0
     static var italic = false
     static var legends = true
+    static var logoWidth = 64.0
+    static var logoHeight = 64.0
     static var logoURL = ""
     static var logx = false
     static var logy = false

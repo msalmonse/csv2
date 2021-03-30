@@ -28,6 +28,7 @@ extension SVG {
         // Vertical positions
         let bottomY: Double
         let legendY: Double
+        let logoY: Double
         let subTitleY: Double
         let titleY: Double
         let topY: Double
@@ -36,7 +37,9 @@ extension SVG {
 
         // Horizontal positions
         let leftX: Double
-        let legendX: Double
+        let legendLeftX: Double
+        let legendRightX: Double
+        let logoX: Double
         let rightX: Double
         let yTickX: Double
         let yTitleX: Double
@@ -48,9 +51,12 @@ extension SVG {
         ///   - sizes: font sizes
 
         init(_ settings: Settings, dataLeft: Double, sizes: FontSizes) {
+            let margin = settings.dim.baseFontSize/2.0
+            let logoHeight = settings.svg.logoURL.isEmpty ? 0.0 : Defaults.logoHeight
+            let logoWidth = settings.svg.logoURL.isEmpty ? 0.0 : Defaults.logoWidth
             // Calculate vertical positions
             // Bottom
-            var pos = Double(settings.height) - settings.dim.baseFontSize
+            var pos = Double(settings.height) - margin
             pos -= inRange(0.0..<pos, settings.dim.reserveBottom)
             subTitleY = pos
             pos -= (!settings.svg.subTitle.isEmpty || settings.csv.subTitleHeader >= 0)
@@ -64,13 +70,14 @@ extension SVG {
             bottomY = pos
 
             // top
-            pos = settings.dim.baseFontSize
+            pos = margin
             pos += inRange(0.0..<bottomY, settings.dim.reserveTop)
             topY = pos
-            legendY = topY + sizes.legendSize * 5.0
+            logoY = pos
+            legendY = topY + max(sizes.legendSize * 2.0, logoHeight + margin)
 
             // Calculate horizontal positions
-            pos = 5.0
+            pos = margin
             pos += inRange(0.0..<settings.width, settings.dim.reserveLeft)
             pos += (!settings.svg.yTitle.isEmpty) ? sizes.axesSize * 1.25 : 0.0
             yTitleX = pos
@@ -81,18 +88,20 @@ extension SVG {
             leftX = pos
 
             // legends are on the right
-            pos = settings.width
+            pos = settings.width - margin
             pos -= inRange(0.0..<pos, settings.dim.reserveRight)
+            logoX = pos - logoWidth
+            legendRightX = pos
             if !settings.svg.legends {
-                legendX = pos
+                legendLeftX = pos
             } else {
-                let newpos = pos - 5.5 * sizes.legendSize
+                let newpos = pos - max(5.5 * sizes.legendSize, logoWidth)
                 if (newpos - leftX) >= 0.8 * settings.width {
                     pos = newpos
-                    legendX = pos
+                    legendLeftX = pos
                 } else {
                     print("Plottable area is too small, legends suppressed.", to: &standardError)
-                    legendX = pos + pos
+                    legendLeftX = pos + pos
                 }
             }
             // Allow for some space for tick labels

@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--reserve 0 100 --"
+            argument = "--logo http://www.midnightbsd.org/art/logo/MidnightBSDLogo32x32.png"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

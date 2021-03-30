@@ -101,13 +101,13 @@ extension SVG {
     /// - Returns: Text string with all legends
 
     func legend() -> String {
-        if positions.legendX >= width { return "<!-- Legends suppressed -->" }
-        let x = positions.legendX
+        if positions.legendLeftX >= width { return "<!-- Legends suppressed -->" }
+        let x = positions.legendLeftX
         let xLeft = x + legendSize/2.0
-        let xRight = width - legendSize/2.0
+        let xRight = positions.legendRightX - legendSize/2.0
         let xMid = (xLeft + xRight)/2.0
-        var y = positions.legendY
         let yStep = legendSize * 1.5
+        var y = positions.legendY + yStep
         var legends: [String] = ["", textTag(x: x, y: y, text: "Legends:", cssClass: "legends headline")]
         y += yStep/2.0
 
@@ -133,7 +133,8 @@ extension SVG {
             }
         }
 
-        legends[0] = legendBG(positions.legendY - yStep, y + yStep, x - legendSize, right: width)
+        legends[0] =
+            legendBG(positions.legendY, y + yStep, x - legendSize, right: positions.legendRightX)
 
         return legends.joined(separator: "\n")
     }

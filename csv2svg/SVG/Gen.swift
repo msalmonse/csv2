@@ -27,6 +27,17 @@ extension SVG {
         return result
     }
 
+    func logoImage() -> String {
+        let x = positions.logoX
+        let y = positions.logoY
+        let h = Defaults.logoHeight
+        let w = Defaults.logoWidth
+        let url = settings.svg.logoURL
+        return """
+            <image \(xy(x,y)) \(wh(w,h)) href="\(url)" class="logo" preserveAspectRatio="xMaxYMin" />
+            """
+    }
+
     /// Generate an SVG group with the plot lines
     /// - Parameter ts: TransScale object
     /// - Returns: Array of SVG elements
@@ -52,6 +63,7 @@ extension SVG {
         if settings.dim.xTick >= 0 { result.append(xTick(ts)) }
         if settings.dim.yTick >= 0 { result.append(yTick(ts)) }
         result.append(axes(ts))
+        if !settings.svg.logoURL.isEmpty { result.append(logoImage()) }
         result.append(contentsOf: lineGroup(ts))
         if !settings.svg.xTitle.isEmpty {
             result.append(xTitleText(settings.svg.xTitle, x: plotPlane.hMid, y: positions.xTitleY))

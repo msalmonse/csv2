@@ -92,6 +92,8 @@ Use italic text.
 **logoURL** (String)<br/>
 **Option:** `--logo`<br/>
 The URL of an image to include in the top right corner of the SVG. It should be 64x64 pixels.
+Other sized images are scaled to fit while preserving the aspect ratio and fitting the top right
+corner of the image in the top right corner of the SVG.
 
 **logx** (Bool **false**)<br/>
 **Option:** `--logx`<br/>
