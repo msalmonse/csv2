@@ -31,6 +31,7 @@ struct Defaults {
     static var index = 0
     static var italic = false
     static var legends = true
+    static var logoURL = ""
     static var logx = false
     static var logy = false
     static let maxDefault = -Double.infinity
@@ -51,6 +52,7 @@ struct Defaults {
     static var strokeWidth = 2.0
     static var subTitle = ""
     static var subTitleHeader = 0
+    static var svgInclude = ""
     static var title = ""
     static var width = 800
     static var xMax = maxDefault

@@ -1,5 +1,5 @@
 //
-//  options.swift
+//  Options.swift
 //  csv2svg
 //
 //  Created by Michael Salmon on 2021-03-08.
@@ -75,6 +75,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default rows or columns to include")
     var include = Defaults.include
 
+    @Option(name: .long, help: "Default image URL for top right corner")
+    var logo = Defaults.logoURL
+
     @Flag(name: .long, help: "Set default for abcissa to log")
     var logx = Defaults.logx
 
@@ -140,6 +143,9 @@ struct Options: ParsableCommand {
     @Option(name: .long, help: "Default sub-title")
     var subtitle: String = ""
 
+    @Option(name: .long, help: "Default include file for svg elements")
+    var svg = Defaults.svgInclude
+
     @Option(name: .long, help: "Default title")
     var title: String = ""
 
@@ -198,6 +204,7 @@ struct Options: ParsableCommand {
         Defaults.index = index
         Defaults.italic = italic
         Defaults.legends = !nolegends
+        Defaults.logoURL = logo
         Defaults.logx = logx
         Defaults.logy = logy
         Defaults.nameHeader = nameheader
@@ -215,6 +222,7 @@ struct Options: ParsableCommand {
         Defaults.strokeWidth = stroke
         Defaults.subTitleHeader = subheader
         Defaults.subTitle = subtitle
+        Defaults.svgInclude = svg
         Defaults.title = title
         Defaults.width = width
         Defaults.xMax = xmax

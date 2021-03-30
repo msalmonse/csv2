@@ -21,10 +21,10 @@ extension SVG {
         _ props: inout [PathProperties]
         ) {
         for i in 0..<ct {
-            if i < settings.cssClasses.count && settings.cssClasses[i] != "" {
+            if i < settings.cssClasses.count && !settings.cssClasses[i].isEmpty {
                 props[i].cssClass = settings.cssClasses[i]
             } else {
-                props[i].cssClass = "plot\((i + 1).d(2, zeroFill: true))"
+                props[i].cssClass = "plot\((i + 1).d0(2))"
             }
         }
     }
@@ -41,7 +41,7 @@ extension SVG {
         _ props: inout [PathProperties]
         ) {
         for i in 0..<ct {
-            if i < settings.colours.count && settings.colours[i] != "" {
+            if i < settings.colours.count && !settings.colours[i].isEmpty {
                 props[i].colour = settings.colours[i]
             } else if settings.black {
                 props[i].colour = "black"
@@ -65,7 +65,7 @@ extension SVG {
         _ props: inout [PathProperties]
         ) {
         for i in 0..<ct {
-            if i < settings.dashes.count && settings.dashes[i] != "" {
+            if i < settings.dashes.count && !settings.dashes[i].isEmpty {
                 props[i].dash = settings.dashes[i]
             } else if props[i].dashed && props[i].included {
                 props[i].dash = Dashes.nextDash(width)
@@ -84,7 +84,7 @@ extension SVG {
         _ props: inout [PathProperties]
     ) {
         for i in 0..<ct {
-            if i < settings.names.count && settings.names[i] != "" {
+            if i < settings.names.count && !settings.names[i].isEmpty {
                 props[i].name = settings.names[i]
             } else if settings.headers > 0 && settings.nameHeader >= 0 {
                 props[i].name =
@@ -111,7 +111,7 @@ extension SVG {
         for i in 0..<ct {
             // Don't attach a shape if we aren't a scatter plot or a plot with data points or are index
             if (props[i].scattered || props[i].pointed) && props[i].included && i != settings.index {
-                if i < settings.shapes.count && settings.shapes[i] != "" {
+                if i < settings.shapes.count && !settings.shapes[i].isEmpty {
                     props[i].shape = Shape.lookup(settings.shapes[i]) ?? Shape.nextShape()
                 } else {
                     props[i].shape = Shape.nextShape()

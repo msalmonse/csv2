@@ -53,15 +53,15 @@ extension SVG {
         if settings.yTick >= 0 { result.append(yTick(ts)) }
         result.append(axes(ts))
         result.append(contentsOf: lineGroup(ts))
-        if settings.xTitle != "" {
+        if !settings.xTitle.isEmpty {
             result.append(xTitleText(settings.xTitle, x: plotPlane.hMid, y: positions.xTitleY))
         }
-        if settings.yTitle != "" {
+        if !settings.yTitle.isEmpty {
             result.append(yTitleText(settings.yTitle, x: positions.yTitleX, y: plotPlane.vMid))
         }
         if settings.legends { result.append(legend()) }
-        if subTitle != "" { result.append(subTitleText()) }
-        if settings.title != "" { result.append(titleText()) }
+        if !subTitle.isEmpty { result.append(subTitleText()) }
+        if !settings.title.isEmpty { result.append(titleText()) }
         result.append(svgTagEnd)
 
         return result

@@ -89,6 +89,10 @@ If it is less than or equal to zero then the absica is 0 for the first value of 
 **Option:** `--italic`<br/>
 Use italic text.
 
+**logoURL** (String)<br/>
+**Option:** `--logo`<br/>
+The URL of an image to include in the top right corner of the SVG. It should be 64x64 pixels.
+
 **logx** (Bool **false**)<br/>
 **Option:** `--logx`<br/>
 The abcissa uses a logarithmic scale
@@ -106,6 +110,22 @@ the the name is never fetched from the csv.
 **Option:** `--names`<sup>[6](#fn6)</sup><br/>
 The plotted column or rows are assigned names from this array or the first header row or column respectively. If not defined in either place then a name is generated.
 The names are included with the colours associated with the plots under the plot area.
+
+**reserveBottom** (Double **0.0**)<br/>
+**Option:** `--reserve`<sup>[7](#fn7)</sup><br/>
+Reserve space on the bottom of the SVG
+
+**reserveLeft** (Double **0.0**)<br/>
+**Option:** `--reserve`<sup>[7](#fn7)</sup><br/>
+Reserve space on the left side of the SVG
+
+**reserveRight** (Double **0.0**)<br/>
+**Option:** `--reserve`<sup>[7](#fn7)</sup><br/>
+Reserve space on the right side of the SVG
+
+**reserveTop** (Double **0.0**)<br/>
+**Option:** `--reserve`<sup>[7](#fn7)</sup><br/>
+Reserve space on the top of the SVG
 
 **rowGrouping** (Bool **false**)<br/>
 **Option:** `--rows`<br/>
@@ -160,6 +180,10 @@ above then the csv is not checked. Embedded commas will probably cause problems.
 **N.B.** leading and trailing double quotes and spaces are stripped from csv data when
 it is read, they have no effect on how the data is interpreted.
 
+<a id="svgInclude">**svgInclude** (String)</a><br/>
+**Option:** `--svg`<br/>
+This options is the path of a file to include at the end the SVG, just before the `</svg>`
+
 **title** (String)<br/>
 **Option:** `--title`<br/>
 The title attached to the SVG
@@ -198,20 +222,25 @@ the title attached to the ordinate
 
 ### Footnotes
 
-<a id="fn1">1</a>: header columns or rows are used to name the path plotted.
+- <a id="fn1">1</a>: header columns or rows are used to name the path plotted.
 
-<a id="fn2">2</a>: if not defined the min and max are taken from the data.
+- <a id="fn2">2</a>: if not defined the min and max are taken from the data.
 
-<a id="fn3">3</a>: setting this to -1 will remove the ticks.
+- <a id="fn3">3</a>: setting this to -1 will remove the ticks.
 
-<a id="fn4">4</a>: `--headers` will set both headerColumns and headerRows
+- <a id="fn4">4</a>: `--headers` will set both headerColumns and headerRows
 
-<a id="fn5">5</a>: A bit vector is an integer where each bit represents a plot
+- <a id="fn5">5</a>: A bit vector is an integer where each bit represents a plot
 e.g. _25 == 2<sup>4</sup> + 2<sup>3</sup> + 2<sup>0</sup>_ which would mean that the
 fifth, fourth and first row or column would be enabled. A value of -1 means all plots.<br/>
 To simplify the calculation the `--bitmap` option can be used e.g.<br/>
 `csv2svg --bitmap 5 4 1` gives `25`.
 
-<a id="fn6">6</a>: These options accept a list of words separated by spaces up until the next flag
-or option.
-If there are none before the file names then a `--` can be used to terminate the list.
+- <a id="fn6">6</a>: These options accept a list of words separated by spaces up until the next flag
+or option. If there are none before the file names then a `--` can be used to terminate the list.
+
+- <a id="fn7">7</a>: Although there are 4 paramaters there is only one command line option. The option can
+have between 1 and 4 values, these values are assigned to the sides in turn.<br/>
+Hence `--reserve 1 2 3 4` is the same as `reserveLeft: 1`, `reserveTop: 2`, `reserveRight 3` and,
+`reserve Bottom: 4`.
+

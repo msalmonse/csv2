@@ -48,7 +48,7 @@ extension SVG {
     }
 
     private func cssBG(_ result: inout [String], id: String) {
-        let bg = settings.backgroundColour != "" ? settings.backgroundColour : "transparent"
+        let bg = settings.backgroundColour.isEmpty ? "transparent" : settings.backgroundColour
         result.append("svg\(id) { background-color: \(bg) }")
     }
 
@@ -71,7 +71,7 @@ extension SVG {
         )
 
         var textCSS: [String] = []
-        if settings.fontFamily != "" { textCSS.append("font-family: \(settings.fontFamily)") }
+        if !settings.fontFamily.isEmpty { textCSS.append("font-family: \(settings.fontFamily)") }
         if settings.bold { textCSS.append("font-weight: bold") }
         if settings.italic { textCSS.append("font-style: italic") }
         if textCSS.count > 0 { result.append("\(id) text { " + textCSS.joined(separator: ";") + " }") }
@@ -86,7 +86,7 @@ extension SVG {
             "\(id) rect.legends { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }"
         )
 
-        if extra != "" { result.append(extra) }
+        if !extra.isEmpty { result.append(extra) }
 
         result.append("</style>")
 

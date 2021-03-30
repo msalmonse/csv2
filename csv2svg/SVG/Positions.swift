@@ -53,11 +53,11 @@ extension SVG {
             var pos = Double(settings.height) - settings.baseFontSize
             pos -= inRange(0.0..<pos, settings.reserveBottom)
             subTitleY = pos
-            pos -= (settings.subTitle != "" || settings.subTitleHeader >= 0) ? sizes.subTitleSize * 1.25 : 0.0
+            pos -= (!settings.subTitle.isEmpty || settings.subTitleHeader >= 0) ? sizes.subTitleSize * 1.25 : 0.0
             titleY = pos
-            pos -= (settings.title != "") ? sizes.titleSize * 1.25 : 0.0
+            pos -= (!settings.title.isEmpty) ? sizes.titleSize * 1.25 : 0.0
             xTitleY = pos
-            pos -= (settings.xTitle != "") ? sizes.axesSize * 1.25 : 0.0
+            pos -= (!settings.xTitle.isEmpty) ? sizes.axesSize * 1.25 : 0.0
             xTicksY = pos
             pos -= (settings.xTick >= 0) ? sizes.labelSize * 1.25 : 0.0
             bottomY = pos
@@ -71,7 +71,7 @@ extension SVG {
             // Calculate horizontal positions
             pos = 5.0
             pos += inRange(0.0..<Double(settings.width), settings.reserveLeft)
-            pos += (settings.yTitle != "") ? sizes.axesSize * 1.25 : 0.0
+            pos += (!settings.yTitle.isEmpty) ? sizes.axesSize * 1.25 : 0.0
             yTitleX = pos
             // Give some extra space for minus sign
             pos += (settings.yTick < 0) ? 0.0 : sizes.labelSize * (dataLeft < 0.0 ? 3.5 : 4.0)

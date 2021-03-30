@@ -25,7 +25,7 @@ if opts.version {
 
 if opts.shapenames {
     print(SVG.Shape.allNames())
-} else if opts.show != "" {
+} else if !opts.show.isEmpty {
     let colour = opts.colours.count > 0 ? opts.colours[0] : "black"
     svgOutput(showShape(shape: opts.show, stroke: colour), to: opts.svgName)
 } else if opts.bitmap.count > 0 {
@@ -38,7 +38,7 @@ if opts.shapenames {
     // use a csvName of - to mean use stdin
     if opts.csvName == "-" { opts.csvName = nil }
 
-    if opts.verbose && opts.random.count == 0 {
+    if opts.verbose && opts.random.isEmpty {
         print(opts.csvName ?? "Missing CSV file name, using stdin", to: &standardError)
         print(opts.jsonName ?? "Missing JSON file name", to: &standardError)
     }

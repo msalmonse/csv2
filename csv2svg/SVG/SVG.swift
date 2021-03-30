@@ -75,8 +75,8 @@ class SVG: ReflectedStringConvertible {
         self.settings = settings
         sizes = FontSizes(size: settings.baseFontSize)
         self.index = settings.index
-        svgID = settings.cssID != "" ? settings.cssID
-            : "ID-\(Int.random(in: 1...(1 << 24)).x(6,zeroFill: true))"
+        svgID = !settings.cssID.isEmpty ? settings.cssID
+            : "ID-\(Int.random(in: 1...(1 << 24)).x0(6))"
         height = Double(settings.height)
         width = Double(settings.width)
         allowedPlane = Plane(
@@ -107,7 +107,7 @@ class SVG: ReflectedStringConvertible {
         SVG.plotShapes(settings, plotCount, index: settings.index, &props)
         propsList = props
 
-        subTitle = settings.subTitle != ""
+        subTitle = !settings.subTitle.isEmpty
             ? settings.subTitle
             : plotCount == 0 ? ""
                 : Self.subTitleText(csv: csv, inColumns: settings.inColumns, header: settings.subTitleHeader)

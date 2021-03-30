@@ -103,11 +103,13 @@ class Settings: Codable, ReflectedStringConvertible {
     let logx: Bool
     let logy: Bool
 
-    // css related stuff
+    // include stuff
     let cssClasses: [String]
     let cssExtras: [String]
     let cssID: String
     let cssInclude: String
+    let logoURL: String
+    let svgInclude: String
 
     /// Check if a row or column is included
     /// - Parameter i: row or column number
@@ -235,7 +237,9 @@ class Settings: Codable, ReflectedStringConvertible {
         case .cssID: return Defaults.cssID
         case .cssInclude: return Defaults.cssInclude
         case .fontFamily: return Defaults.fontFamily
+        case .logoURL: return Defaults.logoURL
         case .subTitle: return Defaults.subTitle
+        case .svgInclude: return Defaults.svgInclude
         case .title: return Defaults.title
         default: return ""
         }
@@ -314,6 +318,7 @@ class Settings: Codable, ReflectedStringConvertible {
         index = Self.keyedIntValue(from: container, forKey: .index) - 1     // use 0 based
         italic = Self.keyedBoolValue(from: container, forKey: .italic)
         legends = Self.keyedBoolValue(from: container, forKey: .legends)
+        logoURL = Self.keyedStringValue(from: container, forKey: .logoURL)
         logx = Self.keyedBoolValue(from: container, forKey: .logx)
         logy = Self.keyedBoolValue(from: container, forKey: .logy)
         nameHeader = Self.keyedIntValue(from: container, forKey: .nameHeader) - 1   // use 0 based
@@ -330,6 +335,7 @@ class Settings: Codable, ReflectedStringConvertible {
         strokeWidth = Self.keyedDoubleValue(from: container, forKey: .strokeWidth)
         subTitle = Self.keyedStringValue(from: container, forKey: .subTitle)
         subTitleHeader = Self.keyedIntValue(from: container, forKey: .subTitleHeader) - 1   // use 0 based
+        svgInclude = Self.keyedStringValue(from: container, forKey: .svgInclude)
         title = Self.keyedStringValue(from: container, forKey: .title)
         width = Self.keyedIntValue(from: container, forKey: .width)
         xTitle = Self.keyedStringValue(from: container, forKey: .xTitle)

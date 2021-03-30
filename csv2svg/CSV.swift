@@ -182,7 +182,7 @@ class CSV: ReflectedStringConvertible, Equatable {
         var colMax = 0
         // Remove any leading or trailing unwanted characters
         let trimSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet("\"".unicodeScalars))
-        for row in lines where row != "" {
+        for row in lines where !row.isEmpty {
             let cols = row.components(separatedBy: colsep).map { $0.trimmingCharacters(in: trimSet)}
             data.append(cols)
             if cols.count > colMax { colMax = cols.count }
