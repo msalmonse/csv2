@@ -36,7 +36,7 @@ extension Settings {
     /// - Parameter container: JSON container
     /// - Returns: css object
 
-    static func newCSS(from container: KeyedDecodingContainer<CodingKeys>?) -> CSS {
+    static func jsonCSS(from container: KeyedDecodingContainer<CodingKeys>?) -> CSS {
         return CSS(
             backgroundColour: keyedStringValue(from: container, forKey: .backgroundColour),
             opacity: keyedDoubleValue(from: container, forKey: .opacity),

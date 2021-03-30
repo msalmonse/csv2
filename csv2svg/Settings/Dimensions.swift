@@ -40,7 +40,7 @@ extension Settings {
     /// - Parameter container: JSON container
     /// - Returns: new Dimensions object
 
-    static func newDimension(from container: KeyedDecodingContainer<CodingKeys>?) -> Dimensions {
+    static func jsonDimensions(from container: KeyedDecodingContainer<CodingKeys>?) -> Dimensions {
         return Dimensions(
             height: keyedIntValue(from: container, forKey: .height),
             width: keyedIntValue(from: container, forKey: .width),

@@ -63,9 +63,9 @@ class Settings: Decodable, ReflectedStringConvertible {
     required init(from decoder: Decoder) {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
-        css = Self.newCSS(from: container)
-        dim = Self.newDimension(from: container)
-        plot = Self.newPlot(from: container)
+        css = Self.jsonCSS(from: container)
+        dim = Self.jsonDimensions(from: container)
+        plot = Self.jsonPlot(from: container)
 
         headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
         headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)

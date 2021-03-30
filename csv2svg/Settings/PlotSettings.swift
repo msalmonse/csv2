@@ -50,7 +50,7 @@ extension Settings {
     /// - Parameter container: JSON container
     /// - Returns: Plot object
 
-    static func newPlot(from container: KeyedDecodingContainer<CodingKeys>?) -> Plot {
+    static func jsonPlot(from container: KeyedDecodingContainer<CodingKeys>?) -> Plot {
         return Plot(
             dashedLines: keyedIntValue(from: container, forKey: .dashedLines),
             include: keyedIntValue(from: container, forKey: .include),
