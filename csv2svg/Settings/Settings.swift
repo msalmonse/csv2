@@ -9,13 +9,16 @@ import Foundation
 
 class Settings: Decodable, ReflectedStringConvertible {
     // CSS settings
-    let css: CSS
+    let css: Settings.CSS
+
+    // CSV related settings
+    let csv: Settings.CSV
 
     // Dimension settings
-    let dim: Dimensions
+    let dim: Settings.Dimensions
 
     // Plot related settings
-    let plot: Plot
+    let plot: Settings.Plot
 
     // svg width and height
     var height: Double { return Double(dim.height) }
@@ -28,22 +31,14 @@ class Settings: Decodable, ReflectedStringConvertible {
     let yTitle: String
 
     // Header rows and columns
-    let headerColumns: Int
-    let headerRows: Int
-    var headers: Int { return inColumns ? headerRows : headerColumns }
-    let nameHeader: Int
-    let subTitleHeader: Int
+    var headers: Int { return inColumns ? csv.headerRows : csv.headerColumns }
 
-    // Index for x values in csv data
-    let index: Int
 
     // Include plot info in svg
     let legends: Bool
 
-    // Data is grouped in rows?
-    let rowGrouping: Bool
-    var inColumns: Bool { return !rowGrouping }
-    var inRows: Bool { return rowGrouping }
+    var inColumns: Bool { return !csv.rowGrouping }
+    var inRows: Bool { return csv.rowGrouping }
 
     // Lag axes?
     let logx: Bool
@@ -64,20 +59,15 @@ class Settings: Decodable, ReflectedStringConvertible {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
         css = Self.jsonCSS(from: container)
+        csv = Self.jsonCSV(from: container)
         dim = Self.jsonDimensions(from: container)
         plot = Self.jsonPlot(from: container)
 
-        headerColumns = Self.keyedIntValue(from: container, forKey: .headerColumns)
-        headerRows = Self.keyedIntValue(from: container, forKey: .headerRows)
-        index = Self.keyedIntValue(from: container, forKey: .index) - 1     // use 0 based
         legends = Self.keyedBoolValue(from: container, forKey: .legends)
         logoURL = Self.keyedStringValue(from: container, forKey: .logoURL)
         logx = Self.keyedBoolValue(from: container, forKey: .logx)
         logy = Self.keyedBoolValue(from: container, forKey: .logy)
-        nameHeader = Self.keyedIntValue(from: container, forKey: .nameHeader) - 1   // use 0 based
-        rowGrouping = Self.keyedBoolValue(from: container, forKey: .rowGrouping)
         subTitle = Self.keyedStringValue(from: container, forKey: .subTitle)
-        subTitleHeader = Self.keyedIntValue(from: container, forKey: .subTitleHeader) - 1   // use 0 based
         svgInclude = Self.keyedStringValue(from: container, forKey: .svgInclude)
         title = Self.keyedStringValue(from: container, forKey: .title)
         xTitle = Self.keyedStringValue(from: container, forKey: .xTitle)

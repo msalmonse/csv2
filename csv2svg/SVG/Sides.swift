@@ -17,7 +17,7 @@ extension SVG {
 
     static func lrFromData(_ csv: CSV, _ settings: Settings) -> (l: Double, r: Double) {
         let count = settings.inRows ? csv.colCt : csv.rowCt
-        let index = settings.index
+        let index = settings.csv.index
         let xMaxSet = settings.dim.xMax > Defaults.maxDefault
         let xMinSet = settings.dim.xMin < Defaults.minDefault
         var left: Double
@@ -60,7 +60,7 @@ extension SVG {
     /// - Returns: the top and bottom sides
 
     static func tbFromData(_ csv: CSV, _ settings: Settings) -> (t: Double, b: Double) {
-        let index = settings.index
+        let index = settings.csv.index
         let yMaxSet = settings.dim.yMax > Defaults.maxDefault
         let yMinSet = settings.dim.yMin < Defaults.minDefault
         let count = settings.inColumns ? csv.colCt : csv.rowCt

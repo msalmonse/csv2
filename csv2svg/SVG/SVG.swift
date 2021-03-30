@@ -74,7 +74,7 @@ class SVG: ReflectedStringConvertible {
         self.csv = csv
         self.settings = settings
         sizes = FontSizes(size: settings.dim.baseFontSize)
-        self.index = settings.index
+        self.index = settings.csv.index
         svgID = !settings.css.id.isEmpty ? settings.css.id
             : "ID-\(Int.random(in: 1...(1 << 24)).x0(6))"
         height = settings.height
@@ -104,12 +104,12 @@ class SVG: ReflectedStringConvertible {
         SVG.plotColours(settings, plotCount, &props)
         SVG.plotDashes(settings, plotCount, plotPlane.width, &props)
         SVG.plotNames(settings, csv, plotCount, &props)
-        SVG.plotShapes(settings, plotCount, index: settings.index, &props)
+        SVG.plotShapes(settings, plotCount, index: settings.csv.index, &props)
         propsList = props
 
         subTitle = !settings.subTitle.isEmpty
             ? settings.subTitle
             : plotCount == 0 ? ""
-                : Self.subTitleText(csv: csv, inColumns: settings.inColumns, header: settings.subTitleHeader)
+            : Self.subTitleText(csv: csv, inColumns: settings.inColumns, header: settings.csv.subTitleHeader)
     }
 }

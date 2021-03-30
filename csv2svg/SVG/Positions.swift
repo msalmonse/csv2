@@ -53,7 +53,7 @@ extension SVG {
             var pos = Double(settings.height) - settings.dim.baseFontSize
             pos -= inRange(0.0..<pos, settings.dim.reserveBottom)
             subTitleY = pos
-            pos -= (!settings.subTitle.isEmpty || settings.subTitleHeader >= 0) ? sizes.subTitleSize * 1.25 : 0.0
+            pos -= (!settings.subTitle.isEmpty || settings.csv.subTitleHeader >= 0) ? sizes.subTitleSize * 1.25 : 0.0
             titleY = pos
             pos -= (!settings.title.isEmpty) ? sizes.titleSize * 1.25 : 0.0
             xTitleY = pos

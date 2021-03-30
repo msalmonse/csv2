@@ -86,12 +86,12 @@ extension SVG {
         for i in 0..<ct {
             if i < settings.plot.names.count && !settings.plot.names[i].isEmpty {
                 props[i].name = settings.plot.names[i]
-            } else if settings.headers > 0 && settings.nameHeader >= 0 {
+            } else if settings.headers > 0 && settings.csv.nameHeader >= 0 {
                 props[i].name =
-                    SVG.headerText(i, csv: csv, inColumns: settings.inColumns, header: settings.nameHeader)
+                    SVG.headerText(i, csv: csv, inColumns: settings.inColumns, header: settings.csv.nameHeader)
             } else {
                 props[i].name =
-                    SVG.headerText(i, csv: nil, inColumns: settings.inColumns, header: settings.nameHeader)
+                    SVG.headerText(i, csv: nil, inColumns: settings.inColumns, header: settings.csv.nameHeader)
             }
         }
     }
@@ -110,7 +110,7 @@ extension SVG {
         ) {
         for i in 0..<ct {
             // Don't attach a shape if we aren't a scatter plot or a plot with data points or are index
-            if (props[i].scattered || props[i].pointed) && props[i].included && i != settings.index {
+            if (props[i].scattered || props[i].pointed) && props[i].included && i != settings.csv.index {
                 if i < settings.plot.shapes.count && !settings.plot.shapes[i].isEmpty {
                     props[i].shape = Shape.lookup(settings.plot.shapes[i]) ?? Shape.nextShape()
                 } else {
