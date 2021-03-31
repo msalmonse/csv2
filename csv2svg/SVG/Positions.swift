@@ -51,7 +51,7 @@ extension SVG {
         ///   - sizes: font sizes
 
         init(_ settings: Settings, dataLeft: Double, sizes: FontSizes) {
-            let margin = settings.dim.baseFontSize/2.0
+            let margin = settings.dim.baseFontSize * 0.6
             let logoHeight = settings.svg.logoURL.isEmpty ? 0.0 : settings.svg.logoHeight
             let logoWidth = settings.svg.logoURL.isEmpty ? 0.0 : settings.svg.logoWidth
             // Calculate vertical positions
