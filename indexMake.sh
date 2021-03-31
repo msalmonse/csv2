@@ -20,12 +20,13 @@ cat <<EOD
     <style>
         img, svg { border: black solid thin }
 	th { text-align: right }
+	th.infoHeader { text-align: center; font-size: bigger; color: blue }
     </style>
     <base target="_blank" />
 </head>
 <body>
 <table>
-<tr><th colspan="2" style="text-align: center">$(date '+%F %T %Z')</th></tr>
+<tr><th colspan="2" class="infoHeader">$(date '+%F %T %Z')</th></tr>
 EOD
 if [[ -s test.svg ]]
 then
@@ -55,7 +56,7 @@ EOD
 done
 
 cat <<EOD
-<tr><th colspan="2" style="text-align: center">Examples</th></tr>
+<tr><th colspan="2" class="infoHeader">Examples</th></tr>
 EOD
 
 for f in examples/*.svg
@@ -71,7 +72,7 @@ EOD
 done
 
 cat <<EOD
-<tr><th colspan="2" style="text-align: center">ICONS</th></tr>
+<tr><th colspan="2" class="infoHeader">ICONS</th></tr>
 EOD
 
 for f in shapes/*.svg

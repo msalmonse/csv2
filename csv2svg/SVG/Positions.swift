@@ -56,7 +56,7 @@ extension SVG {
             let logoWidth = settings.svg.logoURL.isEmpty ? 0.0 : settings.svg.logoWidth
             // Calculate vertical positions
             // Bottom
-            var pos = Double(settings.height) - margin
+            var pos = settings.height - margin
             pos -= inRange(0.0..<pos, settings.dim.reserveBottom)
             subTitleY = pos
             pos -= (settings.svg.subTitle.notEmpty || settings.csv.subTitleHeader >= 0)
