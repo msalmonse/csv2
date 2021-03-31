@@ -11,7 +11,7 @@ generated/.made:
 	-mkdir $(@D)
 	@ touch $@
 
-generated/index.html: $(SVGFILES) $(TXTFILES) test.svg indexMake.sh
+generated/index.html: $(SVGFILES) $(TXTFILES) generated/logo.svg test.svg indexMake.sh
 	./indexMake.sh $@
 
 generated/%.svg: OPTS = $(shell cat $(@F:%.svg=data/%.opts))
@@ -22,6 +22,9 @@ generated/%.txt: data/%.txt data/br.inc data/%.opts
 	@ cat $^ > $@
 
 generated/z+none-1.svg: error.expected
+
+generated/logo.svg: data/logo.svg
+	@ cp $< $@
 
 error.expected:
 	@ tput 1>&2 smso

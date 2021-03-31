@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg id="logo" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+<!--
+    Created by csv2svg: 1.25.1-14-ge0c47b3 (main:462) https://github.com/msalmonse/csv2svg.git
+  -->
+<style>
+#logo text { font-family: "Helvetica Neue"; font-size: 32px; font-weight: bold; text-anchor: middle; stroke: red; fill: red }
+#logo rect { fill: teal; fill-opacity: .1; stroke: none }
+</style>
+<rect x="0" y="0" width="64" height="64" rx="16" />
+<text x="32" y="45" >メサ</text>
+</svg>

@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--logo http://www.midnightbsd.org/art/logo/MidnightBSDLogo32x32.png"
+            argument = "--logo logo.svg"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

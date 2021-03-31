@@ -43,6 +43,7 @@ for f in "$indexdir"/*.svg
 do
     test -s "$f" || continue
     txtf=${f/%.svg/.txt}
+    test -s "$txtf" || continue
     cat <<EOD
 <tr>
 <th><a href="${f##*/}">${f##*/}</a><br/>$(cat "$txtf")<br/>$(date -r "$f" '+%F %T %Z')</th>
