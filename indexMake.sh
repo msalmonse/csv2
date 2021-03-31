@@ -20,7 +20,9 @@ cat <<EOD
     <style>
         img, svg { border: black solid thin }
 	th { text-align: right }
-	th.infoHeader { text-align: center; font-size: bigger; color: blue }
+	th.infoHeader {
+	    text-align: center; font-size: bigger; color: blue; background: #c0ffee
+	}
     </style>
     <base target="_blank" />
 </head>
@@ -31,6 +33,7 @@ EOD
 if [[ -s test.svg ]]
 then
     cat <<EOD
+<tr><th colspan="2" class="infoHeader">test.svg</th></tr>
 <tr>
 <th><a href="../test.svg">test.svg</a><br/>$(date -r test.svg '+%F %T %Z')</th>
 <td>
@@ -39,6 +42,10 @@ $(tail -n +2 test.svg)
 </tr>
 EOD
 fi
+
+cat <<EOD
+<tr><th colspan="2" class="infoHeader">Generated Test SVG's</th></tr>
+EOD
 
 for f in "$indexdir"/*.svg
 do
