@@ -8,7 +8,7 @@
 
 makeit () {
     svg=examples/"$1".svg; shift
-    test/csv2svg "$@" examples/trig.{csv,json} > $svg
+    test/csv2svg "$@" examples/trig.{csv,json} $svg
 }
 
 makeit trig
