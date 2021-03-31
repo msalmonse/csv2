@@ -63,17 +63,17 @@ extension SVG {
         if settings.dim.xTick >= 0 { result.append(xTick(ts)) }
         if settings.dim.yTick >= 0 { result.append(yTick(ts)) }
         result.append(axes(ts))
-        if !settings.svg.logoURL.isEmpty { result.append(logoImage()) }
+        if settings.svg.logoURL.notEmpty { result.append(logoImage()) }
         result.append(contentsOf: lineGroup(ts))
-        if !settings.svg.xTitle.isEmpty {
+        if settings.svg.xTitle.notEmpty {
             result.append(xTitleText(settings.svg.xTitle, x: plotPlane.hMid, y: positions.xTitleY))
         }
-        if !settings.svg.yTitle.isEmpty {
+        if settings.svg.yTitle.notEmpty {
             result.append(yTitleText(settings.svg.yTitle, x: positions.yTitleX, y: plotPlane.vMid))
         }
         if settings.svg.legends { result.append(legend()) }
-        if !subTitle.isEmpty { result.append(subTitleText()) }
-        if !settings.svg.title.isEmpty { result.append(titleText()) }
+        if subTitle.notEmpty { result.append(subTitleText()) }
+        if settings.svg.title.notEmpty { result.append(titleText()) }
         result.append(svgTagEnd)
 
         return result

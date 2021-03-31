@@ -25,10 +25,10 @@ if opts.version {
 
 if opts.shapenames {
     print(SVG.Shape.allNames())
-} else if !opts.show.isEmpty {
-    let colour = opts.colours.count > 0 ? opts.colours[0] : "black"
+} else if opts.show.notEmpty {
+    let colour = opts.colours.notEmpty ? opts.colours[0] : "black"
     svgOutput(showShape(shape: opts.show, stroke: colour), to: opts.svgName)
-} else if opts.bitmap.count > 0 {
+} else if opts.bitmap.notEmpty {
     print(bitmap(opts.bitmap))
 } else if opts.colourslist {
     svgOutput(showColoursList(), to: opts.svgName)
@@ -72,7 +72,7 @@ if opts.shapenames {
 private func csvSelect(_ opts: Options, _ settings: Settings?) -> CSV? {
     let colsep = opts.tsv ? "\t" : ","
 
-    switch (opts.csvName != nil, opts.random.count > 0) {
+    switch (opts.csvName != nil, opts.random.notEmpty) {
     case (_, true): return CSV(randomCSV(opts, settings))
     case (true, false): return try? CSV(URL(fileURLWithPath: opts.csvName!), separatedBy: colsep)
     case(false, false): return CSV(readLines(), separatedBy: colsep)

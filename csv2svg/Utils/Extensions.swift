@@ -79,3 +79,13 @@ extension Int {
         return (left & right) == right
     }
 }
+
+extension String {
+    /// Just a little sugar
+    var notEmpty: Bool { !self.isEmpty }
+}
+
+extension Array {
+    /// Just a little sugar
+    var notEmpty: Bool { !self.isEmpty }
+}

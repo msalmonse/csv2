@@ -9,7 +9,7 @@ import Foundation
 
 extension SVG {
     func dashesListGen(_ step: Double) -> [String] {
-        let colour = Defaults.colours.count > 0 ? Defaults.colours[0] : "black"
+        let colour = Defaults.colours.notEmpty ? Defaults.colours[0] : "black"
         let dashCSS =
             "path.dashes { stroke: \(colour); stroke-width: \((step/5.0).f(1)); stroke-linecap: butt }"
 
