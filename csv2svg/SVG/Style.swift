@@ -42,7 +42,7 @@ extension SVG {
             result.append("<style>\n" + settings.css.extras.joined(separator: "\n") + "</style>\n")
         }
 
-        if let include = Defaults.cssIncludeContents {
+        if let url = SearchPath.search(settings.css.include), let include = try? String(contentsOf: url) {
             result.append("<style>\n" + include + "</style>")
         }
     }
