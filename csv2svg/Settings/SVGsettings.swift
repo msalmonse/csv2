@@ -19,7 +19,10 @@ extension Settings {
         let logx: Bool
         let logy: Bool
 
+        let logoHeight: Double
         let logoURL: String
+        let logoWidth: Double
+
         let svgInclude: String
 
         // svg sub-title title, x axis title and y axis title
@@ -38,7 +41,9 @@ extension Settings {
             legends: keyedBoolValue(from: container, forKey: .legends),
             logx: keyedBoolValue(from: container, forKey: .logx),
             logy: keyedBoolValue(from: container, forKey: .logy),
+            logoHeight: keyedDoubleValue(from: container, forKey: .logoHeight),
             logoURL: keyedStringValue(from: container, forKey: .logoURL),
+            logoWidth: keyedDoubleValue(from: container, forKey: .logoHeight),
             svgInclude: keyedStringValue(from: container, forKey: .svgInclude),
             subTitle: keyedStringValue(from: container, forKey: .subTitle),
             title: keyedStringValue(from: container, forKey: .title),

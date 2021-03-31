@@ -50,6 +50,8 @@ extension Settings {
         switch key {
         case .baseFontSize: return Defaults.baseFontSize
         case .dataPointDistance: return Defaults.dataPointDistance
+        case .logoHeight: return Defaults.logoHeight
+        case .logoWidth: return Defaults.logoWidth
         case .opacity: return Defaults.opacity
         case .reserveBottom: return Defaults.reserveBottom
         case .reserveLeft: return Defaults.reserveLeft

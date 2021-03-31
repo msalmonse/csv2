@@ -30,8 +30,8 @@ extension SVG {
     func logoImage() -> String {
         let x = positions.logoX
         let y = positions.logoY
-        let h = Defaults.logoHeight
-        let w = Defaults.logoWidth
+        let h = settings.svg.logoHeight
+        let w = settings.svg.logoWidth
         let url = settings.svg.logoURL
         return """
             <image \(xy(x,y)) \(wh(w,h)) href="\(url)" class="logo" preserveAspectRatio="xMaxYMin" />

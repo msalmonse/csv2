@@ -29,7 +29,9 @@ extension Settings {
         case index
         case italic
         case legends
+        case logoHeight
         case logoURL
+        case logoWidth
         case logx
         case logy
         case nameHeader
