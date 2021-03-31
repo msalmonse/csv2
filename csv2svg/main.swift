@@ -44,13 +44,15 @@ if opts.shapenames {
     }
 
     let jsonSource = jsonURL(opts)
+    SearchPath.add(jsonSource)
     let settings = try? Settings.load(jsonSource)
-    if (opts.debug & 2) > 0 { print(settings ?? "Nil settings", to: &standardError) }
+    if opts.debug &== 2 { print(settings ?? "Nil settings", to: &standardError) }
 
     Defaults.cssIncludeContents = includeContents(Defaults.cssInclude, jsonSource)
 
+    if opts.csvName != nil { SearchPath.add(opts.csvName!) }
     let csv = csvSelect(opts, settings)
-    if (opts.debug & 4) > 0 { print(csv ?? "Nil csv", to: &standardError) }
+    if opts.debug &== 4 { print(csv ?? "Nil csv", to: &standardError) }
 
     if csv == nil || csv!.colCt == 0 || csv!.rowCt == 0 || settings == nil {
         print("Error loading data.", to: &standardError)
@@ -58,7 +60,7 @@ if opts.shapenames {
     }
 
     let svg = SVG(csv!, settings!)
-    if (opts.debug & 8) > 0 { print(svg, to: &standardError) }
+    if opts.debug &== 8 { print(svg, to: &standardError) }
 
     svgOutput(svg.gen(), to: opts.svgName)
 }

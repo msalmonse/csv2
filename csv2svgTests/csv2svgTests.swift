@@ -207,6 +207,15 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(bitmap([1,1,1]), 1)
     }
 
+    func testSearchPath() {
+        _ = [ "/usr/bin", "/usr/local/bin", "/bin" ].map {
+            SearchPath.add(URL(fileURLWithPath: $0, isDirectory: true))
+        }
+        let url = SearchPath.search("bash")
+        XCTAssertNotNil(url)
+        XCTAssertEqual(url!.path, "/bin/bash")
+    }
+
     func testSettingsPerformance() throws {
         measure {
             try? testSettings()
