@@ -15,6 +15,7 @@ extension SVG {
         case
             blade,
             circle,
+            cross,
             diamond,
             shuriken,
             square,
@@ -31,6 +32,7 @@ extension SVG {
             switch self {
             case .blade: return PathCommand.blade(w: w)
             case .circle: return PathCommand.circle(r: w)
+            case .cross: return PathCommand.cross(w: w)
             case .diamond: return PathCommand.diamond(w: w)
             case .shuriken: return PathCommand.shuriken(w: w)
             case .square: return PathCommand.square(w: w)
@@ -42,6 +44,7 @@ extension SVG {
         static let namedShapes = [
             "blade":    Self.blade,
             "circle":   Self.circle,
+            "cross":    Self.cross,
             "diamond":  Self.diamond,
             "shuriken": Self.shuriken,
             "square":   Self.square,
@@ -52,6 +55,7 @@ extension SVG {
         static let numberedShapes = [
             Self.blade,
             Self.circle,
+            Self.cross,
             Self.diamond,
             Self.shuriken,
             Self.square,

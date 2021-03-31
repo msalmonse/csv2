@@ -86,15 +86,16 @@ extension SVG {
     /// - Returns: SVG as an array of strings
 
     func shapeGen(name: String, stroke: String) -> [String] {
-        let shape = Shape.lookup(name)
         var result: [String] = [ xmlTag, svgTag ]
-        let shapeCss = "path.shape { stroke: \(stroke) }"
-        result.append(cssStyle(extra: shapeCss))
-        let path = [
-            PathCommand.moveTo(x: width/2.0, y: height/2.0),
-            shape!.pathCommand(w: shapeWidth)
-        ]
-        result.append(SVG.path(path, cssClass: "shape"))
+        if let shape = Shape.lookup(name) {
+            let shapeCss = "#\(svgID) path.shape { stroke: \(stroke) }"
+            result.append(cssStyle(extra: shapeCss))
+            let path = [
+                PathCommand.moveTo(x: width/2.0, y: height/2.0),
+                shape.pathCommand(w: shapeWidth)
+            ]
+            result.append(SVG.path(path, cssClass: "shape"))
+        }
         result.append(svgTagEnd)
 
         return result

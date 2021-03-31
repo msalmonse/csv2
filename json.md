@@ -146,6 +146,7 @@ looked up the a shape from an internal list is assigned.
 Recognized names are:
 1. ![blade](shapes/blade.svg) blade
 1. ![circle](shapes/circle.svg) circle
+1. ![cross](shapes/cross.svg) cross
 2. ![diamond](shapes/diamond.svg) diamond
 2. ![shuriken](shapes/shuriken.svg) shuriken
 3. ![square](shapes/square.svg) square

@@ -42,6 +42,38 @@ extension SVG.PathCommand {
         ].map { $0.command() }.joined(separator: " ")
     }
 
+    /// Generate a cross shape
+    /// - Parameter w: the width
+    /// - Returns: path string for a cross
+
+    func drawCross(w: Double) -> String {
+        let full = w * 0.4
+        let half = full * 0.5
+        return [
+            Self.moveBy(dx: -full - half, dy: 0.0),
+            // left
+            .lineBy(dx: -full, dy: -half),
+            .vertBy(dy: full),
+            .lineBy(dx: full, dy: -half),
+            .moveBy(dx: full + half, dy: -full - half),
+            // top
+            .lineBy(dx: -half, dy: -full),
+            .horizBy(dx: full),
+            .lineBy(dx: -half, dy: full),
+            .moveBy(dx: full + half, dy: full + half),
+            // right
+            .lineBy(dx: full, dy: -half),
+            .vertBy(dy: full),
+            .lineBy(dx: -full, dy: -half),
+            .moveBy(dx: -full - half, dy: full + half),
+            // bottom
+            .lineBy(dx: -half, dy: full),
+            .horizBy(dx: full),
+            .lineBy(dx: -half, dy: -full),
+            .moveBy(dx: 0.0, dy: -full)
+        ].map { $0.command() }.joined(separator: " ")
+    }
+
     /// Generate a diamond shape
     /// - Parameter w: the width
     /// - Returns: path string for a diamond

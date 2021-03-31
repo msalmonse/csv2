@@ -38,6 +38,7 @@ extension SVG {
                                                         // Draw an arc
             blade(w: Double),                           // Draw a blade of width 2 * w
             circle(r: Double),                          // Draw a circle of radius r
+            cross(w: Double),                           // a cross of width 2 * w
             diamond(w: Double),                         // a diamond of width 2 * w
             moveBy(dx: Double, dy: Double),             // Move by dx and dy
             moveTo(x: Double, y: Double),               // Move absolute to x,y
@@ -61,6 +62,7 @@ extension SVG {
                 return "a \(rx.f(1)),\(ry.f(1)),\(rot.f(1)),\(type.largeSweep),\(dx.f(1)),\(dy.f(1))"
             case .blade(let w): return drawBlade(w: w)
             case .circle(let r): return drawCircle(r: r)
+            case .cross(let w): return drawCross(w: w)
             case .diamond(let w): return drawDiamond(w: w)
             case .moveBy(let dx, let dy): return "m \(dx.f(1)),\(dy.f(1))"
             case .moveTo(let x, let y): return "M \(x.f(1)),\(y.f(1))"

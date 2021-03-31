@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--logo logo.svg --showpoints=-1"
+            argument = "--show cross"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
