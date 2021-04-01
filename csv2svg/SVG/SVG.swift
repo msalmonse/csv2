@@ -55,7 +55,7 @@ class SVG: ReflectedStringConvertible {
 
     // id for this svg
     let svgID: String
-    var hashID: String { svgID == "none" ? "" "#\(svgID)" }
+    var hashID: String { svgID == "none" ? "" : "#\(svgID)" }
 
     // Tags
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"

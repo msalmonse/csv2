@@ -26,6 +26,8 @@ generated/%.svg: data/%.csv data/%.json data/%.opts $(CSV2SVG)
 generated/%.txt: data/%.txt data/br.inc data/%.opts
 	@ cat $^ > $@
 
+generated/trig+trig-inc.svg: data/trig.inc
+
 generated/z+none-1.svg: error.expected
 
 generated/logo.svg: data/logo.svg

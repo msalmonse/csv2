@@ -23,7 +23,7 @@ extension Settings {
         let logoURL: String
         let logoWidth: Double
 
-        let svgInclude: String
+        let include: String
 
         // svg sub-title title, x axis title and y axis title
         let subTitle: String
@@ -44,7 +44,7 @@ extension Settings {
             logoHeight: keyedDoubleValue(from: container, forKey: .logoHeight),
             logoURL: keyedStringValue(from: container, forKey: .logoURL),
             logoWidth: keyedDoubleValue(from: container, forKey: .logoHeight),
-            svgInclude: keyedStringValue(from: container, forKey: .svgInclude),
+            include: keyedStringValue(from: container, forKey: .svgInclude),
             subTitle: keyedStringValue(from: container, forKey: .subTitle),
             title: keyedStringValue(from: container, forKey: .title),
             xTitle: keyedStringValue(from: container, forKey: .xTitle),

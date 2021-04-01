@@ -51,6 +51,13 @@ extension SVG {
         return result
     }
 
+    func svgInclude(_ name: String) -> String {
+        if let url = SearchPath.search(name), let include = try? String(contentsOf: url) {
+            return include
+        }
+        return ""
+    }
+
     /// Generate an svg document
     /// - Returns: array of svg elements
 
@@ -74,6 +81,7 @@ extension SVG {
         if settings.svg.legends { result.append(legend()) }
         if subTitle.notEmpty { result.append(subTitleText()) }
         if settings.svg.title.notEmpty { result.append(titleText()) }
+        if settings.svg.include.notEmpty { result.append(svgInclude(settings.svg.include))}
         result.append(svgTagEnd)
 
         return result
