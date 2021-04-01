@@ -83,6 +83,7 @@
 		C4C0C4B12613641A0072699C /* SVGsettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C4AF2613641A0072699C /* SVGsettings.swift */; };
 		C4C0C4B7261458F10072699C /* SearchPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C4B6261458F10072699C /* SearchPath.swift */; };
 		C4C0C4B8261458F10072699C /* SearchPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C4B6261458F10072699C /* SearchPath.swift */; };
+		C4C0C4C02615A1E90072699C /* examples in Resources */ = {isa = PBXBuildFile; fileRef = C4C0C4BF2615A1E80072699C /* examples */; };
 		C4EA5D1F25EB7B8A00E104E0 /* TransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */; };
 		C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */; };
 		C4EA5D2825EB8F4D00E104E0 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* Colours.swift */; };
@@ -154,6 +155,7 @@
 		C4C0C4AA26134AC70072699C /* CSVsettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVsettings.swift; sourceTree = "<group>"; };
 		C4C0C4AF2613641A0072699C /* SVGsettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGsettings.swift; sourceTree = "<group>"; };
 		C4C0C4B6261458F10072699C /* SearchPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPath.swift; sourceTree = "<group>"; };
+		C4C0C4BF2615A1E80072699C /* examples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = examples; sourceTree = "<group>"; };
 		C4CB7C71260CFF6F00AD2364 /* autoversion.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = autoversion.sh; sourceTree = "<group>"; };
 		C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransScale.swift; sourceTree = "<group>"; };
 		C4EA5D2725EB8F4D00E104E0 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 		C45323DC25F7F7C0007D741C /* Docs */ = {
 			isa = PBXGroup;
 			children = (
+				C4C0C4BF2615A1E80072699C /* examples */,
 				C492BE0F25F3A2A10042A11E /* README.md */,
 				C4C0C46E260F5F470072699C /* css.md */,
 				C492BE1025F3A2A10042A11E /* json.md */,
@@ -397,6 +400,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4C0C4C02615A1E90072699C /* examples in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
