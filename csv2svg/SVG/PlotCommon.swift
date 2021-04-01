@@ -150,7 +150,7 @@ extension SVG {
         for i in settings.headers..<xiValues.count {
             let x = xiValues[i].x
             let j = xiValues[i].i
-            var y = j < yValues.count ? yValues[j] : nil
+            var y = yValues.hasIndex(j) ? yValues[j] : nil
             if x == nil ||  y == nil {
                 state.nilPlot(plotShape)
             } else {

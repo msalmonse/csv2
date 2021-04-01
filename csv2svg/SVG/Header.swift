@@ -17,8 +17,7 @@ extension SVG {
     /// - Returns: column header
 
     static private func columnHeader(_ column: Int, csv: CSV?, _ header: Int) -> String {
-        if csv != nil && csv!.data[header].count > column && column >= 0
-            && csv!.data[header][column].notEmpty {
+        if csv != nil && csv!.data[header].hasIndex(column) && csv!.data[header][column].notEmpty {
                 return csv!.data[header][column]
         }
         return String(format: "Column %d", column + 1)
@@ -61,9 +60,9 @@ extension SVG {
         guard header >= 0 else { return "" }
         var text: [String] = []
         if inColumns {
-            text = csv.data.count > header ? csv.data[header] : []
+            text = csv.data.hasIndex(header) ? csv.data[header] : []
         } else {
-            for row in csv.data where header < row.count {
+            for row in csv.data where row.hasIndex(header) {
                 text.append(row[header])
             }
         }

@@ -134,7 +134,6 @@
 		C480847B25E4E97300BD0A24 /* ColumnPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnPlot.swift; sourceTree = "<group>"; };
 		C480847F25E6776900BD0A24 /* Sides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sides.swift; sourceTree = "<group>"; };
 		C482B9FC25EE8D4D00E51A50 /* stderr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stderr.swift; sourceTree = "<group>"; };
-		C48B722A25F212C600B0752E /* runTests.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = runTests.sh; sourceTree = "<group>"; };
 		C48B723525F224EF00B0752E /* indexMake.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = indexMake.sh; sourceTree = "<group>"; };
 		C48B822725E28F7E00EAEAE3 /* csv2svgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = csv2svgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2svgTests.swift; sourceTree = "<group>"; };
@@ -192,11 +191,8 @@
 			isa = PBXGroup;
 			children = (
 				C45053C025F0E865003FC346 /* appinfo.swift */,
-				C4CB7C71260CFF6F00AD2364 /* autoversion.sh */,
-				C48B723525F224EF00B0752E /* indexMake.sh */,
-				C48B722A25F212C600B0752E /* runTests.sh */,
-				C453245325FBFF27007D741C /* shapeDoc.sh */,
 				C45323DC25F7F7C0007D741C /* Docs */,
+				C4C0C4C5261631730072699C /* Scripts */,
 				C40A3AFD25DC01180016EB6D /* csv2svg */,
 				C48B822825E28F7E00EAEAE3 /* csv2svgTests */,
 				C40A3AFC25DC01180016EB6D /* Products */,
@@ -311,6 +307,16 @@
 				C4C0C4AF2613641A0072699C /* SVGsettings.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		C4C0C4C5261631730072699C /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				C4CB7C71260CFF6F00AD2364 /* autoversion.sh */,
+				C48B723525F224EF00B0752E /* indexMake.sh */,
+				C453245325FBFF27007D741C /* shapeDoc.sh */,
+			);
+			name = Scripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

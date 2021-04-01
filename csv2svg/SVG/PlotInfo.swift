@@ -21,7 +21,7 @@ extension SVG {
         _ props: inout [PathProperties]
         ) {
         for i in 0..<ct {
-            if i < settings.plot.cssClasses.count && settings.plot.cssClasses[i].notEmpty {
+            if settings.plot.cssClasses.hasIndex(i) && settings.plot.cssClasses[i].notEmpty {
                 props[i].cssClass = settings.plot.cssClasses[i]
             } else {
                 props[i].cssClass = "plot\((i + 1).d0(2))"
@@ -65,7 +65,7 @@ extension SVG {
         _ props: inout [PathProperties]
         ) {
         for i in 0..<ct {
-            if i < settings.plot.dashes.count && !settings.plot.dashes[i].isEmpty {
+            if settings.plot.dashes.hasIndex(i) && !settings.plot.dashes[i].isEmpty {
                 props[i].dash = settings.plot.dashes[i]
             } else if props[i].dashed && props[i].included {
                 props[i].dash = Dashes.nextDash(width)
@@ -84,7 +84,7 @@ extension SVG {
         _ props: inout [PathProperties]
     ) {
         for i in 0..<ct {
-            if i < settings.plot.names.count && settings.plot.names[i].notEmpty {
+            if settings.plot.names.hasIndex(i) && settings.plot.names[i].notEmpty {
                 props[i].name = settings.plot.names[i]
             } else if settings.headers > 0 && settings.csv.nameHeader >= 0 {
                 props[i].name =
@@ -111,7 +111,7 @@ extension SVG {
         for i in 0..<ct {
             // Don't attach a shape if we aren't a scatter plot or a plot with data points or are index
             if (props[i].scattered || props[i].pointed) && props[i].included && i != settings.csv.index {
-                if i < settings.plot.shapes.count && settings.plot.shapes[i].notEmpty {
+                if settings.plot.shapes.hasIndex(i) && settings.plot.shapes[i].notEmpty {
                     props[i].shape = Shape.lookup(settings.plot.shapes[i]) ?? Shape.nextShape()
                 } else {
                     props[i].shape = Shape.nextShape()
