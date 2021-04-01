@@ -26,6 +26,10 @@ There are no restrictions on the contents so that multiple classes can be attach
 each entry.<br/>
 For more information see (css.md)[css.md]
 
+**comment** (Bool **true**)<br/>
+**Option:** `--nocomment` <sup>[8](#fn8)</sup><br/>
+Add an identifying comment to the SVG
+
 <a id="cssExtras">**cssExtras** (Array of Strings)</a><br/>
 The strings in this array are copied into a `<style>` tag.
 
@@ -75,6 +79,10 @@ The number of rows that do not contain data.<sup>[1](#fn1)</sup>
 **Option:** `--height`<br/>
 The height of the generated SVG
 
+**hover** (Bool **true**)<br/>
+**Option:** `--nohover` <sup>[8](#fn8)</sup><br/>
+Add the css to emphasize the hovered over plot.
+
 **include** (Int **-1**)<br/>
 **Option:** `--include`<br/>
 A bit vector of the plots to draw.<sup>[5](#fn5)</sup><br/>
@@ -88,6 +96,10 @@ If it is less than or equal to zero then the absica is 0 for the first value of 
 **italic** (Bool **false**)<br/>
 **Option:** `--italic`<br/>
 Use italic text.
+
+**logends** (Bool **true**)<br/>
+**Option:** `--nolegends` <sup>[8](#fn8)</sup><br/>
+Add the legends panel if there is room.
 
 **logoHeight** (Int **64**)<br/>
 The height of the logo `<image>` element.
@@ -254,3 +266,5 @@ have between 1 and 4 values, these values are assigned to the sides in turn.<br/
 Hence `--reserve 1 2 3 4` is the same as `reserveLeft: 1`, `reserveTop: 2`, `reserveRight 3` and,
 `reserve Bottom: 4`.
 
+- <a id="fn8">8</a>: The command line arguments are the opposite of the JSON settings, `--noxxx` sets
+`xxx` to `false`.

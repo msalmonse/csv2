@@ -68,7 +68,8 @@ extension SVG {
     func gen() -> [String] {
         let ts = TransScale(from: dataPlane, to: plotPlane, logx: logx, logy: logy)
 
-        var result: [String] = [ xmlTag, svgTag, comment ]
+        var result: [String] = [ xmlTag, svgTag ]
+        if settings.svg.comment { result.append(comment) }
         result.append(cssStyle())
         result.append(contentsOf: defs())
         if settings.dim.xTick >= 0 { result.append(xTick(ts)) }

@@ -61,7 +61,9 @@ extension SVG {
         var result: [String] = ["<style>"]
         cssBG(&result, id: id)
         result.append("\(id) g.plotarea { opacity: \(settings.css.opacity.f(1)) }")
-        result.append("\(id) g.plotarea path:hover { stroke-width: \((strokeWidth * 2.5).f(1)) }")
+        if settings.css.hover {
+            result.append("\(id) g.plotarea path:hover { stroke-width: \((strokeWidth * 2.5).f(1)) }")
+        }
         result.append(
             "\(id) path { stroke-width: \(strokeWidth.f(1)); fill: none; stroke-linecap: round }"
         )

@@ -91,6 +91,12 @@ struct Options: ParsableCommand {
             help: "Default list of plot names, multiple entries until the next option")
     var names: [String] = []
 
+    @Flag(name: .long, help: "Don't csv2svg comment to SVG")
+    var nocomment = !Defaults.global.comment
+
+    @Flag(name: .long, help: "Don't add CSS code to emphasize hovered plots")
+    var nohover = !Defaults.global.hover
+
     @Flag(name: .long, help: "Don't include plot names, colours, dashes and shapes")
     var nolegends = !Defaults.global.legends
 
@@ -194,6 +200,7 @@ struct Options: ParsableCommand {
             black: black,
             bold: bold,
             colours: colours,
+            comment: !nocomment,
             cssClasses: [],
             cssExtras: [],
             cssID: cssid,
@@ -204,6 +211,7 @@ struct Options: ParsableCommand {
             fontFamily: font,
             headers: headers,
             height: height,
+            hover: !nohover,
             include: include,
             index: index,
             italic: italic,

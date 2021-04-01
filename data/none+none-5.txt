@@ -1,1 +1,1 @@
-Random data, 3 plots in rows with datapoints
+Random data, 3 plots in rows with datapoints, no comment and no hover

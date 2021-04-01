@@ -13,6 +13,9 @@ extension Settings {
 
     struct SVG {
         // Include plot info in svg
+        let comment: Bool
+
+        // Include plot info in svg
         let legends: Bool
 
         // Lag axes?
@@ -38,6 +41,7 @@ extension Settings {
 
     static func jsonSVG(from container: KeyedDecodingContainer<CodingKeys>?, defaults: Defaults) -> SVG {
         return SVG(
+            comment: keyedBoolValue(from: container, forKey: .comment, defaults: defaults),
             legends: keyedBoolValue(from: container, forKey: .legends, defaults: defaults),
             logx: keyedBoolValue(from: container, forKey: .logx, defaults: defaults),
             logy: keyedBoolValue(from: container, forKey: .logy, defaults: defaults),

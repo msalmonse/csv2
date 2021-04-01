@@ -15,6 +15,9 @@ extension Settings {
         // Background colour
         let backgroundColour: String
 
+        // Include :hover css for paths
+        let hover: Bool
+
         // opacity for plots
         let opacity: Double
 
@@ -38,7 +41,9 @@ extension Settings {
 
     static func jsonCSS(from container: KeyedDecodingContainer<CodingKeys>?, defaults: Defaults) -> CSS {
         return CSS(
-            backgroundColour: keyedStringValue(from: container, forKey: .backgroundColour, defaults: defaults),
+            backgroundColour:
+                keyedStringValue(from: container, forKey: .backgroundColour, defaults: defaults),
+            hover: keyedBoolValue(from: container, forKey: .hover, defaults: defaults),
             opacity: keyedDoubleValue(from: container, forKey: .opacity, defaults: defaults),
             bold: keyedBoolValue(from: container, forKey: .bold, defaults: defaults),
             fontFamily: keyedStringValue(from: container, forKey: .fontFamily, defaults: defaults),

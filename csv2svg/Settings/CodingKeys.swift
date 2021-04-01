@@ -14,6 +14,7 @@ extension Settings {
         case black
         case bold
         case colours
+        case comment
         case cssClasses
         case cssExtras
         case cssID
@@ -25,6 +26,7 @@ extension Settings {
         case headerColumns
         case headerRows
         case height
+        case hover
         case include
         case index
         case italic
