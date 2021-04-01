@@ -1,1 +1,1 @@
---colours red --bg=cornsilk --size=15 --dashes=10 --dasheslist
+--colours red --bg=cornsilk --size=15 --dashes=10 --dasheslist --stroke=5

@@ -57,7 +57,7 @@ extension SVG {
     /// - Returns: css information in a string
 
     func cssStyle(extra: String = "") -> String {
-        let id = svgID != "none" ? "#\(svgID)" : ""
+        let id = hashID
         var result: [String] = ["<style>"]
         cssBG(&result, id: id)
         result.append("\(id) g.plotarea { opacity: \(settings.css.opacity.f(1)) }")

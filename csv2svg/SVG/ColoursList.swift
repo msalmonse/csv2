@@ -18,14 +18,14 @@ extension SVG {
         var y = step + step
         var yRect: Double { y - hRect * 0.8 }
         let coloursCSS = """
-            text.colours { font-size: \((step * 0.8).f(2)); alignment-baseline: middle }
+            \(hashID) text.colours { font-size: \((step * 0.75).f(0))px }
             """
 
         var result: [String] = [ xmlTag, svgTag, cssStyle(extra: coloursCSS) ]
 
         for colour in Defaults.colours + Colours.all {
-            let extra = "style=\" fill: \(colour); stroke: \(colour) \""
-            result.append(textTag(x: xText, y: y, text: colour, cssClass: "colour", extra: extra))
+            let extra = "class=\"colours\" style=\" fill: \(colour); stroke: \(colour) \""
+            result.append(textTag(x: xText, y: y, text: colour, cssClass: "colours", extra: extra))
             result.append(
                 rectTag(x: xRect, y: yRect, width: wRect, height: hRect, extra: extra, rx: rx))
             y += step
