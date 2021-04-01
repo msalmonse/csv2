@@ -13,16 +13,16 @@ extension Settings {
     /// - Parameter key: Coding key for Settings
     /// - Returns: bool default value
 
-    private static func boolDefault(_ key: CodingKeys) -> Bool {
+    private static func boolDefault(_ key: CodingKeys, _ defaults: Defaults) -> Bool {
         switch key {
-        case .black: return Defaults.black
-        case .bold: return Defaults.bold
-        case .italic: return Defaults.italic
-        case .legends: return Defaults.legends
-        case .logx: return Defaults.logx
-        case .logy: return Defaults.logy
-        case .rowGrouping: return Defaults.rowGrouping
-        case .sortx: return Defaults.sortx
+        case .black: return defaults.black
+        case .bold: return defaults.bold
+        case .italic: return defaults.italic
+        case .legends: return defaults.legends
+        case .logx: return defaults.logx
+        case .logy: return defaults.logy
+        case .rowGrouping: return defaults.rowGrouping
+        case .sortx: return defaults.sortx
         default: return false
         }
     }
@@ -36,35 +36,36 @@ extension Settings {
 
     static func keyedBoolValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
-        forKey key: CodingKeys
+        forKey key: CodingKeys,
+        defaults: Defaults
     ) -> Bool {
-        if container == nil { return boolDefault(key) }
-        return (try? container!.decodeIfPresent(Bool.self, forKey: key)) ?? boolDefault(key)
+        if container == nil { return boolDefault(key, defaults) }
+        return (try? container!.decodeIfPresent(Bool.self, forKey: key)) ?? boolDefault(key, defaults)
     }
 
     /// Return the integer default for the key
     /// - Parameter key: Coding key for Settings
     /// - Returns: integer default value
 
-    private static func doubleDefault(_ key: CodingKeys) -> Double {
+    private static func doubleDefault(_ key: CodingKeys, _ defaults: Defaults) -> Double {
         switch key {
-        case .baseFontSize: return Defaults.baseFontSize
-        case .dataPointDistance: return Defaults.dataPointDistance
-        case .logoHeight: return Defaults.logoHeight
-        case .logoWidth: return Defaults.logoWidth
-        case .opacity: return Defaults.opacity
-        case .reserveBottom: return Defaults.reserveBottom
-        case .reserveLeft: return Defaults.reserveLeft
-        case .reserveRight: return Defaults.reserveRight
-        case .reserveTop: return Defaults.reserveTop
-        case .smooth: return Defaults.smooth
-        case .strokeWidth: return Defaults.strokeWidth
-        case .xMax: return Defaults.xMax
-        case .xMin: return Defaults.xMin
-        case .xTick: return Defaults.xTick
-        case .yMax: return Defaults.yMax
-        case .yMin: return Defaults.yMin
-        case .yTick: return Defaults.yTick
+        case .baseFontSize: return defaults.baseFontSize
+        case .dataPointDistance: return defaults.dataPointDistance
+        case .logoHeight: return defaults.logoHeight
+        case .logoWidth: return defaults.logoWidth
+        case .opacity: return defaults.opacity
+        case .reserveBottom: return defaults.reserveBottom
+        case .reserveLeft: return defaults.reserveLeft
+        case .reserveRight: return defaults.reserveRight
+        case .reserveTop: return defaults.reserveTop
+        case .smooth: return defaults.smooth
+        case .strokeWidth: return defaults.strokeWidth
+        case .xMax: return defaults.xMax
+        case .xMin: return defaults.xMin
+        case .xTick: return defaults.xTick
+        case .yMax: return defaults.yMax
+        case .yMin: return defaults.yMin
+        case .yTick: return defaults.yTick
         default: return 0.0
         }
     }
@@ -77,29 +78,30 @@ extension Settings {
 
     static func keyedDoubleValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
-        forKey key: CodingKeys
+        forKey key: CodingKeys,
+        defaults: Defaults
     ) -> Double {
-        if container == nil { return doubleDefault(key) }
-        return (try? container!.decodeIfPresent(Double.self, forKey: key)) ?? doubleDefault(key)
+        if container == nil { return doubleDefault(key, defaults) }
+        return (try? container!.decodeIfPresent(Double.self, forKey: key)) ?? doubleDefault(key, defaults)
     }
 
     /// Return the integer default for the key
     /// - Parameter key: Coding key for Settings
     /// - Returns: integer default value
 
-    private static func intDefault(_ key: CodingKeys) -> Int {
+    private static func intDefault(_ key: CodingKeys, _ defaults: Defaults) -> Int {
         switch key {
-        case .dashedLines: return Defaults.dashedLines
-        case .headerColumns: return Defaults.headers
-        case .headerRows: return Defaults.headers
-        case .height: return Defaults.height
-        case .include: return Defaults.include
-        case .index: return Defaults.index
-        case .nameHeader: return Defaults.nameHeader
-        case .scatterPlots: return Defaults.scattered
-        case .showDataPoints: return Defaults.showDataPoints
-        case .subTitleHeader: return Defaults.subTitleHeader
-        case .width: return Defaults.width
+        case .dashedLines: return defaults.dashedLines
+        case .headerColumns: return defaults.headers
+        case .headerRows: return defaults.headers
+        case .height: return defaults.height
+        case .include: return defaults.include
+        case .index: return defaults.index
+        case .nameHeader: return defaults.nameHeader
+        case .scatterPlots: return defaults.scattered
+        case .showDataPoints: return defaults.showDataPoints
+        case .subTitleHeader: return defaults.subTitleHeader
+        case .width: return defaults.width
         default: return 0
         }
     }
@@ -113,26 +115,27 @@ extension Settings {
 
     static func keyedIntValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
-        forKey key: CodingKeys
+        forKey key: CodingKeys,
+        defaults: Defaults
     ) -> Int {
-        if container == nil { return intDefault(key) }
-        return (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? intDefault(key)
+        if container == nil { return intDefault(key, defaults) }
+        return (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? intDefault(key, defaults)
     }
 
     /// Return the string default for the key
     /// - Parameter key: Coding key for Settings
     /// - Returns: integer default value
 
-    private static func stringDefault(_ key: CodingKeys) -> String {
+    private static func stringDefault(_ key: CodingKeys, _ defaults: Defaults) -> String {
         switch key {
-        case .backgroundColour: return Defaults.backgroundColour
-        case .cssID: return Defaults.cssID
-        case .cssInclude: return Defaults.cssInclude
-        case .fontFamily: return Defaults.fontFamily
-        case .logoURL: return Defaults.logoURL
-        case .subTitle: return Defaults.subTitle
-        case .svgInclude: return Defaults.svgInclude
-        case .title: return Defaults.title
+        case .backgroundColour: return defaults.backgroundColour
+        case .cssID: return defaults.cssID
+        case .cssInclude: return defaults.cssInclude
+        case .fontFamily: return defaults.fontFamily
+        case .logoURL: return defaults.logoURL
+        case .subTitle: return defaults.subTitle
+        case .svgInclude: return defaults.svgInclude
+        case .title: return defaults.title
         default: return ""
         }
     }
@@ -146,24 +149,25 @@ extension Settings {
 
     static func keyedStringValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
-        forKey key: CodingKeys
+        forKey key: CodingKeys,
+        defaults: Defaults
     ) -> String {
-        if container == nil { return stringDefault(key) }
-        return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? stringDefault(key)
+        if container == nil { return stringDefault(key, defaults) }
+        return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? stringDefault(key, defaults)
     }
 
     /// Return the integer default for the key
     /// - Parameter key: Coding key for Settings
     /// - Returns: integer default value
 
-    private static func stringArrayDefault(_ key: CodingKeys) -> [String] {
+    private static func stringArrayDefault(_ key: CodingKeys, _ defaults: Defaults) -> [String] {
         switch key {
-        case .colours: return Defaults.colours
-        case .cssClasses: return Defaults.cssClasses
-        case .cssExtras: return Defaults.cssExtras
-        case .dashes: return Defaults.dashes
-        case .names: return Defaults.names
-        case .shapes: return Defaults.shapes
+        case .colours: return defaults.colours
+        case .cssClasses: return defaults.cssClasses
+        case .cssExtras: return defaults.cssExtras
+        case .dashes: return defaults.dashes
+        case .names: return defaults.names
+        case .shapes: return defaults.shapes
         default: return []
         }
     }
@@ -177,11 +181,12 @@ extension Settings {
 
     static func keyedStringArray(
         from container: KeyedDecodingContainer<CodingKeys>?,
-        forKey key: CodingKeys
+        forKey key: CodingKeys,
+        defaults: Defaults
     ) -> [String] {
         var values: [String] = []
         var arrayContainer = try? container?.nestedUnkeyedContainer(forKey: key)
-        if arrayContainer == nil { return stringArrayDefault(key) }
+        if arrayContainer == nil { return stringArrayDefault(key, defaults) }
         while !arrayContainer!.isAtEnd {
             values.append((try? arrayContainer?.decode(String.self)) ?? "")
         }

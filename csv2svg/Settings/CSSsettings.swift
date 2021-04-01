@@ -36,17 +36,17 @@ extension Settings {
     /// - Parameter container: JSON container
     /// - Returns: css object
 
-    static func jsonCSS(from container: KeyedDecodingContainer<CodingKeys>?) -> CSS {
+    static func jsonCSS(from container: KeyedDecodingContainer<CodingKeys>?, defaults: Defaults) -> CSS {
         return CSS(
-            backgroundColour: keyedStringValue(from: container, forKey: .backgroundColour),
-            opacity: keyedDoubleValue(from: container, forKey: .opacity),
-            bold: keyedBoolValue(from: container, forKey: .bold),
-            fontFamily: keyedStringValue(from: container, forKey: .fontFamily),
-            italic: keyedBoolValue(from: container, forKey: .italic),
-            strokeWidth: keyedDoubleValue(from: container, forKey: .strokeWidth),
-            extras: keyedStringArray(from: container, forKey: .cssExtras),
-            id: keyedStringValue(from: container, forKey: .cssID),
-            include: keyedStringValue(from: container, forKey: .cssInclude)
+            backgroundColour: keyedStringValue(from: container, forKey: .backgroundColour, defaults: defaults),
+            opacity: keyedDoubleValue(from: container, forKey: .opacity, defaults: defaults),
+            bold: keyedBoolValue(from: container, forKey: .bold, defaults: defaults),
+            fontFamily: keyedStringValue(from: container, forKey: .fontFamily, defaults: defaults),
+            italic: keyedBoolValue(from: container, forKey: .italic, defaults: defaults),
+            strokeWidth: keyedDoubleValue(from: container, forKey: .strokeWidth, defaults: defaults),
+            extras: keyedStringArray(from: container, forKey: .cssExtras, defaults: defaults),
+            id: keyedStringValue(from: container, forKey: .cssID, defaults: defaults),
+            include: keyedStringValue(from: container, forKey: .cssInclude, defaults: defaults)
         )
     }
 }

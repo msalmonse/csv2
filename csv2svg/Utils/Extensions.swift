@@ -88,4 +88,6 @@ extension String {
 extension Array {
     /// Just a little sugar
     var notEmpty: Bool { !self.isEmpty }
+
+    func hasIndex(_ i: Int) -> Bool { self.indices.contains(i) }
 }

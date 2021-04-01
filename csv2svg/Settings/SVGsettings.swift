@@ -36,19 +36,19 @@ extension Settings {
     /// - Parameter container: JSON container
     /// - Returns: SVG object
 
-    static func jsonSVG(from container: KeyedDecodingContainer<CodingKeys>?) -> SVG {
+    static func jsonSVG(from container: KeyedDecodingContainer<CodingKeys>?, defaults: Defaults) -> SVG {
         return SVG(
-            legends: keyedBoolValue(from: container, forKey: .legends),
-            logx: keyedBoolValue(from: container, forKey: .logx),
-            logy: keyedBoolValue(from: container, forKey: .logy),
-            logoHeight: keyedDoubleValue(from: container, forKey: .logoHeight),
-            logoURL: keyedStringValue(from: container, forKey: .logoURL),
-            logoWidth: keyedDoubleValue(from: container, forKey: .logoHeight),
-            include: keyedStringValue(from: container, forKey: .svgInclude),
-            subTitle: keyedStringValue(from: container, forKey: .subTitle),
-            title: keyedStringValue(from: container, forKey: .title),
-            xTitle: keyedStringValue(from: container, forKey: .xTitle),
-            yTitle: keyedStringValue(from: container, forKey: .yTitle)
+            legends: keyedBoolValue(from: container, forKey: .legends, defaults: defaults),
+            logx: keyedBoolValue(from: container, forKey: .logx, defaults: defaults),
+            logy: keyedBoolValue(from: container, forKey: .logy, defaults: defaults),
+            logoHeight: keyedDoubleValue(from: container, forKey: .logoHeight, defaults: defaults),
+            logoURL: keyedStringValue(from: container, forKey: .logoURL, defaults: defaults),
+            logoWidth: keyedDoubleValue(from: container, forKey: .logoHeight, defaults: defaults),
+            include: keyedStringValue(from: container, forKey: .svgInclude, defaults: defaults),
+            subTitle: keyedStringValue(from: container, forKey: .subTitle, defaults: defaults),
+            title: keyedStringValue(from: container, forKey: .title, defaults: defaults),
+            xTitle: keyedStringValue(from: container, forKey: .xTitle, defaults: defaults),
+            yTitle: keyedStringValue(from: container, forKey: .yTitle, defaults: defaults)
         )
     }
 }

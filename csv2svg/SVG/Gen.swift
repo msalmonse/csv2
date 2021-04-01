@@ -94,13 +94,13 @@ extension SVG {
     /// Generate an SVG to display a shape
     /// - Parameters:
     ///   - name: shape name
-    ///   - stroke: stroke colour
+    ///   - colour: stroke colour
     /// - Returns: SVG as an array of strings
 
-    func shapeGen(name: String, stroke: String) -> [String] {
+    func shapeGen(name: String, colour: String) -> [String] {
         var result: [String] = [ xmlTag, svgTag ]
         if let shape = Shape.lookup(name) {
-            let shapeCss = "\(hashID) path.shape { stroke: \(stroke) }"
+            let shapeCss = "\(hashID) path.shape { stroke: \(colour) }"
             result.append(cssStyle(extra: shapeCss))
             let path = [
                 PathCommand.moveTo(x: width/2.0, y: height/2.0),

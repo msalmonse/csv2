@@ -8,7 +8,7 @@
 import Foundation
 
 var opts = Options.parseOrExit()
-opts.setDefaults()
+let defaults = opts.defaults()
 
 if opts.debug != 0 {
     print(opts, to: &standardError)
@@ -26,14 +26,13 @@ if opts.version {
 if opts.shapenames {
     print(SVG.Shape.allNames())
 } else if opts.show.notEmpty {
-    let colour = opts.colours.notEmpty ? opts.colours[0] : "black"
-    svgOutput(showShape(shape: opts.show, stroke: colour), to: opts.svgName)
+    svgOutput(showShape(shape: opts.show, defaults: defaults), to: opts.svgName)
 } else if opts.bitmap.notEmpty {
     print(bitmap(opts.bitmap))
 } else if opts.colourslist {
-    svgOutput(showColoursList(), to: opts.svgName)
+    svgOutput(showColoursList(defaults), to: opts.svgName)
 } else if opts.dasheslist {
-    svgOutput(showDashesList(), to: opts.svgName)
+    svgOutput(showDashesList(defaults), to: opts.svgName)
 } else {
     // use a csvName of - to mean use stdin
     if opts.csvName == "-" { opts.csvName = nil }

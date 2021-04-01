@@ -9,6 +9,8 @@ import XCTest
 import ArgumentParser
 @testable import csv2svg
 
+let defaults = Defaults.global
+
 class csv2svgTests: XCTestCase {
 
     func testSettings() throws {
@@ -32,7 +34,6 @@ class csv2svgTests: XCTestCase {
         XCTAssertTrue(settings!.inRows)
         XCTAssertTrue(settings!.csv.rowGrouping)
 
-        Defaults.rowGrouping = true
         settings = try? Settings.load(settingsJSON(true))
         XCTAssertNotNil(settings)
         XCTAssertTrue(settings!.inColumns)

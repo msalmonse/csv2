@@ -50,21 +50,21 @@ extension Settings {
     /// - Parameter container: JSON container
     /// - Returns: Plot object
 
-    static func jsonPlot(from container: KeyedDecodingContainer<CodingKeys>?) -> Plot {
+    static func jsonPlot(from container: KeyedDecodingContainer<CodingKeys>?, _ defaults: Defaults) -> Plot {
         return Plot(
-            dashedLines: keyedIntValue(from: container, forKey: .dashedLines),
-            include: keyedIntValue(from: container, forKey: .include),
-            scatterPlots: keyedIntValue(from: container, forKey: .scatterPlots),
-            showDataPoints: keyedIntValue(from: container, forKey: .showDataPoints),
-            dataPointDistance: keyedDoubleValue(from: container, forKey: .dataPointDistance),
-            shapes: keyedStringArray(from: container, forKey: .shapes),
-            dashes: keyedStringArray(from: container, forKey: .dashes),
-            cssClasses: keyedStringArray(from: container, forKey: .cssClasses),
-            colours: keyedStringArray(from: container, forKey: .colours),
-            names: keyedStringArray(from: container, forKey: .names),
-            black: keyedBoolValue(from: container, forKey: .black),
-            smooth: keyedDoubleValue(from: container, forKey: .smooth),
-            sortx: keyedBoolValue(from: container, forKey: .sortx)
+            dashedLines: keyedIntValue(from: container, forKey: .dashedLines, defaults: defaults),
+            include: keyedIntValue(from: container, forKey: .include, defaults: defaults),
+            scatterPlots: keyedIntValue(from: container, forKey: .scatterPlots, defaults: defaults),
+            showDataPoints: keyedIntValue(from: container, forKey: .showDataPoints, defaults: defaults),
+            dataPointDistance: keyedDoubleValue(from: container, forKey: .dataPointDistance, defaults: defaults),
+            shapes: keyedStringArray(from: container, forKey: .shapes, defaults: defaults),
+            dashes: keyedStringArray(from: container, forKey: .dashes, defaults: defaults),
+            cssClasses: keyedStringArray(from: container, forKey: .cssClasses, defaults: defaults),
+            colours: keyedStringArray(from: container, forKey: .colours, defaults: defaults),
+            names: keyedStringArray(from: container, forKey: .names, defaults: defaults),
+            black: keyedBoolValue(from: container, forKey: .black, defaults: defaults),
+            smooth: keyedDoubleValue(from: container, forKey: .smooth, defaults: defaults),
+            sortx: keyedBoolValue(from: container, forKey: .sortx, defaults: defaults)
         )
     }
 }

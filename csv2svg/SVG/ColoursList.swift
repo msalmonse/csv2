@@ -8,7 +8,7 @@
 import Foundation
 
 extension SVG {
-    func coloursListGen(_ step: Double) -> [String] {
+    func coloursListGen(_ step: Double, _ defaults: Defaults) -> [String] {
         let xText = width/2.0
         let wRect = width/3.0
         let xRect = width/8.0
@@ -23,7 +23,7 @@ extension SVG {
 
         var result: [String] = [ xmlTag, svgTag, cssStyle(extra: coloursCSS) ]
 
-        for colour in Defaults.colours + Colours.all {
+        for colour in defaults.colours + Colours.all {
             let extra = "class=\"colours\" style=\" fill: \(colour); stroke: \(colour) \""
             result.append(textTag(x: xText, y: y, text: colour, cssClass: "colours", extra: extra))
             result.append(

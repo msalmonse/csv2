@@ -44,11 +44,11 @@ class Settings: Decodable, ReflectedStringConvertible {
     required init(from decoder: Decoder) {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
-        css = Self.jsonCSS(from: container)
-        csv = Self.jsonCSV(from: container)
-        dim = Self.jsonDimensions(from: container)
-        plot = Self.jsonPlot(from: container)
-        svg = Self.jsonSVG(from: container)
+        css = Self.jsonCSS(from: container, defaults: defaults)
+        csv = Self.jsonCSV(from: container, defaults: defaults)
+        dim = Self.jsonDimensions(from: container, defaults: defaults)
+        plot = Self.jsonPlot(from: container, defaults)
+        svg = Self.jsonSVG(from: container, defaults: defaults)
     }
 
     /// Load contents of file into object

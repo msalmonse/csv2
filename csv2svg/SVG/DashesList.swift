@@ -8,8 +8,8 @@
 import Foundation
 
 extension SVG {
-    func dashesListGen(_ step: Double) -> [String] {
-        let colour = Defaults.colours.notEmpty ? Defaults.colours[0] : "black"
+    func dashesListGen(_ step: Double, _ defaults: Defaults) -> [String] {
+        let colour = defaults.colours.first ?? "black"
         let dashCSS =
             "\(hashID) path.dashes { stroke: \(colour); stroke-width: \((step/5.0).f(1)); stroke-linecap: butt }"
 
@@ -22,7 +22,7 @@ extension SVG {
 
         var result: [String] = [ xmlTag, svgTag, cssStyle(extra: dashCSS)]
 
-        for dash in Defaults.dashes + SVG.Dashes.all(width * 3.0) {
+        for dash in defaults.dashes + SVG.Dashes.all(width * 3.0) {
             y += step
             let points = [ PathCommand.moveTo(x: xLeft, y: yPath), .horizTo(x: xRight) ]
             let extra = "style=\"stroke-dasharray: \(dash)\""

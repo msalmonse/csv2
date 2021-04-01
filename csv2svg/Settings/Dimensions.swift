@@ -40,21 +40,23 @@ extension Settings {
     /// - Parameter container: JSON container
     /// - Returns: new Dimensions object
 
-    static func jsonDimensions(from container: KeyedDecodingContainer<CodingKeys>?) -> Dimensions {
+    static func jsonDimensions(
+        from container: KeyedDecodingContainer<CodingKeys>?, defaults: Defaults
+    ) -> Dimensions {
         return Dimensions(
-            height: keyedIntValue(from: container, forKey: .height),
-            width: keyedIntValue(from: container, forKey: .width),
-            reserveBottom: keyedDoubleValue(from: container, forKey: .reserveBottom),
-            reserveLeft: keyedDoubleValue(from: container, forKey: .reserveLeft),
-            reserveRight: keyedDoubleValue(from: container, forKey: .reserveRight),
-            reserveTop: keyedDoubleValue(from: container, forKey: .reserveTop),
-            baseFontSize: keyedDoubleValue(from: container, forKey: .baseFontSize),
-            xMax: keyedDoubleValue(from: container, forKey: .xMax),
-            xMin: keyedDoubleValue(from: container, forKey: .xMin),
-            yMax: keyedDoubleValue(from: container, forKey: .yMax),
-            yMin: keyedDoubleValue(from: container, forKey: .yMin),
-            xTick: keyedDoubleValue(from: container, forKey: .xTick),
-            yTick: keyedDoubleValue(from: container, forKey: .yTick)
+            height: keyedIntValue(from: container, forKey: .height, defaults: defaults),
+            width: keyedIntValue(from: container, forKey: .width, defaults: defaults),
+            reserveBottom: keyedDoubleValue(from: container, forKey: .reserveBottom, defaults: defaults),
+            reserveLeft: keyedDoubleValue(from: container, forKey: .reserveLeft, defaults: defaults),
+            reserveRight: keyedDoubleValue(from: container, forKey: .reserveRight, defaults: defaults),
+            reserveTop: keyedDoubleValue(from: container, forKey: .reserveTop, defaults: defaults),
+            baseFontSize: keyedDoubleValue(from: container, forKey: .baseFontSize, defaults: defaults),
+            xMax: keyedDoubleValue(from: container, forKey: .xMax, defaults: defaults),
+            xMin: keyedDoubleValue(from: container, forKey: .xMin, defaults: defaults),
+            yMax: keyedDoubleValue(from: container, forKey: .yMax, defaults: defaults),
+            yMin: keyedDoubleValue(from: container, forKey: .yMin, defaults: defaults),
+            xTick: keyedDoubleValue(from: container, forKey: .xTick, defaults: defaults),
+            yTick: keyedDoubleValue(from: container, forKey: .yTick, defaults: defaults)
         )
     }
 }
