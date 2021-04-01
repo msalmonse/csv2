@@ -29,15 +29,20 @@ OPTIONS:
   --index <index>         Default index row or column (default: 0)
   --italic                Set default colour to black
   --include <include>     Default rows or columns to include (default: -1)
+  --logo <logo>           Default image URL for top right corner
   --logx                  Set default for abcissa to log
   --logy                  Set default for ordinate to log
   --nameheader <nameheader>
                           Default plot name row or column (default: 1)
   --names <names>         Default list of plot names, multiple entries until the next option
+  --nocomment             Don't csv2svg comment to SVG
+  --nohover               Don't add CSS code to emphasize hovered plots
   --nolegends             Don't include plot names, colours, dashes and shapes
   --opacity <opacity>     Default index row or column (default: 1.0)
   --random <random>       Generate a random SVG with: #plots [max value [min value [-ve
                           offset]]]
+  --reserve <reserve>     Default reserved left [top [right [bottom]]] (default: 0.0, 0.0, 0.0,
+                          0.0)
   --rows                  Default to grouping data by rows
   --scattered <scattered> Default plots to show as scattered (default: 0)
   --shapes <shapes>       Default list of shapes, multiple entries until the next option
@@ -51,6 +56,7 @@ OPTIONS:
   --stroke <stroke>       Default stroke width (default: 2.0)
   --subheader <subheader> Default sub-title row or column (default: 0)
   --subtitle <subtitle>   Default sub-title
+  --svg <svg>             Default include file for svg elements
   --title <title>         Default title
   -t, --tsv               Use tabs to seperate columns
   -v, --verbose           Add extra information
