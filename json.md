@@ -89,11 +89,18 @@ If it is less than or equal to zero then the absica is 0 for the first value of 
 **Option:** `--italic`<br/>
 Use italic text.
 
+**logoHeight** (Int **64**)<br/>
+The height of the logo `<image>` element.
+
 **logoURL** (String)<br/>
 **Option:** `--logo`<br/>
-The URL of an image to include in the top right corner of the SVG. It should be 64x64 pixels.
+The URL of an image to include in the top right corner of the SVG. By default the `<image>`
+element is 64x64 but this can be changed.
 Other sized images are scaled to fit while preserving the aspect ratio and fitting the top right
 corner of the image in the top right corner of the SVG.
+
+**logoWidth** (Int **64**)<br/>
+The width of the logo `<image>` element.
 
 **logx** (Bool **false**)<br/>
 **Option:** `--logx`<br/>
