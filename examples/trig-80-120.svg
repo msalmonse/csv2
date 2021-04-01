@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg id="ID-e9a1ab" width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+<svg id="svg-ex2" width="800" height="600" xmlns="http://www.w3.org/2000/svg">
 <!--
-    Created by csv2svg: 1.25.1-34-g6cd1220 (main:482) https://github.com/msalmonse/csv2svg.git
+    Created by csv2svg: 1.26.0-2-g774e7f8 (NewDefaults:486) https://github.com/msalmonse/csv2svg.git
   -->
 <style>
-svg#ID-e9a1ab { background-color: #ffedcc }
-#ID-e9a1ab g.plotarea { opacity: 1.0 }
-#ID-e9a1ab g.plotarea path:hover { stroke-width: 5.0 }
-#ID-e9a1ab path { stroke-width: 2.0; fill: none; stroke-linecap: round }
-#ID-e9a1ab path.axes { stroke: black }
-#ID-e9a1ab path.xtick, #ID-e9a1ab path.ytick { stroke: silver; stroke-width: 1 }
-#ID-e9a1ab text.legends { font-size: 13.0px }
-#ID-e9a1ab text.legends.headline { font-size: 16.2px; font-weight: bold }
-#ID-e9a1ab text.subtitle { font-size: 15.0px; text-anchor: middle }
-#ID-e9a1ab text.title { font-size: 25.0px; text-anchor: middle }
-#ID-e9a1ab text.xlabel { font-size: 10.0px; text-anchor: middle }
-#ID-e9a1ab text.xtitle { font-size: 12.0px; text-anchor: middle }
-#ID-e9a1ab text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
-#ID-e9a1ab text.ytitle { font-size: 12.0px; text-anchor: middle; writing-mode: tb }
-#ID-e9a1ab path.plot01 { stroke: #ff0000 }
-#ID-e9a1ab text.plot01 { fill: #ff0000; stroke: #ff0000 }
-#ID-e9a1ab path.plot02 { stroke: #008000 }
-#ID-e9a1ab text.plot02 { fill: #008000; stroke: #008000 }
-#ID-e9a1ab path.plot03 { stroke: #ff00ff }
-#ID-e9a1ab text.plot03 { fill: #ff00ff; stroke: #ff00ff }
-#ID-e9a1ab path.plot04 { stroke: #0000ff }
-#ID-e9a1ab text.plot04 { fill: #0000ff; stroke: #0000ff }
-#ID-e9a1ab path.plot05 { stroke: #dc143c }
-#ID-e9a1ab text.plot05 { fill: #dc143c; stroke: #dc143c }
-#ID-e9a1ab path.plot06 { stroke: #f4a460 }
-#ID-e9a1ab text.plot06 { fill: #f4a460; stroke: #f4a460 }
-#ID-e9a1ab path.plot07 { stroke: #8b008b }
-#ID-e9a1ab text.plot07 { fill: #8b008b; stroke: #8b008b }
-#ID-e9a1ab rect.legends { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
+svg#svg-ex2 { background-color: #ffedcc }
+#svg-ex2 g.plotarea { opacity: 1.0 }
+#svg-ex2 g.plotarea path:hover { stroke-width: 5.0 }
+#svg-ex2 path { stroke-width: 2.0; fill: none; stroke-linecap: round }
+#svg-ex2 path.axes { stroke: black }
+#svg-ex2 path.xtick, #svg-ex2 path.ytick { stroke: silver; stroke-width: 1 }
+#svg-ex2 text.legends { font-size: 13.0px }
+#svg-ex2 text.legends.headline { font-size: 16.2px; font-weight: bold }
+#svg-ex2 text.subtitle { font-size: 15.0px; text-anchor: middle }
+#svg-ex2 text.title { font-size: 25.0px; text-anchor: middle }
+#svg-ex2 text.xlabel { font-size: 10.0px; text-anchor: middle }
+#svg-ex2 text.xtitle { font-size: 12.0px; text-anchor: middle }
+#svg-ex2 text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
+#svg-ex2 text.ytitle { font-size: 12.0px; text-anchor: middle; writing-mode: tb }
+#svg-ex2 path.plot01 { stroke: #ff0000 }
+#svg-ex2 text.plot01 { fill: #ff0000; stroke: #ff0000 }
+#svg-ex2 path.plot02 { stroke: #008000 }
+#svg-ex2 text.plot02 { fill: #008000; stroke: #008000 }
+#svg-ex2 path.plot03 { stroke: #ff00ff }
+#svg-ex2 text.plot03 { fill: #ff00ff; stroke: #ff00ff }
+#svg-ex2 path.plot04 { stroke: #0000ff }
+#svg-ex2 text.plot04 { fill: #0000ff; stroke: #0000ff }
+#svg-ex2 path.plot05 { stroke: #dc143c }
+#svg-ex2 text.plot05 { fill: #dc143c; stroke: #dc143c }
+#svg-ex2 path.plot06 { stroke: #f4a460 }
+#svg-ex2 text.plot06 { fill: #f4a460; stroke: #f4a460 }
+#svg-ex2 path.plot07 { stroke: #8b008b }
+#svg-ex2 text.plot07 { fill: #8b008b; stroke: #8b008b }
+#svg-ex2 rect.legends { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
 </style>
 <defs>
 <clipPath id="plotable">

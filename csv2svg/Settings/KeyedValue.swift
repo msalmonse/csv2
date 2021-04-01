@@ -9,6 +9,16 @@ import Foundation
 
 extension Settings {
 
+    /// Check to see that the default value is the same as the global default
+    /// - Parameters:
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
+    /// - Returns: true if they are not the same
+
+    private static func boolIsChanged(_ key: CodingKeys, _ defaults: Defaults) -> Bool {
+        return boolDefault(key, defaults) != boolDefault(key, Defaults.global)
+    }
+
     /// Return the boolean default for the key
     /// - Parameter key: Coding key for Settings
     /// - Returns: bool default value
@@ -39,8 +49,18 @@ extension Settings {
         forKey key: CodingKeys,
         defaults: Defaults
     ) -> Bool {
-        if container == nil { return boolDefault(key, defaults) }
+        if container == nil || boolIsChanged(key, defaults) { return boolDefault(key, defaults) }
         return (try? container!.decodeIfPresent(Bool.self, forKey: key)) ?? boolDefault(key, defaults)
+    }
+
+    /// Check to see that the default value is the same as the global default
+    /// - Parameters:
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
+    /// - Returns: true if they are the same
+
+    private static func doubleIsChanged(_ key: CodingKeys, _ defaults: Defaults) -> Bool {
+        return doubleDefault(key, defaults) != doubleDefault(key, Defaults.global)
     }
 
     /// Return the integer default for the key
@@ -81,8 +101,18 @@ extension Settings {
         forKey key: CodingKeys,
         defaults: Defaults
     ) -> Double {
-        if container == nil { return doubleDefault(key, defaults) }
+        if container == nil || doubleIsChanged(key, defaults) { return doubleDefault(key, defaults) }
         return (try? container!.decodeIfPresent(Double.self, forKey: key)) ?? doubleDefault(key, defaults)
+    }
+
+    /// Check to see that the default value is the same as the global default
+    /// - Parameters:
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
+    /// - Returns: true if they are not the same
+
+    private static func intIsChanged(_ key: CodingKeys, _ defaults: Defaults) -> Bool {
+        return intDefault(key, defaults) != intDefault(key, Defaults.global)
     }
 
     /// Return the integer default for the key
@@ -118,8 +148,18 @@ extension Settings {
         forKey key: CodingKeys,
         defaults: Defaults
     ) -> Int {
-        if container == nil { return intDefault(key, defaults) }
+        if container == nil || intIsChanged(key, defaults) { return intDefault(key, defaults) }
         return (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? intDefault(key, defaults)
+    }
+
+    /// Check to see that the default value is the same as the global default
+    /// - Parameters:
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
+    /// - Returns: true if they are not the same
+
+    private static func stringIsChanged(_ key: CodingKeys, _ defaults: Defaults) -> Bool {
+        return stringDefault(key, defaults) != stringDefault(key, Defaults.global)
     }
 
     /// Return the string default for the key
@@ -152,8 +192,18 @@ extension Settings {
         forKey key: CodingKeys,
         defaults: Defaults
     ) -> String {
-        if container == nil { return stringDefault(key, defaults) }
+        if container == nil || stringIsChanged(key, defaults) { return stringDefault(key, defaults) }
         return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? stringDefault(key, defaults)
+    }
+
+    /// Check to see that the default value is the same as the global default
+    /// - Parameters:
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
+    /// - Returns: true if they are not the same
+
+    private static func stringArrayIsChanged(_ key: CodingKeys, _ defaults: Defaults) -> Bool {
+        return stringArrayDefault(key, defaults) != stringArrayDefault(key, Defaults.global)
     }
 
     /// Return the integer default for the key
@@ -184,6 +234,7 @@ extension Settings {
         forKey key: CodingKeys,
         defaults: Defaults
     ) -> [String] {
+        if stringArrayIsChanged(key, defaults) { return stringArrayDefault(key, defaults) }
         var values: [String] = []
         var arrayContainer = try? container?.nestedUnkeyedContainer(forKey: key)
         if arrayContainer == nil { return stringArrayDefault(key, defaults) }
