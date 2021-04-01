@@ -51,6 +51,10 @@ extension SVG {
         return result
     }
 
+    /// Include SVG elements in SVG
+    /// - Parameter name: file name to include
+    /// - Returns: Text to include
+
     func svgInclude(_ name: String) -> String {
         if let url = SearchPath.search(name), let include = try? String(contentsOf: url) {
             return include
