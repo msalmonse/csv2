@@ -52,15 +52,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--show circleStar"
-            isEnabled = "YES">
+            argument = "--help"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "${PROJECT_DIR}/data/trig.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/trig.json"
+            argument = "${PROJECT_DIR}/examples/layout.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

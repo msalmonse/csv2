@@ -1,0 +1,28 @@
+{
+	"backgroundColour": "#ffedcc",
+	"cssExtras": [
+	    "path.layout { stroke: red; fill: none; stroke-width: 3px }",
+	    "text.layout { stroke: red; fill: red; font-size: 20px }"
+	 ],
+	"cssID": "layout",
+	"dashedLines": 32,
+	"fontFamily": "Helvetica",
+	"headerRows": 2,
+	"include": 120,
+	"index": 1,
+	"logoURL": "../data/logo.svg",
+	"reserveBottom": 50,
+	"reserveTop": 50,
+	"scatterPlots": 8,
+	"showDataPoints": 16,
+	"shapes": [ "", "", "", "cross", "shuriken" ],
+	"subTitleHeader": 2,
+	"svgInclude": "layout.inc",
+	"title": "Trigonometric Functions",
+	"xTitle": "Degrees",
+	"yTitle": "Function Value",
+	"yMin": -1.5,
+	"yMax": 1.5,
+	"xTick": 15,
+	"yTick": 0.25
+}

@@ -1,5 +1,6 @@
 CSV2SVG = test/csv2svg
 EXAMPLES =\
+	examples/layout.svg\
 	examples/trig.svg\
 	examples/trig-2plots.svg\
 	examples/trig-points.svg\
@@ -54,3 +55,7 @@ examples/trig-2plots.svg: data/trig.csv examples/trig.json $(CSV2SVG)
 
 examples/trig-points.svg: data/trig.csv examples/trig.json $(CSV2SVG)
 	-@ $(CSV2SVG) --nocomment --cssid=svg-ex4 --showpoints=8 --scattered=16 data/trig.csv examples/trig.json $@
+
+examples/layout.svg: data/trig.csv examples/layout.json examples/layout.inc
+	-@ $(CSV2SVG) data/trig.csv examples/layout.json $@
+
