@@ -38,7 +38,7 @@ extension SVG {
     }
 
     private func cssIncludes(_ result: inout [String]) {
-        if settings.css.extras.notEmpty {
+        if settings.css.extras.hasEntries {
             result.append("<style>\n" + settings.css.extras.joined(separator: "\n") + "</style>\n")
         }
 
@@ -73,10 +73,10 @@ extension SVG {
         )
 
         var textCSS: [String] = []
-        if settings.css.fontFamily.notEmpty { textCSS.append("font-family: \(settings.css.fontFamily)") }
+        if settings.css.fontFamily.hasContent { textCSS.append("font-family: \(settings.css.fontFamily)") }
         if settings.css.bold { textCSS.append("font-weight: bold") }
         if settings.css.italic { textCSS.append("font-style: italic") }
-        if textCSS.notEmpty { result.append("\(id) text { " + textCSS.joined(separator: ";") + " }") }
+        if textCSS.hasEntries { result.append("\(id) text { " + textCSS.joined(separator: ";") + " }") }
 
         // Font settings
         cssFonts(&result, id: id)
@@ -88,7 +88,7 @@ extension SVG {
             "\(id) rect.legends { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }"
         )
 
-        if extra.notEmpty { result.append(extra) }
+        if extra.hasContent { result.append(extra) }
 
         result.append("</style>")
 

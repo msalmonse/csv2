@@ -17,7 +17,7 @@ extension SVG {
     /// - Returns: column header
 
     static private func columnHeader(_ column: Int, csv: CSV?, _ header: Int) -> String {
-        if csv != nil && csv!.data[header].hasIndex(column) && csv!.data[header][column].notEmpty {
+        if csv != nil && csv!.data[header].hasIndex(column) && csv!.data[header][column].hasContent {
                 return csv!.data[header][column]
         }
         return String(format: "Column %d", column + 1)
@@ -31,7 +31,7 @@ extension SVG {
     /// - Returns: row header
 
     static private func rowHeader(_ row: Int, csv: CSV?, header: Int) -> String {
-        if csv != nil && row >= 0 && row < csv!.rowCt && csv!.data[row][header].notEmpty {
+        if csv != nil && row >= 0 && row < csv!.rowCt && csv!.data[row][header].hasContent {
             return csv!.data[row][header]
         }
         return String(format: "Row %d", row + 1)

@@ -75,18 +75,18 @@ extension SVG {
         if settings.dim.xTick >= 0 { result.append(xTick(ts)) }
         if settings.dim.yTick >= 0 { result.append(yTick(ts)) }
         result.append(axes(ts))
-        if settings.svg.logoURL.notEmpty { result.append(logoImage()) }
+        if settings.svg.logoURL.hasContent { result.append(logoImage()) }
         result.append(contentsOf: lineGroup(ts))
-        if settings.svg.xTitle.notEmpty {
+        if settings.svg.xTitle.hasContent {
             result.append(xTitleText(settings.svg.xTitle, x: plotPlane.hMid, y: positions.xTitleY))
         }
-        if settings.svg.yTitle.notEmpty {
+        if settings.svg.yTitle.hasContent {
             result.append(yTitleText(settings.svg.yTitle, x: positions.yTitleX, y: plotPlane.vMid))
         }
         if settings.svg.legends { result.append(legend()) }
-        if subTitle.notEmpty { result.append(subTitleText()) }
-        if settings.svg.title.notEmpty { result.append(titleText()) }
-        if settings.svg.include.notEmpty { result.append(svgInclude(settings.svg.include))}
+        if subTitle.hasContent { result.append(subTitleText()) }
+        if settings.svg.title.hasContent { result.append(titleText()) }
+        if settings.svg.include.hasContent { result.append(svgInclude(settings.svg.include))}
         result.append(svgTagEnd)
 
         return result

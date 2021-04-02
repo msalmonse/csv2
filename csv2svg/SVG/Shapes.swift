@@ -43,6 +43,7 @@ extension SVG {
             }
         }
 
+        /// Lookup table for shapes
         static let namedShapes = [
             "blade":        Self.blade,
             "circle":       Self.circle,
@@ -55,6 +56,7 @@ extension SVG {
             "triangle":     Self.triangle
         ]
 
+        /// Sequential table for shapes
         static let numberedShapes = [
             Self.blade,
             Self.circle,
