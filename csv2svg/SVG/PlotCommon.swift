@@ -145,7 +145,7 @@ extension SVG {
             limit: limit
         )
         var yɑ = Double.infinity
-        let plotShape = props.shape?.pathCommand(w: shapeWidth) ?? .circle(r: shapeWidth)
+        let plotShape = props.shape?.pathCommand(w: shapeWidth) ?? .circleStar(w: shapeWidth)
 
         for i in settings.headers..<xiValues.count {
             let x = xiValues[i].x

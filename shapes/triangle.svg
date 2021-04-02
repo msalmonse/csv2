@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg id="ID-752b35" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+<svg id="ID-89272f" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
 <style>
-svg#ID-752b35 { background-color: transparent }
-#ID-752b35 g.plotarea { opacity: 1.0 }
-#ID-752b35 g.plotarea path:hover { stroke-width: 5.0 }
-#ID-752b35 path { stroke-width: 2.0; fill: none; stroke-linecap: round }
-#ID-752b35 path.axes { stroke: black }
-#ID-752b35 path.xtick, #ID-752b35 path.ytick { stroke: silver; stroke-width: 1 }
-#ID-752b35 text.legends { font-size: 13.0px }
-#ID-752b35 text.legends.headline { font-size: 16.2px; font-weight: bold }
-#ID-752b35 text.subtitle { font-size: 15.0px; text-anchor: middle }
-#ID-752b35 text.title { font-size: 25.0px; text-anchor: middle }
-#ID-752b35 text.xlabel { font-size: 10.0px; text-anchor: middle }
-#ID-752b35 text.xtitle { font-size: 12.0px; text-anchor: middle }
-#ID-752b35 text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
-#ID-752b35 text.ytitle { font-size: 12.0px; text-anchor: middle; writing-mode: tb }
-#ID-752b35 rect.legends { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
-#ID-752b35 path.shape { stroke: green }
+svg#ID-89272f { background-color: transparent }
+#ID-89272f g.plotarea { opacity: 1.0 }
+#ID-89272f g.plotarea path:hover { stroke-width: 5.0 }
+#ID-89272f path { stroke-width: 2.0; fill: none; stroke-linecap: round }
+#ID-89272f path.axes { stroke: black }
+#ID-89272f path.xtick, #ID-89272f path.ytick { stroke: silver; stroke-width: 1 }
+#ID-89272f text.legends { font-size: 13.0px }
+#ID-89272f text.legends.headline { font-size: 16.2px; font-weight: bold }
+#ID-89272f text.subtitle { font-size: 15.0px; text-anchor: middle }
+#ID-89272f text.title { font-size: 25.0px; text-anchor: middle }
+#ID-89272f text.xlabel { font-size: 10.0px; text-anchor: middle }
+#ID-89272f text.xtitle { font-size: 12.0px; text-anchor: middle }
+#ID-89272f text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
+#ID-89272f text.ytitle { font-size: 12.0px; text-anchor: middle; writing-mode: tb }
+#ID-89272f rect.legends { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
+#ID-89272f path.shape { stroke: green }
 </style>
 <path class="shape" d=" M 6.0,6.0 m 0.0,-3.5 l 3.5,7.0 h -7.0 l 3.5,-7.0 l 1.8,3.5 m -1.8,0.0 " />
 </svg>

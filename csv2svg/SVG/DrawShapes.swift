@@ -42,6 +42,14 @@ extension SVG.PathCommand {
         ].map { $0.command() }.joined(separator: " ")
     }
 
+    /// Generate a stared circle
+    /// - Parameter r: the radius
+    /// - Returns: path string for a circle
+
+    func drawCircleStar(w: Double) -> String {
+        return drawStar(w: w) + drawCircle(r: w)
+    }
+
     /// Generate a cross shape
     /// - Parameter w: the width
     /// - Returns: path string for a cross
