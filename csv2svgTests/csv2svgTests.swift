@@ -148,6 +148,7 @@ class csv2svgTests: XCTestCase {
         let start = Point(x: 100, y: 500)
         let end = Point(x: 40, y: 420)
         XCTAssertEqual(start.partWay(end, part: 0.4), Point(x: 76, y: 468))
+        XCTAssertEqual(end.partWay(start, part: 0.6), Point(x: 76, y: 468))
     }
 
     func testSvgTransScale() {

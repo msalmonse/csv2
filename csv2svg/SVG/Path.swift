@@ -47,6 +47,8 @@ extension SVG {
             horizTo(x: Double),                         // Draw line horizontally to x
             lineBy(dx: Double, dy: Double),             // Draw line by dx,dy
             lineTo(x: Double, y: Double),               // Draw line to x,y
+            qBezierTo(x: Double, y: Double, cx: Double, cy: Double),
+                                            // Draw quadratic bezier curve to x,y with control point cx, cy
             shuriken(w: Double),                        // Draw shuriken
             square(w: Double),                          // Draw a square with sides 2 * w
             star(w: Double),                            // Draw a star of width 2 * w
@@ -72,6 +74,8 @@ extension SVG {
             case .horizTo(let x): return "H \(x.f(1))"
             case .lineBy(let dx, let dy): return "l \(dx.f(1)),\(dy.f(1))"
             case .lineTo(let x, let y): return "L \(x.f(1)),\(y.f(1))"
+            case .qBezierTo(let x, let y, let cx, let cy):
+                return "Q \(cx.f(1)),\(cy.f(1)), \(x.f(1)),\(y.f(1))"
             case .shuriken(let w): return drawShuriken(w: w)
             case .square(let w): return drawSquare(w: w)
             case .star(let w): return drawStar(w: w)

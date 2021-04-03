@@ -9,6 +9,7 @@ import Foundation
 
 extension SVG {
     struct PathProperties {
+        var bezier: Double = 0.0
         var colour: String?
         var cssClass: String?
         var dash: String?

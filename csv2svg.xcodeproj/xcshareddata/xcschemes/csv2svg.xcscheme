@@ -52,15 +52,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--help"
-            isEnabled = "NO">
+            argument = "--bezier .25"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "${PROJECT_DIR}/data/trig.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/examples/layout.json"
+            argument = "${PROJECT_DIR}/data/trig.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

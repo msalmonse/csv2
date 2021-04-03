@@ -125,6 +125,7 @@ extension SVG {
     ///   - settings: settings
     ///   - ct: number of plots
     ///   - props: properties list
+
     static func plotFlags(
         _ settings: Settings,
         _ ct: Int,
@@ -137,5 +138,7 @@ extension SVG {
             props[i].pointed = settings.plot.showDataPoints &== mask
             props[i].scattered = settings.plot.scatterPlots &== mask
         }
+        // Not really a flag
+        for i in props.indices { props[i].bezier = settings.plot.bezier }
     }
 }

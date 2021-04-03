@@ -59,6 +59,7 @@ extension SVG {
         func plotOne(
             _ pos: Point,
             clipped: Bool,
+            nextPlotPoint: Point?,
             plotShape: PathCommand
         ) {
             if !clipped {
@@ -79,7 +80,15 @@ extension SVG {
                     prevDataPoint = pos
                 }
             case .moved, .online:
-                pathPoints.append(.lineTo(x: pos.x, y: pos.y))
+                if props.bezier == 0.0 || nextPlotPoint == nil {
+                    pathPoints.append(.lineTo(x: pos.x, y: pos.y))
+                } else {
+                    // calculate the start of the quadratic bézier curve
+                    let qStart = pos.partWay(prevPlotPoint, part: props.bezier)
+                    let qEnd = pos.partWay(nextPlotPoint!, part: props.bezier)
+                    pathPoints.append(.lineTo(x: qStart.x, y: qStart.y))
+                    pathPoints.append(.qBezierTo(x: qEnd.x, y: qEnd.y, cx: pos.x, cy: pos.y))
+                }
                 state = clipped ? .clipped : .online
                 // Data point?
                 if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
@@ -174,7 +183,9 @@ extension SVG {
                     yɑ = pos!.y * settings.plot.smooth
                 }
                 let (pos, clipped) = posClip(ts.pos(pos!))
-                state.plotOne(pos, clipped: clipped, plotShape: plotShape)
+                var nextPos = xypos(i + 1)
+                if nextPos != nil { (nextPos, _) = posClip(ts.pos(nextPos!)) }
+                state.plotOne(pos, clipped: clipped, nextPlotPoint: nextPos, plotShape: plotShape)
             }
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
