@@ -18,7 +18,9 @@ extension SVG {
 
     private class PlotCommonState {
         var pathPoints: [PathCommand] = []
-        var lastPos = Point.inf
+        var shapePoints: [PathCommand] = []
+        var prevDataPoint = Point.inf
+        var prevPlotPoint = Point.inf
         var state: PlotState
         let props: PathProperties
 
@@ -42,7 +44,7 @@ extension SVG {
             switch state {
             case .moved:
                 // single data point so mark it
-                if !props.pointed { pathPoints.append(plotShape) }
+                if !props.pointed { shapePoints.append(plotShape) }
                 state = .move
             case .scatter, .clipped2: break
             default: state = .move
@@ -69,19 +71,21 @@ extension SVG {
             switch state {
             case .move:
                 pathPoints.append(.moveTo(x: pos.x, y: pos.y))
+                shapePoints.append(.moveTo(x: pos.x, y: pos.y))
                 state = .moved
                 // Data point?
-                if !clipped && props.pointed && !pos.close(lastPos, limit: limit) {
-                    pathPoints.append(plotShape)
-                    lastPos = pos
+                if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
+                    shapePoints.append(plotShape)
+                    prevDataPoint = pos
                 }
             case .moved, .online:
                 pathPoints.append(.lineTo(x: pos.x, y: pos.y))
                 state = clipped ? .clipped : .online
                 // Data point?
-                if !clipped && props.pointed && !pos.close(lastPos, limit: limit) {
-                    pathPoints.append(plotShape)
-                    lastPos = pos
+                if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
+                    shapePoints.append(.moveTo(x: pos.x, y: pos.y))
+                    shapePoints.append(plotShape)
+                    prevDataPoint = pos
                 }
             case .clipped:
                 // Draw line even if previously clipped but not if clipped now
@@ -92,19 +96,21 @@ extension SVG {
                     state = clipped ? .clipped2 : .online
                 }
                 // Data point?
-                if !clipped && props.pointed && !pos.close(lastPos, limit: limit) {
-                    pathPoints.append(plotShape)
-                    lastPos = pos
+                if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
+                    shapePoints.append(.moveTo(x: pos.x, y: pos.y))
+                    shapePoints.append(plotShape)
+                    prevDataPoint = pos
                 }
             case .scatter:
                 if !clipped {
-                    pathPoints.append(.moveTo(x: pos.x, y: pos.y))
-                    pathPoints.append(plotShape)
+                    shapePoints.append(.moveTo(x: pos.x, y: pos.y))
+                    shapePoints.append(plotShape)
                 }
             case .clipped2:
                 // Ignore all data till we are not clipped, just move
                 pathPoints.append(.moveTo(x: pos.x, y: pos.y))
             }
+            prevPlotPoint = pos
         }
     }
 
@@ -147,22 +153,31 @@ extension SVG {
         var yɑ = Double.infinity
         let plotShape = props.shape?.pathCommand(w: shapeWidth) ?? .circleStar(w: shapeWidth)
 
-        for i in settings.headers..<xiValues.count {
-            let x = xiValues[i].x
+        func xypos(_ i: Int) -> Point? {
+            guard xiValues.hasIndex(i) else { return nil }
+            guard let x = xiValues[i].x else { return nil }
             let j = xiValues[i].i
-            var y = yValues.hasIndex(j) ? yValues[j] : nil
-            if x == nil ||  y == nil {
+            guard yValues.hasIndex(j), let y = yValues[j] else { return nil }
+            return Point(x: x, y: y)
+        }
+
+        for i in settings.headers..<xiValues.count {
+            var pos = xypos(i)
+            if pos == nil {
                 state.nilPlot(plotShape)
             } else {
                 if settings.plot.smooth > 0.0 {
-                    if yɑ != Double.infinity { y = (1 - settings.plot.smooth) * y! + yɑ}
-                    yɑ = y! * settings.plot.smooth
+                    // Use exponential moving average
+                    if yɑ != Double.infinity {
+                        pos = Point(x: pos!.x, y: (1 - settings.plot.smooth) * pos!.y + yɑ)
+                    }
+                    yɑ = pos!.y * settings.plot.smooth
                 }
-                let (pos, clipped) = posClip(ts.pos(x: x!, y: y!))
+                let (pos, clipped) = posClip(ts.pos(pos!))
                 state.plotOne(pos, clipped: clipped, plotShape: plotShape)
             }
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
-        return Self.path(state.pathPoints, cssClass: props.cssClass!)
+        return Self.path(state.pathPoints + state.shapePoints, cssClass: props.cssClass!)
     }
 }

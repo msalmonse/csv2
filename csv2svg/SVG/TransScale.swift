@@ -53,12 +53,11 @@ extension SVG {
 
         /// Calculate the position on the svg plane from the data plane
         /// - Parameters
-        ///     - x: x value
-        ///     - y: y value
+        ///     - pt: x and y values
         /// - Returns: x, y point
 
-        func pos(x: Double, y: Double) -> Point {
-            return Point(x: xpos(x), y: ypos(y))
+        func pos(_ pt: Point) -> Point {
+            return Point(x: xpos(pt.x), y: ypos(pt.y))
         }
 
         /// Calculate the x position on the svg plane from the data plane
