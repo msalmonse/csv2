@@ -72,6 +72,7 @@ extension Settings {
     private static func doubleDefault(_ key: CodingKeys, _ defaults: Defaults) -> Double {
         switch key {
         case .baseFontSize: return defaults.baseFontSize
+        case .bezier: return defaults.bezier
         case .dataPointDistance: return defaults.dataPointDistance
         case .logoHeight: return defaults.logoHeight
         case .logoWidth: return defaults.logoWidth

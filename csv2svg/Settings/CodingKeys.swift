@@ -11,6 +11,7 @@ extension Settings {
     enum CodingKeys: CodingKey {
         case backgroundColour
         case baseFontSize
+        case bezier
         case black
         case bold
         case colours

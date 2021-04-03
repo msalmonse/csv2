@@ -39,6 +39,9 @@ extension Settings {
         // Force unassigned colours to black
         let black: Bool
 
+        // use bezier curves to draw curves
+        let bezier: Double
+
         // Smooth plots, 0.0 means no smoothing
         let smooth: Double
 
@@ -63,6 +66,7 @@ extension Settings {
             colours: keyedStringArray(from: container, forKey: .colours, defaults: defaults),
             names: keyedStringArray(from: container, forKey: .names, defaults: defaults),
             black: keyedBoolValue(from: container, forKey: .black, defaults: defaults),
+            bezier: keyedDoubleValue(from: container, forKey: .bezier, defaults: defaults),
             smooth: keyedDoubleValue(from: container, forKey: .smooth, defaults: defaults),
             sortx: keyedBoolValue(from: container, forKey: .sortx, defaults: defaults)
         )

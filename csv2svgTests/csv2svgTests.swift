@@ -144,9 +144,15 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(path, pathTag)
     }
 
+    func testPoint() {
+        let start = Point(x: 100, y: 500)
+        let end = Point(x: 40, y: 420)
+        XCTAssertEqual(start.partWay(end, part: 0.4), Point(x: 76, y: 468))
+    }
+
     func testSvgTransScale() {
-        let from = SVG.Plane(top: 1000, bottom: 0, left: -1000, right: 1000)
-        let to = SVG.Plane(top: 0, bottom: 1000, left: 0, right: 1000)
+        let from = Plane(top: 1000, bottom: 0, left: -1000, right: 1000)
+        let to = Plane(top: 0, bottom: 1000, left: 0, right: 1000)
         let ts = SVG.TransScale(from: from, to: to)
 
         XCTAssertEqual(ts.xpos(0), 500)
@@ -158,8 +164,8 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(ts.xpos(1000), 1000)
         XCTAssertEqual(ts.ypos(1000), 0)
 
-        let fromLog = SVG.Plane(top: 10000, bottom: 1, left: 10, right: 100000)
-        let toLog = SVG.Plane(top: 0, bottom: 1000, left: 0, right: 1000)
+        let fromLog = Plane(top: 10000, bottom: 1, left: 10, right: 100000)
+        let toLog = Plane(top: 0, bottom: 1000, left: 0, right: 1000)
         let tsLog = SVG.TransScale(from: fromLog, to: toLog, logx: true, logy: true)
 
         XCTAssertEqual(tsLog.xpos(10), 0)

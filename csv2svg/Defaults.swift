@@ -15,6 +15,7 @@ struct Defaults {
 
     let backgroundColour: String
     let baseFontSize: Double
+    let bezier: Double
     let black: Bool
     let bold: Bool
     let colours: [String]
@@ -68,6 +69,7 @@ struct Defaults {
     static let global = Defaults(
         backgroundColour: "",
         baseFontSize: 10.0,
+        bezier: 0.0,
         black: false,
         bold: false,
         colours: [],

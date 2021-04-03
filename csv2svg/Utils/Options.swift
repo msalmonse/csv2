@@ -22,6 +22,9 @@ struct Options: ParsableCommand {
             help: "Convert a list of rows or columns to a bitmap")
     var bitmap: [Int] = []
 
+    @Option(name: .long, help: "Default bezier curve, 0 means none")
+    var bezier = Defaults.global.bezier
+
     @Flag(name: .long, help: "Set default colour to black")
     var black = Defaults.global.black
 
@@ -197,6 +200,7 @@ struct Options: ParsableCommand {
         return Defaults(
             backgroundColour: bg,
             baseFontSize: size,
+            bezier: bezier,
             black: black,
             bold: bold,
             colours: colours,
