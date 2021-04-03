@@ -11,6 +11,13 @@ The background colour for the svg
 **Option:** `--size`<br/>
 The base font size for the SVG, all other font sizes are derived from this value
 
+**bezier** (Double **0.0**)<br/>
+**Option:** `--bezier`<br/>
+Each join is converted to a quadratic Bézier curve. The `bezier` value determines where the curve begins and ends,
+e.g. setting it to .25 means that the curve starts at 25% of the way from the current point to the previous point and ends 
+25% of the way to the next point. The current point becomes the control point. If showDataPoints is set then the actual 
+datapoint is shown. Setting this to more than .5 or less than 0 isn't going to produce anything readable.
+
 **black** (Bool **false**)<br/>
 **Option:** `--black`<br/>
 Set undefined plot colours to "black"
