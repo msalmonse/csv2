@@ -2,7 +2,7 @@
 	"backgroundColour": "#ffedcc",
 	"cssExtras": [
 	    "path.layout { stroke: red; fill: none; stroke-width: 3px }",
-	    "text.layout { stroke: red; fill: red; font-size: 20px }"
+	    "text.layout { stroke: red; fill: red; font-size: 20px; text-anchor: middle }"
 	 ],
 	"cssID": "layout",
 	"dashedLines": 32,

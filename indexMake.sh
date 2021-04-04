@@ -52,9 +52,15 @@ do
     test -s "$f" || continue
     txtf=${f/%.svg/.txt}
     test -s "$txtf" || continue
+    base=$(basename "$f" .svg)
     cat <<EOD
 <tr>
-<th><a href="${f##*/}">${f##*/}</a><br/>$(cat "$txtf")<br/>$(date -r "$f" '+%F %T %Z')</th>
+<th>
+<a href="${f##*/}">${f##*/}</a><br/>
+<a href="../data/$base.csv">$base.csv</a><br/>
+<a href="../data/$base.json">$base.json</a><br/>
+$(cat "$txtf")<br/>$(date -r "$f" '+%F %T %Z')
+</th>
 <td>
 $(tail -n +2 "$f")
 </td>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg id="layout" width="800" height="600" xmlns="http://www.w3.org/2000/svg">
 <!--
-    Created by csv2svg: 2.0.0-6-g37a8325 (bezier:497) https://github.com/msalmonse/csv2svg.git
+    Created by csv2svg: 2.1.0 (main:501) https://github.com/msalmonse/csv2svg.git
   -->
 <style>
 svg#layout { background-color: #ffedcc }
@@ -31,7 +31,7 @@ svg#layout { background-color: #ffedcc }
 </style>
 <style>
 path.layout { stroke: red; fill: none; stroke-width: 3px }
-text.layout { stroke: red; fill: red; font-size: 20px }</style>
+text.layout { stroke: red; fill: red; font-size: 20px; text-anchor: middle }</style>
 
 <defs>
 <clipPath id="plotable">
@@ -91,10 +91,13 @@ text.layout { stroke: red; fill: red; font-size: 20px }</style>
 <text x="729.00" y="291.75" class="legends plot07" >sin=cos</text>
 <text x="400.00" y="544.00" class="subtitle" >Data by numbers®</text>
 <text x="400.00" y="525.25" class="title" >Trigonometric Functions</text>
-<text x="150" y="35" class="layout">Data singletons</text>
+<text x="215" y="35" class="layout">Data singletons</text>
 <path class="layout" d="M 215 38 L 461 352 M 215 38 L 145 159" />
-<text x="270" y="575" class="layout" text-anchor="middle">Title</text>
+<text x="650" y="35" class="layout">Logo, not visible in &lt;image&gt;</text>
+<path class="layout" d="M 650 40 L 730 82" />
+<text x="270" y="575" class="layout">Title</text>
 <path class="layout" d="M 270 558 L 272 528" />
-<text x="540" y="544" class="layout">Sub Title</text>
+<text x="480" y="575" class="layout">Sub Title</text>
+<path class="layout" d="M 400 550 L 435 568" />
 
 </svg>

@@ -17,8 +17,9 @@ generated/.made:
 	-mkdir $(@D)
 	@ touch $@
 
-generated/index.html: $(SVGFILES) $(TXTFILES) generated/logo.svg test.svg indexMake.sh examples
-	./indexMake.sh $@
+generated/index.html: EXTRAS = generated/logo.svg test.svg indexMake.sh $(EXAMPLES)
+generated/index.html: $(SVGFILES) $(TXTFILES) $(EXTRAS)
+	@ ./indexMake.sh $@
 
 generated/%.svg: OPTS = $(shell cat $(@F:%.svg=data/%.opts))
 generated/%.svg: data/%.csv data/%.json data/%.opts $(CSV2SVG)
