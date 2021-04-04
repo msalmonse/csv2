@@ -123,7 +123,7 @@ extension Settings {
         if container == nil { return doubleDefault(key, defaults) }
         let val = doubleIsChanged(key, defaults) ? doubleDefault(key, defaults)
             : (try? container!.decodeIfPresent(Double.self, forKey: key)) ?? doubleDefault(key, defaults)
-        if let ok = ok, !ok.contains(val) {
+        if defaults.bounded, let ok = ok, !ok.contains(val) {
             let okVal = doubleDefault(key, Defaults.global)
             outOfRange(val: "\(val)", range: "\(ok)", substitute: "\(okVal)", key: key)
             return okVal
@@ -181,7 +181,7 @@ extension Settings {
         if container == nil { return intDefault(key, defaults) }
         let val = intIsChanged(key, defaults) ? intDefault(key, defaults)
             : (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? intDefault(key, defaults)
-        if let ok = ok, !ok.contains(val) {
+        if defaults.bounded, let ok = ok, !ok.contains(val) {
             let okVal = intDefault(key, Defaults.global)
             outOfRange(val: "\(val)", range: "\(ok)", substitute: "\(okVal)", key: key)
             return okVal

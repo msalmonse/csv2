@@ -13,11 +13,20 @@ struct Defaults {
     static let maxDefault = -Double.infinity
     static let minDefault = Double.infinity
 
+    // Ranges for bounds checking
+    static let baseFontSizeBounds = 1.0...100.0
+    static let bezierBounds = 0.0...0.5
+    static let headerBounds = 0...25
+    static let opacityBounds = 0.0...1.0
+    static let smoothBounds = 0.0...0.99
+    static let strokeWidthBounds = 0.1...100.0
+
     let backgroundColour: String
     let baseFontSize: Double
     let bezier: Double
     let black: Bool
     let bold: Bool
+    let bounded: Bool
     let colours: [String]
     let comment: Bool
     let cssClasses: [String]
@@ -72,6 +81,7 @@ struct Defaults {
         bezier: 0.0,
         black: false,
         bold: false,
+        bounded: true,
         colours: [],
         comment: true,
         cssClasses: [],

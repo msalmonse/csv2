@@ -14,6 +14,7 @@ OPTIONS:
   --black                 Set default colour to black
   --bezier <bezier>       Default bezier curve, 0 means none (default: 0.0)
   --bold                  Set default font-weight to bold
+  --nobounds              Don't check options for bounds
   --colourslist           Generate an SVG with all the colours on it
   --colours <colours>     Default list of plot colours, multiple entries until the next option
   --css <css>             Default include file for css styling

@@ -66,8 +66,10 @@ extension Settings {
             colours: keyedStringArray(from: container, forKey: .colours, defaults: defaults),
             names: keyedStringArray(from: container, forKey: .names, defaults: defaults),
             black: keyedBoolValue(from: container, forKey: .black, defaults: defaults),
-            bezier: keyedDoubleValue(from: container, forKey: .bezier, defaults: defaults, in: 0.0...0.5),
-            smooth: keyedDoubleValue(from: container, forKey: .smooth, defaults: defaults, in: 0.0...0.99),
+            bezier: keyedDoubleValue(from: container, forKey: .bezier, defaults: defaults,
+                                     in: Defaults.bezierBounds),
+            smooth: keyedDoubleValue(from: container, forKey: .smooth, defaults: defaults,
+                                     in: Defaults.smoothBounds),
             sortx: keyedBoolValue(from: container, forKey: .sortx, defaults: defaults)
         )
     }

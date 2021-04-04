@@ -44,12 +44,13 @@ extension Settings {
             backgroundColour:
                 keyedStringValue(from: container, forKey: .backgroundColour, defaults: defaults),
             hover: keyedBoolValue(from: container, forKey: .hover, defaults: defaults),
-            opacity: keyedDoubleValue(from: container, forKey: .opacity, defaults: defaults, in: 0.0...1.0),
+            opacity: keyedDoubleValue(from: container, forKey: .opacity, defaults: defaults,
+                                      in: Defaults.opacityBounds),
             bold: keyedBoolValue(from: container, forKey: .bold, defaults: defaults),
             fontFamily: keyedStringValue(from: container, forKey: .fontFamily, defaults: defaults),
             italic: keyedBoolValue(from: container, forKey: .italic, defaults: defaults),
-            strokeWidth:
-                keyedDoubleValue(from: container, forKey: .strokeWidth, defaults: defaults, in: 0.0...100.0),
+            strokeWidth: keyedDoubleValue(from: container, forKey: .strokeWidth, defaults: defaults,
+                                          in: Defaults.strokeWidthBounds),
             extras: keyedStringArray(from: container, forKey: .cssExtras, defaults: defaults),
             id: keyedStringValue(from: container, forKey: .cssID, defaults: defaults),
             include: keyedStringValue(from: container, forKey: .cssInclude, defaults: defaults)

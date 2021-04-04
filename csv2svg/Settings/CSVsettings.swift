@@ -24,16 +24,16 @@ extension Settings {
 
     static func jsonCSV(from container: KeyedDecodingContainer<CodingKeys>?, defaults: Defaults) -> CSV {
         return CSV(
-            headerColumns:
-                keyedIntValue(from: container, forKey: .headerColumns, defaults: defaults, in: 0...25),
-            headerRows:
-                keyedIntValue(from: container, forKey: .headerRows, defaults: defaults, in: 0...25),
-            nameHeader:
-                keyedIntValue(from: container, forKey: .nameHeader, defaults: defaults, in: 0...25) - 1,
-            subTitleHeader:
-                keyedIntValue(from: container, forKey: .subTitleHeader, defaults: defaults, in: 0...25) - 1,
-            index:
-                keyedIntValue(from: container, forKey: .index, defaults: defaults, in: 0...25) - 1,
+            headerColumns: keyedIntValue(from: container, forKey: .headerColumns, defaults: defaults,
+                                         in: Defaults.headerBounds),
+            headerRows: keyedIntValue(from: container, forKey: .headerRows, defaults: defaults,
+                                      in: Defaults.headerBounds),
+            nameHeader: keyedIntValue(from: container, forKey: .nameHeader, defaults: defaults,
+                                      in: Defaults.headerBounds) - 1,
+            subTitleHeader: keyedIntValue(from: container, forKey: .subTitleHeader,
+                                          defaults: defaults, in: Defaults.headerBounds) - 1,
+            index: keyedIntValue(from: container, forKey: .index, defaults: defaults,
+                                 in: Defaults.headerBounds) - 1,
             rowGrouping: keyedBoolValue(from: container, forKey: .rowGrouping, defaults: defaults)
         )
     }

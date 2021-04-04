@@ -94,6 +94,9 @@ struct Options: ParsableCommand {
             help: "Default list of plot names, multiple entries until the next option")
     var names: [String] = []
 
+    @Flag(name: .long, help: "Don't check options for bounds")
+    var nobounds = false
+
     @Flag(name: .long, help: "Don't csv2svg comment to SVG")
     var nocomment = !Defaults.global.comment
 
@@ -203,6 +206,7 @@ struct Options: ParsableCommand {
             bezier: bezier,
             black: black,
             bold: bold,
+            bounded: !nobounds,
             colours: colours,
             comment: !nocomment,
             cssClasses: [],

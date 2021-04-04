@@ -46,11 +46,13 @@ extension Settings {
         return Dimensions(
             height: keyedIntValue(from: container, forKey: .height, defaults: defaults),
             width: keyedIntValue(from: container, forKey: .width, defaults: defaults),
-            reserveBottom: keyedDoubleValue(from: container, forKey: .reserveBottom, defaults: defaults),
+            reserveBottom:
+                keyedDoubleValue(from: container, forKey: .reserveBottom, defaults: defaults),
             reserveLeft: keyedDoubleValue(from: container, forKey: .reserveLeft, defaults: defaults),
             reserveRight: keyedDoubleValue(from: container, forKey: .reserveRight, defaults: defaults),
             reserveTop: keyedDoubleValue(from: container, forKey: .reserveTop, defaults: defaults),
-            baseFontSize: keyedDoubleValue(from: container, forKey: .baseFontSize, defaults: defaults),
+            baseFontSize: keyedDoubleValue(from: container, forKey: .baseFontSize, defaults: defaults,
+                                           in: Defaults.baseFontSizeBounds),
             xMax: keyedDoubleValue(from: container, forKey: .xMax, defaults: defaults),
             xMin: keyedDoubleValue(from: container, forKey: .xMin, defaults: defaults),
             yMax: keyedDoubleValue(from: container, forKey: .yMax, defaults: defaults),
