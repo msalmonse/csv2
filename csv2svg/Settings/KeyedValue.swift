@@ -9,6 +9,15 @@ import Foundation
 
 extension Settings {
 
+    private static func outOfRange(val: String, range: String, substitute: String, key: CodingKeys) {
+        print("""
+                \(val) is not allowed for parameter \(key.name).
+                The allowed range is \(range), \(substitute) substituted.
+                """,
+                to: &standardError
+            )
+    }
+
     /// Check to see that the default value is the same as the global default
     /// - Parameters:
     ///   - key: Coding key for Settings
@@ -116,8 +125,7 @@ extension Settings {
             : (try? container!.decodeIfPresent(Double.self, forKey: key)) ?? doubleDefault(key, defaults)
         if let ok = ok, !ok.contains(val) {
             let okVal = doubleDefault(key, Defaults.global)
-            print("\(val) is not allowed for parameter \(key.name).", to: &standardError)
-            print("The allowed range is \(ok), \(okVal) substituted.")
+            outOfRange(val: "\(val)", range: "\(ok)", substitute: "\(okVal)", key: key)
             return okVal
         }
         return val
@@ -175,8 +183,7 @@ extension Settings {
             : (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? intDefault(key, defaults)
         if let ok = ok, !ok.contains(val) {
             let okVal = intDefault(key, Defaults.global)
-            print("\(val) is not allowed for parameter \(key.name).", to: &standardError)
-            print("The allowed range is \(ok), \(okVal) substituted.")
+            outOfRange(val: "\(val)", range: "\(ok)", substitute: "\(okVal)", key: key)
             return okVal
         }
         return val
