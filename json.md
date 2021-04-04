@@ -13,6 +13,7 @@ The base font size for the SVG, all other font sizes are derived from this value
 
 **bezier** (Double **0.0**)<br/>
 **Option:** `--bezier`<br/>
+**Allowed values:** From 0 to 0.5
 Each join is converted to a quadratic Bézier curve. The `bezier` value determines where the curve begins and ends,
 e.g. setting it to .25 means that the curve starts at 25% of the way from the current point to the previous point and ends 
 25% of the way to the next point. The current point becomes the control point. If showDataPoints is set then the actual 
@@ -76,10 +77,12 @@ The font family to use for text.
 
 **headerColumns** (Int **0**)<br/>
 **Option:** `--headers`<sup>[4](#fn4)</sup><br/>
+**Allowed values:** From 0 to 25
 The number of columns that do not contain data.<sup>[1](#fn1)</sup>
 
 **headerRows** (Int **0**)<br/>
 **Option:** `--headers`<sup>[4](#fn4)</sup><br/>
+**Allowed values:** From 0 to 25
 The number of rows that do not contain data.<sup>[1](#fn1)</sup>
 
 **height** (Int **600**)<br/>
@@ -97,6 +100,7 @@ The default is to draw all.
 
 **index** (Int **0**)<br/>
 **Option:** `--index`<br/>
+**Allowed values:** From 0 to 25
 The column or row that contains the absissa data with the leftmost column or top row being 1.<br/>
 If it is less than or equal to zero then the absica is 0 for the first value of each plot and so on.
 
@@ -104,14 +108,14 @@ If it is less than or equal to zero then the absica is 0 for the first value of 
 **Option:** `--italic`<br/>
 Use italic text.
 
-**logends** (Bool **true**)<br/>
+**legends** (Bool **true**)<br/>
 **Option:** `--nolegends` <sup>[8](#fn8)</sup><br/>
 Add the legends panel if there is room.
 
 **logoHeight** (Int **64**)<br/>
 The height of the logo `<image>` element.
 
-**logoURL** (String)<br/>
+<a id="logoURL">**logoURL** (String)</a><br/>
 **Option:** `--logo`<br/>
 The URL of an image to include in the top right corner of the SVG. By default the `<image>`
 element is 64x64 but this can be changed.
@@ -131,6 +135,7 @@ The ordinate uses a logarithmic scale
 
 **nameHeader** (Int **1**)<br/>
 **Option:** `--nameheader`<br/>
+**Allowed values:** From 0 to 25
 The row or column that contains the names of plots. If it is less than or equal to zero
 the the name is never fetched from the csv.
 
@@ -138,6 +143,11 @@ the the name is never fetched from the csv.
 **Option:** `--names`<sup>[6](#fn6)</sup><br/>
 The plotted column or rows are assigned names from this array or the first header row or column respectively. If not defined in either place then a name is generated.
 The names are included with the colours associated with the plots under the plot area.
+
+**opacity** (Double **1.0**)<br/>
+**Option:** `--opacity`<br/>
+**Allowed values:** From 0 to 1.0
+The opacity of the plots.
 
 **reserveBottom** (Double **0.0**)<br/>
 **Option:** `--reserve`<sup>[7](#fn7)</sup><br/>
@@ -186,6 +196,7 @@ A bit vector of the plots to draw with data points.<sup>[5](#fn5)</sup>
 
 **smooth** (Double **0.0**)<br/>
 **Option:** `--smooth`<br/>
+**Allowed values:** From 0 to 0.99
 Smooth the ordinate values using an
 [Exponential Moving Average](https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average)
 The value for smooth is actually `1 - α` as it makes more sense to me for no smoothing to be `0.0` rather than `1.0`.
@@ -196,6 +207,7 @@ Sort the points based on the x value before plotting.
 
 <a id="strokeWidth">**strokeWidth** (Double **2.0**)</a><br/>
 **Option:** `--stroke`<br/>
+**Allowed values:** From 0 to 100
 The width of the plotted paths
 
 **subTitle** (String)<br/>
@@ -204,6 +216,7 @@ The sub-title attached to the SVG
 
 **subTitleHeader** (Int **0**)<br/>
 **Option:** `--subheader`<br/>
+**Allowed values:** From 0 to 25
 The row or column that contains the sub-title. If it is less than or equal to zero
 the the name is never fetched from the csv. If the sub-title is defined by the option
 above then the csv is not checked. Embedded commas will probably cause problems.<br/>

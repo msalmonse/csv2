@@ -64,5 +64,9 @@ extension Settings {
         case yMin
         case yTick
         case yTitle
+
+        var name: String {
+            return self.stringValue
+        }
     }
 }

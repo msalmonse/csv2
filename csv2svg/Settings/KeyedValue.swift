@@ -20,7 +20,9 @@ extension Settings {
     }
 
     /// Return the boolean default for the key
-    /// - Parameter key: Coding key for Settings
+    /// - Parameters:
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
     /// - Returns: bool default value
 
     private static func boolDefault(_ key: CodingKeys, _ defaults: Defaults) -> Bool {
@@ -43,7 +45,7 @@ extension Settings {
     /// - Parameters:
     ///   - container: decoded data container
     ///   - key: the key into the decoded data
-    ///   - defaultValue: the default value
+    ///   - defaults: the command line defaults
     /// - Returns: decoded or default value
 
     static func keyedBoolValue(
@@ -66,7 +68,9 @@ extension Settings {
     }
 
     /// Return the integer default for the key
-    /// - Parameter key: Coding key for Settings
+    /// - Parameters:
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
     /// - Returns: integer default value
 
     private static func doubleDefault(_ key: CodingKeys, _ defaults: Defaults) -> Double {
@@ -97,15 +101,26 @@ extension Settings {
     /// - Parameters:
     ///   - container: decoded data container
     ///   - key: the key into the decoded data
+    ///   - defaults: the command line defaults
+    ///   - in: optional range of allowed values
     /// - Returns: decoded or default value
 
     static func keyedDoubleValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
         forKey key: CodingKeys,
-        defaults: Defaults
+        defaults: Defaults,
+        in ok: ClosedRange<Double>? = nil
     ) -> Double {
-        if container == nil || doubleIsChanged(key, defaults) { return doubleDefault(key, defaults) }
-        return (try? container!.decodeIfPresent(Double.self, forKey: key)) ?? doubleDefault(key, defaults)
+        if container == nil { return doubleDefault(key, defaults) }
+        let val = doubleIsChanged(key, defaults) ? doubleDefault(key, defaults)
+            : (try? container!.decodeIfPresent(Double.self, forKey: key)) ?? doubleDefault(key, defaults)
+        if let ok = ok, !ok.contains(val) {
+            let okVal = doubleDefault(key, Defaults.global)
+            print("\(val) is not allowed for parameter \(key.name).", to: &standardError)
+            print("The allowed range is \(ok), \(okVal) substituted.")
+            return okVal
+        }
+        return val
     }
 
     /// Check to see that the default value is the same as the global default
@@ -119,7 +134,9 @@ extension Settings {
     }
 
     /// Return the integer default for the key
-    /// - Parameter key: Coding key for Settings
+    /// - Parameters:
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
     /// - Returns: integer default value
 
     private static func intDefault(_ key: CodingKeys, _ defaults: Defaults) -> Int {
@@ -143,16 +160,26 @@ extension Settings {
     /// - Parameters:
     ///   - container: decoded data container
     ///   - key: the key into the decoded data
-    ///   - defaultValue: the default value
+    ///   - defaults: the defaults from the command line
+    ///   - in: the allowed range
     /// - Returns: decoded or default value
 
     static func keyedIntValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
         forKey key: CodingKeys,
-        defaults: Defaults
+        defaults: Defaults,
+        in ok: ClosedRange<Int>? = nil
     ) -> Int {
-        if container == nil || intIsChanged(key, defaults) { return intDefault(key, defaults) }
-        return (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? intDefault(key, defaults)
+        if container == nil { return intDefault(key, defaults) }
+        let val = intIsChanged(key, defaults) ? intDefault(key, defaults)
+            : (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? intDefault(key, defaults)
+        if let ok = ok, !ok.contains(val) {
+            let okVal = intDefault(key, Defaults.global)
+            print("\(val) is not allowed for parameter \(key.name).", to: &standardError)
+            print("The allowed range is \(ok), \(okVal) substituted.")
+            return okVal
+        }
+        return val
     }
 
     /// Check to see that the default value is the same as the global default
@@ -166,8 +193,10 @@ extension Settings {
     }
 
     /// Return the string default for the key
-    /// - Parameter key: Coding key for Settings
-    /// - Returns: integer default value
+    /// - Parameters:
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
+    /// - Returns: string default value
 
     private static func stringDefault(_ key: CodingKeys, _ defaults: Defaults) -> String {
         switch key {
@@ -186,8 +215,8 @@ extension Settings {
     /// Convenience function to decode a keyed String
     /// - Parameters:
     ///   - container: decoded data container
-    ///   - key: the key into the decoded data
-    ///   - defaultValue: the default value
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
     /// - Returns: decoded or default value
 
     static func keyedStringValue(
@@ -210,7 +239,9 @@ extension Settings {
     }
 
     /// Return the integer default for the key
-    /// - Parameter key: Coding key for Settings
+    /// - Parameters:
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
     /// - Returns: integer default value
 
     private static func stringArrayDefault(_ key: CodingKeys, _ defaults: Defaults) -> [String] {
@@ -229,7 +260,7 @@ extension Settings {
     /// - Parameters:
     ///   - container: decoded data container
     ///   - key: the key into the decoded data
-    ///   - defaultValue: the default value
+    ///   - defaults: the command line defaults
     /// - Returns: decoded or default value
 
     static func keyedStringArray(
@@ -247,5 +278,4 @@ extension Settings {
 
         return values
     }
-
 }
