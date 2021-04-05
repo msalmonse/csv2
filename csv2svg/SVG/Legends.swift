@@ -34,7 +34,7 @@ extension SVG {
 
     private func scatteredLine(
         _ x: Double, _ y: Double,
-        _ props: PathProperties
+        _ props: Properties
     ) -> String {
         guard props.shape != nil else { return "" }
         return path([
@@ -55,7 +55,7 @@ extension SVG {
 
     private func pointedLine(
         _ left: Double, _ mid: Double, _ right: Double, _ y: Double,
-        _ props: PathProperties
+        _ props: Properties
     ) -> String {
         guard props.shape != nil else { return "" }
         return path([
@@ -77,7 +77,7 @@ extension SVG {
 
     private func plainLine(
         _ left: Double, _ right: Double, _ y: Double,
-        _ props: PathProperties
+        _ props: Properties
     ) -> String {
         return path([
             PathCommand.moveTo(x: left, y: y),

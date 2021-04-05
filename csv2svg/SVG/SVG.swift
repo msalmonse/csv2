@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SVG: ReflectedStringConvertible {
+class SVG: Plotter, ReflectedStringConvertible {
     // plot widths
     var strokeWidth: Double { settings.css.strokeWidth }
     var shapeWidth: Double { strokeWidth * 1.75 }
@@ -41,7 +41,7 @@ class SVG: ReflectedStringConvertible {
     let positions: Positions
 
     // Path Properties
-    let propsList: [PathProperties]
+    let propsList: [Properties]
 
     // limit of distance between data points
     let limit: Double
@@ -99,7 +99,7 @@ class SVG: ReflectedStringConvertible {
         let plotCount = settings.inColumns ? csv.colCt : csv.rowCt
 
         // Initialize path info
-        var props = Array(repeating: PathProperties(), count: plotCount)
+        var props = Array(repeating: Properties(), count: plotCount)
         // setup first so that the other functions can use them
         SVG.plotFlags(settings, plotCount, &props)
         SVG.plotClasses(settings, plotCount, &props)
@@ -113,5 +113,25 @@ class SVG: ReflectedStringConvertible {
             ? settings.svg.subTitle
             : plotCount == 0 ? ""
             : Self.subTitleText(csv: csv, inColumns: settings.inColumns, header: settings.csv.subTitleHeader)
+    }
+
+    /// Create a plot command from a number of PathCommand's
+    /// - Parameters:
+    ///   - points: array of points to plot
+    ///   - props: path properties
+    /// - Returns: plot command string
+
+    func plotPath(_ points: [PathCommand], props: Properties) -> String {
+        var result = [ "<path" ]
+        if let cssClass = props.cssClass { result.append("class=\"\(cssClass)\"") }
+        result.append("d=\"")
+        result.append(contentsOf: points.map { $0.command() })
+        result.append("\" />")
+
+        return result.joined(separator: " ")
+    }
+
+    func plotText(x: Double, y: Double, text: String, props: Properties) -> String {
+        return ""
     }
 }

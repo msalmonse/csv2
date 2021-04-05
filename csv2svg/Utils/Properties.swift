@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PathProperties {
+struct Properties {
     var bezier: Double = 0.0
     var colour: String?
     var cssClass: String?

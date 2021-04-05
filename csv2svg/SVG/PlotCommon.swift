@@ -22,13 +22,13 @@ extension SVG {
         var prevDataPoint = Point.inf
         var prevPlotPoint = Point.inf
         var state: PlotState
-        let props: PathProperties
+        let props: Properties
 
         let limit: Double
         let ts: TransScale
 
         init(
-            props: PathProperties,
+            props: Properties,
             ts: TransScale,
             limit: Double
         ) {
@@ -151,7 +151,7 @@ extension SVG {
     func plotCommon(
         _ xiValues: [XIvalue],
         _ yValues: [Double?],
-        _ props: PathProperties,
+        _ props: Properties,
         ts: TransScale
     ) -> String {
         let state = PlotCommonState(

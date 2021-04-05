@@ -18,7 +18,7 @@ extension SVG {
     static func plotClasses(
         _ settings: Settings,
         _ ct: Int,
-        _ props: inout [PathProperties]
+        _ props: inout [Properties]
         ) {
         for i in 0..<ct {
             if settings.plot.cssClasses.hasIndex(i) && settings.plot.cssClasses[i].hasContent {
@@ -38,7 +38,7 @@ extension SVG {
     static func plotColours(
         _ settings: Settings,
         _ ct: Int,
-        _ props: inout [PathProperties]
+        _ props: inout [Properties]
         ) {
         for i in 0..<ct {
             if i < settings.plot.colours.count && settings.plot.colours[i].hasContent {
@@ -62,7 +62,7 @@ extension SVG {
         _ settings: Settings,
         _ ct: Int,
         _ width: Double,
-        _ props: inout [PathProperties]
+        _ props: inout [Properties]
         ) {
         for i in 0..<ct {
             if settings.plot.dashes.hasIndex(i) && !settings.plot.dashes[i].isEmpty {
@@ -81,7 +81,7 @@ extension SVG {
     static func plotNames(
         _ settings: Settings,
         _ csv: CSV, _ ct: Int,
-        _ props: inout [PathProperties]
+        _ props: inout [Properties]
     ) {
         for i in 0..<ct {
             if settings.plot.names.hasIndex(i) && settings.plot.names[i].hasContent {
@@ -106,7 +106,7 @@ extension SVG {
     static func plotShapes(
         _ settings: Settings,
         _ ct: Int, index: Int,
-        _ props: inout [PathProperties]
+        _ props: inout [Properties]
         ) {
         for i in 0..<ct {
             // Don't attach a shape if we aren't a scatter plot or a plot with data points or are index
@@ -129,7 +129,7 @@ extension SVG {
     static func plotFlags(
         _ settings: Settings,
         _ ct: Int,
-        _ props: inout [PathProperties]
+        _ props: inout [Properties]
     ) {
         for i in 0..<min(ct, Int.bitWidth) {
             let mask = 1 << i
