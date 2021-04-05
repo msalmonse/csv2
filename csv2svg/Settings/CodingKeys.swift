@@ -14,6 +14,7 @@ extension Settings {
         case bezier
         case black
         case bold
+        case bounded
         case colours
         case comment
         case cssClasses

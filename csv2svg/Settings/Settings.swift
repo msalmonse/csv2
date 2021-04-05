@@ -44,6 +44,8 @@ class Settings: Decodable, ReflectedStringConvertible {
     required init(from decoder: Decoder) {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
+        // Although this is a Defaults property it can be loaded from the JSON file
+        defaults.bounded = Self.keyedBoolValue(from: container, forKey: .bounded, defaults: defaults)
         css = Self.jsonCSS(from: container, defaults: defaults)
         csv = Self.jsonCSV(from: container, defaults: defaults)
         dim = Self.jsonDimensions(from: container, defaults: defaults)

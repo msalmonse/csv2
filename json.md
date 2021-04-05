@@ -29,7 +29,7 @@ Use bold text.
 
 **bounded** (Bool **true**)<br/>
 **Option:** `--nobounds` <sup>[8](#fn8)</sup><br/>
-Bounds check all parameters
+Bounds check some parameters
 
 <a id="cssClasses">**cssClasses** (Array of Strings)</a><br/>
 The elements of the SVG use CSS for styling with each plot having it's own class. The classes in this list are assigned

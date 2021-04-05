@@ -26,7 +26,7 @@ struct Defaults {
     let bezier: Double
     let black: Bool
     let bold: Bool
-    let bounded: Bool
+    var bounded: Bool
     let colours: [String]
     let comment: Bool
     let cssClasses: [String]

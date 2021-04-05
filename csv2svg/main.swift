@@ -8,7 +8,7 @@
 import Foundation
 
 var opts = Options.parseOrExit()
-let defaults = opts.defaults()
+var defaults = opts.defaults()
 
 if opts.debug != 0 {
     print(opts, to: &standardError)
