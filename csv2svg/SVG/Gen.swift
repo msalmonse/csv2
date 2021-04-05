@@ -103,11 +103,11 @@ extension SVG {
         if let shape = Shape.lookup(name) {
             let shapeCss = "\(hashID) path.shape { stroke: \(colour) }"
             result.append(cssStyle(extra: shapeCss))
-            let path = [
+            let shapePath = [
                 PathCommand.moveTo(x: width/2.0, y: height/2.0),
                 shape.pathCommand(w: shapeWidth)
             ]
-            result.append(SVG.path(path, cssClass: "shape"))
+            result.append(path(shapePath, cssClass: "shape"))
         }
         result.append(svgTagEnd)
 

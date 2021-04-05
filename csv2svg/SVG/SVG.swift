@@ -85,7 +85,7 @@ class SVG: ReflectedStringConvertible {
             top: -0.5 * height, bottom: 1.5 * height,
             left: -0.5 * width, right: 1.5 * width
         )
-        dataPlane = SVG.sidesFromData(csv, settings)
+        dataPlane = Sides.fromData(csv, settings)
 
         positions = Positions(settings, dataLeft: dataPlane.left, sizes: sizes)
 

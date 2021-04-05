@@ -24,7 +24,7 @@ if opts.version {
 }
 
 if opts.shapenames {
-    print(SVG.Shape.allNames())
+    print(Shape.allNames())
 } else if opts.show.hasContent {
     svgOutput(showShape(shape: opts.show, defaults: defaults), to: opts.svgName)
 } else if opts.bitmap.hasEntries {

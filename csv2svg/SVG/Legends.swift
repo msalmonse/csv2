@@ -37,7 +37,7 @@ extension SVG {
         _ props: PathProperties
     ) -> String {
         guard props.shape != nil else { return "" }
-        return SVG.path([
+        return path([
             PathCommand.moveTo(x: x, y: y),
             props.shape!.pathCommand(w: shapeWidth)
         ],
@@ -58,7 +58,7 @@ extension SVG {
         _ props: PathProperties
     ) -> String {
         guard props.shape != nil else { return "" }
-        return SVG.path([
+        return path([
             PathCommand.moveTo(x: left, y: y),
             .horizTo(x: mid),
             props.shape!.pathCommand(w: shapeWidth),
@@ -79,7 +79,7 @@ extension SVG {
         _ left: Double, _ right: Double, _ y: Double,
         _ props: PathProperties
     ) -> String {
-        return SVG.path([
+        return path([
             PathCommand.moveTo(x: left, y: y),
             .horizTo(x: right)
         ],

@@ -197,7 +197,9 @@ struct Options: ParsableCommand {
 
     @Argument(help: "CSV file name, \"-\" means use stdin") var csvName: String?
     @Argument(help: "JSON file name") var jsonName: String?
+    #if SVG
     @Argument(help: "SVG file name, default is to print to terminal") var svgName: String?
+    #endif
 
     func defaults() -> Defaults {
         return Defaults(

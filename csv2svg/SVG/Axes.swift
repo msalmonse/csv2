@@ -14,20 +14,20 @@ extension SVG {
     /// - Returns: paths with axes
 
     func axes(_ ts: TransScale) -> String {
-        var path: [PathCommand] = []
+        var axesPath: [PathCommand] = []
         let x0 = logy ? 1.0 : 0.0
         let y0 = logx ? 1.0 : 0.0
 
         if dataPlane.inVert(x0) {
-            path.append(.moveTo(x: plotPlane.left, y: ts.ypos(x0)))
-            path.append(.horizTo(x: plotPlane.right))
+            axesPath.append(.moveTo(x: plotPlane.left, y: ts.ypos(x0)))
+            axesPath.append(.horizTo(x: plotPlane.right))
         }
         if dataPlane.inHoriz(y0) {
-            path.append(.moveTo(x: ts.xpos(y0), y: plotPlane.bottom))
-            path.append(.vertTo(y: plotPlane.top))
+            axesPath.append(.moveTo(x: ts.xpos(y0), y: plotPlane.bottom))
+            axesPath.append(.vertTo(y: plotPlane.top))
         }
 
-        return Self.path(path, cssClass: "axes")
+        return path(axesPath, cssClass: "axes")
     }
 
     /// Normalize tick value
@@ -71,7 +71,7 @@ extension SVG {
     /// - Returns: path for the ticks
 
     func xTick(_ ts: TransScale) -> String {
-        var path: [PathCommand] = []
+        var tickPath: [PathCommand] = []
         var labels = [""]
         var tick = tickNorm(
             settings.dim.xTick,
@@ -86,13 +86,13 @@ extension SVG {
 
         while x <= xMax {
             if dataPlane.inHoriz(x) {
-                path.append(.moveTo(x: ts.xpos(x), y: plotPlane.bottom))
-                path.append(.vertTo(y: plotPlane.top))
+                tickPath.append(.moveTo(x: ts.xpos(x), y: plotPlane.bottom))
+                tickPath.append(.vertTo(y: plotPlane.top))
                 labels.append(xLabelText(label(x, intTick), x: ts.xpos(x), y: positions.xTicksY))
             }
             if dataPlane.inHoriz(-x) {
-                path.append(.moveTo(x: ts.xpos(-x), y: plotPlane.bottom))
-                path.append(.vertTo(y: plotPlane.top))
+                tickPath.append(.moveTo(x: ts.xpos(-x), y: plotPlane.bottom))
+                tickPath.append(.vertTo(y: plotPlane.top))
                 labels.append(xLabelText(label(-x, intTick), x: ts.xpos(-x), y: positions.xTicksY))
             }
             x += tick
@@ -102,7 +102,7 @@ extension SVG {
             }
         }
 
-        return Self.path(path, cssClass: "xtick") + labels.joined(separator: "\n")
+        return path(tickPath, cssClass: "xtick") + labels.joined(separator: "\n")
     }
 
     /// Draw horizontal ticks
@@ -110,7 +110,7 @@ extension SVG {
     /// - Returns: path for the ticks
 
     func yTick(_ ts: TransScale) -> String {
-        var path: [PathCommand] = []
+        var tickPath: [PathCommand] = []
         var labels = [""]
         var tick = tickNorm(
             settings.dim.yTick,
@@ -125,13 +125,13 @@ extension SVG {
 
         while y <= yMax {
             if dataPlane.inVert(y) {
-                path.append(.moveTo(x: plotPlane.left, y: ts.ypos(y)))
-                path.append(.horizTo(x: plotPlane.right))
+                tickPath.append(.moveTo(x: plotPlane.left, y: ts.ypos(y)))
+                tickPath.append(.horizTo(x: plotPlane.right))
                 labels.append(yLabelText(label(y, intTick), x: positions.yTickX, y: ts.ypos(y)))
             }
             if dataPlane.inVert(-y) {
-                path.append(.moveTo(x: plotPlane.left, y: ts.ypos(-y)))
-                path.append(.horizTo(x: plotPlane.right))
+                tickPath.append(.moveTo(x: plotPlane.left, y: ts.ypos(-y)))
+                tickPath.append(.horizTo(x: plotPlane.right))
                 labels.append(yLabelText(label(-y, intTick), x: positions.yTickX, y: ts.ypos(-y)))
             }
             y += tick
@@ -141,6 +141,6 @@ extension SVG {
             }
         }
 
-        return Self.path(path, cssClass: "ytick") + labels.joined(separator: "\n")
+        return path(tickPath, cssClass: "ytick") + labels.joined(separator: "\n")
     }
 }

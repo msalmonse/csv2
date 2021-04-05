@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension SVG {
+struct Sides {
 
     /// Calculate the left and right sides of the data
     /// - Parameters:
@@ -95,7 +95,7 @@ extension SVG {
         return (t: top, b: bottom)
     }
 
-    static func sidesFromData(_ csv: CSV, _ settings: Settings) -> Plane {
+    static func fromData(_ csv: CSV, _ settings: Settings) -> Plane {
         let (left, right) = lrFromData(csv, settings)
         let (top, bottom) = tbFromData(csv, settings)
 
