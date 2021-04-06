@@ -265,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				C46ADD0F260714DA0046F427 /* Bitmap.swift */,
-				C453242425FA2C23007D741C /* DrawShapes.swift */,
 				C453242B25FA5D99007D741C /* Extensions.swift */,
 				C4FE49FE25F6440F0076EF5E /* Options.swift */,
 				C46ADD2026074CD60046F427 /* RandomCSV.swift */,
@@ -275,10 +274,7 @@
 				C422C5C32608D0CC00676912 /* ShowColoursList.swift */,
 				C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */,
 				C453244C25FBEBA6007D741C /* ShowShape.swift */,
-				C480847F25E6776900BD0A24 /* Sides.swift */,
 				C482B9FC25EE8D4D00E51A50 /* stderr.swift */,
-				C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */,
-				C402620825FF3E1D0042AEA5 /* XI.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -322,6 +318,7 @@
 			children = (
 				C4EA5D2725EB8F4D00E104E0 /* Colours.swift */,
 				C4F20C102601DF4D005D2FE1 /* Dashes.swift */,
+				C453242425FA2C23007D741C /* DrawShapes.swift */,
 				C4C0C471260F85E40072699C /* Fonts.swift */,
 				C4255F3E25E423A7002DFE80 /* Path.swift */,
 				C45323FA25F90359007D741C /* PlotInfo.swift */,
@@ -329,6 +326,9 @@
 				C4F20C0726012A67005D2FE1 /* Properties.swift */,
 				C40CD44025ED2390003944FA /* Plane.swift */,
 				C453243725FA7968007D741C /* Shapes.swift */,
+				C480847F25E6776900BD0A24 /* Sides.swift */,
+				C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */,
+				C402620825FF3E1D0042AEA5 /* XI.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
