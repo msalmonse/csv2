@@ -14,6 +14,7 @@ class Plot: ReflectedStringConvertible {
 
     let csv: CSV
     let settings: Settings
+    let plotter: Plotter
 
     // font sizes
     let sizes: FontSizes
@@ -72,9 +73,11 @@ class Plot: ReflectedStringConvertible {
       -->
     """
 
-    init(_ csv: CSV, _ settings: Settings) {
+    init(_ csv: CSV, _ settings: Settings, _ plotter: Plotter) {
         self.csv = csv
         self.settings = settings
+        self.plotter = plotter
+
         sizes = FontSizes(size: settings.dim.baseFontSize)
         self.index = settings.csv.index
         svgID = settings.css.id.hasContent ? settings.css.id
