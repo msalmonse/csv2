@@ -48,7 +48,8 @@ struct Positions {
     ///   - dataLeft: least abscissa value
     ///   - sizes: font sizes
 
-    init(_ settings: Settings, dataLeft: Double, sizes: FontSizes) {
+    init(_ settings: Settings, dataLeft: Double) {
+        let sizes = FontSizes(size: settings.dim.baseFontSize)
         let margin = settings.dim.baseFontSize * 0.6
         let logoHeight = settings.svg.logoURL.isEmpty ? 0.0 : settings.svg.logoHeight
         let logoWidth = settings.svg.logoURL.isEmpty ? 0.0 : settings.svg.logoWidth

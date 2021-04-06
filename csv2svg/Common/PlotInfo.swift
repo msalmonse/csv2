@@ -136,6 +136,11 @@ func plotFlags(
         props[i].pointed = settings.plot.showDataPoints &== mask
         props[i].scattered = settings.plot.scatterPlots &== mask
     }
-    // Not really a flag
-    for i in props.indices { props[i].bezier = settings.plot.bezier }
+
+    // Not really flags
+    for i in props.indices {
+        props[i].bold = settings.css.bold
+        props[i].bezier = settings.plot.bezier
+        props[i].italic = settings.css.italic
+    }
 }

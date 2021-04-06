@@ -8,15 +8,15 @@
 import Foundation
 
 enum StringProperties {
-    case colour, dash, fill, fontFamily, fontStyle, fontWeight, strokeLineCap, textAlign
+    case colour, cssClass, dash, fill, fontColour, fontFamily, strokeLineCap, textAlign
     var path: KeyPath<Properties,String?> {
         switch self {
         case .colour: return \.colour
+        case .cssClass: return \.cssClass
         case .dash: return \.dash
         case .fill: return \.fill
+        case .fontColour: return \.fontColour
         case .fontFamily: return \.fontFamily
-        case .fontStyle: return \.fontStyle
-        case .fontWeight: return \.fontWeight
         case .strokeLineCap: return \.strokeLineCap
         case .textAlign: return \.textAlign
         }
@@ -35,20 +35,22 @@ enum DoubleProperties {
 
 struct Properties {
     var bezier: Double = 0.0
+    var bold = false
     var colour: String?
     var cssClass: String?
     var dash: String?
     var fill: String?
     var fontFamily: String?
     var fontSize = 0.0
-    var fontStyle: String?
-    var fontWeight: String?
+    var fontColour: String?
     var name: String?
     var dashed = false
     var included = true
+    var italic = false
     var pointed = false
     var scattered = false
     var shape: Shape?
+    var shapeWidth: Double { return strokeWidth * 1.75 }
     var strokeLineCap: String?
     var strokeWidth = 0.0
     var textAlign: String?
@@ -72,12 +74,13 @@ struct Properties {
 struct PropertiesList {
     var plots: [Properties]
     var axes = Properties()
-    var grid = Properties()
-    var label = Properties()
     var legend = Properties()
     var subTitle = Properties()
-    var ticks = Properties()
     var title = Properties()
+    var xLabel = Properties()
+    var xTitle = Properties()
+    var yLabel = Properties()
+    var yTitle = Properties()
 
     init(count ct: Int, settings: Settings) {
         let sizes = FontSizes(size: settings.dim.baseFontSize)
@@ -85,18 +88,26 @@ struct PropertiesList {
 
         Properties.defaultProperties.bezier = settings.plot.bezier
         Properties.defaultProperties.colour = "black"
+        Properties.defaultProperties.fill = "none"
+        Properties.defaultProperties.fontColour = "black"
         Properties.defaultProperties.fontFamily = settings.css.fontFamily
         Properties.defaultProperties.strokeLineCap = "round"
         Properties.defaultProperties.strokeWidth = settings.css.strokeWidth
         Properties.defaultProperties.textAlign = "middle"
 
-        grid.colour = "silver"
-        grid.strokeWidth = settings.css.strokeWidth/2.0
-
-        label.fontSize = sizes.labelSize
         legend.fontSize = sizes.legendSize
+        legend.cssClass = "legend"
         subTitle.fontSize = sizes.subTitleSize
-        ticks.fontSize = sizes.axesSize
+        subTitle.cssClass = "subtitle"
         title.fontSize = sizes.titleSize
+        title.cssClass = "title"
+        xLabel.fontSize = sizes.labelSize
+        xLabel.cssClass = "xlabel"
+        xTitle.fontSize = sizes.axesSize
+        xTitle.cssClass = "xtitle"
+        yLabel.fontSize = sizes.labelSize
+        yLabel.cssClass = "ylabel"
+        yTitle.fontSize = sizes.axesSize
+        yTitle.cssClass = "ytitle"
     }
 }

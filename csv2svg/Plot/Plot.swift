@@ -16,14 +16,6 @@ class Plot: ReflectedStringConvertible {
     let settings: Settings
     let plotter: Plotter
 
-    // font sizes
-    let sizes: FontSizes
-    var axesSize: Double { return sizes.axesSize }
-    var labelSize: Double { return sizes.labelSize }
-    var legendSize: Double { return sizes.legendSize }
-    var subTitleSize: Double { return sizes.subTitleSize }
-    var titleSize: Double { return sizes.titleSize }
-
     // Row or column to use for x values
     let index: Int
 
@@ -42,7 +34,7 @@ class Plot: ReflectedStringConvertible {
     let positions: Positions
 
     // Path Properties
-    let propsList: [Properties]
+    let propsList: PropertiesList
 
     // limit of distance between data points
     let limit: Double
@@ -54,34 +46,12 @@ class Plot: ReflectedStringConvertible {
     var logx: Bool { settings.svg.logx && dataPlane.left > 0.0 }
     var logy: Bool { settings.svg.logy && dataPlane.bottom > 0.0 }
 
-    // id for this svg
-    let svgID: String
-    var hashID: String { svgID == "none" ? "" : "#\(svgID)" }
-
-    // Tags
-    let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
-    var svgTag: String {
-        String(
-                format: "<svg %@ width=\"%.0f\" height=\"%.0f\" xmlns=\"http://www.w3.org/2000/svg\">",
-            svgID != "none" ? "id=\"\(svgID)\"" : "" , settings.width, settings.height
-        )
-    }
-    let svgTagEnd = "</svg>"
-    let comment = """
-    <!--
-        Created by \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) \(AppInfo.origin)
-      -->
-    """
-
     init(_ csv: CSV, _ settings: Settings, _ plotter: Plotter) {
         self.csv = csv
         self.settings = settings
         self.plotter = plotter
 
-        sizes = FontSizes(size: settings.dim.baseFontSize)
         self.index = settings.csv.index
-        svgID = settings.css.id.hasContent ? settings.css.id
-            : "ID-\(Int.random(in: 1...(1 << 24)).x0(6))"
         height = settings.height
         width = settings.width
         allowedPlane = Plane(
@@ -90,7 +60,7 @@ class Plot: ReflectedStringConvertible {
         )
         dataPlane = Sides.fromData(csv, settings)
 
-        positions = Positions(settings, dataLeft: dataPlane.left, sizes: sizes)
+        positions = Positions(settings, dataLeft: dataPlane.left)
 
         limit = settings.plot.dataPointDistance
 
@@ -102,14 +72,14 @@ class Plot: ReflectedStringConvertible {
         let plotCount = settings.inColumns ? csv.colCt : csv.rowCt
 
         // Initialize path info
-        var props = Array(repeating: Properties(), count: plotCount)
+        var props = PropertiesList(count: plotCount, settings: settings)
         // setup first so that the other functions can use them
-        plotFlags(settings, plotCount, &props)
-        plotClasses(settings, plotCount, &props)
-        plotColours(settings, plotCount, &props)
-        plotDashes(settings, plotCount, plotPlane.width, &props)
-        plotNames(settings, csv, plotCount, &props)
-        plotShapes(settings, plotCount, index: settings.csv.index, &props)
+        plotFlags(settings, plotCount, &props.plots)
+        plotClasses(settings, plotCount, &props.plots)
+        plotColours(settings, plotCount, &props.plots)
+        plotDashes(settings, plotCount, plotPlane.width, &props.plots)
+        plotNames(settings, csv, plotCount, &props.plots)
+        plotShapes(settings, plotCount, index: settings.csv.index, &props.plots)
         propsList = props
 
         subTitle = ""

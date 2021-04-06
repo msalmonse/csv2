@@ -7,60 +7,7 @@
 
 import Foundation
 
-extension SVG {
-
-    /// Generate the defs element
-    /// - Returns: the defs elements as a list
-
-    func defs() -> [String] {
-        // Make plottable a bit bigger so that shapes aren't clipped
-        let h = (plotPlane.bottom - plotPlane.top + shapeWidth * 4.0)
-        let w = (plotPlane.right - plotPlane.left + shapeWidth * 4.0)
-        let x = (plotPlane.left - shapeWidth * 2.0)
-        let y = (plotPlane.top - shapeWidth * 2.0)
-        var result = ["<defs>"]
-        result.append("<clipPath id=\"plotable\">")
-        result.append(rectTag(x: x, y: y, width: w, height: h))
-        result.append("</clipPath>")
-        result.append("</defs>")
-
-        return result
-    }
-
-    func logoImage() -> String {
-        let x = positions.logoX
-        let y = positions.logoY
-        let h = settings.svg.logoHeight
-        let w = settings.svg.logoWidth
-        let url = settings.svg.logoURL
-        return """
-            <image \(xy(x,y)) \(wh(w,h)) href="\(url)" class="logo" preserveAspectRatio="xMaxYMin" />
-            """
-    }
-
-    /// Generate an SVG group with the plot lines
-    /// - Parameter ts: TransScale object
-    /// - Returns: Array of SVG elements
-
-    func lineGroup(_ ts: TransScale) -> [String] {
-        var result: [String] = []
-        result.append("<g clip-path=\"url(#plotable)\" class=\"plotarea\">")
-        result.append(contentsOf: settings.inColumns ? columnPlot(ts) : rowPlot(ts))
-        result.append("</g>")
-
-        return result
-    }
-
-    /// Include SVG elements in SVG
-    /// - Parameter name: file name to include
-    /// - Returns: Text to include
-
-    func svgInclude(_ name: String) -> String {
-        if let url = SearchPath.search(name), let include = try? String(contentsOf: url) {
-            return include
-        }
-        return ""
-    }
+extension Plot {
 
     /// Generate an svg document
     /// - Returns: array of svg elements
@@ -68,7 +15,7 @@ extension SVG {
     func gen() -> [String] {
         let ts = TransScale(from: dataPlane, to: plotPlane, logx: logx, logy: logy)
 
-        var result: [String] = [ xmlTag, svgTag ]
+        var result: [String] = []
         if settings.svg.comment { result.append(comment) }
         result.append(cssStyle())
         result.append(contentsOf: defs())

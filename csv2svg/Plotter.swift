@@ -8,6 +8,7 @@
 import Foundation
 
 protocol Plotter {
+    func plotHead() -> String
     func plotPath(_ points: [PathCommand], props: Properties) -> String
     func plotText(x: Double, y: Double, text: String, props: Properties) -> String
 }

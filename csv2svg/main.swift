@@ -26,13 +26,13 @@ if opts.version {
 if opts.shapenames {
     print(Shape.allNames())
 } else if opts.show.hasContent {
-    svgOutput(showShape(shape: opts.show, defaults: defaults), to: opts.svgName)
+    output(showShape(shape: opts.show, defaults: defaults), to: opts.outName)
 } else if opts.bitmap.hasEntries {
     print(bitmap(opts.bitmap))
 } else if opts.colourslist {
-    svgOutput(showColoursList(defaults), to: opts.svgName)
+    output(showColoursList(defaults), to: opts.outName)
 } else if opts.dasheslist {
-    svgOutput(showDashesList(defaults), to: opts.svgName)
+    output(showDashesList(defaults), to: opts.outName)
 } else {
     // use a csvName of - to mean use stdin
     if opts.csvName == "-" { opts.csvName = nil }
@@ -56,10 +56,11 @@ if opts.shapenames {
         exit(1)
     }
 
-    let svg = SVG(csv!, settings!)
-    if opts.debug &== 8 { print(svg, to: &standardError) }
+    let plotter = SVG(settings!)
+    if opts.debug &== 8 { print(plotter, to: &standardError) }
 
-    svgOutput(svg.gen(), to: opts.svgName)
+    let plot = Plot(csv!, settings!, plotter)
+    output(plot.gen(), to: opts.outName)
 }
 
 /// Determine source of CSV data
@@ -90,12 +91,12 @@ private func jsonURL(_ opts: Options) -> URL {
     }
 }
 
-/// Write an SVG as a string array to a file or stdout
+/// Write an plot as a string array to a file or stdout
 /// - Parameters:
 ///   - tagList: the text array
 ///   - name: file name
 
-private func svgOutput(_ tagList: [String], to name: String?) {
+private func output(_ tagList: [String], to name: String?) {
     if name == nil {
         _ = tagList.map { print($0) }
     } else {
