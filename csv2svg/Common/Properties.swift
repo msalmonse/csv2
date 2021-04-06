@@ -7,8 +7,31 @@
 
 import Foundation
 
-enum StringProperties { case colour, dash, fill, fontFamily, strokeLineCap }
-enum DoubleProperties { case bezier, fontSize, strokewidth }
+enum StringProperties {
+    case colour, dash, fill, fontFamily, fontStyle, fontWeight, strokeLineCap, textAlign
+    var path: KeyPath<Properties,String?> {
+        switch self {
+        case .colour: return \.colour
+        case .dash: return \.dash
+        case .fill: return \.fill
+        case .fontFamily: return \.fontFamily
+        case .fontStyle: return \.fontStyle
+        case .fontWeight: return \.fontWeight
+        case .strokeLineCap: return \.strokeLineCap
+        case .textAlign: return \.textAlign
+        }
+    }
+}
+enum DoubleProperties {
+    case bezier, fontSize, strokeWidth
+    var path: KeyPath<Properties,Double> {
+        switch self {
+        case .bezier: return \.bezier
+        case .fontSize: return \.fontSize
+        case .strokeWidth: return \.strokeWidth
+        }
+    }
+}
 
 struct Properties {
     var bezier: Double = 0.0
@@ -18,6 +41,8 @@ struct Properties {
     var fill: String?
     var fontFamily: String?
     var fontSize = 0.0
+    var fontStyle: String?
+    var fontWeight: String?
     var name: String?
     var dashed = false
     var included = true
@@ -26,25 +51,21 @@ struct Properties {
     var shape: Shape?
     var strokeLineCap: String?
     var strokeWidth = 0.0
+    var textAlign: String?
 
     static fileprivate(set) var defaultProperties = Properties()
 
     func cascade(_ key: StringProperties) -> String? {
         switch key {
-        case .colour: return colour ?? Self.defaultProperties.colour
-        case .dash: return dash ?? Self.defaultProperties.dash
         case .fill: return fill ?? Self.defaultProperties.fill ?? cascade(.colour)
-        case .fontFamily: return fontFamily ?? Self.defaultProperties.fontFamily
-        case .strokeLineCap: return strokeLineCap ?? Self.defaultProperties.strokeLineCap
+        default:
+            return self[keyPath: key.path] ?? Self.defaultProperties[keyPath: key.path]
         }
     }
 
     func cascade(_ key: DoubleProperties) -> Double {
-        switch key {
-        case .bezier: return bezier > 0.0 ? bezier : Self.defaultProperties.bezier
-        case .fontSize: return fontSize > 0.0 ? fontSize : Self.defaultProperties.fontSize
-        case .strokewidth: return strokeWidth > 0.0 ? strokeWidth : Self.defaultProperties.strokeWidth
-        }
+        let val = self[keyPath: key.path]
+        return val > 0.0 ? val : Self.defaultProperties[keyPath: key.path]
     }
 }
 
@@ -67,6 +88,7 @@ struct PropertiesList {
         Properties.defaultProperties.fontFamily = settings.css.fontFamily
         Properties.defaultProperties.strokeLineCap = "round"
         Properties.defaultProperties.strokeWidth = settings.css.strokeWidth
+        Properties.defaultProperties.textAlign = "middle"
 
         grid.colour = "silver"
         grid.strokeWidth = settings.css.strokeWidth/2.0
