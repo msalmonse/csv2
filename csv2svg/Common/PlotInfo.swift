@@ -78,7 +78,7 @@ func plotDashes(
 
 func plotNames(
     _ settings: Settings,
-    _ csv: CSV, _ ct: Int,
+    _ csv: CSV,_ ct: Int,
     _ props: inout [Properties]
 ) {
     for i in 0..<ct {
@@ -86,10 +86,10 @@ func plotNames(
             props[i].name = settings.plot.names[i]
         } else if settings.headers > 0 && settings.csv.nameHeader >= 0 {
             props[i].name =
-                SVG.headerText(i, csv: csv, inColumns: settings.inColumns, header: settings.csv.nameHeader)
+                csv.headerText(i, inColumns: settings.inColumns, header: settings.csv.nameHeader)
         } else {
             props[i].name =
-                SVG.headerText(i, csv: nil, inColumns: settings.inColumns, header: settings.csv.nameHeader)
+                csv.headerText(i, inColumns: settings.inColumns, header: settings.csv.nameHeader)
         }
     }
 }

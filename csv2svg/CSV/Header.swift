@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension SVG {
+extension CSV {
 
     /// Extract name from column header
     /// - Parameters:
@@ -16,9 +16,9 @@ extension SVG {
     ///   - header: the row or column that has the names
     /// - Returns: column header
 
-    static private func columnHeader(_ column: Int, csv: CSV?, _ header: Int) -> String {
-        if csv != nil && csv!.data[header].hasIndex(column) && csv!.data[header][column].hasContent {
-                return csv!.data[header][column]
+    func columnHeader(_ column: Int, _ header: Int) -> String {
+        if data[header].hasIndex(column) && data[header][column].hasContent {
+                return data[header][column]
         }
         return String(format: "Column %d", column + 1)
     }
@@ -30,9 +30,9 @@ extension SVG {
     ///   - header: the row or column that has the names
     /// - Returns: row header
 
-    static private func rowHeader(_ row: Int, csv: CSV?, header: Int) -> String {
-        if csv != nil && row >= 0 && row < csv!.rowCt && csv!.data[row][header].hasContent {
-            return csv!.data[row][header]
+    func rowHeader(_ row: Int, header: Int) -> String {
+        if row >= 0 && row < rowCt && data[row][header].hasContent {
+            return data[row][header]
         }
         return String(format: "Row %d", row + 1)
     }
@@ -45,8 +45,8 @@ extension SVG {
     ///   - header: the row or column that has the names
     /// - Returns: row or column header
 
-    static func headerText(_ i: Int, csv: CSV?, inColumns: Bool, header: Int) -> String {
-        return inColumns ? columnHeader(i, csv: csv, header) : rowHeader(i, csv: csv, header: header)
+    func headerText(_ i: Int, inColumns: Bool, header: Int) -> String {
+        return inColumns ? columnHeader(i, header) : rowHeader(i, header: header)
     }
 
     /// Extract sub title from row or column
@@ -56,13 +56,13 @@ extension SVG {
     ///   - header: row or column with the sub title
     /// - Returns: sub title
 
-    static func subTitleText(csv: CSV, inColumns: Bool, header: Int) -> String {
+    func subTitleText(inColumns: Bool, header: Int) -> String {
         guard header >= 0 else { return "" }
         var text: [String] = []
         if inColumns {
-            text = csv.data.hasIndex(header) ? csv.data[header] : []
+            text = data.hasIndex(header) ? data[header] : []
         } else {
-            for row in csv.data where row.hasIndex(header) {
+            for row in data where row.hasIndex(header) {
                 text.append(row[header])
             }
         }

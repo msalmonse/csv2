@@ -1,13 +1,13 @@
 //
-//  SVG/SVG.swift
+//  Plot.swift
 //  csv2svg
 //
-//  Created by Michael Salmon on 2021-02-18.
+//  Created by Michael Salmon on 2021-04-06.
 //
 
 import Foundation
 
-class SVG: Plotter, ReflectedStringConvertible {
+class Plot: ReflectedStringConvertible {
     // plot widths
     var strokeWidth: Double { settings.css.strokeWidth }
     var shapeWidth: Double { strokeWidth * 1.75 }
@@ -110,25 +110,5 @@ class SVG: Plotter, ReflectedStringConvertible {
         propsList = props
 
         subTitle = ""
-    }
-
-    /// Create a plot command from a number of PathCommand's
-    /// - Parameters:
-    ///   - points: array of points to plot
-    ///   - props: path properties
-    /// - Returns: plot command string
-
-    func plotPath(_ points: [PathCommand], props: Properties) -> String {
-        var result = [ "<path" ]
-        if let cssClass = props.cssClass { result.append("class=\"\(cssClass)\"") }
-        result.append("d=\"")
-        result.append(contentsOf: points.map { $0.command() })
-        result.append("\" />")
-
-        return result.joined(separator: " ")
-    }
-
-    func plotText(x: Double, y: Double, text: String, props: Properties) -> String {
-        return ""
     }
 }
