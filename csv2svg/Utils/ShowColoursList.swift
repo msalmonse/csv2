@@ -13,7 +13,7 @@ import Foundation
 
 func showColoursList(_ defaults: Defaults) -> [String] {
     let size = 2.5 * defaults.baseFontSize
-    let count = defaults.colours.count + SVG.Colours.count
+    let count = defaults.colours.count + Colours.count
     let height = Double(count + 3)  * size
     let width = defaults.baseFontSize * 20.0
 

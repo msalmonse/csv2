@@ -22,7 +22,7 @@ extension SVG {
 
         var result: [String] = [ xmlTag, svgTag, cssStyle(extra: dashCSS)]
 
-        for dash in defaults.dashes + SVG.Dashes.all(width * 3.0) {
+        for dash in defaults.dashes + Dashes.all(width * 3.0) {
             y += step
             let points = [ PathCommand.moveTo(x: xLeft, y: yPath), .horizTo(x: xRight) ]
             let extra = "style=\"stroke-dasharray: \(dash)\""

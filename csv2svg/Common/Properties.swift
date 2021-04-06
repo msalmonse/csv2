@@ -18,4 +18,14 @@ struct Properties {
     var pointed = false
     var scattered = false
     var shape: Shape?
+    var strokeWidth = 2.0
+}
+
+struct PropertiesList {
+    var plots: [Properties]
+    var axes = Properties()
+    var legend = Properties()
+    var subTitle = Properties()
+    var ticks = Properties()
+    var title = Properties()
 }

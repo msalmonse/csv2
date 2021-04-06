@@ -101,12 +101,12 @@ class SVG: Plotter, ReflectedStringConvertible {
         // Initialize path info
         var props = Array(repeating: Properties(), count: plotCount)
         // setup first so that the other functions can use them
-        SVG.plotFlags(settings, plotCount, &props)
-        SVG.plotClasses(settings, plotCount, &props)
-        SVG.plotColours(settings, plotCount, &props)
-        SVG.plotDashes(settings, plotCount, plotPlane.width, &props)
-        SVG.plotNames(settings, csv, plotCount, &props)
-        SVG.plotShapes(settings, plotCount, index: settings.csv.index, &props)
+        plotFlags(settings, plotCount, &props)
+        plotClasses(settings, plotCount, &props)
+        plotColours(settings, plotCount, &props)
+        plotDashes(settings, plotCount, plotPlane.width, &props)
+        plotNames(settings, csv, plotCount, &props)
+        plotShapes(settings, plotCount, index: settings.csv.index, &props)
         propsList = props
 
         subTitle = settings.svg.subTitle.hasContent

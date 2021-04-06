@@ -217,6 +217,7 @@
 				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
 				C40A3AFE25DC01180016EB6D /* main.swift */,
 				C460B666261B3A590051BB80 /* Plotter.swift */,
+				C4F8F86D261C356F00DF76AE /* Common */,
 				C4E6C761261B2D44001EF95E /* Plot */,
 				C4C0C47C2612DF500072699C /* Settings */,
 				C453240125F938D0007D741C /* SVG */,
@@ -243,17 +244,14 @@
 			children = (
 				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
 				C40CD42B25ECD60F003944FA /* Axes.swift */,
-				C4EA5D2725EB8F4D00E104E0 /* Colours.swift */,
 				C422C5CB2608D58500676912 /* ColoursList.swift */,
 				C480847B25E4E97300BD0A24 /* ColumnPlot.swift */,
-				C4F20C102601DF4D005D2FE1 /* Dashes.swift */,
 				C4F1B3972609E0670035AC62 /* DashesList.swift */,
 				C4C0C471260F85E40072699C /* Fonts.swift */,
 				C45323EC25F8EF0D007D741C /* Gen.swift */,
 				C40CD43925ED025F003944FA /* Header.swift */,
 				C4F20C1526027B7C005D2FE1 /* Legends.swift */,
 				C446E81125F4BE4B007B1A05 /* PlotCommon.swift */,
-				C45323FA25F90359007D741C /* PlotInfo.swift */,
 				C45323F125F8F157007D741C /* Positions.swift */,
 				C422C5C72608D2EF00676912 /* Rect.swift */,
 				C446E80825F4BAA3007B1A05 /* RowPlot.swift */,
@@ -270,14 +268,10 @@
 				C453242425FA2C23007D741C /* DrawShapes.swift */,
 				C453242B25FA5D99007D741C /* Extensions.swift */,
 				C4FE49FE25F6440F0076EF5E /* Options.swift */,
-				C4255F3E25E423A7002DFE80 /* Path.swift */,
-				C4F20C0726012A67005D2FE1 /* Properties.swift */,
-				C40CD44025ED2390003944FA /* Plane.swift */,
 				C46ADD2026074CD60046F427 /* RandomCSV.swift */,
 				C45323E525F8CCC8007D741C /* Readlines.swift */,
 				C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */,
 				C4C0C4B6261458F10072699C /* SearchPath.swift */,
-				C453243725FA7968007D741C /* Shapes.swift */,
 				C422C5C32608D0CC00676912 /* ShowColoursList.swift */,
 				C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */,
 				C453244C25FBEBA6007D741C /* ShowShape.swift */,
@@ -328,6 +322,20 @@
 			children = (
 			);
 			path = Plot;
+			sourceTree = "<group>";
+		};
+		C4F8F86D261C356F00DF76AE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C4EA5D2725EB8F4D00E104E0 /* Colours.swift */,
+				C4F20C102601DF4D005D2FE1 /* Dashes.swift */,
+				C4255F3E25E423A7002DFE80 /* Path.swift */,
+				C45323FA25F90359007D741C /* PlotInfo.swift */,
+				C4F20C0726012A67005D2FE1 /* Properties.swift */,
+				C40CD44025ED2390003944FA /* Plane.swift */,
+				C453243725FA7968007D741C /* Shapes.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,7 +483,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# env | sort\nln -sf \"$BUILT_PRODUCTS_DIR/csv2svg\" test\n";
+			shellScript = "[[ -d test ]] || mkdir test\nln -sf \"$BUILT_PRODUCTS_DIR/csv2svg\" test/csv2svg\n";
 		};
 		C45053B125F0C9C4003FC346 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
