@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StringProperties { case colour, dash, fill, fontFamily }
+enum StringProperties { case colour, dash, fill, fontFamily, strokeLineCap }
 enum DoubleProperties { case bezier, fontSize, strokewidth }
 
 struct Properties {
@@ -24,9 +24,10 @@ struct Properties {
     var pointed = false
     var scattered = false
     var shape: Shape?
+    var strokeLineCap: String?
     var strokeWidth = 0.0
 
-    static var defaultProperties = Properties()
+    static fileprivate(set) var defaultProperties = Properties()
 
     func cascade(_ key: StringProperties) -> String? {
         switch key {
@@ -34,6 +35,7 @@ struct Properties {
         case .dash: return dash ?? Self.defaultProperties.dash
         case .fill: return fill ?? Self.defaultProperties.fill ?? cascade(.colour)
         case .fontFamily: return fontFamily ?? Self.defaultProperties.fontFamily
+        case .strokeLineCap: return strokeLineCap ?? Self.defaultProperties.strokeLineCap
         }
     }
 
@@ -56,12 +58,14 @@ struct PropertiesList {
     var ticks = Properties()
     var title = Properties()
 
-    init(count ct: Int, sizes: FontSizes, settings: Settings) {
+    init(count ct: Int, settings: Settings) {
+        let sizes = FontSizes(size: settings.dim.baseFontSize)
         plots = Array(repeating: Properties(), count: ct)
 
         Properties.defaultProperties.bezier = settings.plot.bezier
         Properties.defaultProperties.colour = "black"
         Properties.defaultProperties.fontFamily = settings.css.fontFamily
+        Properties.defaultProperties.strokeLineCap = "round"
         Properties.defaultProperties.strokeWidth = settings.css.strokeWidth
 
         grid.colour = "silver"
