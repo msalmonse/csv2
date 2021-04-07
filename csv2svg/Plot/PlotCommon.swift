@@ -189,6 +189,6 @@ extension Plot {
             }
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
-        return path(state.pathPoints + state.shapePoints, cssClass: props.cssClass!)
+        return plotter.plotPath(state.pathPoints + state.shapePoints, props: props)
     }
 }

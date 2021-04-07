@@ -42,6 +42,8 @@ extension Plot {
         if subTitle.hasContent { result.append(subTitleText()) }
         if settings.plotter.title.hasContent { result.append(titleText()) }
 
+        result.append(plotter.plotTail())
+
         return result
     }
 

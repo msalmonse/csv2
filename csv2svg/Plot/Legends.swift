@@ -37,11 +37,12 @@ extension Plot {
         _ props: Properties
     ) -> String {
         guard props.shape != nil else { return "" }
-        return path([
-            PathCommand.moveTo(x: x, y: y),
-            props.shape!.pathCommand(w: shapeWidth)
-        ],
-        cssClass: props.cssClass!)
+        return plotter.plotPath([
+                PathCommand.moveTo(x: x, y: y),
+                props.shape!.pathCommand(w: shapeWidth)
+            ],
+            props: props
+        )
     }
 
     /// Draw a line for plots with data points
@@ -58,13 +59,14 @@ extension Plot {
         _ props: Properties
     ) -> String {
         guard props.shape != nil else { return "" }
-        return path([
-            PathCommand.moveTo(x: left, y: y),
-            .horizTo(x: mid),
-            props.shape!.pathCommand(w: shapeWidth),
-            .horizTo(x: right)
-        ],
-        cssClass: props.cssClass!)
+        return plotter.plotPath([
+                PathCommand.moveTo(x: left, y: y),
+                .horizTo(x: mid),
+                props.shape!.pathCommand(w: shapeWidth),
+                .horizTo(x: right)
+            ],
+            props: props
+        )
     }
 
     /// Draw a plain line
@@ -79,11 +81,12 @@ extension Plot {
         _ left: Double, _ right: Double, _ y: Double,
         _ props: Properties
     ) -> String {
-        return path([
-            PathCommand.moveTo(x: left, y: y),
-            .horizTo(x: right)
-        ],
-        cssClass: props.cssClass!)
+        return plotter.plotPath([
+                PathCommand.moveTo(x: left, y: y),
+                .horizTo(x: right)
+            ],
+            props: props
+        )
     }
 
     /// Shorten a string if required

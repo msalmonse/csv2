@@ -84,6 +84,7 @@ enum PathCommand {
     }
 }
 
+/*
 /// plot a path from a list of points
 /// - Parameters:
 ///   - points: a list of the points or shapes on path
@@ -106,3 +107,4 @@ func path(
 
     return result.joined(separator: " ")
 }
+*/

@@ -41,8 +41,24 @@ extension SVG {
         return result.joined(separator: " ")
     }
 
+    /// Plot a rectangle
+    /// - Parameters:
+    ///   - x: x position
+    ///   - y: y position
+    ///   - w: width
+    ///   - h: height
+    ///   - rx: corner radius
+    /// - Returns: SVG code for a rectangle
+
     func plotRect(x: Double, y: Double, w: Double, h: Double, rx: Double) -> String {
         return rectTag(x: x, y: y, width: w, height: h, rx: rx)
+    }
+
+    /// Finish SVG
+    /// - Returns: end tag
+
+    func plotTail() -> String {
+        return svgTagEnd
     }
 
     /// Add text to the SVG

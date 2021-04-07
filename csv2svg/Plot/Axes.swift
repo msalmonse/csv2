@@ -141,6 +141,6 @@ extension Plot {
             }
         }
 
-        return path(tickPath, cssClass: "ytick") + labels.joined(separator: "\n")
+        return plotter.plotPath(tickPath, props: propsList.yLabel) + labels.joined(separator: "\n")
     }
 }

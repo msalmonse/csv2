@@ -97,6 +97,7 @@ struct PropertiesList {
         Properties.defaultProperties.strokeWidth = settings.css.strokeWidth
         Properties.defaultProperties.textAlign = "middle,0,baseline"
 
+        axes.cssClass = "axes"
         legend.fontSize = sizes.legendSize
         legend.cssClass = "legend"
         legendHeadline.fontSize = sizes.legendSize * 1.25

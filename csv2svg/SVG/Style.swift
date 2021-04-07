@@ -70,7 +70,7 @@ extension SVG {
         )
         result.append("\(id) path.axes { stroke: black }")
         result.append(
-            "\(id) path.xtick, \(id) path.ytick { stroke: silver; stroke-width: 1 }"
+            "\(id) path.xlabel, \(id) path.ylabel { stroke: silver; stroke-width: 1 }"
         )
 
         var textCSS: [String] = []
