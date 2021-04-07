@@ -10,9 +10,9 @@ test/
 testout/
 
 ## User settings
-csv2svg.xcodeproj/project.xcworkspace/
-csv2svg.xcodeproj/xcuserdata/
-csv2svg.xcodeproj/xcshareddata/*
-!csv2svg.xcodeproj/xcshareddata/xcschemes/
+csv2.xcodeproj/project.xcworkspace/
+csv2.xcodeproj/xcuserdata/
+csv2.xcodeproj/xcshareddata/*
+!csv2.xcodeproj/xcshareddata/xcschemes/
 ## app icons
 iconGen*/

@@ -1,4 +1,4 @@
-CSV2SVG = test/csv2svg
+CSV2 = test/csv2
 EXAMPLES =\
 	examples/layout.svg\
 	examples/trig.svg\
@@ -22,8 +22,8 @@ generated/index.html: $(SVGFILES) $(TXTFILES) $(EXTRAS)
 	@ ./indexMake.sh $@
 
 generated/%.svg: OPTS = $(shell cat $(@F:%.svg=data/%.opts))
-generated/%.svg: data/%.csv data/%.json data/%.opts $(CSV2SVG)
-	-@ $(CSV2SVG) $(OPTS) $(@F:%.svg=data/%.csv) $(@F:%.svg=data/%.json) $@
+generated/%.svg: data/%.csv data/%.json data/%.opts $(CSV2)
+	-@ $(CSV2) $(OPTS) $(@F:%.svg=data/%.csv) $(@F:%.svg=data/%.json) $@
 
 generated/%.txt: data/%.txt data/br.inc data/%.opts
 	@ cat $^ > $@
@@ -46,17 +46,17 @@ test.svg:
 examples: $(EXAMPLES)
 
 examples/trig.svg: data/trig.csv examples/trig.json
-	-@ $(CSV2SVG) --nocomment --cssid=svg-ex1 data/trig.csv examples/trig.json $@
+	-@ $(CSV2) --nocomment --cssid=svg-ex1 data/trig.csv examples/trig.json $@
 
-examples/trig-80-120.svg: data/trig.csv examples/trig.json $(CSV2SVG)
-	-@ $(CSV2SVG) --nocomment --cssid=svg-ex2 --xmin=80 --xmax=120 data/trig.csv examples/trig.json $@
+examples/trig-80-120.svg: data/trig.csv examples/trig.json $(CSV2)
+	-@ $(CSV2) --nocomment --cssid=svg-ex2 --xmin=80 --xmax=120 data/trig.csv examples/trig.json $@
 
-examples/trig-2plots.svg: data/trig.csv examples/trig.json $(CSV2SVG)
-	-@ $(CSV2SVG) --nocomment --cssid=svg-ex3 --include=40 data/trig.csv examples/trig.json $@
+examples/trig-2plots.svg: data/trig.csv examples/trig.json $(CSV2)
+	-@ $(CSV2) --nocomment --cssid=svg-ex3 --include=40 data/trig.csv examples/trig.json $@
 
-examples/trig-points.svg: data/trig.csv examples/trig.json $(CSV2SVG)
-	-@ $(CSV2SVG) --nocomment --cssid=svg-ex4 --showpoints=8 --scattered=16 data/trig.csv examples/trig.json $@
+examples/trig-points.svg: data/trig.csv examples/trig.json $(CSV2)
+	-@ $(CSV2) --nocomment --cssid=svg-ex4 --showpoints=8 --scattered=16 data/trig.csv examples/trig.json $@
 
 examples/layout.svg: data/trig.csv examples/layout.json examples/layout.inc
-	-@ $(CSV2SVG) data/trig.csv examples/layout.json $@
+	-@ $(CSV2) data/trig.csv examples/layout.json $@
 
