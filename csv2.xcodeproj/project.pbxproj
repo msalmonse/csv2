@@ -505,7 +505,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "[[ -d test ]] || mkdir test\nln -sf \"$BUILT_PRODUCTS_DIR/csv2svg\" test/csv2svg\n";
+			shellScript = "[[ -d test ]] || mkdir test\nln -sf \"$BUILT_PRODUCTS_DIR/csv2\" test/csv2\n";
 		};
 		C45053B125F0C9C4003FC346 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -523,7 +523,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "# env | sort > /tmp/xcode-env\nif [[ -x ${PROJECT_DIR}/autoversion.sh ]]\nthen\n    ${PROJECT_DIR}/autoversion.sh\nelse\n    echo autoversion.sh missing\nfi\n";
+			shellScript = "# env | sort > /tmp/xcode-env\nif [[ -x ${PROJECT_DIR}/autoversion.sh ]]\nthen\n    ${PROJECT_DIR}/autoversion.sh csv2\nelse\n    echo autoversion.sh missing\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
