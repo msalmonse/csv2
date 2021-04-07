@@ -200,7 +200,7 @@
 				C45323DC25F7F7C0007D741C /* Docs */,
 				C4C0C4C5261631730072699C /* Scripts */,
 				C40A3AFD25DC01180016EB6D /* csv2 */,
-				C48B822825E28F7E00EAEAE3 /* csv2svgTests */,
+				C48B822825E28F7E00EAEAE3 /* csv2Tests */,
 				C40A3AFC25DC01180016EB6D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -273,13 +273,13 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		C48B822825E28F7E00EAEAE3 /* csv2svgTests */ = {
+		C48B822825E28F7E00EAEAE3 /* csv2Tests */ = {
 			isa = PBXGroup;
 			children = (
 				C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */,
 				C48B822B25E28F7E00EAEAE3 /* Info.plist */,
 			);
-			path = csv2svgTests;
+			path = csv2Tests;
 			sourceTree = "<group>";
 		};
 		C4C0C47C2612DF500072699C /* Settings */ = {
