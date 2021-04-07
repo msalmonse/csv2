@@ -68,7 +68,7 @@ struct Properties {
 
     func cascade(_ key: DoubleProperties) -> Double {
         let val = self[keyPath: key.path]
-        return val > 0.0 ? val : Self.defaultProperties[keyPath: key.path]
+        return (val > 0.0) ? val : Self.defaultProperties[keyPath:key.path]
     }
 }
 

@@ -39,9 +39,6 @@ class Plot: ReflectedStringConvertible {
     // limit of distance between data points
     let limit: Double
 
-    // sub title
-    let subTitle: String
-
     // log x and y axes
     var logx: Bool { settings.plotter.logx && dataPlane.left > 0.0 }
     var logy: Bool { settings.plotter.logy && dataPlane.bottom > 0.0 }
@@ -91,7 +88,5 @@ class Plot: ReflectedStringConvertible {
         plotNames(settings, csv, plotCount, &propsList.plots)
         plotShapes(settings, plotCount, index: settings.csv.index, &propsList.plots)
         self.propsList = propsList
-
-        subTitle = ""
     }
 }
