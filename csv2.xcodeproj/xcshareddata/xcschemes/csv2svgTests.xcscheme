@@ -18,9 +18,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C48B822625E28F7E00EAEAE3"
-               BuildableName = "csv2svgTests.xctest"
-               BlueprintName = "csv2svgTests"
-               ReferencedContainer = "container:csv2svg.xcodeproj">
+               BuildableName = "csv2Tests.xctest"
+               BlueprintName = "csv2Tests"
+               ReferencedContainer = "container:csv2.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

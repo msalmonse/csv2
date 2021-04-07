@@ -108,7 +108,7 @@
 
 /* Begin PBXFileReference section */
 		C402620825FF3E1D0042AEA5 /* XI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XI.swift; sourceTree = "<group>"; };
-		C40A3AFB25DC01180016EB6D /* csv2svg */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = csv2svg; sourceTree = BUILT_PRODUCTS_DIR; };
+		C40A3AFB25DC01180016EB6D /* csv2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = csv2; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40A3AFE25DC01180016EB6D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C40CD42B25ECD60F003944FA /* Axes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Axes.swift; sourceTree = "<group>"; };
 		C40CD43925ED025F003944FA /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 		C480847F25E6776900BD0A24 /* Sides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sides.swift; sourceTree = "<group>"; };
 		C482B9FC25EE8D4D00E51A50 /* stderr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stderr.swift; sourceTree = "<group>"; };
 		C48B723525F224EF00B0752E /* indexMake.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = indexMake.sh; sourceTree = "<group>"; };
-		C48B822725E28F7E00EAEAE3 /* csv2svgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = csv2svgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = csv2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48B822925E28F7E00EAEAE3 /* csv2svgTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2svgTests.swift; sourceTree = "<group>"; };
 		C48B822B25E28F7E00EAEAE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C492BE0F25F3A2A10042A11E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -208,8 +208,8 @@
 		C40A3AFC25DC01180016EB6D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C40A3AFB25DC01180016EB6D /* csv2svg */,
-				C48B822725E28F7E00EAEAE3 /* csv2svgTests.xctest */,
+				C40A3AFB25DC01180016EB6D /* csv2 */,
+				C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -363,9 +363,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C40A3AFA25DC01180016EB6D /* csv2svg */ = {
+		C40A3AFA25DC01180016EB6D /* csv2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C40A3B0225DC01180016EB6D /* Build configuration list for PBXNativeTarget "csv2svg" */;
+			buildConfigurationList = C40A3B0225DC01180016EB6D /* Build configuration list for PBXNativeTarget "csv2" */;
 			buildPhases = (
 				C45053B125F0C9C4003FC346 /* ShellScript */,
 				C40A3AF725DC01180016EB6D /* Sources */,
@@ -377,17 +377,17 @@
 			);
 			dependencies = (
 			);
-			name = csv2svg;
+			name = csv2;
 			packageProductDependencies = (
 				C4FE49FA25F643E30076EF5E /* ArgumentParser */,
 			);
 			productName = csv2svg;
-			productReference = C40A3AFB25DC01180016EB6D /* csv2svg */;
+			productReference = C40A3AFB25DC01180016EB6D /* csv2 */;
 			productType = "com.apple.product-type.tool";
 		};
-		C48B822625E28F7E00EAEAE3 /* csv2svgTests */ = {
+		C48B822625E28F7E00EAEAE3 /* csv2Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C48B822E25E28F7E00EAEAE3 /* Build configuration list for PBXNativeTarget "csv2svgTests" */;
+			buildConfigurationList = C48B822E25E28F7E00EAEAE3 /* Build configuration list for PBXNativeTarget "csv2Tests" */;
 			buildPhases = (
 				C48B822325E28F7E00EAEAE3 /* Sources */,
 				C48B822425E28F7E00EAEAE3 /* Frameworks */,
@@ -398,9 +398,9 @@
 			);
 			dependencies = (
 			);
-			name = csv2svgTests;
+			name = csv2Tests;
 			productName = csv2svgTests;
-			productReference = C48B822725E28F7E00EAEAE3 /* csv2svgTests.xctest */;
+			productReference = C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -420,7 +420,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C40A3AF625DC01180016EB6D /* Build configuration list for PBXProject "csv2svg" */;
+			buildConfigurationList = C40A3AF625DC01180016EB6D /* Build configuration list for PBXProject "csv2" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -436,8 +436,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C40A3AFA25DC01180016EB6D /* csv2svg */,
-				C48B822625E28F7E00EAEAE3 /* csv2svgTests */,
+				C40A3AFA25DC01180016EB6D /* csv2 */,
+				C48B822625E28F7E00EAEAE3 /* csv2Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -815,7 +815,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C40A3AF625DC01180016EB6D /* Build configuration list for PBXProject "csv2svg" */ = {
+		C40A3AF625DC01180016EB6D /* Build configuration list for PBXProject "csv2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C40A3B0025DC01180016EB6D /* Debug */,
@@ -824,7 +824,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C40A3B0225DC01180016EB6D /* Build configuration list for PBXNativeTarget "csv2svg" */ = {
+		C40A3B0225DC01180016EB6D /* Build configuration list for PBXNativeTarget "csv2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C40A3B0325DC01180016EB6D /* Debug */,
@@ -833,7 +833,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C48B822E25E28F7E00EAEAE3 /* Build configuration list for PBXNativeTarget "csv2svgTests" */ = {
+		C48B822E25E28F7E00EAEAE3 /* Build configuration list for PBXNativeTarget "csv2Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C48B822C25E28F7E00EAEAE3 /* Debug */,
