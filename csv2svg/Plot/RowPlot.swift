@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension SVG {
+extension Plot {
 
     /// Calculate a list of x values, either a range or a data column
     /// - Returns: list of x and i values
@@ -28,12 +28,12 @@ extension SVG {
         var paths: [String] = []
 
         let xiValues = settings.plot.sortx ? xiList().sorted() : xiList()
-        for i in 0..<csv.rowCt where i != index && propsList[i].included {
+        for i in 0..<csv.rowCt where i != index && propsList.plots[i].included {
             let yValues = csv.rowValues(i)
             paths.append(
                 plotCommon(
                     xiValues, yValues,
-                    propsList[i],
+                    propsList.plots[i],
                     ts: ts
                 )
             )

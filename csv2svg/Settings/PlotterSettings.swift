@@ -1,5 +1,5 @@
 //
-//  SVGsettings.swift
+//  PlotterSettings.swift
 //  csv2svg
 //
 //  Created by Michael Salmon on 2021-03-30.
@@ -9,9 +9,9 @@ import Foundation
 
 extension Settings {
 
-    /// SVG related settings
+    /// Plotter related settings
 
-    struct SVG {
+    struct Plotter {
         // Include plot info in svg
         let comment: Bool
 
@@ -35,9 +35,9 @@ extension Settings {
         let yTitle: String
     }
 
-    /// Create SVG object from JSON
+    /// Create Plotter object from JSON
     /// - Parameter container: JSON container
-    /// - Returns: SVG object
+    /// - Returns: Plotter object
 
     static func jsonSVG(from container: KeyedDecodingContainer<CodingKeys>?, defaults: Defaults) -> SVG {
         return SVG(

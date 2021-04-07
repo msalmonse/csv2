@@ -6,7 +6,7 @@
 //
 
 import Foundation
-extension SVG {
+extension Plot {
 
     /// State of the plot
 

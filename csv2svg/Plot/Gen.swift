@@ -31,8 +31,6 @@ extension Plot {
         if settings.svg.legends { result.append(legend()) }
         if subTitle.hasContent { result.append(subTitleText()) }
         if settings.svg.title.hasContent { result.append(titleText()) }
-        if settings.svg.include.hasContent { result.append(svgInclude(settings.svg.include))}
-        result.append(svgTagEnd)
 
         return result
     }
@@ -44,17 +42,16 @@ extension Plot {
     /// - Returns: SVG as an array of strings
 
     func shapeGen(name: String, colour: String) -> [String] {
-        var result: [String] = [ xmlTag, svgTag ]
+        var result: [String] = []
         if let shape = Shape.lookup(name) {
-            let shapeCss = "\(hashID) path.shape { stroke: \(colour) }"
-            result.append(cssStyle(extra: shapeCss))
+            var props = Properties()
+            props.cssClass = "shape"
             let shapePath = [
                 PathCommand.moveTo(x: width/2.0, y: height/2.0),
                 shape.pathCommand(w: shapeWidth)
             ]
-            result.append(path(shapePath, cssClass: "shape"))
+            result.append(plotter.plotPath(shapePath, props: props))
         }
-        result.append(svgTagEnd)
 
         return result
     }
