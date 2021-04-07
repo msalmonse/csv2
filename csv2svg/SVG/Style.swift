@@ -86,7 +86,7 @@ extension SVG {
         cssProps(&result, id: id, propsList: plotProps)
 
         result.append(
-            "\(id) rect.legends { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }"
+            "\(id) rect.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }"
         )
 
         if extra.hasContent { result.append(extra) }

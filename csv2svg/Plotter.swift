@@ -13,7 +13,7 @@ protocol Plotter {
     func plotGroup(lines: String) -> String
     func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) -> String
     func plotPath(_ points: [PathCommand], props: Properties) -> String
-    func plotRect(x: Double, y: Double, w: Double, h: Double, rx: Double) -> String
+    func plotRect(_ plane: Plane, rx: Double, props: Properties) -> String
     func plotTail() -> String
     func plotText(x: Double, y: Double, text: String, props: Properties) -> String
 }

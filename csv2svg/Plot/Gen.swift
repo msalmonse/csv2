@@ -30,7 +30,6 @@ extension Plot {
         if settings.dim.xTick >= 0 { result.append(xTick(ts)) }
         if settings.dim.yTick >= 0 { result.append(yTick(ts)) }
         result.append(axes(ts))
-        // if settings.plotter.logoURL.hasContent { result.append(logoImage()) }
         result.append(lineGroup(ts))
         if settings.plotter.xTitle.hasContent {
             result.append(xTitleText(settings.plotter.xTitle, x: plotPlane.hMid, y: positions.xTitleY))
@@ -38,7 +37,7 @@ extension Plot {
         if settings.plotter.yTitle.hasContent {
             result.append(yTitleText(settings.plotter.yTitle, x: positions.yTitleX, y: plotPlane.vMid))
         }
-        // if settings.plotter.legends { result.append(legend()) }
+        if settings.plotter.legends { result.append(legend()) }
         if subTitle.hasContent { result.append(subTitleText()) }
         if settings.plotter.title.hasContent { result.append(titleText()) }
 

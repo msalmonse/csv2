@@ -48,10 +48,14 @@ extension SVG {
     ///   - w: width
     ///   - h: height
     ///   - rx: corner radius
+    ///   - props: path properties
     /// - Returns: SVG code for a rectangle
 
-    func plotRect(x: Double, y: Double, w: Double, h: Double, rx: Double) -> String {
-        return rectTag(x: x, y: y, width: w, height: h, rx: rx)
+    func plotRect(_ plane: Plane, rx: Double, props: Properties) -> String {
+        var extra = ""
+        if let cssClass = props.cssClass { extra = "class=\"\(cssClass)\"" }
+        return
+            rectTag(x: plane.left, y: plane.top, width: plane.width, height: plane.height, extra: extra, rx: rx)
     }
 
     /// Finish SVG

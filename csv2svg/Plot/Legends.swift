@@ -18,11 +18,8 @@ extension Plot {
     /// - Returns: rectangle string
 
     private func legendBG(_ top: Double, _ bottom: Double, _ left: Double, right: Double) -> String {
-        let h = bottom - top
-        let w = right - left
-        let x = left
-        let y = top
-        return plotter.plotRect(x: x, y: y, w: w, h: h, rx: strokeWidth * 3.0)
+        let plane = Plane(top: top, bottom: bottom, left: left, right: right)
+        return plotter.plotRect(plane, rx: strokeWidth * 3.0, props: propsList.legend)
     }
 
     /// Draw the shape used for a scatter plot

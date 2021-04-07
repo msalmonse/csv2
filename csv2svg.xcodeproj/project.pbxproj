@@ -222,6 +222,7 @@
 				C460B666261B3A590051BB80 /* Plotter.swift */,
 				C4F8F86D261C356F00DF76AE /* Common */,
 				C4F8F87B261C37E900DF76AE /* CSV */,
+				C4F8F88C261DE21100DF76AE /* JS */,
 				C4F8F873261C372900DF76AE /* Plot */,
 				C4C0C47C2612DF500072699C /* Settings */,
 				C453240125F938D0007D741C /* SVG */,
@@ -350,6 +351,13 @@
 				C40CD43925ED025F003944FA /* Header.swift */,
 			);
 			path = CSV;
+			sourceTree = "<group>";
+		};
+		C4F8F88C261DE21100DF76AE /* JS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = JS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
