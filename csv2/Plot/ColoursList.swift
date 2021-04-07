@@ -30,10 +30,13 @@ extension Plot {
         ]
 
         for i in colours.indices {
-            result.append(plotter.plotText(x: xText, y: y, text: colours[i], props: propsList.plots[i]))
+            result.append(
+                plotter.plotText(x: xText, y: y, text: colours[i], props: propsList.plots[i])
+            )
             let plane = Plane(top: yRect, bottom: yRect + hRect, left: lRect, right: rRect)
             result.append(
-                plotter.plotRect(plane, rx: rx, props: propsList.plots[i]))
+                plotter.plotRect(plane, rx: rx, props: propsList.plots[i])
+            )
             y += step
         }
 
