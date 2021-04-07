@@ -8,7 +8,7 @@
 import Foundation
 
 extension SVG {
-    
+
     /// Generate a <rect>
     /// - Parameters:
     ///   - x: x position

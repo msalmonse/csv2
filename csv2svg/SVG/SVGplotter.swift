@@ -9,10 +9,19 @@ import Foundation
 
 extension SVG {
 
-    func plotHead() -> String {
-        var result = [ xmlTag, svgTag ]
-        if settings.plotter.comment { result.append(comment)}
+    func plotGroup(lines: String) -> String {
+        return """
+            <g clip-path="url(#plotable)" class="plotarea">
+            \(lines)
+            </g>
+            """
+    }
 
+    func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) -> String {
+        var result = [ xmlTag, svgTag ]
+        if settings.plotter.comment { result.append(comment) }
+        result.append(defs(plotPlane: plotPlane))
+        result.append(cssStyle(plotProps: propsList.plots))
         return result.joined(separator: "\n")
     }
 
@@ -32,6 +41,10 @@ extension SVG {
         return result.joined(separator: " ")
     }
 
+    func plotRect(x: Double, y: Double, w: Double, h: Double, rx: Double) -> String {
+        return rectTag(x: x, y: y, width: w, height: h, rx: rx)
+    }
+
     /// Add text to the SVG
     /// - Parameters:
     ///   - x: x position
@@ -39,7 +52,7 @@ extension SVG {
     ///   - text: text to add
     ///   - props: text properties
     /// - Returns: text string
-    
+
     func plotText(x: Double, y: Double, text: String, props: Properties) -> String {
         return textTag(x: x, y: y, text: text, cssClass: props.cascade(.cssClass)!)
     }

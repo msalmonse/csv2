@@ -12,8 +12,8 @@ extension SVG {
         // font sizes and anchors
         let sizes = FontSizes(size: settings.dim.baseFontSize)
         result.append("""
-            \(id) text.legends { font-size: \(sizes.legendSize.f(1))px }
-            \(id) text.legends.headline { font-size: \((sizes.legendSize * 1.25).f(1))px; font-weight: bold }
+            \(id) text.legend { font-size: \(sizes.legendSize.f(1))px }
+            \(id) text.legend.headline { font-size: \((sizes.legendSize * 1.25).f(1))px; font-weight: bold }
             \(id) text.subtitle { font-size: \(sizes.subTitleSize.f(1))px; text-anchor: middle }
             \(id) text.title { font-size: \(sizes.titleSize.f(1))px; text-anchor: middle }
             \(id) text.xlabel { font-size: \(sizes.labelSize.f(1))px; text-anchor: middle }
@@ -24,7 +24,7 @@ extension SVG {
         )
     }
 
-    private func cssProps(_ result: inout [String], id: String) {
+    private func cssProps(_ result: inout [String], id: String, propsList: [Properties]) {
         for props in propsList {
             if let cssClass = props.cssClass, let colour = props.colour {
                 let dashes =
@@ -57,7 +57,7 @@ extension SVG {
     /// - Parameter extra: extra tags
     /// - Returns: css information in a string
 
-    func cssStyle(extra: String = "") -> String {
+    func cssStyle(plotProps: [Properties], extra: String = "") -> String {
         let id = hashID
         var result: [String] = ["<style>"]
         cssBG(&result, id: id)
@@ -83,7 +83,7 @@ extension SVG {
         cssFonts(&result, id: id)
 
         // Individual plot settings
-        cssProps(&result, id: id)
+        cssProps(&result, id: id, propsList: plotProps)
 
         result.append(
             "\(id) rect.legends { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }"

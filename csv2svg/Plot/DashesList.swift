@@ -7,8 +7,9 @@
 
 import Foundation
 
-extension SVG {
+extension Plot {
     func dashesListGen(_ step: Double, _ defaults: Defaults) -> [String] {
+        /*
         let colour = defaults.colours.first ?? "black"
         let dashCSS =
             "\(hashID) path.dashes { stroke: \(colour); stroke-width: \((step/5.0).f(1)); stroke-linecap: butt }"
@@ -20,17 +21,21 @@ extension SVG {
         var y = step
         var yPath: Double { y - step/10.0 }
 
-        var result: [String] = [ xmlTag, svgTag, cssStyle(extra: dashCSS)]
+        var result: [String] = [ xmlTag, svgTag
+                                 // , cssStyle(extra: dashCSS)
+        ]
 
         for dash in defaults.dashes + Dashes.all(width * 3.0) {
             y += step
             let points = [ PathCommand.moveTo(x: xLeft, y: yPath), .horizTo(x: xRight) ]
-            let extra = "style=\"stroke-dasharray: \(dash)\""
-            result.append(path(points, cssClass: "dashes", extra: extra))
+            // let extra = "style=\"stroke-dasharray: \(dash)\""
+            result.append(plotter.plotPath(points, cssClass: "dashes", extra: extra))
             result.append(textTag(x: xText, y: y, text: dash, cssClass: "dashes"))
         }
 
-        result.append(svgTagEnd)
+        // result.append(svgTagEnd)
         return result
+    */
+        return [""]
     }
 }

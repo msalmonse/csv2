@@ -248,8 +248,6 @@
 			children = (
 				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
 				C460B672261CD5CD0051BB80 /* SVGplotter.swift */,
-				C422C5CB2608D58500676912 /* ColoursList.swift */,
-				C4F1B3972609E0670035AC62 /* DashesList.swift */,
 				C4C0C461260E589A0072699C /* Style.swift */,
 				C460B676261DA8B30051BB80 /* Tags.swift */,
 			);
@@ -332,7 +330,9 @@
 			isa = PBXGroup;
 			children = (
 				C40CD42B25ECD60F003944FA /* Axes.swift */,
+				C422C5CB2608D58500676912 /* ColoursList.swift */,
 				C480847B25E4E97300BD0A24 /* ColumnPlot.swift */,
+				C4F1B3972609E0670035AC62 /* DashesList.swift */,
 				C45323EC25F8EF0D007D741C /* Gen.swift */,
 				C4F20C1526027B7C005D2FE1 /* Legends.swift */,
 				C4F8F874261C375C00DF76AE /* Plot.swift */,

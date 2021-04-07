@@ -7,8 +7,9 @@
 
 import Foundation
 
-extension SVG {
+extension Plot {
     func coloursListGen(_ step: Double, _ defaults: Defaults) -> [String] {
+        /*
         let xText = width/2.0
         let wRect = width/3.0
         let xRect = width/8.0
@@ -21,10 +22,11 @@ extension SVG {
             \(hashID) text.colours { font-size: \((step * 0.75).f(0))px }
             """
 
-        var result: [String] = [ xmlTag, svgTag, cssStyle(extra: coloursCSS) ]
+        var result: [String] = [ xmlTag, svgTag
+                                 // , cssStyle(extra: coloursCSS)
+        ]
 
         for colour in defaults.colours + Colours.all {
-            let extra = "class=\"colours\" style=\" fill: \(colour); stroke: \(colour) \""
             result.append(textTag(x: xText, y: y, text: colour, cssClass: "colours", extra: extra))
             result.append(
                 rectTag(x: xRect, y: yRect, width: wRect, height: hRect, extra: extra, rx: rx))
@@ -33,5 +35,7 @@ extension SVG {
 
         result.append(svgTagEnd)
         return result
+        */
+        return [""]
     }
 }

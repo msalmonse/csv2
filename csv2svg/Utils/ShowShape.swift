@@ -18,8 +18,9 @@ func showShape(shape: String, defaults: Defaults) -> [String] {
     let wh = (defaults.strokeWidth * 6).f(0)
     let settings = try? Settings.load(settingsJson(wh))
     let csv = CSV("")
-    let svg = SVG(csv, settings!)
-    return svg.shapeGen(name: shape, colour: colour)
+    let svg = SVG(settings!)
+    let plot = Plot(csv, settings!, svg)
+    return plot.shapeGen(name: shape, colour: colour)
 }
 
 /// JSON text for display a shape

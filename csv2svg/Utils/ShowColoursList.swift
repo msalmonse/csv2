@@ -19,8 +19,9 @@ func showColoursList(_ defaults: Defaults) -> [String] {
 
     let settings = try? Settings.load(settingsJson(width, height))
     let csv = CSV("")
-    let svg = SVG(csv, settings!)
-    return svg.coloursListGen(size, defaults)
+    let svg = SVG(settings!)
+    let plot = Plot(csv, settings!, svg)
+    return plot.coloursListGen(size, defaults)
 }
 
 private func settingsJson(_ w: Double, _ h: Double) -> String {

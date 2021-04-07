@@ -20,7 +20,8 @@ func showDashesList(_ defaults: Defaults) -> [String] {
     let settings = try? Settings.load(settingsJson(width, height))
     let csv = CSV("")
     let svg = SVG(settings!)
-    return svg.dashesListGen(size, defaults)
+    let plot = Plot(csv, settings!, svg)
+    return plot.dashesListGen(size, defaults)
 }
 
 private func settingsJson(_ w: Double, _ h: Double) -> String {

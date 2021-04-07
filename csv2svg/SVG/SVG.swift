@@ -48,7 +48,7 @@ class SVG: Plotter, ReflectedStringConvertible {
     /// Generate the defs element
     /// - Returns: the defs elements as a list
 
-    func defs() -> [String] {
+    func defs(plotPlane: Plane) -> String {
         // Make plottable a bit bigger so that shapes aren't clipped
         let h = (plotPlane.bottom - plotPlane.top + shapeWidth * 4.0)
         let w = (plotPlane.right - plotPlane.left + shapeWidth * 4.0)
@@ -60,10 +60,10 @@ class SVG: Plotter, ReflectedStringConvertible {
         result.append("</clipPath>")
         result.append("</defs>")
 
-        return result
+        return result.joined(separator: "\n")
     }
 
-    func logoImage() -> String {
+    func logoImage(positions: Positions) -> String {
         let x = positions.logoX
         let y = positions.logoY
         let h = settings.plotter.logoHeight
@@ -84,6 +84,4 @@ class SVG: Plotter, ReflectedStringConvertible {
         }
         return ""
     }
-
-
 }

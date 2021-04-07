@@ -27,7 +27,7 @@ extension Plot {
             axesPath.append(.vertTo(y: plotPlane.top))
         }
 
-        return plotter.plotPath(axesPath, propsList.axes)
+        return plotter.plotPath(axesPath, props: propsList.axes)
     }
 
     /// Normalize tick value
@@ -102,7 +102,7 @@ extension Plot {
             }
         }
 
-        return plotter.plotPath(tickPath, ) + labels.joined(separator: "\n")
+        return plotter.plotPath(tickPath, props: propsList.xLabel) + labels.joined(separator: "\n")
     }
 
     /// Draw horizontal ticks

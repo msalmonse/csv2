@@ -22,7 +22,7 @@ extension Plot {
         let w = right - left
         let x = left
         let y = top
-        return rectTag(x: x, y: y, width: w, height: h, extra: "class=\"legends\"", rx: strokeWidth * 3.0)
+        return plotter.plotRect(x: x, y: y, w: w, h: h, rx: strokeWidth * 3.0)
     }
 
     /// Draw the shape used for a scatter plot
@@ -108,18 +108,23 @@ extension Plot {
         let xMid = (xLeft + xRight)/2.0
         let yStep = legendSize * 1.5
         var y = positions.legendY + yStep
-        var legends: [String] = ["", textTag(x: x, y: y, text: "Legends:", cssClass: "legends headline")]
+        var legends: [String] = [
+            "",         // reserved for rect below
+            plotter.plotText(x: x, y: y, text: "Legends:", props: propsList.legendHeadline)
+        ]
         y += yStep/2.0
+        let plotProps = propsList.plots
 
-        for i in 0..<propsList.count where i != index && propsList[i].included {
+        for i in 0..<plotProps.count where i != index && plotProps[i].included {
             y += yStep
             if y > height - yStep - yStep {
-                legends.append(textTag(x: xLeft, y: y, text: "…", cssClass: "legends"))
+                legends.append(plotter.plotText(x: xLeft, y: y, text: "…", props: propsList.legend))
                 break
             }
-            let propsi = propsList[i]
+            var propsi = plotProps[i]
             let text = shortened(propsi.name!)
-            legends.append(textTag(x: xLeft, y: y, text: text, cssClass: "legends \(propsi.cssClass!)"))
+            propsi.cssClass = propsi.cssClass! + " legend"
+            legends.append(plotter.plotText(x: xLeft, y: y, text: text, props: propsi))
             let lineY = y + yStep/2.0
             if propsi.dashed || propsi.pointed || propsi.scattered { y += yStep }
             switch (propsi.dashed, propsi.pointed, propsi.scattered) {

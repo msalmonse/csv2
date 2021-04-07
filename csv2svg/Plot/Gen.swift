@@ -16,17 +16,17 @@ extension Plot {
     func lineGroup(_ ts: TransScale) -> String {
         let result = settings.inColumns ? columnPlot(ts) : rowPlot(ts)
 
-        return result.joined()
+        return plotter.plotGroup(lines: result.joined(separator: "\n"))
     }
 
-    /// Generate an svg document
-    /// - Returns: array of svg elements
+    /// Generate a plotter document
+    /// - Returns: array of string elements
 
     func gen() -> [String] {
         let ts = TransScale(from: dataPlane, to: plotPlane, logx: logx, logy: logy)
 
         var result: [String] = []
-        result.append(plotter.plotHead())
+        result.append(plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList))
         if settings.dim.xTick >= 0 { result.append(xTick(ts)) }
         if settings.dim.yTick >= 0 { result.append(yTick(ts)) }
         result.append(axes(ts))
