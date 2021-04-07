@@ -16,9 +16,7 @@ extension Plot {
         let ts = TransScale(from: dataPlane, to: plotPlane, logx: logx, logy: logy)
 
         var result: [String] = []
-        if settings.svg.comment { result.append(comment) }
-        result.append(cssStyle())
-        result.append(contentsOf: defs())
+        result.append(plotter.plotHead())
         if settings.dim.xTick >= 0 { result.append(xTick(ts)) }
         if settings.dim.yTick >= 0 { result.append(yTick(ts)) }
         result.append(axes(ts))

@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension SVG {
+extension Plot {
 
     /// Draw axes
     /// - Parameter ts: scaling and tranlating object
@@ -27,7 +27,7 @@ extension SVG {
             axesPath.append(.vertTo(y: plotPlane.top))
         }
 
-        return path(axesPath, cssClass: "axes")
+        return plotter.plotPath(axesPath, propsList.axes)
     }
 
     /// Normalize tick value
@@ -102,7 +102,7 @@ extension SVG {
             }
         }
 
-        return path(tickPath, cssClass: "xtick") + labels.joined(separator: "\n")
+        return plotter.plotPath(tickPath, ) + labels.joined(separator: "\n")
     }
 
     /// Draw horizontal ticks

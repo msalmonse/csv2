@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension SVG {
+extension Plot {
 
     /// Add title to the svg
     /// - Returns: String to display title
@@ -15,7 +15,7 @@ extension SVG {
     func titleText() -> String {
         let x = width/2.0
         let y = positions.titleY
-        return textTag(x: x, y: y, text: settings.svg.title, cssClass: "title")
+        return plotter.plotText(x: x, y: y, text: settings.svg.title, props: propsList.title)
     }
 
     /// Add sub title to the svg
@@ -24,14 +24,14 @@ extension SVG {
     func subTitleText() -> String {
         let x = width/2.0
         let y = positions.subTitleY
-        return textTag(x: x, y: y, text: subTitle, cssClass: "subtitle")
+        return plotter.plotText(x: x, y: y, text: subTitle, props: propsList.subTitle)
     }
 
     /// Add title to the x axis
     /// - Returns: String to display title
 
     func xTitleText(_ label: String, x: Double, y: Double) -> String {
-        return textTag(x: x, y: y, text: label, cssClass: "xtitle")
+        return plotter.plotText(x: x, y: y, text: label, props: propsList.xTitle)
     }
 
     /// Add title to the y axis
@@ -39,11 +39,7 @@ extension SVG {
 
     func yTitleText(_ label: String, x: Double, y: Double) -> String {
         // Rotate () rotates around 0,0 hence we need to start at -x,-y
-        return textTag(
-            x: -x, y: -y, text: label,
-            cssClass: "ytitle",
-            extra: "transform=\"rotate(180)\""
-        )
+        return plotter.plotText(x: -x, y: -y, text: label, props: propsList.yTitle)
     }
 
     /// Format a value suitable to be used as a label
@@ -70,7 +66,7 @@ extension SVG {
     /// - Returns: text string
 
     func xLabelText(_ label: String, x: Double, y: Double) -> String {
-        return textTag(x: x, y: y, text: label, cssClass: "xlabel")
+        return plotter.plotText(x: x, y: y, text: label, props: propsList.xLabel)
     }
 
     /// Generate a text string for a y label
@@ -81,50 +77,6 @@ extension SVG {
     /// - Returns: text string
 
     func yLabelText(_ label: String, x: Double, y: Double) -> String {
-        return textTag(x: x, y: y, text: label, cssClass: "ylabel")
-    }
-
-    /// Generate width and height string
-    /// - Parameters:
-    ///   - w: width value
-    ///   - h: height value
-    ///   - precission: precission in string
-    /// - Returns: width and height string
-
-    func wh(_ w: Double, _ h: Double, _ precision: Int = 2) -> String {
-        return """
-            width="\(w.f(precision))" height="\(h.f(precision))"
-            """
-    }
-
-    /// Generate x and y string
-    /// - Parameters:
-    ///   - x: x value
-    ///   - y: y value
-    ///   - precission: precission in string
-    /// - Returns: x and y string
-
-    func xy(_ x: Double, _ y: Double, _ precision: Int = 2) -> String {
-        return """
-            x="\(x.f(precision))" y="\(y.f(precision))"
-            """
-    }
-
-    /// Generate a <text> string
-    /// - Parameters:
-    ///   - x: x position
-    ///   - y: y position
-    ///   - text: text to display
-    ///   - cssClass: text tag class
-    ///   - extra: any extra options for <text>
-    /// - Returns: <text> string
-
-    func textTag(
-        x: Double, y: Double,
-        text: String,
-        cssClass: String,
-        extra: String = ""
-    ) -> String {
-        return "<text \(xy(x,y)) class=\"\(cssClass)\" \(extra)>\(text)</text>"
+        return plotter.plotText(x: x, y: y, text: label, props: propsList.yLabel)
     }
 }

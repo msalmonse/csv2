@@ -72,15 +72,15 @@ class Plot: ReflectedStringConvertible {
         let plotCount = settings.inColumns ? csv.colCt : csv.rowCt
 
         // Initialize path info
-        var props = PropertiesList(count: plotCount, settings: settings)
+        var propsList = PropertiesList(count: plotCount, settings: settings)
         // setup first so that the other functions can use them
-        plotFlags(settings, plotCount, &props.plots)
-        plotClasses(settings, plotCount, &props.plots)
-        plotColours(settings, plotCount, &props.plots)
-        plotDashes(settings, plotCount, plotPlane.width, &props.plots)
-        plotNames(settings, csv, plotCount, &props.plots)
-        plotShapes(settings, plotCount, index: settings.csv.index, &props.plots)
-        propsList = props
+        plotFlags(settings, plotCount, &propsList.plots)
+        plotClasses(settings, plotCount, &propsList.plots)
+        plotColours(settings, plotCount, &propsList.plots)
+        plotDashes(settings, plotCount, plotPlane.width, &propsList.plots)
+        plotNames(settings, csv, plotCount, &propsList.plots)
+        plotShapes(settings, plotCount, index: settings.csv.index, &propsList.plots)
+        self.propsList = propsList
 
         subTitle = ""
     }
