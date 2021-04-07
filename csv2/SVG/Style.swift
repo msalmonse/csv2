@@ -31,7 +31,7 @@ extension SVG {
                     props.dashed ? "; stroke-dasharray: \(props.dash ?? "-1"); stroke-linecap: butt" : ""
                 result.append("""
                     \(id) path.\(cssClass) { stroke: \(colour)\(dashes) }
-                    \(id) text.\(cssClass) { fill: \(colour); stroke: \(colour) }
+                    \(id) text.\(cssClass), \(id) rect.\(cssClass) { fill: \(colour); stroke: \(colour) }
                     """
                 )
             }
