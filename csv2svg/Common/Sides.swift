@@ -39,9 +39,9 @@ struct Sides {
             } else {
                 (min, max) = csv.minMax(settings.inColumns, index, from: settings.headers)
                 // if min and max don't include 0 then include 0 if one is close
-                if min > 0 && max > 0 && !settings.svg.logx {
+                if min > 0 && max > 0 && !settings.plotter.logx {
                     if min < max/20.0 { min = 0.0 }
-                } else if min < 0 && max < 0 && !settings.svg.logx {
+                } else if min < 0 && max < 0 && !settings.plotter.logx {
                     if max < min/20.0 { max = 0.0 }
                 }
             }
@@ -82,9 +82,9 @@ struct Sides {
                     csv.minMax(settings.inColumns, i, from: settings.headers, min: min, max: max)
             }
             // if min and max don't include 0 then include 0 if one is close
-            if min > 0 && max > 0 && !settings.svg.logy {
+            if min > 0 && max > 0 && !settings.plotter.logy {
                 if min < max/20.0 { min = 0.0 }
-            } else if min < 0 && max < 0 && !settings.svg.logy {
+            } else if min < 0 && max < 0 && !settings.plotter.logy {
                 if max < min/20.0 { max = 0.0 }
             }
 

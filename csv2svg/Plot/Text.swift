@@ -15,7 +15,7 @@ extension Plot {
     func titleText() -> String {
         let x = width/2.0
         let y = positions.titleY
-        return plotter.plotText(x: x, y: y, text: settings.svg.title, props: propsList.title)
+        return plotter.plotText(x: x, y: y, text: settings.plotter.title, props: propsList.title)
     }
 
     /// Add sub title to the svg

@@ -39,8 +39,11 @@ extension Settings {
     /// - Parameter container: JSON container
     /// - Returns: Plotter object
 
-    static func jsonSVG(from container: KeyedDecodingContainer<CodingKeys>?, defaults: Defaults) -> SVG {
-        return SVG(
+    static func jsonPlotter(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        defaults: Defaults
+    ) -> Plotter {
+        return Plotter(
             comment: keyedBoolValue(from: container, forKey: .comment, defaults: defaults),
             legends: keyedBoolValue(from: container, forKey: .legends, defaults: defaults),
             logx: keyedBoolValue(from: container, forKey: .logx, defaults: defaults),

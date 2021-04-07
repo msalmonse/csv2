@@ -51,19 +51,19 @@ struct Positions {
     init(_ settings: Settings, dataLeft: Double) {
         let sizes = FontSizes(size: settings.dim.baseFontSize)
         let margin = settings.dim.baseFontSize * 0.6
-        let logoHeight = settings.svg.logoURL.isEmpty ? 0.0 : settings.svg.logoHeight
-        let logoWidth = settings.svg.logoURL.isEmpty ? 0.0 : settings.svg.logoWidth
+        let logoHeight = settings.plotter.logoURL.isEmpty ? 0.0 : settings.plotter.logoHeight
+        let logoWidth = settings.plotter.logoURL.isEmpty ? 0.0 : settings.plotter.logoWidth
         // Calculate vertical positions
         // Bottom
         var pos = settings.height - margin
         pos -= inRange(0.0..<pos, settings.dim.reserveBottom)
         subTitleY = pos
-        pos -= (settings.svg.subTitle.hasContent || settings.csv.subTitleHeader >= 0)
+        pos -= (settings.plotter.subTitle.hasContent || settings.csv.subTitleHeader >= 0)
             ? sizes.subTitleSize * 1.25 : 0.0
         titleY = pos
-        pos -= (settings.svg.title.hasContent) ? sizes.titleSize * 1.25 : 0.0
+        pos -= (settings.plotter.title.hasContent) ? sizes.titleSize * 1.25 : 0.0
         xTitleY = pos
-        pos -= (settings.svg.xTitle.hasContent) ? sizes.axesSize * 1.25 : 0.0
+        pos -= (settings.plotter.xTitle.hasContent) ? sizes.axesSize * 1.25 : 0.0
         xTicksY = pos
         pos -= (settings.dim.xTick >= 0) ? sizes.labelSize * 1.25 : 0.0
         bottomY = pos
@@ -78,7 +78,7 @@ struct Positions {
         // Calculate horizontal positions
         pos = margin
         pos += inRange(0.0..<settings.width, settings.dim.reserveLeft)
-        pos += (settings.svg.yTitle.hasContent) ? sizes.axesSize * 1.25 : 0.0
+        pos += (settings.plotter.yTitle.hasContent) ? sizes.axesSize * 1.25 : 0.0
         yTitleX = pos
         // Give some extra space for minus sign
         pos += (settings.dim.yTick < 0) ? 0.0 : sizes.labelSize * (dataLeft < 0.0 ? 3.5 : 4.0)
@@ -91,7 +91,7 @@ struct Positions {
         pos -= inRange(0.0..<pos, settings.dim.reserveRight)
         logoX = pos - logoWidth
         legendRightX = pos
-        if !settings.svg.legends {
+        if !settings.plotter.legends {
             legendLeftX = pos
         } else {
             let newpos = pos - max(5.5 * sizes.legendSize, logoWidth)

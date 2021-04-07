@@ -10,15 +10,16 @@ import Foundation
 extension SVG {
     private func cssFonts(_ result: inout [String], id: String) {
         // font sizes and anchors
+        let sizes = FontSizes(size: settings.dim.baseFontSize)
         result.append("""
-            \(id) text.legends { font-size: \(legendSize.f(1))px }
-            \(id) text.legends.headline { font-size: \((legendSize * 1.25).f(1))px; font-weight: bold }
-            \(id) text.subtitle { font-size: \(subTitleSize.f(1))px; text-anchor: middle }
-            \(id) text.title { font-size: \(titleSize.f(1))px; text-anchor: middle }
-            \(id) text.xlabel { font-size: \(labelSize.f(1))px; text-anchor: middle }
-            \(id) text.xtitle { font-size: \(axesSize.f(1))px; text-anchor: middle }
-            \(id) text.ylabel { font-size: \(labelSize.f(1))px; text-anchor: end; dominant-baseline: middle }
-            \(id) text.ytitle { font-size: \(axesSize.f(1))px; text-anchor: middle; writing-mode: tb }
+            \(id) text.legends { font-size: \(sizes.legendSize.f(1))px }
+            \(id) text.legends.headline { font-size: \((sizes.legendSize * 1.25).f(1))px; font-weight: bold }
+            \(id) text.subtitle { font-size: \(sizes.subTitleSize.f(1))px; text-anchor: middle }
+            \(id) text.title { font-size: \(sizes.titleSize.f(1))px; text-anchor: middle }
+            \(id) text.xlabel { font-size: \(sizes.labelSize.f(1))px; text-anchor: middle }
+            \(id) text.xtitle { font-size: \(sizes.axesSize.f(1))px; text-anchor: middle }
+            \(id) text.ylabel { font-size: \(sizes.labelSize.f(1))px; text-anchor: end; dominant-baseline: middle }
+            \(id) text.ytitle { font-size: \(sizes.axesSize.f(1))px; text-anchor: middle; writing-mode: tb }
             """
         )
     }

@@ -11,7 +11,7 @@ extension SVG {
 
     func plotHead() -> String {
         var result = [ xmlTag, svgTag ]
-        if settings.svg.comment { result.append(comment)}
+        if settings.plotter.comment { result.append(comment)}
 
         return result.joined(separator: "\n")
     }

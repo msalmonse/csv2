@@ -43,13 +43,23 @@ class Plot: ReflectedStringConvertible {
     let subTitle: String
 
     // log x and y axes
-    var logx: Bool { settings.svg.logx && dataPlane.left > 0.0 }
-    var logy: Bool { settings.svg.logy && dataPlane.bottom > 0.0 }
+    var logx: Bool { settings.plotter.logx && dataPlane.left > 0.0 }
+    var logy: Bool { settings.plotter.logy && dataPlane.bottom > 0.0 }
+
+    // font sizes
+    let sizes: FontSizes
+    var axesSize: Double { return sizes.axesSize }
+    var labelSize: Double { return sizes.labelSize }
+    var legendSize: Double { return sizes.legendSize }
+    var subTitleSize: Double { return sizes.subTitleSize }
+    var titleSize: Double { return sizes.titleSize }
 
     init(_ csv: CSV, _ settings: Settings, _ plotter: Plotter) {
         self.csv = csv
         self.settings = settings
         self.plotter = plotter
+
+        sizes = FontSizes(size: settings.dim.baseFontSize)
 
         self.index = settings.csv.index
         height = settings.height

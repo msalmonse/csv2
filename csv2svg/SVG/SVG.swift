@@ -66,25 +66,12 @@ class SVG: Plotter, ReflectedStringConvertible {
     func logoImage() -> String {
         let x = positions.logoX
         let y = positions.logoY
-        let h = settings.svg.logoHeight
-        let w = settings.svg.logoWidth
-        let url = settings.svg.logoURL
+        let h = settings.plotter.logoHeight
+        let w = settings.plotter.logoWidth
+        let url = settings.plotter.logoURL
         return """
             <image \(xy(x,y)) \(wh(w,h)) href="\(url)" class="logo" preserveAspectRatio="xMaxYMin" />
             """
-    }
-
-    /// Generate an SVG group with the plot lines
-    /// - Parameter ts: TransScale object
-    /// - Returns: Array of SVG elements
-
-    func lineGroup(_ ts: TransScale) -> [String] {
-        var result: [String] = []
-        result.append("<g clip-path=\"url(#plotable)\" class=\"plotarea\">")
-        result.append(contentsOf: settings.inColumns ? columnPlot(ts) : rowPlot(ts))
-        result.append("</g>")
-
-        return result
     }
 
     /// Include SVG elements in SVG

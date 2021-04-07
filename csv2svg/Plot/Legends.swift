@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension SVG {
+extension Plot {
 
     /// Draw the rectangle under the legends
     /// - Parameters:

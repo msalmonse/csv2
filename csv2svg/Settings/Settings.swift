@@ -20,8 +20,8 @@ class Settings: Decodable, ReflectedStringConvertible {
     // Plot related settings
     let plot: Settings.Plot
 
-    // SVG related settings
-    let svg: Settings.SVG
+    // Plotter related settings
+    let plotter: Settings.Plotter
 
     // svg width and height
     var height: Double { return Double(dim.height) }
@@ -50,7 +50,7 @@ class Settings: Decodable, ReflectedStringConvertible {
         csv = Self.jsonCSV(from: container, defaults: defaults)
         dim = Self.jsonDimensions(from: container, defaults: defaults)
         plot = Self.jsonPlot(from: container, defaults)
-        svg = Self.jsonSVG(from: container, defaults: defaults)
+        plotter = Self.jsonPlotter(from: container, defaults: defaults)
     }
 
     /// Load contents of file into object
