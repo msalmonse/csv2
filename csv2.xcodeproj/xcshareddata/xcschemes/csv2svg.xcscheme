@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--bezier .51 --nobounds"
+            argument = "--show shuriken --stroke 15"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

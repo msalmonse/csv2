@@ -38,7 +38,7 @@ extension Plot {
             result.append(yTitleText(settings.plotter.yTitle, x: positions.yTitleX, y: plotPlane.vMid))
         }
         if settings.plotter.legends { result.append(legend()) }
-        if subTitle.hasContent { result.append(subTitleText()) }
+        if let subTitle = subTitleLookup() { result.append(subTitleText(subTitle)) }
         if settings.plotter.title.hasContent { result.append(titleText()) }
 
         result.append(plotter.plotTail())
@@ -55,13 +55,16 @@ extension Plot {
     func shapeGen(name: String, colour: String) -> [String] {
         var result: [String] = []
         if let shape = Shape.lookup(name) {
-            var props = Properties()
-            props.cssClass = "shape"
+            var propsList = PropertiesList(count: 1, settings: settings)
+            propsList.plots[0].cssClass = name
+            propsList.plots[0].colour = colour
+            result.append(plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList))
             let shapePath = [
                 PathCommand.moveTo(x: width/2.0, y: height/2.0),
                 shape.pathCommand(w: shapeWidth)
             ]
-            result.append(plotter.plotPath(shapePath, props: props))
+            result.append(plotter.plotPath(shapePath, props: propsList.plots[0]))
+            result.append(plotter.plotTail())
         }
 
         return result

@@ -31,6 +31,4 @@ class JS: Plotter {
     func plotText(x: Double, y: Double, text: String, props: Properties) -> String {
         return ""
     }
-
-
 }

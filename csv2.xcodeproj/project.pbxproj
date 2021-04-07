@@ -221,6 +221,7 @@
 			children = (
 				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
 				C40A3AFE25DC01180016EB6D /* main.swift */,
+				C4FE49FE25F6440F0076EF5E /* Options.swift */,
 				C460B666261B3A590051BB80 /* Plotter.swift */,
 				C4F8F86D261C356F00DF76AE /* Common */,
 				C4F8F87B261C37E900DF76AE /* CSV */,
@@ -262,7 +263,6 @@
 			children = (
 				C46ADD0F260714DA0046F427 /* Bitmap.swift */,
 				C453242B25FA5D99007D741C /* Extensions.swift */,
-				C4FE49FE25F6440F0076EF5E /* Options.swift */,
 				C46ADD2026074CD60046F427 /* RandomCSV.swift */,
 				C45323E525F8CCC8007D741C /* Readlines.swift */,
 				C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */,

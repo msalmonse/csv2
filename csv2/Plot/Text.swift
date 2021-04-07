@@ -9,6 +9,19 @@ import Foundation
 
 extension Plot {
 
+    /// Check for subtitle
+    /// - Returns: subtitle if found
+
+    func subTitleLookup() -> String? {
+        if settings.plotter.subTitle.hasContent {
+            return settings.plotter.subTitle
+        } else if settings.csv.subTitleHeader >= 0 {
+            return
+                csv.subTitleText(inColumns: settings.inColumns, header: settings.csv.subTitleHeader)
+        }
+        return nil
+    }
+
     /// Add title to the svg
     /// - Returns: String to display title
 
@@ -21,7 +34,7 @@ extension Plot {
     /// Add sub title to the svg
     /// - Returns: String to display sub title
 
-    func subTitleText() -> String {
+    func subTitleText(_ subTitle: String) -> String {
         let x = width/2.0
         let y = positions.subTitleY
         return plotter.plotText(x: x, y: y, text: subTitle, props: propsList.subTitle)
