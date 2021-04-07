@@ -199,7 +199,7 @@
 				C45053C025F0E865003FC346 /* appinfo.swift */,
 				C45323DC25F7F7C0007D741C /* Docs */,
 				C4C0C4C5261631730072699C /* Scripts */,
-				C40A3AFD25DC01180016EB6D /* csv2svg */,
+				C40A3AFD25DC01180016EB6D /* csv2 */,
 				C48B822825E28F7E00EAEAE3 /* csv2svgTests */,
 				C40A3AFC25DC01180016EB6D /* Products */,
 			);
@@ -214,7 +214,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C40A3AFD25DC01180016EB6D /* csv2svg */ = {
+		C40A3AFD25DC01180016EB6D /* csv2 */ = {
 			isa = PBXGroup;
 			children = (
 				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
@@ -228,7 +228,7 @@
 				C453240125F938D0007D741C /* SVG */,
 				C453243025FA5DD6007D741C /* Utils */,
 			);
-			path = csv2svg;
+			path = csv2;
 			sourceTree = "<group>";
 		};
 		C45323DC25F7F7C0007D741C /* Docs */ = {
