@@ -1,13 +1,13 @@
 //
-//  csv2svgTests.swift
-//  csv2svgTests
+//  csv2Tests.swift
+//  csv2Tests
 //
 //  Created by Michael Salmon on 2021-02-21.
 //
 
 import XCTest
 import ArgumentParser
-@testable import csv2svg
+@testable import csv2
 
 let defaults = Defaults.global
 
@@ -24,7 +24,7 @@ class csv2svgTests: XCTestCase {
         XCTAssertEqual(settings!.csv.index, testIndex - 1)
         XCTAssertEqual(settings!.dim.height, testHeight)
         XCTAssertEqual(settings!.plot.names[1], testName)
-        XCTAssertEqual(settings!.svg.title, testTitle)
+        XCTAssertEqual(settings!.plotter.title, testTitle)
         XCTAssertEqual(settings!.dim.width, testWidth)
         XCTAssertEqual(settings!.dim.xMax, Defaults.maxDefault)
         XCTAssertEqual(settings!.dim.yMax, testYMax)
@@ -111,12 +111,12 @@ class csv2svgTests: XCTestCase {
 
         let csvPlot = CSV(plotData)
 
-        SVG.Colours.reset()
+        Colours.reset()
         svg = try? SVG(csvPlot, Settings.load(settingsJSON(true)))
         XCTAssertNotNil(svg)
         let colPlot = svg!.gen()
 
-        SVG.Colours.reset()
+        Colours.reset()
         svg = try? SVG(csvPlot, Settings.load(settingsJSON(false)))
         XCTAssertNotNil(svg)
         let rowPlot = svg!.gen()
@@ -155,7 +155,7 @@ class csv2svgTests: XCTestCase {
     func testSvgTransScale() {
         let from = Plane(top: 1000, bottom: 0, left: -1000, right: 1000)
         let to = Plane(top: 0, bottom: 1000, left: 0, right: 1000)
-        let ts = SVG.TransScale(from: from, to: to)
+        let ts = TransScale(from: from, to: to)
 
         XCTAssertEqual(ts.xpos(0), 500)
         XCTAssertEqual(ts.ypos(500), 500)
@@ -168,7 +168,7 @@ class csv2svgTests: XCTestCase {
 
         let fromLog = Plane(top: 10000, bottom: 1, left: 10, right: 100000)
         let toLog = Plane(top: 0, bottom: 1000, left: 0, right: 1000)
-        let tsLog = SVG.TransScale(from: fromLog, to: toLog, logx: true, logy: true)
+        let tsLog = TransScale(from: fromLog, to: toLog, logx: true, logy: true)
 
         XCTAssertEqual(tsLog.xpos(10), 0)
         XCTAssertEqual(tsLog.xpos(1000), 500)
@@ -204,8 +204,8 @@ class csv2svgTests: XCTestCase {
     }
 
     func testShapes() {
-        XCTAssertEqual(SVG.Shape.lookup("circle"), SVG.Shape.circle)
-        XCTAssertNil(SVG.Shape.lookup("nothing"))
+        XCTAssertEqual(Shape.lookup("circle"), Shape.circle)
+        XCTAssertNil(Shape.lookup("nothing"))
     }
 
     func testBitmap() {
@@ -290,15 +290,15 @@ let plotData = """
 
 // SVG path
 let pathPoints = [
-    SVG.PathCommand.moveTo(x: 0, y: 1),
-    SVG.PathCommand.lineTo(x: 1, y: 2),
-    SVG.PathCommand.lineTo(x: 2, y: 4),
-    SVG.PathCommand.horizTo(x: 3.0),
-    SVG.PathCommand.vertTo(y: 8.0),
-    SVG.PathCommand.moveTo(x: 4, y: 16),
-    SVG.PathCommand.lineTo(x: 5, y: 32),
-    SVG.PathCommand.moveBy(dx: -2, dy: -2),
-    SVG.PathCommand.circle(r: 3)
+    PathCommand.moveTo(x: 0, y: 1),
+    .lineTo(x: 1, y: 2),
+    .lineTo(x: 2, y: 4),
+    .horizTo(x: 3.0),
+    .vertTo(y: 8.0),
+    .moveTo(x: 4, y: 16),
+    .lineTo(x: 5, y: 32),
+    .moveBy(dx: -2, dy: -2),
+    .circle(r: 3)
 ]
 
 // swiftlint:disable line_length

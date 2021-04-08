@@ -17,3 +17,7 @@ protocol Plotter {
     func plotTail() -> String
     func plotText(x: Double, y: Double, text: String, props: Properties) -> String
 }
+
+enum PlotterType {
+    case js, svg
+}
