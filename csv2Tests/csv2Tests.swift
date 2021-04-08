@@ -104,8 +104,8 @@ class csv2Tests: XCTestCase {
         svg = try? SVG(Settings.load(settingsJSON(false)))
 
         XCTAssertNotNil(svg)
-        //XCTAssertEqual(svg?.propsList[4].name, testName)
-        //XCTAssertEqual(svg?.subTitle, colTestSubTitle)
+        // XCTAssertEqual(svg?.propsList[4].name, testName)
+        // XCTAssertEqual(svg?.subTitle, colTestSubTitle)
 
         // let csvPlot = CSV(plotData)
 
@@ -172,7 +172,7 @@ class csv2Tests: XCTestCase {
     }
 
     func testSvgSides() {
-        let csv = CSV(csvData)
+        // let csv = CSV(csvData)
 
         var svg = try? SVG(Settings.load(settingsJSON(true)))
         XCTAssertNotNil(svg)
