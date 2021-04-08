@@ -53,7 +53,7 @@ extension Plot {
     func yTitleText(_ label: String, x: Double, y: Double) -> String {
         var props = propsList.yTitle
         props.transform = Transform.rotateAround(x: x, y: y, sin: 1.0, cos: 0.0)
-        return plotter.plotText(x: x, y: y, text: label, props: propsList.yTitle)
+        return plotter.plotText(x: x, y: y, text: label, props: props)
     }
 
     /// Format a value suitable to be used as a label

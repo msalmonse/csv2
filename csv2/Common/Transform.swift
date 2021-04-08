@@ -21,9 +21,21 @@ struct Transform: Equatable {
     let e: Double
     let f: Double
 
+    /// A comma separated list of a...f
+
+    var csv: String { return self.list() }
+
     /// The identity matrix
 
     static var identity: Transform { Transform(a: 1.0, b: 0.0, c: 0.0, d: 1.0, e: 0.0, f: 0.0) }
+
+    /// Generate a list of a...f
+    /// - Parameter sep: separator
+    /// - Returns: a list of the transform values
+
+    func list(separator sep: String = ",") -> String {
+        return [a, b, c, d, e, f].map { $0.f(2) }.joined(separator: sep)
+    }
 
     /// An empty matrix
 

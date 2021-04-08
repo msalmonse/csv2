@@ -74,6 +74,12 @@ extension SVG {
     /// - Returns: text string
 
     func plotText(x: Double, y: Double, text: String, props: Properties) -> String {
-        return textTag(x: x, y: y, text: text, cssClass: props.cascade(.cssClass)!)
+        var extra = ""
+        if let transform = props.transform {
+            extra = """
+                transform="matrix(\(transform.csv))"
+                """
+        }
+        return textTag(x: x, y: y, text: text, cssClass: props.cascade(.cssClass)!, extra: extra)
     }
 }
