@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Transform {
+struct Transform: Equatable {
     /// the transform struct is a 3x3 matrix arranged as:
     /// a c e
     /// b d f
@@ -21,12 +21,31 @@ struct Transform {
     let e: Double
     let f: Double
 
+    /// The identity matrix
+
+    static var identity: Transform { Transform(a: 1.0, b: 0.0, c: 0.0, d: 1.0, e: 0.0, f: 0.0) }
+
+    /// An empty matrix
+
+    static var null: Transform { return Transform(a: 0.0, b: 0.0, c: 0.0, d: 0.0, e: 0.0, f: 0.0) }
+
+    /// Create rotation transform
+    /// - Parameters:
+    ///   - sin: sin of angle to rotate by
+    ///   - cos: cos of angle
+    /// - Returns: rotate transform
+
     static func rotate(sin: Double, cos: Double) -> Transform {
         return Transform(a: cos, b: -sin, c: sin, d: cos, e: 0.0, f: 0.0)
     }
 
-    static func translate(x: Double, y: Double) -> Transform {
-        return Transform(a: 0.0, b: 0.0, c: 0.0, d: 0.0, e: x, f: y)
+    /// Create translate matrix
+    /// - Parameters:
+    ///   - dx: x change
+    ///   - dy: y change
+    /// - Returns: translate transform
+    static func translate(dx: Double, dy: Double) -> Transform {
+        return Transform(a: 1.0, b: 0.0, c: 0.0, d: 1.0, e: dx, f: dy)
     }
 }
 

@@ -84,27 +84,16 @@ enum PathCommand {
     }
 }
 
-/*
 /// plot a path from a list of points
 /// - Parameters:
 ///   - points: a list of the points or shapes on path
-///   - cssClass: path class
-///   - width: setting for stroke-width, (default 1)
-///   - extra: extra options for path
 /// - Returns: a path element
 
 func path(
-    _ points: [PathCommand],
-    cssClass: String,
-    extra: String = ""
+    _ points: [PathCommand]
 ) -> String {
     // a path needs 2 points
     guard points.count >= 2 else { return "" }
 
-    var result = [ "<path class=\"\(cssClass)\" d=\"" ]
-    result.append(contentsOf: points.map { $0.command() })
-    result.append("\" \(extra)/>")
-
-    return result.joined(separator: " ")
+    return (points.map { $0.command() }).joined(separator: " ")
 }
-*/

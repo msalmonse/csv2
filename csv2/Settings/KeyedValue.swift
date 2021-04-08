@@ -38,6 +38,7 @@ extension Settings {
         switch key {
         case .black: return defaults.black
         case .bold: return defaults.bold
+        case .bounded: return defaults.bounded
         case .comment: return defaults.comment
         case .hover: return defaults.hover
         case .italic: return defaults.italic

@@ -67,6 +67,7 @@
 		C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
 		C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
 		C4BDCFB6261E156F00D8C589 /* JS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDCFB5261E156F00D8C589 /* JS.swift */; };
+		C4BDCFBD261EFA0600D8C589 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A6E3B261EDBED00784F54 /* Transform.swift */; };
 		C4C0C462260E589A0072699C /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C461260E589A0072699C /* Style.swift */; };
 		C4C0C469260F2E530072699C /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C461260E589A0072699C /* Style.swift */; };
 		C4C0C472260F85E40072699C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C471260F85E40072699C /* Fonts.swift */; };
@@ -640,6 +641,7 @@
 				C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */,
 				C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */,
 				C4EFA4A7261EEBC50026BD9A /* SVGplotter.swift in Sources */,
+				C4BDCFBD261EFA0600D8C589 /* Transform.swift in Sources */,
 				C453242625FA2C23007D741C /* DrawShapes.swift in Sources */,
 				C4C0C4902612FCC70072699C /* Dimensions.swift in Sources */,
 				C4C0C495261300000072699C /* CodingKeys.swift in Sources */,
