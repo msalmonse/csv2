@@ -223,16 +223,30 @@ class csv2Tests: XCTestCase {
     }
 
     func testTransform() {
+        let ten5 = Point(x: 10, y: 5)
         let id = Transform.identity
         XCTAssertEqual(id * id, id)
+        XCTAssertEqual(id * ten5, ten5)
+
         let rot180 = Transform.rotate(sin: 0.0, cos: -1.0)
         XCTAssertEqual(rot180 * rot180, id)
         let rot90 = Transform.rotate(sin: 1.0, cos: 0.0)
         XCTAssertEqual(rot90 * rot90, rot180)
+        XCTAssertEqual(rot90 * ten5, Point(x: 5, y: -10))
 
         let upRight = Transform.translate(dx: 1.0, dy: -1.0)
         let downLeft = Transform.translate(dx: -1.0, dy: 1.0)
         XCTAssertEqual(upRight * downLeft, id)
+        XCTAssertEqual(upRight * ten5, Point(x: 11, y: 4))
+
+        let p1 = Transform.translate(dx: -10.0, dy: -10.0) * ten5
+        let p2 = rot90 * p1
+        let p3 = Transform.translate(dx: 10, dy: 10) * p2
+        XCTAssertEqual(p3, Point(x: 5, y: 10))
+
+        XCTAssertEqual(
+            Transform.rotateAround(x: 10, y: 10, sin: 1.0, cos: 0.0) * ten5, Point(x: 5, y: 10)
+        )
     }
 
     func testSettingsPerformance() throws {

@@ -55,6 +55,7 @@ struct Properties {
     var strokeWidth = 0.0
     // textAlign is a string with "horizontal align, rotation, vertical align"
     var textAlign: String?
+    var transform: Transform?
 
     static fileprivate(set) var defaultProperties = Properties()
 
@@ -95,7 +96,7 @@ struct PropertiesList {
         Properties.defaultProperties.fontFamily = settings.css.fontFamily
         Properties.defaultProperties.strokeLineCap = "round"
         Properties.defaultProperties.strokeWidth = settings.css.strokeWidth
-        Properties.defaultProperties.textAlign = "middle,0,baseline"
+        Properties.defaultProperties.textAlign = "middle"
 
         axes.cssClass = "axes"
         legend.fontSize = sizes.legendSize
@@ -118,6 +119,5 @@ struct PropertiesList {
         yLabel.textAlign = "end,0,baseline"
         yTitle.fontSize = sizes.axesSize
         yTitle.cssClass = "ytitle"
-        yTitle.textAlign = "middle,90,baseline"
     }
 }

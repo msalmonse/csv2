@@ -39,17 +39,40 @@ struct Transform: Equatable {
         return Transform(a: cos, b: -sin, c: sin, d: cos, e: 0.0, f: 0.0)
     }
 
+    /// Rotate around a point
+    /// - Parameters:
+    ///   - x: x position
+    ///   - y: y position
+    ///   - sin: sin of angle to rotate by
+    ///   - cos: cos of angle
+    /// - Returns: Translate rotate and translate points
+
+    static func rotateAround(x: Double, y: Double, sin: Double, cos: Double) -> Transform {
+        let t1 = Transform.translate(dx: -x, dy: -y)
+        let t2 = t1 * Transform.rotate(sin: sin, cos: cos)
+        let t3 = t2 * Transform.translate(dx: x, dy: y)
+        return t3
+    }
+
     /// Create translate matrix
     /// - Parameters:
     ///   - dx: x change
     ///   - dy: y change
     /// - Returns: translate transform
+
     static func translate(dx: Double, dy: Double) -> Transform {
         return Transform(a: 1.0, b: 0.0, c: 0.0, d: 1.0, e: dx, f: dy)
     }
 }
 
 extension Transform {
+
+    /// Multiply two transforms
+    /// - Parameters:
+    ///   - l: left transform
+    ///   - r: right transform
+    /// - Returns: product transform
+
     static func * (l: Transform, r: Transform) -> Transform {
         let a = l.a * r.a + l.c * r.b + l.e * 0.0
         let c = l.a * r.c + l.c * r.d + l.e * 0.0
@@ -59,5 +82,18 @@ extension Transform {
         let f = l.b * r.e + l.d * r.f + l.f * 1.0
 
         return Transform(a: a, b: b, c: c, d: d, e: e, f: f)
+    }
+
+    /// Transform a point
+    ///  A point is presumed to have a third value that is always 1
+    /// - Parameters:
+    ///   - l: transform
+    ///   - r: point
+    /// - Returns: transformed point
+
+    static func * (l: Transform, r: Point) -> Point {
+        let x = l.a * r.x + l.c * r.y + l.e * 1.0
+        let y = l.b * r.x + l.d * r.y + l.f * 1.0
+        return Point(x: x, y: y)
     }
 }

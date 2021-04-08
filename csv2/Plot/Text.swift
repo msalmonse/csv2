@@ -51,8 +51,9 @@ extension Plot {
     /// - Returns: String to display title
 
     func yTitleText(_ label: String, x: Double, y: Double) -> String {
-        // Rotate () rotates around 0,0 hence we need to start at -x,-y
-        return plotter.plotText(x: -x, y: -y, text: label, props: propsList.yTitle)
+        var props = propsList.yTitle
+        props.transform = Transform.rotateAround(x: x, y: y, sin: 1.0, cos: 0.0)
+        return plotter.plotText(x: x, y: y, text: label, props: propsList.yTitle)
     }
 
     /// Format a value suitable to be used as a label
