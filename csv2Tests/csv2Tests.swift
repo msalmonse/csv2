@@ -11,7 +11,7 @@ import ArgumentParser
 
 var defaults = Defaults.global
 
-class csv2svgTests: XCTestCase {
+class csv2Tests: XCTestCase {
 
     func testSettings() throws {
         var settings = try? Settings.load(settingsJSON(true))

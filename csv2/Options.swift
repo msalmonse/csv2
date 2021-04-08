@@ -1,6 +1,6 @@
 //
 //  Options.swift
-//  csv2svg
+//  csv2
 //
 //  Created by Michael Salmon on 2021-03-08.
 //
@@ -97,7 +97,7 @@ struct Options: ParsableCommand {
     @Flag(name: .long, help: "Don't check options for bounds")
     var nobounds = false
 
-    @Flag(name: .long, help: "Don't csv2svg comment to SVG")
+    @Flag(name: .long, help: "Don't add csv2 comment to plot")
     var nocomment = !Defaults.global.comment
 
     @Flag(name: .long, help: "Don't add CSS code to emphasize hovered plots")

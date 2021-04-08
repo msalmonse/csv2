@@ -281,7 +281,7 @@ the title attached to the ordinate
 e.g. _25 == 2<sup>4</sup> + 2<sup>3</sup> + 2<sup>0</sup>_ which would mean that the
 fifth, fourth and first row or column would be enabled. A value of -1 means all plots.<br/>
 To simplify the calculation the `--bitmap` option can be used e.g.<br/>
-`csv2svg --bitmap 5 4 1` gives `25`.
+`csv2 --bitmap 5 4 1` gives `25`.
 
 - <a id="fn6">6</a>: These options accept a list of words separated by spaces up until the next flag
 or option. If there are none before the file names then a `--` can be used to terminate the list.

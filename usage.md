@@ -1,4 +1,4 @@
-### csv2svg
+### csv2
 ```
 OVERVIEW: Generate an SVG using data from a CSV file and settings from a JSON file.
 
@@ -37,7 +37,7 @@ OPTIONS:
   --nameheader <nameheader>
                           Default plot name row or column (default: 1)
   --names <names>         Default list of plot names, multiple entries until the next option
-  --nocomment             Don't csv2svg comment to SVG
+  --nocomment             Don't add csv2 comment to SVG
   --nohover               Don't add CSS code to emphasize hovered plots
   --nolegends             Don't include plot names, colours, dashes and shapes
   --opacity <opacity>     Default index row or column (default: 1.0)

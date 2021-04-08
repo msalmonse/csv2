@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #  makeIndex.sh
-#  csv2svg
+#  csv2
 #
 #  Created by Michael Salmon on 2021-03-05.
 #  

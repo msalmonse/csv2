@@ -1,4 +1,4 @@
-### csv2svg examples
+### csv2 examples
 
 This [csv](../data/trig.csv) file and [json](trig.json) were combined with `csv2svg trig.csv trig.json trig.svg` to produce:
 

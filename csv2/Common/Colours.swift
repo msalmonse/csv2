@@ -1,6 +1,6 @@
 //
-//  SVG/Colours.swift
-//  csv2svg
+//  Colours.swift
+//  csv2
 //
 //  Created by Michael Salmon on 2021-02-28.
 //
