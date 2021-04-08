@@ -239,14 +239,14 @@ class csv2Tests: XCTestCase {
         XCTAssertEqual(upRight * downLeft, id)
         XCTAssertEqual(upRight * ten5, Point(x: 11, y: 4))
 
-        let p1 = Transform.translate(dx: -10.0, dy: -10.0) * ten5
+        let centre = Point(x: 5, y: 10)
+        let p1 = Transform.translate(d: -centre) * ten5
         let p2 = rot90 * p1
-        let p3 = Transform.translate(dx: 10, dy: 10) * p2
-        XCTAssertEqual(p3, Point(x: 5, y: 10))
+        let p3 = Transform.translate(d: centre) * p2
+        XCTAssertEqual(p3, Point(x: 0, y: 5))
 
-        XCTAssertEqual(
-            Transform.rotateAround(x: 10, y: 10, sin: 1.0, cos: 0.0) * ten5, Point(x: 5, y: 10)
-        )
+        let p4 = Transform.rotateAround(centre: centre, sin: 1.0, cos: 0.0) * ten5
+        XCTAssertEqual(p4, p3)
     }
 
     func testSettingsPerformance() throws {

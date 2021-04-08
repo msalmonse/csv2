@@ -48,10 +48,20 @@ struct Transform: Equatable {
     /// - Returns: Translate rotate and translate points
 
     static func rotateAround(x: Double, y: Double, sin: Double, cos: Double) -> Transform {
-        let t1 = Transform.translate(dx: -x, dy: -y)
-        let t2 = t1 * Transform.rotate(sin: sin, cos: cos)
-        let t3 = t2 * Transform.translate(dx: x, dy: y)
-        return t3
+        return Transform.translate(dx: x, dy: y)
+            * Transform.rotate(sin: sin, cos: cos)
+            * Transform.translate(dx: -x, dy: -y)
+    }
+
+    /// Rotate around a point
+    /// - Parameters:
+    ///   - centre: point to rotate around
+    ///   - sin: sin of angle to rotate by
+    ///   - cos: cos of angle
+    /// - Returns: Translate, rotate and translate transform
+
+    static func rotateAround(centre: Point, sin: Double, cos: Double) -> Transform {
+        return Self.rotateAround(x: centre.x, y: centre.y, sin: sin, cos: cos)
     }
 
     /// Create translate matrix
@@ -63,6 +73,12 @@ struct Transform: Equatable {
     static func translate(dx: Double, dy: Double) -> Transform {
         return Transform(a: 1.0, b: 0.0, c: 0.0, d: 1.0, e: dx, f: dy)
     }
+
+    /// Create a translate matrix using a point
+    /// - Parameter d: translate point
+    /// - Returns: translate transform
+
+    static func translate(d: Point) -> Transform { return Self.translate(dx: d.x, dy: d.y) }
 }
 
 extension Transform {

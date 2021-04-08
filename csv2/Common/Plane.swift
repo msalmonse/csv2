@@ -47,6 +47,10 @@ struct Point: Equatable {
         let yδ = (y - other.y) * part
         return Point(x: x - xδ, y: y - yδ)
     }
+
+    static prefix func - (pt: Point) -> Point {
+        return Point(x: -pt.x, y: -pt.y)
+    }
 }
 
 /// The edges of the plane
