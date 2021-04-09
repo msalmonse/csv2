@@ -7,14 +7,15 @@
 
 import Foundation
 
-var opts = Options.parseOrExit()
-var defaults = opts.defaults()
+let command = getCommand()
+var commonOpts = command.options()
+var defaults = commonOpts.defaults()
 
-if opts.debug != 0 {
-    print(opts, to: &standardError)
+if commonOpts.debug != 0 {
+    print(commonOpts, to: &standardError)
 }
 
-if opts.version {
+if commonOpts.version {
     print("""
         \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) Built at \(AppInfo.builtAt)
         """,
@@ -23,33 +24,33 @@ if opts.version {
     exit(0)
 }
 
-if opts.shapenames {
+if commonOpts.shapenames {
     print(Shape.allNames())
-} else if opts.show.hasContent {
-    output(showShape(shape: opts.show, defaults: defaults), to: opts.outName)
-} else if opts.bitmap.hasEntries {
-    print(bitmap(opts.bitmap))
-} else if opts.colourslist {
-    output(showColoursList(defaults), to: opts.outName)
-} else if opts.dasheslist {
-    output(showDashesList(defaults), to: opts.outName)
+} else if commonOpts.show.hasContent {
+    output(showShape(shape: commonOpts.show, defaults: defaults), to: commonOpts.outName)
+} else if commonOpts.bitmap.hasEntries {
+    print(bitmap(commonOpts.bitmap))
+} else if commonOpts.colourslist {
+    output(showColoursList(defaults), to: commonOpts.outName)
+} else if commonOpts.dasheslist {
+    output(showDashesList(defaults), to: commonOpts.outName)
 } else {
     // use a csvName of - to mean use stdin
-    if opts.csvName == "-" { opts.csvName = nil }
+    if commonOpts.csvName == "-" { commonOpts.csvName = nil }
 
-    if opts.verbose && opts.random.isEmpty {
-        print(opts.csvName ?? "Missing CSV file name, using stdin", to: &standardError)
-        print(opts.jsonName ?? "Missing JSON file name", to: &standardError)
+    if commonOpts.verbose && commonOpts.random.isEmpty {
+        print(commonOpts.csvName ?? "Missing CSV file name, using stdin", to: &standardError)
+        print(commonOpts.jsonName ?? "Missing JSON file name", to: &standardError)
     }
 
-    let jsonSource = jsonURL(opts)
+    let jsonSource = jsonURL(commonOpts)
     SearchPath.add(jsonSource)
     let settings = try? Settings.load(jsonSource)
-    if opts.debug &== 2 { print(settings ?? "Nil settings", to: &standardError) }
+    if commonOpts.debug &== 2 { print(settings ?? "Nil settings", to: &standardError) }
 
-    if opts.csvName != nil { SearchPath.add(opts.csvName!) }
-    let csv = csvSelect(opts, settings)
-    if opts.debug &== 4 { print(csv ?? "Nil csv", to: &standardError) }
+    if commonOpts.csvName != nil { SearchPath.add(commonOpts.csvName!) }
+    let csv = csvSelect(commonOpts, settings)
+    if commonOpts.debug &== 4 { print(csv ?? "Nil csv", to: &standardError) }
 
     if csv == nil || csv!.colCt == 0 || csv!.rowCt == 0 || settings == nil {
         print("Error loading data.", to: &standardError)
@@ -57,10 +58,10 @@ if opts.shapenames {
     }
 
     let plotter = SVG(settings!)
-    if opts.debug &== 8 { print(plotter, to: &standardError) }
+    if commonOpts.debug &== 8 { print(plotter, to: &standardError) }
 
     let plot = Plot(csv!, settings!, plotter)
-    output(plot.gen(), to: opts.outName)
+    output(plot.gen(), to: commonOpts.outName)
 }
 
 /// Determine source of CSV data

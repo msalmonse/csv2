@@ -8,6 +8,11 @@
 import Foundation
 import ArgumentParser
 
+protocol CSVplotterCommand {
+    func iAm() -> PlotterType
+    func options() -> Options
+}
+
 struct CSVplotter: ParsableCommand {
     static var configuration = CommandConfiguration(
         commandName: AppInfo.name,
@@ -19,14 +24,15 @@ struct CSVplotter: ParsableCommand {
 }
 
 extension CSVplotter {
-    struct JS: ParsableCommand {
+    struct JS: ParsableCommand, CSVplotterCommand {
         static var configuration = CommandConfiguration(
             abstract: "Plot data on an HTML Canvas using JavaScript"
         )
 
-        static let iAm = PlotterType.js
+        func iAm() -> PlotterType { return PlotterType.js }
+        func options() -> Options { return common }
 
-        @OptionGroup var options: Options
+        @OptionGroup var common: Options
 
         @Option(name: .long, help: "Canvas name")
         var canvas = Defaults.global.canvas
@@ -34,13 +40,29 @@ extension CSVplotter {
 }
 
 extension CSVplotter {
-    struct SVG: ParsableCommand {
+    struct SVG: ParsableCommand, CSVplotterCommand {
         static var configuration = CommandConfiguration(
             abstract: "Plot data in an SVG"
         )
 
-        static let iAm = PlotterType.svg
+        func iAm() -> PlotterType { return PlotterType.js }
+        func options() -> Options { return common }
 
-        @OptionGroup var options: Options
+        @OptionGroup var common: Options
     }
+}
+
+func getCommand() -> CSVplotterCommand {
+    var result: CSVplotterCommand
+    do {
+        let command = try CSVplotter.parseAsRoot()
+        switch command {
+        case let jsCmd as CSVplotter.JS: result = jsCmd
+        case let svgCmd as CSVplotter.SVG: result = svgCmd
+        default: exit(1)
+        }
+    } catch {
+        CSVplotter.exit(withError: error)
+    }
+    return result
 }
