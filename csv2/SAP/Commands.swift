@@ -11,13 +11,17 @@ import ArgumentParser
 protocol CSVplotterCommand {
     func iAm() -> PlotterType
     func options() -> Options
+    func ownOptions<T>(key: CommandPath, default: T) -> T
+}
+
+enum CommandPath {
+    case canvas
 }
 
 struct CSVplotter: ParsableCommand {
     static var configuration = CommandConfiguration(
         commandName: AppInfo.name,
         abstract: "Generate an SVG or JS file using data from a CSV file and settings from a JSON file.",
-        version: AppInfo.version,
         subcommands: [JS.self, SVG.self],
         defaultSubcommand: SVG.self
     )
@@ -31,6 +35,12 @@ extension CSVplotter {
 
         func iAm() -> PlotterType { return PlotterType.js }
         func options() -> Options { return common }
+        func ownOptions<T>(key: CommandPath, default val: T) -> T {
+            switch key {
+            case .canvas: return canvas as? T ?? val
+            // default: return val
+            }
+        }
 
         @OptionGroup var common: Options
 
@@ -47,6 +57,11 @@ extension CSVplotter {
 
         func iAm() -> PlotterType { return PlotterType.js }
         func options() -> Options { return common }
+        func ownOptions<T>(key: CommandPath, default val: T) -> T {
+            switch key {
+            default: return val
+            }
+        }
 
         @OptionGroup var common: Options
     }
@@ -55,11 +70,11 @@ extension CSVplotter {
 func getCommand() -> CSVplotterCommand {
     var result: CSVplotterCommand
     do {
-        let command = try CSVplotter.parseAsRoot()
+        var command = try CSVplotter.parseAsRoot()
         switch command {
         case let jsCmd as CSVplotter.JS: result = jsCmd
         case let svgCmd as CSVplotter.SVG: result = svgCmd
-        default: exit(1)
+        default: try command.run(); exit(0)
         }
     } catch {
         CSVplotter.exit(withError: error)

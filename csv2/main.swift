@@ -9,7 +9,7 @@ import Foundation
 
 let command = getCommand()
 var commonOpts = command.options()
-var defaults = commonOpts.defaults()
+var defaults = commonOpts.defaults(for: command)
 
 if commonOpts.debug != 0 {
     print(commonOpts, to: &standardError)

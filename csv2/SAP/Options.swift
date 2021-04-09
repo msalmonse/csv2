@@ -201,7 +201,7 @@ struct Options: ParsableArguments {
     @Argument(help: "Output file name, default is to print to terminal") var outName: String?
     #endif
 
-    func defaults() -> Defaults {
+    func defaults(for cmd: CSVplotterCommand) -> Defaults {
         return Defaults(
             backgroundColour: bg,
             baseFontSize: size,
@@ -209,7 +209,7 @@ struct Options: ParsableArguments {
             black: black,
             bold: bold,
             bounded: !nobounds,
-            canvas: Defaults.global.canvas,
+            canvas: cmd.ownOptions(key: .canvas, default: Defaults.global.canvas),
             colours: colours,
             comment: !nocomment,
             cssClasses: [],

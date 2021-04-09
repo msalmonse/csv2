@@ -52,8 +52,8 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--show shuriken --stroke 15"
-            isEnabled = "NO">
+            argument = "js --canvas trig"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "${PROJECT_DIR}/data/trig.csv"
