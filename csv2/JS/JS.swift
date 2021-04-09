@@ -10,6 +10,8 @@ import Foundation
 class JS: Plotter {
     let settings: Settings
 
+    var ctx = CTX()
+
     init(_ settings: Settings) {
         self.settings = settings
     }

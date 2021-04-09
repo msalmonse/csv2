@@ -98,6 +98,8 @@
 		C4EFA4AA261EEBCB0026BD9A /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B676261DA8B30051BB80 /* Tags.swift */; };
 		C4EFA4B126202C600026BD9A /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4B026202C600026BD9A /* Commands.swift */; };
 		C4EFA4BB2620A92B0026BD9A /* JSplotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4BA2620A92B0026BD9A /* JSplotter.swift */; };
+		C4EFA4BF2620D42C0026BD9A /* Path2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4BE2620D42C0026BD9A /* Path2D.swift */; };
+		C4EFA4C32620D5C40026BD9A /* CTX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C22620D5C40026BD9A /* CTX.swift */; };
 		C4F1B3942609DFFA0035AC62 /* ShowDashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */; };
 		C4F1B3982609E0670035AC62 /* DashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3972609E0670035AC62 /* DashesList.swift */; };
 		C4F20C0826012A67005D2FE1 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C0726012A67005D2FE1 /* Properties.swift */; };
@@ -175,6 +177,8 @@
 		C4EA5D2725EB8F4D00E104E0 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		C4EFA4B026202C600026BD9A /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		C4EFA4BA2620A92B0026BD9A /* JSplotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSplotter.swift; sourceTree = "<group>"; };
+		C4EFA4BE2620D42C0026BD9A /* Path2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path2D.swift; sourceTree = "<group>"; };
+		C4EFA4C22620D5C40026BD9A /* CTX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTX.swift; sourceTree = "<group>"; };
 		C4F1B3902609D25F0035AC62 /* Testing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Testing.md; sourceTree = "<group>"; };
 		C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDashesList.swift; sourceTree = "<group>"; };
 		C4F1B3972609E0670035AC62 /* DashesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashesList.swift; sourceTree = "<group>"; };
@@ -296,8 +300,10 @@
 		C4BDCFB4261E156200D8C589 /* JS */ = {
 			isa = PBXGroup;
 			children = (
+				C4EFA4C22620D5C40026BD9A /* CTX.swift */,
 				C4BDCFB5261E156F00D8C589 /* JS.swift */,
 				C4EFA4BA2620A92B0026BD9A /* JSplotter.swift */,
+				C4EFA4BE2620D42C0026BD9A /* Path2D.swift */,
 			);
 			path = JS;
 			sourceTree = "<group>";
@@ -575,6 +581,7 @@
 				C42A6E3C261EDBED00784F54 /* Transform.swift in Sources */,
 				C480848025E6776900BD0A24 /* Sides.swift in Sources */,
 				C453242C25FA5D99007D741C /* Extensions.swift in Sources */,
+				C4EFA4BF2620D42C0026BD9A /* Path2D.swift in Sources */,
 				C453243825FA7968007D741C /* Shapes.swift in Sources */,
 				C4C0C4862612E82A0072699C /* CodingKeys.swift in Sources */,
 				C40CD42C25ECD60F003944FA /* Axes.swift in Sources */,
@@ -612,6 +619,7 @@
 				C4F1B3942609DFFA0035AC62 /* ShowDashesList.swift in Sources */,
 				C4255F3F25E423A7002DFE80 /* Path.swift in Sources */,
 				C422C5C42608D0CC00676912 /* ShowColoursList.swift in Sources */,
+				C4EFA4C32620D5C40026BD9A /* CTX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

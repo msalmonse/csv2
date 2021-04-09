@@ -4,8 +4,7 @@
 appinfo.swift
 
 # tests
-out.js
-out.svg
+out.*
 generated/
 test/
 testout/

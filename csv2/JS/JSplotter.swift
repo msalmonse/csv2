@@ -9,7 +9,7 @@ import Foundation
 
 extension JS {
     func plotGroup(lines: String) -> String {
-        return ""
+        return lines
     }
 
     func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) -> String {
@@ -19,10 +19,6 @@ extension JS {
             const ctx = canvas.getContext('2d');
 
             """
-    }
-
-    func plotPath(_ points: [PathCommand], props: Properties) -> String {
-        return ""
     }
 
     func plotRect(_ plane: Plane, rx: Double, props: Properties) -> String {
