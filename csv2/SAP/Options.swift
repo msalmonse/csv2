@@ -8,7 +8,7 @@
 import Foundation
 import ArgumentParser
 
-struct Options: ParsableCommand {
+struct Options: ParsableArguments {
     static let configuration = CommandConfiguration(
         commandName: AppInfo.name,
         abstract: "Generate an SVG using data from a CSV file and settings from a JSON file.",
@@ -209,6 +209,7 @@ struct Options: ParsableCommand {
             black: black,
             bold: bold,
             bounded: !nobounds,
+            canvas: Defaults.global.canvas,
             colours: colours,
             comment: !nocomment,
             cssClasses: [],
