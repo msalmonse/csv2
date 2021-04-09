@@ -15,10 +15,10 @@ JS OPTIONS:
 ```
 ```
 SVG OPTIONS:
---css <css>             Default include file for css styling
---cssid <cssid>         Default id for SVG
---logo <logo>           Default image URL for top right corner
---svg <svg>             Default include file for svg elements
+  --css <css>             Default include file for css styling
+  --cssid <cssid>         Default id for SVG
+  --logo <logo>           Default image URL for top right corner
+  --svg <svg>             Default include file for svg elements
 ```
 ```
 COMMON OPTIONS:
