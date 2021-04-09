@@ -64,7 +64,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/test.svg"
+            argument = "${PROJECT_DIR}/out.js"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

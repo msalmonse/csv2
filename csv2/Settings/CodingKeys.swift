@@ -15,6 +15,7 @@ extension Settings {
         case black
         case bold
         case bounded
+        case canvasID
         case colours
         case comment
         case cssClasses

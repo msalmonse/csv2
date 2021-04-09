@@ -209,6 +209,7 @@ extension Settings {
     private static func stringDefault(_ key: CodingKeys, _ defaults: Defaults) -> String {
         switch key {
         case .backgroundColour: return defaults.backgroundColour
+        case .canvasID: return defaults.canvasID
         case .cssID: return defaults.cssID
         case .cssInclude: return defaults.cssInclude
         case .fontFamily: return defaults.fontFamily

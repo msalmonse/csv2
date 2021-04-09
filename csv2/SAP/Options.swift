@@ -195,7 +195,7 @@ struct Options: ParsableArguments {
             black: black,
             bold: bold,
             bounded: !nobounds,
-            canvas: cmd.ownOptions(key: .canvas, default: Defaults.global.canvas),
+            canvasID: cmd.ownOptions(key: .canvas, default: Defaults.global.canvasID),
             colours: colours,
             comment: !nocomment,
             cssClasses: [],

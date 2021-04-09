@@ -27,7 +27,7 @@ struct Defaults {
     let black: Bool
     let bold: Bool
     var bounded: Bool
-    let canvas: String
+    let canvasID: String
     let colours: [String]
     let comment: Bool
     let cssClasses: [String]
@@ -83,7 +83,7 @@ struct Defaults {
         black: false,
         bold: false,
         bounded: true,
-        canvas: "csvplot",
+        canvasID: "csvplot",
         colours: [],
         comment: true,
         cssClasses: [],

@@ -12,6 +12,9 @@ extension Settings {
     /// Plotter related settings
 
     struct Plotter {
+        // The canvas id for JS
+        let canvasID: String
+
         // Include plot info in svg
         let comment: Bool
 
@@ -44,6 +47,7 @@ extension Settings {
         defaults: Defaults
     ) -> Plotter {
         return Plotter(
+            canvasID: keyedStringValue(from: container, forKey: .canvasID, defaults: defaults),
             comment: keyedBoolValue(from: container, forKey: .comment, defaults: defaults),
             legends: keyedBoolValue(from: container, forKey: .legends, defaults: defaults),
             logx: keyedBoolValue(from: container, forKey: .logx, defaults: defaults),

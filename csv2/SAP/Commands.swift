@@ -47,7 +47,7 @@ extension CSVplotter {
         // JS specific options
 
         @Option(name: .long, help: "Canvas name")
-        var canvas = Defaults.global.canvas
+        var canvas = Defaults.global.canvasID
     }
 }
 
