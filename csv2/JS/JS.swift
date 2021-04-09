@@ -8,6 +8,12 @@
 import Foundation
 
 class JS: Plotter {
+    let settings: Settings
+
+    init(_ settings: Settings) {
+        self.settings = settings
+    }
+
     func plotGroup(lines: String) -> String {
         return ""
     }

@@ -21,6 +21,10 @@ protocol Plotter {
 enum PlotterType {
     case js, svg
 
-    var isJS: Bool { return self == .js }
-    var isSVG: Bool { return self == .svg }
+    func plotter(settings: Settings) -> Plotter {
+        switch self {
+        case .js: return JS(settings)
+        case .svg: return SVG(settings)
+        }
+    }
 }

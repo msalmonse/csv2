@@ -38,12 +38,6 @@ struct Options: ParsableArguments {
             help: "Default list of plot colours, multiple entries until the next option")
     var colours: [String] = []
 
-    @Option(name: .long, help: "Default include file for css styling")
-    var css = Defaults.global.cssInclude
-
-    @Option(name: .long, help: "Default id for SVG")
-    var cssid = Defaults.global.cssID
-
     @Option(name: .long, help: "Default plots to show as with dashed lines")
     var dashed = Defaults.global.dashedLines
 
@@ -77,9 +71,6 @@ struct Options: ParsableArguments {
 
     @Option(name: .long, help: "Default rows or columns to include")
     var include = Defaults.global.include
-
-    @Option(name: .long, help: "Default image URL for top right corner")
-    var logo = Defaults.global.logoURL
 
     @Flag(name: .long, help: "Set default for abcissa to log")
     var logx = Defaults.global.logx
@@ -159,9 +150,6 @@ struct Options: ParsableArguments {
     @Option(name: .long, help: "Default sub-title")
     var subtitle: String = ""
 
-    @Option(name: .long, help: "Default include file for svg elements")
-    var svg = Defaults.global.svgInclude
-
     @Option(name: .long, help: "Default title")
     var title: String = ""
 
@@ -197,9 +185,7 @@ struct Options: ParsableArguments {
 
     @Argument(help: "CSV file name, \"-\" means use stdin") var csvName: String?
     @Argument(help: "JSON file name") var jsonName: String?
-    #if SVG
     @Argument(help: "Output file name, default is to print to terminal") var outName: String?
-    #endif
 
     func defaults(for cmd: CSVplotterCommand) -> Defaults {
         return Defaults(
@@ -214,8 +200,8 @@ struct Options: ParsableArguments {
             comment: !nocomment,
             cssClasses: [],
             cssExtras: [],
-            cssID: cssid,
-            cssInclude: css,
+            cssID: cmd.ownOptions(key: .cssid, default: Defaults.global.cssID),
+            cssInclude: cmd.ownOptions(key: .css, default: Defaults.global.cssInclude),
             dashedLines: dashed,
             dashes: dashes,
             dataPointDistance: distance,
@@ -228,7 +214,7 @@ struct Options: ParsableArguments {
             italic: italic,
             legends: !nolegends,
             logoHeight: Defaults.global.logoHeight,
-            logoURL: logo,
+            logoURL: cmd.ownOptions(key: .logo, default: Defaults.global.logoURL),
             logoWidth: Defaults.global.logoWidth,
             logx: logx,
             logy: logy,
@@ -248,7 +234,7 @@ struct Options: ParsableArguments {
             strokeWidth: stroke,
             subTitle: subtitle,
             subTitleHeader: subheader,
-            svgInclude: svg,
+            svgInclude: cmd.ownOptions(key: .svg, default: Defaults.global.svgInclude),
             title: title,
             width: width,
             xMax: xmax,

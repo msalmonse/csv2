@@ -57,7 +57,7 @@ if commonOpts.shapenames {
         exit(1)
     }
 
-    let plotter = SVG(settings!)
+    let plotter = command.iAm().plotter(settings: settings!)
     if commonOpts.debug &== 8 { print(plotter, to: &standardError) }
 
     let plot = Plot(csv!, settings!, plotter)

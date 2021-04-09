@@ -2,13 +2,26 @@
 ```
 OVERVIEW: Generate an SVG using data from a CSV file and settings from a JSON file.
 
-USAGE: csv2svg [<options>] [<csv-name>] [<json-name>]
+USAGE: csv2 <svg|js> [<options>] [<csv-name>] [<json-name>] [<out-name>]
 
 ARGUMENTS:
   <csv-name>              CSV file name, "-" means use stdin
   <json-name>             JSON file name
-
-OPTIONS:
+  <out-name>              Output file name, default is to print to terminal
+```
+```
+JS OPTIONS:
+  --canvas <canvas>       Canvas name (default: csvplot)
+```
+```
+SVG OPTIONS:
+--css <css>             Default include file for css styling
+--cssid <cssid>         Default id for SVG
+--logo <logo>           Default image URL for top right corner
+--svg <svg>             Default include file for svg elements
+```
+```
+COMMON OPTIONS:
   --bg <bg>               Background colour
   --bitmap <bitmap>       Convert a list of rows or columns to a bitmap
   --black                 Set default colour to black
@@ -17,8 +30,6 @@ OPTIONS:
   --nobounds              Don't check options for bounds
   --colourslist           Generate an SVG with all the colours on it
   --colours <colours>     Default list of plot colours, multiple entries until the next option
-  --css <css>             Default include file for css styling
-  --cssid <cssid>         Default id for SVG
   --dashed <dashed>       Default plots to show as with dashed lines (default: 0)
   --dashes <dashes>       Default list of plot dash patterns, multiple entries until the next
                           option
@@ -31,7 +42,6 @@ OPTIONS:
   --index <index>         Default index row or column (default: 0)
   --italic                Set default colour to black
   --include <include>     Default rows or columns to include (default: -1)
-  --logo <logo>           Default image URL for top right corner
   --logx                  Set default for abcissa to log
   --logy                  Set default for ordinate to log
   --nameheader <nameheader>
@@ -58,7 +68,6 @@ OPTIONS:
   --stroke <stroke>       Default stroke width (default: 2.0)
   --subheader <subheader> Default sub-title row or column (default: 0)
   --subtitle <subtitle>   Default sub-title
-  --svg <svg>             Default include file for svg elements
   --title <title>         Default title
   -t, --tsv               Use tabs to seperate columns
   -v, --verbose           Add extra information
@@ -70,7 +79,5 @@ OPTIONS:
   --ymax <ymax>           Default ordinate maximum (default: -inf)
   --ymin <ymin>           Default ordinate minimum (default: inf)
   --ytick <ytick>         Default y tick (default: 0.0)
-  --version               Show the version.
   -h, --help              Show help information.
-
 ```

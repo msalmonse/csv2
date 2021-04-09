@@ -31,33 +31,37 @@ Use bold text.
 **Option:** `--nobounds` <sup>[8](#fn8)</sup><br/>
 Bounds check some parameters
 
-<a id="cssClasses">**cssClasses** (Array of Strings)</a><br/>
+**canvas** (String)<sup>js(#fnjs)</sup><br/>
+**Option:** `--canvas`<br/>
+The id of the canvas to write to.
+
+**colours** (Array of Strings)<br/>
+**Option:** `--colours`<sup>[6](#fn6)</sup><br/>
+The colours to be used to plot the column or row. The index, if present, must be included although never used.
+Columns or rows that aren't defined are assigned a colour sequentially from an internal list.
+
+**comment** (Bool **true**)<br/>
+**Option:** `--nocomment` <sup>[8](#fn8)</sup><br/>
+Add an identifying comment to the SVG
+
+<a id="cssClasses">**cssClasses** (Array of Strings)</a><sup>svg(#fnsvg)</sup><br/>
 The elements of the SVG use CSS for styling with each plot having it's own class. The classes in this list are assigned
 to each row or column in turn including the index. Plots not included in this list are assigned an automatically generated class.<br/>
 There are no restrictions on the contents so that multiple classes can be attached to a plot by using a space seperated list for
 each entry.<br/>
 For more information see (css.md)[css.md]
 
-**comment** (Bool **true**)<br/>
-**Option:** `--nocomment` <sup>[8](#fn8)</sup><br/>
-Add an identifying comment to the SVG
-
-<a id="cssExtras">**cssExtras** (Array of Strings)</a><br/>
+<a id="cssExtras">**cssExtras** (Array of Strings)</a><sup>svg(#fnsvg)</sup><br/>
 The strings in this array are copied into a `<style>` tag.
 
-<a id="cssID">**cssID** (String)</a><br/>
+<a id="cssID">**cssID** (String)</a><sup>svg(#fnsvg)</sup><br/>
 **Option:** `--cssid`<br/>
 The style tags of SVG's can affect each other when they are included in an HTML document. For this reason every `<svg>` tag
 has an `id` defined. It can be this id or a random one. If the `cssID` is set to _"none"_ then no id is added to the SVG.
 
-<a id="cssInclude">**cssInclude** (String)</a><br/>
+<a id="cssInclude">**cssInclude** (String)</a><sup>svg(#fnsvg)</sup><br/>
 **Option:** `--css`<br/>
 The contents of the file named by this string are included in a separate `<style>` tag.
-
-**colours** (Array of Strings)<br/>
-**Option:** `--colours`<sup>[6](#fn6)</sup><br/>
-The colours to be used to plot the column or row. The index, if present, must be included although never used.
-Columns or rows that aren't defined are assigned a colour sequentially from an internal list.
 
 **dashedLines** (Int **0**)<br/>
 **Option:** `--dashed`<br/>
@@ -227,7 +231,7 @@ above then the csv is not checked. Embedded commas will probably cause problems.
 **N.B.** leading and trailing double quotes and spaces are stripped from csv data when
 it is read, they have no effect on how the data is interpreted.
 
-<a id="svgInclude">**svgInclude** (String)</a><br/>
+<a id="svgInclude">**svgInclude** (String)</a><sup>svg(#fnsvg)</sup><br/>
 **Option:** `--svg`<br/>
 This options is the path of a file to include at the end the SVG, just before the `</svg>`
 
@@ -293,3 +297,7 @@ Hence `--reserve 1 2 3 4` is the same as `reserveLeft: 1`, `reserveTop: 2`, `res
 
 - <a id="fn8">8</a>: The command line arguments are the opposite of the JSON settings, `--noxxx` sets
 `xxx` to `false`.
+
+- <a id="fnjs">JS</a>: Only when creating a JS plot
+
+- <a id="fnsvg">svg</a>: Only when creating an SVG plot

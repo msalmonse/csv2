@@ -1,7 +1,7 @@
 # CSV to SVG converter
 
 ```
-csv2svg [<options>] [<csv-name> or -] [<json-name>] [svg-name]
+csv2 <svg|js> [<options>] [<csv-name> or -] [<json-name>] [svg-name]
 ```
 
 This program take the data in a CSV file and settings in a [JSON file](json.md) to produce an SVG file. If the CSV file name is
