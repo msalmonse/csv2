@@ -23,11 +23,11 @@ extension JS {
         result.append("ctx.lineTo(\(right.f(0)), \(top.f(1)))")
         result.append("ctx.lineTo(\(right.f(0)), \(bottom.f(1)))")
         result.append("ctx.lineTo(\(left.f(0)), \(bottom.f(1)))")
-        result.append("ctx.lineTo(\(left.f(1)), \(top.f(1)))")
         result.append("ctx.clip()")
         result.append(lines)
         result.append("")
         result.append("ctx.restore()")
+        result.append("ctx.beginPath()")
 
         return result.joined(separator: "\n    ")
     }
@@ -42,7 +42,15 @@ extension JS {
     }
 
     func plotRect(_ plane: Plane, rx: Double, props: Properties) -> String {
-        return ""
+        let x = plane.left.f(1)
+        let y = plane.top.f(1)
+        let w = plane.width.f(1)
+        let h = plane.height.f(1)
+        var result = [""]
+        ctx.sync(props, &result)
+        result.append("ctx.rect(\(x), \(y), \(w), \(h))")
+        result.append("ctx.stroke()")
+        return result.joined(separator: "\n    ")
     }
 
     func plotTail() -> String {

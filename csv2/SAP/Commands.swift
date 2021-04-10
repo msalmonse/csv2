@@ -57,7 +57,7 @@ extension CSVplotter {
             abstract: "Plot data in an SVG"
         )
 
-        func iAm() -> PlotterType { return PlotterType.js }
+        func iAm() -> PlotterType { return PlotterType.svg }
         func options() -> Options { return common }
         func ownOptions<T>(key: CommandPath, default val: T) -> T {
             switch key {

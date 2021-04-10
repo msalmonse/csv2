@@ -69,7 +69,7 @@ extension CTX {
                 result.append("ctx.textAlign = '\(jsAlign(textAlign))'")
             }
         } else {
-            let colour = props.cascade(.colour) ?? "black"
+            let colour = props.cascade(.colour) ?? "transparent"
             if colour != strokeStyle {
                 strokeStyle = colour
                 result.append("ctx.strokeStyle = '\(colour)'")
@@ -79,6 +79,12 @@ extension CTX {
             if dashPattern != dash {
                 dash = dashPattern
                 result.append("ctx.setLineDash([\(dash)])")
+            }
+
+            let fill = props.cascade(.fill) ?? "transparent"
+            if fill != fillStyle {
+                fillStyle = fill
+                result.append("ctx.fillStyle = '\(fill)'")
             }
 
             let strokeWidth = props.cascade(.strokeWidth)

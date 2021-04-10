@@ -19,7 +19,7 @@ extension Plot {
 
     private func legendBG(_ top: Double, _ bottom: Double, _ left: Double, right: Double) -> String {
         let plane = Plane(top: top, bottom: bottom, left: left, right: right)
-        return plotter.plotRect(plane, rx: strokeWidth * 3.0, props: propsList.legend)
+        return plotter.plotRect(plane, rx: strokeWidth * 3.0, props: propsList.legendBG)
     }
 
     /// Draw the shape used for a scatter plot

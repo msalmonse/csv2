@@ -12,6 +12,7 @@ struct PropertiesList {
     var axes = Properties()
     var legend = Properties()
     var legendHeadline = Properties()
+    var legendBG = Properties()
     var subTitle = Properties()
     var title = Properties()
     var xLabel = Properties()
@@ -36,11 +37,14 @@ struct PropertiesList {
         legend.fontSize = sizes.legendSize
         legend.cssClass = "legend"
         legend.textAlign = "start"
+        legendBG.colour = "silver"
+        legendBG.cssClass = "legend"
+        legendBG.colour = "silver"
         legendHeadline.fontSize = sizes.legendSize * 1.25
+        legendHeadline.fontColour = "black"
         legendHeadline.bold = true
         legendHeadline.cssClass = "legend headline"
         legendHeadline.textAlign = "start"
-        legend.textAlign = "start"
         subTitle.fontSize = sizes.subTitleSize
         subTitle.cssClass = "subtitle"
         title.fontSize = sizes.titleSize
