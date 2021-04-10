@@ -65,7 +65,7 @@ func plotDashes(
     ) {
     for i in 0..<ct {
         if settings.plot.dashes.hasIndex(i) && !settings.plot.dashes[i].isEmpty {
-            props[i].dash = settings.plot.dashes[i]
+            props[i].dash = settings.plot.dashes[i].replacingOccurrences(of: " ", with: ",")
         } else if props[i].dashed && props[i].included {
             props[i].dash = Dashes.nextDash(width)
         }

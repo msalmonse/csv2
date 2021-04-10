@@ -93,7 +93,7 @@ struct Defaults {
         dashedLines: 0,
         dashes: [],
         dataPointDistance: 10.0,
-        fontFamily: "sans-serif",
+        fontFamily: "serif",
         headers: 0,
         height: 600,
         hover: true,

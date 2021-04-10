@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "js --canvas trig"
+            argument = "js --canvas trig --dashed=2"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

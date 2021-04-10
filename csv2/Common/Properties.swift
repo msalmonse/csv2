@@ -51,6 +51,7 @@ struct Properties {
     var scattered = false
     var shape: Shape?
     var shapeWidth: Double { return strokeWidth * 1.75 }
+    var stapled: Bool = false
     var strokeLineCap: String?
     var strokeWidth = 0.0
     // textAlign is a string with "horizontal align, rotation, vertical align"

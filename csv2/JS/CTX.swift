@@ -10,6 +10,7 @@ import Foundation
 /// Cache of changes in canvas context
 
 struct CTX {
+    var dash = ""
     var fillStyle = ""
     var font = ""
     var lineCap = ""
@@ -72,6 +73,12 @@ extension CTX {
             if colour != strokeStyle {
                 strokeStyle = colour
                 result.append("ctx.strokeStyle = '\(colour)'")
+            }
+
+            let dashPattern = props.cascade(.dash) ?? ""
+            if dashPattern != dash {
+                dash = dashPattern
+                result.append("ctx.setLineDash([\(dash)])")
             }
 
             let strokeWidth = props.cascade(.strokeWidth)
