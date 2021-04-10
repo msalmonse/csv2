@@ -16,8 +16,8 @@ extension JS {
         let id = settings.plotter.canvasID
         return """
             const canvas = document.getElementById('\(id)');
-            const ctx = canvas.getContext('2d');
-
+            if (canvas.getContext) {
+                const ctx = canvas.getContext('2d');
             """
     }
 
@@ -26,7 +26,7 @@ extension JS {
     }
 
     func plotTail() -> String {
-        return ""
+        return "}"
     }
 
     func plotText(x: Double, y: Double, text: String, props: Properties) -> String {

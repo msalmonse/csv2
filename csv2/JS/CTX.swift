@@ -8,7 +8,7 @@
 import Foundation
 
 struct CTX {
-    var lineCap = "butt"
-    var lineWidth = 1.0
-    var strokeStyle = "black"
+    var lineCap = ""
+    var lineWidth = 0.0
+    var strokeStyle = ""
 }

@@ -100,6 +100,7 @@
 		C4EFA4BB2620A92B0026BD9A /* JSplotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4BA2620A92B0026BD9A /* JSplotter.swift */; };
 		C4EFA4BF2620D42C0026BD9A /* Path2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4BE2620D42C0026BD9A /* Path2D.swift */; };
 		C4EFA4C32620D5C40026BD9A /* CTX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C22620D5C40026BD9A /* CTX.swift */; };
+		C4EFA4C926215D650026BD9A /* PropertiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C826215D650026BD9A /* PropertiesList.swift */; };
 		C4F1B3942609DFFA0035AC62 /* ShowDashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */; };
 		C4F1B3982609E0670035AC62 /* DashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3972609E0670035AC62 /* DashesList.swift */; };
 		C4F20C0826012A67005D2FE1 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C0726012A67005D2FE1 /* Properties.swift */; };
@@ -179,6 +180,7 @@
 		C4EFA4BA2620A92B0026BD9A /* JSplotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSplotter.swift; sourceTree = "<group>"; };
 		C4EFA4BE2620D42C0026BD9A /* Path2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path2D.swift; sourceTree = "<group>"; };
 		C4EFA4C22620D5C40026BD9A /* CTX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTX.swift; sourceTree = "<group>"; };
+		C4EFA4C826215D650026BD9A /* PropertiesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesList.swift; sourceTree = "<group>"; };
 		C4F1B3902609D25F0035AC62 /* Testing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Testing.md; sourceTree = "<group>"; };
 		C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDashesList.swift; sourceTree = "<group>"; };
 		C4F1B3972609E0670035AC62 /* DashesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashesList.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				C4F20C1526027B7C005D2FE1 /* Legends.swift */,
 				C4F8F874261C375C00DF76AE /* Plot.swift */,
 				C446E81125F4BE4B007B1A05 /* PlotCommon.swift */,
+				C4EFA4C826215D650026BD9A /* PropertiesList.swift */,
 				C446E80825F4BAA3007B1A05 /* RowPlot.swift */,
 				C49A7EC825EBCE7300503486 /* Text.swift */,
 			);
@@ -608,6 +611,7 @@
 				C4F8F875261C375C00DF76AE /* Plot.swift in Sources */,
 				C4BDCFB6261E156F00D8C589 /* JS.swift in Sources */,
 				C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */,
+				C4EFA4C926215D650026BD9A /* PropertiesList.swift in Sources */,
 				C460B667261B3A590051BB80 /* Plotter.swift in Sources */,
 				C4EA5D2825EB8F4D00E104E0 /* Colours.swift in Sources */,
 				C45323CB25F77F01007D741C /* ReflectedStringConvertable.swift in Sources */,
