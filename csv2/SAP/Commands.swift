@@ -63,7 +63,6 @@ extension CSVplotter {
             switch key {
             case .css: return css as? T ?? val
             case .cssid: return cssid as? T ?? val
-            case .logo: return logo as? T ?? val
             case .svg: return svg as? T ?? val
             default: return val
             }
@@ -78,9 +77,6 @@ extension CSVplotter {
 
         @Option(name: .long, help: "Default id for SVG")
         var cssid = Defaults.global.cssID
-
-        @Option(name: .long, help: "Default image URL for top right corner")
-        var logo = Defaults.global.logoURL
 
         @Option(name: .long, help: "Default include file for svg elements")
         var svg = Defaults.global.svgInclude

@@ -35,9 +35,12 @@ struct PropertiesList {
         axes.cssClass = "axes"
         legend.fontSize = sizes.legendSize
         legend.cssClass = "legend"
+        legend.textAlign = "start"
         legendHeadline.fontSize = sizes.legendSize * 1.25
         legendHeadline.bold = true
         legendHeadline.cssClass = "legend headline"
+        legendHeadline.textAlign = "start"
+        legend.textAlign = "start"
         subTitle.fontSize = sizes.subTitleSize
         subTitle.cssClass = "subtitle"
         title.fontSize = sizes.titleSize
@@ -52,7 +55,7 @@ struct PropertiesList {
         yLabel.colour = "silver"
         yLabel.cssClass = "ylabel"
         yLabel.strokeWidth = 1.0
-        yLabel.textAlign = "end,0,baseline"
+        yLabel.textAlign = "end"
         yTitle.fontSize = sizes.axesSize
         yTitle.cssClass = "ytitle"
     }

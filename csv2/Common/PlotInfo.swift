@@ -46,6 +46,7 @@ func plotColours(
         } else if props[i].included {
             props[i].colour = Colours.nextColour()
         }
+        props[i].fontColour = props[i].colour
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 /// The actual plotter used by the abstarct Plot class
 
 protocol Plotter {
-    func plotGroup(lines: String) -> String
+    func plotGroup(plotPlane: Plane, lines: String) -> String
     func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) -> String
     func plotPath(_ points: [PathCommand], props: Properties) -> String
     func plotRect(_ plane: Plane, rx: Double, props: Properties) -> String

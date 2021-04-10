@@ -28,6 +28,7 @@ extension Settings {
 
         // Path stroke width
         let strokeWidth: Double
+        var shapeWidth: Double { strokeWidth * 1.75 }
 
         // include stuff
         let extras: [String]

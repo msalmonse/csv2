@@ -16,7 +16,7 @@ extension Plot {
     func lineGroup(_ ts: TransScale) -> String {
         let result = settings.inColumns ? columnPlot(ts) : rowPlot(ts)
 
-        return plotter.plotGroup(lines: result.joined(separator: "\n"))
+        return plotter.plotGroup(plotPlane: plotPlane, lines: result.joined(separator: "\n"))
     }
 
     /// Generate a plotter document

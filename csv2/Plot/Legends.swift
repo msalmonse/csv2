@@ -124,6 +124,8 @@ extension Plot {
             var propsi = plotProps[i]
             let text = shortened(propsi.name!)
             propsi.cssClass = propsi.cssClass! + " legend"
+            propsi.fontSize = propsList.legend.fontSize
+            propsi.textAlign = propsList.legend.textAlign
             legends.append(plotter.plotText(x: xLeft, y: y, text: text, props: propsi))
             let lineY = y + yStep/2.0
             if propsi.dashed || propsi.pointed || propsi.scattered { y += yStep }

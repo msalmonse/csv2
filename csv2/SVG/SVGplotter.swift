@@ -9,7 +9,7 @@ import Foundation
 
 extension SVG {
 
-    func plotGroup(lines: String) -> String {
+    func plotGroup(plotPlane: Plane, lines: String) -> String {
         return """
             <g clip-path="url(#plotable)" class="plotarea">
             \(lines)

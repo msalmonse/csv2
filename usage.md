@@ -17,7 +17,6 @@ JS OPTIONS:
 SVG OPTIONS:
   --css <css>             Default include file for css styling
   --cssid <cssid>         Default id for SVG
-  --logo <logo>           Default image URL for top right corner
   --svg <svg>             Default include file for svg elements
 ```
 ```
@@ -42,6 +41,7 @@ COMMON OPTIONS:
   --index <index>         Default index row or column (default: 0)
   --italic                Set default colour to black
   --include <include>     Default rows or columns to include (default: -1)
+  --logo <logo>           Default image URL for top right corner
   --logx                  Set default for abcissa to log
   --logy                  Set default for ordinate to log
   --nameheader <nameheader>

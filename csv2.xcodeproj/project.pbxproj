@@ -101,6 +101,7 @@
 		C4EFA4BF2620D42C0026BD9A /* Path2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4BE2620D42C0026BD9A /* Path2D.swift */; };
 		C4EFA4C32620D5C40026BD9A /* CTX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C22620D5C40026BD9A /* CTX.swift */; };
 		C4EFA4C926215D650026BD9A /* PropertiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C826215D650026BD9A /* PropertiesList.swift */; };
+		C4EFA4CC262166700026BD9A /* CTX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C22620D5C40026BD9A /* CTX.swift */; };
 		C4F1B3942609DFFA0035AC62 /* ShowDashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */; };
 		C4F1B3982609E0670035AC62 /* DashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3972609E0670035AC62 /* DashesList.swift */; };
 		C4F20C0826012A67005D2FE1 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C0726012A67005D2FE1 /* Properties.swift */; };
@@ -666,6 +667,7 @@
 				C45323D425F7C6D6007D741C /* ReflectedStringConvertable.swift in Sources */,
 				C446E80E25F4BAC1007B1A05 /* RowPlot.swift in Sources */,
 				C4EA5D2B25EB90C900E104E0 /* Colours.swift in Sources */,
+				C4EFA4CC262166700026BD9A /* CTX.swift in Sources */,
 				C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */,
 				C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */,
 				C4EFA4A7261EEBC50026BD9A /* SVGplotter.swift in Sources */,

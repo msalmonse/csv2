@@ -125,10 +125,10 @@ The height of the logo `<image>` element.
 
 <a id="logoURL">**logoURL** (String)</a><br/>
 **Option:** `--logo`<br/>
-The URL of an image to include in the top right corner of the SVG. By default the `<image>`
+The URL of an image to include in the top right corner of the plot. By default the logo
 element is 64x64 but this can be changed.
 Other sized images are scaled to fit while preserving the aspect ratio and fitting the top right
-corner of the image in the top right corner of the SVG.
+corner of the image in the top right corner of the plot.
 
 **logoWidth** (Int **64**)<br/>
 The width of the logo `<image>` element.

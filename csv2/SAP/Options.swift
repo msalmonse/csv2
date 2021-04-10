@@ -72,6 +72,9 @@ struct Options: ParsableArguments {
     @Option(name: .long, help: "Default rows or columns to include")
     var include = Defaults.global.include
 
+    @Option(name: .long, help: "Default image URL for top right corner")
+    var logo = Defaults.global.logoURL
+
     @Flag(name: .long, help: "Set default for abcissa to log")
     var logx = Defaults.global.logx
 
@@ -214,7 +217,7 @@ struct Options: ParsableArguments {
             italic: italic,
             legends: !nolegends,
             logoHeight: Defaults.global.logoHeight,
-            logoURL: cmd.ownOptions(key: .logo, default: Defaults.global.logoURL),
+            logoURL: logo,
             logoWidth: Defaults.global.logoWidth,
             logx: logx,
             logy: logy,
