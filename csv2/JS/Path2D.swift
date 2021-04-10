@@ -15,7 +15,7 @@ extension JS {
     /// - Returns: JavaScript string
 
     func plotPath(_ points: [PathCommand], props: Properties) -> String {
-        var result: [String] = []
+        var result: [String] = [""]
 
         let colour = props.cascade(.colour) ?? "black"
         if colour != ctx.strokeStyle {
@@ -38,6 +38,6 @@ extension JS {
         let path = points.map { $0.command() }.joined(separator: " ")
         result.append("p = new Path2D('\(path)'); ctx.stroke(p)")
 
-        return result.joined(separator: "\n")
+        return result.joined(separator: "\n    ")
     }
 }
