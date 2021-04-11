@@ -19,6 +19,24 @@ struct CTX {
     var textAlign = ""
     var textBaseline = ""
     var transform = ""
+
+    mutating func syncOneDouble(
+        key: WritableKeyPath<CTX, Double>, _ val: Double, _ jsKey: String, result: inout [String]
+    ) {
+        if self[keyPath: key] != val {
+            self[keyPath: key] = val
+            result.append("ctx.\(jsKey) = \(val.f(1))")
+        }
+    }
+
+    mutating func syncOneString(
+        key: WritableKeyPath<CTX, String>, _ val: String, _ jsKey: String, result: inout [String]
+    ) {
+        if self[keyPath: key] != val {
+            self[keyPath: key] = val
+            result.append("ctx.\(jsKey) = '\(val)'")
+        }
+    }
 }
 
 /// Convert the alignment from Plot into canvas values
@@ -57,34 +75,19 @@ extension CTX {
     mutating func sync(_ props: Properties, _ result: inout [String], isText: Bool = false) {
         if isText {
             let colour = props.cascade(.fontColour) ?? "black"
-            if colour != fillStyle {
-                fillStyle = colour
-                result.append("ctx.fillStyle = '\(colour)'")
-            }
+            self.syncOneString(key: \.fillStyle, colour, "fillStyle", result: &result)
 
             let fontSpec = propsFontSpec(from: props)
-            if fontSpec != font {
-                font = fontSpec
-                result.append("ctx.font = '\(font)'")
-            }
+            self.syncOneString(key: \.font, fontSpec, "font", result: &result)
 
             let textAlign = props.cascade(.textAlign) ?? "start"
-            if textAlign != self.textAlign {
-                self.textAlign = textAlign
-                result.append("ctx.textAlign = '\(jsAlign(textAlign))'")
-            }
+            self.syncOneString(key: \.textAlign, textAlign, "textAlign", result: &result)
 
             let textBaseline = props.cascade(.textBaseline) ?? "alphabetic"
-            if textBaseline != self.textBaseline {
-                self.textBaseline = textBaseline
-                result.append("ctx.textBaseline = '\(textBaseline)'")
-            }
+            self.syncOneString(key: \.textBaseline, textBaseline, "textBaseline", result: &result)
         } else {
             let colour = props.cascade(.colour) ?? "transparent"
-            if colour != strokeStyle {
-                strokeStyle = colour
-                result.append("ctx.strokeStyle = '\(colour)'")
-            }
+            self.syncOneString(key: \.strokeStyle, colour, "strokeStyle", result: &result)
 
             let dashPattern = props.cascade(.dash) ?? ""
             if dashPattern != dash {
@@ -93,22 +96,13 @@ extension CTX {
             }
 
             let fill = props.cascade(.fill) ?? "transparent"
-            if fill != fillStyle {
-                fillStyle = fill
-                result.append("ctx.fillStyle = '\(fill)'")
-            }
+            self.syncOneString(key: \.fillStyle, fill, "fillStyle", result: &result)
 
             let strokeWidth = props.cascade(.strokeWidth)
-            if strokeWidth > 0.0 && strokeWidth != lineWidth {
-                lineWidth = strokeWidth
-                result.append("ctx.lineWidth = \(strokeWidth.f(1))")
-            }
+            self.syncOneDouble(key: \.lineWidth, strokeWidth, "lineWidth", result: &result)
 
             let strokeLineCap = props.cascade(.strokeLineCap) ?? "round"
-            if strokeLineCap != lineCap {
-                lineCap = strokeLineCap
-                result.append("ctx.lineCap = '\(strokeLineCap)'")
-            }
+            self.syncOneString(key: \.lineCap, strokeLineCap, "lineCap", result: &result)
         }
         let transformMatrix = props.transform?.csv ?? ""
         if transformMatrix != transform {

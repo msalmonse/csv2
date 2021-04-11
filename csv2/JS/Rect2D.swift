@@ -36,7 +36,11 @@ extension JS {
             let tq = (plane.top + rx).f(1)
             let bq = (plane.bottom - rx).f(1)
 
-            let path = "M \(rq),\(t) Q \(r),\(t),\(r),\(tq) L \(r),\(bq) Q \(r),\(b),\(rq),\(b) L \(lq),\(b) Q \(l),\(b),\(l),\(bq) L \(l),\(tq) Q \(l),\(t),\(lq),\(t) Z"
+            let path =
+                "M \(rq),\(t) Q \(r),\(t),\(r),\(tq) " +
+                "L \(r),\(bq) Q \(r),\(b),\(rq),\(b) " +
+                "L \(lq),\(b) Q \(l),\(b),\(l),\(bq) " +
+                "L \(l),\(tq) Q \(l),\(t),\(lq),\(t) Z"
             result.append("p = new Path2D('\(path)')")
             result.append("ctx.stroke(p)")
         }
