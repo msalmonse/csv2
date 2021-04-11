@@ -22,6 +22,7 @@ extension SVG {
         if settings.plotter.comment { result.append(comment) }
         result.append(defs(plotPlane: plotPlane))
         result.append(cssStyle(plotProps: propsList.plots))
+        if settings.plotter.logoURL.hasContent { result.append(logoImage(positions: positions)) }
         return result.joined(separator: "\n")
     }
 
