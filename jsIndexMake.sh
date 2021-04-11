@@ -16,9 +16,9 @@ cat <<EOD
 <html>
 <head>
     <meta charset="utf-8">
-    <title>SVG test results</title>
+    <title>Canvas test results</title>
     <style>
-        img, svg { border: black solid thin }
+        img, canvas { border: black solid thin }
 	th { text-align: right }
 	th.infoHeader {
 	    text-align: center; font-size: bigger; color: blue; background: #c0ffee

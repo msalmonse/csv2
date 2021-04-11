@@ -48,15 +48,16 @@ extension JS {
 
     func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) -> String {
         let id = settings.plotter.canvasID
+        let name = "canvas_\(id)"
         let url = settings.plotter.logoURL
         let logo = url.isEmpty ? "" : drawLogo(
             url: url, left: positions.logoX, top: positions.logoY,
             width: settings.plotter.logoWidth, height: settings.plotter.logoHeight
         )
         return """
-            const canvas = document.getElementById('\(id)');
-            if (canvas.getContext) {
-                const ctx = canvas.getContext('2d');
+            const \(name) = document.getElementById('\(id)');
+            if (\(name).getContext) {
+                const ctx = \(name).getContext('2d');
 
             \(logo)
             """

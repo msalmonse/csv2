@@ -36,7 +36,7 @@ generated/%.js: data/%.csv data/%.json data/%.opts generated/%.canvastag $(CSV2)
 generated/%.canvastag: OPTS = $(shell cat $(@F:%.canvastag=data/%.opts))
 generated/%.canvastag: CANVAS = $(shell cat $(@F:%.canvastag=data/%.canvas))
 generated/%.canvastag: data/%.csv data/%.json data/%.opts data/%.canvas $(CSV2)
-	-@ $(CSV2) js --canvas $(CANVAS) --canvastag $(OPTS) - $(@F:%.js=data/%.json) $@
+	-@ $(CSV2) js --canvas $(CANVAS) --canvastag $(OPTS) - $(@F:%.canvastag=data/%.json) $@
 
 generated/%.svg: OPTS = $(shell cat $(@F:%.svg=data/%.opts))
 generated/%.svg: data/%.csv data/%.json data/%.opts $(CSV2)

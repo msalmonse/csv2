@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "js --canvas trig --canvastag --dashed=2"
+            argument = "js --canvas trig --dashed=2 --italic"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -64,7 +64,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/trig.json"
+            argument = "${PROJECT_DIR}/data/plot.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

@@ -62,6 +62,16 @@ struct Properties {
 
     static var defaultProperties = Properties()
 
+    static func from(settings: Settings) -> Properties {
+        var props = Properties()
+        props.bezier = settings.plot.bezier
+        props.bold = settings.css.bold
+        props.fontFamily = settings.css.fontFamily
+        props.italic = settings.css.italic
+
+        return props
+    }
+
     func cascade(_ key: StringProperties) -> String? {
         switch key {
         case .fill: return fill ?? Self.defaultProperties.fill ?? cascade(.colour)
