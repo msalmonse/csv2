@@ -29,13 +29,15 @@ extension Plot {
         var paths: [String] = []
 
         let xiValues = settings.plot.sortx ? xiList().sorted() : xiList()
+        let staple = stapleGet(xiValues, ts)
         for i in 0..<csv.colCt where i != index && propsList.plots[i].included {
             let yValues = csv.columnValues(i)
             paths.append(
                 plotCommon(
                     xiValues, yValues,
                     propsList.plots[i],
-                    ts: ts
+                    ts: ts,
+                    staple: staple
                 )
             )
         }

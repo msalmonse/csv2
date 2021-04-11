@@ -152,7 +152,8 @@ extension Plot {
         _ xiValues: [XIvalue],
         _ yValues: [Double?],
         _ props: Properties,
-        ts: TransScale
+        ts: TransScale,
+        staple: Staple?
     ) -> String {
         let state = PlotCommonState(
             props: props,

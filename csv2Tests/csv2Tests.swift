@@ -132,7 +132,7 @@ class csv2Tests: XCTestCase {
         */
     }
 
-    func testSvgPath() {
+    func testPlotPath() {
         let plot = path(pathPoints)
         print(plot.difference(from: pathTag))
         XCTAssertEqual(plot, pathTag)
@@ -171,26 +171,27 @@ class csv2Tests: XCTestCase {
         XCTAssertEqual(tsLog.ypos(10000), 0)
     }
 
-    func testSvgSides() {
-        // let csv = CSV(csvData)
+    func testSides() {
+        let csv = CSV(csvData)
+        var settings = try? Settings.load(settingsJSON(true))
+        XCTAssertNotNil(settings)
+        var svg = SVG(settings!)
+        var plot = Plot(csv, settings!, svg)
 
-        var svg = try? SVG(Settings.load(settingsJSON(true)))
-        XCTAssertNotNil(svg)
-        /*
-        XCTAssertEqual(svg!.dataPlane.top, testYMax)
-        XCTAssertEqual(svg!.dataPlane.bottom, -110.1)
-        XCTAssertEqual(svg!.dataPlane.left, 0)
-        XCTAssertEqual(svg!.dataPlane.right, 32)
- */
+        XCTAssertEqual(plot.dataPlane.top, testYMax)
+        XCTAssertEqual(plot.dataPlane.bottom, -110.1)
+        XCTAssertEqual(plot.dataPlane.left, 0)
+        XCTAssertEqual(plot.dataPlane.right, 32)
 
-        svg = try? SVG(Settings.load(settingsJSON(false)))
-        XCTAssertNotNil(svg)
-        /*
-        XCTAssertEqual(svg!.dataPlane.top, testYMax)
-        XCTAssertEqual(svg!.dataPlane.bottom, -110.1)
-        XCTAssertEqual(svg!.dataPlane.left, -1.0)
-        XCTAssertEqual(svg!.dataPlane.right, 9.0)
- */
+        settings = try? Settings.load(settingsJSON(false))
+        XCTAssertNotNil(settings)
+        svg =  SVG(settings!)
+        plot = Plot(csv, settings!, svg)
+
+        XCTAssertEqual(plot.dataPlane.top, testYMax)
+        XCTAssertEqual(plot.dataPlane.bottom, -110.1)
+        XCTAssertEqual(plot.dataPlane.left, -1.0)
+        XCTAssertEqual(plot.dataPlane.right, 9.0)
     }
 
     func testFormats() {
@@ -247,6 +248,10 @@ class csv2Tests: XCTestCase {
 
         let p4 = Transform.rotateAround(centre: centre, sin: 1.0, cos: 0.0) * ten5
         XCTAssertEqual(p4, p3)
+    }
+
+    func testStaple() {
+        XCTAssertEqual(Staple.minSpan(xiValues), 5.0)
     }
 
     func testSettingsPerformance() throws {
@@ -329,3 +334,12 @@ let pathPoints = [
 let pathTag = """
 M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 m -2.0,-2.0 m 0.0,-3.0 a 3.0,3.0,0.0,1,1,0.0,6.0 a 3.0,3.0,0.0,1,1,0.0,-6.0 m 0.0,3.0
 """
+
+let xiValues: [XIvalue] = [
+    XIvalue(x: 56.0, i: 1),
+    XIvalue(x: 79.0, i: 2),
+    XIvalue(x: 90.0, i: 3),
+    XIvalue(x: 95.0, i: 4),
+    XIvalue(x: 100.0, i: 5),
+    XIvalue(x: 128.0, i: 6)
+]

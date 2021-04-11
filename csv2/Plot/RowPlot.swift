@@ -11,6 +11,7 @@ extension Plot {
 
     /// Calculate a list of x values, either a range or a data column
     /// - Returns: list of x and i values
+
     private func xiList() -> [XIvalue] {
         if index < 0 {
             return (-settings.csv.headerColumns..<csv.colCt).map { XIvalue(x: Double($0), i: $0) }
@@ -28,13 +29,15 @@ extension Plot {
         var paths: [String] = []
 
         let xiValues = settings.plot.sortx ? xiList().sorted() : xiList()
+        let staple = stapleGet(xiValues, ts)
         for i in 0..<csv.rowCt where i != index && propsList.plots[i].included {
             let yValues = csv.rowValues(i)
             paths.append(
                 plotCommon(
                     xiValues, yValues,
                     propsList.plots[i],
-                    ts: ts
+                    ts: ts,
+                    staple: staple
                 )
             )
         }

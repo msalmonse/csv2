@@ -136,7 +136,7 @@ func plotFlags(
         props[i].included = settings.plot.include &== mask
         props[i].pointed = settings.plot.showDataPoints &== mask
         props[i].scattered = settings.plot.scatterPlots &== mask
-        props[i].stapled = settings.plot.stapled &== mask
+        if settings.plot.stapled &== mask { props[i].staple = Staple.next }
     }
 
     // Not really flags
