@@ -52,6 +52,7 @@ extension Settings {
         case showDataPoints
         case smooth
         case sortx
+        case stapled
         case strokeWidth
         case subTitle
         case subTitleHeader

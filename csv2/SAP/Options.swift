@@ -108,7 +108,7 @@ struct Options: ParsableArguments {
     var random: [Int] = []
 
     @Option(name: .long, parsing: .upToNextOption,
-            help: "Default reserved left [top [right [bottom]]]")
+            help: "Reserved pixels on the left [top [right [bottom]]]")
     var reserve = [
         Defaults.global.reserveLeft,
         Defaults.global.reserveTop,
@@ -116,35 +116,38 @@ struct Options: ParsableArguments {
         Defaults.global.reserveBottom
     ]
 
-    @Flag(name: .long, help: "Default to grouping data by rows")
+    @Flag(name: .long, help: "Group data by rows")
     var rows = Defaults.global.rowGrouping
 
-    @Option(name: .long, help: "Default plots to show as scattered")
+    @Option(name: .long, help: "Plots to show as scattered")
     var scattered = Defaults.global.scattered
 
     @Option(name: .long, parsing: .upToNextOption,
-            help: "Default list of shapes, multiple entries until the next option")
+            help: "List of shapes, multiple entries until the next option")
     var shapes: [String] = []
 
     @Flag(name: .long, help: "Print a list of shape names")
     var shapenames = false
 
-    @Option(name: .long, help: "Generate an SVG with just the named shape @ 6X strokewidth")
+    @Option(name: .long, help: "Generate a plot with just the named shape @ 6X strokewidth")
     var show: String = ""
 
-    @Option(name: .long, help: "Default data plots with points")
+    @Option(name: .long, help: "Data plots with points")
     var showpoints = Defaults.global.showDataPoints
 
-    @Option(name: .long, help: "Default font size")
+    @Option(name: .long, help: "Base font size")
     var size = Defaults.global.baseFontSize
 
-    @Option(name: .long, help: "Default smoothing, 0 means none")
+    @Option(name: .long, help: "EMA smoothing, 0 means none")
     var smooth = Defaults.global.smooth
 
     @Flag(name: .long, help: "Sort points by the x values before plotting")
     var sortx = Defaults.global.sortx
 
-    @Option(name: .long, help: "Default stroke width")
+    @Option(name: .long, help: "Plots to show as staple diagrams")
+    var stapled = Defaults.global.stapled
+
+    @Option(name: .long, help: "Stroke width")
     var stroke = Defaults.global.strokeWidth
 
     @Option(name: .long, help: "Default sub-title row or column")
@@ -234,6 +237,7 @@ struct Options: ParsableArguments {
             showDataPoints: showpoints,
             sortx: sortx,
             smooth: smooth,
+            stapled: stapled,
             strokeWidth: stroke,
             subTitle: subtitle,
             subTitleHeader: subheader,

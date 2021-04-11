@@ -136,12 +136,14 @@ func plotFlags(
         props[i].included = settings.plot.include &== mask
         props[i].pointed = settings.plot.showDataPoints &== mask
         props[i].scattered = settings.plot.scatterPlots &== mask
+        props[i].stapled = settings.plot.stapled &== mask
     }
 
     // Not really flags
     for i in props.indices {
         props[i].bold = settings.css.bold
         props[i].bezier = settings.plot.bezier
+        props[i].fontFamily = settings.css.fontFamily
         props[i].italic = settings.css.italic
     }
 }

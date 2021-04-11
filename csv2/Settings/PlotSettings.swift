@@ -19,6 +19,8 @@ extension Settings {
         let scatterPlots: Int
         // show data points
         let showDataPoints: Int
+        // staple diagrams
+        let stapled: Int
         // distance between points
         let dataPointDistance: Double
         // Shapes to use for datapoints and scatter plots
@@ -59,6 +61,7 @@ extension Settings {
             include: keyedIntValue(from: container, forKey: .include, defaults: defaults),
             scatterPlots: keyedIntValue(from: container, forKey: .scatterPlots, defaults: defaults),
             showDataPoints: keyedIntValue(from: container, forKey: .showDataPoints, defaults: defaults),
+            stapled: keyedIntValue(from: container, forKey: .stapled, defaults: defaults),
             dataPointDistance: keyedDoubleValue(from: container, forKey: .dataPointDistance, defaults: defaults),
             shapes: keyedStringArray(from: container, forKey: .shapes, defaults: defaults),
             dashes: keyedStringArray(from: container, forKey: .dashes, defaults: defaults),
@@ -66,10 +69,10 @@ extension Settings {
             colours: keyedStringArray(from: container, forKey: .colours, defaults: defaults),
             names: keyedStringArray(from: container, forKey: .names, defaults: defaults),
             black: keyedBoolValue(from: container, forKey: .black, defaults: defaults),
-            bezier: keyedDoubleValue(from: container, forKey: .bezier, defaults: defaults,
-                                     in: Defaults.bezierBounds),
-            smooth: keyedDoubleValue(from: container, forKey: .smooth, defaults: defaults,
-                                     in: Defaults.smoothBounds),
+            bezier:
+                keyedDoubleValue(from: container, forKey: .bezier, defaults: defaults, in: Defaults.bezierBounds),
+            smooth:
+                keyedDoubleValue(from: container, forKey: .smooth, defaults: defaults, in: Defaults.smoothBounds),
             sortx: keyedBoolValue(from: container, forKey: .sortx, defaults: defaults)
         )
     }

@@ -63,6 +63,7 @@ struct Defaults {
     let showDataPoints: Int
     let sortx: Bool
     let smooth: Double
+    let stapled: Int
     let strokeWidth: Double
     let subTitle: String
     let subTitleHeader: Int
@@ -119,6 +120,7 @@ struct Defaults {
         showDataPoints: 0,
         sortx: false,
         smooth: 0.0,
+        stapled: 0,
         strokeWidth: 2.0,
         subTitle: "",
         subTitleHeader: 0,
