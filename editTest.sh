@@ -11,4 +11,4 @@ fi
 dir=data
 name="$1+$2-$3"
 
-vi "$dir/$name.opts" "$dir/$name.txt"
+vi "$dir/$name".{opts,txt,canvas}

@@ -19,4 +19,4 @@ fi
 
 ln -s "$1.csv" "$dir/$name.csv"
 ln -s "$2.json" "$dir/$name.json"
-vi "$dir/$name.opts" "$dir/$name.txt"
+vi "$dir/$name".{opts,txt,canvas}

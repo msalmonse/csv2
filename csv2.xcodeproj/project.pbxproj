@@ -153,7 +153,7 @@
 		C480847B25E4E97300BD0A24 /* ColumnPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnPlot.swift; sourceTree = "<group>"; };
 		C480847F25E6776900BD0A24 /* Sides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sides.swift; sourceTree = "<group>"; };
 		C482B9FC25EE8D4D00E51A50 /* stderr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stderr.swift; sourceTree = "<group>"; };
-		C48B723525F224EF00B0752E /* indexMake.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = indexMake.sh; sourceTree = "<group>"; };
+		C48B723525F224EF00B0752E /* svgIndexMake.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = svgIndexMake.sh; sourceTree = "<group>"; };
 		C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = csv2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2Tests.swift; sourceTree = "<group>"; };
 		C48B822B25E28F7E00EAEAE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				C4CB7C71260CFF6F00AD2364 /* autoversion.sh */,
-				C48B723525F224EF00B0752E /* indexMake.sh */,
+				C48B723525F224EF00B0752E /* svgIndexMake.sh */,
 				C453245325FBFF27007D741C /* shapeDoc.sh */,
 			);
 			name = Scripts;
