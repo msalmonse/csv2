@@ -12,8 +12,7 @@ import Foundation
 protocol Plotter {
     func plotGroup(plotPlane: Plane, lines: String) -> String
     func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) -> String
-    func plotFilledPath(_ points: [PathCommand], props: Properties) -> String
-    func plotStrokedPath(_ points: [PathCommand], props: Properties) -> String
+    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool) -> String
     func plotRect(_ plane: Plane, rx: Double, props: Properties) -> String
     func plotTail() -> String
     func plotText(x: Double, y: Double, text: String, props: Properties) -> String

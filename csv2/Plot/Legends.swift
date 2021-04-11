@@ -34,11 +34,11 @@ extension Plot {
         _ props: Properties
     ) -> String {
         guard props.shape != nil else { return "" }
-        return plotter.plotStrokedPath([
+        return plotter.plotPath([
                 PathCommand.moveTo(x: x, y: y),
                 props.shape!.pathCommand(w: shapeWidth)
             ],
-            props: props
+            props: props, fill: false
         )
     }
 
@@ -56,13 +56,13 @@ extension Plot {
         _ props: Properties
     ) -> String {
         guard props.shape != nil else { return "" }
-        return plotter.plotStrokedPath([
+        return plotter.plotPath([
                 PathCommand.moveTo(x: left, y: y),
                 .horizTo(x: mid),
                 props.shape!.pathCommand(w: shapeWidth),
                 .horizTo(x: right)
             ],
-            props: props
+            props: props, fill: false
         )
     }
 
@@ -78,11 +78,11 @@ extension Plot {
         _ left: Double, _ right: Double, _ y: Double,
         _ props: Properties
     ) -> String {
-        return plotter.plotStrokedPath([
+        return plotter.plotPath([
                 PathCommand.moveTo(x: left, y: y),
                 .horizTo(x: right)
             ],
-            props: props
+            props: props, fill: false
         )
     }
 

@@ -63,7 +63,7 @@ extension Plot {
                 PathCommand.moveTo(x: width/2.0, y: height/2.0),
                 shape.pathCommand(w: shapeWidth)
             ]
-            result.append(plotter.plotStrokedPath(shapePath, props: propsList.plots[0]))
+            result.append(plotter.plotPath(shapePath, props: propsList.plots[0], fill: false))
             result.append(plotter.plotTail())
         }
 

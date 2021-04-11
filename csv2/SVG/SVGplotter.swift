@@ -42,26 +42,6 @@ extension SVG {
         return result.joined(separator: " ")
     }
 
-    /// Draw a path and fill it
-    /// - Parameters:
-    ///   - points: list of path commands
-    ///   - props: path properties
-    /// - Returns: plot command string
-
-    func plotFilledPath(_ points: [PathCommand], props: Properties) -> String {
-        return plotPath(points, props: props, fill: true)
-    }
-
-    /// Draw a path and stroke it
-    /// - Parameters:
-    ///   - points: list of path commands
-    ///   - props: path properties
-    /// - Returns: plot command string
-
-    func plotStrokedPath(_ points: [PathCommand], props: Properties) -> String {
-        return plotPath(points, props: props, fill: false)
-    }
-
     /// Draw a rectangle
     /// - Parameters:
     ///   - x: x position

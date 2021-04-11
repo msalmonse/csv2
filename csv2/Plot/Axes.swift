@@ -27,7 +27,7 @@ extension Plot {
             axesPath.append(.vertTo(y: plotPlane.top))
         }
 
-        return plotter.plotStrokedPath(axesPath, props: propsList.axes)
+        return plotter.plotPath(axesPath, props: propsList.axes, fill: false)
     }
 
     /// Normalize tick value
@@ -102,7 +102,7 @@ extension Plot {
             }
         }
 
-        return plotter.plotStrokedPath(tickPath, props: propsList.xLabel) + labels.joined(separator: "\n")
+        return plotter.plotPath(tickPath, props: propsList.xLabel, fill: false) + labels.joined(separator: "\n")
     }
 
     /// Draw horizontal ticks
@@ -141,6 +141,6 @@ extension Plot {
             }
         }
 
-        return plotter.plotStrokedPath(tickPath, props: propsList.yLabel) + labels.joined(separator: "\n")
+        return plotter.plotPath(tickPath, props: propsList.yLabel, fill: false) + labels.joined(separator: "\n")
     }
 }
