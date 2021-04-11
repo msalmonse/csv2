@@ -8,7 +8,7 @@
 import Foundation
 
 enum StringProperties {
-    case colour, cssClass, dash, fill, fontColour, fontFamily, strokeLineCap, textAlign
+    case colour, cssClass, dash, fill, fontColour, fontFamily, strokeLineCap, textAlign, textBaseline
     var path: KeyPath<Properties,String?> {
         switch self {
         case .colour: return \.colour
@@ -19,6 +19,7 @@ enum StringProperties {
         case .fontFamily: return \.fontFamily
         case .strokeLineCap: return \.strokeLineCap
         case .textAlign: return \.textAlign
+        case .textBaseline: return \.textBaseline
         }
     }
 }
@@ -56,6 +57,7 @@ struct Properties {
     var strokeWidth = 0.0
     // textAlign is a string with "horizontal align, rotation, vertical align"
     var textAlign: String?
+    var textBaseline: String?
     var transform: Transform?
 
     static var defaultProperties = Properties()

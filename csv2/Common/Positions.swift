@@ -50,7 +50,7 @@ struct Positions {
 
     init(_ settings: Settings, dataLeft: Double) {
         let sizes = FontSizes(size: settings.dim.baseFontSize)
-        let margin = settings.dim.baseFontSize * 0.6
+        let margin = settings.dim.baseFontSize * 0.75
         let logoHeight = settings.plotter.logoURL.isEmpty ? 0.0 : settings.plotter.logoHeight
         let logoWidth = settings.plotter.logoURL.isEmpty ? 0.0 : settings.plotter.logoWidth
         // Calculate vertical positions

@@ -32,6 +32,7 @@ struct PropertiesList {
         Properties.defaultProperties.strokeLineCap = "round"
         Properties.defaultProperties.strokeWidth = settings.css.strokeWidth
         Properties.defaultProperties.textAlign = "middle"
+        Properties.defaultProperties.textBaseline = "alphabetic"
 
         axes.cssClass = "axes"
         legend.fontSize = sizes.legendSize
@@ -60,6 +61,7 @@ struct PropertiesList {
         yLabel.cssClass = "ylabel"
         yLabel.strokeWidth = 1.0
         yLabel.textAlign = "end"
+        yLabel.textBaseline = "middle"
         yTitle.fontSize = sizes.axesSize
         yTitle.cssClass = "ytitle"
     }

@@ -17,6 +17,7 @@ struct CTX {
     var lineWidth = 0.0
     var strokeStyle = ""
     var textAlign = ""
+    var textBaseline = ""
     var transform = ""
 }
 
@@ -30,6 +31,10 @@ fileprivate func jsAlign(_ textAlign: String) -> String {
     default: return textAlign
     }
 }
+
+/// Create a font specification from the props
+/// - Parameter props: Properties
+/// - Returns: Font specification
 
 fileprivate func propsFontSpec(from props: Properties) -> String {
     var spec: [String] = []
@@ -68,6 +73,12 @@ extension CTX {
                 self.textAlign = textAlign
                 result.append("ctx.textAlign = '\(jsAlign(textAlign))'")
             }
+
+            let textBaseline = props.cascade(.textBaseline) ?? "alphabetic"
+            if textBaseline != self.textBaseline {
+                self.textBaseline = textBaseline
+                result.append("ctx.textBaseline = '\(textBaseline)'")
+            }
         } else {
             let colour = props.cascade(.colour) ?? "transparent"
             if colour != strokeStyle {
@@ -105,6 +116,9 @@ extension CTX {
             result.append("ctx.setTransform(\(transform))")
         }
     }
+
+    /// Reset any transorm that is active
+    /// - Parameter result: JS to reset the transform
 
     mutating func resetTransform( _ result: inout [String]) {
         if transform.hasContent {
