@@ -41,18 +41,6 @@ extension JS {
             """
     }
 
-    func plotRect(_ plane: Plane, rx: Double, props: Properties) -> String {
-        let x = plane.left.f(1)
-        let y = plane.top.f(1)
-        let w = plane.width.f(1)
-        let h = plane.height.f(1)
-        var result = [""]
-        ctx.sync(props, &result)
-        result.append("ctx.rect(\(x), \(y), \(w), \(h))")
-        result.append("ctx.stroke()")
-        return result.joined(separator: "\n    ")
-    }
-
     func plotTail() -> String {
         return "}"
     }

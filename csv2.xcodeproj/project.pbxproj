@@ -102,6 +102,7 @@
 		C4EFA4C32620D5C40026BD9A /* CTX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C22620D5C40026BD9A /* CTX.swift */; };
 		C4EFA4C926215D650026BD9A /* PropertiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C826215D650026BD9A /* PropertiesList.swift */; };
 		C4EFA4CC262166700026BD9A /* CTX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C22620D5C40026BD9A /* CTX.swift */; };
+		C4EFA4D02622B4B50026BD9A /* Rect2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4CF2622B4B50026BD9A /* Rect2D.swift */; };
 		C4F1B3942609DFFA0035AC62 /* ShowDashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */; };
 		C4F1B3982609E0670035AC62 /* DashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3972609E0670035AC62 /* DashesList.swift */; };
 		C4F20C0826012A67005D2FE1 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C0726012A67005D2FE1 /* Properties.swift */; };
@@ -182,6 +183,7 @@
 		C4EFA4BE2620D42C0026BD9A /* Path2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path2D.swift; sourceTree = "<group>"; };
 		C4EFA4C22620D5C40026BD9A /* CTX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTX.swift; sourceTree = "<group>"; };
 		C4EFA4C826215D650026BD9A /* PropertiesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesList.swift; sourceTree = "<group>"; };
+		C4EFA4CF2622B4B50026BD9A /* Rect2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rect2D.swift; sourceTree = "<group>"; };
 		C4F1B3902609D25F0035AC62 /* Testing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Testing.md; sourceTree = "<group>"; };
 		C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDashesList.swift; sourceTree = "<group>"; };
 		C4F1B3972609E0670035AC62 /* DashesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashesList.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				C4BDCFB5261E156F00D8C589 /* JS.swift */,
 				C4EFA4BA2620A92B0026BD9A /* JSplotter.swift */,
 				C4EFA4BE2620D42C0026BD9A /* Path2D.swift */,
+				C4EFA4CF2622B4B50026BD9A /* Rect2D.swift */,
 			);
 			path = JS;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				C4F1B3982609E0670035AC62 /* DashesList.swift in Sources */,
 				C45323ED25F8EF0D007D741C /* Gen.swift in Sources */,
 				C40A3AFF25DC01180016EB6D /* main.swift in Sources */,
+				C4EFA4D02622B4B50026BD9A /* Rect2D.swift in Sources */,
 				C4F8F875261C375C00DF76AE /* Plot.swift in Sources */,
 				C4BDCFB6261E156F00D8C589 /* JS.swift in Sources */,
 				C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */,
