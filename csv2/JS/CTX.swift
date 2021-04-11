@@ -80,7 +80,7 @@ extension CTX {
             let fontSpec = propsFontSpec(from: props)
             self.syncOneString(key: \.font, fontSpec, "font", result: &result)
 
-            let textAlign = props.cascade(.textAlign) ?? "start"
+            let textAlign = jsAlign(props.cascade(.textAlign) ?? "start")
             self.syncOneString(key: \.textAlign, textAlign, "textAlign", result: &result)
 
             let textBaseline = props.cascade(.textBaseline) ?? "alphabetic"
