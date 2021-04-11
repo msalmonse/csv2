@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "svg --dashed=2"
+            argument = "js --canvas trig --canvastag --dashed=2"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -68,7 +68,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/out.svg"
+            argument = "${PROJECT_DIR}/out.js"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

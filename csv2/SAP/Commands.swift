@@ -15,7 +15,7 @@ protocol CSVplotterCommand {
 }
 
 enum CommandPath {
-    case canvas, css, cssid, logo, svg
+    case canvas, canvastag, css, cssid, logo, svg
 }
 
 struct CSVplotter: ParsableCommand {
@@ -38,6 +38,7 @@ extension CSVplotter {
         func ownOptions<T>(key: CommandPath, default val: T) -> T {
             switch key {
             case .canvas: return canvas as? T ?? val
+            case .canvastag: return canvastag as? T ?? val
             default: return val
             }
         }
@@ -48,6 +49,9 @@ extension CSVplotter {
 
         @Option(name: .long, help: "Canvas name")
         var canvas = Defaults.global.canvasID
+
+        @Flag(name: .long, help: "Print the canvas tag")
+        var canvastag = false
     }
 }
 

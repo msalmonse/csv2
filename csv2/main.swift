@@ -48,6 +48,11 @@ if commonOpts.shapenames {
     let settings = try? Settings.load(jsonSource)
     if commonOpts.debug &== 2 { print(settings ?? "Nil settings", to: &standardError) }
 
+    if command.ownOptions(key: .canvastag, default: false) {
+        output([JS.canvasTag(settings!)], to: commonOpts.outName)
+        exit(0)
+    }
+
     if commonOpts.csvName != nil { SearchPath.add(commonOpts.csvName!) }
     let csv = csvSelect(commonOpts, settings)
     if commonOpts.debug &== 4 { print(csv ?? "Nil csv", to: &standardError) }
