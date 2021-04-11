@@ -35,7 +35,7 @@ extension Plot {
         for i in dashes.indices {
             y += step
             let points = [ PathCommand.moveTo(x: xLeft, y: yPath), .horizTo(x: xRight) ]
-            result.append(plotter.plotPath(points, props: propsList.plots[i]))
+            result.append(plotter.plotStrokedPath(points, props: propsList.plots[i]))
             result.append(plotter.plotText(x: xText, y: y, text: dashes[i], props: propsList.plots[i]))
         }
 

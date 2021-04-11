@@ -31,7 +31,7 @@ extension SVG {
     ///   - props: path properties
     /// - Returns: plot command string
 
-    func plotPath(_ points: [PathCommand], props: Properties) -> String {
+    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool = false) -> String {
         var result = [ "<path" ]
         if let cssClass = props.cssClass { result.append("class=\"\(cssClass)\"") }
         result.append("d=\"")
@@ -41,7 +41,27 @@ extension SVG {
         return result.joined(separator: " ")
     }
 
-    /// Plot a rectangle
+    /// Draw a path and fill it
+    /// - Parameters:
+    ///   - points: list of path commands
+    ///   - props: path properties
+    /// - Returns: plot command string
+
+    func plotFilledPath(_ points: [PathCommand], props: Properties) -> String {
+        return plotPath(points, props: props, fill: true)
+    }
+
+    /// Draw a path and stroke it
+    /// - Parameters:
+    ///   - points: list of path commands
+    ///   - props: path properties
+    /// - Returns: plot command string
+
+    func plotStrokedPath(_ points: [PathCommand], props: Properties) -> String {
+        return plotPath(points, props: props, fill: false)
+    }
+
+    /// Draw a rectangle
     /// - Parameters:
     ///   - x: x position
     ///   - y: y position

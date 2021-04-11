@@ -31,6 +31,7 @@ extension JS {
             let t = plane.top.f(1)
             let r = plane.right.f(1)
             let b = plane.bottom.f(1)
+            // Start and end points of bezier curves.
             let lq = (plane.left + rx).f(1)
             let rq = (plane.right - rx).f(1)
             let tq = (plane.top + rx).f(1)
