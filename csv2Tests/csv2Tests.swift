@@ -252,6 +252,19 @@ class csv2Tests: XCTestCase {
 
     func testStaple() {
         XCTAssertEqual(Staple.minSpan(xiValues), 5.0)
+
+        for _ in 0...4 { _ = Staple.next }
+        let s1 = Staple(offset: 2.0, width: 1.0)
+        XCTAssertEqual(s1.width, 1.0)
+        XCTAssertEqual(s1.offsets, [-4.0, -2.0, 0.0, 2.0, 4.0])
+        _ = Staple.next
+        let s2 = Staple(offset: 2.0, width: 5.0)
+        XCTAssertEqual(s2.width, 5.0)
+        XCTAssertEqual(s2.offsets, [-5.0, -3.0, -1.0, 1.0, 3.0, 5.0])
+
+        let s3 = Staple(pixels: 60.0)
+        XCTAssertEqual(s3.width, 9.0)
+        XCTAssertEqual(s3.offsets, [-25.0, -15.0, -5.0, 5.0, 15.0, 25.0])
     }
 
     func testSettingsPerformance() throws {

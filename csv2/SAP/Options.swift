@@ -22,27 +22,27 @@ struct Options: ParsableArguments {
             help: "Convert a list of rows or columns to a bitmap")
     var bitmap: [Int] = []
 
-    @Option(name: .long, help: "Default bezier curve, 0 means none")
+    @Option(name: .long, help: "Bézier curve smoothing, 0 means none")
     var bezier = Defaults.global.bezier
 
-    @Flag(name: .long, help: "Set default colour to black")
+    @Flag(name: .long, help: "Set undefined colours to black")
     var black = Defaults.global.black
 
-    @Flag(name: .long, help: "Set default font-weight to bold")
+    @Flag(name: .long, help: "Set font-weight to bold")
     var bold = Defaults.global.bold
 
     @Flag(name: .long, help: "Generate an SVG with all the colours on it")
     var colourslist = false
 
     @Option(name: .long, parsing: .upToNextOption,
-            help: "Default list of plot colours, multiple entries until the next option")
+            help: "List of plot colours to use, multiple entries until the next option")
     var colours: [String] = []
 
-    @Option(name: .long, help: "Default plots to show as with dashed lines")
+    @Option(name: .long, help: "Plots to show as with dashed lines")
     var dashed = Defaults.global.dashedLines
 
     @Option(name: .long, parsing: .upToNextOption,
-            help: "Default list of plot dash patterns, multiple entries until the next option")
+            help: "List of plot dash patterns to use, multiple entries until the next option")
     var dashes: [String] = []
 
     @Flag(name: .long, help: "Generate an SVG with all the dashes on it")
@@ -54,38 +54,38 @@ struct Options: ParsableArguments {
     @Option(name: .long, help: "Minimum distance between data points")
     var distance = Defaults.global.dataPointDistance
 
-    @Option(name: .long, help: "Default font family")
+    @Option(name: .long, help: "Font family")
     var font = Defaults.global.fontFamily
 
-    @Option(name: .long, help: "Default header rows or columns")
+    @Option(name: .long, help: "Header rows or columns")
     var headers = Defaults.global.headers
 
-    @Option(name: .long, help: "Default svg height")
+    @Option(name: .long, help: "SVG/Canvas height")
     var height = Defaults.global.height
 
-    @Option(name: .long, help: "Default index row or column")
+    @Option(name: .long, help: "Index row or column")
     var index = Defaults.global.index
 
-    @Flag(name: .long, help: "Set default colour to black")
+    @Flag(name: .long, help: "Use an italic font")
     var italic = Defaults.global.italic
 
-    @Option(name: .long, help: "Default rows or columns to include")
+    @Option(name: .long, help: "Rows or columns to include")
     var include = Defaults.global.include
 
-    @Option(name: .long, help: "Default image URL for top right corner")
+    @Option(name: .long, help: "Image URL for top right corner")
     var logo = Defaults.global.logoURL
 
-    @Flag(name: .long, help: "Set default for abcissa to log")
+    @Flag(name: .long, help: "Set abcissa to log")
     var logx = Defaults.global.logx
 
-    @Flag(name: .long, help: "Set default for ordinate to log")
+    @Flag(name: .long, help: "Set ordinate to log")
     var logy = Defaults.global.logy
 
-    @Option(name: .long, help: "Default plot name row or column")
+    @Option(name: .long, help: "Plot name row or column")
     var nameheader = Defaults.global.nameHeader
 
     @Option(name: .long, parsing: .upToNextOption,
-            help: "Default list of plot names, multiple entries until the next option")
+            help: "List of plot names, multiple entries until the next option")
     var names: [String] = []
 
     @Flag(name: .long, help: "Don't check options for bounds")
@@ -100,7 +100,7 @@ struct Options: ParsableArguments {
     @Flag(name: .long, help: "Don't include plot names, colours, dashes and shapes")
     var nolegends = !Defaults.global.legends
 
-    @Option(name: .long, help: "Default index row or column")
+    @Option(name: .long, help: "Opacity for plots")
     var opacity = Defaults.global.opacity
 
     @Option(name: .long, parsing: .upToNextOption,
@@ -123,7 +123,7 @@ struct Options: ParsableArguments {
     var scattered = Defaults.global.scattered
 
     @Option(name: .long, parsing: .upToNextOption,
-            help: "List of shapes, multiple entries until the next option")
+            help: "List of shapes to use, multiple entries until the next option")
     var shapes: [String] = []
 
     @Flag(name: .long, help: "Print a list of shape names")
@@ -147,16 +147,22 @@ struct Options: ParsableArguments {
     @Option(name: .long, help: "Plots to show as staple diagrams")
     var stapled = Defaults.global.stapled
 
+    @Option(name: .long, help: "Staple offset (-1 to calculate)")
+    var stapleoffset = Defaults.global.stapleOffset
+
+    @Option(name: .long, help: "Staple width (-1 to calculate)")
+    var staplewidth = Defaults.global.stapleWidth
+
     @Option(name: .long, help: "Stroke width")
     var stroke = Defaults.global.strokeWidth
 
-    @Option(name: .long, help: "Default sub-title row or column")
+    @Option(name: .long, help: "Sub-title row or column source")
     var subheader = Defaults.global.index
 
-    @Option(name: .long, help: "Default sub-title")
+    @Option(name: .long, help: "Sub-title")
     var subtitle: String = ""
 
-    @Option(name: .long, help: "Default title")
+    @Option(name: .long, help: "Title")
     var title: String = ""
 
     @Flag(name: .shortAndLong, help: "Use tabs to seperate columns")
@@ -168,7 +174,7 @@ struct Options: ParsableArguments {
     @Flag(name: [.customShort("V"), .long], help: "Display version and exit")
     var version = false
 
-    @Option(name: .long, help: "Default svg width")
+    @Option(name: .long, help: "SVG/Canvas width")
     var width = Defaults.global.width
 
     @Option(name: .long, help: "Default abscissa maximum")
@@ -238,6 +244,8 @@ struct Options: ParsableArguments {
             sortx: sortx,
             smooth: smooth,
             stapled: stapled,
+            stapleOffset: stapleoffset,
+            stapleWidth: staplewidth,
             strokeWidth: stroke,
             subTitle: subtitle,
             subTitleHeader: subheader,

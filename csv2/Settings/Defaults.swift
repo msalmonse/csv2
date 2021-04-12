@@ -64,6 +64,8 @@ struct Defaults {
     let sortx: Bool
     let smooth: Double
     let stapled: Int
+    let stapleOffset: Double
+    let stapleWidth: Double
     let strokeWidth: Double
     let subTitle: String
     let subTitleHeader: Int
@@ -121,6 +123,8 @@ struct Defaults {
         sortx: false,
         smooth: 0.0,
         stapled: 0,
+        stapleOffset: -1.0,
+        stapleWidth: -1.0,
         strokeWidth: 2.0,
         subTitle: "",
         subTitleHeader: 0,

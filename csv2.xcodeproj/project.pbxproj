@@ -335,8 +335,8 @@
 				C4C0C48E2612FCC70072699C /* Dimensions.swift */,
 				C4C0C4892612FBCD0072699C /* KeyedValue.swift */,
 				C4C0C4A526133E650072699C /* PlotSettings.swift */,
-				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
 				C4C0C4AF2613641A0072699C /* PlotterSettings.swift */,
+				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";

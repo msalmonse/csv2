@@ -53,6 +53,8 @@ extension Settings {
         case smooth
         case sortx
         case stapled
+        case stapleOffset
+        case stapleWidth
         case strokeWidth
         case subTitle
         case subTitleHeader
