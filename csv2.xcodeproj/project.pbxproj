@@ -112,6 +112,7 @@
 		C4EFA4E826236B8A0026BD9A /* Rect2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4CF2622B4B50026BD9A /* Rect2D.swift */; };
 		C4EFA4EC26236F3E0026BD9A /* StapleGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4EB26236F3E0026BD9A /* StapleGet.swift */; };
 		C4EFA4EF2623710A0026BD9A /* StapleGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4EB26236F3E0026BD9A /* StapleGet.swift */; };
+		C4EFA4F5262491BB0026BD9A /* ColourTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */; };
 		C4F1B3942609DFFA0035AC62 /* ShowDashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */; };
 		C4F1B3982609E0670035AC62 /* DashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3972609E0670035AC62 /* DashesList.swift */; };
 		C4F20C0826012A67005D2FE1 /* Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C0726012A67005D2FE1 /* Properties.swift */; };
@@ -195,6 +196,7 @@
 		C4EFA4CF2622B4B50026BD9A /* Rect2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rect2D.swift; sourceTree = "<group>"; };
 		C4EFA4D5262364EC0026BD9A /* Staple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Staple.swift; sourceTree = "<group>"; };
 		C4EFA4EB26236F3E0026BD9A /* StapleGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StapleGet.swift; sourceTree = "<group>"; };
+		C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourTranslate.swift; sourceTree = "<group>"; };
 		C4F1B3902609D25F0035AC62 /* testing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = testing.md; sourceTree = "<group>"; };
 		C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDashesList.swift; sourceTree = "<group>"; };
 		C4F1B3972609E0670035AC62 /* DashesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashesList.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				C4EA5D2725EB8F4D00E104E0 /* Colours.swift */,
+				C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */,
 				C4F20C102601DF4D005D2FE1 /* Dashes.swift */,
 				C453242425FA2C23007D741C /* DrawShapes.swift */,
 				C4C0C471260F85E40072699C /* Fonts.swift */,
@@ -598,6 +601,7 @@
 				C4C0C462260E589A0072699C /* Style.swift in Sources */,
 				C4F20C1626027B7C005D2FE1 /* Legends.swift in Sources */,
 				C4C0C4B02613641A0072699C /* PlotterSettings.swift in Sources */,
+				C4EFA4F5262491BB0026BD9A /* ColourTranslate.swift in Sources */,
 				C453242525FA2C23007D741C /* DrawShapes.swift in Sources */,
 				C42A6E3C261EDBED00784F54 /* Transform.swift in Sources */,
 				C480848025E6776900BD0A24 /* Sides.swift in Sources */,
