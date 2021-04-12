@@ -133,6 +133,28 @@ extension PathCommand {
         ].map { $0.command() }.joined(separator: " ")
     }
 
+    /// Generate a staple
+    /// - Parameters:
+    ///   - p0: the origin
+    ///   - w: width of the staple
+    ///   - y: top or bottom of the staple
+    /// - Returns: path to create the staple
+
+    func drawStaple(p0: Point, w: Double, y: Double) -> String {
+        let x0 = p0.x
+        let y0 = p0.y
+        let left = x0 - w/2.0
+        let right = left + w
+        return [
+            PathCommand.moveTo(x: x0, y: y0),
+            .horizTo(x: left),
+            .vertTo(y: y),
+            .horizTo(x: right),
+            .vertTo(y: y0),
+            .z
+        ].map { $0.command() }.joined(separator: " ")
+    }
+
     /// Generate a star shape
     /// - Parameter w: the width
     /// - Returns: path string for a star

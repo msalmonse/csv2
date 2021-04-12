@@ -42,6 +42,10 @@ struct Staple {
         let offset = width + 1
         self.init(offset: offset, width: width)
     }
+
+    func path(p0: Point, y: Double, _ n: Int) -> PathCommand {
+        return .staple(p0: Point(x: p0.x + offsets[n], y: p0.y), w: width, y: y)
+    }
 }
 
 extension Staple {

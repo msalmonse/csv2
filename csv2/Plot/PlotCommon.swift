@@ -11,7 +11,7 @@ extension Plot {
     /// State of the plot
 
     enum PlotState {
-        case move, moved, online, clipped, clipped2, scatter
+        case move, moved, online, clipped, clipped2, scatter, staple
     }
 
     /// Common state
@@ -23,6 +23,7 @@ extension Plot {
         var prevPlotPoint = Point.inf
         var state: PlotState
         let props: Properties
+        let staple: Staple?
 
         let limit: Double
         let ts: TransScale
@@ -30,12 +31,19 @@ extension Plot {
         init(
             props: Properties,
             ts: TransScale,
-            limit: Double
+            limit: Double,
+            staple: Staple?
         ) {
             self.ts = ts
             self.limit = limit
             self.props = props
-            state = props.scattered ? .scatter : .move
+            self.staple = staple
+
+            switch (props.scattered, props.staple > 0, staple == nil) {
+            case (true,_,_): state = .scatter
+            case(false,true,true): state = .staple
+            default: state = .move
+            }
         }
 
         /// Handle an x or y of nil
@@ -46,7 +54,7 @@ extension Plot {
                 // single data point so mark it
                 if !props.pointed { shapePoints.append(plotShape) }
                 state = .move
-            case .scatter, .clipped2: break
+            case .scatter, .staple, .clipped2: break
             default: state = .move
             }
         }
@@ -60,6 +68,7 @@ extension Plot {
             _ pos: Point,
             clipped: Bool,
             nextPlotPoint: Point?,
+            pos0: Point?,
             plotShape: PathCommand
         ) {
             if !clipped {
@@ -115,6 +124,10 @@ extension Plot {
                     shapePoints.append(.moveTo(x: pos.x, y: pos.y))
                     shapePoints.append(plotShape)
                 }
+            case .staple:
+                if let p0 = pos0 {
+                    shapePoints.append(staple!.path(p0: p0, y: pos.y, props.staple))
+                }
             case .clipped2:
                 // Ignore all data till we are not clipped, just move
                 pathPoints.append(.moveTo(x: pos.x, y: pos.y))
@@ -158,7 +171,8 @@ extension Plot {
         let state = PlotCommonState(
             props: props,
             ts: ts,
-            limit: limit
+            limit: limit,
+            staple: staple
         )
         var yɑ = Double.infinity
         let plotShape = props.shape?.pathCommand(w: shapeWidth) ?? .circleStar(w: shapeWidth)
@@ -173,6 +187,7 @@ extension Plot {
 
         for i in settings.headers..<xiValues.count {
             var pos = xypos(i)
+            var pos0: Point? = nil
             if pos == nil {
                 state.nilPlot(plotShape)
             } else {
@@ -186,7 +201,8 @@ extension Plot {
                 let (pos, clipped) = posClip(ts.pos(pos!))
                 var nextPos = xypos(i + 1)
                 if nextPos != nil { (nextPos, _) = posClip(ts.pos(nextPos!)) }
-                state.plotOne(pos, clipped: clipped, nextPlotPoint: nextPos, plotShape: plotShape)
+                if props.staple >= 0 && staple != nil { (pos0, _) = posClip(Point(x: pos.x, y: 0.0)) }
+                state.plotOne(pos, clipped: clipped, nextPlotPoint: nextPos, pos0: pos0, plotShape: plotShape)
             }
         }
         state.nilPlot(plotShape)        // handle any trailing singletons

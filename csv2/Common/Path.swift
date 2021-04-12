@@ -45,14 +45,18 @@ enum PathCommand {
         horizTo(x: Double),                         // Draw line horizontally to x
         lineBy(dx: Double, dy: Double),             // Draw line by dx,dy
         lineTo(x: Double, y: Double),               // Draw line to x,y
+        qBezierBy(dx: Double, dy: Double, cdx: Double, cdy: Double),
+                                        // Draw quadratic bezier curve by dx,dy with control point cdx, cdy
         qBezierTo(x: Double, y: Double, cx: Double, cy: Double),
                                         // Draw quadratic bezier curve to x,y with control point cx, cy
         shuriken(w: Double),                        // Draw shuriken
         square(w: Double),                          // Draw a square with sides 2 * w
+        staple(p0: Point, w: Double, y: Double),    // Draw a staple w wide from p0 to y
         star(w: Double),                            // Draw a star of width 2 * w
         triangle(w: Double),                        // Draw a triangle of width 2 * w
         vertBy(dy: Double),                         // Draw line vertically by dy
-        vertTo(y: Double)                           // Draw line vertically to y
+        vertTo(y: Double),                          // Draw line vertically to y
+        z                                           // close path
 
     /// Convert a command into a path string
     /// - Returns: path string
@@ -72,14 +76,18 @@ enum PathCommand {
         case .horizTo(let x): return "H \(x.f(1))"
         case .lineBy(let dx, let dy): return "l \(dx.f(1)),\(dy.f(1))"
         case .lineTo(let x, let y): return "L \(x.f(1)),\(y.f(1))"
+        case .qBezierBy(let dx, let dy, let cdx, let cdy):
+            return "q \(cdx.f(1)),\(cdy.f(1)), \(dx.f(1)),\(dy.f(1))"
         case .qBezierTo(let x, let y, let cx, let cy):
             return "Q \(cx.f(1)),\(cy.f(1)), \(x.f(1)),\(y.f(1))"
         case .shuriken(let w): return drawShuriken(w: w)
         case .square(let w): return drawSquare(w: w)
+        case .staple(let p0, let w, let y): return drawStaple(p0: p0, w: w, y: y)
         case .star(let w): return drawStar(w: w)
         case .triangle(let w): return drawTriangle(w: w)
         case .vertBy(let dy): return "v \(dy.f(1))"
         case .vertTo(let y): return "V \(y.f(1))"
+        case .z: return "Z"
         }
     }
 }

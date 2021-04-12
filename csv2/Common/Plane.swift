@@ -48,6 +48,10 @@ struct Point: Equatable {
         return Point(x: x - xδ, y: y - yδ)
     }
 
+    /// Unary - function
+    /// - Parameter pt: original point
+    /// - Returns: negative point
+
     static prefix func - (pt: Point) -> Point {
         return Point(x: -pt.x, y: -pt.y)
     }
