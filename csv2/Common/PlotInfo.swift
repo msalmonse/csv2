@@ -47,6 +47,7 @@ func plotColours(
             props[i].colour = Colours.nextColour()
         }
         props[i].fontColour = props[i].colour
+        props[i].fill = props[i].colour
     }
 }
 

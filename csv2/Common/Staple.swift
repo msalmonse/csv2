@@ -38,8 +38,10 @@ struct Staple {
 
     init(pixels: Double) {
         let count = Double(Self.count)
-        let width = pixels/count - 1.0
-        let offset = width + 1
+        let pps = pixels/count                  // pixels per staple
+        let gap = max(2.0, pps/16.0)
+        let width = floor(pps - gap)
+        let offset = width + gap
         self.init(offset: offset, width: width)
     }
 

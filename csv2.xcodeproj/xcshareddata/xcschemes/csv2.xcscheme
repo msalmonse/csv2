@@ -52,15 +52,15 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "js --canvas trig --dashed=2 --italic"
+            argument = "svg --stapled 8"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--logo http://getdrawings.com/free-icon-bw/64x64-icon-18.png"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/trig.csv"
+            argument = "${PROJECT_DIR}/data/plot.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -68,7 +68,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/out.js"
+            argument = "${PROJECT_DIR}/out.svg"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

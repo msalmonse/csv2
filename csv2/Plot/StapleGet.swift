@@ -22,7 +22,7 @@ extension Plot {
         }
         let minδx = Staple.minSpan(xi)
         if minδx < 0.0 { return nil }
-        let minδpixels = ts.xpos(minδx) - ts.xpos(minδx)
+        let minδpixels = ts.xpos(minδx) - ts.xpos(0.0)
         if !Staple.spanOK(minδpixels) { return nil }
         return Staple(pixels: minδpixels)
     }

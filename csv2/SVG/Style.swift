@@ -28,8 +28,9 @@ extension SVG {
             if let cssClass = props.cssClass, let colour = props.colour {
                 let dashes =
                     props.dashed ? "; stroke-dasharray: \(props.dash ?? "-1"); stroke-linecap: butt" : ""
+                let fill = props.staple >= 0 ? "\(colour)" : "none"
                 result.append("""
-                    \(id) path.\(cssClass) { stroke: \(colour)\(dashes) }
+                    \(id) path.\(cssClass) { stroke: \(colour)\(dashes); fill: \(fill); fill-opacity: 0.75 }
                     \(id) text.\(cssClass), \(id) rect.\(cssClass) { fill: \(colour); stroke: \(colour) }
                     """
                 )

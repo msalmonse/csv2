@@ -145,11 +145,14 @@ extension PathCommand {
         let y0 = p0.y
         let left = x0 - w/2.0
         let right = left + w
+        let r = w/32.0
         return [
             PathCommand.moveTo(x: x0, y: y0),
             .horizTo(x: left),
-            .vertTo(y: y),
-            .horizTo(x: right),
+            .vertTo(y: y + r),
+            .qBezierTo(x: left + r, y: y, cx: left, cy: y),
+            .horizBy(dx: w - 2.0 * r),
+            .qBezierTo(x: right, y: y + r, cx: right, cy: y),
             .vertTo(y: y0),
             .z
         ].map { $0.command() }.joined(separator: " ")

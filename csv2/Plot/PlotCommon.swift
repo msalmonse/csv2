@@ -23,6 +23,7 @@ extension Plot {
         var prevPlotPoint = Point.inf
         var state: PlotState
         let props: Properties
+        weak var plot: Plot?
         let staple: Staple?
 
         let limit: Double
@@ -32,14 +33,16 @@ extension Plot {
             props: Properties,
             ts: TransScale,
             limit: Double,
+            plot: Plot,
             staple: Staple?
         ) {
             self.ts = ts
             self.limit = limit
             self.props = props
+            self.plot = plot
             self.staple = staple
 
-            switch (props.scattered, props.staple > 0, staple == nil) {
+            switch (props.scattered, props.staple >= 0, staple != nil) {
             case (true,_,_): state = .scatter
             case(false,true,true): state = .staple
             default: state = .move
@@ -68,7 +71,6 @@ extension Plot {
             _ pos: Point,
             clipped: Bool,
             nextPlotPoint: Point?,
-            pos0: Point?,
             plotShape: PathCommand
         ) {
             if !clipped {
@@ -125,7 +127,7 @@ extension Plot {
                     shapePoints.append(plotShape)
                 }
             case .staple:
-                if let p0 = pos0 {
+                if let (p0, _) = plot?.posClip(Point(x: pos.x, y: ts.ypos(0.0))) {
                     shapePoints.append(staple!.path(p0: p0, y: pos.y, props.staple))
                 }
             case .clipped2:
@@ -172,6 +174,7 @@ extension Plot {
             props: props,
             ts: ts,
             limit: limit,
+            plot: self,
             staple: staple
         )
         var yɑ = Double.infinity
@@ -187,7 +190,6 @@ extension Plot {
 
         for i in settings.headers..<xiValues.count {
             var pos = xypos(i)
-            var pos0: Point? = nil
             if pos == nil {
                 state.nilPlot(plotShape)
             } else {
@@ -201,11 +203,11 @@ extension Plot {
                 let (pos, clipped) = posClip(ts.pos(pos!))
                 var nextPos = xypos(i + 1)
                 if nextPos != nil { (nextPos, _) = posClip(ts.pos(nextPos!)) }
-                if props.staple >= 0 && staple != nil { (pos0, _) = posClip(Point(x: pos.x, y: 0.0)) }
-                state.plotOne(pos, clipped: clipped, nextPlotPoint: nextPos, pos0: pos0, plotShape: plotShape)
+                state.plotOne(pos, clipped: clipped, nextPlotPoint: nextPos, plotShape: plotShape)
             }
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
-        return plotter.plotPath(state.pathPoints + state.shapePoints, props: props, fill: false)
+        let fill = props.staple >= 0
+        return plotter.plotPath(state.pathPoints + state.shapePoints, props: props, fill: fill)
     }
 }
