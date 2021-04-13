@@ -128,7 +128,6 @@
 		C4FE49FB25F643E30076EF5E /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4FE49FA25F643E30076EF5E /* ArgumentParser */; };
 		C4FE49FF25F6440F0076EF5E /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE49FE25F6440F0076EF5E /* Options.swift */; };
 		C4FE4A0525F66E2C0076EF5E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE4A0425F66E2C0076EF5E /* Defaults.swift */; };
-		C4FE4A0A25F675190076EF5E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE4A0425F66E2C0076EF5E /* Defaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -336,7 +335,6 @@
 				C4C0C4852612E82A0072699C /* CodingKeys.swift */,
 				C4C0C49826130F2F0072699C /* CSSsettings.swift */,
 				C4C0C4AA26134AC70072699C /* CSVsettings.swift */,
-				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
 				C4C0C48E2612FCC70072699C /* Dimensions.swift */,
 				C4C0C4892612FBCD0072699C /* KeyedValue.swift */,
 				C4C0C4A526133E650072699C /* PlotSettings.swift */,
@@ -360,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				C4EFA4B026202C600026BD9A /* Commands.swift */,
+				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
 				C4FE49FE25F6440F0076EF5E /* Options.swift */,
 			);
 			path = SAP;
@@ -676,7 +675,6 @@
 				C4EFA4DC26236B500026BD9A /* PropertiesList.swift in Sources */,
 				C4C0C49A26130F2F0072699C /* CSSsettings.swift in Sources */,
 				C48B723825F28A5E00B0752E /* appinfo.swift in Sources */,
-				C4FE4A0A25F675190076EF5E /* Defaults.swift in Sources */,
 				C4C0C4AC26134AC70072699C /* CSVsettings.swift in Sources */,
 				C40CD43625ED007A003944FA /* Axes.swift in Sources */,
 				C449F44F25EC1325006C67EB /* Text.swift in Sources */,
