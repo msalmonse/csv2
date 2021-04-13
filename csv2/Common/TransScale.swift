@@ -1,5 +1,5 @@
 //
-//  SVG/TransScale.swift
+//  TransScale.swift
 //  csv2svg
 //
 //  Created by Michael Salmon on 2021-02-28.
@@ -57,6 +57,16 @@ struct TransScale {
 
     func pos(_ pt: Point) -> Point {
         return Point(x: xpos(pt.x), y: ypos(pt.y))
+    }
+
+    /// Calculate the position on the svg plane from the data plane
+    /// - Parameters
+    ///     - x: x value
+    ///     - y: y value
+    /// - Returns: x, y point
+
+    func pos(x: Double, y: Double) -> Point {
+        return Point(x: xpos(x), y: ypos(y))
     }
 
     /// Calculate the x position on the svg plane from the data plane

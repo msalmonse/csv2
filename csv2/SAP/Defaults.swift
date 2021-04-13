@@ -74,6 +74,7 @@ struct Defaults {
     let width: Int
     let xMax: Double
     let xMin: Double
+    let xTagHeader: Int
     let xTick: Double
     let yMax: Double
     let yMin: Double
@@ -133,6 +134,7 @@ struct Defaults {
         width: 800,
         xMax: Self.maxDefault,
         xMin: Self.minDefault,
+        xTagHeader: 0,
         xTick: 0.0,
         yMax: Self.maxDefault,
         yMin: Self.minDefault,

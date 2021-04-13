@@ -10,10 +10,9 @@ import Foundation
 extension Plot {
 
     /// Draw axes
-    /// - Parameter ts: scaling and tranlating object
     /// - Returns: paths with axes
 
-    func axes(_ ts: TransScale) -> String {
+    func axes() -> String {
         var axesPath: [PathCommand] = []
         let x0 = logy ? 1.0 : 0.0
         let y0 = logx ? 1.0 : 0.0
@@ -67,10 +66,9 @@ extension Plot {
     }
 
     /// Draw vertical ticks
-    /// - Parameter ts: scaling and translating object
     /// - Returns: path for the ticks
 
-    func xTick(_ ts: TransScale) -> String {
+    func xTick() -> String {
         var tickPath: [PathCommand] = []
         var labels = [""]
         var tick = tickNorm(
@@ -106,10 +104,9 @@ extension Plot {
     }
 
     /// Draw horizontal ticks
-    /// - Parameter ts: scaling and translating object
     /// - Returns: path for the ticks
 
-    func yTick(_ ts: TransScale) -> String {
+    func yTick() -> String {
         var tickPath: [PathCommand] = []
         var labels = [""]
         var tick = tickNorm(

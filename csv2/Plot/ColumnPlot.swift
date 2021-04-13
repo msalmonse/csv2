@@ -10,10 +10,9 @@ import Foundation
 extension Plot {
 
     /// Plot the non-index and non header columns
-    /// - Parameter ts: a TransScale object
     /// - Returns: An array of the path elements for the columns
 
-    func columnPlot(_ ts: TransScale) -> [String] {
+    func columnPlot() -> [String] {
         var paths: [String] = []
 
         let xiValues = settings.plot.sortx ? xiList().sorted() : xiList()
@@ -24,7 +23,6 @@ extension Plot {
                 plotCommon(
                     xiValues, yValues,
                     propsList.plots[i],
-                    ts: ts,
                     staple: staple
                 )
             )

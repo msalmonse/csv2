@@ -1,11 +1,12 @@
 //
-//  SVG/PlotCommon.swift
+//  PlotCommon.swift
 //  csv2svg
 //
 //  Created by Michael Salmon on 2021-03-07.
 //
 
 import Foundation
+
 extension Plot {
 
     /// State of the plot
@@ -127,7 +128,7 @@ extension Plot {
                     shapePoints.append(plotShape)
                 }
             case .staple:
-                if let (p0, _) = plot?.posClip(Point(x: pos.x, y: ts.ypos(0.0))) {
+                if let (p0, _) = plot?.posClip(Point(x: pos.x, y: plot?.point00.y ?? 0.0)) {
                     shapePoints.append(staple!.path(p0: p0, y: pos.y, props.staple))
                 }
             case .clipped2:
@@ -157,17 +158,14 @@ extension Plot {
     /// - Parameters:
     ///   - xiValues: abscissa values
     ///   - yValues: ordinate values
-    ///   - stroke: stroke colour
-    ///   - shape: the shape to use for scattered pllots
-    ///   - pointed: this plot has data points
-    ///   - ts: TranScale object
+    ///   - props: plot properties
+    ///   - staple: staple diagram details
     /// - Returns: Path String
 
     func plotCommon(
         _ xiValues: [XIvalue],
         _ yValues: [Double?],
         _ props: Properties,
-        ts: TransScale,
         staple: Staple?
     ) -> String {
         let state = PlotCommonState(

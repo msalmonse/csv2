@@ -26,6 +26,12 @@ class Plot: ReflectedStringConvertible {
     // and the allowed drawing plain
     let allowedPlane: Plane
 
+    // Convert between the data plane and the plot plane
+    let ts: TransScale
+
+    // The position of 0,0 or 1,1 if log scales
+    let point00: Point
+
     // Plot area height and width
     let height: Double
     let width: Double
@@ -40,8 +46,8 @@ class Plot: ReflectedStringConvertible {
     let limit: Double
 
     // log x and y axes
-    var logx: Bool { settings.plotter.logx && dataPlane.left > 0.0 }
-    var logy: Bool { settings.plotter.logy && dataPlane.bottom > 0.0 }
+    var logx: Bool
+    var logy: Bool
 
     // font sizes
     let sizes: FontSizes
@@ -65,16 +71,26 @@ class Plot: ReflectedStringConvertible {
             top: -0.5 * height, bottom: 1.5 * height,
             left: -0.5 * width, right: 1.5 * width
         )
-        dataPlane = Sides.fromData(csv, settings)
+        let dataPlane = Sides.fromData(csv, settings)
+        self.dataPlane = dataPlane
 
         positions = Positions(settings, dataLeft: dataPlane.left)
 
         limit = settings.plot.dataPointDistance
 
-        plotPlane = Plane(
+        let plotPlane = Plane(
             top: positions.topY, bottom: positions.bottomY,
             left: positions.leftX, right: positions.rightX
         )
+        self.plotPlane = plotPlane
+
+        let logx = settings.plotter.logx && dataPlane.left > 0.0
+        self.logx = logx
+        let logy = settings.plotter.logy && dataPlane.bottom > 0.0
+        self.logy = logy
+
+        ts = TransScale(from: dataPlane, to: plotPlane, logx: logx, logy: logy)
+        point00 = ts.pos(x: logx ? 1.0 : 0.0, y: logy ? 1.0 : 0.0)
 
         let plotCount = settings.inColumns ? csv.colCt : csv.rowCt
         let plotFirst = settings.inColumns ? settings.csv.headerRows : settings.csv.headerColumns

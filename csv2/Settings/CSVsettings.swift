@@ -14,6 +14,7 @@ extension Settings {
         let headerRows: Int
         let nameHeader: Int
         let subTitleHeader: Int
+        let xTagHeader: Int
 
         // Index for x values in csv data
         let index: Int
@@ -23,6 +24,7 @@ extension Settings {
     }
 
     static func jsonCSV(from container: KeyedDecodingContainer<CodingKeys>?, defaults: Defaults) -> CSV {
+        // 1 is subtracted because in the real world things start with 1 but here we start with 0
         return CSV(
             headerColumns: keyedIntValue(from: container, forKey: .headerColumns, defaults: defaults,
                                          in: Defaults.headerBounds),
@@ -32,6 +34,8 @@ extension Settings {
                                       in: Defaults.headerBounds) - 1,
             subTitleHeader: keyedIntValue(from: container, forKey: .subTitleHeader,
                                           defaults: defaults, in: Defaults.headerBounds) - 1,
+            xTagHeader: keyedIntValue(from: container, forKey: .xTagHeader, defaults: defaults,
+                                      in: Defaults.headerBounds) - 1,
             index: keyedIntValue(from: container, forKey: .index, defaults: defaults,
                                  in: Defaults.headerBounds) - 1,
             rowGrouping: keyedBoolValue(from: container, forKey: .rowGrouping, defaults: defaults)
