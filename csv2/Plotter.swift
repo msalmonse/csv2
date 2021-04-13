@@ -19,11 +19,11 @@ protocol Plotter {
 }
 
 enum PlotterType {
-    case js, svg
+    case canvas, svg
 
     func plotter(settings: Settings) -> Plotter {
         switch self {
-        case .js: return Canvas(settings)
+        case .canvas: return Canvas(settings)
         case .svg: return SVG(settings)
         }
     }

@@ -22,18 +22,18 @@ struct CSVplotter: ParsableCommand {
     static var configuration = CommandConfiguration(
         commandName: AppInfo.name,
         abstract: "Generate an SVG or Canvas file using data from a CSV file and settings from a JSON file.",
-        subcommands: [JS.self, SVG.self],
+        subcommands: [Canvas.self, SVG.self],
         defaultSubcommand: SVG.self
     )
 }
 
 extension CSVplotter {
-    struct JS: ParsableCommand, CSVplotterCommand {
+    struct Canvas: ParsableCommand, CSVplotterCommand {
         static var configuration = CommandConfiguration(
             abstract: "Plot data on an HTML Canvas using JavaScript"
         )
 
-        func iAm() -> PlotterType { return PlotterType.js }
+        func iAm() -> PlotterType { return PlotterType.canvas }
         func options() -> Options { return common }
         func ownOptions<T>(key: CommandPath, default val: T) -> T {
             switch key {
@@ -92,7 +92,7 @@ func getCommand() -> CSVplotterCommand {
     do {
         var command = try CSVplotter.parseAsRoot()
         switch command {
-        case let jsCmd as CSVplotter.JS: result = jsCmd
+        case let canvasCmd as CSVplotter.Canvas: result = canvasCmd
         case let svgCmd as CSVplotter.SVG: result = svgCmd
         default: try command.run(); exit(0)
         }

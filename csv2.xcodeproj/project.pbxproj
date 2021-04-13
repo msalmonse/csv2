@@ -256,9 +256,9 @@
 			children = (
 				C40A3AFE25DC01180016EB6D /* main.swift */,
 				C460B666261B3A590051BB80 /* Plotter.swift */,
+				C4BDCFB4261E156200D8C589 /* Canvas */,
 				C4F8F86D261C356F00DF76AE /* Common */,
 				C4F8F87B261C37E900DF76AE /* CSV */,
-				C4BDCFB4261E156200D8C589 /* JS */,
 				C4F8F873261C372900DF76AE /* Plot */,
 				C4EFA4AF26202C250026BD9A /* SAP */,
 				C4C0C47C2612DF500072699C /* Settings */,
@@ -318,7 +318,7 @@
 			path = csv2Tests;
 			sourceTree = "<group>";
 		};
-		C4BDCFB4261E156200D8C589 /* JS */ = {
+		C4BDCFB4261E156200D8C589 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
 				C4EFA4C22620D5C40026BD9A /* CTX.swift */,
@@ -327,7 +327,7 @@
 				C4EFA4BE2620D42C0026BD9A /* Path2D.swift */,
 				C4EFA4CF2622B4B50026BD9A /* Rect2D.swift */,
 			);
-			path = JS;
+			path = Canvas;
 			sourceTree = "<group>";
 		};
 		C4C0C47C2612DF500072699C /* Settings */ = {

@@ -5,18 +5,18 @@ tags are supported, the data type and default value are shown in parathenses. So
 
 **backgroundColour** (String)<br/>
 **Option:**`--bg`<br/>
-The background colour for the svg
+The background colour for the Canvas or SVG
 
 **baseFontSize** (Double **10.0**)<br/>
 **Option:** `--size`<br/>
-The base font size for the SVG, all other font sizes are derived from this value
+The base font size for the Canvas or SVG, all other font sizes are derived from this value
 
 **bezier** (Double **0.0**)<br/>
 **Option:** `--bezier`<br/>
 **Allowed values:** From 0 to 0.5
 Each join is converted to a quadratic Bézier curve. The `bezier` value determines where the curve begins and ends,
-e.g. setting it to .25 means that the curve starts at 25% of the way from the current point to the previous point and ends 
-25% of the way to the next point. The current point becomes the control point. If showDataPoints is set then the actual 
+e.g. setting it to .25 means that the curve starts at 25% of the way from the current point to the previous point and ends
+25% of the way to the next point. The current point becomes the control point. If showDataPoints is set then the actual
 datapoint is shown. Setting this to more than .5 or less than 0 isn't going to produce anything readable.
 
 **black** (Bool **false**)<br/>
@@ -31,7 +31,7 @@ Use bold text.
 **Option:** `--nobounds` <sup>[8](#fn8)</sup><br/>
 Bounds check some parameters
 
-**canvas** (String)<sup>js(#fnjs)</sup><br/>
+**canvas** (String)<sup>[canvas](#fncanvas)</sup><br/>
 **Option:** `--canvas`<br/>
 The id of the canvas to write to.
 
@@ -44,22 +44,22 @@ Columns or rows that aren't defined are assigned a colour sequentially from an i
 **Option:** `--nocomment` <sup>[8](#fn8)</sup><br/>
 Add an identifying comment to the SVG
 
-<a id="cssClasses">**cssClasses** (Array of Strings)</a><sup>svg(#fnsvg)</sup><br/>
+<a id="cssClasses">**cssClasses** (Array of Strings)</a><sup>[svg](#fnsvg)</sup><br/>
 The elements of the SVG use CSS for styling with each plot having it's own class. The classes in this list are assigned
 to each row or column in turn including the index. Plots not included in this list are assigned an automatically generated class.<br/>
 There are no restrictions on the contents so that multiple classes can be attached to a plot by using a space seperated list for
 each entry.<br/>
 For more information see (css.md)[css.md]
 
-<a id="cssExtras">**cssExtras** (Array of Strings)</a><sup>svg(#fnsvg)</sup><br/>
+<a id="cssExtras">**cssExtras** (Array of Strings)</a><sup>[svg](#fnsvg)</sup><br/>
 The strings in this array are copied into a `<style>` tag.
 
-<a id="cssID">**cssID** (String)</a><sup>svg(#fnsvg)</sup><br/>
+<a id="cssID">**cssID** (String)</a><sup>[svg](#fnsvg)</sup><br/>
 **Option:** `--cssid`<br/>
 The style tags of SVG's can affect each other when they are included in an HTML document. For this reason every `<svg>` tag
 has an `id` defined. It can be this id or a random one. If the `cssID` is set to _"none"_ then no id is added to the SVG.
 
-<a id="cssInclude">**cssInclude** (String)</a><sup>svg(#fnsvg)</sup><br/>
+<a id="cssInclude">**cssInclude** (String)</a><sup>[svg](#fnsvg)</sup><br/>
 **Option:** `--css`<br/>
 The contents of the file named by this string are included in a separate `<style>` tag.
 
@@ -77,7 +77,7 @@ Columns or rows that aren't defined are assigned a pattern sequentially from an 
 
 **dataPointDistance** (Double **10.0**)<br/>
 **Option:** `--distance`<br/>
-The minimum number of pixels between adjacent data points
+The minimum number of pixels between adjacent data points.
 
 **fontFamily** (String)<br/>
 **Option:** `--font`<br/>
@@ -95,7 +95,7 @@ The number of rows that do not contain data.<sup>[1](#fn1)</sup>
 
 **height** (Int **600**)<br/>
 **Option:** `--height`<br/>
-The height of the generated SVG
+The height of the generated Canvas or SVG
 
 **hover** (Bool **true**)<br/>
 **Option:** `--nohover` <sup>[8](#fn8)</sup><br/>
@@ -159,19 +159,19 @@ The opacity of the plots.
 
 **reserveBottom** (Double **0.0**)<br/>
 **Option:** `--reserve`<sup>[7](#fn7)</sup><br/>
-Reserve space on the bottom of the SVG
+Reserve space on the bottom of the Canvas or SVG
 
 **reserveLeft** (Double **0.0**)<br/>
 **Option:** `--reserve`<sup>[7](#fn7)</sup><br/>
-Reserve space on the left side of the SVG
+Reserve space on the left side of the Canvas or SVG
 
 **reserveRight** (Double **0.0**)<br/>
 **Option:** `--reserve`<sup>[7](#fn7)</sup><br/>
-Reserve space on the right side of the SVG
+Reserve space on the right side of the Canvas or SVG
 
 **reserveTop** (Double **0.0**)<br/>
 **Option:** `--reserve`<sup>[7](#fn7)</sup><br/>
-Reserve space on the top of the SVG
+Reserve space on the top of the Canvas or SVG
 
 **rowGrouping** (Bool **false**)<br/>
 **Option:** `--rows`<br/>
@@ -220,7 +220,7 @@ The width of the plotted paths
 
 **subTitle** (String)<br/>
 **Option:** `--subtitle`<br/>
-The sub-title attached to the SVG
+The sub-title attached to the Canvas or SVG
 
 **subTitleHeader** (Int **0**)<br/>
 **Option:** `--subheader`<br/>
@@ -237,11 +237,11 @@ This options is the path of a file to include at the end the SVG, just before th
 
 **title** (String)<br/>
 **Option:** `--title`<br/>
-The title attached to the SVG
+The title attached to the Canvas or SVG
 
 **width** (Int **800**)<br/>
 **Option:** `--width`<br/>
-The width of the generated SVG.
+The width of the generated Canvas or SVG.
 
 **xMax** (Double **-inf**)<br/>
 **Option:** `--xmax`<br/>
@@ -298,6 +298,6 @@ Hence `--reserve 1 2 3 4` is the same as `reserveLeft: 1`, `reserveTop: 2`, `res
 - <a id="fn8">8</a>: The command line arguments are the opposite of the JSON settings, `--noxxx` sets
 `xxx` to `false`.
 
-- <a id="fnjs">JS</a>: Only when creating a JS plot
+- <a id="fncanvas">canvas</a>: Only when creating a Canvas plot
 
 - <a id="fnsvg">svg</a>: Only when creating an SVG plot
