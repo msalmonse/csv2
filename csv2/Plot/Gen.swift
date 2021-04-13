@@ -26,6 +26,7 @@ extension Plot {
         result.append(plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList))
         if settings.dim.xTick >= 0 { result.append(xTick()) }
         if settings.dim.yTick >= 0 { result.append(yTick()) }
+        if settings.csv.xTagHeader >= 0 { result.append(xTags()) }
         result.append(axes())
         result.append(lineGroup())
         if settings.plotter.xTitle.hasContent {

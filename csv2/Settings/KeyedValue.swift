@@ -163,6 +163,7 @@ extension Settings {
         case .stapled: return defaults.stapled
         case .showDataPoints: return defaults.showDataPoints
         case .subTitleHeader: return defaults.subTitleHeader
+        case .xTagsHeader: return defaults.xTagsHeader
         case .width: return defaults.width
         default: return 0
         }

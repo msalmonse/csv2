@@ -63,7 +63,7 @@ extension Settings {
         case width
         case xMax
         case xMin
-        case xTagHeader
+        case xTagsHeader
         case xTick
         case xTitle
         case yMax

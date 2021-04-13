@@ -29,6 +29,32 @@ extension Plot {
         return plotter.plotPath(axesPath, props: propsList.axes, fill: false)
     }
 
+    func xTags() -> String {
+        let xiValues = xiList()
+        let k = settings.csv.xTagHeader
+        var tagsPath: [PathCommand] = []
+        var labels = [""]
+
+        for i in xiValues.indices {
+            if let x = xiValues[i].x, dataPlane.inHoriz(x) {
+                let j = xiValues[i].i
+                let text = settings.inRows ? csv.data[k][j] : csv.data[j][k]
+                if  text.hasContent {
+                    let xpos = ts.xpos(x)
+                    tagsPath.append(.moveTo(x: xpos, y: positions.xTagsTopY))
+                    tagsPath.append(.vertTo(y: plotPlane.top))
+                    labels.append(
+                        plotter.plotText(x: xpos, y: positions.xTagsY, text: text,
+                                         props: propsList.xLabel
+                        )
+                    )
+                }
+            }
+        }
+        return plotter.plotPath(tagsPath, props: propsList.xLabel, fill: false)
+            + labels.joined(separator: "\n")
+    }
+
     /// Normalize tick value
     /// - Parameters:
     ///   - tick: tick specified

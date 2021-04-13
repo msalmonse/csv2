@@ -34,7 +34,7 @@ extension Settings {
                                       in: Defaults.headerBounds) - 1,
             subTitleHeader: keyedIntValue(from: container, forKey: .subTitleHeader,
                                           defaults: defaults, in: Defaults.headerBounds) - 1,
-            xTagHeader: keyedIntValue(from: container, forKey: .xTagHeader, defaults: defaults,
+            xTagHeader: keyedIntValue(from: container, forKey: .xTagsHeader, defaults: defaults,
                                       in: Defaults.headerBounds) - 1,
             index: keyedIntValue(from: container, forKey: .index, defaults: defaults,
                                  in: Defaults.headerBounds) - 1,

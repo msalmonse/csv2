@@ -184,7 +184,7 @@ struct Options: ParsableArguments {
     var xmin = Defaults.global.xMin
 
     @Option(name: .long, help: "Tag row or column")
-    var xtags = Defaults.global.xTagHeader
+    var xtags = Defaults.global.xTagsHeader
 
     @Option(name: .long, help: "Default x tick")
     var xtick = Defaults.global.xTick
@@ -257,7 +257,7 @@ struct Options: ParsableArguments {
             width: width,
             xMax: xmax,
             xMin: xmin,
-            xTagHeader: xtags,
+            xTagsHeader: xtags,
             xTick: xtick,
             yMax: ymax,
             yMin: ymin,

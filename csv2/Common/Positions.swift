@@ -30,7 +30,8 @@ struct Positions {
     let subTitleY: Double
     let titleY: Double
     let topY: Double
-    let xTagY: Double
+    let xTagsY: Double
+    let xTagsTopY: Double
     let xTicksY: Double
     let xTitleY: Double
 
@@ -64,9 +65,10 @@ struct Positions {
         titleY = pos
         pos -= (settings.plotter.title.hasContent) ? sizes.titleSize * 1.25 : 0.0
         xTitleY = pos
-        pos -= (settings.csv.xTagHeader >= 0) ? sizes.axesSize * 1.25 : 0.0
-        xTagY = pos
         pos -= (settings.plotter.xTitle.hasContent) ? sizes.axesSize * 1.25 : 0.0
+        xTagsY = pos
+        xTagsTopY = pos - sizes.axesSize
+        pos -= (settings.csv.xTagHeader >= 0) ? sizes.axesSize * 1.25 : 0.0
         xTicksY = pos
         pos -= (settings.dim.xTick >= 0) ? sizes.labelSize * 1.25 : 0.0
         bottomY = pos
