@@ -9,18 +9,6 @@ import Foundation
 
 extension Plot {
 
-    /// Calculate a list of x values, either a range or a data column
-    /// - Returns: list of x and i values
-
-    private func xiList() -> [XIvalue] {
-        if index < 0 {
-            return (-settings.csv.headerRows..<csv.rowCt).map { XIvalue(x: Double($0), i: $0) }
-        } else {
-            let val = csv.columnValues(index)
-            return (0 ..< csv.rowCt).map { XIvalue(x: val[$0], i: $0) }
-        }
-    }
-
     /// Plot the non-index and non header columns
     /// - Parameter ts: a TransScale object
     /// - Returns: An array of the path elements for the columns
