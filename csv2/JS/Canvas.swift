@@ -7,7 +7,7 @@
 
 import Foundation
 
-class JS: Plotter {
+class Canvas: Plotter {
     let settings: Settings
 
     var ctx = CTX()

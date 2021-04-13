@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension JS {
+extension Canvas {
     /// Plot a path using Path2D
     /// - Parameters:
     ///   - points: list of path commands

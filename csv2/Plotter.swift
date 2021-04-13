@@ -23,7 +23,7 @@ enum PlotterType {
 
     func plotter(settings: Settings) -> Plotter {
         switch self {
-        case .js: return JS(settings)
+        case .js: return Canvas(settings)
         case .svg: return SVG(settings)
         }
     }

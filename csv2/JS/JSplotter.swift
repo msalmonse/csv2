@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension JS {
+extension Canvas {
 
     /// Plot a group of lines with clipping
     /// - Parameters:

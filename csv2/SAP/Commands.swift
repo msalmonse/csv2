@@ -21,7 +21,7 @@ enum CommandPath {
 struct CSVplotter: ParsableCommand {
     static var configuration = CommandConfiguration(
         commandName: AppInfo.name,
-        abstract: "Generate an SVG or JS file using data from a CSV file and settings from a JSON file.",
+        abstract: "Generate an SVG or Canvas file using data from a CSV file and settings from a JSON file.",
         subcommands: [JS.self, SVG.self],
         defaultSubcommand: SVG.self
     )
@@ -45,7 +45,7 @@ extension CSVplotter {
 
         @OptionGroup var common: Options
 
-        // JS specific options
+        // Canvas specific options
 
         @Option(name: .long, help: "Canvas name")
         var canvas = Defaults.global.canvasID

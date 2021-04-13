@@ -49,7 +49,7 @@ if commonOpts.shapenames {
     if commonOpts.debug &== 2 { print(settings ?? "Nil settings", to: &standardError) }
 
     if command.ownOptions(key: .canvastag, default: false) {
-        output([JS.canvasTag(settings!)], to: commonOpts.outName)
+        output([Canvas.canvasTag(settings!)], to: commonOpts.outName)
         exit(0)
     }
 

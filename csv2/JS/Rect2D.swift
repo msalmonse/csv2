@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension JS {
+extension Canvas {
     /// Plot a rectangle
     /// - Parameters:
     ///   - plane: the 4 sides of the rectangle
