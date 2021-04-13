@@ -46,7 +46,7 @@ struct Properties {
     var fontColour: String?
     var name: String?
     var dashed = false
-    var included = true
+    var included = false
     var italic = false
     var pointed = false
     var scattered = false

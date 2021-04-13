@@ -115,7 +115,7 @@ extension Plot {
         y += yStep/2.0
         let plotProps = propsList.plots
 
-        for i in 0..<plotProps.count where i != index && plotProps[i].included {
+        for i in plotProps.indices where i != index && plotProps[i].included {
             y += yStep
             if y > height - yStep - yStep {
                 legends.append(plotter.plotText(x: xLeft, y: y, text: "…", props: propsList.legend))
