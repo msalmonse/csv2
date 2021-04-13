@@ -1,1 +1,1 @@
-Trig curves
+Trig curves with opacity

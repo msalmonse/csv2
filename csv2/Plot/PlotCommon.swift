@@ -207,7 +207,13 @@ extension Plot {
             }
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
-        let fill = props.staple >= 0
-        return plotter.plotPath(state.pathPoints + state.shapePoints, props: props, fill: fill)
+        var plotProps = props
+        let fill = plotProps.staple >= 0
+        if fill {
+            if let rgba = ColourTranslate.lookup(plotProps.fill) {
+                plotProps.fill = rgba.modify(alpha: 0.75).asText
+            }
+        }
+        return plotter.plotPath(state.pathPoints + state.shapePoints, props: plotProps, fill: fill)
     }
 }

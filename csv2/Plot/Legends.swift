@@ -101,7 +101,7 @@ extension Plot {
     /// - Returns: Text string with all legends
 
     func legend() -> String {
-        if positions.legendLeftX >= width { return "<!-- Legends suppressed -->" }
+        if positions.legendLeftX >= width { return "" }
         let x = positions.legendLeftX
         let xLeft = x + legendSize/2.0
         let xRight = positions.legendRightX - legendSize/2.0

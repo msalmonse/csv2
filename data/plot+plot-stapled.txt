@@ -1,1 +1,1 @@
-Plot data with one stapled plot
+Plot data with two stapled plots

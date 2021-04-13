@@ -22,6 +22,7 @@ extension JS {
         let top = (plotPlane.top - shapeWidth * 2.0)
         let bottom = (plotPlane.bottom + shapeWidth * 4.0)
         let right = (plotPlane.right + shapeWidth * 4.0)
+        let opacity = settings.css.opacity
         var result = [""]
         result.append("ctx.save()")
         result.append("")
@@ -31,9 +32,11 @@ extension JS {
         result.append("ctx.lineTo(\(right.f(0)), \(bottom.f(1)))")
         result.append("ctx.lineTo(\(left.f(0)), \(bottom.f(1)))")
         result.append("ctx.clip()")
+        result.append("ctx.globalAlpha = \(opacity.f(3))")
         result.append(lines)
         result.append("")
         result.append("ctx.restore()")
+        result.append("ctx.globalAlpha = 1.0")
         result.append("ctx.beginPath()")
 
         return result.joined(separator: "\n    ")
