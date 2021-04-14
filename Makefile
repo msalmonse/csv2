@@ -15,7 +15,7 @@ TXTFILES = $(OPTFILES:data/%.opts=generated/%.txt)
 
 .PHONY:	all error.expected examples
 
-all:	generated/.made generated/svgindex.html generated/jsindex.html examples
+all:	generated/.made examples generated/svgindex.html generated/jsindex.html
 
 generated/.made:
 	-mkdir $(@D)
@@ -78,7 +78,7 @@ examples/trig-points.svg: data/trig.csv examples/trig.json $(CSV2)
 	-@ $(CSV2) svg --nocomment --cssid=svg-ex4 --showpoints=8 --scattered=16 data/trig.csv examples/trig.json $@
 
 examples/trig-bar.svg: data/trig.csv examples/trig.json $(CSV2)
-	-@ $(CSV2) svg --nocomment --cssid=svg-ex5 --bar=128 data/trig.csv examples/trig.json $@
+	-@ $(CSV2) svg --nocomment --cssid=svg-ex5 --bared=128 --barwidth 10 --baroffset=0 data/trig.csv examples/trig.json $@
 
 examples/layout.svg: data/trig.csv examples/layout.json examples/layout.inc
 	-@ $(CSV2) svg data/trig.csv examples/layout.json $@

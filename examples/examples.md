@@ -37,4 +37,4 @@ The default is to include all plots which is why the default value for `--includ
 
 As well as drawing lines and points we can add bars.
 
-![trig function values](trig-2plots.svg)
+![trig function values](trig-bar.svg)
