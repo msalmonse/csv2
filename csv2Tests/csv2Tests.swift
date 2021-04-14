@@ -52,7 +52,7 @@ class csv2Tests: XCTestCase {
 
         // Check for embedded space and trailing cr
         XCTAssertNil(csv.values[0][3], "embedded space")
-        XCTAssertEqual(csv.data[0][3], "3 \" 5", "embedded spaces and double quote")
+        XCTAssertEqual(csv.data[0][3], "3  \"  5", "embedded spaces and double quote")
         XCTAssertNotNil(csv.values[1][3], "leading space")
         XCTAssertNotNil(csv.values[2][1], "trailing space")
         XCTAssertNotNil(csv.values[1][4], "trailing cr")
@@ -74,7 +74,7 @@ class csv2Tests: XCTestCase {
         XCTAssertEqual(max, 152.7)
 
         let csvTab = CSV(csvData.replacingOccurrences(of: ",", with: "\t"), separatedBy: "\t")
-        XCTAssertEqual(csv, csvTab)
+        XCTAssertEqual(csv.data, csvTab.data)
     }
 
     func testBigCsv() {
@@ -293,6 +293,11 @@ class csv2Tests: XCTestCase {
         }
     }
 
+    func testRowParsePerformance() {
+        measure {
+            _ = csvRowParse(row: testRow)
+        }
+    }
 }
 
 // Values for JSON tests
@@ -333,7 +338,7 @@ let testRow = """
 
 // CSV string for tests
 let csvData = """
-1,-1,9,3 " 5,"\(testName)"\r
+1,-1,9,3 " "" " 5,"\(testName)"\r
 1,100.1,120.4, -110.1,0.0\r
 9,100.1 ,129.9,5220.6 ,0.0\r
 32,100.1,152.7,,\r

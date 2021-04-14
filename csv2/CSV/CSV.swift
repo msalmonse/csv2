@@ -181,9 +181,10 @@ class CSV: ReflectedStringConvertible, Equatable {
     func loadFromLines(_ lines: [String], separatedBy colsep: String = ",") {
         var colMax = 0
         // Remove any leading or trailing unwanted characters
-        let trimSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet("\"".unicodeScalars))
+        // let trimSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet("\"".unicodeScalars))
         for row in lines where row.hasContent {
-            let cols = row.components(separatedBy: colsep).map { $0.trimmingCharacters(in: trimSet)}
+            // let cols = row.components(separatedBy: colsep).map { $0.trimmingCharacters(in: trimSet)}
+            let cols = csvRowParse(row: row, separatedBy: colsep)
             data.append(cols)
             if cols.count > colMax { colMax = cols.count }
         }
