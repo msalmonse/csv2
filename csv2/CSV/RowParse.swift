@@ -31,12 +31,13 @@ func csvRowParse(row: String, separatedBy: String = ",") -> [String] {
     for ch in data {
         // handle copying to cell and next state
         switch (state, ch) {
-            // always skip carriage return, spaces at the start of a cell
-        case (_, cr), (.start, space), (.nocell, space): break
-            // when quoted colsep is a normal character
-
-        case (.quoted, colsep):
+            // when quoted colsep, cr and nl are normal characters
+        case (.quoted, colsep), (.quoted, cr), (.quoted, nl):
             cell.unicodeScalars.append(ch)
+
+            // skip carriage return, spaces at the start of a cell
+        case (_, cr), (.start, space), (.nocell, space): break
+
             // in every other state colsep terminates a cell, new line always terminates a cell
         case (_, colsep), (_, nl):
             if spaceCount > 0 { cell.unicodeScalars.removeLast(spaceCount) }
@@ -47,14 +48,14 @@ func csvRowParse(row: String, separatedBy: String = ",") -> [String] {
 
             // double quote normally puts us into quoted
         case (.nocell, qd), (.start, qd), (.normal, qd): state = .quoted
-            // while in quoted a double quote may terminate the state or be an actual double quote
+            // while in quoted state a double quote may terminate the state or be an actual double quote
         case (.quoted, qd): state = .qdfound
 
             // two double quotes while quoted means a literal double quote
         case (.qdfound, qd):
             cell.unicodeScalars.append(ch)
             state = .quoted
-            // one means the end of the quote
+            // one means the end of the quote, append that character
         case (.qdfound, _):
             cell.unicodeScalars.append(ch)
             state = .normal
@@ -63,7 +64,7 @@ func csvRowParse(row: String, separatedBy: String = ",") -> [String] {
         case (.nocell, _), (.start, _):
             state = .normal
             cell.unicodeScalars.append(ch)
-            
+
             // otherwise just add the character to the cell
         default:
             cell.unicodeScalars.append(ch)

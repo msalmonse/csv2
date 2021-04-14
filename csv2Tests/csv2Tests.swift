@@ -280,6 +280,9 @@ class csv2Tests: XCTestCase {
 
         row = csvRowParse(row: "        \",\" ")
         XCTAssertEqual(row.count, 1)
+
+        row = csvRowParse(row: "        \"\r\n\" ")
+        XCTAssertEqual(row.count, 1)
     }
 
     func testSettingsPerformance() throws {
