@@ -8,7 +8,7 @@ Note that when we have a single point and hence can't draw a line we draw a circ
 consists of two points where the curves cross.
 
 It is easy to add data points or scatter plots to the SVG,<br/>
-`csv2svg --showpoints=8 --scattered=16 trig.csv trig.json trig-points.svg` will add data points to the tan 
+`csv2 svg --showpoints=8 --scattered=16 trig.csv trig.json trig-points.svg` will add data points to the tan 
 curve and make sin² a scatter plot:
 
 ![trig function values](trig-points.svg)
@@ -21,7 +21,7 @@ The scatter plot displays all data points. Note that the legend display for tan(
 
 We can also zoom in by restricting the abscissa or ordinate. The ordinate has already been restricted as tan values can be so 
 large that the other curves aren't seen. The command 
-`csv2svg --xmin=80 --xmax=120 trig.csv trig.json trig-80-120.svg` restricts the abscissa to between 80° and 120°:
+`csv2 svg --xmin=80 --xmax=120 trig.csv trig.json trig-80-120.svg` restricts the abscissa to between 80° and 120°:
 
 ![trig function values](trig-80-120.svg)
 
@@ -30,7 +30,7 @@ This is because the programme checks that the spacing is suitable and adjusts it
 
 Individual plots can be selected using `--include`.
 Here the tan and cot plots are displayed with the command:<br/>
-`csv2svg --include=40 trig.csv trig.json trig-2plots.svg`<br/>
+`csv2 svg --include=40 trig.csv trig.json trig-2plots.svg`<br/>
 The default is to include all plots which is why the default value for `--include` is -1.
 
 ![trig function values](trig-2plots.svg)
@@ -38,3 +38,6 @@ The default is to include all plots which is why the default value for `--includ
 As well as drawing lines and points we can add bars.
 
 ![trig function values](trig-bar.svg)
+
+Because the points are so close together the offset and width need to be specified.<br/>
+`csv2 svg --bared=128 --barwidth 10 --baroffset=0 trig.csv trig.json trig-bar.svg`
