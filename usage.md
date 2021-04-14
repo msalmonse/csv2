@@ -85,6 +85,7 @@ COMMON OPTIONS:
     --width <width>         SVG/Canvas width (default: 800)
     --xmax <xmax>           Default abscissa maximum (default: -inf)
     --xmin <xmin>           Default abscissa minimum (default: inf)
+    --xtags <xtags>         Tag row or column (default: 0)
     --xtick <xtick>         Default x tick (default: 0.0)
     --ymax <ymax>           Default ordinate maximum (default: -inf)
     --ymin <ymin>           Default ordinate minimum (default: inf)

@@ -213,6 +213,20 @@ The value for smooth is actually `1 - α` as it makes more sense to me for no sm
 **Option:** `--sortx`<br/>
 Sort the points based on the x value before plotting.
 
+**stapled** (Int **0**)<br/>
+**Option:** `--stapled`<br/>
+A bit vector of the plots to draw as staple diagrams.<sup>[5](#fn5)</sup>
+
+**stapleOffset** (Int **-1**)<br/>
+**Option:** `--stapled`<br/>
+The offset of each staple from the adjacent one.<br/>
+If it is less than 0 then it is calculated.
+
+**stapleWidth** (Int **1**)<br/>
+**Option:** `--stapled`<br/>
+The width of each staple.<br/>
+If it is less than 0 then it is calculated.
+
 <a id="strokeWidth">**strokeWidth** (Double **2.0**)</a><br/>
 **Option:** `--stroke`<br/>
 **Allowed values:** From 0 to 100
