@@ -69,7 +69,7 @@ examples/trig-80-120.svg: data/trig.csv examples/trig.json $(CSV2)
 	-@ $(CSV2) svg --nocomment --cssid=svg-ex2 --xmin=80 --xmax=120 data/trig.csv examples/trig.json $@
 
 examples/trig-2plots.svg: data/trig.csv examples/trig.json $(CSV2)
-	-@ $(CSV2) svg --nocomment --cssid=svg-ex3 --include=40 data/trig.csv examples/trig.json $@
+	-@ $(CSV2) svg --nocomment --cssid=svg-ex3 --include=80 data/trig.csv examples/trig.json $@
 
 examples/trig-points.svg: data/trig.csv examples/trig.json $(CSV2)
 	-@ $(CSV2) svg --nocomment --cssid=svg-ex4 --showpoints=8 --scattered=16 data/trig.csv examples/trig.json $@

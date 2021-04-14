@@ -4,7 +4,7 @@
 	"headerRows": 2,
 	"index": 1,
 	"title": "Trigonometric Functions",
-	"xTitle": "Degrees",
+	"xTitle": "Angle",
 	"yTitle": "Function Value",
 	"yMin": -1.5,
 	"yMax": 1.5,

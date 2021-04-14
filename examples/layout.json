@@ -19,10 +19,11 @@
 	"subTitleHeader": 2,
 	"svgInclude": "layout.inc",
 	"title": "Trigonometric Functions",
-	"xTitle": "Degrees",
+	"xTitle": "Angle",
 	"yTitle": "Function Value",
 	"yMin": -1.5,
 	"yMax": 1.5,
+	"xTagsHeader": 2,
 	"xTick": 15,
 	"yTick": 0.25
 }
