@@ -22,6 +22,9 @@ struct Defaults {
     static let strokeWidthBounds = 0.1...100.0
 
     let backgroundColour: String
+    let bared: Int
+    let barOffset: Double
+    let barWidth: Double
     let baseFontSize: Double
     let bezier: Double
     let black: Bool
@@ -63,9 +66,6 @@ struct Defaults {
     let showDataPoints: Int
     let sortx: Bool
     let smooth: Double
-    let stapled: Int
-    let stapleOffset: Double
-    let stapleWidth: Double
     let strokeWidth: Double
     let subTitle: String
     let subTitleHeader: Int
@@ -82,6 +82,9 @@ struct Defaults {
 
     static let global = Defaults(
         backgroundColour: "",
+        bared: 0,
+        barOffset: -1.0,
+        barWidth: -1.0,
         baseFontSize: 10.0,
         bezier: 0.0,
         black: false,
@@ -123,9 +126,6 @@ struct Defaults {
         showDataPoints: 0,
         sortx: false,
         smooth: 0.0,
-        stapled: 0,
-        stapleOffset: -1.0,
-        stapleWidth: -1.0,
         strokeWidth: 2.0,
         subTitle: "",
         subTitleHeader: 0,

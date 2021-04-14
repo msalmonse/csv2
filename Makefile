@@ -6,7 +6,7 @@ EXAMPLES =\
 	examples/trig.svg\
 	examples/trig-2plots.svg\
 	examples/trig-points.svg\
-	examples/trig-staple.svg\
+	examples/trig-bar.svg\
 	examples/trig-80-120.svg
 JSFILES = $(CANVASFILES:data/%.canvas=generated/%.js)
 OPTFILES = $(wildcard data/*.opts)
@@ -77,8 +77,8 @@ examples/trig-2plots.svg: data/trig.csv examples/trig.json $(CSV2)
 examples/trig-points.svg: data/trig.csv examples/trig.json $(CSV2)
 	-@ $(CSV2) svg --nocomment --cssid=svg-ex4 --showpoints=8 --scattered=16 data/trig.csv examples/trig.json $@
 
-examples/trig-staple.svg: data/trig.csv examples/trig.json $(CSV2)
-	-@ $(CSV2) svg --nocomment --cssid=svg-ex5 --stapled=128 data/trig.csv examples/trig.json $@
+examples/trig-bar.svg: data/trig.csv examples/trig.json $(CSV2)
+	-@ $(CSV2) svg --nocomment --cssid=svg-ex5 --bar=128 data/trig.csv examples/trig.json $@
 
 examples/layout.svg: data/trig.csv examples/layout.json examples/layout.inc
 	-@ $(CSV2) svg data/trig.csv examples/layout.json $@

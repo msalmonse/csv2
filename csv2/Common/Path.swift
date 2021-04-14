@@ -51,7 +51,7 @@ enum PathCommand {
                                         // Draw quadratic bezier curve to x,y with control point cx, cy
         shuriken(w: Double),                        // Draw shuriken
         square(w: Double),                          // Draw a square with sides 2 * w
-        staple(p0: Point, w: Double, y: Double),    // Draw a staple w wide from p0 to y
+        staple(p0: Point, w: Double, y: Double),    // Draw a bar w wide from p0 to y
         star(w: Double),                            // Draw a star of width 2 * w
         triangle(w: Double),                        // Draw a triangle of width 2 * w
         vertBy(dy: Double),                         // Draw line vertically by dy

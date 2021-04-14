@@ -1,5 +1,5 @@
 //
-//  Staple.swift
+//  Bar.swift
 //  csv2
 //
 //  Created by Michael Salmon on 2021-04-11.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Staple {
+struct Bar {
     static private var current = -1
     static var count: Int { current + 1 }
     static var next: Int {
@@ -50,7 +50,7 @@ struct Staple {
     }
 }
 
-extension Staple {
+extension Bar {
 
     /// Calculate the minimum difference between x values
     /// - Parameter xi: list of x values
@@ -63,7 +63,7 @@ extension Staple {
             .reduce(Double.infinity) { min($0, $1) }
     }
 
-    /// Check that there are enough poxels for a staple diagram
+    /// Check that there are enough poxels for a bar diagram
     /// - Parameter diff: pixels between x values
     /// - Returns: true if there are
 

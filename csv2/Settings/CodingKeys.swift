@@ -10,6 +10,9 @@ import Foundation
 extension Settings {
     enum CodingKeys: CodingKey {
         case backgroundColour
+        case bared
+        case barOffset
+        case barWidth
         case baseFontSize
         case bezier
         case black
@@ -52,9 +55,6 @@ extension Settings {
         case showDataPoints
         case smooth
         case sortx
-        case stapled
-        case stapleOffset
-        case stapleWidth
         case strokeWidth
         case subTitle
         case subTitleHeader

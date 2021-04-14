@@ -25,7 +25,7 @@ extension Plot {
         var state: PlotState
         let props: Properties
         weak var plot: Plot?
-        let staple: Staple?
+        let staple: Bar?
 
         let limit: Double
         let ts: TransScale
@@ -35,7 +35,7 @@ extension Plot {
             ts: TransScale,
             limit: Double,
             plot: Plot,
-            staple: Staple?
+            staple: Bar?
         ) {
             self.ts = ts
             self.limit = limit
@@ -43,7 +43,7 @@ extension Plot {
             self.plot = plot
             self.staple = staple
 
-            switch (props.scattered, props.staple >= 0, staple != nil) {
+            switch (props.scattered, props.bar >= 0, staple != nil) {
             case (true,_,_): state = .scatter
             case(false,true,true): state = .staple
             default: state = .move
@@ -129,7 +129,7 @@ extension Plot {
                 }
             case .staple:
                 if let (p0, _) = plot?.posClip(Point(x: pos.x, y: plot?.point00.y ?? 0.0)) {
-                    shapePoints.append(staple!.path(p0: p0, y: pos.y, props.staple))
+                    shapePoints.append(staple!.path(p0: p0, y: pos.y, props.bar))
                 }
             case .clipped2:
                 // Ignore all data till we are not clipped, just move
@@ -166,7 +166,7 @@ extension Plot {
         _ xiValues: [XIvalue],
         _ yValues: [Double?],
         _ props: Properties,
-        staple: Staple?
+        staple: Bar?
     ) -> String {
         let state = PlotCommonState(
             props: props,
@@ -206,7 +206,7 @@ extension Plot {
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
         var plotProps = props
-        let fill = plotProps.staple >= 0
+        let fill = plotProps.bar >= 0
         if fill {
             if let rgba = ColourTranslate.lookup(plotProps.fill) {
                 plotProps.fill = rgba.modify(alpha: 0.75).asText

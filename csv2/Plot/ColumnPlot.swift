@@ -16,7 +16,7 @@ extension Plot {
         var paths: [String] = []
 
         let xiValues = settings.plot.sortx ? xiList().sorted() : xiList()
-        let staple = stapleGet(xiValues)
+        let staple = barGet(xiValues)
         for i in 0..<csv.colCt where i != index && propsList.plots[i].included {
             let yValues = csv.columnValues(i)
             paths.append(

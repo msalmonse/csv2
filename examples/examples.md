@@ -34,3 +34,7 @@ Here the tan and cot plots are displayed with the command:<br/>
 The default is to include all plots which is why the default value for `--include` is -1.
 
 ![trig function values](trig-2plots.svg)
+
+As well as drawing lines and points we can add bars.
+
+![trig function values](trig-2plots.svg)

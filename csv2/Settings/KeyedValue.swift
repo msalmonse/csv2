@@ -85,6 +85,8 @@ extension Settings {
 
     private static func doubleDefault(_ key: CodingKeys, _ defaults: Defaults) -> Double {
         switch key {
+        case .barOffset: return defaults.barOffset
+        case .barWidth: return defaults.barWidth
         case .baseFontSize: return defaults.baseFontSize
         case .bezier: return defaults.bezier
         case .dataPointDistance: return defaults.dataPointDistance
@@ -96,8 +98,6 @@ extension Settings {
         case .reserveRight: return defaults.reserveRight
         case .reserveTop: return defaults.reserveTop
         case .smooth: return defaults.smooth
-        case .stapleOffset: return defaults.stapleOffset
-        case .stapleWidth: return defaults.stapleWidth
         case .strokeWidth: return defaults.strokeWidth
         case .xMax: return defaults.xMax
         case .xMin: return defaults.xMin
@@ -160,7 +160,7 @@ extension Settings {
         case .index: return defaults.index
         case .nameHeader: return defaults.nameHeader
         case .scatterPlots: return defaults.scattered
-        case .stapled: return defaults.stapled
+        case .bared: return defaults.bared
         case .showDataPoints: return defaults.showDataPoints
         case .subTitleHeader: return defaults.subTitleHeader
         case .xTagsHeader: return defaults.xTagsHeader

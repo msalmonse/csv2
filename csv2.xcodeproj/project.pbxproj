@@ -105,15 +105,15 @@
 		C4EFA4C926215D650026BD9A /* PropertiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C826215D650026BD9A /* PropertiesList.swift */; };
 		C4EFA4CC262166700026BD9A /* CTX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C22620D5C40026BD9A /* CTX.swift */; };
 		C4EFA4D02622B4B50026BD9A /* Rect2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4CF2622B4B50026BD9A /* Rect2D.swift */; };
-		C4EFA4D6262364EC0026BD9A /* Staple.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4D5262364EC0026BD9A /* Staple.swift */; };
-		C4EFA4D926236B240026BD9A /* Staple.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4D5262364EC0026BD9A /* Staple.swift */; };
+		C4EFA4D6262364EC0026BD9A /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4D5262364EC0026BD9A /* Bar.swift */; };
+		C4EFA4D926236B240026BD9A /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4D5262364EC0026BD9A /* Bar.swift */; };
 		C4EFA4DC26236B500026BD9A /* PropertiesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4C826215D650026BD9A /* PropertiesList.swift */; };
 		C4EFA4DF26236B7A0026BD9A /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDCFB5261E156F00D8C589 /* Canvas.swift */; };
 		C4EFA4E226236B810026BD9A /* JSplotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4BA2620A92B0026BD9A /* JSplotter.swift */; };
 		C4EFA4E526236B850026BD9A /* Path2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4BE2620D42C0026BD9A /* Path2D.swift */; };
 		C4EFA4E826236B8A0026BD9A /* Rect2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4CF2622B4B50026BD9A /* Rect2D.swift */; };
-		C4EFA4EC26236F3E0026BD9A /* StapleGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4EB26236F3E0026BD9A /* StapleGet.swift */; };
-		C4EFA4EF2623710A0026BD9A /* StapleGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4EB26236F3E0026BD9A /* StapleGet.swift */; };
+		C4EFA4EC26236F3E0026BD9A /* BarGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4EB26236F3E0026BD9A /* BarGet.swift */; };
+		C4EFA4EF2623710A0026BD9A /* BarGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4EB26236F3E0026BD9A /* BarGet.swift */; };
 		C4EFA4F5262491BB0026BD9A /* ColourTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */; };
 		C4F1B3942609DFFA0035AC62 /* ShowDashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */; };
 		C4F1B3982609E0670035AC62 /* DashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3972609E0670035AC62 /* DashesList.swift */; };
@@ -196,8 +196,8 @@
 		C4EFA4C22620D5C40026BD9A /* CTX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CTX.swift; sourceTree = "<group>"; };
 		C4EFA4C826215D650026BD9A /* PropertiesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesList.swift; sourceTree = "<group>"; };
 		C4EFA4CF2622B4B50026BD9A /* Rect2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rect2D.swift; sourceTree = "<group>"; };
-		C4EFA4D5262364EC0026BD9A /* Staple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Staple.swift; sourceTree = "<group>"; };
-		C4EFA4EB26236F3E0026BD9A /* StapleGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StapleGet.swift; sourceTree = "<group>"; };
+		C4EFA4D5262364EC0026BD9A /* Bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
+		C4EFA4EB26236F3E0026BD9A /* BarGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGet.swift; sourceTree = "<group>"; };
 		C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourTranslate.swift; sourceTree = "<group>"; };
 		C4F1B3902609D25F0035AC62 /* testing.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = testing.md; sourceTree = "<group>"; };
 		C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDashesList.swift; sourceTree = "<group>"; };
@@ -367,6 +367,7 @@
 		C4F8F86D261C356F00DF76AE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C4EFA4D5262364EC0026BD9A /* Bar.swift */,
 				C4EA5D2725EB8F4D00E104E0 /* Colours.swift */,
 				C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */,
 				C4F20C102601DF4D005D2FE1 /* Dashes.swift */,
@@ -379,7 +380,6 @@
 				C40CD44025ED2390003944FA /* Plane.swift */,
 				C453243725FA7968007D741C /* Shapes.swift */,
 				C480847F25E6776900BD0A24 /* Sides.swift */,
-				C4EFA4D5262364EC0026BD9A /* Staple.swift */,
 				C42A6E3B261EDBED00784F54 /* Transform.swift */,
 				C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */,
 				C402620825FF3E1D0042AEA5 /* XI.swift */,
@@ -391,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				C40CD42B25ECD60F003944FA /* Axes.swift */,
+				C4EFA4EB26236F3E0026BD9A /* BarGet.swift */,
 				C422C5CB2608D58500676912 /* ColoursList.swift */,
 				C480847B25E4E97300BD0A24 /* ColumnPlot.swift */,
 				C4F1B3972609E0670035AC62 /* DashesList.swift */,
@@ -400,7 +401,6 @@
 				C446E81125F4BE4B007B1A05 /* PlotCommon.swift */,
 				C4EFA4C826215D650026BD9A /* PropertiesList.swift */,
 				C446E80825F4BAA3007B1A05 /* RowPlot.swift */,
-				C4EFA4EB26236F3E0026BD9A /* StapleGet.swift */,
 				C49A7EC825EBCE7300503486 /* Text.swift */,
 				C4B2F967262576FF00CC5430 /* XIlist.swift */,
 			);
@@ -600,7 +600,7 @@
 				C4F20C112601DF4D005D2FE1 /* Dashes.swift in Sources */,
 				C4FE49FF25F6440F0076EF5E /* Options.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
-				C4EFA4D6262364EC0026BD9A /* Staple.swift in Sources */,
+				C4EFA4D6262364EC0026BD9A /* Bar.swift in Sources */,
 				C453244D25FBEBA6007D741C /* ShowShape.swift in Sources */,
 				C4C0C462260E589A0072699C /* Style.swift in Sources */,
 				C4F20C1626027B7C005D2FE1 /* Legends.swift in Sources */,
@@ -611,7 +611,7 @@
 				C480848025E6776900BD0A24 /* Sides.swift in Sources */,
 				C453242C25FA5D99007D741C /* Extensions.swift in Sources */,
 				C4EFA4BF2620D42C0026BD9A /* Path2D.swift in Sources */,
-				C4EFA4EC26236F3E0026BD9A /* StapleGet.swift in Sources */,
+				C4EFA4EC26236F3E0026BD9A /* BarGet.swift in Sources */,
 				C453243825FA7968007D741C /* Shapes.swift in Sources */,
 				C4C0C4862612E82A0072699C /* CodingKeys.swift in Sources */,
 				C40CD42C25ECD60F003944FA /* Axes.swift in Sources */,
@@ -704,12 +704,12 @@
 				C4BDCFBD261EFA0600D8C589 /* Transform.swift in Sources */,
 				C4EFA4E826236B8A0026BD9A /* Rect2D.swift in Sources */,
 				C453242625FA2C23007D741C /* DrawShapes.swift in Sources */,
-				C4EFA4EF2623710A0026BD9A /* StapleGet.swift in Sources */,
+				C4EFA4EF2623710A0026BD9A /* BarGet.swift in Sources */,
 				C4C0C4902612FCC70072699C /* Dimensions.swift in Sources */,
 				C4EFA4E526236B850026BD9A /* Path2D.swift in Sources */,
 				C4C0C495261300000072699C /* CodingKeys.swift in Sources */,
 				C453243925FA7968007D741C /* Shapes.swift in Sources */,
-				C4EFA4D926236B240026BD9A /* Staple.swift in Sources */,
+				C4EFA4D926236B240026BD9A /* Bar.swift in Sources */,
 				C402620A25FF3E1D0042AEA5 /* XI.swift in Sources */,
 				C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */,
 				C45323FC25F90359007D741C /* PlotInfo.swift in Sources */,

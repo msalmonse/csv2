@@ -33,7 +33,7 @@ extension SVG {
                     \(id) text.\(cssClass), \(id) rect.\(cssClass) { fill: \(colour); stroke: \(colour) }
                     """
                 )
-                if props.staple >= 0 {
+                if props.bar >= 0 {
                     result.append("""
                         \(id) path.\(cssClass).fill { stroke: \(colour)\(dashes); fill: \(colour); fill-opacity: 0.75 }
                         """

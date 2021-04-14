@@ -35,6 +35,7 @@ enum DoubleProperties {
 }
 
 struct Properties {
+    var bar = -1
     var bezier: Double = 0.0
     var bold = false
     var colour: String?
@@ -52,7 +53,6 @@ struct Properties {
     var scattered = false
     var shape: Shape?
     var shapeWidth: Double { return strokeWidth * 1.75 }
-    var staple = -1
     var strokeLineCap: String?
     var strokeWidth = 0.0
     // textAlign is a string with "horizontal align, rotation, vertical align"

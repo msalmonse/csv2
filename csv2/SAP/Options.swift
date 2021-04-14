@@ -15,6 +15,15 @@ struct Options: ParsableArguments {
         version: AppInfo.version
     )
 
+    @Option(name: .long, help: "Plots to show as bars")
+    var bared = Defaults.global.bared
+
+    @Option(name: .long, help: "Bar offset (-1 to calculate)")
+    var baroffset = Defaults.global.barOffset
+
+    @Option(name: .long, help: "Bar width (-1 to calculate)")
+    var barwidth = Defaults.global.barWidth
+
     @Option(name: .long, help: "Background colour")
     var bg = Defaults.global.backgroundColour
 
@@ -144,15 +153,6 @@ struct Options: ParsableArguments {
     @Flag(name: .long, help: "Sort points by the x values before plotting")
     var sortx = Defaults.global.sortx
 
-    @Option(name: .long, help: "Plots to show as staple diagrams")
-    var stapled = Defaults.global.stapled
-
-    @Option(name: .long, help: "Staple offset (-1 to calculate)")
-    var stapleoffset = Defaults.global.stapleOffset
-
-    @Option(name: .long, help: "Staple width (-1 to calculate)")
-    var staplewidth = Defaults.global.stapleWidth
-
     @Option(name: .long, help: "Stroke width")
     var stroke = Defaults.global.strokeWidth
 
@@ -205,6 +205,9 @@ struct Options: ParsableArguments {
     func defaults(for cmd: CSVplotterCommand) -> Defaults {
         return Defaults(
             backgroundColour: bg,
+            bared: bared,
+            barOffset: baroffset,
+            barWidth: barwidth,
             baseFontSize: size,
             bezier: bezier,
             black: black,
@@ -246,9 +249,6 @@ struct Options: ParsableArguments {
             showDataPoints: showpoints,
             sortx: sortx,
             smooth: smooth,
-            stapled: stapled,
-            stapleOffset: stapleoffset,
-            stapleWidth: staplewidth,
             strokeWidth: stroke,
             subTitle: subtitle,
             subTitleHeader: subheader,

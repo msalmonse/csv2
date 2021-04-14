@@ -133,12 +133,12 @@ extension PathCommand {
         ].map { $0.command() }.joined(separator: " ")
     }
 
-    /// Generate a staple
+    /// Generate a bar
     /// - Parameters:
     ///   - p0: the origin
-    ///   - w: width of the staple
-    ///   - y: top or bottom of the staple
-    /// - Returns: path to create the staple
+    ///   - w: width of the bar
+    ///   - y: top or bottom of the bar
+    /// - Returns: path to create the bar
 
     func drawStaple(p0: Point, w: Double, y: Double) -> String {
         let x0 = p0.x
