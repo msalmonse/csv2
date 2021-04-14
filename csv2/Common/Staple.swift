@@ -56,10 +56,10 @@ extension Staple {
     /// - Parameter xi: list of x values
     /// - Returns: minimum of x differences
 
-    static func minSpan(_ xi: [XIvalue]) -> Double {
-        return xi.indices.dropFirst()
-            .filter {xi[$0 - 1].x != nil && xi[$0].x != nil}
-            .map { xi[$0].x! - xi[$0 - 1].x! }
+    static func minSpan(_ xi: [XIvalue], first: Int) -> Double {
+        let xValues = xi.indices.filter { $0 >= first && xi[$0].x != nil } .map { xi[$0].x! } .sorted()
+        return xValues.indices.dropFirst()
+            .map { xValues[$0] - xValues[$0 - 1] }
             .reduce(Double.infinity) { min($0, $1) }
     }
 

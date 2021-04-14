@@ -15,12 +15,12 @@ extension Plot {
     ///   - ts: TransScale object
     /// - Returns: Scale object if OK or nil
 
-    func stapleGet(_ xi: [XIvalue], _ ts: TransScale) -> Staple? {
+    func stapleGet(_ xi: [XIvalue]) -> Staple? {
         if Staple.count <= 0 { return nil }
         if settings.plot.stapleOffset >= 0.0 && settings.plot.stapleWidth > 0.0 {
             return Staple(offset: settings.plot.stapleOffset, width: settings.plot.stapleWidth)
         }
-        let minδx = Staple.minSpan(xi)
+        let minδx = Staple.minSpan(xi, first: settings.headers)
         if minδx < 0.0 { return nil }
         let minδpixels = ts.xpos(minδx) - ts.xpos(0.0)
         if !Staple.spanOK(minδpixels) { return nil }
