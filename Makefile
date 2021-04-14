@@ -6,6 +6,7 @@ EXAMPLES =\
 	examples/trig.svg\
 	examples/trig-2plots.svg\
 	examples/trig-points.svg\
+	examples/trig-staple.svg\
 	examples/trig-80-120.svg
 JSFILES = $(CANVASFILES:data/%.canvas=generated/%.js)
 OPTFILES = $(wildcard data/*.opts)
@@ -14,7 +15,7 @@ TXTFILES = $(OPTFILES:data/%.opts=generated/%.txt)
 
 .PHONY:	all error.expected examples
 
-all:	generated/.made generated/svgindex.html generated/jsindex.html
+all:	generated/.made generated/svgindex.html generated/jsindex.html examples
 
 generated/.made:
 	-mkdir $(@D)
@@ -23,10 +24,12 @@ generated/.made:
 generated/svgindex.html: EXTRAS = generated/logo.svg out.svg svgIndexMake.sh $(EXAMPLES)
 generated/svgindex.html: $(SVGFILES) $(TXTFILES) $(EXTRAS)
 	@ ./svgIndexMake.sh $@
+	@ echo svgindex made
 
 generated/jsindex.html: EXTRAS = generated/logo.svg out.js jsIndexMake.sh
 generated/jsindex.html: $(JSFILES) $(CANVASTAGFILES) $(TXTFILES) $(EXTRAS)
 	@ ./jsIndexMake.sh $@
+	@ echo jsindex made
 
 generated/%.js: OPTS = $(shell cat $(@F:%.js=data/%.opts))
 generated/%.js: CANVAS = $(shell cat $(@F:%.js=data/%.canvas))
@@ -73,6 +76,9 @@ examples/trig-2plots.svg: data/trig.csv examples/trig.json $(CSV2)
 
 examples/trig-points.svg: data/trig.csv examples/trig.json $(CSV2)
 	-@ $(CSV2) svg --nocomment --cssid=svg-ex4 --showpoints=8 --scattered=16 data/trig.csv examples/trig.json $@
+
+examples/trig-staple.svg: data/trig.csv examples/trig.json $(CSV2)
+	-@ $(CSV2) svg --nocomment --cssid=svg-ex5 --stapled=128 data/trig.csv examples/trig.json $@
 
 examples/layout.svg: data/trig.csv examples/layout.json examples/layout.inc
 	-@ $(CSV2) svg data/trig.csv examples/layout.json $@

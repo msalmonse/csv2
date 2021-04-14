@@ -2,6 +2,8 @@
 	"backgroundColour": "#ffedcc",
 	"headerRows": 2,
 	"index": 1,
+	"stapleOffset": 0,
+	"stapleWidth": 10,
 	"subTitleHeader": 2,
 	"title": "Trigonometric Functions",
 	"xTitle": "Degrees",
