@@ -63,7 +63,13 @@ extension SVG {
     /// - Returns: end tag
 
     func plotTail() -> String {
-        return svgTagEnd
+        let include = settings.plotter.include.isEmpty ? "" : """
+
+            <!-- \(settings.plotter.include) -->
+            \(svgInclude(settings.plotter.include))
+
+            """
+        return include + svgTagEnd
     }
 
     /// Add text to the SVG

@@ -53,18 +53,18 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "svg --stapled 4 --sortx"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--logo http://getdrawings.com/free-icon-bw/64x64-icon-18.png"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/posneg.csv"
+            argument = "${PROJECT_DIR}/data/trig.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/cti.json"
+            argument = "${PROJECT_DIR}/examples/layout.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
