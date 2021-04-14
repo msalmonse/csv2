@@ -8,7 +8,7 @@
 	"dashedLines": 32,
 	"fontFamily": "Helvetica",
 	"headerRows": 2,
-	"include": 120,
+	"include": 240,
 	"index": 1,
 	"logoURL": "../data/logo.svg",
 	"reserveBottom": 50,
