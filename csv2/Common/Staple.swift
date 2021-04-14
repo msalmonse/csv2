@@ -58,7 +58,8 @@ extension Staple {
 
     static func minSpan(_ xi: [XIvalue]) -> Double {
         return xi.indices.dropFirst()
-            .map { (xi[$0].x ?? Double.infinity) - (xi[$0 - 1].x ?? Double.infinity) }
+            .filter {xi[$0 - 1].x != nil && xi[$0].x != nil}
+            .map { xi[$0].x! - xi[$0 - 1].x! }
             .reduce(Double.infinity) { min($0, $1) }
     }
 

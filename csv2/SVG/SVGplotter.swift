@@ -34,7 +34,7 @@ extension SVG {
 
     func plotPath(_ points: [PathCommand], props: Properties, fill: Bool = false) -> String {
         var result = [ "<path" ]
-        if let cssClass = props.cssClass { result.append("class=\"\(cssClass)\"") }
+        if let cssClass = props.cssClass { result.append("class=\"\(cssClass)\(fill ? " fill" : "")\"") }
         result.append("d=\"")
         result.append(contentsOf: points.map { $0.command() })
         result.append("\" />")

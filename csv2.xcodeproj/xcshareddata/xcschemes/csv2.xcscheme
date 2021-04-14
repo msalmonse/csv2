@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "svg --xtags 2"
+            argument = "svg --stapled 4 --sortx"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -60,11 +60,11 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/trig.csv"
+            argument = "${PROJECT_DIR}/data/posneg.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/trig.json"
+            argument = "${PROJECT_DIR}/data/cti.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
