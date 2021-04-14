@@ -29,16 +29,41 @@ extension Plot {
         return plotter.plotPath(axesPath, props: propsList.axes, fill: false)
     }
 
+    /// Draw abcissa tags
+    /// - Returns: String to draw tags
+
     func xTags() -> String {
         let xiValues = xiList()
         let k = settings.csv.xTagHeader
         var tagsPath: [PathCommand] = []
         var labels = [""]
 
-        for i in xiValues.indices {
+        /// Fetch text from csv data
+        /// - Parameters:
+        ///   - i1: one index
+        ///   - i2: the other index
+        /// - Returns: text if everything is OK
+
+        func getText(_ i1: Int, _ i2: Int) -> String {
+            if settings.inRows {
+                if csv.data.hasIndex(i2) && csv.data[i2].hasIndex(i1) {
+                    return csv.data[i2][i1]
+                } else {
+                    return ""
+                }
+            } else {
+                if csv.data.hasIndex(i1) && csv.data[i1].hasIndex(i2) {
+                    return csv.data[i1][i2]
+                } else {
+                    return ""
+                }
+            }
+        }
+
+        for i in xiValues.indices where i >= settings.headers {
             if let x = xiValues[i].x, dataPlane.inHoriz(x) {
                 let j = xiValues[i].i
-                let text = settings.inRows ? csv.data[k][j] : csv.data[j][k]
+                let text = getText(j, k)
                 if  text.hasContent {
                     let xpos = ts.xpos(x)
                     tagsPath.append(.moveTo(x: xpos, y: positions.xTagsTopY))
