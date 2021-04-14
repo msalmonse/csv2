@@ -76,12 +76,10 @@ if commonOpts.shapenames {
 /// - Returns: CSV object
 
 private func csvSelect(_ opts: Options, _ settings: Settings?) -> CSV? {
-    let colsep = opts.tsv ? "\t" : ","
-
     switch (opts.csvName != nil, opts.random.hasEntries) {
     case (_, true): return CSV(randomCSV(opts, settings))
-    case (true, false): return try? CSV(URL(fileURLWithPath: opts.csvName!), separatedBy: colsep)
-    case(false, false): return CSV(readLines(), separatedBy: colsep)
+    case (true, false): return try? CSV(URL(fileURLWithPath: opts.csvName!), separatedBy: opts.separator)
+    case(false, false): return CSV(readLines(), separatedBy: opts.separator)
     }
 }
 

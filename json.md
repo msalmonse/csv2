@@ -1,7 +1,7 @@
 # Settings
 
 The settings file is [JSON](https://en.wikipedia.org/wiki/JSON) encoded and the following
-tags are supported, the data type and default value are shown in parathenses. Some default values can be set from the command line and these are shown however these are overridden by the JSON file settings.
+tags are supported, the data type and default value are shown in parathenses. Some values can be set from the command line and these are shown.
 
 **backgroundColour** (String)<br/>
 **Option:**`--bg`<br/>

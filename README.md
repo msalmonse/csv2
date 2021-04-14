@@ -9,11 +9,10 @@ missing or `-` the the data is read from the standard input. If the JSON file is
 file name. If the JSON file is missing then all defaults are used. If the svg file is not specified then the svg data is written to the 
 standard output.
 
-The code handles vanilla cases well but other cases may fail. In particular quoted text isn't properly handled,
-leading and trailing quotes are just trimmed as are spaces and carriage returns.
+The code handles most cases well but strange cases may fail. 
 Numbers are expected to be in English format i.e. `.` is the decimal seperator.
 JSON errors may cause a crash, probably without a helpful error message.<br/>
-Most of the effort was put into generating the SVG.
+Most of the effort was put into generating the Canvas and SVG.
 
 The [usage](usage.md) is available as are some [examples](examples/examples.md).<br/>
 Some of the options are mainly intended for [testing](Testing.md).

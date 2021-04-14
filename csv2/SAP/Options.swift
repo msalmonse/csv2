@@ -131,6 +131,9 @@ struct Options: ParsableArguments {
     @Option(name: .long, help: "Plots to show as scattered")
     var scattered = Defaults.global.scattered
 
+    @Flag(name: .shortAndLong, help: "Use semicolons to seperate columns")
+    var semi = false
+
     @Option(name: .long, parsing: .upToNextOption,
             help: "List of shapes to use, multiple entries until the next option")
     var shapes: [String] = []
@@ -201,6 +204,12 @@ struct Options: ParsableArguments {
     @Argument(help: "CSV file name, \"-\" means use stdin") var csvName: String?
     @Argument(help: "JSON file name") var jsonName: String?
     @Argument(help: "Output file name, default is to print to terminal") var outName: String?
+
+    var separator: String {
+        if tsv { return "\t" }
+        if semi { return ";" }
+        return ","
+    }
 
     func defaults(for cmd: CSVplotterCommand) -> Defaults {
         return Defaults(

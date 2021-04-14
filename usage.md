@@ -62,6 +62,7 @@ COMMON OPTIONS:
                             0.0, 0.0, 0.0)
     --rows                  Group data by rows
     --scattered <scattered> Plots to show as scattered (default: 0)
+    -s, --semi              Use semicolons to seperate columns
     --shapes <shapes>       List of shapes to use, multiple entries until the next option
     --shapenames            Print a list of shape names
     --show <show>           Generate a plot with just the named shape @ 6X strokewidth
