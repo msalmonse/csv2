@@ -145,7 +145,7 @@ class csv2Tests: XCTestCase {
         XCTAssertEqual(end.partWay(start, part: 0.6), Point(x: 76, y: 468))
     }
 
-    func testSvgTransScale() {
+    func testTransScale() {
         let from = Plane(top: 1000, bottom: 0, left: -1000, right: 1000)
         let to = Plane(top: 0, bottom: 1000, left: 0, right: 1000)
         let ts = TransScale(from: from, to: to)
@@ -250,21 +250,35 @@ class csv2Tests: XCTestCase {
         XCTAssertEqual(p4, p3)
     }
 
-    func testStaple() {
-        XCTAssertEqual(Staple.minSpan(xiValues), 5.0)
+    func testBar() {
+        XCTAssertEqual(Bar.minSpan(xiValues, first: 0), 5.0)
 
-        for _ in 0...4 { _ = Staple.next }
-        let s1 = Staple(offset: 2.0, width: 1.0)
+        for _ in 0...4 { _ = Bar.next }
+        let s1 = Bar(offset: 2.0, width: 1.0)
         XCTAssertEqual(s1.width, 1.0)
         XCTAssertEqual(s1.offsets, [-4.0, -2.0, 0.0, 2.0, 4.0])
-        _ = Staple.next
-        let s2 = Staple(offset: 2.0, width: 5.0)
+        _ = Bar.next
+        let s2 = Bar(offset: 2.0, width: 5.0)
         XCTAssertEqual(s2.width, 5.0)
         XCTAssertEqual(s2.offsets, [-5.0, -3.0, -1.0, 1.0, 3.0, 5.0])
 
-        let s3 = Staple(pixels: 60.0)
-        XCTAssertEqual(s3.width, 9.0)
+        let s3 = Bar(pixels: 60.0)
+        XCTAssertEqual(s3.width, 8.0)
         XCTAssertEqual(s3.offsets, [-25.0, -15.0, -5.0, 5.0, 15.0, 25.0])
+    }
+
+    func testRowParse() {
+        var row = csvRowParse(row: testRow)
+        XCTAssertEqual(row.count, 6)
+
+        row = csvRowParse(row: "        ")
+        XCTAssertEqual(row.count, 0)
+
+        row = csvRowParse(row: "        ,")
+        XCTAssertEqual(row.count, 2)
+
+        row = csvRowParse(row: "        \",\" ")
+        XCTAssertEqual(row.count, 1)
     }
 
     func testSettingsPerformance() throws {
@@ -311,6 +325,11 @@ func settingsJSON(_ cols: Bool) -> String {
         }
         """
 }
+
+// CSV string for parser test
+let testRow = """
+  1  , 234, "Test with "" " ,,,1\r
+"""
 
 // CSV string for tests
 let csvData = """
