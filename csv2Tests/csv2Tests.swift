@@ -270,6 +270,7 @@ class csv2Tests: XCTestCase {
     func testRowParse() {
         var row = csvRowParse(row: testRow)
         XCTAssertEqual(row.count, 6)
+        XCTAssertEqual(row[2], "Test with \"  and emoji 🌊")
 
         row = csvRowParse(row: "        ")
         XCTAssertEqual(row.count, 0)
@@ -333,7 +334,7 @@ func settingsJSON(_ cols: Bool) -> String {
 
 // CSV string for parser test
 let testRow = """
-  1  , 234, "Test with "" " ,,,1\r
+  1  , 234, "Test with "" " and emoji 🌊,,,1\r
 """
 
 // CSV string for tests
