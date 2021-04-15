@@ -7,7 +7,7 @@
 | | Initial state | lineStart | |
 | lineStart | `ws`<sup>[1](#fn1)</sup> | lineStart | |
 |  | `"` | quoted | Add a new row |
-|  | `,`<sup>[2](#fn2)</sup> | fieldStart | Add a new Row |
+|  | `,`<sup>[2](#fn2)</sup> | fieldStart | Add a new row and add an empty field |
 |  | else | normal | Add a new row and add character to text field |
 | fieldStart | `nl`<sup>[3](#fn3)</sup>| lineStart | Add an empty field to the last row |
 | | `ws` | fieldStart | `ws` excluding `nl` |
