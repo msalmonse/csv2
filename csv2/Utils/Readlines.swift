@@ -7,12 +7,12 @@
 
 import Foundation
 
-func readLines() -> [String] {
+func readLines() -> String {
     var lines: [String] = []
 
     while let line = readLine(strippingNewline: true) {
         lines.append(line)
     }
 
-    return lines
+    return lines.joined(separator: "\n")
 }

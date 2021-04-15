@@ -13,6 +13,19 @@ var defaults = Defaults.global
 
 class csv2Tests: XCTestCase {
 
+    func csvGen(_ rows: Int, by cols: Int) -> String {
+        var data: [String] = []
+
+        for _ in 0..<rows {
+            var row: [String] = []
+            for _ in 0..<cols {
+                row.append(Int.random(in: -500...500).d(4))
+            }
+            data.append(row.joined(separator: ","))
+        }
+        return data.joined(separator: "\r\n")
+    }
+
     func testSettings() throws {
         var settings = try? Settings.load(settingsJSON(true))
         XCTAssertNotNil(settings)
@@ -78,21 +91,15 @@ class csv2Tests: XCTestCase {
     }
 
     func testBigCsv() {
-        var bigCsvData: [String] = []
-
-        for _ in 0..<1000 {
-            var row: [String] = []
-            for _ in 0..<1000 {
-                row.append(Int.random(in: -500...500).d(4))
-            }
-            bigCsvData.append(row.joined(separator: ","))
-        }
+        let bigCsvData = csvGen(1000, by: 1000)
 
         let csv = CSV(bigCsvData)
         XCTAssertNotNil(csv)
-        let svg = try? SVG(Settings.load("{ \"labels\":false }"))
-        XCTAssertNotNil(svg)
-        // XCTAssertFalse(svg!.gen().isEmpty)
+        let settings = try? Settings.load("{ \"labels\":false }")
+        XCTAssertNotNil(settings)
+        let svg = SVG(settings!)
+        let plot = Plot(csv, settings!, svg)
+        XCTAssertFalse(plot.gen().isEmpty)
     }
 
     func testSVG() throws {
@@ -268,21 +275,37 @@ class csv2Tests: XCTestCase {
     }
 
     func testCSVParse() {
-        var row = csvParse(inData: testRow)
-        XCTAssertEqual(row.count, 6)
-        XCTAssertEqual(row[2], "Test with \"  and emoji 🌊")
+        var parsed: [[String]] = []
+        csvParse(testRow, to: &parsed)
+        XCTAssertEqual(parsed.count, 1)
+        XCTAssertEqual(parsed[0].count, 6)
+        XCTAssertEqual(parsed[0][2], "Test with \"  and emoji 🌊")
 
-        row = csvParse(inData: "        ")
-        XCTAssertEqual(row.count, 0)
+        csvParse(csvData, to: &parsed)
+        XCTAssertEqual(parsed.count, 5)
+        for row in parsed {
+            XCTAssertEqual(row.count, 5)
+        }
 
-        row = csvParse(inData: "        ,")
-        XCTAssertEqual(row.count, 2)
+        csvParse("        ", to: &parsed)
+        XCTAssertEqual(parsed.count, 0)
 
-        row = csvParse(inData: "        \",\" ")
-        XCTAssertEqual(row.count, 1)
+        csvParse("        ,", to: &parsed)
+        XCTAssertEqual(parsed.count, 1)
+        XCTAssertEqual(parsed[0].count, 2)
 
-        row = csvParse(inData: "        \"\r\n\" ")
-        XCTAssertEqual(row.count, 1)
+        csvParse("        \",\" ", to: &parsed)
+        XCTAssertEqual(parsed.count, 1)
+        XCTAssertEqual(parsed[0].count, 1)
+
+        csvParse("        \"\r\n\" ", to: &parsed)
+        XCTAssertEqual(parsed.count, 1)
+        XCTAssertEqual(parsed[0].count, 1)
+
+        csvParse("1,2,3\r\n \n4,5,6", to: &parsed)
+        XCTAssertEqual(parsed.count, 2)
+        XCTAssertEqual(parsed[0].count, 3)
+        XCTAssertEqual(parsed[1].count, 3)
     }
 
     func testSettingsPerformance() throws {
@@ -298,8 +321,10 @@ class csv2Tests: XCTestCase {
     }
 
     func testRowParsePerformance() {
+        var parsed: [[String]] = []
+        let testData = csvGen(100000, by: 5)
         measure {
-            _ = csvParse(inData: testRow)
+            csvParse(testData, to: &parsed)
         }
     }
 }
@@ -337,7 +362,7 @@ func settingsJSON(_ cols: Bool) -> String {
 
 // CSV string for parser test
 let testRow = """
-  1  , 234, "Test with "" " and emoji 🌊,,,1\r
+  1  , 234, "Test with "" " and emoji 🌊,,"\r\n",1\r
 """
 
 // CSV string for tests

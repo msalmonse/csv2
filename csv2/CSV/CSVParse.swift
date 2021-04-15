@@ -7,67 +7,85 @@
 
 import Foundation
 
+/// State of parser
+
 fileprivate enum ParserState: Comparable {
     case
-        nocell,             // no cell data found, row is empty or whitespace
-        start,              // cell started
+        lineStart,          // no field data found, row is empty or whitespace
+        fieldStart,         // field started but no data found, like lineStart but at least one field already
         normal,             // non-whitespace found
         qdfound,            // double quote found while quoted
         quoted              // quoted text started
 }
 
-func csvParse(inData: String, separatedBy: String = ",") -> [String] {
-    var result: [String] = []
-    // let data = input.unicodeScalars
+/// Parse csv string
+/// - Parameters:
+///   - inData: the string to parse
+///   - separatedBy: field separator
+///   - outData: Array of arrays to hold results
+
+func csvParse(_ inData: String, separatedBy: String = ",", to outData: inout [[String]]) {
     let colsep = separatedBy.unicodeScalars.first
     let cr = "\r".unicodeScalars.first
     let qd = "\"".unicodeScalars.first
     let nl = "\n".unicodeScalars.first
     let space = " ".unicodeScalars.first
-    var state = ParserState.nocell
-    var cell = ""
-    var spaceCount = 0
+    var state = ParserState.lineStart
+    var field = ""
+    var spaceCount = 0              // count of potentially trailing spaces
+    var lastRow = -1                // the index of the last row in outData
+
+    // clean up output
+    outData = []
 
     for ch in inData.unicodeScalars {
-        // handle copying to cell and next state
+        // Valid data found so add a row?
+        if state == .lineStart && ch != space && ch != cr && ch != nl {
+            outData.append([])
+            lastRow += 1
+            assert(lastRow == outData.endIndex - 1, "outData indices don't match")
+        }
+
+        // handle copying to field and next state
         switch (state, ch) {
             // when quoted colsep, cr and nl are normal characters
         case (.quoted, colsep), (.quoted, cr), (.quoted, nl):
-            cell.unicodeScalars.append(ch)
+            field.unicodeScalars.append(ch)
 
-            // skip carriage return, spaces at the start of a cell
-        case (_, cr), (.start, space), (.nocell, space): break
+            // skip carriage return, spaces at the start of a line or field, nl if we haven't started a field
+        case (_, cr), (.fieldStart, space), (.lineStart, space), (.lineStart, nl):
+            break
 
             // in every other state colsep terminates a cell, new line always terminates a cell
         case (_, colsep), (_, nl):
-            if spaceCount > 0 { cell.unicodeScalars.removeLast(spaceCount) }
-            result.append(cell)
-            cell = ""
-            state = .start
+            if spaceCount > 0 { field.unicodeScalars.removeLast(spaceCount) }
+            outData[lastRow].append(field)
+            field = ""
+            state = ch == nl ? .lineStart : .fieldStart
             spaceCount = 0
 
             // double quote normally puts us into quoted
-        case (.nocell, qd), (.start, qd), (.normal, qd): state = .quoted
+        case (.lineStart, qd), (.fieldStart, qd), (.normal, qd): state = .quoted
             // while in quoted state a double quote may terminate the state or be an actual double quote
         case (.quoted, qd): state = .qdfound
 
             // two double quotes while quoted means a literal double quote
         case (.qdfound, qd):
-            cell.unicodeScalars.append(ch)
+            field.unicodeScalars.append(ch)
             state = .quoted
             // one means the end of the quote, append that character
         case (.qdfound, _):
-            cell.unicodeScalars.append(ch)
+            field.unicodeScalars.append(ch)
             state = .normal
 
             // if in nocell or start go to normal
-        case (.nocell, _), (.start, _):
+        case (.lineStart, _), (.fieldStart, _):
             state = .normal
-            cell.unicodeScalars.append(ch)
+            field.unicodeScalars.append(ch)
 
             // otherwise just add the character to the cell
         default:
-            cell.unicodeScalars.append(ch)
+            field.unicodeScalars.append(ch)
         }
 
         // handle spaceCount
@@ -78,10 +96,8 @@ func csvParse(inData: String, separatedBy: String = ",") -> [String] {
             spaceCount = 0
         }
     }
-    if state != .nocell {
-        if spaceCount > 0 { cell.unicodeScalars.removeLast(spaceCount) }
-        result.append(cell)
+    if state != .lineStart {
+        if spaceCount > 0 { field.unicodeScalars.removeLast(spaceCount) }
+        outData[lastRow].append(field)
     }
-
-    return result
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-func randomCSV(_ opts: Options, _ settings: Settings?) -> [String] {
+func randomCSV(_ opts: Options, _ settings: Settings?) -> String {
     let count = opts.random[0]
     var max: Double
     var min: Double
@@ -51,5 +51,5 @@ func randomCSV(_ opts: Options, _ settings: Settings?) -> [String] {
         }
         result.append(row.joined(separator: ","))
     }
-    return result
+    return result.joined(separator: "\r\n")
 }

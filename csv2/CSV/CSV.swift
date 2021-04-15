@@ -40,13 +40,6 @@ class CSV: ReflectedStringConvertible, Equatable {
         self.loadFrom(contents, separatedBy: colsep)
     }
 
-    /// Initialize CSV from a String
-    /// - Parameter lines: the data as an array of strings
-
-    init(_ lines: [String], separatedBy colsep: String = ",") {
-        self.loadFromLines(lines, separatedBy: colsep)
-    }
-
     /// Return a column of values
     /// - Parameters:
     ///   - col: the column number
@@ -172,23 +165,8 @@ class CSV: ReflectedStringConvertible, Equatable {
     /// - Parameter contents: the string containing data
 
     func loadFrom(_ contents: String, separatedBy colsep: String = ",") {
-        loadFromLines(contents.components(separatedBy: "\n"), separatedBy: colsep)
-    }
-
-    /// Load data from a string array
-    /// - Parameter lines: the string array containing data
-
-    func loadFromLines(_ lines: [String], separatedBy colsep: String = ",") {
-        var colMax = 0
-        // Remove any leading or trailing unwanted characters
-        // let trimSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet("\"".unicodeScalars))
-        for row in lines where row.hasContent {
-            // let cols = row.components(separatedBy: colsep).map { $0.trimmingCharacters(in: trimSet)}
-            let cols = csvParse(inData: row, separatedBy: colsep)
-            data.append(cols)
-            if cols.count > colMax { colMax = cols.count }
-        }
-        colCt = colMax
+        csvParse(contents, separatedBy: colsep, to: &data)
+        colCt = data.map { $0.count }.reduce(0) { max($0, $1) }
         rowCt = data.count
 
         for row in data {
