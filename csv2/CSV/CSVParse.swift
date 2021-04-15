@@ -9,16 +9,16 @@ import Foundation
 
 fileprivate enum ParserState: Comparable {
     case
-        nocell,             // no cell data found, ros is empty or whitespace
+        nocell,             // no cell data found, row is empty or whitespace
         start,              // cell started
         normal,             // non-whitespace found
         qdfound,            // double quote found while quoted
         quoted              // quoted text started
 }
 
-func csvRowParse(row: String, separatedBy: String = ",") -> [String] {
+func csvParse(inData: String, separatedBy: String = ",") -> [String] {
     var result: [String] = []
-    let data = row.unicodeScalars
+    // let data = input.unicodeScalars
     let colsep = separatedBy.unicodeScalars.first
     let cr = "\r".unicodeScalars.first
     let qd = "\"".unicodeScalars.first
@@ -28,7 +28,7 @@ func csvRowParse(row: String, separatedBy: String = ",") -> [String] {
     var cell = ""
     var spaceCount = 0
 
-    for ch in data {
+    for ch in inData.unicodeScalars {
         // handle copying to cell and next state
         switch (state, ch) {
             // when quoted colsep, cr and nl are normal characters

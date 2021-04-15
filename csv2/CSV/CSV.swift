@@ -184,7 +184,7 @@ class CSV: ReflectedStringConvertible, Equatable {
         // let trimSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet("\"".unicodeScalars))
         for row in lines where row.hasContent {
             // let cols = row.components(separatedBy: colsep).map { $0.trimmingCharacters(in: trimSet)}
-            let cols = csvRowParse(row: row, separatedBy: colsep)
+            let cols = csvParse(inData: row, separatedBy: colsep)
             data.append(cols)
             if cols.count > colMax { colMax = cols.count }
         }

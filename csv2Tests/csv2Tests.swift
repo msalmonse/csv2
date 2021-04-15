@@ -267,21 +267,21 @@ class csv2Tests: XCTestCase {
         XCTAssertEqual(s3.offsets, [-25.0, -15.0, -5.0, 5.0, 15.0, 25.0])
     }
 
-    func testRowParse() {
-        var row = csvRowParse(row: testRow)
+    func testCSVParse() {
+        var row = csvParse(inData: testRow)
         XCTAssertEqual(row.count, 6)
         XCTAssertEqual(row[2], "Test with \"  and emoji 🌊")
 
-        row = csvRowParse(row: "        ")
+        row = csvParse(inData: "        ")
         XCTAssertEqual(row.count, 0)
 
-        row = csvRowParse(row: "        ,")
+        row = csvParse(inData: "        ,")
         XCTAssertEqual(row.count, 2)
 
-        row = csvRowParse(row: "        \",\" ")
+        row = csvParse(inData: "        \",\" ")
         XCTAssertEqual(row.count, 1)
 
-        row = csvRowParse(row: "        \"\r\n\" ")
+        row = csvParse(inData: "        \"\r\n\" ")
         XCTAssertEqual(row.count, 1)
     }
 
@@ -299,7 +299,7 @@ class csv2Tests: XCTestCase {
 
     func testRowParsePerformance() {
         measure {
-            _ = csvRowParse(row: testRow)
+            _ = csvParse(inData: testRow)
         }
     }
 }
