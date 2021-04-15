@@ -20,7 +20,9 @@ Some of the options are mainly intended for [testing](Testing.md).
 ### Limitations
 
 The biggest limitation is the handling of large values. These are clipped and hence the slopes of the plots may
-be wrong. The values are clipped at the edges of a plane twice as wide and twice as high as the SVG.
+be wrong. The values are clipped at the edges of a plane twice as wide and twice as high as the Canvas or SVG.
+Plots that exceed the plottable area but not the limit above are drawn but can't be seen outside of that area, this
+means that they have the correct shape.
 
 Plot lines that are close to each other can be hard to tell apart e.g. sin(n) and sin²(n)
 at or about 90° (π/2).
