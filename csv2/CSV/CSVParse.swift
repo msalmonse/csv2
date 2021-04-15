@@ -26,21 +26,23 @@ fileprivate enum ParserState: Comparable {
 
 func csvParse(_ inData: String, separatedBy: String = ",", to outData: inout [[String]]) {
     let colsep = separatedBy.unicodeScalars.first
-    let cr = "\r".unicodeScalars.first
-    let qd = "\"".unicodeScalars.first
-    let nl = "\n".unicodeScalars.first
-    let space = " ".unicodeScalars.first
+    let cr: UnicodeScalar = "\r"
+    let qd: UnicodeScalar = "\""
+    let nl: UnicodeScalar = "\n"
+    let space: UnicodeScalar = " "
     var state = ParserState.lineStart
     var field = ""
     var spaceCount = 0              // count of potentially trailing spaces
     var lastRow = -1                // the index of the last row in outData
+    var ws = CharacterSet()
+    ws.insert(charactersIn: "\r\n ")
 
     // clean up output
     outData = []
 
     for ch in inData.unicodeScalars {
         // Valid data found so add a row?
-        if state == .lineStart && ch != space && ch != cr && ch != nl {
+        if state == .lineStart && !ws.contains(ch) {
             outData.append([])
             lastRow += 1
             assert(lastRow == outData.endIndex - 1, "outData indices don't match")

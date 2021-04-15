@@ -13,13 +13,13 @@ var defaults = Defaults.global
 
 class csv2Tests: XCTestCase {
 
-    func csvGen(_ rows: Int, by cols: Int) -> String {
+    func csvGen(_ rows: Int, by cols: Int, precision: Int = 4) -> String {
         var data: [String] = []
 
         for _ in 0..<rows {
             var row: [String] = []
             for _ in 0..<cols {
-                row.append(Int.random(in: -500...500).d(4))
+                row.append(Int.random(in: -500...500).d(precision))
             }
             data.append(row.joined(separator: ","))
         }
@@ -320,9 +320,9 @@ class csv2Tests: XCTestCase {
         }
     }
 
-    func testRowParsePerformance() {
+    func testCsvParsePerformance() {
         var parsed: [[String]] = []
-        let testData = csvGen(100000, by: 5)
+        let testData = csvGen(100000, by: 5, precision: 8)
         measure {
             csvParse(testData, to: &parsed)
         }
