@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CSVParser
 
 class CSV: ReflectedStringConvertible, Equatable {
 
