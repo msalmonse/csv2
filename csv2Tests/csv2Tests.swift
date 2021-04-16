@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import ArgumentParser
 @testable import csv2
 
 var defaults = Defaults.global
@@ -274,40 +273,6 @@ class csv2Tests: XCTestCase {
         XCTAssertEqual(s3.offsets, [-25.0, -15.0, -5.0, 5.0, 15.0, 25.0])
     }
 
-    func testCSVParse() {
-        var parsed: [[String]] = []
-        csvParse(testRow, to: &parsed)
-        XCTAssertEqual(parsed.count, 1)
-        XCTAssertEqual(parsed[0].count, 6)
-        XCTAssertEqual(parsed[0][2], "Test with \"  and emoji 🌊")
-
-        csvParse(csvData, to: &parsed)
-        XCTAssertEqual(parsed.count, 5)
-        for row in parsed {
-            XCTAssertEqual(row.count, 5)
-        }
-
-        csvParse("        ", to: &parsed)
-        XCTAssertEqual(parsed.count, 0)
-
-        csvParse("        ,", to: &parsed)
-        XCTAssertEqual(parsed.count, 1)
-        XCTAssertEqual(parsed[0].count, 2)
-
-        csvParse("        \",\" ", to: &parsed)
-        XCTAssertEqual(parsed.count, 1)
-        XCTAssertEqual(parsed[0].count, 1)
-
-        csvParse("        \"\r\n\" ", to: &parsed)
-        XCTAssertEqual(parsed.count, 1)
-        XCTAssertEqual(parsed[0].count, 1)
-
-        csvParse("1,2,3\r\n \n4,5,6", to: &parsed)
-        XCTAssertEqual(parsed.count, 2)
-        XCTAssertEqual(parsed[0].count, 3)
-        XCTAssertEqual(parsed[1].count, 3)
-    }
-
     func testSettingsPerformance() throws {
         measure {
             try? testSettings()
@@ -317,14 +282,6 @@ class csv2Tests: XCTestCase {
     func testCSVperformance() throws {
         measure {
             try? testCSV()
-        }
-    }
-
-    func testCsvParsePerformance() {
-        var parsed: [[String]] = []
-        let testData = csvGen(100000, by: 5, precision: 8)
-        measure {
-            csvParse(testData, to: &parsed)
         }
     }
 }

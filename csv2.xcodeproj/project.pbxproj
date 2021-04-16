@@ -71,6 +71,8 @@
 		C4B2F98926272A4C00CC5430 /* ColourTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */; };
 		C4B2F98C26272AA500CC5430 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE4A0425F66E2C0076EF5E /* Defaults.swift */; };
 		C4B2F99726296AAE00CC5430 /* CSVParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F99626296AAE00CC5430 /* CSVParser */; };
+		C4B2F9A826297EDD00CC5430 /* CSVParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F9A726297EDD00CC5430 /* CSVParser */; };
+		C4B2F9AA26297EE300CC5430 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F9A926297EE300CC5430 /* ArgumentParser */; };
 		C4BDCFB6261E156F00D8C589 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDCFB5261E156F00D8C589 /* Canvas.swift */; };
 		C4BDCFBD261EFA0600D8C589 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A6E3B261EDBED00784F54 /* Transform.swift */; };
 		C4C0C462260E589A0072699C /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C461260E589A0072699C /* Style.swift */; };
@@ -227,6 +229,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4B2F9AA26297EE300CC5430 /* ArgumentParser in Frameworks */,
+				C4B2F9A826297EDD00CC5430 /* CSVParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +246,7 @@
 				C40A3AFD25DC01180016EB6D /* csv2 */,
 				C48B822825E28F7E00EAEAE3 /* csv2Tests */,
 				C40A3AFC25DC01180016EB6D /* Products */,
+				C4B2F9A626297EDD00CC5430 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -319,6 +324,13 @@
 				C48B822B25E28F7E00EAEAE3 /* Info.plist */,
 			);
 			path = csv2Tests;
+			sourceTree = "<group>";
+		};
+		C4B2F9A626297EDD00CC5430 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C4BDCFB4261E156200D8C589 /* Canvas */ = {
@@ -458,8 +470,14 @@
 			buildRules = (
 			);
 			dependencies = (
+				C4B2F9A326297EA000CC5430 /* PBXTargetDependency */,
+				C4B2F9A126297E9900CC5430 /* PBXTargetDependency */,
 			);
 			name = csv2Tests;
+			packageProductDependencies = (
+				C4B2F9A726297EDD00CC5430 /* CSVParser */,
+				C4B2F9A926297EE300CC5430 /* ArgumentParser */,
+			);
 			productName = csv2svgTests;
 			productReference = C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -727,6 +745,17 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C4B2F9A126297E9900CC5430 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = C4B2F9A026297E9900CC5430 /* CSVParser */;
+		};
+		C4B2F9A326297EA000CC5430 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = C4B2F9A226297EA000CC5430 /* ArgumentParser */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		C40A3B0025DC01180016EB6D /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -956,6 +985,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C4B2F99526296AAE00CC5430 /* XCRemoteSwiftPackageReference "CSVParser" */;
 			productName = CSVParser;
+		};
+		C4B2F9A026297E9900CC5430 /* CSVParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4B2F99526296AAE00CC5430 /* XCRemoteSwiftPackageReference "CSVParser" */;
+			productName = CSVParser;
+		};
+		C4B2F9A226297EA000CC5430 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		C4B2F9A726297EDD00CC5430 /* CSVParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4B2F99526296AAE00CC5430 /* XCRemoteSwiftPackageReference "CSVParser" */;
+			productName = CSVParser;
+		};
+		C4B2F9A926297EE300CC5430 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
 		};
 		C4FE49FA25F643E30076EF5E /* ArgumentParser */ = {
 			isa = XCSwiftPackageProductDependency;
