@@ -26,10 +26,11 @@ extension SVG {
         extra: String = "",
         rx: Double = 0.0,
         precision p: Int = 1
-    ) -> String {
-        return """
+    ) {
+        data.append("""
             <rect \(xy(x,y, p)) \(wh(w,h, p)) rx="\(rx.f(p))" \(extra) />
             """
+        )
     }
 
     /// Generate a <text> string
@@ -46,8 +47,8 @@ extension SVG {
         text: String,
         cssClass: String,
         extra: String = ""
-    ) -> String {
-        return "<text \(xy(x,y)) class=\"\(cssClass)\" \(extra)>\(text)</text>"
+    ) {
+        data.append("<text \(xy(x,y)) class=\"\(cssClass)\" \(extra)>\(text)</text>\n")
     }
 
     /// Generate width and height string

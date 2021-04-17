@@ -91,3 +91,12 @@ extension Array {
 
     func hasIndex(_ i: Int) -> Bool { self.indices.contains(i) }
 }
+
+extension Data {
+    /// append for Strings
+    /// - Parameter str: String to append
+
+    mutating func append(_ str: String) {
+        self.append(str.data(using: .utf8) ?? Data())
+    }
+}

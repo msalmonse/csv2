@@ -62,7 +62,7 @@ extension SVG {
     /// - Parameter extra: extra tags
     /// - Returns: css information in a string
 
-    func cssStyle(plotProps: [Properties], extra: String = "") -> String {
+    func cssStyle(plotProps: [Properties], extra: String = "") {
         let id = hashID
         var result: [String] = ["<style>"]
         cssBG(&result, id: id)
@@ -100,6 +100,6 @@ extension SVG {
 
         cssIncludes(&result)
 
-        return result.joined(separator: "\n")
+        data.append(result.joined(separator: "\n"))
     }
 }

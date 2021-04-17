@@ -9,21 +9,21 @@ import Foundation
 
 extension SVG {
 
-    func plotGroup(plotPlane: Plane, lines: String) -> String {
-        return """
+    func plotGroup(plotPlane: Plane, lines: String) {
+        data.append("""
             <g clip-path="url(#plotable)" class="plotarea">
             \(lines)
             </g>
             """
+        )
     }
 
-    func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) -> String {
-        var result = [ xmlTag, svgTag ]
-        if settings.plotter.comment { result.append(comment) }
-        result.append(defs(plotPlane: plotPlane))
-        result.append(cssStyle(plotProps: propsList.plots))
-        if settings.plotter.logoURL.hasContent { result.append(logoImage(positions: positions)) }
-        return result.joined(separator: "\n")
+    func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) {
+        data.append((xmlTag + svgTag))
+        if settings.plotter.comment { data.append(comment) }
+        defs(plotPlane: plotPlane)
+        cssStyle(plotProps: propsList.plots)
+        if settings.plotter.logoURL.hasContent { logoImage(positions: positions) }
     }
 
     /// Create a plot command from a number of PathCommand's
@@ -32,14 +32,14 @@ extension SVG {
     ///   - props: path properties
     /// - Returns: plot command string
 
-    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool = false) -> String {
+    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool = false) {
         var result = [ "<path" ]
         if let cssClass = props.cssClass { result.append("class=\"\(cssClass)\(fill ? " fill" : "")\"") }
         result.append("d=\"")
         result.append(contentsOf: points.map { $0.command() })
         result.append("\" />")
 
-        return result.joined(separator: " ")
+        data.append(result.joined(separator: " "))
     }
 
     /// Draw a rectangle
@@ -52,24 +52,23 @@ extension SVG {
     ///   - props: path properties
     /// - Returns: SVG code for a rectangle
 
-    func plotRect(_ plane: Plane, rx: Double, props: Properties) -> String {
+    func plotRect(_ plane: Plane, rx: Double, props: Properties) {
         var extra = ""
         if let cssClass = props.cssClass { extra = "class=\"\(cssClass)\"" }
-        return
-            rectTag(x: plane.left, y: plane.top, width: plane.width, height: plane.height, extra: extra, rx: rx)
+        rectTag(x: plane.left, y: plane.top, width: plane.width, height: plane.height, extra: extra, rx: rx)
     }
 
     /// Finish SVG
     /// - Returns: end tag
 
-    func plotTail() -> String {
+    func plotTail() {
         let include = settings.plotter.include.isEmpty ? "" : """
 
             <!-- \(settings.plotter.include) -->
             \(svgInclude(settings.plotter.include))
 
             """
-        return include + svgTagEnd
+        data.append((include + svgTagEnd))
     }
 
     /// Add text to the SVG
@@ -80,13 +79,13 @@ extension SVG {
     ///   - props: text properties
     /// - Returns: text string
 
-    func plotText(x: Double, y: Double, text: String, props: Properties) -> String {
+    func plotText(x: Double, y: Double, text: String, props: Properties) {
         var extra = ""
         if let transform = props.transform {
             extra = """
                 transform="matrix(\(transform.csv))"
                 """
         }
-        return textTag(x: x, y: y, text: text, cssClass: props.cascade(.cssClass)!, extra: extra)
+        textTag(x: x, y: y, text: text, cssClass: props.cascade(.cssClass)!, extra: extra)
     }
 }

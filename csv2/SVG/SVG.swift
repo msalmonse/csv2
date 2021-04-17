@@ -8,6 +8,9 @@
 import Foundation
 
 class SVG: Plotter, ReflectedStringConvertible {
+    // Storage for data
+    var data = Data()
+
     // plot widths
     var strokeWidth: Double { settings.css.strokeWidth }
     var shapeWidth: Double { strokeWidth * 1.75 }
@@ -48,40 +51,45 @@ class SVG: Plotter, ReflectedStringConvertible {
     /// Generate the defs element
     /// - Returns: the defs elements as a list
 
-    func defs(plotPlane: Plane) -> String {
+    func defs(plotPlane: Plane) {
         // Make plottable a bit bigger so that shapes aren't clipped
         let h = (plotPlane.bottom - plotPlane.top + shapeWidth * 4.0)
         let w = (plotPlane.right - plotPlane.left + shapeWidth * 4.0)
         let x = (plotPlane.left - shapeWidth * 2.0)
         let y = (plotPlane.top - shapeWidth * 2.0)
-        var result = ["<defs>"]
-        result.append("<clipPath id=\"plotable\">")
-        result.append(rectTag(x: x, y: y, width: w, height: h))
-        result.append("</clipPath>")
-        result.append("</defs>")
-
-        return result.joined(separator: "\n")
+        data.append("""
+                <defs>
+                <clipPath id="plotable">
+                """
+            )
+        rectTag(x: x, y: y, width: w, height: h)
+        data.append("""
+            </clipPath>
+            </defs>
+            """
+            .data(using: .utf8)!
+        )
     }
 
-    func logoImage(positions: Positions) -> String {
+    func logoImage(positions: Positions) {
         let x = positions.logoX
         let y = positions.logoY
         let h = settings.plotter.logoHeight
         let w = settings.plotter.logoWidth
         let url = settings.plotter.logoURL
-        return """
+        data.append("""
             <image \(xy(x,y)) \(wh(w,h)) href="\(url)" class="logo" preserveAspectRatio="xMaxYMin" />
             """
+        )
     }
 
     /// Include SVG elements in SVG
     /// - Parameter name: file name to include
     /// - Returns: Text to include
 
-    func svgInclude(_ name: String) -> String {
+    func svgInclude(_ name: String) {
         if let url = SearchPath.search(name), let include = try? String(contentsOf: url) {
-            return include
+            data.append(include)
         }
-        return ""
     }
 }
