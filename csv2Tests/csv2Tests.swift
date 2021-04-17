@@ -10,6 +10,18 @@ import XCTest
 
 var defaults = Defaults.global
 
+func output(_ plotter: Plotter, to name: String?) {
+    if name == nil {
+        plotter.plotPrint()
+    } else {
+        do {
+            try plotter.plotWrite(to: URL(fileURLWithPath: name!))
+        } catch {
+            print(error, to: &standardError)
+        }
+    }
+}
+
 class csv2Tests: XCTestCase {
 
     func csvGen(_ rows: Int, by cols: Int, precision: Int = 4) -> String {
@@ -98,44 +110,30 @@ class csv2Tests: XCTestCase {
         XCTAssertNotNil(settings)
         let svg = SVG(settings!)
         let plot = Plot(csv, settings!, svg)
-        XCTAssertFalse(plot.gen().isEmpty)
+        plot.gen()
+        XCTAssertFalse(svg.data.isEmpty)
     }
 
-    func testSVG() throws {
-        // let csv = CSV(csvData)
-        var svg = try? SVG(Settings.load(settingsJSON(true)))
-
-        XCTAssertNotNil(svg)
-
-        svg = try? SVG(Settings.load(settingsJSON(false)))
-
-        XCTAssertNotNil(svg)
-        // XCTAssertEqual(svg?.propsList[4].name, testName)
-        // XCTAssertEqual(svg?.subTitle, colTestSubTitle)
-
-        // let csvPlot = CSV(plotData)
+    func testPlot() throws {
+        let csvPlot = CSV(plotData)
 
         Colours.reset()
-        svg = try? SVG(Settings.load(settingsJSON(true)))
-        XCTAssertNotNil(svg)
-        // let colPlot = svg!.gen()
+        var settings = try? Settings.load(settingsJSON(true))
+        XCTAssertNotNil(settings)
+        var svg = SVG(settings!)
+        var plot = Plot(csvPlot, settings!, svg)
+        plot.gen()
+        let colPlot = svg.data
 
         Colours.reset()
-        svg = try? SVG(Settings.load(settingsJSON(false)))
-        XCTAssertNotNil(svg)
-        // let rowPlot = svg!.gen()
+        settings = try? Settings.load(settingsJSON(true))
+        XCTAssertNotNil(settings)
+        svg = SVG(settings!)
+        plot = Plot(csvPlot, settings!, svg)
+        plot.gen()
+        let rowPlot = svg.data
 
-        // XCTAssertEqual(colPlot, rowPlot)
-
-        /*
-        print(colPlot.difference(from: rowPlot))
-        if colPlot.count == rowPlot.count {
-            for i in 0..<colPlot.count {
-                print("Index: \(i)")
-                print(colPlot[i].difference(from: rowPlot[i]))
-            }
-        }
-        */
+        XCTAssertEqual(colPlot, rowPlot)
     }
 
     func testPlotPath() {
