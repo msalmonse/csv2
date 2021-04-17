@@ -10,9 +10,8 @@ import Foundation
 extension Plot {
 
     /// Draw axes
-    /// - Returns: paths with axes
 
-    func axes() -> String {
+    func axes() {
         var axesPath: [PathCommand] = []
         let x0 = logy ? 1.0 : 0.0
         let y0 = logx ? 1.0 : 0.0
@@ -26,17 +25,15 @@ extension Plot {
             axesPath.append(.vertTo(y: plotPlane.top))
         }
 
-        return plotter.plotPath(axesPath, props: propsList.axes, fill: false)
+        plotter.plotPath(axesPath, props: propsList.axes, fill: false)
     }
 
     /// Draw abcissa tags
-    /// - Returns: String to draw tags
 
-    func xTags() -> String {
+    func xTags() {
         let xiValues = xiList()
         let k = settings.csv.xTagHeader
         var tagsPath: [PathCommand] = []
-        var labels = [""]
 
         /// Fetch text from csv data
         /// - Parameters:
@@ -68,16 +65,11 @@ extension Plot {
                     let xpos = ts.xpos(x)
                     tagsPath.append(.moveTo(x: xpos, y: positions.xTagsTopY))
                     tagsPath.append(.vertTo(y: plotPlane.top))
-                    labels.append(
-                        plotter.plotText(x: xpos, y: positions.xTagsY, text: text,
-                                         props: propsList.xLabel
-                        )
-                    )
+                    plotter.plotText(x: xpos, y: positions.xTagsY, text: text, props: propsList.xLabel)
                 }
             }
         }
-        return plotter.plotPath(tagsPath, props: propsList.xLabel, fill: false)
-            + labels.joined(separator: "\n")
+        plotter.plotPath(tagsPath, props: propsList.xLabel, fill: false)
     }
 
     /// Normalize tick value
@@ -117,11 +109,9 @@ extension Plot {
     }
 
     /// Draw vertical ticks
-    /// - Returns: path for the ticks
 
     func xTick() -> String {
         var tickPath: [PathCommand] = []
-        var labels = [""]
         var tick = tickNorm(
             settings.dim.xTick,
             dpp: dataPlane.width/plotPlane.width,
@@ -137,12 +127,12 @@ extension Plot {
             if dataPlane.inHoriz(x) {
                 tickPath.append(.moveTo(x: ts.xpos(x), y: plotPlane.bottom))
                 tickPath.append(.vertTo(y: plotPlane.top))
-                labels.append(xLabelText(label(x, intTick), x: ts.xpos(x), y: positions.xTicksY))
+                xLabelText(label(x, intTick), x: ts.xpos(x), y: positions.xTicksY)
             }
             if dataPlane.inHoriz(-x) {
                 tickPath.append(.moveTo(x: ts.xpos(-x), y: plotPlane.bottom))
                 tickPath.append(.vertTo(y: plotPlane.top))
-                labels.append(xLabelText(label(-x, intTick), x: ts.xpos(-x), y: positions.xTicksY))
+                xLabelText(label(-x, intTick), x: ts.xpos(-x), y: positions.xTicksY)
             }
             x += tick
             if logx && x > 10.0 * tick {
@@ -151,15 +141,13 @@ extension Plot {
             }
         }
 
-        return plotter.plotPath(tickPath, props: propsList.xLabel, fill: false) + labels.joined(separator: "\n")
+        plotter.plotPath(tickPath, props: propsList.xLabel, fill: false)
     }
 
     /// Draw horizontal ticks
-    /// - Returns: path for the ticks
 
-    func yTick() -> String {
+    func yTick() {
         var tickPath: [PathCommand] = []
-        var labels = [""]
         var tick = tickNorm(
             settings.dim.yTick,
             dpp: dataPlane.height/plotPlane.height,
@@ -175,12 +163,12 @@ extension Plot {
             if dataPlane.inVert(y) {
                 tickPath.append(.moveTo(x: plotPlane.left, y: ts.ypos(y)))
                 tickPath.append(.horizTo(x: plotPlane.right))
-                labels.append(yLabelText(label(y, intTick), x: positions.yTickX, y: ts.ypos(y)))
+                yLabelText(label(y, intTick), x: positions.yTickX, y: ts.ypos(y))
             }
             if dataPlane.inVert(-y) {
                 tickPath.append(.moveTo(x: plotPlane.left, y: ts.ypos(-y)))
                 tickPath.append(.horizTo(x: plotPlane.right))
-                labels.append(yLabelText(label(-y, intTick), x: positions.yTickX, y: ts.ypos(-y)))
+                yLabelText(label(-y, intTick), x: positions.yTickX, y: ts.ypos(-y))
             }
             y += tick
             if logy && y > 10.0 * tick {
@@ -189,6 +177,6 @@ extension Plot {
             }
         }
 
-        return plotter.plotPath(tickPath, props: propsList.yLabel, fill: false) + labels.joined(separator: "\n")
+        plotter.plotPath(tickPath, props: propsList.yLabel, fill: false)
     }
 }

@@ -23,37 +23,33 @@ extension Plot {
     }
 
     /// Add title to the svg
-    /// - Returns: String to display title
 
-    func titleText() -> String {
+    func titleText() {
         let x = width/2.0
         let y = positions.titleY
-        return plotter.plotText(x: x, y: y, text: settings.plotter.title, props: propsList.title)
+        plotter.plotText(x: x, y: y, text: settings.plotter.title, props: propsList.title)
     }
 
     /// Add sub title to the svg
-    /// - Returns: String to display sub title
 
-    func subTitleText(_ subTitle: String) -> String {
+    func subTitleText(_ subTitle: String) {
         let x = width/2.0
         let y = positions.subTitleY
-        return plotter.plotText(x: x, y: y, text: subTitle, props: propsList.subTitle)
+        plotter.plotText(x: x, y: y, text: subTitle, props: propsList.subTitle)
     }
 
     /// Add title to the x axis
-    /// - Returns: String to display title
 
-    func xTitleText(_ label: String, x: Double, y: Double) -> String {
-        return plotter.plotText(x: x, y: y, text: label, props: propsList.xTitle)
+    func xTitleText(_ label: String, x: Double, y: Double) {
+        plotter.plotText(x: x, y: y, text: label, props: propsList.xTitle)
     }
 
     /// Add title to the y axis
-    /// - Returns: String to display title
 
-    func yTitleText(_ label: String, x: Double, y: Double) -> String {
+    func yTitleText(_ label: String, x: Double, y: Double) {
         var props = propsList.yTitle
         props.transform = Transform.rotateAround(x: x, y: y, sin: 1.0, cos: 0.0)
-        return plotter.plotText(x: x, y: y, text: label, props: props)
+        plotter.plotText(x: x, y: y, text: label, props: props)
     }
 
     /// Format a value suitable to be used as a label
@@ -77,10 +73,9 @@ extension Plot {
     ///   - label: text to show
     ///   - x: x position
     ///   - y: y position
-    /// - Returns: text string
 
-    func xLabelText(_ label: String, x: Double, y: Double) -> String {
-        return plotter.plotText(x: x, y: y, text: label, props: propsList.xLabel)
+    func xLabelText(_ label: String, x: Double, y: Double) {
+        plotter.plotText(x: x, y: y, text: label, props: propsList.xLabel)
     }
 
     /// Generate a text string for a y label
@@ -88,9 +83,8 @@ extension Plot {
     ///   - label: text to show
     ///   - x: x position
     ///   - y: y position
-    /// - Returns: text string
 
-    func yLabelText(_ label: String, x: Double, y: Double) -> String {
-        return plotter.plotText(x: x, y: y, text: label, props: propsList.yLabel)
+    func yLabelText(_ label: String, x: Double, y: Double) {
+        plotter.plotText(x: x, y: y, text: label, props: propsList.yLabel)
     }
 }
