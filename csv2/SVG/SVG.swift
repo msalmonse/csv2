@@ -26,18 +26,19 @@ class SVG: Plotter, ReflectedStringConvertible {
     var hashID: String { svgID == "none" ? "" : "#\(svgID)" }
 
     // Tags
-    let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"
+    let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
     var svgTag: String {
         String(
-                format: "<svg %@ width=\"%.0f\" height=\"%.0f\" xmlns=\"http://www.w3.org/2000/svg\">",
+                format: "<svg %@ width=\"%.0f\" height=\"%.0f\" xmlns=\"http://www.w3.org/2000/svg\">\n",
             svgID != "none" ? "id=\"\(svgID)\"" : "" , settings.width, settings.height
         )
     }
-    let svgTagEnd = "</svg>"
+    let svgTagEnd = "\n</svg>\n"
     let comment = """
     <!--
         Created by \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) \(AppInfo.origin)
       -->
+
     """
 
     init(_ settings: Settings) {
@@ -60,12 +61,15 @@ class SVG: Plotter, ReflectedStringConvertible {
         data.append("""
                 <defs>
                 <clipPath id="plotable">
+
                 """
             )
         rectTag(x: x, y: y, width: w, height: h)
         data.append("""
+
             </clipPath>
             </defs>
+
             """
             .data(using: .utf8)!
         )

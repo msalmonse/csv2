@@ -100,6 +100,7 @@ extension SVG {
 
         cssIncludes(&result)
 
+        result.append("")   // Add newline
         data.append(result.joined(separator: "\n"))
     }
 }

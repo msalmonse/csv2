@@ -12,6 +12,7 @@ extension SVG {
     func plotClipStart(plotPlane: Plane) {
         data.append("""
             <g clip-path="url(#plotable)" class="plotarea">
+
             """
         )
     }
@@ -39,7 +40,7 @@ extension SVG {
         if let cssClass = props.cssClass { result.append("class=\"\(cssClass)\(fill ? " fill" : "")\"") }
         result.append("d=\"")
         result.append(contentsOf: points.map { $0.command() })
-        result.append("\" />")
+        result.append("\" />\n")
 
         data.append(result.joined(separator: " "))
     }
