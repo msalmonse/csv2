@@ -10,12 +10,15 @@ import Foundation
 /// The actual plotter used by the abstarct Plot class
 
 protocol Plotter {
-    func plotGroup(plotPlane: Plane, lines: String) -> String
-    func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) -> String
-    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool) -> String
-    func plotRect(_ plane: Plane, rx: Double, props: Properties) -> String
-    func plotTail() -> String
-    func plotText(x: Double, y: Double, text: String, props: Properties) -> String
+    func plotClipStart(plotPlane: Plane)
+    func plotClipEnd()
+    func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList)
+    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool)
+    func plotPrint()
+    func plotRect(_ plane: Plane, rx: Double, props: Properties)
+    func plotTail()
+    func plotText(x: Double, y: Double, text: String, props: Properties)
+    func plotWrite(to url: URL) throws
 }
 
 enum PlotterType {
