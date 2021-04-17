@@ -14,7 +14,7 @@ extension Canvas {
     ///   - props: path properties
     /// - Returns: JavaScript string
 
-    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool) -> String {
+    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool) {
         var result: [String] = [""]
         let op = fill ? "fill" : "stroke"
 
@@ -23,6 +23,6 @@ extension Canvas {
         let path = points.map { $0.command() }.joined(separator: " ")
         result.append("p = new Path2D('\(path)'); ctx.\(op)(p)")
 
-        return result.joined(separator: "\n    ")
+        data.append(result.joined(separator: "\n    "))
     }
 }

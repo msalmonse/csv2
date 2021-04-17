@@ -47,21 +47,18 @@ extension Plot {
     ///   - colour: stroke colour
     /// - Returns: SVG as an array of strings
 
-    func shapeGen(name: String, colour: String) -> [String] {
-        var result: [String] = []
+    func shapeGen(name: String, colour: String) {
         if let shape = Shape.lookup(name) {
             var propsList = PropertiesList(count: 1, settings: settings)
             propsList.plots[0].cssClass = name
             propsList.plots[0].colour = colour
-            result.append(plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList))
+            plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
             let shapePath = [
                 PathCommand.moveTo(x: width/2.0, y: height/2.0),
                 shape.pathCommand(w: shapeWidth)
             ]
-            result.append(plotter.plotPath(shapePath, props: propsList.plots[0], fill: false))
-            result.append(plotter.plotTail())
+            plotter.plotPath(shapePath, props: propsList.plots[0], fill: false)
+            plotter.plotTail()
         }
-
-        return result
     }
 }

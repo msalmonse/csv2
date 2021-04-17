@@ -12,21 +12,16 @@ extension Plot {
     /// Plot the non-index and non header rows
     /// - Returns: An array of the path elements for the columns
 
-    func rowPlot() -> [String] {
-        var paths: [String] = []
-
+    func rowPlot() {
         let xiValues = settings.plot.sortx ? xiList().sorted() : xiList()
-        let staple = barGet(xiValues)
+        let bar = barGet(xiValues)
         for i in 0..<csv.rowCt where i != index && propsList.plots[i].included {
             let yValues = csv.rowValues(i)
-            paths.append(
-                plotCommon(
-                    xiValues, yValues,
-                    propsList.plots[i],
-                    staple: staple
-                )
+            plotCommon(
+                xiValues, yValues,
+                propsList.plots[i],
+                bar: bar
             )
         }
-        return paths
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 extension Plot {
-    func dashesListGen(_ step: Double, _ defaults: Defaults) -> [String] {
+    func dashesListGen(_ step: Double, _ defaults: Defaults) {
         let colour = defaults.colours.first ?? "black"
         let dashes = defaults.dashes + Dashes.all(width * 3.0)
 
@@ -28,18 +28,13 @@ extension Plot {
         var y = step
         var yPath: Double { y - step/10.0 }
 
-        var result: [String] = [
-            plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
-        ]
+        plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
 
         for i in dashes.indices {
             y += step
             let points = [ PathCommand.moveTo(x: xLeft, y: yPath), .horizTo(x: xRight) ]
-            result.append(plotter.plotPath(points, props: propsList.plots[i], fill: false))
-            result.append(plotter.plotText(x: xText, y: y, text: dashes[i], props: propsList.plots[i]))
+            plotter.plotPath(points, props: propsList.plots[i], fill: false)
+            plotter.plotText(x: xText, y: y, text: dashes[i], props: propsList.plots[i])
         }
-
-        result.append(plotter.plotTail())
-        return result
     }
 }

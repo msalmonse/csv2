@@ -17,9 +17,9 @@ extension Plot {
     ///   - right: rectangle right
     /// - Returns: rectangle string
 
-    private func legendBG(_ top: Double, _ bottom: Double, _ left: Double, right: Double) -> String {
+    private func legendBG(_ top: Double, _ bottom: Double, _ left: Double, right: Double) {
         let plane = Plane(top: top, bottom: bottom, left: left, right: right)
-        return plotter.plotRect(plane, rx: strokeWidth * 3.0, props: propsList.legendBG)
+        plotter.plotRect(plane, rx: strokeWidth * 3.0, props: propsList.legendBG)
     }
 
     /// Draw the shape used for a scatter plot
@@ -32,9 +32,9 @@ extension Plot {
     private func scatteredLine(
         _ x: Double, _ y: Double,
         _ props: Properties
-    ) -> String {
-        guard props.shape != nil else { return "" }
-        return plotter.plotPath([
+    ) {
+        guard props.shape != nil else { return }
+        plotter.plotPath([
                 PathCommand.moveTo(x: x, y: y),
                 props.shape!.pathCommand(w: shapeWidth)
             ],
@@ -49,14 +49,13 @@ extension Plot {
     ///   - right: right end of line
     ///   - y: y position
     ///   - props: path properties
-    /// - Returns: path string
 
     private func pointedLine(
         _ left: Double, _ mid: Double, _ right: Double, _ y: Double,
         _ props: Properties
-    ) -> String {
-        guard props.shape != nil else { return "" }
-        return plotter.plotPath([
+    ) {
+        guard props.shape != nil else { return }
+        plotter.plotPath([
                 PathCommand.moveTo(x: left, y: y),
                 .horizTo(x: mid),
                 props.shape!.pathCommand(w: shapeWidth),
@@ -72,12 +71,11 @@ extension Plot {
     ///   - right: right end of line
     ///   - y: y position
     ///   - props: path properties
-    /// - Returns: path string
 
     private func plainLine(
         _ left: Double, _ right: Double, _ y: Double,
         _ props: Properties
-    ) -> String {
+    ) {
         return plotter.plotPath([
                 PathCommand.moveTo(x: left, y: y),
                 .horizTo(x: right)
@@ -98,27 +96,24 @@ extension Plot {
     }
 
     /// Add legends to an SVG
-    /// - Returns: Text string with all legends
 
-    func legend() -> String {
-        if positions.legendLeftX >= width { return "" }
+    func legend() {
+        if positions.legendLeftX >= width { return }
         let x = positions.legendLeftX
         let xLeft = x + legendSize/2.0
         let xRight = positions.legendRightX - legendSize/2.0
         let xMid = (xLeft + xRight)/2.0
         let yStep = legendSize * 1.5
         var y = positions.legendY + yStep
-        var legends: [String] = [
-            "",         // reserved for rect below
-            plotter.plotText(x: x, y: y, text: "Legends:", props: propsList.legendHeadline)
-        ]
         y += yStep/2.0
         let plotProps = propsList.plots
+
+        plotter.plotText(x: x, y: y, text: "Legends:", props: propsList.legendHeadline)
 
         for i in plotProps.indices where i != index && plotProps[i].included {
             y += yStep
             if y > height - yStep - yStep {
-                legends.append(plotter.plotText(x: xLeft, y: y, text: "…", props: propsList.legend))
+                plotter.plotText(x: xLeft, y: y, text: "…", props: propsList.legend)
                 break
             }
             var propsi = plotProps[i]
@@ -126,23 +121,17 @@ extension Plot {
             propsi.cssClass = propsi.cssClass! + " legend"
             propsi.fontSize = propsList.legend.fontSize
             propsi.textAlign = propsList.legend.textAlign
-            legends.append(plotter.plotText(x: xLeft, y: y, text: text, props: propsi))
+            plotter.plotText(x: xLeft, y: y, text: text, props: propsi)
             let lineY = y + yStep/2.0
             if propsi.dashed || propsi.pointed || propsi.scattered { y += yStep }
             switch (propsi.dashed, propsi.pointed, propsi.scattered) {
-            case (_,_,true):
-                legends.append(scatteredLine(xMid - shapeWidth, lineY, propsi))
-            case (_,true,false):
-                legends.append(pointedLine(xLeft, xMid, xRight, lineY, propsi))
-            case (true,_,false):
-                legends.append(plainLine(xLeft, xRight, lineY, propsi))
+            case (_,_,true): scatteredLine(xMid - shapeWidth, lineY, propsi)
+            case (_,true,false): pointedLine(xLeft, xMid, xRight, lineY, propsi)
+            case (true,_,false): plainLine(xLeft, xRight, lineY, propsi)
             default: break
             }
         }
 
-        legends[0] =
-            legendBG(positions.legendY, y + yStep, x - legendSize, right: positions.legendRightX)
-
-        return legends.joined(separator: "\n")
+        legendBG(positions.legendY, y + yStep, x - legendSize, right: positions.legendRightX)
     }
 }

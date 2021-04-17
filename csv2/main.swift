@@ -27,13 +27,13 @@ if commonOpts.version {
 if commonOpts.shapenames {
     print(Shape.allNames())
 } else if commonOpts.show.hasContent {
-    output(showShape(shape: commonOpts.show, defaults: defaults), to: commonOpts.outName)
+    showShape(shape: commonOpts.show, defaults: defaults, to: commonOpts.outName)
 } else if commonOpts.bitmap.hasEntries {
     print(bitmap(commonOpts.bitmap))
 } else if commonOpts.colourslist {
-    output(showColoursList(defaults), to: commonOpts.outName)
+    showColoursList(defaults, to: commonOpts.outName)
 } else if commonOpts.dasheslist {
-    output(showDashesList(defaults), to: commonOpts.outName)
+    showDashesList(defaults, to: commonOpts.outName)
 } else {
     // use a csvName of - to mean use stdin
     if commonOpts.csvName == "-" { commonOpts.csvName = nil }
@@ -49,7 +49,7 @@ if commonOpts.shapenames {
     if commonOpts.debug &== 2 { print(settings ?? "Nil settings", to: &standardError) }
 
     if command.ownOptions(key: .canvastag, default: false) {
-        output([Canvas.canvasTag(settings!)], to: commonOpts.outName)
+        print(Canvas.canvasTag(settings!))
         exit(0)
     }
 
@@ -66,7 +66,8 @@ if commonOpts.shapenames {
     if commonOpts.debug &== 8 { print(plotter, to: &standardError) }
 
     let plot = Plot(csv!, settings!, plotter)
-    output(plot.gen(), to: commonOpts.outName)
+    plot.gen()
+    output(plotter, to: commonOpts.outName)
 }
 
 /// Determine source of CSV data
@@ -100,14 +101,12 @@ private func jsonURL(_ opts: Options) -> URL {
 ///   - tagList: the text array
 ///   - name: file name
 
-private func output(_ tagList: [String], to name: String?) {
+func output(_ plotter: Plotter, to name: String?) {
     if name == nil {
-        _ = tagList.map { print($0) }
+        plotter.plotPrint()
     } else {
-        let text = tagList.joined(separator: "\n") + "\n"
-        let data = Data(text.utf8)
         do {
-            try data.write(to: URL(fileURLWithPath: name!))
+            try plotter.plotWrite(to: URL(fileURLWithPath: name!))
         } catch {
             print(error, to: &standardError)
         }

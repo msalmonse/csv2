@@ -15,7 +15,7 @@ extension Canvas {
     ///   - lines: the plot lines
     /// - Returns: the clipped lines
 
-    func plotGroup(plotPlane: Plane, lines: String) -> String {
+    func plotClipStart(plotPlane: Plane) {
         let shapeWidth = settings.css.shapeWidth
         // Make plottable a bit bigger so that shapes aren't clipped
         let left = (plotPlane.left - shapeWidth * 2.0)
@@ -33,13 +33,18 @@ extension Canvas {
         result.append("ctx.lineTo(\(left.f(0)), \(bottom.f(1)))")
         result.append("ctx.clip()")
         result.append("ctx.globalAlpha = \(opacity.f(3))")
-        result.append(lines)
+
+        data.append(result.joined(separator: "\n    "))
+    }
+
+    func plotClipEnd() {
+        var result = [""]
         result.append("")
         result.append("ctx.restore()")
         result.append("ctx.globalAlpha = 1.0")
         result.append("ctx.beginPath()")
 
-        return result.joined(separator: "\n    ")
+        data.append(result.joined(separator: "\n    "))
     }
 
     /// Prepare for plotting
@@ -49,7 +54,7 @@ extension Canvas {
     ///   - propsList: a list of properties
     /// - Returns: the JS to start
 
-    func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) -> String {
+    func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) {
         let id = settings.plotter.canvasID
         let name = "canvas_\(id)"
         let url = settings.plotter.logoURL
@@ -57,20 +62,20 @@ extension Canvas {
             url: url, left: positions.logoX, top: positions.logoY,
             width: settings.plotter.logoWidth, height: settings.plotter.logoHeight
         )
-        return """
+        data.append("""
             const \(name) = document.getElementById('\(id)');
             if (\(name).getContext) {
                 const ctx = \(name).getContext('2d');
 
             \(logo)
             """
+        )
     }
 
     /// The finish of the plotting
-    /// - Returns: JS to finish
 
-    func plotTail() -> String {
-        return "}"
+    func plotTail() {
+        data.append("\n}\n")
     }
 
     /// Write text to canvas
@@ -79,14 +84,13 @@ extension Canvas {
     ///   - y: y position
     ///   - text: text to write
     ///   - props: text properties
-    /// - Returns: JS to wite text
 
-    func plotText(x: Double, y: Double, text: String, props: Properties) -> String {
+    func plotText(x: Double, y: Double, text: String, props: Properties) {
         var result = [""]
         ctx.sync(props, &result, isText: true)
         result.append("ctx.fillText('\(text)', \(x.f(1)), \(y.f(1)))")
         ctx.resetTransform(&result)
-        return result.joined(separator: "\n    ")
+        data.append(result.joined(separator: "\n    "))
     }
 
     /// Draw a logo on the canvas
@@ -96,7 +100,6 @@ extension Canvas {
     ///   - top: top edge
     ///   - width: width
     ///   - height: height
-    /// - Returns: JS to add logo
 
     func drawLogo(url: String, left: Double, top: Double, width: Double, height: Double) -> String {
         var result: [String] = [""]

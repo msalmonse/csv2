@@ -75,6 +75,8 @@
 		C4B2F9AA26297EE300CC5430 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F9A926297EE300CC5430 /* ArgumentParser */; };
 		C4B2F9AE262B286400CC5430 /* SVGout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9AD262B286400CC5430 /* SVGout.swift */; };
 		C4B2F9AF262B286400CC5430 /* SVGout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9AD262B286400CC5430 /* SVGout.swift */; };
+		C4B2F9B5262B488400CC5430 /* CanvasOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9B4262B488400CC5430 /* CanvasOut.swift */; };
+		C4B2F9B6262B488400CC5430 /* CanvasOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9B4262B488400CC5430 /* CanvasOut.swift */; };
 		C4BDCFB6261E156F00D8C589 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDCFB5261E156F00D8C589 /* Canvas.swift */; };
 		C4BDCFBD261EFA0600D8C589 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A6E3B261EDBED00784F54 /* Transform.swift */; };
 		C4C0C462260E589A0072699C /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C461260E589A0072699C /* Style.swift */; };
@@ -182,6 +184,7 @@
 		C49B7D6F25DC055400CEAB8C /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		C4B2F967262576FF00CC5430 /* XIlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XIlist.swift; sourceTree = "<group>"; };
 		C4B2F9AD262B286400CC5430 /* SVGout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGout.swift; sourceTree = "<group>"; };
+		C4B2F9B4262B488400CC5430 /* CanvasOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasOut.swift; sourceTree = "<group>"; };
 		C4BDCFB5261E156F00D8C589 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		C4C0C461260E589A0072699C /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		C4C0C46E260F5F470072699C /* css.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = css.md; sourceTree = "<group>"; };
@@ -342,6 +345,7 @@
 			children = (
 				C4EFA4C22620D5C40026BD9A /* CTX.swift */,
 				C4BDCFB5261E156F00D8C589 /* Canvas.swift */,
+				C4B2F9B4262B488400CC5430 /* CanvasOut.swift */,
 				C4EFA4BA2620A92B0026BD9A /* JSplotter.swift */,
 				C4EFA4BE2620D42C0026BD9A /* Path2D.swift */,
 				C4EFA4CF2622B4B50026BD9A /* Rect2D.swift */,
@@ -676,6 +680,7 @@
 				C482B9FD25EE8D4D00E51A50 /* stderr.swift in Sources */,
 				C45323F225F8F157007D741C /* Positions.swift in Sources */,
 				C4C0C4B7261458F10072699C /* SearchPath.swift in Sources */,
+				C4B2F9B5262B488400CC5430 /* CanvasOut.swift in Sources */,
 				C4EA5D1F25EB7B8A00E104E0 /* TransScale.swift in Sources */,
 				C4F1B3942609DFFA0035AC62 /* ShowDashesList.swift in Sources */,
 				C4255F3F25E423A7002DFE80 /* Path.swift in Sources */,
@@ -729,6 +734,7 @@
 				C446E80E25F4BAC1007B1A05 /* RowPlot.swift in Sources */,
 				C4EA5D2B25EB90C900E104E0 /* Colours.swift in Sources */,
 				C4EFA4CC262166700026BD9A /* CTX.swift in Sources */,
+				C4B2F9B6262B488400CC5430 /* CanvasOut.swift in Sources */,
 				C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */,
 				C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */,
 				C4EFA4A7261EEBC50026BD9A /* SVGplotter.swift in Sources */,

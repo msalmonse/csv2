@@ -25,7 +25,7 @@ extension Plot {
         var state: PlotState
         let props: Properties
         weak var plot: Plot?
-        let staple: Bar?
+        let bar: Bar?
 
         let limit: Double
         let ts: TransScale
@@ -35,15 +35,15 @@ extension Plot {
             ts: TransScale,
             limit: Double,
             plot: Plot,
-            staple: Bar?
+            bar: Bar?
         ) {
             self.ts = ts
             self.limit = limit
             self.props = props
             self.plot = plot
-            self.staple = staple
+            self.bar = bar
 
-            switch (props.scattered, props.bar >= 0, staple != nil) {
+            switch (props.scattered, props.bar >= 0, bar != nil) {
             case (true,_,_): state = .scatter
             case(false,true,true): state = .staple
             default: state = .move
@@ -129,7 +129,7 @@ extension Plot {
                 }
             case .staple:
                 if let (p0, _) = plot?.posClip(Point(x: pos.x, y: plot?.point00.y ?? 0.0)) {
-                    shapePoints.append(staple!.path(p0: p0, y: pos.y, props.bar))
+                    shapePoints.append(bar!.path(p0: p0, y: pos.y, props.bar))
                 }
             case .clipped2:
                 // Ignore all data till we are not clipped, just move
@@ -160,20 +160,19 @@ extension Plot {
     ///   - yValues: ordinate values
     ///   - props: plot properties
     ///   - staple: staple diagram details
-    /// - Returns: Path String
 
     func plotCommon(
         _ xiValues: [XIvalue],
         _ yValues: [Double?],
         _ props: Properties,
-        staple: Bar?
-    ) -> String {
+        bar: Bar?
+    ) {
         let state = PlotCommonState(
             props: props,
             ts: ts,
             limit: limit,
             plot: self,
-            staple: staple
+            bar: bar
         )
         var yɑ = Double.infinity
         let plotShape = props.shape?.pathCommand(w: shapeWidth) ?? .circleStar(w: shapeWidth)
@@ -212,6 +211,6 @@ extension Plot {
                 plotProps.fill = rgba.modify(alpha: 0.75).asText
             }
         }
-        return plotter.plotPath(state.pathPoints + state.shapePoints, props: plotProps, fill: fill)
+        plotter.plotPath(state.pathPoints + state.shapePoints, props: plotProps, fill: fill)
     }
 }

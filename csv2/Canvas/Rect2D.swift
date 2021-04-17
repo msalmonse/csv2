@@ -15,7 +15,7 @@ extension Canvas {
     ///   - props: rectangle properties
     /// - Returns: JS code to create rectangle
 
-    func plotRect(_ plane: Plane, rx: Double, props: Properties) -> String {
+    func plotRect(_ plane: Plane, rx: Double, props: Properties) {
         var result = [""]
         ctx.sync(props, &result)
         if rx == 0.0 {
@@ -45,6 +45,6 @@ extension Canvas {
             result.append("p = new Path2D('\(path)')")
             result.append("ctx.stroke(p)")
         }
-        return result.joined(separator: "\n    ")
+        data.append(result.joined(separator: "\n    "))
     }
 }

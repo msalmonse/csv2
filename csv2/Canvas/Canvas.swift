@@ -8,6 +8,9 @@
 import Foundation
 
 class Canvas: Plotter {
+    // Canvas data
+    var data = Data()
+
     let settings: Settings
 
     var ctx = CTX()

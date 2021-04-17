@@ -110,7 +110,7 @@ extension Plot {
 
     /// Draw vertical ticks
 
-    func xTick() -> String {
+    func xTick() {
         var tickPath: [PathCommand] = []
         var tick = tickNorm(
             settings.dim.xTick,

@@ -38,9 +38,9 @@ struct Bar {
 
     init(pixels: Double) {
         let count = Double(Self.count)
-        let pps = pixels/count                  // pixels per staple
-        let gap = max(2.0, pps/16.0)
-        let width = floor(pps - gap)
+        let ppb = pixels/count                  // pixels per bar
+        let gap = max(2.0, ppb/16.0)
+        let width = floor(ppb - gap)
         let offset = width + gap
         self.init(offset: offset, width: width)
     }

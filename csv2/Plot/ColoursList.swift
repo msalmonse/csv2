@@ -8,7 +8,7 @@
 import Foundation
 
 extension Plot {
-    func coloursListGen(_ step: Double, _ defaults: Defaults) -> [String] {
+    func coloursListGen(_ step: Double, _ defaults: Defaults) {
         let colours = defaults.colours + Colours.all
         let xText = width/2.0
         let lRect = width/8.0
@@ -25,22 +25,13 @@ extension Plot {
 
         var y = step + step
         var yRect: Double { y - hRect * 0.8 }
-        var result: [String] = [
-            plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
-        ]
+        plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
 
         for i in colours.indices {
-            result.append(
-                plotter.plotText(x: xText, y: y, text: colours[i], props: propsList.plots[i])
-            )
+            plotter.plotText(x: xText, y: y, text: colours[i], props: propsList.plots[i])
             let plane = Plane(top: yRect, bottom: yRect + hRect, left: lRect, right: rRect)
-            result.append(
-                plotter.plotRect(plane, rx: rx, props: propsList.plots[i])
-            )
+            plotter.plotRect(plane, rx: rx, props: propsList.plots[i])
             y += step
         }
-
-        result.append(plotter.plotTail())
-        return result
     }
 }
