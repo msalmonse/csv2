@@ -12,36 +12,33 @@ extension Plot {
     /// Generate an  group with the plot lines
     /// - Returns: Array of SVG elements
 
-    func lineGroup() -> String {
-        let result = settings.inColumns ? columnPlot() : rowPlot()
-
-        return plotter.plotGroup(plotPlane: plotPlane, lines: result.joined(separator: "\n"))
+    func lineGroup() {
+        plotter.plotClipStart(plotPlane: plotPlane)
+        settings.inColumns ? columnPlot() : rowPlot()
+        plotter.plotClipEnd()
     }
 
     /// Generate a plotter document
     /// - Returns: array of string elements
 
-    func gen() -> [String] {
-        var result: [String] = []
-        result.append(plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList))
-        if settings.dim.xTick >= 0 { result.append(xTick()) }
-        if settings.dim.yTick >= 0 { result.append(yTick()) }
-        if settings.csv.xTagHeader >= 0 { result.append(xTags()) }
-        result.append(axes())
-        result.append(lineGroup())
+    func gen() {
+        plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
+        if settings.dim.xTick >= 0 { xTick() }
+        if settings.dim.yTick >= 0 { yTick() }
+        if settings.csv.xTagHeader >= 0 { xTags() }
+        axes()
+        lineGroup()
         if settings.plotter.xTitle.hasContent {
-            result.append(xTitleText(settings.plotter.xTitle, x: plotPlane.hMid, y: positions.xTitleY))
+            xTitleText(settings.plotter.xTitle, x: plotPlane.hMid, y: positions.xTitleY)
         }
         if settings.plotter.yTitle.hasContent {
-            result.append(yTitleText(settings.plotter.yTitle, x: positions.yTitleX, y: plotPlane.vMid))
+            yTitleText(settings.plotter.yTitle, x: positions.yTitleX, y: plotPlane.vMid)
         }
-        if settings.plotter.legends { result.append(legend()) }
-        if let subTitle = subTitleLookup() { result.append(subTitleText(subTitle)) }
-        if settings.plotter.title.hasContent { result.append(titleText()) }
+        if settings.plotter.legends { legend() }
+        if let subTitle = subTitleLookup() { subTitleText(subTitle) }
+        if settings.plotter.title.hasContent { titleText() }
 
-        result.append(plotter.plotTail())
-
-        return result
+        plotter.plotTail()
     }
 
     /// Generate an SVG to display a shape
