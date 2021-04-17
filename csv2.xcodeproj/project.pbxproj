@@ -73,6 +73,8 @@
 		C4B2F99726296AAE00CC5430 /* CSVParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F99626296AAE00CC5430 /* CSVParser */; };
 		C4B2F9A826297EDD00CC5430 /* CSVParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F9A726297EDD00CC5430 /* CSVParser */; };
 		C4B2F9AA26297EE300CC5430 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F9A926297EE300CC5430 /* ArgumentParser */; };
+		C4B2F9AE262B286400CC5430 /* SVGout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9AD262B286400CC5430 /* SVGout.swift */; };
+		C4B2F9AF262B286400CC5430 /* SVGout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9AD262B286400CC5430 /* SVGout.swift */; };
 		C4BDCFB6261E156F00D8C589 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDCFB5261E156F00D8C589 /* Canvas.swift */; };
 		C4BDCFBD261EFA0600D8C589 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A6E3B261EDBED00784F54 /* Transform.swift */; };
 		C4C0C462260E589A0072699C /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C461260E589A0072699C /* Style.swift */; };
@@ -179,6 +181,7 @@
 		C49B7D6C25DC03B500CEAB8C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C49B7D6F25DC055400CEAB8C /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		C4B2F967262576FF00CC5430 /* XIlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XIlist.swift; sourceTree = "<group>"; };
+		C4B2F9AD262B286400CC5430 /* SVGout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGout.swift; sourceTree = "<group>"; };
 		C4BDCFB5261E156F00D8C589 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		C4C0C461260E589A0072699C /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		C4C0C46E260F5F470072699C /* css.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = css.md; sourceTree = "<group>"; };
@@ -292,9 +295,10 @@
 		C453240125F938D0007D741C /* SVG */ = {
 			isa = PBXGroup;
 			children = (
-				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
-				C460B672261CD5CD0051BB80 /* SVGplotter.swift */,
 				C4C0C461260E589A0072699C /* Style.swift */,
+				C46A3A7125DE8B4C00F6783A /* SVG.swift */,
+				C4B2F9AD262B286400CC5430 /* SVGout.swift */,
+				C460B672261CD5CD0051BB80 /* SVGplotter.swift */,
 				C460B676261DA8B30051BB80 /* Tags.swift */,
 			);
 			path = SVG;
@@ -619,6 +623,7 @@
 				C4B2F968262576FF00CC5430 /* XIlist.swift in Sources */,
 				C446E80925F4BAA3007B1A05 /* RowPlot.swift in Sources */,
 				C4C0C48A2612FBCD0072699C /* KeyedValue.swift in Sources */,
+				C4B2F9AE262B286400CC5430 /* SVGout.swift in Sources */,
 				C46ADD2126074CD60046F427 /* RandomCSV.swift in Sources */,
 				C480847C25E4E97300BD0A24 /* ColumnPlot.swift in Sources */,
 				C4F20C112601DF4D005D2FE1 /* Dashes.swift in Sources */,
@@ -702,6 +707,7 @@
 				C4C0C4AC26134AC70072699C /* CSVsettings.swift in Sources */,
 				C40CD43625ED007A003944FA /* Axes.swift in Sources */,
 				C449F44F25EC1325006C67EB /* Text.swift in Sources */,
+				C4B2F9AF262B286400CC5430 /* SVGout.swift in Sources */,
 				C4F20C1726027B7C005D2FE1 /* Legends.swift in Sources */,
 				C446E81D25F4E0F7007B1A05 /* PlotCommon.swift in Sources */,
 				C4F20C0926012A67005D2FE1 /* Properties.swift in Sources */,

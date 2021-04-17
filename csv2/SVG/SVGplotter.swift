@@ -9,13 +9,15 @@ import Foundation
 
 extension SVG {
 
-    func plotGroup(plotPlane: Plane, lines: String) {
+    func plotClipStart(plotPlane: Plane) {
         data.append("""
             <g clip-path="url(#plotable)" class="plotarea">
-            \(lines)
-            </g>
             """
         )
+    }
+
+    func plotClipEnd() {
+        data.append("</g>\n")
     }
 
     func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) {
