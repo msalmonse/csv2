@@ -21,8 +21,8 @@ enum CommandPath {
 struct CSVplotter: ParsableCommand {
     static var configuration = CommandConfiguration(
         commandName: AppInfo.name,
-        abstract: "Generate an SVG or Canvas file using data from a CSV file and settings from a JSON file.",
-        subcommands: [Canvas.self, SVG.self],
+        abstract: "Generate an SVG, PNG or, Canvas file using data from a CSV file and settings from a JSON file.",
+        subcommands: [Canvas.self, PNG.self, SVG.self],
         defaultSubcommand: SVG.self
     )
 }
@@ -52,6 +52,24 @@ extension CSVplotter {
 
         @Flag(name: .long, help: "Print the canvas tag")
         var canvastag = false
+    }
+}
+
+extension CSVplotter {
+    struct PNG: ParsableCommand, CSVplotterCommand {
+        static var configuration = CommandConfiguration(
+            abstract: "Plot data on a PNG image"
+        )
+
+        func iAm() -> PlotterType { return PlotterType.png }
+        func options() -> Options { return common }
+        func ownOptions<T>(key: CommandPath, default val: T) -> T {
+            return val
+        }
+
+        @OptionGroup var common: Options
+
+        // PNG specific options
     }
 }
 
@@ -93,6 +111,7 @@ func getCommand() -> CSVplotterCommand {
         var command = try CSVplotter.parseAsRoot()
         switch command {
         case let canvasCmd as CSVplotter.Canvas: result = canvasCmd
+        case let pngCmd as CSVplotter.PNG: result = pngCmd
         case let svgCmd as CSVplotter.SVG: result = svgCmd
         default: try command.run(); exit(0)
         }

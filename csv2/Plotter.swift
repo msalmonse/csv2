@@ -22,11 +22,12 @@ protocol Plotter {
 }
 
 enum PlotterType {
-    case canvas, svg
+    case canvas, png, svg
 
     func plotter(settings: Settings) -> Plotter {
         switch self {
         case .canvas: return Canvas(settings)
+        case .png: return PNG(settings)
         case .svg: return SVG(settings)
         }
     }
