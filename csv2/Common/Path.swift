@@ -34,6 +34,7 @@ enum PathCommand {
     case
         arc(rx: Double, ry: Double, rot: Double, type: ArcType, dx: Double, dy: Double),
                                                     // Draw an arc
+        bar(p0: Point, w: Double, y: Double),       // Draw a bar w wide from p0 to y
         blade(w: Double),                           // Draw a blade of width 2 * w
         circle(r: Double),                          // Draw a circle of radius r
         circleStar(w: Double),                      // Draw a stared circle of width 2*w
@@ -51,7 +52,6 @@ enum PathCommand {
                                         // Draw quadratic bezier curve to x,y with control point cx, cy
         shuriken(w: Double),                        // Draw shuriken
         square(w: Double),                          // Draw a square with sides 2 * w
-        staple(p0: Point, w: Double, y: Double),    // Draw a bar w wide from p0 to y
         star(w: Double),                            // Draw a star of width 2 * w
         triangle(w: Double),                        // Draw a triangle of width 2 * w
         vertBy(dy: Double),                         // Draw line vertically by dy
@@ -65,6 +65,7 @@ enum PathCommand {
         switch self {
         case .arc(let rx, let ry, let rot, let type, let dx, let dy):
             return "a \(rx.f(1)),\(ry.f(1)),\(rot.f(1)),\(type.largeSweep),\(dx.f(1)),\(dy.f(1))"
+        case .bar(let p0, let w, let y): return drawBar(p0: p0, w: w, y: y)
         case .blade(let w): return drawBlade(w: w)
         case .circle(let r): return drawCircle(r: r)
         case .circleStar(let w): return drawCircleStar(w: w)
@@ -82,7 +83,6 @@ enum PathCommand {
             return "Q \(cx.f(1)),\(cy.f(1)), \(x.f(1)),\(y.f(1))"
         case .shuriken(let w): return drawShuriken(w: w)
         case .square(let w): return drawSquare(w: w)
-        case .staple(let p0, let w, let y): return drawStaple(p0: p0, w: w, y: y)
         case .star(let w): return drawStar(w: w)
         case .triangle(let w): return drawTriangle(w: w)
         case .vertBy(let dy): return "v \(dy.f(1))"

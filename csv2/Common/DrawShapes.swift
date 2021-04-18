@@ -9,6 +9,31 @@ import Foundation
 
 extension PathCommand {
 
+    /// Generate a bar
+    /// - Parameters:
+    ///   - p0: the origin
+    ///   - w: width of the bar
+    ///   - y: top or bottom of the bar
+    /// - Returns: path to create the bar
+
+    func drawBar(p0: Point, w: Double, y: Double) -> String {
+        let x0 = p0.x
+        let y0 = p0.y
+        let left = x0 - w/2.0
+        let right = left + w
+        let r = w/32.0
+        return [
+            PathCommand.moveTo(x: x0, y: y0),
+            .horizTo(x: left),
+            .vertTo(y: y + r),
+            .qBezierTo(x: left + r, y: y, cx: left, cy: y),
+            .horizBy(dx: w - 2.0 * r),
+            .qBezierTo(x: right, y: y + r, cx: right, cy: y),
+            .vertTo(y: y0),
+            .z
+        ].map { $0.command() }.joined(separator: " ")
+    }
+
     /// Generate a blade shape
     /// - Parameter w: the width
     /// - Returns: path string for a blade
@@ -130,31 +155,6 @@ extension PathCommand {
             .vertBy(dy: -w2),
             .horizBy(dx: w),
             .moveBy(dx: 0.0, dy: w)
-        ].map { $0.command() }.joined(separator: " ")
-    }
-
-    /// Generate a bar
-    /// - Parameters:
-    ///   - p0: the origin
-    ///   - w: width of the bar
-    ///   - y: top or bottom of the bar
-    /// - Returns: path to create the bar
-
-    func drawStaple(p0: Point, w: Double, y: Double) -> String {
-        let x0 = p0.x
-        let y0 = p0.y
-        let left = x0 - w/2.0
-        let right = left + w
-        let r = w/32.0
-        return [
-            PathCommand.moveTo(x: x0, y: y0),
-            .horizTo(x: left),
-            .vertTo(y: y + r),
-            .qBezierTo(x: left + r, y: y, cx: left, cy: y),
-            .horizBy(dx: w - 2.0 * r),
-            .qBezierTo(x: right, y: y + r, cx: right, cy: y),
-            .vertTo(y: y0),
-            .z
         ].map { $0.command() }.joined(separator: " ")
     }
 

@@ -46,7 +46,7 @@ struct Bar {
     }
 
     func path(p0: Point, y: Double, _ n: Int) -> PathCommand {
-        return .staple(p0: Point(x: p0.x + offsets[n], y: p0.y), w: width, y: y)
+        return .bar(p0: Point(x: p0.x + offsets[n], y: p0.y), w: width, y: y)
     }
 }
 
