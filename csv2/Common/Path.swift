@@ -15,6 +15,10 @@ enum PathCommand {
     case
         bar(p0: Point, w: Double, y: Double),       // Draw a bar w wide from p0 to y
         blade(w: Double),                           // Draw a blade of width 2 * w
+        cBezierBy(dx: Double, dy: Double, c1dx: Double, c1dy: Double, c2dx: Double, c2dy: Double),
+                                    // Draw cubic bezier curve by dx,dy with contol points c1dx,c1dy & c2dx,c2dy
+        cBezierTo(x: Double, y: Double, c1x: Double, c1y: Double, c2x: Double, c2y: Double),
+                                    // Draw cubic bezier curve to x,y with contol points c1x,c1y & c2x,c2y
         circle(r: Double),                          // Draw a circle of radius r
         circleStar(w: Double),                      // Draw a stared circle of width 2*w
         cross(w: Double),                           // a cross of width 2 * w
@@ -26,9 +30,9 @@ enum PathCommand {
         lineBy(dx: Double, dy: Double),             // Draw line by dx,dy
         lineTo(x: Double, y: Double),               // Draw line to x,y
         qBezierBy(dx: Double, dy: Double, cdx: Double, cdy: Double),
-                                        // Draw quadratic bezier curve by dx,dy with control point cdx, cdy
+                                        // Draw quadratic bezier curve by dx,dy with control point cdx,cdy
         qBezierTo(x: Double, y: Double, cx: Double, cy: Double),
-                                        // Draw quadratic bezier curve to x,y with control point cx, cy
+                                        // Draw quadratic bezier curve to x,y with control point cx,cy
         shuriken(w: Double),                        // Draw shuriken
         square(w: Double),                          // Draw a square with sides 2 * w
         star(w: Double),                            // Draw a star of width 2 * w
@@ -42,6 +46,10 @@ enum PathCommand {
 
     var path: String {
         switch self {
+        case .cBezierBy(let dx, let dy, let c1dx, let c1dy, let c2dx, let c2dy):
+            return "c \(c1dx.f(1)),\(c1dy.f(1)) \(c2dx.f(1)),\(c2dy.f(1)) \(dx.f(1)),\(dy.f(1))"
+        case .cBezierTo(let x, let y, let c1x, let c1y, let c2x, let c2y):
+            return "C \(c1x.f(1)),\(c1y.f(1)) \(c2x.f(1)),\(c2y.f(1)) \(x.f(1)),\(y.f(1))"
         case .moveBy(let dx, let dy): return "m \(dx.f(1)),\(dy.f(1))"
         case .moveTo(let x, let y): return "M \(x.f(1)),\(y.f(1))"
         case .horizBy(let dx): return "h \(dx.f(1))"

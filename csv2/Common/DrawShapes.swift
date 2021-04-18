@@ -60,12 +60,13 @@ extension PathCommand {
 
     func drawCircle(r: Double) -> [PathCommand] {
         let r = r * 1.2
+        let c = 0.551915024494 * r
         return [
             Self.moveBy(dx: 0, dy: -r),
-            .qBezierBy(dx: r, dy: r, cdx: r, cdy: 0.0),
-            .qBezierBy(dx: -r, dy: r, cdx: 0.0, cdy: r),
-            .qBezierBy(dx: -r, dy: -r, cdx: -r, cdy: 0.0),
-            .qBezierBy(dx: r, dy: -r, cdx: 0.0, cdy: -r),
+            .cBezierBy(dx:  r, dy:  r, c1dx:  c, c1dy:  0, c2dx:  r, c2dy:  c),
+            .cBezierBy(dx: -r, dy:  r, c1dx:  0, c1dy:  c, c2dx: -c, c2dy:  r),
+            .cBezierBy(dx: -r, dy: -r, c1dx: -c, c1dy:  0, c2dx: -r, c2dy: -c),
+            .cBezierBy(dx:  r, dy: -r, c1dx:  0, c1dy: -c, c2dx:  c, c2dy: -r),
             .moveBy(dx: 0, dy: r)
         ]
     }

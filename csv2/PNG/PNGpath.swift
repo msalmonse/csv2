@@ -22,6 +22,18 @@ extension PNG {
             }
         } else {
             switch command {
+            case .cBezierBy(let dx, let dy, let c1dx, let c1dy, let c2dx, let c2dy):
+                let end = current + CGPoint(x: dx, y: dy)
+                let control1 = current + CGPoint(x: c1dx, y: c1dy)
+                let control2 = current + CGPoint(x: c2dx, y: c2dy)
+                ctx.addCurve(to: end, control1: control1, control2: control2)
+                current = end
+            case .cBezierTo(let x, let y, let c1x, let c1y, let c2x, let c2y):
+                let end = CGPoint(x: x, y: y)
+                let control1 = CGPoint(x: c1x, y: c1y)
+                let control2 = CGPoint(x: c2x, y: c2y)
+                ctx.addCurve(to: end, control1: control1, control2: control2)
+                current = end
             case .horizTo(let x):
                 current = CGPoint(x: CGFloat(x), y: current.y)
                 ctx.addLine(to: current)
@@ -42,11 +54,16 @@ extension PNG {
                 let control = current + CGPoint(x: cdx, y: cdy)
                 ctx.addQuadCurve(to: end, control: control)
                 current = end
+            case .qBezierTo(let x, let y, let cx, let cy):
+                let end = CGPoint(x: x, y: y)
+                let control = CGPoint(x: cx, y: cy)
+                ctx.addQuadCurve(to: end, control: control)
+                current = end
             case .vertTo(let y):
                 current = CGPoint(x: current.x, y: CGFloat(y))
                 ctx.addLine(to: current)
             default:
-                print(command, to: &standardError)
+                print("\(command) not implemented", to: &standardError)
             }
         }
     }
