@@ -10,14 +10,16 @@ import SwiftImage
 
 class PNG: Plotter {
     // image data
-    let image: Image<RGBA<UInt8>>
+    var image: Image<PremultipliedRGBA<UInt8>>
 
     // Plot settings
     let settings: Settings
 
     init(_ settings: Settings) {
         self.settings = settings
-
-        image = Image<RGBA<UInt8>>(width: settings.dim.width, height: settings.dim.height, pixel: .clear)
+        image = Image<PremultipliedRGBA<UInt8>>(
+            width: settings.dim.width, height: settings.dim.height,
+            pixel: PremultipliedRGBA(gray: 1, alpha: 1)
+        )
     }
 }

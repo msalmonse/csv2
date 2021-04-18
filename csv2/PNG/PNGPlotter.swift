@@ -20,10 +20,6 @@ extension PNG {
         return
     }
 
-    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool) {
-        return
-    }
-
     func plotPrint() {
         return
     }
@@ -41,8 +37,12 @@ extension PNG {
     }
 
     func plotWrite(to url: URL) throws {
-        return
+        if let pngData = image.pngData() {
+            do {
+                try pngData.write(to: url)
+            } catch {
+                throw(error)
+            }
+        }
     }
-
-
 }
