@@ -9,31 +9,10 @@ import Foundation
 
 /// path commands
 
-/// Enum describing the arc type
-
-enum ArcType {
-    case
-        longIn,      // longest path, towards the centre
-        longOut,     // longest path away from the centre
-        shortIn,     // shortest path towards centre
-        shortOut     // shortest path away from centre
-
-    var largeSweep: String {
-        switch self {
-        case .longIn: return "1,1"
-        case .longOut: return "1,0"
-        case .shortIn: return "0,1"
-        case .shortOut: return "0,0"
-        }
-    }
-}
-
 /// Enum describing the ways a path can be drawn
 
 enum PathCommand {
     case
-        arc(rx: Double, ry: Double, rot: Double, type: ArcType, dx: Double, dy: Double),
-                                                    // Draw an arc
         bar(p0: Point, w: Double, y: Double),       // Draw a bar w wide from p0 to y
         blade(w: Double),                           // Draw a blade of width 2 * w
         circle(r: Double),                          // Draw a circle of radius r
@@ -61,16 +40,8 @@ enum PathCommand {
     /// Convert a command into a path string
     /// - Returns: path string
 
-    func command() -> String {
+    var path: String {
         switch self {
-        case .arc(let rx, let ry, let rot, let type, let dx, let dy):
-            return "a \(rx.f(1)),\(ry.f(1)),\(rot.f(1)),\(type.largeSweep),\(dx.f(1)),\(dy.f(1))"
-        case .bar(let p0, let w, let y): return drawBar(p0: p0, w: w, y: y)
-        case .blade(let w): return drawBlade(w: w)
-        case .circle(let r): return drawCircle(r: r)
-        case .circleStar(let w): return drawCircleStar(w: w)
-        case .cross(let w): return drawCross(w: w)
-        case .diamond(let w): return drawDiamond(w: w)
         case .moveBy(let dx, let dy): return "m \(dx.f(1)),\(dy.f(1))"
         case .moveTo(let x, let y): return "M \(x.f(1)),\(y.f(1))"
         case .horizBy(let dx): return "h \(dx.f(1))"
@@ -81,13 +52,30 @@ enum PathCommand {
             return "q \(cdx.f(1)),\(cdy.f(1)), \(dx.f(1)),\(dy.f(1))"
         case .qBezierTo(let x, let y, let cx, let cy):
             return "Q \(cx.f(1)),\(cy.f(1)), \(x.f(1)),\(y.f(1))"
+        case .vertBy(let dy): return "v \(dy.f(1))"
+        case .vertTo(let y): return "V \(y.f(1))"
+        case .z: return "Z"
+        default:
+            return self.expand!.map { $0.path }.joined(separator: " ")
+        }
+    }
+
+    /// Expand multi part commands
+    /// - Returns: a list of commands or nil
+
+    var expand: [PathCommand]? {
+        switch self {
+        case .bar(let p0, let w, let y): return drawBar(p0: p0, w: w, y: y)
+        case .blade(let w): return drawBlade(w: w)
+        case .circle(let r): return drawCircle(r: r)
+        case .circleStar(let w): return drawCircleStar(w: w)
+        case .cross(let w): return drawCross(w: w)
+        case .diamond(let w): return drawDiamond(w: w)
         case .shuriken(let w): return drawShuriken(w: w)
         case .square(let w): return drawSquare(w: w)
         case .star(let w): return drawStar(w: w)
         case .triangle(let w): return drawTriangle(w: w)
-        case .vertBy(let dy): return "v \(dy.f(1))"
-        case .vertTo(let y): return "V \(y.f(1))"
-        case .z: return "Z"
+        default: return nil
         }
     }
 }
@@ -103,5 +91,5 @@ func path(
     // a path needs 2 points
     guard points.count >= 2 else { return "" }
 
-    return (points.map { $0.command() }).joined(separator: " ")
+    return (points.map { $0.path }).joined(separator: " ")
 }

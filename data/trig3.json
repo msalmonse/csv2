@@ -1,11 +1,12 @@
 {
-	"cssClasses": ["index", "sin", "cos", "tan", "sin2", "cot"],
+	"cssClasses": ["index", "pi", "sin", "cos", "tan", "sin2", "cot"],
 	"cssExtras": [
-		"path.sin2 { stroke-width: 5 }",
-		"path.tan, text.tan { stroke: black }",
-		".cot { stroke: black }"
+		"svg#TrigTrig3 path.sin2 { stroke-width: 5 }",
+		"svg#TrigTrig3 path.tan, svg#TrigTrig3 text.tan { stroke: black }",
+		"svg#TrigTrig3 .cot { stroke: black }"
 	],
-	"headerRows": 1,
+	"cssID": "TrigTrig3",
+	"headerRows": 2,
 	"index": 1,
 	"title": "Trigonometric Functions",
 	"xTitle": "Degrees",

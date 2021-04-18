@@ -32,10 +32,6 @@ extension PNG {
         return
     }
 
-    func plotText(x: Double, y: Double, text: String, props: Properties) {
-        return
-    }
-
     func plotWrite(to url: URL) throws {
         if let pngData = image.pngData() {
             do {

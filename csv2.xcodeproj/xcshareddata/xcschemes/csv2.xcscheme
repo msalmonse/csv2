@@ -60,7 +60,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/trig.json"
+            argument = "${PROJECT_DIR}/data/trig3.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

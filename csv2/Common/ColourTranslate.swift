@@ -13,6 +13,8 @@ struct RGBAcolour {
     let b: Int
     let a: Double
 
+    static var cache: [ String: RGBAcolour ] = [:]
+
     /// Create an RGBA with a new alpha
     /// - Parameter alpha: new alpha
     /// - Returns: New RGBA with new alpha
@@ -30,7 +32,16 @@ struct RGBAcolour {
     }
 
     /// Formatted RGBA
-    var asText: String { String(format: "rgba(%d,%d,%d,%.3f)", r, g, b, a) }
+    var asText: String {
+        let text = String(format: "rgba(%d,%d,%d,%.3f)", r, g, b, a)
+        RGBAcolour.cache[text] = self
+        return text
+    }
+
+    /// as CGColor
+    var cgColor: CGColor {
+        CGColor(red: CGFloat(r)/255, green: CGFloat(g)/255, blue: CGFloat(b)/255, alpha: CGFloat(a))
+    }
 }
 
 struct ColourTranslate {
@@ -238,6 +249,7 @@ struct ColourTranslate {
 
     static func lookup(_ name: String?) -> RGBAcolour? {
         guard let name = name else { return nil }
+        if let cached = RGBAcolour.cache[name] { return cached }
         if let rgba = name2rgba[name] { return rgba }
         var r = 0
         var g = 0

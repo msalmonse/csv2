@@ -20,7 +20,7 @@ extension Canvas {
 
         ctx.sync(props, &result)
 
-        let path = points.map { $0.command() }.joined(separator: " ")
+        let path = points.map { $0.path }.joined(separator: " ")
         result.append("p = new Path2D('\(path)'); ctx.\(op)(p)")
 
         data.append(result.joined(separator: "\n    "))
