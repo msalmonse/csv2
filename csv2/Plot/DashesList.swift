@@ -32,8 +32,8 @@ extension Plot {
 
         for i in dashes.indices {
             y += step
-            let points = [ PathCommand.moveTo(x: xLeft, y: yPath), .horizTo(x: xRight) ]
-            plotter.plotPath(points, props: propsList.plots[i], fill: false)
+            let components = [ PathComponent.moveTo(x: xLeft, y: yPath), .horizTo(x: xRight) ]
+            plotter.plotPath(components, props: propsList.plots[i], fill: false)
             plotter.plotText(x: xText, y: y, text: dashes[i], props: propsList.plots[i])
         }
     }

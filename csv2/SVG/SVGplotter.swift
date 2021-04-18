@@ -31,15 +31,15 @@ extension SVG {
 
     /// Create a plot command from a number of PathCommand's
     /// - Parameters:
-    ///   - points: array of points to plot
+    ///   - components: array of components to plot
     ///   - props: path properties
     /// - Returns: plot command string
 
-    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool = false) {
+    func plotPath(_ components: [PathComponent], props: Properties, fill: Bool = false) {
         var result = [ "<path" ]
         if let cssClass = props.cssClass { result.append("class=\"\(cssClass)\(fill ? " fill" : "")\"") }
         result.append("d=\"")
-        result.append(contentsOf: points.map { $0.path })
+        result.append(contentsOf: components.map { $0.path })
         result.append("\" />\n")
 
         data.append(result.joined(separator: " "))

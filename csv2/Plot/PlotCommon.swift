@@ -18,8 +18,8 @@ extension Plot {
     /// Common state
 
     private class PlotCommonState {
-        var pathPoints: [PathCommand] = []
-        var shapePoints: [PathCommand] = []
+        var pathComponents: [PathComponent] = []
+        var shapeComponents: [PathComponent] = []
         var prevDataPoint = Point.inf
         var prevPlotPoint = Point.inf
         var state: PlotState
@@ -52,11 +52,11 @@ extension Plot {
 
         /// Handle an x or y of nil
 
-        func nilPlot(_ plotShape: PathCommand) {
+        func nilPlot(_ plotShape: PathComponent) {
             switch state {
             case .moved:
                 // single data point so mark it
-                if !props.pointed { shapePoints.append(plotShape) }
+                if !props.pointed { shapeComponents.append(plotShape) }
                 state = .move
             case .scatter, .staple, .clipped2: break
             default: state = .move
@@ -72,7 +72,7 @@ extension Plot {
             _ pos: Point,
             clipped: Bool,
             nextPlotPoint: Point?,
-            plotShape: PathCommand
+            plotShape: PathComponent
         ) {
             if !clipped {
                 // move from a clipped state to an unclipped one
@@ -83,29 +83,29 @@ extension Plot {
             }
             switch state {
             case .move:
-                pathPoints.append(.moveTo(x: pos.x, y: pos.y))
-                shapePoints.append(.moveTo(x: pos.x, y: pos.y))
+                pathComponents.append(.moveTo(x: pos.x, y: pos.y))
+                shapeComponents.append(.moveTo(x: pos.x, y: pos.y))
                 state = .moved
                 // Data point?
                 if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
-                    shapePoints.append(plotShape)
+                    shapeComponents.append(plotShape)
                     prevDataPoint = pos
                 }
             case .moved, .online:
                 if props.bezier == 0.0 || nextPlotPoint == nil {
-                    pathPoints.append(.lineTo(x: pos.x, y: pos.y))
+                    pathComponents.append(.lineTo(x: pos.x, y: pos.y))
                 } else {
                     // calculate the start of the quadratic bézier curve
                     let qStart = pos.partWay(prevPlotPoint, part: props.bezier)
                     let qEnd = pos.partWay(nextPlotPoint!, part: props.bezier)
-                    pathPoints.append(.lineTo(x: qStart.x, y: qStart.y))
-                    pathPoints.append(.qBezierTo(x: qEnd.x, y: qEnd.y, cx: pos.x, cy: pos.y))
+                    pathComponents.append(.lineTo(x: qStart.x, y: qStart.y))
+                    pathComponents.append(.qBezierTo(x: qEnd.x, y: qEnd.y, cx: pos.x, cy: pos.y))
                 }
                 state = clipped ? .clipped : .online
                 // Data point?
                 if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
-                    shapePoints.append(.moveTo(x: pos.x, y: pos.y))
-                    shapePoints.append(plotShape)
+                    shapeComponents.append(.moveTo(x: pos.x, y: pos.y))
+                    shapeComponents.append(plotShape)
                     prevDataPoint = pos
                 }
             case .clipped:
@@ -113,27 +113,27 @@ extension Plot {
                 if clipped {
                     state = .clipped2
                 } else {
-                    pathPoints.append(.lineTo(x: pos.x, y: pos.y))
+                    pathComponents.append(.lineTo(x: pos.x, y: pos.y))
                     state = clipped ? .clipped2 : .online
                 }
                 // Data point?
                 if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
-                    shapePoints.append(.moveTo(x: pos.x, y: pos.y))
-                    shapePoints.append(plotShape)
+                    shapeComponents.append(.moveTo(x: pos.x, y: pos.y))
+                    shapeComponents.append(plotShape)
                     prevDataPoint = pos
                 }
             case .scatter:
                 if !clipped {
-                    shapePoints.append(.moveTo(x: pos.x, y: pos.y))
-                    shapePoints.append(plotShape)
+                    shapeComponents.append(.moveTo(x: pos.x, y: pos.y))
+                    shapeComponents.append(plotShape)
                 }
             case .staple:
                 if let (p0, _) = plot?.posClip(Point(x: pos.x, y: plot?.point00.y ?? 0.0)) {
-                    shapePoints.append(bar!.path(p0: p0, y: pos.y, props.bar))
+                    shapeComponents.append(bar!.path(p0: p0, y: pos.y, props.bar))
                 }
             case .clipped2:
                 // Ignore all data till we are not clipped, just move
-                pathPoints.append(.moveTo(x: pos.x, y: pos.y))
+                pathComponents.append(.moveTo(x: pos.x, y: pos.y))
             }
             prevPlotPoint = pos
         }
@@ -211,6 +211,6 @@ extension Plot {
                 plotProps.fill = rgba.modify(alpha: 0.75).asText
             }
         }
-        plotter.plotPath(state.pathPoints + state.shapePoints, props: plotProps, fill: fill)
+        plotter.plotPath(state.pathComponents + state.shapeComponents, props: plotProps, fill: fill)
     }
 }

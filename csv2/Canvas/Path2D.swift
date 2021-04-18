@@ -10,17 +10,17 @@ import Foundation
 extension Canvas {
     /// Plot a path using Path2D
     /// - Parameters:
-    ///   - points: list of path commands
+    ///   - components: list of path commands
     ///   - props: path properties
     /// - Returns: JavaScript string
 
-    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool) {
+    func plotPath(_ components: [PathComponent], props: Properties, fill: Bool) {
         var result: [String] = [""]
         let op = fill ? "fill" : "stroke"
 
         ctx.sync(props, &result)
 
-        let path = points.map { $0.path }.joined(separator: " ")
+        let path = components.map { $0.path }.joined(separator: " ")
         result.append("p = new Path2D('\(path)'); ctx.\(op)(p)")
 
         data.append(result.joined(separator: "\n    "))

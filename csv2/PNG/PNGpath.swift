@@ -9,19 +9,19 @@ import Foundation
 
 extension PNG {
 
-    /// Plot a single path command
+    /// Plot a single path component which may be a multi-component component
     /// - Parameters:
     ///   - ctx: context
-    ///   - command: current command
+    ///   - component: current command
     ///   - current: current position
 
-    private func plotCommand(_ ctx: CGContext, command: PathCommand, current: inout CGPoint) {
-        if let commandList = command.expand {
-            for command in commandList {
-                plotCommand(ctx, command: command, current: &current)
+    private func plotComponent(_ ctx: CGContext, component: PathComponent, current: inout CGPoint) {
+        if let componentsList = component.expand {
+            for component in componentsList {
+                plotComponent(ctx, component: component, current: &current)
             }
         } else {
-            switch command {
+            switch component {
             case .cBezierBy(let dx, let dy, let c1dx, let c1dy, let c2dx, let c2dy):
                 let end = current + CGPoint(x: dx, y: dy)
                 let control1 = current + CGPoint(x: c1dx, y: c1dy)
@@ -63,26 +63,26 @@ extension PNG {
                 current = CGPoint(x: current.x, y: CGFloat(y))
                 ctx.addLine(to: current)
             default:
-                print("\(command) not implemented", to: &standardError)
+                print("\(component) not implemented", to: &standardError)
             }
         }
     }
 
     /// Draw a path on the PNG
     /// - Parameters:
-    ///   - points: a list of points and what to do
+    ///   - components: a list of points and what to do
     ///   - props: plot properties
     ///   - fill: fill or stroke?
 
-    func plotPath(_ points: [PathCommand], props: Properties, fill: Bool) {
+    func plotPath(_ components: [PathComponent], props: Properties, fill: Bool) {
         let colour = ColourTranslate.lookup(props.cascade(.colour) ?? "black")
         let lineWidth = CGFloat(props.cascade(.strokeWidth))
         image.withCGContext { ctx in
             var current = CGPoint.zero
             if let colour = colour { ctx.setStrokeColor(colour.cgColor) }
             ctx.setLineWidth(lineWidth)
-            for command in points {
-                plotCommand(ctx, command: command, current: &current)
+            for component in components {
+                plotComponent(ctx, component: component, current: &current)
             }
             ctx.strokePath()
         }

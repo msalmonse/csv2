@@ -54,7 +54,7 @@ extension Plot {
             propsList.plots[0].colour = colour
             plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
             let shapePath = [
-                PathCommand.moveTo(x: width/2.0, y: height/2.0),
+                PathComponent.moveTo(x: width/2.0, y: height/2.0),
                 shape.pathCommand(w: shapeWidth)
             ]
             plotter.plotPath(shapePath, props: propsList.plots[0], fill: false)

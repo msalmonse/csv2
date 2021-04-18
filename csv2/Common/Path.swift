@@ -7,11 +7,11 @@
 
 import Foundation
 
-/// path commands
+/// path components
 
 /// Enum describing the ways a path can be drawn
 
-enum PathCommand {
+enum PathComponent {
     case
         bar(p0: Point, w: Double, y: Double),       // Draw a bar w wide from p0 to y
         blade(w: Double),                           // Draw a blade of width 2 * w
@@ -71,7 +71,7 @@ enum PathCommand {
     /// Expand multi part commands
     /// - Returns: a list of commands or nil
 
-    var expand: [PathCommand]? {
+    var expand: [PathComponent]? {
         switch self {
         case .bar(let p0, let w, let y): return drawBar(p0: p0, w: w, y: y)
         case .blade(let w): return drawBlade(w: w)
@@ -90,14 +90,14 @@ enum PathCommand {
 
 /// plot a path from a list of points
 /// - Parameters:
-///   - points: a list of the points or shapes on path
+///   - components: a list of the points or shapes on path
 /// - Returns: a path element
 
 func path(
-    _ points: [PathCommand]
+    _ components: [PathComponent]
 ) -> String {
     // a path needs 2 points
-    guard points.count >= 2 else { return "" }
+    guard components.count >= 2 else { return "" }
 
-    return (points.map { $0.path }).joined(separator: " ")
+    return (components.map { $0.path }).joined(separator: " ")
 }

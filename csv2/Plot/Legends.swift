@@ -35,7 +35,7 @@ extension Plot {
     ) {
         guard props.shape != nil else { return }
         plotter.plotPath([
-                PathCommand.moveTo(x: x, y: y),
+                PathComponent.moveTo(x: x, y: y),
                 props.shape!.pathCommand(w: shapeWidth)
             ],
             props: props, fill: false
@@ -56,7 +56,7 @@ extension Plot {
     ) {
         guard props.shape != nil else { return }
         plotter.plotPath([
-                PathCommand.moveTo(x: left, y: y),
+                PathComponent.moveTo(x: left, y: y),
                 .horizTo(x: mid),
                 props.shape!.pathCommand(w: shapeWidth),
                 .horizTo(x: right)
@@ -77,7 +77,7 @@ extension Plot {
         _ props: Properties
     ) {
         return plotter.plotPath([
-                PathCommand.moveTo(x: left, y: y),
+                PathComponent.moveTo(x: left, y: y),
                 .horizTo(x: right)
             ],
             props: props, fill: false

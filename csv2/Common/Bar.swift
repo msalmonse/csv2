@@ -45,7 +45,7 @@ struct Bar {
         self.init(offset: offset, width: width)
     }
 
-    func path(p0: Point, y: Double, _ n: Int) -> PathCommand {
+    func path(p0: Point, y: Double, _ n: Int) -> PathComponent {
         return .bar(p0: Point(x: p0.x + offsets[n], y: p0.y), w: width, y: y)
     }
 }

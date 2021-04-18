@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension PathCommand {
+extension PathComponent {
 
     /// Generate a bar
     /// - Parameters:
@@ -16,14 +16,14 @@ extension PathCommand {
     ///   - y: top or bottom of the bar
     /// - Returns: path to create the bar
 
-    func drawBar(p0: Point, w: Double, y: Double) -> [PathCommand] {
+    func drawBar(p0: Point, w: Double, y: Double) -> [PathComponent] {
         let x0 = p0.x
         let y0 = p0.y
         let left = x0 - w/2.0
         let right = left + w
         let r = w/32.0
         return [
-            PathCommand.moveTo(x: x0, y: y0),
+            PathComponent.moveTo(x: x0, y: y0),
             .horizTo(x: left),
             .vertTo(y: y + r),
             .qBezierTo(x: left + r, y: y, cx: left, cy: y),
@@ -38,7 +38,7 @@ extension PathCommand {
     /// - Parameter w: the width
     /// - Returns: path  for a blade
 
-    func drawBlade(w: Double) -> [PathCommand] {
+    func drawBlade(w: Double) -> [PathComponent] {
         let half = w/2.0
         return [
             Self.moveBy(dx: -half, dy: half/2.0),
@@ -58,7 +58,7 @@ extension PathCommand {
     /// - Parameter r: the radius
     /// - Returns: path  for a circle
 
-    func drawCircle(r: Double) -> [PathCommand] {
+    func drawCircle(r: Double) -> [PathComponent] {
         let r = r * 1.2
         let c = 0.551915024494 * r
         return [
@@ -75,7 +75,7 @@ extension PathCommand {
     /// - Parameter r: the radius
     /// - Returns: path  for a circle
 
-    func drawCircleStar(w: Double) -> [PathCommand] {
+    func drawCircleStar(w: Double) -> [PathComponent] {
         return drawStar(w: w) + drawCircle(r: w)
     }
 
@@ -83,7 +83,7 @@ extension PathCommand {
     /// - Parameter w: the width
     /// - Returns: path  for a cross
 
-    func drawCross(w: Double) -> [PathCommand] {
+    func drawCross(w: Double) -> [PathComponent] {
         let full = w * 0.4
         let half = full * 0.5
         return [
@@ -115,7 +115,7 @@ extension PathCommand {
     /// - Parameter w: the width
     /// - Returns: path  for a diamond
 
-    func drawDiamond(w: Double) -> [PathCommand] {
+    func drawDiamond(w: Double) -> [PathComponent] {
         let half = w * 0.625
         let full = half + half
         return [
@@ -133,7 +133,7 @@ extension PathCommand {
     /// - Parameter w: the width
     /// - Returns: path  for a shuriken
 
-    func drawShuriken(w: Double) -> [PathCommand] {
+    func drawShuriken(w: Double) -> [PathComponent] {
         let half = w/2.0
         return [
             Self.moveBy(dx: -half, dy: -half),
@@ -149,7 +149,7 @@ extension PathCommand {
     /// - Parameter w: the width
     /// - Returns: path  for a square
 
-    func drawSquare(w: Double) -> [PathCommand] {
+    func drawSquare(w: Double) -> [PathComponent] {
         let w2 = w * 2.0
         return [
             Self.moveBy(dx: -w, dy: -w),
@@ -166,7 +166,7 @@ extension PathCommand {
     /// - Parameter w: the width
     /// - Returns: path  for a star
 
-    func drawStar(w: Double) -> [PathCommand] {
+    func drawStar(w: Double) -> [PathComponent] {
         let half = w/2.0
         return [
             Self.moveBy(dx: -half, dy: 0.0),
@@ -182,7 +182,7 @@ extension PathCommand {
     /// - Parameter w: the width
     /// - Returns: path  for a triangle
 
-    func drawTriangle(w: Double) -> [PathCommand] {
+    func drawTriangle(w: Double) -> [PathComponent] {
         let w2 = w * 2.0
         let half = w/2.0
         return [

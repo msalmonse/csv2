@@ -27,17 +27,17 @@ enum Shape {
     /// - Parameter w: the size of the path
     /// - Returns: a PathCommand to draw the shape
 
-    func pathCommand(w: Double) -> PathCommand {
+    func pathCommand(w: Double) -> PathComponent {
         switch self {
-        case .blade: return PathCommand.blade(w: w)
-        case .circle: return PathCommand.circle(r: w)
-        case .circleStar: return PathCommand.circleStar(w: w)
-        case .cross: return PathCommand.cross(w: w)
-        case .diamond: return PathCommand.diamond(w: w)
-        case .shuriken: return PathCommand.shuriken(w: w)
-        case .square: return PathCommand.square(w: w)
-        case .star: return PathCommand.star(w: w)
-        case .triangle: return PathCommand.triangle(w: w)
+        case .blade: return PathComponent.blade(w: w)
+        case .circle: return PathComponent.circle(r: w)
+        case .circleStar: return PathComponent.circleStar(w: w)
+        case .cross: return PathComponent.cross(w: w)
+        case .diamond: return PathComponent.diamond(w: w)
+        case .shuriken: return PathComponent.shuriken(w: w)
+        case .square: return PathComponent.square(w: w)
+        case .star: return PathComponent.star(w: w)
+        case .triangle: return PathComponent.triangle(w: w)
         }
     }
 
