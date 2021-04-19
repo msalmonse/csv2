@@ -20,6 +20,8 @@ extension Plot {
         for i in propsList.plots.indices {
             propsList.plots[i].colour = colours[i]
             propsList.plots[i].fill = colours[i]
+            propsList.plots[i].fontColour = colours[i]
+            propsList.plots[i].fontSize = step * 0.75
             propsList.plots[i].textAlign = "start"
             propsList.plots[i].cssClass = "colour\((i + 1).d0(2))"
         }

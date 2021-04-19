@@ -70,7 +70,10 @@ done
 
 # Footers
 cat <<EOD
-<tr><th colspan="2" class="infoHeader"> <a href="jsindex.html">JS Index</a> </th></tr>
+<tr><th colspan="2" class="infoHeader">
+<a href="jsindex.html">JS Index</a>
+<a href="svgindex.html">SVG Index</a>
+</th></tr>
 </table>
 </body>
 </head>

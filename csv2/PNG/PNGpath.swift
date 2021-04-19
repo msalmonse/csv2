@@ -83,19 +83,33 @@ extension PNG {
     ///   - fill: fill or stroke?
 
     func plotPath(_ components: [PathComponent], props: Properties, fill: Bool) {
-        let colour = ColourTranslate.lookup(props.cascade(.colour) ?? "black")
+        let colour = ColourTranslate.lookup(props.cascade(fill ? .fill : .colour) ?? "black")
         let lineWidth = CGFloat(props.cascade(.strokeWidth))
         image.withCGContext { ctx in
             var current = CGPoint.zero
-            if let colour = colour { ctx.setStrokeColor(colour.cgColor) }
             ctx.setLineWidth(lineWidth)
             ctx.setLineCap(propsCap(props))
+            if let dashes = props.cascade(.dash) {
+                ctx.setLineDash(phase: 0.0, lengths: dashParse(dashes))
+            } else {
+                ctx.setLineDash(phase: 0.0, lengths: [])
+            }
             for component in components {
                 plotComponent(ctx, component: component, current: &current)
             }
-            ctx.strokePath()
+            if fill {
+                if let colour = colour { ctx.setFillColor(colour.cgColor) }
+                ctx.fillPath()
+            } else {
+                if let colour = colour { ctx.setStrokeColor(colour.cgColor) }
+                ctx.strokePath()
+            }
         }
     }
+
+    /// Calculate CGLineCap from propery
+    /// - Parameter props: plot properties
+    /// - Returns:  CGLineCap value
 
     func propsCap(_ props: Properties) -> CGLineCap {
         switch props.cascade(.strokeLineCap) ?? "round" {
@@ -103,5 +117,20 @@ extension PNG {
         case "square": return .square
         default: return .round
         }
+    }
+
+    /// Parse the dash string
+    /// - Parameter dashes: dash string
+    /// - Returns: Array of CGFloat values
+
+    func dashParse(_ dashes: String) -> [CGFloat] {
+        var result: [CGFloat] = []
+        let separators = CharacterSet(charactersIn: " ,")
+        for dash in dashes.components(separatedBy: separators) {
+            if let val = Double(dash) {
+                result.append(CGFloat(val))
+            }
+        }
+        return result
     }
 }
