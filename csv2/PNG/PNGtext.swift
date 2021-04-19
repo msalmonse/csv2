@@ -7,23 +7,34 @@
 
 import Foundation
 import AppKit
+import CoreText
 
 extension PNG {
 
+    private func propsFont(_ props: Properties) -> NSFont? {
+        let family = props.cascade(.fontFamily) ?? "serif"
+        let size = props.cascade(.fontSize)
+        let font = NSFont(name: family, size: CGFloat(size))
+
+        return font
+    }
+
     func plotText(x: Double, y: Double, text: String, props: Properties) {
-        image.withCGContext { _ in
-            let style = NSMutableParagraphStyle()
-            style.alignment = .center
-            let colour = ColourTranslate.lookup(props.cascade(.colour) ?? "black")?.cgColor
-            let font = NSFont(name: "Helvetica Bold", size: 14.0)
-            let textFontAttributes = [
-                NSAttributedString.Key.font: font,
-                NSAttributedString.Key.foregroundColor: NSColor(cgColor: colour ?? .black)
-                // NSParagraphStyleAttributeName: textStyle
-            ]
-            text.draw(at: CGPoint(x: x, y: y),
-                      withAttributes: textFontAttributes as [NSAttributedString.Key: Any]
-            )
+        image.withCGContext { ctx in
+            let colour = ColourTranslate.lookup(props.cascade(.fontColour) ?? "black")
+            let attr = [
+                NSAttributedString.Key.foregroundColor: colour?.cgColor as Any,
+                NSAttributedString.Key.font: propsFont(props) as Any
+            ] as [NSAttributedString.Key: Any]
+            let attrText = NSAttributedString(string: text, attributes: attr)
+            let textSize = attrText.size()
+            let textHeight = ceil(Double(textSize.height))
+            let textWidth = ceil(Double(textSize.width))
+            let textBox = CGRect(x: x, y: y, width: textWidth, height: textHeight)
+            let textPath = CGPath(rect: textBox, transform: nil)
+            let frameSetter = CTFramesetterCreateWithAttributedString(attrText)
+            let frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, attrText.length), textPath, nil)
+            CTFrameDraw(frame, ctx)
         }
     }
 }
