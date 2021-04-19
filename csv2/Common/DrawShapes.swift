@@ -60,6 +60,7 @@ extension PathComponent {
 
     func drawCircle(r: Double) -> [PathComponent] {
         let r = r * 1.2
+        // the constant below from https://spencermortensen.com/articles/bezier-circle/
         let c = 0.551915024494 * r
         return [
             Self.moveBy(dx: 0, dy: -r),

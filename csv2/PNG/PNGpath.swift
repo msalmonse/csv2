@@ -34,6 +34,9 @@ extension PNG {
                 let control2 = CGPoint(x: c2x, y: c2y)
                 ctx.addCurve(to: end, control1: control1, control2: control2)
                 current = end
+            case .horizBy(let dx):
+                current += CGPoint(x: dx, y: 0.0)
+                ctx.addLine(to: current)
             case .horizTo(let x):
                 current = CGPoint(x: CGFloat(x), y: current.y)
                 ctx.addLine(to: current)
@@ -59,9 +62,14 @@ extension PNG {
                 let control = CGPoint(x: cx, y: cy)
                 ctx.addQuadCurve(to: end, control: control)
                 current = end
+            case .vertBy(let dy):
+                current += CGPoint(x: 0.0, y: dy)
+                ctx.addLine(to: current)
             case .vertTo(let y):
                 current = CGPoint(x: current.x, y: CGFloat(y))
                 ctx.addLine(to: current)
+            case .z:
+                ctx.closePath()
             default:
                 print("\(component) not implemented", to: &standardError)
             }
@@ -81,10 +89,19 @@ extension PNG {
             var current = CGPoint.zero
             if let colour = colour { ctx.setStrokeColor(colour.cgColor) }
             ctx.setLineWidth(lineWidth)
+            ctx.setLineCap(propsCap(props))
             for component in components {
                 plotComponent(ctx, component: component, current: &current)
             }
             ctx.strokePath()
+        }
+    }
+
+    func propsCap(_ props: Properties) -> CGLineCap {
+        switch props.cascade(.strokeLineCap) ?? "round" {
+        case "butt": return .butt
+        case "square": return .square
+        default: return .round
         }
     }
 }

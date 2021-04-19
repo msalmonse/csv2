@@ -22,6 +22,7 @@ extension Plot {
             propsList.plots[i].dash = dashes[i]
             propsList.plots[i].dashed = true
             propsList.plots[i].strokeLineCap = "butt"
+            propsList.plots[i].textAlign = "start"
             propsList.plots[i].cssClass = "dash\((i + 1).d0(2))"
         }
 

@@ -27,13 +27,13 @@ if commonOpts.version {
 if commonOpts.shapenames {
     print(Shape.allNames())
 } else if commonOpts.show.hasContent {
-    showShape(shape: commonOpts.show, defaults: defaults, to: commonOpts.outName)
+    showShape(shape: commonOpts.show, defaults: defaults, with: command.iAm(), to: commonOpts.outName)
 } else if commonOpts.bitmap.hasEntries {
     print(bitmap(commonOpts.bitmap))
 } else if commonOpts.colourslist {
-    showColoursList(defaults, to: commonOpts.outName)
+    showColoursList(defaults, with: command.iAm(), to: commonOpts.outName)
 } else if commonOpts.dasheslist {
-    showDashesList(defaults, to: commonOpts.outName)
+    showDashesList(defaults, with: command.iAm(), to: commonOpts.outName)
 } else {
     // use a csvName of - to mean use stdin
     if commonOpts.csvName == "-" { commonOpts.csvName = nil }

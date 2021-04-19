@@ -13,15 +13,15 @@ import Foundation
 ///   - stroke: stroke colour
 /// - Returns: shape SVG
 
-func showShape(shape: String, defaults: Defaults, to outName: String?) {
+func showShape(shape: String, defaults: Defaults, with: PlotterType, to outName: String?) {
     let colour = defaults.colours.first ?? "black"
     let wh = (defaults.strokeWidth * 6).f(0)
     let settings = try? Settings.load(settingsJson(wh))
     let csv = CSV("")
-    let svg = SVG(settings!)
-    let plot = Plot(csv, settings!, svg)
+    let plotter = with.plotter(settings: settings!)
+    let plot = Plot(csv, settings!, plotter)
     plot.shapeGen(name: shape, colour: colour)
-    output(svg, to: outName)
+    output(plotter, to: outName)
 }
 
 /// JSON text for display a shape

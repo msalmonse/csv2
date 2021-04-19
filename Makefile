@@ -10,12 +10,17 @@ EXAMPLES =\
 	examples/trig-80-120.svg
 JSFILES = $(CANVASFILES:data/%.canvas=generated/%.js)
 OPTFILES = $(wildcard data/*.opts)
+PNGOPTFILES = $(shell egrep -lv -- '--(css|svg)' data/*.opts)
+PNGFILES = $(PNGOPTFILES:data/%.opts=generated/%.png)
 SVGFILES = $(OPTFILES:data/%.opts=generated/%.svg)
 TXTFILES = $(OPTFILES:data/%.opts=generated/%.txt)
 
-.PHONY:	all error.expected examples
+.PHONY:	all error.expected examples 
 
-all:	generated/.made examples generated/svgindex.html generated/jsindex.html
+all:	generated/.made examples \
+	generated/svgindex.html \
+	generated/pngindex.html \
+	generated/jsindex.html
 
 generated/.made:
 	-mkdir $(@D)
@@ -31,6 +36,11 @@ generated/jsindex.html: $(JSFILES) $(CANVASTAGFILES) $(TXTFILES) $(EXTRAS)
 	@ ./jsIndexMake.sh $@
 	@ echo jsindex made
 
+generated/pngindex.html: EXTRAS = generated/logo.svg out.png pngIndexMake.sh
+generated/pngindex.html: $(PNGFILES) $(TXTFILES) $(EXTRAS)
+	@ ./pngIndexMake.sh $@
+	@ echo pngindex made
+
 generated/%.js: OPTS = $(shell cat $(@F:%.js=data/%.opts))
 generated/%.js: CANVAS = $(shell cat $(@F:%.js=data/%.canvas))
 generated/%.js: data/%.csv data/%.json data/%.opts generated/%.canvastag $(CSV2)
@@ -41,9 +51,9 @@ generated/%.canvastag: CANVAS = $(shell cat $(@F:%.canvastag=data/%.canvas))
 generated/%.canvastag: data/%.csv data/%.json data/%.opts data/%.canvas $(CSV2)
 	-@ $(CSV2) canvas --canvas $(CANVAS) --canvastag $(OPTS) - $(@F:%.canvastag=data/%.json) > $@
 
-generated/%.svg: OPTS = $(shell cat $(@F:%.svg=data/%.opts))
-generated/%.svg: data/%.csv data/%.json data/%.opts $(CSV2)
-	-@ $(CSV2) svg $(OPTS) $(@F:%.svg=data/%.csv) $(@F:%.svg=data/%.json) $@
+generated/%.png: OPTS = $(shell cat $(@F:%.png=data/%.opts))
+generated/%.png: data/%.csv data/%.json data/%.opts $(CSV2)
+	-@ $(CSV2) png $(OPTS) $(@F:%.png=data/%.csv) $(@F:%.png=data/%.json) $@
 
 generated/%.txt: data/%.txt data/br.inc data/%.opts
 	@ cat $^ > $@
