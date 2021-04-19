@@ -42,6 +42,20 @@ struct RGBAcolour {
     var cgColor: CGColor {
         CGColor(red: CGFloat(r)/255, green: CGFloat(g)/255, blue: CGFloat(b)/255, alpha: CGFloat(a))
     }
+
+    // Standard colours
+    static var clear: RGBAcolour { RGBAcolour(r: 0, g: 0, b: 0, a: 0.0) }
+    static var black: RGBAcolour { RGBAcolour(r: 0, g: 0, b: 0, a: 1.0) }
+    static var white: RGBAcolour { RGBAcolour(r: 255, g: 255, b: 255, a: 1.0) }
+
+    /// components as a UInt8
+    var u8r: UInt8 { UInt8(r) }
+    var u8g: UInt8 { UInt8(g) }
+    var u8b: UInt8 { UInt8(b) }
+    var u8ɑ: UInt8 { UInt8(floor(a * 255.0)) }
+
+    // components packed together
+    var u32: UInt32 { UInt32(r << 24 | g << 16 | b << 8 | Int(u8ɑ)) }
 }
 
 struct ColourTranslate {
@@ -62,6 +76,7 @@ struct ColourTranslate {
         "cadetblue":            RGBAcolour(r: 95, g: 158, b: 160, a: 1.0),
         "chartreuse":           RGBAcolour(r: 127, g: 255, b: 0, a: 1.0),
         "chocolate":            RGBAcolour(r: 210, g: 105, b: 30, a: 1.0),
+        "clear":                RGBAcolour(r: 0, g: 0, b: 0, a: 0.0),
         "coral":                RGBAcolour(r: 255, g: 127, b: 80, a: 1.0),
         "cornflowerblue":       RGBAcolour(r: 100, g: 149, b: 237, a: 1.0),
         "cornsilk":             RGBAcolour(r: 255, g: 248, b: 220, a: 1.0),
@@ -249,6 +264,7 @@ struct ColourTranslate {
 
     static func lookup(_ name: String?) -> RGBAcolour? {
         guard let name = name else { return nil }
+        if name.isEmpty { return nil }
         if let cached = RGBAcolour.cache[name] { return cached }
         if let rgba = name2rgba[name] { return rgba }
         var r = 0
