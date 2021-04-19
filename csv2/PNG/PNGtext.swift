@@ -11,10 +11,19 @@ import CoreText
 
 extension PNG {
 
-    private func propsFont(_ props: Properties) -> NSFont? {
+    private func propsAlignment(_ props: Properties) -> NSTextAlignment {
+        switch props.cascade(.textAlign) ?? "" {
+        case "end": return .right
+        case "middle": return .center
+        case "start": return .left
+        default: return .natural
+        }
+    }
+
+    private func propsFont(_ props: Properties) -> CTFont? {
         let family = props.cascade(.fontFamily) ?? "serif"
         let size = props.cascade(.fontSize)
-        let font = NSFont(name: family, size: CGFloat(size))
+        let font = CTFontCreateWithName(family as CFString, CGFloat(size), nil)
 
         return font
     }
@@ -22,19 +31,22 @@ extension PNG {
     func plotText(x: Double, y: Double, text: String, props: Properties) {
         image.withCGContext { ctx in
             let colour = ColourTranslate.lookup(props.cascade(.fontColour) ?? "black")
+            let style = NSMutableParagraphStyle()
+            style.alignment = propsAlignment(props)
             let attr = [
                 NSAttributedString.Key.foregroundColor: colour?.cgColor as Any,
-                NSAttributedString.Key.font: propsFont(props) as Any
+                NSAttributedString.Key.font: propsFont(props) as Any,
+                NSAttributedString.Key.paragraphStyle: style
             ] as [NSAttributedString.Key: Any]
             let attrText = NSAttributedString(string: text, attributes: attr)
-            let textSize = attrText.size()
-            let textHeight = ceil(Double(textSize.height))
-            let textWidth = ceil(Double(textSize.width))
-            let textBox = CGRect(x: x, y: y, width: textWidth, height: textHeight)
-            let textPath = CGPath(rect: textBox, transform: nil)
-            let frameSetter = CTFramesetterCreateWithAttributedString(attrText)
-            let frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, attrText.length), textPath, nil)
-            CTFrameDraw(frame, ctx)
+            let line = CTLineCreateWithAttributedString(attrText)
+            ctx.saveGState()
+            ctx.textMatrix = .identity
+            ctx.translateBy(x: 0.0, y: CGFloat(height))
+            ctx.scaleBy(x: 1.0, y: -1.0)
+            ctx.textPosition = CGPoint(x: x, y: height - y)
+            CTLineDraw(line, ctx)
+            ctx.restoreGState()
         }
     }
 }
