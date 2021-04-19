@@ -6,6 +6,7 @@ USAGE: csv2 <subcommand> [<options>] [<csv-name>] [<json-name>] [<out-name>]
 
 SUBCOMMANDS:
     canvas                  Plot data on an HTML Canvas using JavaScript
+    png                     Plot data on a PNG image
     svg (default)           Plot data in an SVG
 
 ARGUMENTS:
