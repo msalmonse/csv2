@@ -86,6 +86,7 @@ extension PNG {
         let colour = ColourTranslate.lookup(props.cascade(fill ? .fill : .colour) ?? "black")
         let lineWidth = CGFloat(props.cascade(.strokeWidth))
         image.withCGContext { ctx in
+            if let clipRect = clipRect { ctx.clip(to: clipRect)}
             var current = CGPoint.zero
             ctx.setLineWidth(lineWidth)
             ctx.setLineCap(propsCap(props))

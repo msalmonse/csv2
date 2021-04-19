@@ -9,11 +9,15 @@ import Foundation
 
 extension PNG {
     func plotClipStart(plotPlane: Plane) {
-        return
+        clipRect =
+            CGRect(x: plotPlane.left, y: plotPlane.top, width: plotPlane.width, height: plotPlane.height)
     }
 
     func plotClipEnd() {
-        return
+        clipRect = nil
+        image.withCGContext { ctx in
+            ctx.resetClip()
+        }
     }
 
     func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) {

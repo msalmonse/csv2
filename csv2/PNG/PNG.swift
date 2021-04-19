@@ -12,6 +12,9 @@ class PNG: Plotter {
     // image data
     var image: Image<PremultipliedRGBA<UInt8>>
 
+    // clipping rectangle
+    var clipRect: CGRect? = nil
+
     // Plot settings
     let settings: Settings
 
