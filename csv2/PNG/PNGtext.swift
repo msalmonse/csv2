@@ -44,10 +44,20 @@ extension PNG {
 
     private func propsFont(_ props: Properties) -> CTFont? {
         let family = props.cascade(.fontFamily) ?? "serif"
-        let size = props.cascade(.fontSize)
-        let font = CTFontCreateWithName(family as CFString, CGFloat(size), nil)
+        let size = CGFloat(props.cascade(.fontSize))
+        var traits = CTFontSymbolicTraits()
+        var fontDesc = CTFontDescriptorCreateWithNameAndSize(family as CFString, size)
 
-        return font
+        switch (props.bold, props.italic) {
+        case (false, false): break
+        case (true, false): traits = CTFontSymbolicTraits.traitBold
+        case (false, true): traits = CTFontSymbolicTraits.traitItalic
+        case (true, true): traits = CTFontSymbolicTraits.traitBold.union(CTFontSymbolicTraits.traitItalic)
+        }
+        if let symDesc = CTFontDescriptorCreateCopyWithSymbolicTraits(fontDesc, traits, traits) {
+            fontDesc = symDesc
+        }
+        return CTFontCreateWithFontDescriptor(fontDesc, size, nil)
     }
 
     /// Draw the text at the place specified with the properties specified

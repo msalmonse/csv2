@@ -1,5 +1,6 @@
 {
     "colours": ["", "blue", "red", "green", "orange"],
+    "fontFamily": "Times",
     "headerColumns": 1,
     "headerRows": 1,
     "index": 1,

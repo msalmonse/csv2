@@ -14,7 +14,7 @@ extension Plot {
         let lRect = width/8.0
         let rRect = lRect + width/3.0
         let hRect = step * 0.8
-        let rx = step
+        let rx = step/4.0
 
         var propsList = PropertiesList(count: colours.count, settings: settings)
         for i in propsList.plots.indices {
