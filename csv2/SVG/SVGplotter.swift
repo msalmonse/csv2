@@ -45,22 +45,6 @@ extension SVG {
         data.append(result.joined(separator: " "))
     }
 
-    /// Draw a rectangle
-    /// - Parameters:
-    ///   - x: x position
-    ///   - y: y position
-    ///   - w: width
-    ///   - h: height
-    ///   - rx: corner radius
-    ///   - props: path properties
-    /// - Returns: SVG code for a rectangle
-
-    func plotRect(_ plane: Plane, rx: Double, props: Properties) {
-        var extra = ""
-        if let cssClass = props.cssClass { extra = "class=\"\(cssClass)\"" }
-        rectTag(x: plane.left, y: plane.top, width: plane.width, height: plane.height, extra: extra, rx: rx)
-    }
-
     /// Finish SVG
     /// - Returns: end tag
 

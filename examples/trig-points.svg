@@ -86,7 +86,8 @@ svg#svg-ex4 { background-color: #ffedcc }
 <text x="727.50" y="179.75" class="plot06 legend" >sin²(n)</text>
 <text x="727.50" y="199.25" class="plot07 legend" >cot(n)</text>
 <text x="727.50" y="218.75" class="plot08 legend" >sin=cos</text>
-<rect x="708.0" y="33.5" width="84.5" height="204.8" rx="6.0" class="legend" /><text x="400.00" y="592.50" class="subtitle" >Data by numbers®</text>
+<path class="legend" d=" M 786.5,33.5 Q 792.5,33.5, 792.5,39.5 L 792.5,232.2 Q 792.5,238.2, 786.5,238.2 L 714.0,238.2 Q 708.0,238.2, 708.0,232.2 L 708.0,39.5 Q 708.0,33.5, 714.0,33.5 Z " />
+<text x="400.00" y="592.50" class="subtitle" >Data by numbers®</text>
 <text x="400.00" y="573.75" class="title" >Trigonometric Functions</text>
 
 </svg>

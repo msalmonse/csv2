@@ -14,7 +14,7 @@ extension Plot {
         let lRect = width/8.0
         let rRect = lRect + width/3.0
         let hRect = step * 0.8
-        let rx = step/4.0
+        let rx = step
 
         var propsList = PropertiesList(count: colours.count, settings: settings)
         for i in propsList.plots.indices {
@@ -33,7 +33,7 @@ extension Plot {
         for i in colours.indices {
             plotter.plotText(x: xText, y: y, text: colours[i], props: propsList.plots[i])
             let plane = Plane(top: yRect, bottom: yRect + hRect, left: lRect, right: rRect)
-            plotter.plotRect(plane, rx: rx, props: propsList.plots[i])
+            plotter.plotPath(rectPath(plane, rx: rx), props: propsList.plots[i], fill: true)
             y += step
         }
     }

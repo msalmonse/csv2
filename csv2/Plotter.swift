@@ -15,7 +15,6 @@ protocol Plotter {
     func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList)
     func plotPath(_ components: [PathComponent], props: Properties, fill: Bool)
     func plotPrint()
-    func plotRect(_ plane: Plane, rx: Double, props: Properties)
     func plotTail()
     func plotText(x: Double, y: Double, text: String, props: Properties)
     func plotWrite(to url: URL) throws
