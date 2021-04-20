@@ -68,6 +68,14 @@ struct Plane {
     private let hε: Double
     private let vε: Double
 
+    /// Initializer for Plane
+    /// - Parameters:
+    ///   - top: top edge of plane
+    ///   - bottom: bottom edge of plane
+    ///   - left: left  edgeof plane
+    ///   - right: right edge of plane
+    ///   - ε: fuziness of edge
+
     init(top: Double, bottom: Double, left: Double, right: Double, ε: Double = 1e-6) {
         self.top = top
         self.bottom = bottom
@@ -75,6 +83,18 @@ struct Plane {
         self.right = right
         hε = abs(right - left) * ε
         vε = abs(top - bottom) * ε
+    }
+
+    /// Initializer for Plane
+    /// - Parameters:
+    ///   - left: left  edgeof plane
+    ///   - top: top edge of plane
+    ///   - height: height of plane
+    ///   - width: width of plane
+    ///   - ε: fuziness of edge
+
+    init(left: Double, top: Double, height: Double, width: Double, ε: Double = 1e-6) {
+        self.init(top: top, bottom: top + height, left: left, right: left + width)
     }
 
     /// Horizontal midpoint

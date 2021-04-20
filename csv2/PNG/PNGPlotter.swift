@@ -21,7 +21,14 @@ extension PNG {
     }
 
     func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) {
-        if settings.plotter.logoURL.hasContent { logo(positions) }
+        if settings.plotter.logoURL.hasContent {
+            let logoPlane = Plane(
+                left: positions.logoX, top: positions.logoY,
+                height: settings.plotter.logoHeight,
+                width: settings.plotter.logoWidth
+            )
+            logo(logoPlane, from: settings.plotter.logoURL)
+        }
     }
 
     func plotPrint() {

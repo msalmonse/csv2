@@ -19,17 +19,19 @@ extension PNG {
         return UInt8(round(blend * 255))
     }
 
-    func logo(_ positions: Positions) {
-        if let url = URL(string: settings.plotter.logoURL) {
+    func logo(_ plotPlane: Plane, from name: String) {
+        let height = Int(plotPlane.height)
+        let width = Int(plotPlane.width)
+        if let url = URL(string: name) {
             do {
                 let data = try Data(contentsOf: url)
-                if let logoImage = Image<PremultipliedRGBA<UInt8>>(data: data) {
-                    if Double(logoImage.height) > settings.plotter.logoHeight ||
-                        Double(logoImage.width) > settings.plotter.logoWidth {
-                        return
+                if var logoImage = Image<PremultipliedRGBA<UInt8>>(data: data) {
+                    if logoImage.height != height || logoImage.width != width {
+                        let newLogo = logoImage.resizedTo(width: width, height: height)
+                            logoImage = newLogo
                     }
-                    let xOffset = Int(positions.logoX)
-                    let yOffset = Int(positions.logoY)
+                    let xOffset = Int(plotPlane.left)
+                    let yOffset = Int(plotPlane.top)
                     for row in 0..<logoImage.height {
                         for col in 0..<logoImage.width {
                             let logoPixel = logoImage[col, row]

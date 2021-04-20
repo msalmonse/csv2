@@ -9,25 +9,11 @@ import Foundation
 
 extension Plot {
 
-    /// Draw the rectangle under the legends
-    /// - Parameters:
-    ///   - top: rectangle top
-    ///   - bottom: rectangle bottom
-    ///   - left: rectangle left
-    ///   - right: rectangle right
-    /// - Returns: rectangle string
-
-    private func legendBG(_ top: Double, _ bottom: Double, _ left: Double, right: Double) {
-        let plane = Plane(top: top, bottom: bottom, left: left, right: right)
-        plotter.plotPath(rectPath(plane, rx: strokeWidth * 3.0), props: propsList.legendBG, fill: false)
-    }
-
     /// Draw the shape used for a scatter plot
     /// - Parameters:
     ///   - x: x position
     ///   - y: y position
     ///   - props: path properties
-    /// - Returns: path string
 
     private func scatteredLine(
         _ x: Double, _ y: Double,
@@ -132,6 +118,12 @@ extension Plot {
             }
         }
 
-        legendBG(positions.legendY, y + yStep, x - legendSize, right: positions.legendRightX)
+        let rectPlane = Plane(
+                top: positions.legendY, bottom: y + yStep,
+                left: x - legendSize, right: positions.legendRightX
+            )
+        plotter.plotPath(rectPath(rectPlane, rx: strokeWidth * 3.0),
+                            props: propsList.legendBG, fill: false
+                        )
     }
 }

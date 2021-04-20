@@ -18,10 +18,11 @@ extension Plot {
 
         var propsList = PropertiesList(count: colours.count, settings: settings)
         for i in propsList.plots.indices {
+            propsList.plots[i].bar = i
             propsList.plots[i].colour = colours[i]
             propsList.plots[i].fill = colours[i]
             propsList.plots[i].fontColour = colours[i]
-            propsList.plots[i].fontSize = step * 0.75
+            propsList.plots[i].fontSize = ceil(step * 0.75)
             propsList.plots[i].textAlign = "start"
             propsList.plots[i].cssClass = "colour\((i + 1).d0(2))"
         }
@@ -36,5 +37,7 @@ extension Plot {
             plotter.plotPath(rectPath(plane, rx: rx), props: propsList.plots[i], fill: true)
             y += step
         }
+
+        plotter.plotTail()
     }
 }

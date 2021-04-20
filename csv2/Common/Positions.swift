@@ -52,7 +52,7 @@ struct Positions {
 
     init(_ settings: Settings, dataLeft: Double) {
         let sizes = FontSizes(size: settings.dim.baseFontSize)
-        let margin = settings.dim.baseFontSize * 0.75
+        let margin = ceil(settings.dim.baseFontSize * 0.75)
         let logoHeight = settings.plotter.logoURL.isEmpty ? 0.0 : settings.plotter.logoHeight
         let logoWidth = settings.plotter.logoURL.isEmpty ? 0.0 : settings.plotter.logoWidth
         // Calculate vertical positions
@@ -60,17 +60,17 @@ struct Positions {
         var pos = settings.height - margin
         pos -= inRange(0.0..<pos, settings.dim.reserveBottom)
         subTitleY = pos
-        pos -= (settings.plotter.subTitle.hasContent || settings.csv.subTitleHeader >= 0)
-            ? sizes.subTitleSize * 1.25 : 0.0
+        pos -= ceil((settings.plotter.subTitle.hasContent || settings.csv.subTitleHeader >= 0)
+            ? sizes.subTitleSize * 1.25 : 0.0)
         titleY = pos
-        pos -= (settings.plotter.title.hasContent) ? sizes.titleSize * 1.25 : 0.0
+        pos -= ceil((settings.plotter.title.hasContent) ? sizes.titleSize * 1.25 : 0.0)
         xTitleY = pos
-        pos -= (settings.plotter.xTitle.hasContent) ? sizes.axesSize * 1.25 : 0.0
+        pos -= ceil((settings.plotter.xTitle.hasContent) ? sizes.axesSize * 1.25 : 0.0)
         xTagsY = pos
-        xTagsTopY = pos - sizes.axesSize
-        pos -= (settings.csv.xTagHeader >= 0) ? sizes.axesSize * 1.25 : 0.0
+        xTagsTopY = floor(pos - sizes.axesSize)
+        pos -= ceil((settings.csv.xTagHeader >= 0) ? sizes.axesSize * 1.25 : 0.0)
         xTicksY = pos
-        pos -= (settings.dim.xTick >= 0) ? sizes.labelSize * 1.25 : 0.0
+        pos -= ceil((settings.dim.xTick >= 0) ? sizes.labelSize * 1.25 : 0.0)
         bottomY = pos
 
         // top
@@ -78,17 +78,17 @@ struct Positions {
         pos += inRange(0.0..<bottomY, settings.dim.reserveTop)
         topY = pos
         logoY = pos
-        legendY = topY + max(sizes.legendSize * 2.0, logoHeight + margin)
+        legendY = ceil(topY + max(sizes.legendSize * 2.0, logoHeight + margin))
 
         // Calculate horizontal positions
         pos = margin
         pos += inRange(0.0..<settings.width, settings.dim.reserveLeft)
-        pos += (settings.plotter.yTitle.hasContent) ? sizes.axesSize * 1.25 : 0.0
+        pos += ceil((settings.plotter.yTitle.hasContent) ? sizes.axesSize * 1.25 : 0.0)
         yTitleX = pos
         // Give some extra space for minus sign
-        pos += (settings.dim.yTick < 0) ? 0.0 : sizes.labelSize * (dataLeft < 0.0 ? 3.5 : 4.0)
+        pos += ceil((settings.dim.yTick < 0) ? 0.0 : sizes.labelSize * (dataLeft < 0.0 ? 3.5 : 4.0))
         yTickX = pos
-        pos += settings.css.strokeWidth
+        pos += ceil(settings.css.strokeWidth)
         leftX = pos
 
         // legends are on the right
@@ -99,7 +99,7 @@ struct Positions {
         if !settings.plotter.legends {
             legendLeftX = pos
         } else {
-            let newpos = pos - max(5.5 * sizes.legendSize, logoWidth)
+            let newpos = floor(pos - max(6.0 * sizes.legendSize, logoWidth))
             if (newpos - leftX) >= 0.8 * settings.width {
                 pos = newpos
                 legendLeftX = pos
@@ -109,7 +109,7 @@ struct Positions {
             }
         }
         // Allow for some space for tick labels
-        pos -= 2.0 * sizes.labelSize
+        pos -= ceil(2.0 * sizes.labelSize)
         rightX = pos
     }
 }

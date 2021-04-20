@@ -38,5 +38,7 @@ extension Plot {
             plotter.plotPath(components, props: propsList.plots[i], fill: false)
             plotter.plotText(x: xText, y: y, text: dashes[i], props: propsList.plots[i])
         }
+
+        plotter.plotTail()
     }
 }

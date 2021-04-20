@@ -56,7 +56,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--logo http://www.midnightbsd.org/art/logo/MidnightBSDLogo64x64.png"
+            argument = "--logo https://newcastlebeach.org/images/128x128-11.png"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
