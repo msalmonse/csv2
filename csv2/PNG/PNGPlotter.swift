@@ -21,7 +21,7 @@ extension PNG {
     }
 
     func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) {
-        return
+        if settings.plotter.logoURL.hasContent { logo(positions) }
     }
 
     func plotPrint() {
