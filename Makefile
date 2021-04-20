@@ -51,6 +51,10 @@ generated/%.canvastag: CANVAS = $(shell cat $(@F:%.canvastag=data/%.canvas))
 generated/%.canvastag: data/%.csv data/%.json data/%.opts data/%.canvas $(CSV2)
 	-@ $(CSV2) canvas --canvas $(CANVAS) --canvastag $(OPTS) - $(@F:%.canvastag=data/%.json) > $@
 
+generated/%.svg: OPTS = $(shell cat $(@F:%.svg=data/%.opts))
+generated/%.svg: data/%.csv data/%.json data/%.opts $(CSV2)
+	-@ $(CSV2) svg $(OPTS) $(@F:%.svg=data/%.csv) $(@F:%.svg=data/%.json) $@
+
 generated/%.png: OPTS = $(shell cat $(@F:%.png=data/%.opts))
 generated/%.png: data/%.csv data/%.json data/%.opts $(CSV2)
 	-@ $(CSV2) png $(OPTS) $(@F:%.png=data/%.csv) $(@F:%.png=data/%.json) $@
