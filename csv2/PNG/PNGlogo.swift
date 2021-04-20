@@ -24,6 +24,10 @@ extension PNG {
             do {
                 let data = try Data(contentsOf: url)
                 if let logoImage = Image<PremultipliedRGBA<UInt8>>(data: data) {
+                    if Double(logoImage.height) > settings.plotter.logoHeight ||
+                        Double(logoImage.width) > settings.plotter.logoWidth {
+                        return
+                    }
                     let xOffset = Int(positions.logoX)
                     let yOffset = Int(positions.logoY)
                     for row in 0..<logoImage.height {
