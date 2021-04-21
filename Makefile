@@ -15,7 +15,7 @@ PNGFILES = $(PNGOPTFILES:data/%.opts=generated/%.png)
 SVGFILES = $(OPTFILES:data/%.opts=generated/%.svg)
 TXTFILES = $(OPTFILES:data/%.opts=generated/%.txt)
 
-.PHONY:	all error.expected examples 
+.PHONY:	all error.expected examples shapes
 
 all:	generated/.made examples \
 	generated/svgindex.html \
@@ -97,3 +97,5 @@ examples/trig-bar.svg: data/trig.csv examples/trig.json $(CSV2)
 examples/layout.svg: data/trig.csv examples/layout.json examples/layout.inc
 	-@ $(CSV2) svg data/trig.csv examples/layout.json $@
 
+shapes:
+	-@ ./shapeDoc.sh --colours green
