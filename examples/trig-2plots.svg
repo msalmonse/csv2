@@ -22,8 +22,10 @@ svg#svg-ex3 { background-color: #ffedcc }
 #svg-ex3 text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
 #svg-ex3 path.plot05 { stroke: #ff0000 }
 #svg-ex3 text.plot05, #svg-ex3 rect.plot05 { fill: #ff0000; stroke: #ff0000 }
+#svg-ex3 path.plot05.fill { stroke: #ff0000; fill: #ff0000; fill-opacity: 0.75 }
 #svg-ex3 path.plot07 { stroke: #008000 }
 #svg-ex3 text.plot07, #svg-ex3 rect.plot07 { fill: #008000; stroke: #008000 }
+#svg-ex3 path.plot07.fill { stroke: #008000; fill: #008000; fill-opacity: 0.75 }
 #svg-ex3 rect.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
 </style>
 <text x="117.42" y="526.00" class="xlabel" >30</text>
