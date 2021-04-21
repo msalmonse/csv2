@@ -15,16 +15,16 @@ extension Plot {
     ///   - rx: corner radius
     /// - Returns: path to create rectangle
 
-    func rectPath(_ plane: Plane, rx: Double) -> [PathComponent] {
+    func rectPath(_ plane: Plane, rx: Double) -> Path {
         if rx == 0.0 {
-            return [
+            return Path([
                 .moveTo(x: plane.left, y: plane.vMid),
                 .vertTo(y: plane.top),
                 .horizTo(x: plane.right),
                 .vertTo(y: plane.bottom),
                 .horizTo(x: plane.left),
                 .z
-            ]
+            ])
         } else {
             let left = plane.left
             let top = plane.top
@@ -36,7 +36,7 @@ extension Plot {
             let tq = min(plane.vMid, top + rx)
             let bq = max(plane.vMid, bottom - rx)
 
-            return [
+            return Path([
                 .moveTo(x: rq, y: top),
                 .qBezierTo(x: right, y: tq, cx: right, cy: top),
                 .lineTo(x: right, y: bq),
@@ -46,7 +46,7 @@ extension Plot {
                 .lineTo(x: left, y: tq),
                 .qBezierTo(x: lq, y: top, cx: left, cy: top),
                 .z
-            ]
+            ])
         }
     }
 }

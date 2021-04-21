@@ -64,14 +64,14 @@ enum PathComponent {
         case .vertTo(let y): return "V \(y.f(1))"
         case .z: return "Z"
         default:
-            return self.expand!.map { $0.path }.joined(separator: " ")
+            return self.expand!.path
         }
     }
 
     /// Expand multi part commands
     /// - Returns: a list of commands or nil
 
-    var expand: [PathComponent]? {
+    var expand: Path? {
         switch self {
         case .bar(let p0, let w, let y): return drawBar(p0: p0, w: w, y: y)
         case .blade(let w): return drawBlade(w: w)
@@ -86,18 +86,4 @@ enum PathComponent {
         default: return nil
         }
     }
-}
-
-/// plot a path from a list of points
-/// - Parameters:
-///   - components: a list of the points or shapes on path
-/// - Returns: a path element
-
-func path(
-    _ components: [PathComponent]
-) -> String {
-    // a path needs 2 points
-    guard components.count >= 2 else { return "" }
-
-    return (components.map { $0.path }).joined(separator: " ")
 }

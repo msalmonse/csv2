@@ -12,7 +12,7 @@ extension Plot {
     /// Draw axes
 
     func axes() {
-        var axesPath: [PathComponent] = []
+        var axesPath = Path()
         let x0 = logy ? 1.0 : 0.0
         let y0 = logx ? 1.0 : 0.0
 
@@ -33,7 +33,7 @@ extension Plot {
     func xTags() {
         let xiValues = xiList()
         let k = settings.csv.xTagHeader
-        var tagsPath: [PathComponent] = []
+        var tagsPath = Path()
 
         /// Fetch text from csv data
         /// - Parameters:
@@ -111,7 +111,7 @@ extension Plot {
     /// Draw vertical ticks
 
     func xTick() {
-        var tickPath: [PathComponent] = []
+        var tickPath = Path()
         var tick = tickNorm(
             settings.dim.xTick,
             dpp: dataPlane.width/plotPlane.width,
@@ -147,7 +147,7 @@ extension Plot {
     /// Draw horizontal ticks
 
     func yTick() {
-        var tickPath: [PathComponent] = []
+        var tickPath = Path()
         var tick = tickNorm(
             settings.dim.yTick,
             dpp: dataPlane.height/plotPlane.height,

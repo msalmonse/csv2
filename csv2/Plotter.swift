@@ -13,7 +13,7 @@ protocol Plotter {
     func plotClipStart(plotPlane: Plane)
     func plotClipEnd()
     func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList)
-    func plotPath(_ components: [PathComponent], props: Properties, fill: Bool)
+    func plotPath(_ path: Path, props: Properties, fill: Bool)
     func plotPrint()
     func plotTail()
     func plotText(x: Double, y: Double, text: String, props: Properties)

@@ -53,10 +53,11 @@ extension Plot {
             propsList.plots[0].cssClass = name
             propsList.plots[0].colour = colour
             plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
-            let shapePath = [
-                PathComponent.moveTo(x: width/2.0, y: height/2.0),
-                shape.pathCommand(w: shapeWidth)
-            ]
+            let shapePath = Path([
+                                    PathComponent.moveTo(x: width/2.0, y: height/2.0),
+                                    shape.pathComponent(w: shapeWidth)
+                                    ]
+            )
             plotter.plotPath(shapePath, props: propsList.plots[0], fill: false)
             plotter.plotTail()
         }

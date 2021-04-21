@@ -16,8 +16,8 @@ extension PNG {
     ///   - current: current position
 
     private func plotComponent(_ ctx: CGContext, component: PathComponent, current: inout CGPoint) {
-        if let componentsList = component.expand {
-            for component in componentsList {
+        if let path = component.expand {
+            for component in path.components {
                 plotComponent(ctx, component: component, current: &current)
             }
         } else {
@@ -82,7 +82,7 @@ extension PNG {
     ///   - props: plot properties
     ///   - fill: fill or stroke?
 
-    func plotPath(_ components: [PathComponent], props: Properties, fill: Bool) {
+    func plotPath(_ path: Path, props: Properties, fill: Bool) {
         let colour = ColourTranslate.lookup(props.cascade(fill ? .fill : .colour) ?? "black")
         let lineWidth = CGFloat(props.cascade(.strokeWidth))
         image.withCGContext { ctx in
@@ -95,7 +95,7 @@ extension PNG {
             } else {
                 ctx.setLineDash(phase: 0.0, lengths: [])
             }
-            for component in components {
+            for component in path.components {
                 plotComponent(ctx, component: component, current: &current)
             }
             if fill {

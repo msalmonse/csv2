@@ -27,7 +27,7 @@ enum Shape {
     /// - Parameter w: the size of the path
     /// - Returns: a PathCommand to draw the shape
 
-    func pathCommand(w: Double) -> PathComponent {
+    func pathComponent(w: Double) -> PathComponent {
         switch self {
         case .blade: return PathComponent.blade(w: w)
         case .circle: return PathComponent.circle(r: w)

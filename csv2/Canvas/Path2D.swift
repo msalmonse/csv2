@@ -14,14 +14,14 @@ extension Canvas {
     ///   - props: path properties
     /// - Returns: JavaScript string
 
-    func plotPath(_ components: [PathComponent], props: Properties, fill: Bool) {
+    func plotPath(_ path: Path, props: Properties, fill: Bool) {
         var result: [String] = [""]
         let op = fill ? "fill" : "stroke"
 
         ctx.sync(props, &result)
 
-        let path = components.map { $0.path }.joined(separator: " ")
-        result.append("p = new Path2D('\(path)'); ctx.\(op)(p)")
+        let pathText = path.path
+        result.append("p = new Path2D('\(pathText)'); ctx.\(op)(p)")
 
         data.append(result.joined(separator: "\n    "))
     }

@@ -18,8 +18,8 @@ extension Plot {
     /// Common state
 
     private class PlotCommonState {
-        var pathComponents: [PathComponent] = []
-        var shapeComponents: [PathComponent] = []
+        var pathComponents = Path()
+        var shapeComponents = Path()
         var prevDataPoint = Point.inf
         var prevPlotPoint = Point.inf
         var state: PlotState
@@ -175,7 +175,7 @@ extension Plot {
             bar: bar
         )
         var yɑ = Double.infinity
-        let plotShape = props.shape?.pathCommand(w: shapeWidth) ?? .circleStar(w: shapeWidth)
+        let plotShape = props.shape?.pathComponent(w: shapeWidth) ?? .circleStar(w: shapeWidth)
 
         func xypos(_ i: Int) -> Point? {
             guard xiValues.hasIndex(i) else { return nil }

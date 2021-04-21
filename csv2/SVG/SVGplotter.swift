@@ -35,11 +35,11 @@ extension SVG {
     ///   - props: path properties
     /// - Returns: plot command string
 
-    func plotPath(_ components: [PathComponent], props: Properties, fill: Bool = false) {
+    func plotPath(_ path: Path, props: Properties, fill: Bool = false) {
         var result = [ "<path" ]
         if let cssClass = props.cssClass { result.append("class=\"\(cssClass)\(fill ? " fill" : "")\"") }
         result.append("d=\"")
-        result.append(contentsOf: components.map { $0.path })
+        result.append(path.path)
         result.append("\" />\n")
 
         data.append(result.joined(separator: " "))

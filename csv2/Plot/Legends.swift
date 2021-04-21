@@ -20,10 +20,10 @@ extension Plot {
         _ props: Properties
     ) {
         guard props.shape != nil else { return }
-        plotter.plotPath([
+        plotter.plotPath(Path([
                 PathComponent.moveTo(x: x, y: y),
-                props.shape!.pathCommand(w: shapeWidth)
-            ],
+                props.shape!.pathComponent(w: shapeWidth)
+            ]),
             props: props, fill: false
         )
     }
@@ -41,12 +41,12 @@ extension Plot {
         _ props: Properties
     ) {
         guard props.shape != nil else { return }
-        plotter.plotPath([
+        plotter.plotPath(Path([
                 PathComponent.moveTo(x: left, y: y),
                 .horizTo(x: mid),
-                props.shape!.pathCommand(w: shapeWidth),
+                props.shape!.pathComponent(w: shapeWidth),
                 .horizTo(x: right)
-            ],
+            ]),
             props: props, fill: false
         )
     }
@@ -62,10 +62,10 @@ extension Plot {
         _ left: Double, _ right: Double, _ y: Double,
         _ props: Properties
     ) {
-        return plotter.plotPath([
+        return plotter.plotPath(Path([
                 PathComponent.moveTo(x: left, y: y),
                 .horizTo(x: right)
-            ],
+            ]),
             props: props, fill: false
         )
     }
