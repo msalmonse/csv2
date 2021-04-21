@@ -19,6 +19,26 @@ struct RGBAu8 {
 
     static var cache: [ String: RGBAu8 ] = [:]
 
+    /// as CGColor
+    var cgColor: CGColor {
+        CGColor(red: r.cgfloat, green: g.cgfloat, blue: b.cgfloat, alpha: a.cgfloat)
+    }
+
+    /// Formatted RGBA
+    var cssRGBA: String {
+        let text = String(format: "rgba(%d,%d,%d,%.3f)", r, g, b, a.cgfloat)
+        RGBAu8.cache[text] = self
+        return text
+    }
+
+    // components packed together
+    var u32: UInt32 { UInt32(UInt32(r) << 24 | UInt32(g) << 16 | UInt32(b) << 8 | UInt32(a)) }
+
+    // Standard colours
+    static var clear: RGBAu8 { RGBAu8(r: 0, g: 0, b: 0, a: 0) }
+    static var black: RGBAu8 { RGBAu8(r: 0, g: 0, b: 0, a: 255) }
+    static var white: RGBAu8 { RGBAu8(r: 255, g: 255, b: 255, a: 255) }
+
     /// Create an RGBA with a new alpha
     /// - Parameter alpha: new alpha
     /// - Returns: New RGBA with new alpha
@@ -34,31 +54,11 @@ struct RGBAu8 {
     func modify(alpha: CGFloat) -> RGBAu8 {
         return RGBAu8(r: r, g: g, b: b, a: UInt8(min(a.cgfloat * alpha * 256.0, 256)))
     }
-
-    /// Formatted RGBA
-    var cssRGBA: String {
-        let text = String(format: "rgba(%d,%d,%d,%.3f)", r, g, b, a.cgfloat)
-        RGBAu8.cache[text] = self
-        return text
-    }
-
-    /// as CGColor
-    var cgColor: CGColor {
-        CGColor(red: r.cgfloat, green: g.cgfloat, blue: b.cgfloat, alpha: a.cgfloat)
-    }
-
-    // Standard colours
-    static var clear: RGBAu8 { RGBAu8(r: 0, g: 0, b: 0, a: 0) }
-    static var black: RGBAu8 { RGBAu8(r: 0, g: 0, b: 0, a: 255) }
-    static var white: RGBAu8 { RGBAu8(r: 255, g: 255, b: 255, a: 255) }
-
-    // components packed together
-    var u32: UInt32 { UInt32(UInt32(r) << 24 | UInt32(g) << 16 | UInt32(b) << 8 | UInt32(a)) }
 }
 
 struct ColourTranslate {
     fileprivate static let name2rgba = [
-    "aliceblue":                RGBAu8(r: 240, g: 248, b: 255, a: 255),
+        "aliceblue":            RGBAu8(r: 240, g: 248, b: 255, a: 255),
         "antiquewhite":         RGBAu8(r: 250, g: 235, b: 215, a: 255),
         "aqua":                 RGBAu8(r: 0, g: 240, b: 255, a: 255),
         "aquamarine":           RGBAu8(r: 127, g: 255, b: 212, a: 255),
