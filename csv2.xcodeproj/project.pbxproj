@@ -92,6 +92,7 @@
 		C4B2F9E4262EC7C200CC5430 /* PNGlogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9E2262EC7C200CC5430 /* PNGlogo.swift */; };
 		C4B2F9EE263025FB00CC5430 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9ED263025FB00CC5430 /* Path.swift */; };
 		C4B2F9EF263025FB00CC5430 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9ED263025FB00CC5430 /* Path.swift */; };
+		C4B2F9F3263031BF00CC5430 /* SwiftImage in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F9F2263031BF00CC5430 /* SwiftImage */; };
 		C4BDCFB6261E156F00D8C589 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDCFB5261E156F00D8C589 /* Canvas.swift */; };
 		C4BDCFBD261EFA0600D8C589 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A6E3B261EDBED00784F54 /* Transform.swift */; };
 		C4C0C462260E589A0072699C /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C461260E589A0072699C /* Style.swift */; };
@@ -256,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B2F9AA26297EE300CC5430 /* ArgumentParser in Frameworks */,
+				C4B2F9F3263031BF00CC5430 /* SwiftImage in Frameworks */,
 				C4B2F9A826297EDD00CC5430 /* CSVParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,6 +522,7 @@
 			packageProductDependencies = (
 				C4B2F9A726297EDD00CC5430 /* CSVParser */,
 				C4B2F9A926297EE300CC5430 /* ArgumentParser */,
+				C4B2F9F2263031BF00CC5430 /* SwiftImage */,
 			);
 			productName = csv2svgTests;
 			productReference = C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */;
@@ -1075,6 +1078,11 @@
 			productName = ArgumentParser;
 		};
 		C4B2F9BA262C173400CC5430 /* SwiftImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4B2F9B9262C173400CC5430 /* XCRemoteSwiftPackageReference "swift-image" */;
+			productName = SwiftImage;
+		};
+		C4B2F9F2263031BF00CC5430 /* SwiftImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C4B2F9B9262C173400CC5430 /* XCRemoteSwiftPackageReference "swift-image" */;
 			productName = SwiftImage;

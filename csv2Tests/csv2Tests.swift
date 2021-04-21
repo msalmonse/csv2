@@ -137,7 +137,7 @@ class csv2Tests: XCTestCase {
     }
 
     func testPlotPath() {
-        let plot = path(pathPoints)
+        let plot = pathPoints.path
         print(plot.difference(from: pathTag))
         XCTAssertEqual(plot, pathTag)
     }
@@ -339,8 +339,8 @@ let plotData = """
 """
 
 // SVG path
-let pathPoints = [
-    PathCommand.moveTo(x: 0, y: 1),
+let pathPoints = Path([
+    .moveTo(x: 0, y: 1),
     .lineTo(x: 1, y: 2),
     .lineTo(x: 2, y: 4),
     .horizTo(x: 3.0),
@@ -349,11 +349,11 @@ let pathPoints = [
     .lineTo(x: 5, y: 32),
     .moveBy(dx: -2, dy: -2),
     .circle(r: 3)
-]
+])
 
 // swiftlint:disable line_length
 let pathTag = """
-M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 m -2.0,-2.0 m 0.0,-3.0 a 3.0,3.0,0.0,1,1,0.0,6.0 a 3.0,3.0,0.0,1,1,0.0,-6.0 m 0.0,3.0
+M 0.0,1.0 L 1.0,2.0 L 2.0,4.0 H 3.0 V 8.0 M 4.0,16.0 L 5.0,32.0 m -2.0,-2.0 m 0.0,-3.6 c 2.0,0.0 3.6,2.0 3.6,3.6 c 0.0,2.0 -2.0,3.6 -3.6,3.6 c -2.0,0.0 -3.6,-2.0 -3.6,-3.6 c 0.0,-2.0 2.0,-3.6 3.6,-3.6 m 0.0,3.6
 """
 
 let xiValues: [XIvalue] = [
