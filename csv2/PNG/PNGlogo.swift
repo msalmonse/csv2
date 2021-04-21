@@ -15,8 +15,8 @@ extension PNG {
         let alpha = Double(alpha)/255.0
         let over = Double(over)/255.0
         let under = Double(under)/255.0
-        let blend = min(over + under * (1 - alpha), 1.0)
-        return UInt8(round(blend * 255))
+        let blend = over + under * (1 - alpha)
+        return UInt8(min(round(blend * 256), 255))
     }
 
     func logo(_ plotPlane: Plane, from name: String) {

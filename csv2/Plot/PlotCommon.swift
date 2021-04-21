@@ -208,7 +208,7 @@ extension Plot {
         let fill = plotProps.bar >= 0
         if fill {
             if let rgba = ColourTranslate.lookup(plotProps.fill) {
-                plotProps.fill = rgba.modify(alpha: 0.75).asText
+                plotProps.fill = rgba.modify(alpha: 0.75).cssRGBA
             }
         }
         plotter.plotPath(state.pathComponents + state.shapeComponents, props: plotProps, fill: fill)
