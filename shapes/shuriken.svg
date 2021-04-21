@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg id="ID-2c396c" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+<svg id="ID-57c8fd" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<clipPath id="plotable">
+<rect x="3.0" y="1.0" width="-12.0" height="10.0" rx="0.0"  />
+</clipPath>
+</defs>
 <style>
-svg#ID-2c396c { background-color: transparent }
-#ID-2c396c g.plotarea { opacity: 1.0 }
-#ID-2c396c g.plotarea path:hover { stroke-width: 5.0 }
-#ID-2c396c path { stroke-width: 2.0; fill: none; stroke-linecap: round }
-#ID-2c396c path.axes { stroke: black }
-#ID-2c396c path.xtick, #ID-2c396c path.ytick { stroke: silver; stroke-width: 1 }
-#ID-2c396c text.legends { font-size: 13.0px }
-#ID-2c396c text.legends.headline { font-size: 16.2px; font-weight: bold }
-#ID-2c396c text.subtitle { font-size: 15.0px; text-anchor: middle }
-#ID-2c396c text.title { font-size: 25.0px; text-anchor: middle }
-#ID-2c396c text.xlabel { font-size: 10.0px; text-anchor: middle }
-#ID-2c396c text.xtitle { font-size: 12.0px; text-anchor: middle }
-#ID-2c396c text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
-#ID-2c396c text.ytitle { font-size: 12.0px; text-anchor: middle; writing-mode: tb }
-#ID-2c396c rect.legends { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
-#ID-2c396c path.shape { stroke: green }
+svg#ID-57c8fd { background-color: transparent }
+#ID-57c8fd g.plotarea { opacity: 1.0 }
+#ID-57c8fd g.plotarea path:hover { stroke-width: 5.0 }
+#ID-57c8fd path { stroke-width: 2.0; fill: none; stroke-linecap: round }
+#ID-57c8fd path.axes { stroke: black }
+#ID-57c8fd path.xlabel, #ID-57c8fd path.ylabel { stroke: silver; stroke-width: 1 }
+#ID-57c8fd text { font-family: serif }
+#ID-57c8fd text.legend { font-size: 13.0px }
+#ID-57c8fd text.legend.headline { font-size: 16.2px; font-weight: bold }
+#ID-57c8fd text.subtitle { font-size: 15.0px; text-anchor: middle }
+#ID-57c8fd text.title { font-size: 25.0px; text-anchor: middle }
+#ID-57c8fd text.xlabel { font-size: 10.0px; text-anchor: middle }
+#ID-57c8fd text.xtitle, #ID-57c8fd text.ytitle { font-size: 12.0px; text-anchor: middle }
+#ID-57c8fd text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
+#ID-57c8fd path.shuriken { stroke: green }
+#ID-57c8fd text.shuriken, #ID-57c8fd rect.shuriken { fill: green; stroke: green }
+#ID-57c8fd path.shuriken.fill { stroke: green; fill: green; fill-opacity: 0.75 }
+#ID-57c8fd rect.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
 </style>
-<path class="shape" d=" M 6.0,6.0 m -1.8,-1.8 l -1.8,-1.8 h 1.8 l 3.5,1.8 l 1.8,-1.8 v 1.8 l -1.8,3.5 l 1.8,1.8 h -1.8 l -3.5,-1.8 l -1.8,1.8 v -1.8 l 1.8,-3.5 m 1.8,1.8 " />
+<path class="shuriken" d=" M 6.0,6.0 m -1.8,-1.8 l -1.8,-1.8 h 1.8 l 3.5,1.8 l 1.8,-1.8 v 1.8 l -1.8,3.5 l 1.8,1.8 h -1.8 l -3.5,-1.8 l -1.8,1.8 v -1.8 l 1.8,-3.5 m 1.8,1.8 " />
+
 </svg>
+
