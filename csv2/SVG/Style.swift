@@ -31,14 +31,9 @@ extension SVG {
                 result.append("""
                     \(id) path.\(cssClass) { stroke: \(colour)\(dashes) }
                     \(id) text.\(cssClass), \(id) rect.\(cssClass) { fill: \(colour); stroke: \(colour) }
+                    \(id) path.\(cssClass).fill { stroke: \(colour)\(dashes); fill: \(colour); fill-opacity: 0.75 }
                     """
                 )
-                if props.bar >= 0 {
-                    result.append("""
-                        \(id) path.\(cssClass).fill { stroke: \(colour)\(dashes); fill: \(colour); fill-opacity: 0.75 }
-                        """
-                    )
-                }
             }
         }
     }

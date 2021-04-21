@@ -18,7 +18,6 @@ extension Plot {
 
         var propsList = PropertiesList(count: colours.count, settings: settings)
         for i in propsList.plots.indices {
-            propsList.plots[i].bar = i
             propsList.plots[i].colour = colours[i]
             propsList.plots[i].fill = colours[i]
             propsList.plots[i].fontColour = colours[i]
