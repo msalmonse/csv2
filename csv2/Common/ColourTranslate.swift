@@ -282,7 +282,7 @@ struct ColourTranslate {
 
     /// Lookup a known colour name or hex code
     /// - Parameter name: colour name of hex code
-    /// - Returns: A matching RGBA or transparent black
+    /// - Returns: A matching RGBA or nil
 
     static func lookup(_ name: String?) -> RGBAu8? {
         guard let name = name else { return nil }
@@ -299,5 +299,15 @@ struct ColourTranslate {
             return rgba
         }
         return nil
+    }
+
+    /// As for lookup but return a default if not found
+    /// - Parameters:
+    ///   - name: colour name or hexcode
+    ///   - notFound: default if not found
+    /// - Returns: A matching RGBA or default
+
+    static func lookup(_ name: String?, or notFound: RGBAu8 = .clear) -> RGBAu8 {
+        return Self.lookup(name) ?? notFound
     }
 }

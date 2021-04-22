@@ -155,12 +155,4 @@ func plotFlags(
         props[i].scattered = settings.plot.scatterPlots &== mask
         if settings.plot.bared &== mask { props[i].bar = Bar.next }
     }
-
-    // Not really flags
-    for i in props.indices {
-        props[i].bold = settings.css.bold
-        props[i].bezier = settings.plot.bezier
-        props[i].fontFamily = settings.css.fontFamily
-        props[i].italic = settings.css.italic
-    }
 }

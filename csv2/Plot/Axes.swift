@@ -69,7 +69,7 @@ extension Plot {
                 }
             }
         }
-        plotter.plotPath(tagsPath, props: propsList.xLabel, fill: false)
+        plotter.plotPath(tagsPath, props: propsList.xTags, fill: false)
     }
 
     /// Normalize tick value
