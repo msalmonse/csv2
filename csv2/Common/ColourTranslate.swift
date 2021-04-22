@@ -11,7 +11,10 @@ extension UInt8 {
     var cgfloat: CGFloat { CGFloat(self)/255.0 }
 }
 
-struct RGBAu8 {
+fileprivate func u8val(_ val: CGFloat) -> UInt8 { UInt8(min(val * 256.0, 256)) }
+fileprivate func u8val(_ val: Double) -> UInt8 { UInt8(min(val * 256.0, 256)) }
+
+struct RGBAu8: Equatable {
     let r: UInt8
     let g: UInt8
     let b: UInt8
@@ -247,37 +250,85 @@ struct ColourTranslate {
     ///     a:            reference to alpha
 
     fileprivate static func hexToRGBA(
-        hex: String?,
+        hex: String,
         r: inout UInt8,
         g: inout UInt8,
         b: inout UInt8,
         a: inout UInt8
     ) -> Bool {
-        if hex == nil || !hex!.hasPrefix("#") { return false }
-        switch hex!.count {
+        if !hex.hasPrefix("#") { return false }
+        switch hex.count {
         case 4:     // #rgb
-            if  !hexToUInt8(from: hex!, first: 1, count: 1, to: &r) ||
-                !hexToUInt8(from: hex!, first: 2, count: 1, to: &g) ||
-                !hexToUInt8(from: hex!, first: 3, count: 1, to: &b) { return false }
+            if  !hexToUInt8(from: hex, first: 1, count: 1, to: &r) ||
+                !hexToUInt8(from: hex, first: 2, count: 1, to: &g) ||
+                !hexToUInt8(from: hex, first: 3, count: 1, to: &b) { return false }
             r *= 17
             g *= 17
             b *= 17
             a = 255
         case 7:     // #rrggbb
-            if  !hexToUInt8(from: hex!, first: 1, count: 2, to: &r) ||
-                !hexToUInt8(from: hex!, first: 3, count: 2, to: &g) ||
-                !hexToUInt8(from: hex!, first: 5, count: 2, to: &b) { return false }
+            if  !hexToUInt8(from: hex, first: 1, count: 2, to: &r) ||
+                !hexToUInt8(from: hex, first: 3, count: 2, to: &g) ||
+                !hexToUInt8(from: hex, first: 5, count: 2, to: &b) { return false }
             a = 255
         case 9:     // #rrggbbaa
-            if  !hexToUInt8(from: hex!, first: 1, count: 2, to: &r) ||
-                !hexToUInt8(from: hex!, first: 3, count: 2, to: &g) ||
-                !hexToUInt8(from: hex!, first: 5, count: 2, to: &b) ||
-                !hexToUInt8(from: hex!, first: 7, count: 2, to: &a) { return false }
+            if  !hexToUInt8(from: hex, first: 1, count: 2, to: &r) ||
+                !hexToUInt8(from: hex, first: 3, count: 2, to: &g) ||
+                !hexToUInt8(from: hex, first: 5, count: 2, to: &b) ||
+                !hexToUInt8(from: hex, first: 7, count: 2, to: &a) { return false }
         default:
             return false
         }
 
         return true
+    }
+
+    fileprivate static func cssRGBAParse(
+            _ css: String,
+            r: inout UInt8,
+            g: inout UInt8,
+            b: inout UInt8,
+            a: inout UInt8
+    ) -> Bool {
+        if !css.lowercased().hasPrefix("rgb") { return false }
+        let pattern = #"^rgba?\(\s*(\d+),\s*(\d+),\s*(\d+)(?:,\s*([01]\.\d+))?\)$"#
+        let re = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+        let cssRange = NSRange(css.startIndex..<css.endIndex, in: css)
+        a = 255
+        if let re = re, let match = re.matches(in: css, options: [], range: cssRange).first {
+            // match.range(at: 0) is the entire range and is ignored
+            switch match.numberOfRanges {
+            case 5:
+                if let aRange = Range(match.range(at: 4), in: css),
+                   let aVal = Double(css[aRange]) {
+                    if aVal > 1.0 { return false }
+                    a = u8val(aVal)
+                } else { return false }
+                fallthrough
+            case 4:
+                if let rRange = Range(match.range(at: 1), in: css),
+                   let rVal = Int(css[rRange]) {
+                    if rVal > 255 { return false }
+                    r = UInt8(rVal)
+                } else { return false }
+
+                if let gRange = Range(match.range(at: 2), in: css),
+                   let gVal = Int(css[gRange]) {
+                    if gVal > 255 { return false }
+                    g = UInt8(gVal)
+                } else { return false }
+
+                if let bRange = Range(match.range(at: 3), in: css),
+                   let bVal = Int(css[bRange]) {
+                    if bVal > 255 { return false }
+                    b = UInt8(bVal)
+                } else { return false }
+                return true
+            default:
+                return false
+            }
+        }
+        return false
     }
 
     /// Lookup a known colour name or hex code
@@ -289,15 +340,24 @@ struct ColourTranslate {
         if name.isEmpty { return nil }
         if let cached = RGBAu8.cache[name] { return cached }
         if let rgba = name2rgba[name] { return rgba }
+
         var r: UInt8 = 0
         var g: UInt8 = 0
         var b: UInt8 = 0
         var a: UInt8 = 0
+
         if hexToRGBA(hex: name, r: &r, g: &g, b: &b, a: &a) {
             let rgba = RGBAu8(r: r, g: g, b: b, a: a)
             RGBAu8.cache[name] = rgba
             return rgba
         }
+
+        if cssRGBAParse(name, r: &r, g: &g, b: &b, a: &a) {
+            let rgba = RGBAu8(r: r, g: g, b: b, a: a)
+            RGBAu8.cache[name] = rgba
+            return rgba
+        }
+
         return nil
     }
 
