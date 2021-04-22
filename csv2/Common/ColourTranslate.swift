@@ -236,7 +236,7 @@ struct ColourTranslate {
     }
 
     /// Convert a hex string to red, green & blue
-    /// Expectd formats "#rgb" or "#rrggbb"
+    /// Expectd formats "#rgb", "#rrggbb" or #rrggbbaa
     /// Returns true on success
     ///
     /// Parameters:
@@ -246,7 +246,7 @@ struct ColourTranslate {
     ///     b:            reference to blue colour
     ///     a:            reference to alpha
 
-    fileprivate static func hexToRGB(
+    fileprivate static func hexToRGBA(
         hex: String?,
         r: inout UInt8,
         g: inout UInt8,
@@ -293,7 +293,7 @@ struct ColourTranslate {
         var g: UInt8 = 0
         var b: UInt8 = 0
         var a: UInt8 = 0
-        if hexToRGB(hex: name, r: &r, g: &g, b: &b, a: &a) {
+        if hexToRGBA(hex: name, r: &r, g: &g, b: &b, a: &a) {
             let rgba = RGBAu8(r: r, g: g, b: b, a: a)
             RGBAu8.cache[name] = rgba
             return rgba
