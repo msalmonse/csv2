@@ -291,42 +291,32 @@ struct ColourTranslate {
             a: inout UInt8
     ) -> Bool {
         if !css.lowercased().hasPrefix("rgb") { return false }
-        let pattern = #"^rgba?\(\s*(\d+),\s*(\d+),\s*(\d+)(?:,\s*([01]\.\d+))?\)$"#
+        let pattern = #"^rgba?\(\s*(?<r>\d+),\s*(?<g>\d+),\s*(?<b>\d+)(?:,\s*(?<a>[01]\.\d+))?\)$"#
         let re = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
         let cssRange = NSRange(css.startIndex..<css.endIndex, in: css)
         a = 255
         if let re = re, let match = re.matches(in: css, options: [], range: cssRange).first {
-            // match.range(at: 0) is the entire range and is ignored
-            switch match.numberOfRanges {
-            case 5:
-                if let aRange = Range(match.range(at: 4), in: css),
-                   let aVal = Double(css[aRange]) {
-                    if aVal > 1.0 { return false }
-                    a = u8val(aVal)
-                } else { return false }
-                fallthrough
-            case 4:
-                if let rRange = Range(match.range(at: 1), in: css),
-                   let rVal = Int(css[rRange]) {
-                    if rVal > 255 { return false }
-                    r = UInt8(rVal)
-                } else { return false }
-
-                if let gRange = Range(match.range(at: 2), in: css),
-                   let gVal = Int(css[gRange]) {
-                    if gVal > 255 { return false }
-                    g = UInt8(gVal)
-                } else { return false }
-
-                if let bRange = Range(match.range(at: 3), in: css),
-                   let bVal = Int(css[bRange]) {
-                    if bVal > 255 { return false }
-                    b = UInt8(bVal)
-                } else { return false }
-                return true
-            default:
-                return false
+            if let aRange = Range(match.range(withName: "a"), in: css), let aVal = Double(css[aRange]) {
+                if aVal > 1.0 { return false }
+                a = u8val(aVal)
             }
+
+            if let rRange = Range(match.range(withName: "r"), in: css), let rVal = Int(css[rRange]) {
+                if rVal > 255 { return false }
+                r = UInt8(rVal)
+            } else { return false }
+
+            if let gRange = Range(match.range(withName: "g"), in: css), let gVal = Int(css[gRange]) {
+                if gVal > 255 { return false }
+                g = UInt8(gVal)
+            } else { return false }
+
+            if let bRange = Range(match.range(withName: "b"), in: css), let bVal = Int(css[bRange]) {
+                if bVal > 255 { return false }
+                b = UInt8(bVal)
+            } else { return false }
+
+            return true
         }
         return false
     }
