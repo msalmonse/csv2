@@ -9,6 +9,7 @@ import Foundation
 
 extension Settings {
     enum CodingKeys: CodingKey {
+        case axes
         case backgroundColour
         case bared
         case barOffset
@@ -29,6 +30,7 @@ extension Settings {
         case dashes
         case dataPointDistance
         case fontFamily
+        case foregroundColours
         case headerColumns
         case headerRows
         case height
@@ -37,6 +39,7 @@ extension Settings {
         case index
         case italic
         case legends
+        case legendsBox
         case logoHeight
         case logoURL
         case logoWidth
@@ -61,11 +64,14 @@ extension Settings {
         case svgInclude
         case title
         case width
+        case xLabel
         case xMax
         case xMin
+        case xTags
         case xTagsHeader
         case xTick
         case xTitle
+        case yLabel
         case yMax
         case yMin
         case yTick

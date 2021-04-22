@@ -200,7 +200,8 @@ extension Settings {
     ///   - defaults: the command line defaults
     /// - Returns: true if they are not the same
 
-    private static func stringIsChanged(_ key: CodingKeys, _ defaults: Defaults) -> Bool {
+    private static func stringIsChanged(_ key: CodingKeys, _ defaults: Defaults?) -> Bool {
+        if defaults == nil { return false }
         return stringDefault(key, defaults) != stringDefault(key, Defaults.global)
     }
 
@@ -210,19 +211,39 @@ extension Settings {
     ///   - defaults: the command line defaults
     /// - Returns: string default value
 
-    private static func stringDefault(_ key: CodingKeys, _ defaults: Defaults) -> String {
-        switch key {
-        case .backgroundColour: return defaults.backgroundColour
-        case .canvasID: return defaults.canvasID
-        case .cssID: return defaults.cssID
-        case .cssInclude: return defaults.cssInclude
-        case .fontFamily: return defaults.fontFamily
-        case .logoURL: return defaults.logoURL
-        case .subTitle: return defaults.subTitle
-        case .svgInclude: return defaults.svgInclude
-        case .title: return defaults.title
-        default: return ""
+    private static func stringDefault(_ key: CodingKeys, _ defaults: Defaults?) -> String? {
+        if let defaults = defaults {
+            switch key {
+            case .backgroundColour: return defaults.backgroundColour
+            case .canvasID: return defaults.canvasID
+            case .cssID: return defaults.cssID
+            case .cssInclude: return defaults.cssInclude
+            case .fontFamily: return defaults.fontFamily
+            case .logoURL: return defaults.logoURL
+            case .subTitle: return defaults.subTitle
+            case .svgInclude: return defaults.svgInclude
+            case .title: return defaults.title
+            default: return ""
+            }
+        } else {
+            return nil
         }
+    }
+
+    /// Convenience function to decode a keyed String
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: Coding key for Settings
+    ///   - defaults: the command line defaults
+    /// - Returns: decoded or default value or nil
+
+    static func optionalKeyedStringValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys,
+        defaults: Defaults?
+    ) -> String? {
+        if container == nil || stringIsChanged(key, defaults) { return stringDefault(key, defaults) }
+        return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? stringDefault(key, defaults)
     }
 
     /// Convenience function to decode a keyed String
@@ -237,8 +258,7 @@ extension Settings {
         forKey key: CodingKeys,
         defaults: Defaults
     ) -> String {
-        if container == nil || stringIsChanged(key, defaults) { return stringDefault(key, defaults) }
-        return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? stringDefault(key, defaults)
+        return optionalKeyedStringValue(from: container, forKey: key, defaults: defaults) ?? ""
     }
 
     /// Check to see that the default value is the same as the global default

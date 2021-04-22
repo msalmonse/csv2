@@ -47,6 +47,14 @@ struct RGBAu8 {
         return RGBAu8(r: self.r, g: self.g, b: self.b, a: alpha)
     }
 
+    /// Clamp the alpha value
+    /// - Parameter alpha: maximum alpha
+    /// - Returns: new rgba with the alpha clamped
+
+    func maxAlpha(_ alpha: CGFloat) -> RGBAu8 {
+        return RGBAu8(r: r, g: g, b: b, a: UInt8(min(min(a.cgfloat, alpha) * 256.0, 256)))
+    }
+
     /// Modiify the alpha by multiplyimg
     /// - Parameter alpha: multiplier
     /// - Returns: New RGBA with modified alpha
@@ -216,7 +224,7 @@ struct ColourTranslate {
     ///     count:   number of characters
     ///     to:         reference to result
 
-    fileprivate static func hexToInt(from: String, first: Int, count: Int, to: inout UInt8) -> Bool {
+    fileprivate static func hexToUInt8(from: String, first: Int, count: Int, to: inout UInt8) -> Bool {
         let start = from.index(from.startIndex, offsetBy: first)
         let end = from.index(from.startIndex, offsetBy: first + count)
         let subFrom = from[start..<end]
@@ -234,21 +242,35 @@ struct ColourTranslate {
     ///     r:             reference to red colour
     ///     g:            reference to green colour
     ///     b:            reference to blue colour
+    ///     a:            reference to alpha
 
-    fileprivate static func hexToRGB(hex: String?, r: inout UInt8, g: inout UInt8, b: inout UInt8) -> Bool {
+    fileprivate static func hexToRGB(
+        hex: String?,
+        r: inout UInt8,
+        g: inout UInt8,
+        b: inout UInt8,
+        a: inout UInt8
+    ) -> Bool {
         if hex == nil || !hex!.hasPrefix("#") { return false }
         switch hex!.count {
         case 4:     // #rgb
-            if  !hexToInt(from: hex!, first: 1, count: 1, to: &r) ||
-                !hexToInt(from: hex!, first: 2, count: 1, to: &g) ||
-                !hexToInt(from: hex!, first: 3, count: 1, to: &b) { return false }
+            if  !hexToUInt8(from: hex!, first: 1, count: 1, to: &r) ||
+                !hexToUInt8(from: hex!, first: 2, count: 1, to: &g) ||
+                !hexToUInt8(from: hex!, first: 3, count: 1, to: &b) { return false }
             r *= 17
             g *= 17
             b *= 17
+            a = 255
         case 7:     // #rrggbb
-            if  !hexToInt(from: hex!, first: 1, count: 2, to: &r) ||
-                !hexToInt(from: hex!, first: 3, count: 2, to: &g) ||
-                !hexToInt(from: hex!, first: 5, count: 2, to: &b) { return false }
+            if  !hexToUInt8(from: hex!, first: 1, count: 2, to: &r) ||
+                !hexToUInt8(from: hex!, first: 3, count: 2, to: &g) ||
+                !hexToUInt8(from: hex!, first: 5, count: 2, to: &b) { return false }
+            a = 255
+        case 9:     // #rrggbbaa
+            if  !hexToUInt8(from: hex!, first: 1, count: 2, to: &r) ||
+                !hexToUInt8(from: hex!, first: 3, count: 2, to: &g) ||
+                !hexToUInt8(from: hex!, first: 5, count: 2, to: &b) ||
+                !hexToUInt8(from: hex!, first: 7, count: 2, to: &a) { return false }
         default:
             return false
         }
@@ -268,8 +290,11 @@ struct ColourTranslate {
         var r: UInt8 = 0
         var g: UInt8 = 0
         var b: UInt8 = 0
-        if hexToRGB(hex: name, r: &r, g: &g, b: &b) {
-            return RGBAu8(r: r, g: g, b: b, a: 255)
+        var a: UInt8 = 0
+        if hexToRGB(hex: name, r: &r, g: &g, b: &b, a: &a) {
+            let rgba = RGBAu8(r: r, g: g, b: b, a: a)
+            RGBAu8.cache[name] = rgba
+            return rgba
         }
         return nil
     }

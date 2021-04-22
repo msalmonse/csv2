@@ -66,6 +66,9 @@ struct Options: ParsableArguments {
     @Option(name: .long, help: "Font family")
     var font = Defaults.global.fontFamily
 
+    @Option(name: .long, help: "Foreground colour")
+    var fg = Defaults.global.foregroundColour
+
     @Option(name: .long, help: "Header rows or columns")
     var headers = Defaults.global.headers
 
@@ -165,6 +168,9 @@ struct Options: ParsableArguments {
     @Option(name: .long, help: "Sub-title")
     var subtitle: String = ""
 
+    @Option(name: .long, help: "Text colour")
+    var textcolour = Defaults.global.textColour
+
     @Option(name: .long, help: "Title")
     var title: String = ""
 
@@ -214,9 +220,7 @@ struct Options: ParsableArguments {
     func defaults(for cmd: CSVplotterCommand) -> Defaults {
         return Defaults(
             backgroundColour: bg,
-            bared: bared,
-            barOffset: baroffset,
-            barWidth: barwidth,
+            bared: bared,           barOffset: baroffset,   barWidth: barwidth,
             baseFontSize: size,
             bezier: bezier,
             black: black,
@@ -225,14 +229,13 @@ struct Options: ParsableArguments {
             canvasID: cmd.ownOptions(key: .canvas, default: Defaults.global.canvasID),
             colours: colours,
             comment: !nocomment,
-            cssClasses: [],
-            cssExtras: [],
+            cssClasses: [],         cssExtras: [],
             cssID: cmd.ownOptions(key: .cssid, default: Defaults.global.cssID),
             cssInclude: cmd.ownOptions(key: .css, default: Defaults.global.cssInclude),
-            dashedLines: dashed,
-            dashes: dashes,
+            dashedLines: dashed,    dashes: dashes,
             dataPointDistance: distance,
             fontFamily: font,
+            foregroundColour: fg,
             headers: headers,
             height: height,
             hover: !nohover,
@@ -240,11 +243,8 @@ struct Options: ParsableArguments {
             index: index,
             italic: italic,
             legends: !nolegends,
-            logoHeight: Defaults.global.logoHeight,
-            logoURL: logo,
-            logoWidth: Defaults.global.logoWidth,
-            logx: logx,
-            logy: logy,
+            logoHeight: Defaults.global.logoHeight, logoURL: logo,  logoWidth: Defaults.global.logoWidth,
+            logx: logx,         logy: logy,
             nameHeader: nameheader,
             names: names,
             opacity: opacity,
@@ -262,14 +262,13 @@ struct Options: ParsableArguments {
             subTitle: subtitle,
             subTitleHeader: subheader,
             svgInclude: cmd.ownOptions(key: .svg, default: Defaults.global.svgInclude),
+            textColour: textcolour,
             title: title,
             width: width,
-            xMax: xmax,
-            xMin: xmin,
+            xMax: xmax,     xMin: xmin,
             xTagsHeader: xtags,
             xTick: xtick,
-            yMax: ymax,
-            yMin: ymin,
+            yMax: ymax,     yMin: ymin,
             yTick: ytick
         )
     }

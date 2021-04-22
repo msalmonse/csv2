@@ -123,7 +123,7 @@ extension Plot {
                 left: x - legendSize, right: positions.legendRightX
             )
         plotter.plotPath(rectPath(rectPlane, rx: strokeWidth * 3.0),
-                            props: propsList.legendBG, fill: false
+                            props: propsList.legendBox, fill: false
                         )
     }
 }

@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "png --bg cornsilk --italic --font Helvetica --bold"
+            argument = "png --bg cornsilk --textcolour steelblue"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

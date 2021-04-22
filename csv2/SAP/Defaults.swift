@@ -41,6 +41,7 @@ struct Defaults {
     let dashes: [String]
     let dataPointDistance: Double
     let fontFamily: String
+    let foregroundColour: String
     let headers: Int
     let height: Int
     let hover: Bool
@@ -70,6 +71,7 @@ struct Defaults {
     let subTitle: String
     let subTitleHeader: Int
     let svgInclude: String
+    let textColour: String
     let title: String
     let width: Int
     let xMax: Double
@@ -101,6 +103,7 @@ struct Defaults {
         dashes: [],
         dataPointDistance: 10.0,
         fontFamily: "serif",
+        foregroundColour: "black",
         headers: 0,
         height: 600,
         hover: true,
@@ -130,6 +133,7 @@ struct Defaults {
         subTitle: "",
         subTitleHeader: 0,
         svgInclude: "",
+        textColour: "black",
         title: "",
         width: 800,
         xMax: Self.maxDefault,

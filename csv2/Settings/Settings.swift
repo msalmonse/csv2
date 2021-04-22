@@ -17,6 +17,9 @@ class Settings: Decodable, ReflectedStringConvertible {
     // Dimension settings
     let dim: Settings.Dimensions
 
+    // Foreground colour settings
+    let fg: Settings.ForegroundColours
+
     // Plot related settings
     let plot: Settings.Plot
 
@@ -51,6 +54,10 @@ class Settings: Decodable, ReflectedStringConvertible {
         dim = Self.jsonDimensions(from: container, defaults: defaults)
         plot = Self.jsonPlot(from: container, defaults)
         plotter = Self.jsonPlotter(from: container, defaults: defaults)
+
+        let fgContainer = try?
+            container?.nestedContainer(keyedBy: Settings.CodingKeys.self, forKey: .foregroundColours)
+        fg = Self.jsonForegroundColours(from: fgContainer, defaults: defaults)
     }
 
     /// Load contents of file into object
