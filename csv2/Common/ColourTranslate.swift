@@ -215,6 +215,8 @@ struct ColourTranslate {
         "yellowgreen":          RGBAu8(r: 154, g: 205, b: 50, a: 255),
     ]
 
+    static var all: [String] { name2rgba.keys.map { $0 }.sorted() }
+
     /// Convert a hex substring to an Int
     /// Return true on success
     ///

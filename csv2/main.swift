@@ -31,7 +31,9 @@ if commonOpts.shapenames {
 } else if commonOpts.bitmap.hasEntries {
     print(bitmap(commonOpts.bitmap))
 } else if commonOpts.colourslist {
-    showColoursList(defaults, with: command.iAm(), to: commonOpts.outName)
+    showColoursList(defaults, namesList: false, with: command.iAm(), to: commonOpts.outName)
+} else if commonOpts.colournameslist {
+    showColoursList(defaults, namesList: true, with: command.iAm(), to: commonOpts.outName)
 } else if commonOpts.dasheslist {
     showDashesList(defaults, with: command.iAm(), to: commonOpts.outName)
 } else {

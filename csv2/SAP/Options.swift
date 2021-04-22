@@ -40,8 +40,11 @@ struct Options: ParsableArguments {
     @Flag(name: .long, help: "Set font-weight to bold")
     var bold = Defaults.global.bold
 
-    @Flag(name: .long, help: "Generate an SVG with all the colours on it")
+    @Flag(name: .long, help: "Generate an image with all the colours on it")
     var colourslist = false
+
+    @Flag(name: .long, help: "Generate an image with all the colour names on it")
+    var colournameslist = false
 
     @Option(name: .long, parsing: .upToNextOption,
             help: "List of plot colours to use, multiple entries until the next option")

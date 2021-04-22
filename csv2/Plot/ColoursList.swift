@@ -8,13 +8,18 @@
 import Foundation
 
 extension Plot {
-    func coloursListGen(_ step: Double, _ defaults: Defaults) {
-        let colours = defaults.colours + Colours.all
-        let xText = width/2.0
-        let lRect = width/8.0
-        let rRect = lRect + width/3.0
+
+    /// Generate an image with a list of colours
+    /// - Parameters:
+    ///   - step: distance between lines
+    ///   - colours: list of colours
+
+    func coloursListGen(_ step: Double, _ colours: [String]) {
+        let xText = width * 0.4
+        let lRect = width * 0.1
+        let rRect = lRect + width * 0.25
         let hRect = step * 0.8
-        let rx = step/4.0
+        let rx = step * 0.2
 
         var propsList = PropertiesList(count: colours.count, settings: settings)
         for i in propsList.plots.indices {
