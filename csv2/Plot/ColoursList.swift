@@ -13,12 +13,36 @@ extension Plot {
     /// - Parameters:
     ///   - step: distance between lines
     ///   - colours: list of colours
+    ///   - rows: the number of rows
 
-    func coloursListGen(_ step: Double, _ colours: [String]) {
-        let xText = width * 0.4
-        let lRect = width * 0.1
-        let rRect = lRect + width * 0.25
+    func coloursListGen(_ step: Double, _ colours: [String], _ rows: Int, _ columnWidth: Double) {
+        func bgProps(_ name: String) -> Properties {
+            switch ColourTranslate.lookup(name, or: .clear).rgbMax {
+            case 200...255: return midBG
+            case 128...200: return lightBG
+            case 0...55: return lightBG
+            default: return lightBG
+            }
+        }
+        var lightBG = Properties.from(settings: settings)
+        lightBG.fill = "white"
+        lightBG.cssClass = "lightBG"
+
+        var darkBG = Properties.from(settings: settings)
+        darkBG.fill = "black"
+        darkBG.cssClass = "darkBG"
+
+        var midBG = Properties.from(settings: settings)
+        midBG.fill = "grey"
+        midBG.cssClass = "midBG"
+
+        var xText = columnWidth * 0.4
+        var lRect = columnWidth * 0.1
+        var lBG: Double { lRect - strokeWidth }
+        let wRect = columnWidth * 0.25
+        let wBG = columnWidth * 0.9
         let hRect = step * 0.8
+        var hBG: Double { hRect + 2.0 * strokeWidth }
         let rx = step * 0.2
 
         var propsList = PropertiesList(count: colours.count, settings: settings)
@@ -33,12 +57,23 @@ extension Plot {
 
         var y = step + step
         var yRect: Double { y - hRect * 0.8 }
+        var yBG: Double { yRect - strokeWidth }
+
         plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
 
         for i in colours.indices {
+            let bg = Plane(left: lBG, top: yBG, height: hBG, width: wBG)
+            let propsBG = bgProps(colours[i])
+            plotter.plotPath(rectPath(bg, rx: rx), props: propsBG, fill: true)
             plotter.plotText(x: xText, y: y, text: colours[i], props: propsList.plots[i])
-            let plane = Plane(top: yRect, bottom: yRect + hRect, left: lRect, right: rRect)
+            let plane = Plane(left: lRect, top: yRect, height: hRect, width: wRect)
             plotter.plotPath(rectPath(plane, rx: rx), props: propsList.plots[i], fill: true)
+
+            if i % rows == (rows - 1) {
+                xText += columnWidth
+                lRect += columnWidth
+                y = step
+            }
             y += step
         }
 

@@ -8,9 +8,10 @@
 import Foundation
 
 enum StringProperties {
-    case colour, cssClass, dash, fill, fontColour, fontFamily, strokeLineCap, textAlign, textBaseline
+    case bg, colour, cssClass, dash, fill, fontColour, fontFamily, strokeLineCap, textAlign, textBaseline
     var path: KeyPath<Properties,String?> {
         switch self {
+        case .bg: return \.bg
         case .colour: return \.colour
         case .cssClass: return \.cssClass
         case .dash: return \.dash
@@ -36,6 +37,7 @@ enum DoubleProperties {
 
 struct Properties {
     var bar = -1
+    var bg: String?
     var bezier: Double = 0.0
     var bold = false
     var colour: String?
@@ -55,7 +57,6 @@ struct Properties {
     var shapeWidth: Double { return strokeWidth * 1.75 }
     var strokeLineCap: String?
     var strokeWidth = 0.0
-    // textAlign is a string with "horizontal align, rotation, vertical align"
     var textAlign: String?
     var textBaseline: String?
     var transform: Transform?

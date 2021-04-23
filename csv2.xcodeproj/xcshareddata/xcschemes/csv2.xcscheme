@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "png --bg cornsilk --textcolour navy --fg maroon --xtags 2"
+            argument = "png --bg cornsilk --textcolour navy --fg maroon --xtags 2 --colournameslist"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

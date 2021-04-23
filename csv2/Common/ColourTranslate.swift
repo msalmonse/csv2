@@ -34,12 +34,16 @@ struct RGBAu8: Equatable {
         return text
     }
 
+    /// The maximum of red, gren and, blue
+    var rgbMax: UInt8 { max(r, g, b) }
+
     // components packed together
     var u32: UInt32 { UInt32(UInt32(r) << 24 | UInt32(g) << 16 | UInt32(b) << 8 | UInt32(a)) }
 
     // Standard colours
     static var clear: RGBAu8 { RGBAu8(r: 0, g: 0, b: 0, a: 0) }
     static var black: RGBAu8 { RGBAu8(r: 0, g: 0, b: 0, a: 255) }
+    static var grey:  RGBAu8 { RGBAu8(r: 128, g: 128, b: 128, a: 255) }
     static var white: RGBAu8 { RGBAu8(r: 255, g: 255, b: 255, a: 255) }
 
     /// Create an RGBA with a new alpha
@@ -122,10 +126,10 @@ struct ColourTranslate {
         "ghostwhite":           RGBAu8(r: 248, g: 248, b: 255, a: 255),
         "gold":                 RGBAu8(r: 255, g: 215, b: 0, a: 255),
         "goldenrod":            RGBAu8(r: 218, g: 165, b: 32, a: 255),
-        "gray":                 RGBAu8(r: 128, g: 128, b: 128, a: 255),
+        "gray":                 .grey,
         "green":                RGBAu8(r: 0, g: 255, b: 0, a: 255),
         "greenyellow":          RGBAu8(r: 173, g: 255, b: 47, a: 255),
-        "grey":                 RGBAu8(r: 128, g: 128, b: 128, a: 255),
+        "grey":                 .grey,
         "honeydew":             RGBAu8(r: 240, g: 255, b: 240, a: 255),
         "hotpink":              RGBAu8(r: 255, g: 105, b: 180, a: 255),
         "indianred":            RGBAu8(r: 205, g: 92, b: 92, a: 255),
