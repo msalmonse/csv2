@@ -22,8 +22,8 @@ func showColoursList(_ defaults: Defaults, namesList: Bool, with: PlotterType, t
     if rows > count/2.0 { rows = count }
     let cols = ceil(count/rows)
 
-    let height = (rows + 3) * rowHeight
-    let width = cols * columnWidth
+    let height =  (rows + 3) * rowHeight
+    let width = (cols + 0.1) * columnWidth
     let settings = try? Settings.load(settingsJson(width, height))
     let csv = CSV("")
     let plotter = with.plotter(settings: settings!)

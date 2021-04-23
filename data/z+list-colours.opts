@@ -1,1 +1,1 @@
---colours red green blue violet --bg=cornsilk --size=15 --colourslist
+--colours red green blue violet "#12345678" "rgba(12,34,56,0.78)" --bg=cornsilk --size=15 --colourslist
