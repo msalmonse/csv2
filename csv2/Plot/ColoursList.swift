@@ -38,7 +38,7 @@ extension Plot {
 
         var xText = columnWidth * 0.4
         var lRect = columnWidth * 0.1
-        var lBG: Double { lRect - strokeWidth }
+        var lBG: Double { lRect - 2.0 * strokeWidth }
         let wRect = columnWidth * 0.25
         let wBG = columnWidth * 0.9
         let hRect = step * 0.8

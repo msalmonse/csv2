@@ -7,6 +7,9 @@
 </defs>
 <style>
 svg#svg-ex2 { background-color: #ffedcc }
+#svg-ex2 path.lightBG { fill: lightGrey }
+#svg-ex2 path.midBG { fill: grey }
+#svg-ex2 path.darkBG { fill: black }
 #svg-ex2 g.plotarea { opacity: 1.0 }
 #svg-ex2 g.plotarea path:hover { stroke-width: 5.0 }
 #svg-ex2 path { stroke-width: 2.0; fill: none; stroke-linecap: round }

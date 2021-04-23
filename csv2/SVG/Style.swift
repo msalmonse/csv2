@@ -51,6 +51,11 @@ extension SVG {
     private func cssBG(_ result: inout [String], id: String) {
         let bg = settings.css.backgroundColour.isEmpty ? "transparent" : settings.css.backgroundColour
         result.append("svg\(id) { background-color: \(bg) }")
+
+        // some backgrounds for colour lists
+        result.append("\(id) path.lightBG { fill: lightGrey }")
+        result.append("\(id) path.midBG { fill: grey }")
+        result.append("\(id) path.darkBG { fill: black }")
     }
 
     /// Generate <style> tags
