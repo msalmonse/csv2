@@ -16,16 +16,16 @@ extension Plot {
     ///   - rows: the number of rows
 
     func coloursListGen(_ step: Double, _ colours: [String], _ rows: Int, _ columnWidth: Double) {
+        /// Calculate background props for colour
         func bgProps(_ name: String) -> Properties {
             switch ColourTranslate.lookup(name, or: .clear).rgbMean {
-            case 153...255: return midBG
-            case 128...152: return lightBG
-            case 0...55: return lightBG
+            case 120...255: return darkBG
             default: return lightBG
             }
         }
+
         var lightBG = Properties.from(settings: settings)
-        lightBG.fill = "white"
+        lightBG.fill = "lightgrey"
         lightBG.cssClass = "lightBG"
 
         var darkBG = Properties.from(settings: settings)

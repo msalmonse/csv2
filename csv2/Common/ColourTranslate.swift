@@ -35,7 +35,7 @@ struct RGBAu8: Equatable {
     }
 
     /// The average of red, gren and, blue
-    var rgbMean: Int { (Int(r) + Int(g) + Int(b))/3 }
+    var rgbMean: Int { (Int(r) + Int(g) + Int(b) + Int(max(r, g, b)))/4 }
 
     // components packed together
     var u32: UInt32 { UInt32(UInt32(r) << 24 | UInt32(g) << 16 | UInt32(b) << 8 | UInt32(a)) }
