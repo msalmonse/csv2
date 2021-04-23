@@ -62,11 +62,13 @@ extension Canvas {
             url: url, left: positions.logoX, top: positions.logoY,
             width: settings.plotter.logoWidth, height: settings.plotter.logoHeight
         )
+        let bg = settings.css.backgroundColour.isEmpty ? "" : bgRect()
         data.append("""
             const \(name) = document.getElementById('\(id)');
             if (\(name).getContext) {
                 const ctx = \(name).getContext('2d');
 
+            \(bg)
             \(logo)
             """
         )
@@ -111,5 +113,15 @@ extension Canvas {
         result.append("img.src = '\(url)'")
 
         return result.joined(separator: "\n    ")
+    }
+
+    func bgRect() -> String {
+        let colour = ColourTranslate.lookup(settings.css.backgroundColour, or: .white).cssRGBA
+        let width = settings.dim.width
+        let height = settings.dim.height
+        return """
+            ctx.fillStyle = '\(colour)'
+            ctx.fillRect(0,0,\(width),\(height))
+            """
     }
 }
