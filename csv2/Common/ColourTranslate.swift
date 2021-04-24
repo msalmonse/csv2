@@ -70,7 +70,7 @@ struct ColourTranslate {
         "gold":                 RGBAu8(r: 255, g: 215, b: 0),
         "goldenrod":            RGBAu8(r: 218, g: 165, b: 32),
         "gray":                 .grey,
-        "green":                RGBAu8(r: 0, g: 255, b: 0),
+        "green":                RGBAu8(r: 0, g: 128, b: 0),
         "greenyellow":          RGBAu8(r: 173, g: 255, b: 47),
         "grey":                 .grey,
         "honeydew":             RGBAu8(r: 240, g: 255, b: 240),

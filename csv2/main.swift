@@ -33,7 +33,7 @@ if commonOpts.shapenames {
 } else if commonOpts.colourslist {
     showColoursList(defaults, namesList: false, with: command.iAm(), to: commonOpts.outName)
 } else if commonOpts.colournames {
-    print(ColourTranslate.all.sorted().joined(separator: "\n"))
+    print(ColourTranslate.all.joined(separator: "\n"))
 } else if commonOpts.colournameslist {
     showColoursList(defaults, namesList: true, with: command.iAm(), to: commonOpts.outName)
 } else if commonOpts.dasheslist {
