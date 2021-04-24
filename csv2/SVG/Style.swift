@@ -53,9 +53,9 @@ extension SVG {
         result.append("svg\(id) { background-color: \(bg) }")
 
         // some backgrounds for colour lists
-        result.append("\(id) path.lightBG { fill: \(RGBAu8.lightBG) }")
-        result.append("\(id) path.midBG { fill: \(RGBAu8.midBG) }")
-        result.append("\(id) path.darkBG { fill: \(RGBAu8.darkBG) }")
+        result.append("\(id) path.lightBG { fill: \(RGBAu8.lightBG.cssRGBA) }")
+        result.append("\(id) path.midBG { fill: \(RGBAu8.midBG.cssRGBA) }")
+        result.append("\(id) path.darkBG { fill: \(RGBAu8.darkBG.cssRGBA) }")
     }
 
     /// Generate <style> tags

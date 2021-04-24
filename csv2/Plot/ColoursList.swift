@@ -19,22 +19,22 @@ extension Plot {
         /// Calculate background props for colour
         func bgProps(_ name: String) -> Properties {
             switch ColourTranslate.lookup(name, or: .clear).rgbValue {
-            case 200...255: return midBG
-            case 120...199: return darkBG
+            case 180...255: return midBG
+            case 90...179: return darkBG
             default: return lightBG
             }
         }
 
         var lightBG = Properties.from(settings: settings)
-        lightBG.fill = RGBAu8.lightBG
+        lightBG.fill = RGBAu8.lightBG.cssRGBA
         lightBG.cssClass = "lightBG"
 
         var darkBG = Properties.from(settings: settings)
-        darkBG.fill = RGBAu8.darkBG
+        darkBG.fill = RGBAu8.darkBG.cssRGBA
         darkBG.cssClass = "darkBG"
 
         var midBG = Properties.from(settings: settings)
-        midBG.fill = RGBAu8.midBG
+        midBG.fill = RGBAu8.midBG.cssRGBA
         midBG.cssClass = "midBG"
 
         var xText = columnWidth * 0.4

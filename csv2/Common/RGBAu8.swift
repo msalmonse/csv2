@@ -49,9 +49,9 @@ struct RGBAu8: Equatable {
     static var white: RGBAu8 { RGBAu8(r: 255, g: 255, b: 255, a: 255) }
 
     // Special colours
-    static var darkBG: String { "#111" }
-    static var midBG: String { "#777" }
-    static var lightBG: String { "#ddd" }
+    static var darkBG: RGBAu8 { RGBAu8(r: 35, g: 35, b: 35, a: 170) }
+    static var midBG: RGBAu8 { RGBAu8(r: 120, g: 120, b: 120, a: 170) }
+    static var lightBG: RGBAu8 { RGBAu8(r: 220, g: 220, b: 220, a: 170) }
 
     /// Create an RGBA with a new alpha
     /// - Parameter alpha: new alpha
