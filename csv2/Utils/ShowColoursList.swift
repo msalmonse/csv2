@@ -11,7 +11,13 @@ import Foundation
 /// - Parameters:
 /// - Returns: colours list SVG
 
-func showColoursList(_ defaults: Defaults, namesList: Bool, with: PlotterType, to outName: String?) {
+func showColoursList(
+    _ defaults: Defaults,
+    namesList: Bool,
+    with: PlotterType,
+    to outName: String?,
+    _ canvasTag: Bool
+) {
     let rowHeight = 2.5 * defaults.baseFontSize
     let colours = namesList ? ColourTranslate.all : defaults.colours + Colours.all
     let count = Double(colours.count)
@@ -25,6 +31,12 @@ func showColoursList(_ defaults: Defaults, namesList: Bool, with: PlotterType, t
     let height =  (rows + 3) * rowHeight
     let width = (cols + 0.1) * columnWidth
     let settings = try? Settings.load(settingsJson(width, height))
+
+    if canvasTag {
+        print(Canvas.canvasTag(settings!))
+        exit(0)
+    }
+
     let csv = CSV("")
     let plotter = with.plotter(settings: settings!)
     let plot = Plot(csv, settings!, plotter)

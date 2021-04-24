@@ -24,18 +24,20 @@ if commonOpts.version {
     exit(0)
 }
 
+let canvasTag = command.ownOptions(key: .canvastag, default: false)
+
 if commonOpts.shapenames {
     print(Shape.allNames())
 } else if commonOpts.show.hasContent {
-    showShape(shape: commonOpts.show, defaults: defaults, with: command.iAm(), to: commonOpts.outName)
+    showShape(shape: commonOpts.show, defaults: defaults, with: command.iAm(), to: commonOpts.outName, canvasTag)
 } else if commonOpts.bitmap.hasEntries {
     print(bitmap(commonOpts.bitmap))
 } else if commonOpts.colourslist {
-    showColoursList(defaults, namesList: false, with: command.iAm(), to: commonOpts.outName)
+    showColoursList(defaults, namesList: false, with: command.iAm(), to: commonOpts.outName, canvasTag)
 } else if commonOpts.colournameslist {
-    showColoursList(defaults, namesList: true, with: command.iAm(), to: commonOpts.outName)
+    showColoursList(defaults, namesList: true, with: command.iAm(), to: commonOpts.outName, canvasTag)
 } else if commonOpts.dasheslist {
-    showDashesList(defaults, with: command.iAm(), to: commonOpts.outName)
+    showDashesList(defaults, with: command.iAm(), to: commonOpts.outName, canvasTag)
 } else {
     // use a csvName of - to mean use stdin
     if commonOpts.csvName == "-" { commonOpts.csvName = nil }
@@ -50,7 +52,7 @@ if commonOpts.shapenames {
     let settings = try? Settings.load(jsonSource)
     if commonOpts.debug &== 2 { print(settings ?? "Nil settings", to: &standardError) }
 
-    if command.ownOptions(key: .canvastag, default: false) {
+    if canvasTag {
         print(Canvas.canvasTag(settings!))
         exit(0)
     }

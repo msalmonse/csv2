@@ -13,10 +13,23 @@ import Foundation
 ///   - stroke: stroke colour
 /// - Returns: shape SVG
 
-func showShape(shape: String, defaults: Defaults, with: PlotterType, to outName: String?) {
+func showShape(
+    shape: String,
+    defaults: Defaults,
+    with: PlotterType,
+    to outName: String?,
+    _ canvasTag: Bool
+) {
     let colour = defaults.colours.first ?? "black"
     let wh = (defaults.strokeWidth * 6).f(0)
+
     let settings = try? Settings.load(settingsJson(wh))
+
+    if canvasTag {
+        print(Canvas.canvasTag(settings!))
+        exit(0)
+    }
+
     let csv = CSV("")
     let plotter = with.plotter(settings: settings!)
     let plot = Plot(csv, settings!, plotter)

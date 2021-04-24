@@ -46,9 +46,10 @@ generated/%.js: CANVAS = $(shell cat $(@F:%.js=data/%.canvas))
 generated/%.js: data/%.csv data/%.json data/%.opts generated/%.canvastag $(CSV2)
 	-@ $(CSV2) canvas --canvas $(CANVAS) $(OPTS) $(@F:%.js=data/%.csv) $(@F:%.js=data/%.json) $@
 
+generated/%.canvastag: OPTS = $(shell cat $(@F:%.canvastag=data/%.opts))
 generated/%.canvastag: CANVAS = $(shell cat $(@F:%.canvastag=data/%.canvas))
 generated/%.canvastag: data/%.csv data/%.json data/%.opts data/%.canvas $(CSV2)
-	-@ $(CSV2) canvas --canvas $(CANVAS) --canvastag  - $(@F:%.canvastag=data/%.json) > $@
+	-@ $(CSV2) canvas --canvas $(CANVAS) --canvastag $(OPTS) - $(@F:%.canvastag=data/%.json) > $@
 
 generated/%.svg: OPTS = $(shell cat $(@F:%.svg=data/%.opts))
 generated/%.svg: data/%.csv data/%.json data/%.opts $(CSV2)
@@ -63,6 +64,8 @@ generated/%.txt: data/%.txt data/br.inc data/%.opts
 
 generated/trig+trig-inc.svg: data/trig.inc
 
+generated/z+none-1.js: error.expected
+generated/z+none-1.png: error.expected
 generated/z+none-1.svg: error.expected
 
 generated/logo.svg: data/logo.svg
@@ -73,7 +76,7 @@ error.expected:
 	@ echo 1>&2 Error loading data expected!
 	@ tput 1>&2 rmso
 
-out.svg out.js:
+out.svg out.js out.png:
 	touch $@
 
 examples: $(EXAMPLES)

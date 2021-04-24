@@ -10,13 +10,24 @@ import Foundation
 /// Generate a dashes list SVG
 /// - Parameters:
 
-func showDashesList(_ defaults: Defaults, with: PlotterType, to outName: String?) {
+func showDashesList(
+    _ defaults: Defaults,
+    with: PlotterType,
+    to outName: String?,
+    _ canvasTag: Bool
+) {
     let size = 2.0 * defaults.baseFontSize
     let count = defaults.dashes.count + Dashes.count
     let height = Double(count + 2) * size
     let width = defaults.baseFontSize * 20.0
 
     let settings = try? Settings.load(settingsJson(width, height))
+
+    if canvasTag {
+        print(Canvas.canvasTag(settings!))
+        exit(0)
+    }
+
     let csv = CSV("")
     let plotter = with.plotter(settings: settings!)
     let plot = Plot(csv, settings!, plotter)
