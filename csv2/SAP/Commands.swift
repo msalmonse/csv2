@@ -15,7 +15,7 @@ protocol CSVplotterCommand {
 }
 
 enum CommandPath {
-    case canvas, canvastag, css, cssid, logo, svg
+    case canvas, canvastag, css, cssid, hover, logo, svg
 }
 
 struct CSVplotter: ParsableCommand {
@@ -85,6 +85,7 @@ extension CSVplotter {
             switch key {
             case .css: return css as? T ?? val
             case .cssid: return cssid as? T ?? val
+            case .hover: return !nohover as? T ?? val
             case .svg: return svg as? T ?? val
             default: return val
             }
@@ -99,6 +100,9 @@ extension CSVplotter {
 
         @Option(name: .long, help: "Default id for SVG")
         var cssid = Defaults.global.cssID
+
+        @Flag(name: .long, help: "Don't add CSS code to emphasize hovered plots")
+        var nohover = !Defaults.global.hover
 
         @Option(name: .long, help: "Default include file for svg elements")
         var svg = Defaults.global.svgInclude

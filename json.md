@@ -111,7 +111,7 @@ The number of rows that do not contain data.<sup>[1](#fn1)</sup>
 **Option:** `--height`<br/>
 The height of the generated Canvas or SVG
 
-**hover** (Bool **true**)<br/>
+**hover** (Bool **true**)<sup>[svg](#fnsvg)</sup><br/>
 **Option:** `--nohover` <sup>[8](#fn8)</sup><br/>
 Add the css to emphasize the hovered over plot.
 

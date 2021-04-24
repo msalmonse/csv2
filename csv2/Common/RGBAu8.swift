@@ -14,6 +14,8 @@ extension UInt8 {
 fileprivate func u8val(_ val: CGFloat) -> UInt8 { UInt8(min(val * 256.0, 256)) }
 fileprivate func u8val(_ val: Double) -> UInt8 { UInt8(min(val * 256.0, 256)) }
 
+/// Colours with red, green, blue and, alpha UInt8 properties
+
 struct RGBAu8: Equatable {
     let r: UInt8
     let g: UInt8
@@ -72,6 +74,6 @@ struct RGBAu8: Equatable {
     /// - Returns: New RGBA with modified alpha
 
     func modify(alpha: CGFloat) -> RGBAu8 {
-        return RGBAu8(r: r, g: g, b: b, a: UInt8(min(a.cgfloat * alpha * 256.0, 256)))
+        return RGBAu8(r: r, g: g, b: b, a: UInt8(u8val(a.cgfloat * alpha)))
     }
 }

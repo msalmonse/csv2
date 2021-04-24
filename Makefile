@@ -10,7 +10,7 @@ EXAMPLES =\
 	examples/trig-80-120.svg
 JSFILES = $(CANVASFILES:data/%.canvas=generated/%.js)
 OPTFILES = $(wildcard data/*.opts)
-PNGOPTFILES = $(shell egrep -lv -- '--(css|svg)' data/*.opts)
+PNGOPTFILES = $(shell egrep -lv -- '--(css|nohover|svg)' data/*.opts)
 PNGFILES = $(PNGOPTFILES:data/%.opts=generated/%.png)
 SVGFILES = $(OPTFILES:data/%.opts=generated/%.svg)
 TXTFILES = $(OPTFILES:data/%.opts=generated/%.txt)

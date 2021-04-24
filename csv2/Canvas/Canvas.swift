@@ -15,6 +15,11 @@ class Canvas: Plotter {
 
     var ctx = CTX()
 
+    let comment = """
+        //  Created by \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) \(AppInfo.origin)
+
+    """
+
     init(_ settings: Settings) {
         self.settings = settings
     }

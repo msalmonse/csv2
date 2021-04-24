@@ -109,9 +109,6 @@ struct Options: ParsableArguments {
     @Flag(name: .long, help: "Don't add csv2 comment to plot")
     var nocomment = !Defaults.global.comment
 
-    @Flag(name: .long, help: "Don't add CSS code to emphasize hovered plots")
-    var nohover = !Defaults.global.hover
-
     @Flag(name: .long, help: "Don't include plot names, colours, dashes and shapes")
     var nolegends = !Defaults.global.legends
 
@@ -241,7 +238,7 @@ struct Options: ParsableArguments {
             foregroundColour: fg,
             headers: headers,
             height: height,
-            hover: !nohover,
+            hover: cmd.ownOptions(key: .hover, default: true),
             include: include,
             index: index,
             italic: italic,

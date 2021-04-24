@@ -63,13 +63,13 @@ extension Canvas {
             width: settings.plotter.logoWidth, height: settings.plotter.logoHeight
         )
         let bg = settings.css.backgroundColour.isEmpty ? "" : bgRect()
+        let comment = settings.plotter.comment ? self.comment + "\n" : ""
         data.append("""
             const \(name) = document.getElementById('\(id)');
             if (\(name).getContext) {
                 const ctx = \(name).getContext('2d');
 
-            \(bg)
-            \(logo)
+            \(comment)\(bg)\(logo)
             """
         )
     }
@@ -111,6 +111,7 @@ extension Canvas {
         result.append("    ctx.drawImage(img, \(left.f(1)), \(top.f(1)), \(width.f(1)), \(height.f(1)))")
         result.append("}")
         result.append("img.src = '\(url)'")
+        result.append("")
 
         return result.joined(separator: "\n    ")
     }
@@ -122,6 +123,7 @@ extension Canvas {
         return """
             ctx.fillStyle = '\(colour)'
             ctx.fillRect(0,0,\(width),\(height))
+
             """
     }
 }
