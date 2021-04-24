@@ -52,12 +52,12 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "js --bg cornsilk --textcolour navy --fg maroon --xtags 2 --colourslist"
+            argument = "png --bg cornsilk --textcolour navy --fg maroon --xtags 2 --colournameslist"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--logo https://newcastlebeach.org/images/128x128-11.png"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "${PROJECT_DIR}/data/trig.csv"

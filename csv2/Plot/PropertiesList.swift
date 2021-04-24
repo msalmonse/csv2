@@ -30,55 +30,71 @@ struct PropertiesList {
         axes = Properties.from(settings: settings)
         axes.colour = settings.fg.axes
         axes.cssClass = "axes"
+
         legend = Properties.from(settings: settings)
         legend.cssClass = "legend"
         legend.fontColour = settings.fg.legends
         legend.fontSize = sizes.legendSize
         legend.textAlign = "start"
+
         legendBox = Properties.from(settings: settings)
-        legendBox.colour = ColourTranslate.lookup(settings.fg.legendsBox, or: .black).maxAlpha(0.4).cssRGBA
+        legendBox.colour =
+            ColourTranslate.lookup(settings.fg.legendsBox, or: .black).clamped(opacity: 0.4).cssRGBA
         legendBox.cssClass = "legend"
+
         legendHeadline = Properties.from(settings: settings)
         legendHeadline.bold = true
         legendHeadline.cssClass = "legend headline"
         legendHeadline.fontColour = settings.fg.legends
         legendHeadline.fontSize = sizes.legendSize * 1.25
         legendHeadline.textAlign = "start"
+
         subTitle = Properties.from(settings: settings)
         subTitle.cssClass = "subtitle"
         subTitle.fontColour = settings.fg.subTitle
         subTitle.fontSize = sizes.subTitleSize
+
         title = Properties.from(settings: settings)
         title.cssClass = "title"
         title.fontColour = settings.fg.title
         title.fontSize = sizes.titleSize
+
         xLabel = Properties.from(settings: settings)
-        xLabel.colour = ColourTranslate.lookup(settings.fg.axes, or: .black).maxAlpha(0.4).cssRGBA
+        xLabel.colour = ColourTranslate.lookup(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
         xLabel.cssClass = "xlabel"
         xLabel.fontColour = settings.fg.xLabel
         xLabel.fontSize = sizes.labelSize
         xLabel.strokeWidth = 1.0
+
         xTags = Properties.from(settings: settings)
-        xTags.colour = ColourTranslate.lookup(settings.fg.axes, or: .black).maxAlpha(0.4).cssRGBA
+        xTags.colour = ColourTranslate.lookup(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
         xTags.fontColour = settings.fg.xTags
         xTags.fontSize = sizes.axesSize
         xTags.strokeWidth = 1.0
+
         xTitle = Properties.from(settings: settings)
         xTitle.cssClass = "xtitle"
         xTitle.fontColour = settings.fg.xTitle
         xTitle.fontSize = sizes.axesSize
+
         yLabel = Properties.from(settings: settings)
-        yLabel.colour = ColourTranslate.lookup(settings.fg.axes, or: .black).maxAlpha(0.4).cssRGBA
+        yLabel.colour = ColourTranslate.lookup(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
         yLabel.cssClass = "ylabel"
         yLabel.fontColour = settings.fg.yLabel
         yLabel.fontSize = sizes.labelSize
         yLabel.strokeWidth = 1.0
         yLabel.textAlign = "end"
         yLabel.textBaseline = "middle"
+
         yTitle = Properties.from(settings: settings)
         yTitle.cssClass = "ytitle"
         yTitle.fontSize = sizes.axesSize
     }
+
+    /// Set default properties
+    /// - Parameters:
+    ///   - settings: image settings
+    ///   - sizes: font sizes
 
     static func setDefaults(settings: Settings, sizes: FontSizes) {
         Properties.defaultProperties.bezier = settings.plot.bezier

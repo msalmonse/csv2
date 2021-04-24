@@ -96,6 +96,8 @@
 		C4B2F9F72631636D00CC5430 /* Foreground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9F62631636C00CC5430 /* Foreground.swift */; };
 		C4B2F9F82631636D00CC5430 /* Foreground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9F62631636C00CC5430 /* Foreground.swift */; };
 		C4B2F9FD2631B3F300CC5430 /* csv2Tests2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9FB2631B3F300CC5430 /* csv2Tests2.swift */; };
+		C4B2FA052633F3D500CC5430 /* RGBAu8.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2FA042633F3D500CC5430 /* RGBAu8.swift */; };
+		C4B2FA062633F3D500CC5430 /* RGBAu8.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2FA042633F3D500CC5430 /* RGBAu8.swift */; };
 		C4BDCFB6261E156F00D8C589 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BDCFB5261E156F00D8C589 /* Canvas.swift */; };
 		C4BDCFBD261EFA0600D8C589 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A6E3B261EDBED00784F54 /* Transform.swift */; };
 		C4C0C462260E589A0072699C /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0C461260E589A0072699C /* Style.swift */; };
@@ -211,6 +213,7 @@
 		C4B2F9ED263025FB00CC5430 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		C4B2F9F62631636C00CC5430 /* Foreground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foreground.swift; sourceTree = "<group>"; };
 		C4B2F9FB2631B3F300CC5430 /* csv2Tests2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2Tests2.swift; sourceTree = "<group>"; };
+		C4B2FA042633F3D500CC5430 /* RGBAu8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBAu8.swift; sourceTree = "<group>"; };
 		C4BDCFB5261E156F00D8C589 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 		C4C0C461260E589A0072699C /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		C4C0C46E260F5F470072699C /* css.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = css.md; sourceTree = "<group>"; };
@@ -444,6 +447,7 @@
 				C45323FA25F90359007D741C /* PlotInfo.swift */,
 				C45323F125F8F157007D741C /* Positions.swift */,
 				C4F20C0726012A67005D2FE1 /* Properties.swift */,
+				C4B2FA042633F3D500CC5430 /* RGBAu8.swift */,
 				C453243725FA7968007D741C /* Shapes.swift */,
 				C480847F25E6776900BD0A24 /* Sides.swift */,
 				C42A6E3B261EDBED00784F54 /* Transform.swift */,
@@ -680,6 +684,7 @@
 				C4FE49FF25F6440F0076EF5E /* Options.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
 				C4B2F9C0262C177900CC5430 /* PNG.swift in Sources */,
+				C4B2FA052633F3D500CC5430 /* RGBAu8.swift in Sources */,
 				C4B2F9DC262E947000CC5430 /* Rect.swift in Sources */,
 				C4EFA4D6262364EC0026BD9A /* Bar.swift in Sources */,
 				C453244D25FBEBA6007D741C /* ShowShape.swift in Sources */,
@@ -794,6 +799,7 @@
 				C4EFA4CC262166700026BD9A /* CTX.swift in Sources */,
 				C4B2F9B6262B488400CC5430 /* CanvasOut.swift in Sources */,
 				C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */,
+				C4B2FA062633F3D500CC5430 /* RGBAu8.swift in Sources */,
 				C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */,
 				C4EFA4A7261EEBC50026BD9A /* SVGplotter.swift in Sources */,
 				C4BDCFBD261EFA0600D8C589 /* Transform.swift in Sources */,

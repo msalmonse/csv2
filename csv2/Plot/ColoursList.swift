@@ -18,22 +18,23 @@ extension Plot {
     func coloursListGen(_ step: Double, _ colours: [String], _ rows: Int, _ columnWidth: Double) {
         /// Calculate background props for colour
         func bgProps(_ name: String) -> Properties {
-            switch ColourTranslate.lookup(name, or: .clear).rgbMean {
-            case 120...255: return darkBG
+            switch ColourTranslate.lookup(name, or: .clear).rgbValue {
+            case 200...255: return midBG
+            case 120...199: return darkBG
             default: return lightBG
             }
         }
 
         var lightBG = Properties.from(settings: settings)
-        lightBG.fill = "lightgrey"
+        lightBG.fill = RGBAu8.lightBG
         lightBG.cssClass = "lightBG"
 
         var darkBG = Properties.from(settings: settings)
-        darkBG.fill = "black"
+        darkBG.fill = RGBAu8.darkBG
         darkBG.cssClass = "darkBG"
 
         var midBG = Properties.from(settings: settings)
-        midBG.fill = "grey"
+        midBG.fill = RGBAu8.midBG
         midBG.cssClass = "midBG"
 
         var xText = columnWidth * 0.4
