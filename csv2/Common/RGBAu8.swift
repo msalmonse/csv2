@@ -16,7 +16,9 @@ fileprivate func u8val(_ val: Double) -> UInt8 { UInt8(min(val * 256.0, 256)) }
 
 /// Colours with red, green, blue and, alpha UInt8 properties
 
-struct RGBAu8: Equatable {
+struct RGBAu8: CustomStringConvertible, Equatable {
+    var description: String { cssRGBA }
+
     let r: UInt8
     let g: UInt8
     let b: UInt8
