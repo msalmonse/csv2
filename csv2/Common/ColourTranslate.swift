@@ -234,9 +234,20 @@ struct ColourTranslate {
             a: inout UInt8
     ) -> Bool {
         if !css.lowercased().hasPrefix("rgb") { return false }
-        let pattern =
-            #"^rgba?\(\s*(?<r>\d+)\s*,\s*(?<g>\d+)\s*,\s*(?<b>\d+)(?:\s*,\s*((?<a>[01]\.(?:\d+)?)|(?<a8>\d+))\s*)?\)$"#
-        let re = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+        let pattern = #"""
+            (?xi)
+            ^rgba?\(
+            \s*(?<r>\d+)\s*,            # red
+            \s*(?<g>\d+)\s*,            # green
+            \s*(?<b>\d+)                # blue
+            (?:\s*,\s*(                 # optional alpha
+            (?<a>[01]\.(?:\d+)?)        # floating point
+            |(?<a8>\d+)                 # or integer
+            )\s*
+            )?                          # alpha end
+            \)$
+            """#
+        let re = try? NSRegularExpression(pattern: pattern, options: [])
         let cssRange = NSRange(css.startIndex..<css.endIndex, in: css)
         a = 255
         if let re = re, let match = re.matches(in: css, options: [], range: cssRange).first {
