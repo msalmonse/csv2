@@ -35,6 +35,13 @@ struct RGBAu8: CustomStringConvertible, Equatable {
         self.init(r: r, g: g, b: b, a: 255)
     }
 
+    init(u24: Int) {
+        let r = UInt8((u24 >> 16) & 0xff)
+        let g = UInt8((u24 >> 8) & 0xff)
+        let b = UInt8(u24 & 0xff)
+        self.init(r: r, g: g, b: b, a: 255)
+    }
+
     init?(_ name: String?) {
         if let rgba = RGBAu8.lookup(name) {
             self = rgba
