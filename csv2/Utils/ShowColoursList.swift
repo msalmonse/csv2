@@ -7,16 +7,18 @@
 
 import Foundation
 
-/// Generate a colours list SVG
+/// Generate colours list
 /// - Parameters:
-/// - Returns: colours list SVG
+///   - defaults: image defaults
+///   - namesList: generate a list of all know names?
+///   - with: plotter type
+///   - outName: output sink
 
 func showColoursList(
     _ defaults: Defaults,
     namesList: Bool,
     with: PlotterType,
-    to outName: String?,
-    _ canvasTag: Bool
+    to outName: String?
 ) {
     let rowHeight = 2.5 * defaults.baseFontSize
     let colours = namesList ? ColourTranslate.all : defaults.colours + Colours.all
@@ -32,10 +34,7 @@ func showColoursList(
     let width = (cols + 0.1) * columnWidth
     let settings = try? Settings.load(settingsJson(width, height))
 
-    if canvasTag {
-        print(Canvas.canvasTag(settings!))
-        exit(0)
-    }
+    trySpecialCases(settings)
 
     let csv = CSV("")
     let plotter = with.plotter(settings: settings!)

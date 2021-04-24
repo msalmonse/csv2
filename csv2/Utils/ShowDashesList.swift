@@ -7,14 +7,16 @@
 
 import Foundation
 
-/// Generate a dashes list SVG
+/// Generate a list of dashes
 /// - Parameters:
+///   - defaults: image defaults
+///   - with: plotter type
+///   - outName: output sink
 
 func showDashesList(
     _ defaults: Defaults,
     with: PlotterType,
-    to outName: String?,
-    _ canvasTag: Bool
+    to outName: String?
 ) {
     let size = 2.0 * defaults.baseFontSize
     let count = defaults.dashes.count + Dashes.count
@@ -23,10 +25,7 @@ func showDashesList(
 
     let settings = try? Settings.load(settingsJson(width, height))
 
-    if canvasTag {
-        print(Canvas.canvasTag(settings!))
-        exit(0)
-    }
+    trySpecialCases(settings)
 
     let csv = CSV("")
     let plotter = with.plotter(settings: settings!)

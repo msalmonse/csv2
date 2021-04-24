@@ -7,28 +7,25 @@
 
 import Foundation
 
-/// Generate a shape SVG
+/// Generate a shape image
 /// - Parameters:
 ///   - shape: shape name
-///   - stroke: stroke colour
-/// - Returns: shape SVG
+///   - defaults: image defaults
+///   - with: plotter type
+///   - outName: output sink
 
 func showShape(
     shape: String,
     defaults: Defaults,
     with: PlotterType,
-    to outName: String?,
-    _ canvasTag: Bool
+    to outName: String?
 ) {
     let colour = defaults.colours.first ?? "black"
     let wh = (defaults.strokeWidth * 6).f(0)
 
     let settings = try? Settings.load(settingsJson(wh))
 
-    if canvasTag {
-        print(Canvas.canvasTag(settings!))
-        exit(0)
-    }
+    trySpecialCases(settings)
 
     let csv = CSV("")
     let plotter = with.plotter(settings: settings!)
@@ -37,7 +34,7 @@ func showShape(
     output(plotter, to: outName)
 }
 
-/// JSON text for display a shape
+/// JSON text for displaying a shape
 /// - Parameter wh: width and height
 /// - Returns: JSON text
 
