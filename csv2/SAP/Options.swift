@@ -43,6 +43,9 @@ struct Options: ParsableArguments {
     @Flag(name: .long, help: "Generate an image with all the colours on it")
     var colourslist = false
 
+    @Flag(name: .long, help: "Print a list of all the colour names on it")
+    var colournames = false
+
     @Flag(name: .long, help: "Generate an image with all the colour names on it")
     var colournameslist = false
 
