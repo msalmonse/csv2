@@ -35,6 +35,22 @@ struct RGBAu8: CustomStringConvertible, Equatable {
         self.init(r: r, g: g, b: b, a: 255)
     }
 
+    init?(_ name: String?) {
+        if let rgba = RGBAu8.lookup(name) {
+            self = rgba
+        } else {
+            return nil
+        }
+    }
+
+    init(_ name: String?, or notFound: RGBAu8) {
+        if let rgba = RGBAu8.lookup(name) {
+            self = rgba
+        } else {
+            self.init(r: notFound.r, g: notFound.g, b: notFound.b, a: notFound.a)
+        }
+    }
+
     static var cache: [ String: RGBAu8 ] = [:]
 
     /// as CGColor

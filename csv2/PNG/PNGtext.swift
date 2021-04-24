@@ -69,9 +69,9 @@ extension PNG {
 
     func plotText(x: Double, y: Double, text: String, props: Properties) {
         image.withCGContext { ctx in
-            let colour = ColourTranslate.lookup(props.cascade(.fontColour) ?? "black")
+            let colour = RGBAu8(props.cascade(.fontColour), or: .black)
             let attr = [
-                NSAttributedString.Key.foregroundColor: colour?.cgColor as Any,
+                NSAttributedString.Key.foregroundColor: colour.cgColor as Any,
                 NSAttributedString.Key.font: propsFont(props) as Any
             ] as [NSAttributedString.Key: Any]
             let attrText = NSAttributedString(string: text, attributes: attr)

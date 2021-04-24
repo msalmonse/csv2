@@ -18,7 +18,7 @@ extension Plot {
     func coloursListGen(_ step: Double, _ colours: [String], _ rows: Int, _ columnWidth: Double) {
         /// Calculate background props for colour
         func bgProps(_ name: String) -> Properties {
-            switch ColourTranslate.lookup(name, or: .clear).rgbValue {
+            switch RGBAu8(name, or: .clear).rgbValue {
             case 180...255: return midBG
             case 90...179: return darkBG
             default: return lightBG
@@ -52,7 +52,7 @@ extension Plot {
             propsList.plots[i].fill = colours[i]
             // Make text colour opaque so that it can be read
             propsList.plots[i].fontColour =
-                ColourTranslate.lookup(colours[i], or: .black).with(alpha: 255).cssRGBA
+                RGBAu8(colours[i], or: .black).with(alpha: 255).cssRGBA
             propsList.plots[i].fontSize = ceil(step * 0.75)
             propsList.plots[i].textAlign = "start"
             propsList.plots[i].cssClass = "colour\((i + 1).d0(2))"

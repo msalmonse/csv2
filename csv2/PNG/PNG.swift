@@ -27,7 +27,7 @@ class PNG: Plotter {
         height = Double(settings.dim.height)
         width = Double(settings.dim.width)
 
-        let bg = ColourTranslate.lookup(settings.css.backgroundColour) ?? RGBAu8.white
+        let bg = RGBAu8(settings.css.backgroundColour, or: .white)
         let bgPixel = PremultipliedRGBA(bg.u32)
         image = Image<PremultipliedRGBA<UInt8>>(
             width: settings.dim.width, height: settings.dim.height,

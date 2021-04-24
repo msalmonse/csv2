@@ -83,7 +83,7 @@ extension PNG {
     ///   - fill: fill or stroke?
 
     func plotPath(_ path: Path, props: Properties, fill: Bool) {
-        let colour = ColourTranslate.lookup(props.cascade(fill ? .fill : .colour) ?? "black")
+        let colour = RGBAu8(props.cascade(fill ? .fill : .colour), or: .black)
         let lineWidth = CGFloat(props.cascade(.strokeWidth))
         image.withCGContext { ctx in
             if let clipRect = clipRect { ctx.clip(to: clipRect)}
@@ -99,10 +99,10 @@ extension PNG {
                 plotComponent(ctx, component: component, current: &current)
             }
             if fill {
-                if let colour = colour { ctx.setFillColor(colour.cgColor) }
+                ctx.setFillColor(colour.cgColor)
                 ctx.fillPath()
             } else {
-                if let colour = colour { ctx.setStrokeColor(colour.cgColor) }
+                ctx.setStrokeColor(colour.cgColor)
                 ctx.strokePath()
             }
         }

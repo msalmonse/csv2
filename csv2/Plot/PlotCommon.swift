@@ -207,7 +207,7 @@ extension Plot {
         var plotProps = props
         let fill = plotProps.bar >= 0
         if fill {
-            if let rgba = ColourTranslate.lookup(plotProps.fill) {
+            if let rgba = RGBAu8(plotProps.fill) {
                 plotProps.fill = rgba.modify(alpha: 0.75).cssRGBA
             }
         }

@@ -39,7 +39,7 @@ struct PropertiesList {
 
         legendBox = Properties.from(settings: settings)
         legendBox.colour =
-            ColourTranslate.lookup(settings.fg.legendsBox, or: .black).clamped(opacity: 0.4).cssRGBA
+            RGBAu8(settings.fg.legendsBox, or: .black).clamped(opacity: 0.4).cssRGBA
         legendBox.cssClass = "legend"
 
         legendHeadline = Properties.from(settings: settings)
@@ -60,14 +60,14 @@ struct PropertiesList {
         title.fontSize = sizes.titleSize
 
         xLabel = Properties.from(settings: settings)
-        xLabel.colour = ColourTranslate.lookup(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
+        xLabel.colour = RGBAu8(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
         xLabel.cssClass = "xlabel"
         xLabel.fontColour = settings.fg.xLabel
         xLabel.fontSize = sizes.labelSize
         xLabel.strokeWidth = 1.0
 
         xTags = Properties.from(settings: settings)
-        xTags.colour = ColourTranslate.lookup(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
+        xTags.colour = RGBAu8(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
         xTags.fontColour = settings.fg.xTags
         xTags.fontSize = sizes.axesSize
         xTags.strokeWidth = 1.0
@@ -78,7 +78,7 @@ struct PropertiesList {
         xTitle.fontSize = sizes.axesSize
 
         yLabel = Properties.from(settings: settings)
-        yLabel.colour = ColourTranslate.lookup(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
+        yLabel.colour = RGBAu8(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
         yLabel.cssClass = "ylabel"
         yLabel.fontColour = settings.fg.yLabel
         yLabel.fontSize = sizes.labelSize

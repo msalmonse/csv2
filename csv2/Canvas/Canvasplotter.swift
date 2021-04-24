@@ -117,7 +117,7 @@ extension Canvas {
     }
 
     func bgRect() -> String {
-        let colour = ColourTranslate.lookup(settings.css.backgroundColour, or: .white).cssRGBA
+        let colour = RGBAu8(settings.css.backgroundColour, or: .white).cssRGBA
         let width = settings.dim.width
         let height = settings.dim.height
         return """
