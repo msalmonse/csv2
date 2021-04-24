@@ -65,6 +65,18 @@ struct RGBAu8: CustomStringConvertible, Equatable {
         return text
     }
 
+    var hashRGB: String {
+        let text = String(format: "#%02x%02x%02x", r, g, b, a)
+        RGBAu8.cache[text] = self
+        return text
+    }
+
+    var hashRGBA: String {
+        let text = String(format: "#%02x%02x%02x%02x", r, g, b, a)
+        RGBAu8.cache[text] = self
+        return text
+    }
+
     /// The average of red, gren, blue plus the max and min values
     var rgbValue: Int { (Int(r) + Int(g) + Int(b) + Int(max(r, g, b)) + Int(min(r, g, b)))/5 }
 
