@@ -7,8 +7,8 @@
 
 import Foundation
 
-fileprivate func u8val(_ val: CGFloat) -> UInt8 { UInt8(min(val * 256.0, 256)) }
-fileprivate func u8val(_ val: Double) -> UInt8 { UInt8(min(val * 256.0, 256)) }
+fileprivate func u8val(_ val: CGFloat) -> UInt8 { UInt8(min(val * 256.0, 255)) }
+fileprivate func u8val(_ val: Double) -> UInt8 { UInt8(min(val * 256.0, 255)) }
 
 struct ColourTranslate {
     fileprivate static let name2rgba = [
@@ -234,7 +234,8 @@ struct ColourTranslate {
             a: inout UInt8
     ) -> Bool {
         if !css.lowercased().hasPrefix("rgb") { return false }
-        let pattern = #"^rgba?\(\s*(?<r>\d+),\s*(?<g>\d+),\s*(?<b>\d+)(?:,\s*(?<a>[01]\.\d+))?\)$"#
+        let pattern =
+            #"^rgba?\(\s*(?<r>\d+)\s*,\s*(?<g>\d+)\s*,\s*(?<b>\d+)(?:\s*,\s*((?<a>[01]\.(?:\d+)?)|(?<a8>\d+))\s*)?\)$"#
         let re = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
         let cssRange = NSRange(css.startIndex..<css.endIndex, in: css)
         a = 255
@@ -242,21 +243,20 @@ struct ColourTranslate {
             if let aRange = Range(match.range(withName: "a"), in: css), let aVal = Double(css[aRange]) {
                 if aVal > 1.0 { return false }
                 a = u8val(aVal)
+            } else if let aRange = Range(match.range(withName: "a8"), in: css), let aVal = UInt8(css[aRange]) {
+                a = aVal
             }
 
-            if let rRange = Range(match.range(withName: "r"), in: css), let rVal = Int(css[rRange]) {
-                if rVal > 255 { return false }
-                r = UInt8(rVal)
+            if let rRange = Range(match.range(withName: "r"), in: css), let rVal = UInt8(css[rRange]) {
+                r = rVal
             } else { return false }
 
-            if let gRange = Range(match.range(withName: "g"), in: css), let gVal = Int(css[gRange]) {
-                if gVal > 255 { return false }
-                g = UInt8(gVal)
+            if let gRange = Range(match.range(withName: "g"), in: css), let gVal = UInt8(css[gRange]) {
+                g = gVal
             } else { return false }
 
-            if let bRange = Range(match.range(withName: "b"), in: css), let bVal = Int(css[bRange]) {
-                if bVal > 255 { return false }
-                b = UInt8(bVal)
+            if let bRange = Range(match.range(withName: "b"), in: css), let bVal = UInt8(css[bRange]) {
+                b = bVal
             } else { return false }
 
             return true
