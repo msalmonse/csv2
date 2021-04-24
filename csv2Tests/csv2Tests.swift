@@ -22,6 +22,8 @@ func output(_ plotter: Plotter, to name: String?) {
     }
 }
 
+func trySpecialCases(_ settings: Settings?) { return }
+
 class csv2Tests: XCTestCase {
 
     func csvGen(_ rows: Int, by cols: Int, precision: Int = 4) -> String {
