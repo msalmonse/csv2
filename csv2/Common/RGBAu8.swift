@@ -24,6 +24,17 @@ struct RGBAu8: CustomStringConvertible, Equatable {
     let b: UInt8
     let a: UInt8
 
+    init(r: UInt8, g: UInt8, b: UInt8, a: UInt8) {
+        self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
+    }
+
+    init(r: UInt8, g: UInt8, b: UInt8) {
+        self.init(r: r, g: g, b: b, a: 255)
+    }
+
     static var cache: [ String: RGBAu8 ] = [:]
 
     /// as CGColor

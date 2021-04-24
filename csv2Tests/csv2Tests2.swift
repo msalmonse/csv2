@@ -10,6 +10,9 @@ import XCTest
 
 extension csv2Tests {
     func testLookup() {
+        XCTAssertEqual(ColourTranslate.lookup("clearblack"), RGBAu8(r: 0, g: 0, b: 0, a: 127))
+        XCTAssertEqual(ColourTranslate.lookup("clear-black"), RGBAu8(r: 0, g: 0, b: 0, a: 127))
+
         XCTAssertEqual(ColourTranslate.lookup("#12345678", or: .clear), RGBAu8(r: 18, g: 52, b: 86, a: 120))
         XCTAssertEqual(ColourTranslate.lookup("#123456", or: .clear), RGBAu8(r: 18, g: 52, b: 86, a: 255))
         XCTAssertEqual(ColourTranslate.lookup("#123", or: .clear), RGBAu8(r: 17, g: 34, b: 51, a: 255))
