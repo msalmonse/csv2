@@ -93,12 +93,12 @@ extension Plot {
                 }
             case .moved, .online:
                 if props.bezier == 0.0 || nextPlotPoint == nil {
-                    pathComponents.append(.lineTo(x: pos.x, y: pos.y))
+                    pathComponents.append(.lineTo(xy: pos))
                 } else {
                     // calculate the start of the quadratic bézier curve
                     let qStart = pos.partWay(prevPlotPoint, part: props.bezier)
                     let qEnd = pos.partWay(nextPlotPoint!, part: props.bezier)
-                    pathComponents.append(.lineTo(x: qStart.x, y: qStart.y))
+                    pathComponents.append(.lineTo(xy: qStart))
                     pathComponents.append(.qBezierTo(x: qEnd.x, y: qEnd.y, cx: pos.x, cy: pos.y))
                 }
                 state = clipped ? .clipped : .online
@@ -113,7 +113,7 @@ extension Plot {
                 if clipped {
                     state = .clipped2
                 } else {
-                    pathComponents.append(.lineTo(x: pos.x, y: pos.y))
+                    pathComponents.append(.lineTo(xy: pos))
                     state = clipped ? .clipped2 : .online
                 }
                 // Data point?

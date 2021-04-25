@@ -39,11 +39,11 @@ extension Plot {
             return Path([
                 .moveTo(xy: Point(x: rq, y: top)),
                 .qBezierTo(x: right, y: tq, cx: right, cy: top),
-                .lineTo(x: right, y: bq),
+                .lineTo(xy: Point(x: right, y: bq)),
                 .qBezierTo(x: rq, y: bottom, cx: right, cy: bottom),
-                .lineTo(x: lq, y: bottom),
+                .lineTo(xy: Point(x: lq, y: bottom)),
                 .qBezierTo(x: left, y: bq, cx: left, cy: bottom),
-                .lineTo(x: left, y: tq),
+                .lineTo(xy: Point(x: left, y: tq)),
                 .qBezierTo(x: lq, y: top, cx: left, cy: top),
                 .z
             ])

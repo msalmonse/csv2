@@ -26,12 +26,12 @@ enum PathComponent {
         circleStar(w: Double),                      // Draw a stared circle of width 2*w
         cross(w: Double),                           // a cross of width 2 * w
         diamond(w: Double),                         // a diamond of width 2 * w
-        moveBy(dx: Double, dy: Double),             // Move by dx and dy
-        moveTo(xy: Point),                          // Move absolute to x,y
         horizBy(dx: Double),                        // Draw line horizontally by dx
         horizTo(x: Double),                         // Draw line horizontally to x
         lineBy(dx: Double, dy: Double),             // Draw line by dx,dy
-        lineTo(x: Double, y: Double),               // Draw line to x,y
+        lineTo(xy: Point),                          // Draw line to x,y
+        moveBy(dx: Double, dy: Double),             // Move by dx and dy
+        moveTo(xy: Point),                          // Move absolute to x,y
         qBezierBy(dx: Double, dy: Double, cdx: Double, cdy: Double),
                                         // Draw quadratic bezier curve by dx,dy with control point cdx,cdy
         qBezierTo(x: Double, y: Double, cx: Double, cy: Double),
@@ -60,7 +60,7 @@ enum PathComponent {
         case .horizBy(let dx): return "h \(dx.f(1))"
         case .horizTo(let x): return "H \(x.f(1))"
         case .lineBy(let dx, let dy): return "l \(dx.f(1)),\(dy.f(1))"
-        case .lineTo(let x, let y): return "L \(x.f(1)),\(y.f(1))"
+        case .lineTo(let xy): return "L \(xy.x.f(1)),\(xy.y.f(1))"
         case .qBezierBy(let dx, let dy, let cdx, let cdy):
             return "q \(cdx.f(1)),\(cdy.f(1)), \(dx.f(1)),\(dy.f(1))"
         case .qBezierTo(let x, let y, let cx, let cy):
