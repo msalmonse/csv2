@@ -24,6 +24,13 @@ struct RGBAu8: CustomStringConvertible, Equatable {
     let b: UInt8
     let a: UInt8
 
+    /// Standard init
+    /// - Parameters:
+    ///   - r: red
+    ///   - g: gree
+    ///   - b: blue
+    ///   - a: alpha
+
     init(r: UInt8, g: UInt8, b: UInt8, a: UInt8) {
         self.r = r
         self.g = g
@@ -31,9 +38,18 @@ struct RGBAu8: CustomStringConvertible, Equatable {
         self.a = a
     }
 
+    /// Init without alpha
+    /// - Parameters:
+    ///   - r: red
+    ///   - g: green
+    ///   - b: blue
+
     init(r: UInt8, g: UInt8, b: UInt8) {
         self.init(r: r, g: g, b: b, a: 255)
     }
+
+    /// Packed colours init without alpha
+    /// - Parameter u24: packed colours
 
     init(u24: Int) {
         let r = UInt8((u24 >> 16) & 0xff)
@@ -42,6 +58,20 @@ struct RGBAu8: CustomStringConvertible, Equatable {
         self.init(r: r, g: g, b: b, a: 255)
     }
 
+    /// Packed colours init with alpha
+    /// - Parameter u32: packed colours and alpha
+
+    init(u32: Int) {
+        let r = UInt8((u32 >> 24) & 0xff)
+        let g = UInt8((u32 >> 16) & 0xff)
+        let b = UInt8((u32 >> 8) & 0xff)
+        let a = UInt8(u32 & 0xff)
+        self.init(r: r, g: g, b: b, a: a)
+    }
+
+    /// Failable init using a colour name
+    /// - Parameter name: colour name
+
     init?(_ name: String?) {
         if let rgba = RGBAu8.lookup(name) {
             self = rgba
@@ -49,6 +79,11 @@ struct RGBAu8: CustomStringConvertible, Equatable {
             return nil
         }
     }
+
+    /// Init using a colour name or fallback
+    /// - Parameters:
+    ///   - name: colour name
+    ///   - notFound: fallback colour
 
     init(_ name: String?, or notFound: RGBAu8) {
         if let rgba = RGBAu8.lookup(name) {
