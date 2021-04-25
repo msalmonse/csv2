@@ -30,4 +30,16 @@ struct Vector {
         let dy = length * cos(angle)
         self.init(dx: dx, dy: dy)
     }
+
+    /// Format a Vector in fixed point format
+    /// - Parameters:
+    ///   - precision: the number of digits after the point
+    ///   - separatedBy: the seperator between x and y
+    /// - Returns: Formatted string
+
+    func f(_ precision: Int, separatedBy: String = ",") -> String {
+        return "\(dx.f(precision))\(separatedBy)\(dy.f(precision))"
+    }
+
+
 }

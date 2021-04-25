@@ -55,15 +55,15 @@ enum PathComponent {
         case .cBezierTo(let x, let y, let c1x, let c1y, let c2x, let c2y):
             return "C \(c1x.f(1)),\(c1y.f(1)) \(c2x.f(1)),\(c2y.f(1)) \(x.f(1)),\(y.f(1))"
         case .moveBy(let dx, let dy): return "m \(dx.f(1)),\(dy.f(1))"
-        case .moveTo(let xy): return "M \(xy.x.f(1)),\(xy.y.f(1))"
+        case .moveTo(let xy): return "M \(xy.f(1))"
         case .horizBy(let dx): return "h \(dx.f(1))"
         case .horizTo(let x): return "H \(x.f(1))"
         case .lineBy(let dx, let dy): return "l \(dx.f(1)),\(dy.f(1))"
-        case .lineTo(let xy): return "L \(xy.x.f(1)),\(xy.y.f(1))"
+        case .lineTo(let xy): return "L \(xy.f(1))"
         case .qBezierBy(let dx, let dy, let cdx, let cdy):
             return "q \(cdx.f(1)),\(cdy.f(1)), \(dx.f(1)),\(dy.f(1))"
         case .qBezierTo(let xy, let cxy):
-            return "Q \(cxy.x.f(1)),\(cxy.y.f(1)), \(xy.x.f(1)),\(xy.y.f(1))"
+            return "Q \(cxy.f(1)), \(xy.f(1))"
         case .vertBy(let dy): return "v \(dy.f(1))"
         case .vertTo(let y): return "V \(y.f(1))"
         case .z: return "Z"

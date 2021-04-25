@@ -14,8 +14,18 @@ struct Point: Equatable {
     let y: Double
 
     /// Convert to CGPoint
-    
+
     var cgpoint: CGPoint { return CGPoint(x: x, y: y) }
+
+    /// Format a Point in fixed point format
+    /// - Parameters:
+    ///   - precision: the number of digits after the point
+    ///   - separatedBy: the seperator between x and y
+    /// - Returns: Formatted string
+
+    func f(_ precision: Int, separatedBy: String = ",") -> String {
+        return "\(x.f(precision))\(separatedBy)\(y.f(precision))"
+    }
 
     /// Calculate the distance between two points
     /// - Parameter other: another point
