@@ -35,9 +35,9 @@ extension PathComponent {
             PathComponent.moveTo(xy: p0),
             .horizTo(x: left),
             .vertTo(y: y + r),
-            .qBezierTo(x: left + r, y: y, cx: left, cy: y),
+            .qBezierTo(xy: Point(x: left + r, y: y), cxy: Point(x: left, y: y)),
             .horizBy(dx: w - 2.0 * r),
-            .qBezierTo(x: right, y: y + r, cx: right, cy: y),
+            .qBezierTo(xy: Point(x: right, y: y + r), cxy: Point(x: right, y: y)),
             .vertTo(y: y0),
             .z
         ])

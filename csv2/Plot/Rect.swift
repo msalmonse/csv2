@@ -38,13 +38,13 @@ extension Plot {
 
             return Path([
                 .moveTo(xy: Point(x: rq, y: top)),
-                .qBezierTo(x: right, y: tq, cx: right, cy: top),
+                .qBezierTo(xy: Point(x: right, y: tq), cxy: Point(x: right, y: top)),
                 .lineTo(xy: Point(x: right, y: bq)),
-                .qBezierTo(x: rq, y: bottom, cx: right, cy: bottom),
+                .qBezierTo(xy: Point(x: rq, y: bottom), cxy: Point(x: right, y: bottom)),
                 .lineTo(xy: Point(x: lq, y: bottom)),
-                .qBezierTo(x: left, y: bq, cx: left, cy: bottom),
+                .qBezierTo(xy: Point(x: left, y: bq), cxy: Point(x: left, y: bottom)),
                 .lineTo(xy: Point(x: left, y: tq)),
-                .qBezierTo(x: lq, y: top, cx: left, cy: top),
+                .qBezierTo(xy: Point(x: lq, y: top), cxy: Point(x: left, y: top)),
                 .z
             ])
         }

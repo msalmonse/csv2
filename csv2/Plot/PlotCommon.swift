@@ -99,7 +99,7 @@ extension Plot {
                     let qStart = pos.partWay(prevPlotPoint, part: props.bezier)
                     let qEnd = pos.partWay(nextPlotPoint!, part: props.bezier)
                     pathComponents.append(.lineTo(xy: qStart))
-                    pathComponents.append(.qBezierTo(x: qEnd.x, y: qEnd.y, cx: pos.x, cy: pos.y))
+                    pathComponents.append(.qBezierTo(xy: qEnd, cxy: pos))
                 }
                 state = clipped ? .clipped : .online
                 // Data point?

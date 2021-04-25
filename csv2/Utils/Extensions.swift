@@ -102,11 +102,11 @@ extension Data {
 }
 
 extension CGPoint {
-    static func + (left: CGPoint, right: CGPoint) -> CGPoint {
-        return CGPoint(x: left.x + right.x, y: left.y + right.y)
+    static func + (left: CGPoint, right: CGVector) -> CGPoint {
+        return CGPoint(x: left.x + right.dx, y: left.y + right.dy)
     }
 
-    static func += (left: inout CGPoint, right: CGPoint) {
-        left = CGPoint(x: left.x + right.x, y: left.y + right.y)
+    static func += (left: inout CGPoint, right: CGVector) {
+        left = CGPoint(x: left.x + right.dx, y: left.y + right.dy)
     }
 }

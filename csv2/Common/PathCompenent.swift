@@ -34,8 +34,7 @@ enum PathComponent {
         moveTo(xy: Point),                          // Move absolute to x,y
         qBezierBy(dx: Double, dy: Double, cdx: Double, cdy: Double),
                                         // Draw quadratic bezier curve by dx,dy with control point cdx,cdy
-        qBezierTo(x: Double, y: Double, cx: Double, cy: Double),
-                                        // Draw quadratic bezier curve to x,y with control point cx,cy
+        qBezierTo(xy: Point, cxy: Point),       // Draw quadratic bezier curve to x,y with control point cx,cy
         shuriken(w: Double),                        // Draw shuriken
         square(w: Double),                          // Draw a square with sides 2 * w
         star(w: Double),                            // Draw a star of width 2 * w
@@ -63,8 +62,8 @@ enum PathComponent {
         case .lineTo(let xy): return "L \(xy.x.f(1)),\(xy.y.f(1))"
         case .qBezierBy(let dx, let dy, let cdx, let cdy):
             return "q \(cdx.f(1)),\(cdy.f(1)), \(dx.f(1)),\(dy.f(1))"
-        case .qBezierTo(let x, let y, let cx, let cy):
-            return "Q \(cx.f(1)),\(cy.f(1)), \(x.f(1)),\(y.f(1))"
+        case .qBezierTo(let xy, let cxy):
+            return "Q \(cxy.x.f(1)),\(cxy.y.f(1)), \(xy.x.f(1)),\(xy.y.f(1))"
         case .vertBy(let dy): return "v \(dy.f(1))"
         case .vertTo(let y): return "V \(y.f(1))"
         case .z: return "Z"

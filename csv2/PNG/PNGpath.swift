@@ -23,9 +23,9 @@ extension PNG {
         } else {
             switch component {
             case .cBezierBy(let dx, let dy, let c1dx, let c1dy, let c2dx, let c2dy):
-                let end = current + CGPoint(x: dx, y: dy)
-                let control1 = current + CGPoint(x: c1dx, y: c1dy)
-                let control2 = current + CGPoint(x: c2dx, y: c2dy)
+                let end = current + CGVector(dx: dx, dy: dy)
+                let control1 = current + CGVector(dx: c1dx, dy: c1dy)
+                let control2 = current + CGVector(dx: c2dx, dy: c2dy)
                 ctx.addCurve(to: end, control1: control1, control2: control2)
                 current = end
             case .cBezierTo(let x, let y, let c1x, let c1y, let c2x, let c2y):
@@ -35,35 +35,35 @@ extension PNG {
                 ctx.addCurve(to: end, control1: control1, control2: control2)
                 current = end
             case .horizBy(let dx):
-                current += CGPoint(x: dx, y: 0.0)
+                current += CGVector(dx: dx, dy: 0.0)
                 ctx.addLine(to: current)
             case .horizTo(let x):
                 current = CGPoint(x: CGFloat(x), y: current.y)
                 ctx.addLine(to: current)
             case .lineBy(let dx, let dy):
-                current += CGPoint(x: dx, y: dy)
+                current += CGVector(dx: dx, dy: dy)
                 ctx.addLine(to: current)
             case .lineTo(let xy):
                 current = CGPoint(x: xy.x, y: xy.y)
                 ctx.addLine(to: current)
             case .moveBy(let dx, let dy):
-                current += CGPoint(x: dx, y: dy)
+                current += CGVector(dx: dx, dy: dy)
                 ctx.move(to: current)
             case .moveTo(let xy):
                 current = CGPoint(x: xy.x, y: xy.y)
                 ctx.move(to: current)
             case .qBezierBy(let dx, let dy, let cdx, let cdy):
-                let end = current + CGPoint(x: dx, y: dy)
-                let control = current + CGPoint(x: cdx, y: cdy)
+                let end = current + CGVector(dx: dx, dy: dy)
+                let control = current + CGVector(dx: cdx, dy: cdy)
                 ctx.addQuadCurve(to: end, control: control)
                 current = end
-            case .qBezierTo(let x, let y, let cx, let cy):
-                let end = CGPoint(x: x, y: y)
-                let control = CGPoint(x: cx, y: cy)
+            case .qBezierTo(let xy, let cxy):
+                let end = xy.cgpoint
+                let control = cxy.cgpoint
                 ctx.addQuadCurve(to: end, control: control)
                 current = end
             case .vertBy(let dy):
-                current += CGPoint(x: 0.0, y: dy)
+                current += CGVector(dx: 0.0, dy: dy)
                 ctx.addLine(to: current)
             case .vertTo(let y):
                 current = CGPoint(x: current.x, y: CGFloat(y))

@@ -13,6 +13,10 @@ struct Point: Equatable {
     let x: Double
     let y: Double
 
+    /// Convert to CGPoint
+    
+    var cgpoint: CGPoint { return CGPoint(x: x, y: y) }
+
     /// Calculate the distance between two points
     /// - Parameter other: another point
     /// - Returns: distance betwwen points
