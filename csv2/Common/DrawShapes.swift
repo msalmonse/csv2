@@ -51,14 +51,14 @@ extension PathComponent {
         let half = w/2.0
         return Path([
              Self.moveBy(dxy: Vector(dx: -half, dy: half/2.0)),
-            .lineBy(dx: -half, dy: -w),
+            .lineBy(dxy: Vector(dx: -half, dy: -w)),
             .vertBy(dy: -half),
             .horizBy(dx: half),
-            .lineBy(dx: w, dy: w),
-            .lineBy(dx: half, dy: w),
+            .lineBy(dxy: Vector(dx: w, dy: w)),
+            .lineBy(dxy: Vector(dx: half, dy: w)),
             .vertBy(dy: half),
             .horizBy(dx: -half),
-            .lineBy(dx: -w, dy: -w),
+            .lineBy(dxy: Vector(dx: -w, dy: -w)),
             .moveBy(dxy: Vector(dx: half, dy: -half/2.0))
         ])
     }
@@ -73,10 +73,10 @@ extension PathComponent {
         let c = 0.551915024494 * r
         return Path([
             Self.moveBy(dxy: Vector(dx: 0, dy: -r)),
-            .cBezierBy(dx:  r, dy:  r, c1dx:  c, c1dy:  0, c2dx:  r, c2dy:  c),
-            .cBezierBy(dx: -r, dy:  r, c1dx:  0, c1dy:  c, c2dx: -c, c2dy:  r),
-            .cBezierBy(dx: -r, dy: -r, c1dx: -c, c1dy:  0, c2dx: -r, c2dy: -c),
-            .cBezierBy(dx:  r, dy: -r, c1dx:  0, c1dy: -c, c2dx:  c, c2dy: -r),
+            .cBezierBy(dxy: Vector(dx:  r, dy:  r), c1dxy: Vector(dx:  c, dy:  0), c2dxy: Vector(dx:  r, dy:  c)),
+            .cBezierBy(dxy: Vector(dx: -r, dy:  r), c1dxy: Vector(dx:  0, dy:  c), c2dxy: Vector(dx: -c, dy:  r)),
+            .cBezierBy(dxy: Vector(dx: -r, dy: -r), c1dxy: Vector(dx: -c, dy:  0), c2dxy: Vector(dx: -r, dy: -c)),
+            .cBezierBy(dxy: Vector(dx:  r, dy: -r), c1dxy: Vector(dx:  0, dy: -c), c2dxy: Vector(dx:  c, dy: -r)),
             .moveBy(dxy: Vector(dx: 0, dy: r))
         ])
     }
@@ -99,24 +99,24 @@ extension PathComponent {
         return Path([
             Self.moveBy(dxy: Vector(dx: -full - half, dy: 0.0)),
             // left
-            .lineBy(dx: -full, dy: -half),
+            .lineBy(dxy: Vector(dx: -full, dy: -half)),
             .vertBy(dy: full),
-            .lineBy(dx: full, dy: -half),
+            .lineBy(dxy: Vector(dx: full, dy: -half)),
             .moveBy(dxy: Vector(dx: full + half, dy: -full - half)),
             // top
-            .lineBy(dx: -half, dy: -full),
+            .lineBy(dxy: Vector(dx: -half, dy: -full)),
             .horizBy(dx: full),
-            .lineBy(dx: -half, dy: full),
+            .lineBy(dxy: Vector(dx: -half, dy: full)),
             .moveBy(dxy: Vector(dx: full + half, dy: full + half)),
             // right
-            .lineBy(dx: full, dy: -half),
+            .lineBy(dxy: Vector(dx: full, dy: -half)),
             .vertBy(dy: full),
-            .lineBy(dx: -full, dy: -half),
+            .lineBy(dxy: Vector(dx: -full, dy: -half)),
             .moveBy(dxy: Vector(dx: -full - half, dy: full + half)),
             // bottom
-            .lineBy(dx: -half, dy: full),
+            .lineBy(dxy: Vector(dx: -half, dy: full)),
             .horizBy(dx: full),
-            .lineBy(dx: -half, dy: -full),
+            .lineBy(dxy: Vector(dx: -half, dy: -full)),
             .moveBy(dxy: Vector(dx: 0.0, dy: -full))
         ])
     }
@@ -130,11 +130,11 @@ extension PathComponent {
         let full = half + half
         return Path([
             Self.moveBy(dxy: Vector(dx: -full, dy: 0.0)),
-            .lineBy(dx: full, dy: -full),
-            .lineBy(dx: full, dy: full),
-            .lineBy(dx: -full, dy: full),
-            .lineBy(dx: -full, dy: -full),
-            .lineBy(dx: half, dy: -half),
+            .lineBy(dxy: Vector(dx: full, dy: -full)),
+            .lineBy(dxy: Vector(dx: full, dy: full)),
+            .lineBy(dxy: Vector(dx: -full, dy: full)),
+            .lineBy(dxy: Vector(dx: -full, dy: -full)),
+            .lineBy(dxy: Vector(dx: half, dy: -half)),
             .moveBy(dxy: Vector(dx: half, dy: half))
         ])
     }
@@ -147,11 +147,24 @@ extension PathComponent {
         let half = w/2.0
         return Path([
             Self.moveBy(dxy: Vector(dx: -half, dy: -half)),
-            .lineBy(dx: -half, dy: -half), .horizBy(dx: half), .lineBy(dx: w, dy: half),
-            .lineBy(dx: half, dy: -half), .vertBy(dy: half), .lineBy(dx: -half, dy: w),
-            .lineBy(dx: half, dy: half), .horizBy(dx: -half), .lineBy(dx: -w, dy: -half),
-            .lineBy(dx: -half, dy: half), .vertBy(dy: -half), .lineBy(dx: half, dy: -w)
-,            .moveBy(dxy: Vector(dx: half, dy: half))
+            //
+            .lineBy(dxy: Vector(dx: -half, dy: -half)),
+            .horizBy(dx: half),
+            .lineBy(dxy: Vector(dx: w, dy: half)),
+            //
+            .lineBy(dxy: Vector(dx: half, dy: -half)),
+            .vertBy(dy: half),
+            .lineBy(dxy: Vector(dx: -half, dy: w)),
+            //
+            .lineBy(dxy: Vector(dx: half, dy: half)),
+            .horizBy(dx: -half),
+            .lineBy(dxy: Vector(dx: -w, dy: -half)),
+            //
+            .lineBy(dxy: Vector(dx: -half, dy: half)),
+            .vertBy(dy: -half),
+            .lineBy(dxy: Vector(dx: half, dy: -w)),
+            //
+            .moveBy(dxy: Vector(dx: half, dy: half))
         ])
     }
 
@@ -180,10 +193,10 @@ extension PathComponent {
         let half = w/2.0
         return Path([
             Self.moveBy(dxy: Vector(dx: -half, dy: 0.0)),
-            .lineBy(dx: -half, dy: -w), .lineBy(dx: w, dy: half),
-            .lineBy(dx: w, dy: -half), .lineBy(dx: -half, dy: w),
-            .lineBy(dx: half, dy: w), .lineBy(dx: -w, dy: -half),
-            .lineBy(dx: -w, dy: half), .lineBy(dx: half, dy: -w),
+            .lineBy(dxy: Vector(dx: -half, dy: -w)), .lineBy(dxy: Vector(dx: w, dy: half)),
+            .lineBy(dxy: Vector(dx: w, dy: -half)), .lineBy(dxy: Vector(dx: -half, dy: w)),
+            .lineBy(dxy: Vector(dx: half, dy: w)), .lineBy(dxy: Vector(dx: -w, dy: -half)),
+            .lineBy(dxy: Vector(dx: -w, dy: half)), .lineBy(dxy: Vector(dx: half, dy: -w)),
             .moveBy(dxy: Vector(dx: half, dy: 0.0))
         ])
     }
@@ -197,10 +210,10 @@ extension PathComponent {
         let half = w/2.0
         return Path([
             Self.moveBy(dxy: Vector(dx: 0.0, dy: -w)),
-            .lineBy(dx: w, dy: w2),
+            .lineBy(dxy: Vector(dx: w, dy: w2)),
             .horizBy(dx: -w2),
-            .lineBy(dx: w, dy: -w2),
-            .lineBy(dx: half, dy: w),
+            .lineBy(dxy: Vector(dx: w, dy: -w2)),
+            .lineBy(dxy: Vector(dx: half, dy: w)),
             .moveBy(dxy: Vector(dx: -half, dy: 0.0))
         ])
     }
