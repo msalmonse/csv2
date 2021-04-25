@@ -30,7 +30,7 @@ enum PathComponent {
         horizTo(x: Double),                         // Draw line horizontally to x
         lineBy(dx: Double, dy: Double),             // Draw line by dx,dy
         lineTo(xy: Point),                          // Draw line to x,y
-        moveBy(dx: Double, dy: Double),             // Move by dx and dy
+        moveBy(dxy: Vector),                        // Move by dx and dy
         moveTo(xy: Point),                          // Move absolute to x,y
         qBezierBy(dx: Double, dy: Double, cdx: Double, cdy: Double),
                                         // Draw quadratic bezier curve by dx,dy with control point cdx,cdy
@@ -54,7 +54,7 @@ enum PathComponent {
             return "c \(c1dx.f(1)),\(c1dy.f(1)) \(c2dx.f(1)),\(c2dy.f(1)) \(dx.f(1)),\(dy.f(1))"
         case .cBezierTo(let x, let y, let c1x, let c1y, let c2x, let c2y):
             return "C \(c1x.f(1)),\(c1y.f(1)) \(c2x.f(1)),\(c2y.f(1)) \(x.f(1)),\(y.f(1))"
-        case .moveBy(let dx, let dy): return "m \(dx.f(1)),\(dy.f(1))"
+        case .moveBy(let dxy): return "m \(dxy.f(1))"
         case .moveTo(let xy): return "M \(xy.f(1))"
         case .horizBy(let dx): return "h \(dx.f(1))"
         case .horizTo(let x): return "H \(x.f(1))"

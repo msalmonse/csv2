@@ -31,6 +31,10 @@ struct Vector {
         self.init(dx: dx, dy: dy)
     }
 
+    /// Convert to CGVector
+
+    var cgvector: CGVector { CGVector(dx: dx, dy: dy) }
+
     /// Format a Vector in fixed point format
     /// - Parameters:
     ///   - precision: the number of digits after the point
@@ -40,6 +44,4 @@ struct Vector {
     func f(_ precision: Int, separatedBy: String = ",") -> String {
         return "\(dx.f(precision))\(separatedBy)\(dy.f(precision))"
     }
-
-
 }

@@ -50,7 +50,7 @@ extension PathComponent {
     func drawBlade(w: Double) -> Path {
         let half = w/2.0
         return Path([
-            Self.moveBy(dx: -half, dy: half/2.0),
+             Self.moveBy(dxy: Vector(dx: -half, dy: half/2.0)),
             .lineBy(dx: -half, dy: -w),
             .vertBy(dy: -half),
             .horizBy(dx: half),
@@ -59,7 +59,7 @@ extension PathComponent {
             .vertBy(dy: half),
             .horizBy(dx: -half),
             .lineBy(dx: -w, dy: -w),
-            .moveBy(dx: half, dy: -half/2.0)
+            .moveBy(dxy: Vector(dx: half, dy: -half/2.0))
         ])
     }
 
@@ -72,12 +72,12 @@ extension PathComponent {
         // the constant below from https://spencermortensen.com/articles/bezier-circle/
         let c = 0.551915024494 * r
         return Path([
-            Self.moveBy(dx: 0, dy: -r),
+            Self.moveBy(dxy: Vector(dx: 0, dy: -r)),
             .cBezierBy(dx:  r, dy:  r, c1dx:  c, c1dy:  0, c2dx:  r, c2dy:  c),
             .cBezierBy(dx: -r, dy:  r, c1dx:  0, c1dy:  c, c2dx: -c, c2dy:  r),
             .cBezierBy(dx: -r, dy: -r, c1dx: -c, c1dy:  0, c2dx: -r, c2dy: -c),
             .cBezierBy(dx:  r, dy: -r, c1dx:  0, c1dy: -c, c2dx:  c, c2dy: -r),
-            .moveBy(dx: 0, dy: r)
+            .moveBy(dxy: Vector(dx: 0, dy: r))
         ])
     }
 
@@ -97,27 +97,27 @@ extension PathComponent {
         let full = w * 0.4
         let half = full * 0.5
         return Path([
-            Self.moveBy(dx: -full - half, dy: 0.0),
+            Self.moveBy(dxy: Vector(dx: -full - half, dy: 0.0)),
             // left
             .lineBy(dx: -full, dy: -half),
             .vertBy(dy: full),
             .lineBy(dx: full, dy: -half),
-            .moveBy(dx: full + half, dy: -full - half),
+            .moveBy(dxy: Vector(dx: full + half, dy: -full - half)),
             // top
             .lineBy(dx: -half, dy: -full),
             .horizBy(dx: full),
             .lineBy(dx: -half, dy: full),
-            .moveBy(dx: full + half, dy: full + half),
+            .moveBy(dxy: Vector(dx: full + half, dy: full + half)),
             // right
             .lineBy(dx: full, dy: -half),
             .vertBy(dy: full),
             .lineBy(dx: -full, dy: -half),
-            .moveBy(dx: -full - half, dy: full + half),
+            .moveBy(dxy: Vector(dx: -full - half, dy: full + half)),
             // bottom
             .lineBy(dx: -half, dy: full),
             .horizBy(dx: full),
             .lineBy(dx: -half, dy: -full),
-            .moveBy(dx: 0.0, dy: -full)
+            .moveBy(dxy: Vector(dx: 0.0, dy: -full))
         ])
     }
 
@@ -129,13 +129,13 @@ extension PathComponent {
         let half = w * 0.625
         let full = half + half
         return Path([
-            Self.moveBy(dx: -full, dy: 0.0),
+            Self.moveBy(dxy: Vector(dx: -full, dy: 0.0)),
             .lineBy(dx: full, dy: -full),
             .lineBy(dx: full, dy: full),
             .lineBy(dx: -full, dy: full),
             .lineBy(dx: -full, dy: -full),
             .lineBy(dx: half, dy: -half),
-            .moveBy(dx: half, dy: half)
+            .moveBy(dxy: Vector(dx: half, dy: half))
         ])
     }
 
@@ -146,12 +146,12 @@ extension PathComponent {
     func drawShuriken(w: Double) -> Path {
         let half = w/2.0
         return Path([
-            Self.moveBy(dx: -half, dy: -half),
+            Self.moveBy(dxy: Vector(dx: -half, dy: -half)),
             .lineBy(dx: -half, dy: -half), .horizBy(dx: half), .lineBy(dx: w, dy: half),
             .lineBy(dx: half, dy: -half), .vertBy(dy: half), .lineBy(dx: -half, dy: w),
             .lineBy(dx: half, dy: half), .horizBy(dx: -half), .lineBy(dx: -w, dy: -half),
             .lineBy(dx: -half, dy: half), .vertBy(dy: -half), .lineBy(dx: half, dy: -w)
-,            .moveBy(dx: half, dy: half)
+,            .moveBy(dxy: Vector(dx: half, dy: half))
         ])
     }
 
@@ -162,13 +162,13 @@ extension PathComponent {
     func drawSquare(w: Double) -> Path {
         let w2 = w * 2.0
         return Path([
-            Self.moveBy(dx: -w, dy: -w),
+            Self.moveBy(dxy: Vector(dx: -w, dy: -w)),
             .horizBy(dx: w2),
             .vertBy(dy: w2),
             .horizBy(dx: -w2),
             .vertBy(dy: -w2),
             .horizBy(dx: w),
-            .moveBy(dx: 0.0, dy: w)
+            .moveBy(dxy: Vector(dx: 0.0, dy: w))
         ])
     }
 
@@ -179,12 +179,12 @@ extension PathComponent {
     func drawStar(w: Double) -> Path {
         let half = w/2.0
         return Path([
-            Self.moveBy(dx: -half, dy: 0.0),
+            Self.moveBy(dxy: Vector(dx: -half, dy: 0.0)),
             .lineBy(dx: -half, dy: -w), .lineBy(dx: w, dy: half),
             .lineBy(dx: w, dy: -half), .lineBy(dx: -half, dy: w),
             .lineBy(dx: half, dy: w), .lineBy(dx: -w, dy: -half),
             .lineBy(dx: -w, dy: half), .lineBy(dx: half, dy: -w),
-            .moveBy(dx: half, dy: 0.0)
+            .moveBy(dxy: Vector(dx: half, dy: 0.0))
         ])
     }
 
@@ -196,12 +196,12 @@ extension PathComponent {
         let w2 = w * 2.0
         let half = w/2.0
         return Path([
-            Self.moveBy(dx: 0.0, dy: -w),
+            Self.moveBy(dxy: Vector(dx: 0.0, dy: -w)),
             .lineBy(dx: w, dy: w2),
             .horizBy(dx: -w2),
             .lineBy(dx: w, dy: -w2),
             .lineBy(dx: half, dy: w),
-            .moveBy(dx: -half, dy: 0.0)
+            .moveBy(dxy: Vector(dx: -half, dy: 0.0))
         ])
     }
 }

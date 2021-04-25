@@ -46,8 +46,8 @@ extension PNG {
             case .lineTo(let xy):
                 current = CGPoint(x: xy.x, y: xy.y)
                 ctx.addLine(to: current)
-            case .moveBy(let dx, let dy):
-                current += CGVector(dx: dx, dy: dy)
+            case .moveBy(let dxy):
+                current += dxy.cgvector
                 ctx.move(to: current)
             case .moveTo(let xy):
                 current = CGPoint(x: xy.x, y: xy.y)
