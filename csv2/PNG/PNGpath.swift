@@ -49,8 +49,8 @@ extension PNG {
             case .moveBy(let dx, let dy):
                 current += CGPoint(x: dx, y: dy)
                 ctx.move(to: current)
-            case .moveTo(let x, let y):
-                current = CGPoint(x: x, y: y)
+            case .moveTo(let xy):
+                current = CGPoint(x: xy.x, y: xy.y)
                 ctx.move(to: current)
             case .qBezierBy(let dx, let dy, let cdx, let cdy):
                 let end = current + CGPoint(x: dx, y: dy)

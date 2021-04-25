@@ -18,7 +18,7 @@ extension Plot {
     func rectPath(_ plane: Plane, rx: Double) -> Path {
         if rx == 0.0 {
             return Path([
-                .moveTo(x: plane.left, y: plane.vMid),
+                .moveTo(xy: Point(x: plane.left, y: plane.vMid)),
                 .vertTo(y: plane.top),
                 .horizTo(x: plane.right),
                 .vertTo(y: plane.bottom),
@@ -37,7 +37,7 @@ extension Plot {
             let bq = max(plane.vMid, bottom - rx)
 
             return Path([
-                .moveTo(x: rq, y: top),
+                .moveTo(xy: Point(x: rq, y: top)),
                 .qBezierTo(x: right, y: tq, cx: right, cy: top),
                 .lineTo(x: right, y: bq),
                 .qBezierTo(x: rq, y: bottom, cx: right, cy: bottom),

@@ -17,11 +17,11 @@ extension Plot {
         let y0 = logx ? 1.0 : 0.0
 
         if dataPlane.inVert(x0) {
-            axesPath.append(.moveTo(x: plotPlane.left, y: ts.ypos(x0)))
+            axesPath.append(.moveTo(xy: Point(x: plotPlane.left, y: ts.ypos(x0))))
             axesPath.append(.horizTo(x: plotPlane.right))
         }
         if dataPlane.inHoriz(y0) {
-            axesPath.append(.moveTo(x: ts.xpos(y0), y: plotPlane.bottom))
+            axesPath.append(.moveTo(xy: Point(x: ts.xpos(y0), y: plotPlane.bottom)))
             axesPath.append(.vertTo(y: plotPlane.top))
         }
 
@@ -63,7 +63,7 @@ extension Plot {
                 let text = getText(j, k)
                 if  text.hasContent {
                     let xpos = ts.xpos(x)
-                    tagsPath.append(.moveTo(x: xpos, y: positions.xTagsTopY))
+                    tagsPath.append(.moveTo(xy: Point(x: xpos, y: positions.xTagsTopY)))
                     tagsPath.append(.vertTo(y: plotPlane.top))
                     plotter.plotText(x: xpos, y: positions.xTagsY, text: text, props: propsList.xLabel)
                 }
@@ -125,12 +125,12 @@ extension Plot {
 
         while x <= xMax {
             if dataPlane.inHoriz(x) {
-                tickPath.append(.moveTo(x: ts.xpos(x), y: plotPlane.bottom))
+                tickPath.append(.moveTo(xy: Point(x: ts.xpos(x), y: plotPlane.bottom)))
                 tickPath.append(.vertTo(y: plotPlane.top))
                 xLabelText(label(x, intTick), x: ts.xpos(x), y: positions.xTicksY)
             }
             if dataPlane.inHoriz(-x) {
-                tickPath.append(.moveTo(x: ts.xpos(-x), y: plotPlane.bottom))
+                tickPath.append(.moveTo(xy: Point(x: ts.xpos(-x), y: plotPlane.bottom)))
                 tickPath.append(.vertTo(y: plotPlane.top))
                 xLabelText(label(-x, intTick), x: ts.xpos(-x), y: positions.xTicksY)
             }
@@ -161,12 +161,12 @@ extension Plot {
 
         while y <= yMax {
             if dataPlane.inVert(y) {
-                tickPath.append(.moveTo(x: plotPlane.left, y: ts.ypos(y)))
+                tickPath.append(.moveTo(xy: Point(x: plotPlane.left, y: ts.ypos(y))))
                 tickPath.append(.horizTo(x: plotPlane.right))
                 yLabelText(label(y, intTick), x: positions.yTickX, y: ts.ypos(y))
             }
             if dataPlane.inVert(-y) {
-                tickPath.append(.moveTo(x: plotPlane.left, y: ts.ypos(-y)))
+                tickPath.append(.moveTo(xy: Point(x: plotPlane.left, y: ts.ypos(-y))))
                 tickPath.append(.horizTo(x: plotPlane.right))
                 yLabelText(label(-y, intTick), x: positions.yTickX, y: ts.ypos(-y))
             }

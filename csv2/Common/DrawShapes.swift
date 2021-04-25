@@ -13,7 +13,7 @@ extension PathComponent {
         let startPoint = centre + Vector(length: radius, angle: start)
         let endPoint = centre + Vector(length: radius, angle: end)
         return Path([
-            PathComponent.moveTo(x: startPoint.x, y: startPoint.y),
+            PathComponent.moveTo(xy: startPoint),
             .arcTo(end: endPoint, r: radius)
         ])
     }
@@ -32,7 +32,7 @@ extension PathComponent {
         let right = left + w
         let r = w/32.0
         return Path([
-            PathComponent.moveTo(x: x0, y: y0),
+            PathComponent.moveTo(xy: p0),
             .horizTo(x: left),
             .vertTo(y: y + r),
             .qBezierTo(x: left + r, y: y, cx: left, cy: y),

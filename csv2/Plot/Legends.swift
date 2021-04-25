@@ -21,7 +21,7 @@ extension Plot {
     ) {
         guard props.shape != nil else { return }
         plotter.plotPath(Path([
-                PathComponent.moveTo(x: x, y: y),
+                PathComponent.moveTo(xy: Point(x: x, y: y)),
                 props.shape!.pathComponent(w: shapeWidth)
             ]),
             props: props, fill: false
@@ -42,7 +42,7 @@ extension Plot {
     ) {
         guard props.shape != nil else { return }
         plotter.plotPath(Path([
-                PathComponent.moveTo(x: left, y: y),
+                PathComponent.moveTo(xy: Point(x: left, y: y)),
                 .horizTo(x: mid),
                 props.shape!.pathComponent(w: shapeWidth),
                 .horizTo(x: right)
@@ -63,7 +63,7 @@ extension Plot {
         _ props: Properties
     ) {
         return plotter.plotPath(Path([
-                PathComponent.moveTo(x: left, y: y),
+                PathComponent.moveTo(xy: Point(x: left, y: y)),
                 .horizTo(x: right)
             ]),
             props: props, fill: false

@@ -83,8 +83,8 @@ extension Plot {
             }
             switch state {
             case .move:
-                pathComponents.append(.moveTo(x: pos.x, y: pos.y))
-                shapeComponents.append(.moveTo(x: pos.x, y: pos.y))
+                pathComponents.append(.moveTo(xy: pos))
+                shapeComponents.append(.moveTo(xy: pos))
                 state = .moved
                 // Data point?
                 if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
@@ -104,7 +104,7 @@ extension Plot {
                 state = clipped ? .clipped : .online
                 // Data point?
                 if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
-                    shapeComponents.append(.moveTo(x: pos.x, y: pos.y))
+                    shapeComponents.append(.moveTo(xy: pos))
                     shapeComponents.append(plotShape)
                     prevDataPoint = pos
                 }
@@ -118,13 +118,13 @@ extension Plot {
                 }
                 // Data point?
                 if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
-                    shapeComponents.append(.moveTo(x: pos.x, y: pos.y))
+                    shapeComponents.append(.moveTo(xy: pos))
                     shapeComponents.append(plotShape)
                     prevDataPoint = pos
                 }
             case .scatter:
                 if !clipped {
-                    shapeComponents.append(.moveTo(x: pos.x, y: pos.y))
+                    shapeComponents.append(.moveTo(xy: pos))
                     shapeComponents.append(plotShape)
                 }
             case .staple:
@@ -133,7 +133,7 @@ extension Plot {
                 }
             case .clipped2:
                 // Ignore all data till we are not clipped, just move
-                pathComponents.append(.moveTo(x: pos.x, y: pos.y))
+                pathComponents.append(.moveTo(xy: pos))
             }
             prevPlotPoint = pos
         }

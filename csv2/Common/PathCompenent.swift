@@ -27,7 +27,7 @@ enum PathComponent {
         cross(w: Double),                           // a cross of width 2 * w
         diamond(w: Double),                         // a diamond of width 2 * w
         moveBy(dx: Double, dy: Double),             // Move by dx and dy
-        moveTo(x: Double, y: Double),               // Move absolute to x,y
+        moveTo(xy: Point),                          // Move absolute to x,y
         horizBy(dx: Double),                        // Draw line horizontally by dx
         horizTo(x: Double),                         // Draw line horizontally to x
         lineBy(dx: Double, dy: Double),             // Draw line by dx,dy
@@ -56,7 +56,7 @@ enum PathComponent {
         case .cBezierTo(let x, let y, let c1x, let c1y, let c2x, let c2y):
             return "C \(c1x.f(1)),\(c1y.f(1)) \(c2x.f(1)),\(c2y.f(1)) \(x.f(1)),\(y.f(1))"
         case .moveBy(let dx, let dy): return "m \(dx.f(1)),\(dy.f(1))"
-        case .moveTo(let x, let y): return "M \(x.f(1)),\(y.f(1))"
+        case .moveTo(let xy): return "M \(xy.x.f(1)),\(xy.y.f(1))"
         case .horizBy(let dx): return "h \(dx.f(1))"
         case .horizTo(let x): return "H \(x.f(1))"
         case .lineBy(let dx, let dy): return "l \(dx.f(1)),\(dy.f(1))"
