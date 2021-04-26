@@ -9,7 +9,7 @@ import Foundation
 import ArgumentParser
 
 protocol CSVplotterCommand {
-    func iAm() -> PlotterType
+    var iAm: PlotterType { get }
     func options() -> Options
     func ownOptions<T>(key: CommandPath, default: T) -> T
 }
@@ -33,7 +33,7 @@ extension CSVplotter {
             abstract: "Plot data on an HTML Canvas using JavaScript"
         )
 
-        func iAm() -> PlotterType { return PlotterType.canvas }
+        var iAm: PlotterType { PlotterType.canvas }
         func options() -> Options { return common }
         func ownOptions<T>(key: CommandPath, default val: T) -> T {
             switch key {
@@ -61,7 +61,7 @@ extension CSVplotter {
             abstract: "Plot data on a PNG image"
         )
 
-        func iAm() -> PlotterType { return PlotterType.png }
+        var iAm: PlotterType { PlotterType.png }
         func options() -> Options { return common }
         func ownOptions<T>(key: CommandPath, default val: T) -> T {
             return val
@@ -79,7 +79,7 @@ extension CSVplotter {
             abstract: "Plot data in an SVG"
         )
 
-        func iAm() -> PlotterType { return PlotterType.svg }
+        var iAm: PlotterType { PlotterType.svg }
         func options() -> Options { return common }
         func ownOptions<T>(key: CommandPath, default val: T) -> T {
             switch key {

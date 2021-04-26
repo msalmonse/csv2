@@ -27,17 +27,17 @@ if commonOpts.version {
 if commonOpts.shapenames {
     print(Shape.allNames())
 } else if commonOpts.show.hasContent {
-    showShape(shape: commonOpts.show, defaults: defaults, with: command.iAm(), to: commonOpts.outName)
+    showShape(shape: commonOpts.show, defaults: defaults, with: command.iAm, to: commonOpts.outName)
 } else if commonOpts.bitmap.hasEntries {
     print(bitmap(commonOpts.bitmap))
 } else if commonOpts.colourslist {
-    showColoursList(defaults, namesList: false, with: command.iAm(), to: commonOpts.outName)
+    showColoursList(defaults, namesList: false, with: command.iAm, to: commonOpts.outName)
 } else if commonOpts.colournames {
     print(ColourTranslate.all.map { "\($0): \(ColourTranslate.lookup($0)!.hashRGBA)" }.joined(separator: "\n"))
 } else if commonOpts.colournameslist {
-    showColoursList(defaults, namesList: true, with: command.iAm(), to: commonOpts.outName)
+    showColoursList(defaults, namesList: true, with: command.iAm, to: commonOpts.outName)
 } else if commonOpts.dasheslist {
-    showDashesList(defaults, with: command.iAm(), to: commonOpts.outName)
+    showDashesList(defaults, with: command.iAm, to: commonOpts.outName)
 } else {
     // use a csvName of - to mean use stdin
     if commonOpts.csvName == "-" { commonOpts.csvName = nil }
@@ -63,7 +63,7 @@ if commonOpts.shapenames {
         exit(1)
     }
 
-    let plotter = command.iAm().plotter(settings: settings!)
+    let plotter = command.iAm.plotter(settings: settings!)
     if commonOpts.debug &== 8 { print(plotter, to: &standardError) }
 
     let plot = Plot(csv!, settings!, plotter)
