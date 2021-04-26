@@ -12,13 +12,13 @@ extension SVG {
         // font sizes and anchors
         let sizes = FontSizes(size: settings.dim.baseFontSize)
         result.append("""
-            \(id) text.legend { font-size: \(sizes.legendSize.f(1))px }
-            \(id) text.legend.headline { font-size: \((sizes.legendSize * 1.25).f(1))px; font-weight: bold }
-            \(id) text.subtitle { font-size: \(sizes.subTitleSize.f(1))px; text-anchor: middle }
-            \(id) text.title { font-size: \(sizes.titleSize.f(1))px; text-anchor: middle }
-            \(id) text.xlabel { font-size: \(sizes.labelSize.f(1))px; text-anchor: middle }
-            \(id) text.xtitle, \(id) text.ytitle { font-size: \(sizes.axesSize.f(1))px; text-anchor: middle }
-            \(id) text.ylabel { font-size: \(sizes.labelSize.f(1))px; text-anchor: end; dominant-baseline: middle }
+            \(id) text.legend { font-size: \(sizes.legend.size.f(1))px }
+            \(id) text.legend.headline { font-size: \((sizes.legend.size * 1.25).f(1))px; font-weight: bold }
+            \(id) text.subtitle { font-size: \(sizes.subTitle.size.f(1))px; text-anchor: middle }
+            \(id) text.title { font-size: \(sizes.title.size.f(1))px; text-anchor: middle }
+            \(id) text.xlabel { font-size: \(sizes.label.size.f(1))px; text-anchor: middle }
+            \(id) text.xtitle, \(id) text.ytitle { font-size: \(sizes.axes.size.f(1))px; text-anchor: middle }
+            \(id) text.ylabel { font-size: \(sizes.label.size.f(1))px; text-anchor: end; dominant-baseline: middle }
             """
         )
     }

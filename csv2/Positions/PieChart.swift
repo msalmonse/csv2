@@ -1,15 +1,28 @@
 //
-//  SVG/Positions.swift
-//  csv2svg
+//  PieChart.swift
+//  csv2
 //
-//  Created by Michael Salmon on 2021-03-10.
+//  Created by Michael Salmon on 2021-04-26.
 //
 
 import Foundation
 
+// Function to reduce cyclomatic complexity
+
+/// Test if a value is in range
+/// - Parameters:
+///   - r: range
+///   - val: value to test
+///   - alt: alternative value
+/// - Returns: val if in range. alt otherwise
+
+private func inRange(_ r: Range<Double>, _ val: Double, _ alt: Double = 0.0) -> Double {
+    return r.contains(val) ? val : alt
+}
+
 /// Various layout positions
 
-struct Horizontal: Positions {
+struct PieChart: Positions {
     // Vertical positions
     let bottomY: Double
     let legendY: Double

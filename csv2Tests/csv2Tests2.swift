@@ -27,4 +27,12 @@ extension csv2Tests {
         XCTAssertEqual(RGBAu8("rgba(1,2,3, 4)"), RGBAu8(r: 1, g: 2, b: 3, a: 4))
         XCTAssertNil(RGBAu8("rgba(1,2,3,1.000001)"))
     }
+
+    func testDoIf() {
+        var val = 5
+        doIf(true) { val += 1 }
+        XCTAssertEqual(val, 6)
+        doIf(false) { val += 1 }
+        XCTAssertEqual(val, 6)
+    }
 }

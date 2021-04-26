@@ -7,19 +7,28 @@
 
 import Foundation
 
+struct FontSizeAndSpacing {
+    let size: Double
+    var spacing: Double { size * 1.25 }
+
+    init(_ size: Double) {
+        self.size = size
+    }
+}
+
 // Font sizes
 struct FontSizes {
-    let axesSize: Double
-    let labelSize: Double
-    let legendSize: Double
-    let subTitleSize: Double
-    let titleSize: Double
+    let axes: FontSizeAndSpacing
+    let label: FontSizeAndSpacing
+    let legend: FontSizeAndSpacing
+    let subTitle: FontSizeAndSpacing
+    let title: FontSizeAndSpacing
 
     init(size: Double) {
-        axesSize = size * 1.2
-        labelSize = size
-        legendSize = size * 1.3
-        subTitleSize = size * 1.5
-        titleSize = size * 2.5
+        axes = FontSizeAndSpacing(size * 1.2)
+        label = FontSizeAndSpacing(size)
+        legend = FontSizeAndSpacing(size * 1.30)
+        subTitle = FontSizeAndSpacing(size * 1.5)
+        title = FontSizeAndSpacing(size * 2.5)
     }
 }

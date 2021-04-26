@@ -51,13 +51,13 @@ class Plot: ReflectedStringConvertible {
 
     // font sizes
     let sizes: FontSizes
-    var axesSize: Double { return sizes.axesSize }
-    var labelSize: Double { return sizes.labelSize }
-    var legendSize: Double { return sizes.legendSize }
-    var subTitleSize: Double { return sizes.subTitleSize }
-    var titleSize: Double { return sizes.titleSize }
+    var axesSize: Double { return sizes.axes.size }
+    var labelSize: Double { return sizes.label.size }
+    var legendSize: Double { return sizes.legend.size }
+    var subTitleSize: Double { return sizes.subTitle.size }
+    var titleSize: Double { return sizes.title.size }
 
-    init(_ csv: CSV, _ settings: Settings, _ plotter: Plotter) {
+    init(_ csv: CSV, _ settings: Settings, _ plotter: Plotter, chartType: ChartType = .horizontal) {
         self.csv = csv
         self.settings = settings
         self.plotter = plotter
@@ -74,7 +74,7 @@ class Plot: ReflectedStringConvertible {
         let dataPlane = Sides.fromData(csv, settings)
         self.dataPlane = dataPlane
 
-        positions = Horizontal(settings, dataLeft: dataPlane.left)
+        positions = positionsSelect(chartType, settings)
 
         limit = settings.plot.dataPointDistance
 
