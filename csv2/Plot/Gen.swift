@@ -68,6 +68,7 @@ extension Plot {
 
         for row in settings.csv.headerRows..<csv.rowCt {
             plotPie(row, settings.csv.headerColumns)
+            break
         }
 
         if settings.plotter.legends { legend() }

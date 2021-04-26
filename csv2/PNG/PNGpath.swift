@@ -22,6 +22,12 @@ extension PNG {
             }
         } else {
             switch component {
+            case .arcAround(let c, let r, let s, let e):
+                ctx.addArc(
+                    center: c.cgpoint, radius: CGFloat(r),
+                    startAngle: CGFloat(s), endAngle: CGFloat(e),
+                    clockwise: false
+                )
             case .cBezierBy(let dxy, let c1dxy, let c2dxy):
                 let end = current + dxy.cgvector
                 let control1 = current + c1dxy.cgvector

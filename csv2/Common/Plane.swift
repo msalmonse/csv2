@@ -53,6 +53,9 @@ struct Plane {
     /// Vertical midpoint
     var vMid: Double { (top + bottom)/2.0 }
 
+    /// Midpoint
+    var mid: Point { Point(x: hMid, y: vMid) }
+
     /// height i.e. top - bottom
     var height: Double { top > bottom ? top - bottom : bottom - top }
 
