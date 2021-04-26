@@ -74,7 +74,7 @@ class Plot: ReflectedStringConvertible {
         let dataPlane = Sides.fromData(csv, settings)
         self.dataPlane = dataPlane
 
-        positions = Positions(settings, dataLeft: dataPlane.left)
+        positions = Horizontal(settings, dataLeft: dataPlane.left)
 
         limit = settings.plot.dataPointDistance
 

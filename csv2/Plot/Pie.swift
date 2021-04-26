@@ -16,9 +16,10 @@ extension Plot {
         let centre = plotPlane.mid
         let radius = round(plotPlane.height/2.5)
 
-        let pieValues = csv.rowValues(row, from: col1)
+        let pieValues = csv.rowValues(row)
         var sum = pieValues.reduce(0.0) { $0 + ($1 ?? 0) }
-        for col in pieValues.indices {
+        if index >= 0 { sum -= pieValues[index] ?? 0.0 }
+        for col in pieValues.indices where col != index {
             if let val = pieValues[col] {
                 let angle6 = min(round(arcLeft * val/sum), arcLeft)
                 sum -= val

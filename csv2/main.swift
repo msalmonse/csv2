@@ -8,7 +8,7 @@
 import Foundation
 
 let command = getCommand()
-var commonOpts = command.options()
+var commonOpts = command.options().constrained()
 var defaults = commonOpts.defaults(for: command)
 
 if commonOpts.debug != 0 {
@@ -73,7 +73,7 @@ if commonOpts.shapenames {
     } else {
         plot.gen()
     }
-    
+
     output(plotter, to: commonOpts.outName)
 }
 

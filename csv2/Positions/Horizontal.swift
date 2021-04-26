@@ -22,7 +22,7 @@ private func inRange(_ r: Range<Double>, _ val: Double, _ alt: Double = 0.0) -> 
 
 /// Various layout positions
 
-struct Positions {
+struct Horizontal: Positions {
     // Vertical positions
     let bottomY: Double
     let legendY: Double

@@ -36,8 +36,8 @@
 		C45323E725F8CCC8007D741C /* Readlines.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323E525F8CCC8007D741C /* Readlines.swift */; };
 		C45323ED25F8EF0D007D741C /* Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323EC25F8EF0D007D741C /* Gen.swift */; };
 		C45323EE25F8EF0D007D741C /* Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323EC25F8EF0D007D741C /* Gen.swift */; };
-		C45323F225F8F157007D741C /* Positions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323F125F8F157007D741C /* Positions.swift */; };
-		C45323F325F8F157007D741C /* Positions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323F125F8F157007D741C /* Positions.swift */; };
+		C45323F225F8F157007D741C /* Horizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323F125F8F157007D741C /* Horizontal.swift */; };
+		C45323F325F8F157007D741C /* Horizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323F125F8F157007D741C /* Horizontal.swift */; };
 		C45323FB25F90359007D741C /* PlotInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323FA25F90359007D741C /* PlotInfo.swift */; };
 		C45323FC25F90359007D741C /* PlotInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323FA25F90359007D741C /* PlotInfo.swift */; };
 		C453242525FA2C23007D741C /* DrawShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453242425FA2C23007D741C /* DrawShapes.swift */; };
@@ -126,6 +126,8 @@
 		C4CF29FC263556B400E858D1 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF29FB263556B400E858D1 /* Vector.swift */; };
 		C4CF2A00263556EE00E858D1 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF29FF263556EE00E858D1 /* Point.swift */; };
 		C4CF2A0426368F5600E858D1 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A0326368F5600E858D1 /* Pie.swift */; };
+		C4CF2A082636BDA300E858D1 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A072636BDA300E858D1 /* Constraints.swift */; };
+		C4CF2A112636EF9600E858D1 /* Positions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A102636EF9600E858D1 /* Positions.swift */; };
 		C4EA5D1F25EB7B8A00E104E0 /* TransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */; };
 		C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */; };
 		C4EA5D2825EB8F4D00E104E0 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* Colours.swift */; };
@@ -181,7 +183,7 @@
 		C45323D725F7C990007D741C /* usage.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = usage.md; sourceTree = "<group>"; };
 		C45323E525F8CCC8007D741C /* Readlines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Readlines.swift; sourceTree = "<group>"; };
 		C45323EC25F8EF0D007D741C /* Gen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gen.swift; sourceTree = "<group>"; };
-		C45323F125F8F157007D741C /* Positions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Positions.swift; sourceTree = "<group>"; };
+		C45323F125F8F157007D741C /* Horizontal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Horizontal.swift; sourceTree = "<group>"; };
 		C45323FA25F90359007D741C /* PlotInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotInfo.swift; sourceTree = "<group>"; };
 		C453242425FA2C23007D741C /* DrawShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawShapes.swift; sourceTree = "<group>"; };
 		C453242B25FA5D99007D741C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -237,6 +239,8 @@
 		C4CF29FB263556B400E858D1 /* Vector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		C4CF29FF263556EE00E858D1 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		C4CF2A0326368F5600E858D1 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
+		C4CF2A072636BDA300E858D1 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		C4CF2A102636EF9600E858D1 /* Positions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Positions.swift; sourceTree = "<group>"; };
 		C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransScale.swift; sourceTree = "<group>"; };
 		C4EA5D2725EB8F4D00E104E0 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		C4EFA4B026202C600026BD9A /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
@@ -314,6 +318,7 @@
 				C4F8F87B261C37E900DF76AE /* CSV */,
 				C4F8F873261C372900DF76AE /* Plot */,
 				C4B2F9BE262C175300CC5430 /* PNG */,
+				C4CF2A0B2636EEFD00E858D1 /* Positions */,
 				C4EFA4AF26202C250026BD9A /* SAP */,
 				C4C0C47C2612DF500072699C /* Settings */,
 				C453240125F938D0007D741C /* SVG */,
@@ -431,10 +436,20 @@
 			name = Scripts;
 			sourceTree = "<group>";
 		};
+		C4CF2A0B2636EEFD00E858D1 /* Positions */ = {
+			isa = PBXGroup;
+			children = (
+				C45323F125F8F157007D741C /* Horizontal.swift */,
+				C4CF2A102636EF9600E858D1 /* Positions.swift */,
+			);
+			path = Positions;
+			sourceTree = "<group>";
+		};
 		C4EFA4AF26202C250026BD9A /* SAP */ = {
 			isa = PBXGroup;
 			children = (
 				C4EFA4B026202C600026BD9A /* Commands.swift */,
+				C4CF2A072636BDA300E858D1 /* Constraints.swift */,
 				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
 				C4FE49FE25F6440F0076EF5E /* Options.swift */,
 			);
@@ -455,7 +470,6 @@
 				C40CD44025ED2390003944FA /* Plane.swift */,
 				C45323FA25F90359007D741C /* PlotInfo.swift */,
 				C4CF29FF263556EE00E858D1 /* Point.swift */,
-				C45323F125F8F157007D741C /* Positions.swift */,
 				C4F20C0726012A67005D2FE1 /* Properties.swift */,
 				C4B2FA042633F3D500CC5430 /* RGBAu8.swift */,
 				C4B2FA092634863000CC5430 /* RGBAu8Lookup.swift */,
@@ -697,9 +711,11 @@
 				C4F20C112601DF4D005D2FE1 /* Dashes.swift in Sources */,
 				C4FE49FF25F6440F0076EF5E /* Options.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
+				C4CF2A082636BDA300E858D1 /* Constraints.swift in Sources */,
 				C4B2F9C0262C177900CC5430 /* PNG.swift in Sources */,
 				C4B2FA052633F3D500CC5430 /* RGBAu8.swift in Sources */,
 				C4B2F9DC262E947000CC5430 /* Rect.swift in Sources */,
+				C4CF2A112636EF9600E858D1 /* Positions.swift in Sources */,
 				C4EFA4D6262364EC0026BD9A /* Bar.swift in Sources */,
 				C4CF2A00263556EE00E858D1 /* Point.swift in Sources */,
 				C453244D25FBEBA6007D741C /* ShowShape.swift in Sources */,
@@ -753,7 +769,7 @@
 				C46ADD10260714DA0046F427 /* Bitmap.swift in Sources */,
 				C4B2F9C7262C17D100CC5430 /* PNGPlotter.swift in Sources */,
 				C482B9FD25EE8D4D00E51A50 /* stderr.swift in Sources */,
-				C45323F225F8F157007D741C /* Positions.swift in Sources */,
+				C45323F225F8F157007D741C /* Horizontal.swift in Sources */,
 				C4C0C4B7261458F10072699C /* SearchPath.swift in Sources */,
 				C4B2F9B5262B488400CC5430 /* CanvasOut.swift in Sources */,
 				C4EA5D1F25EB7B8A00E104E0 /* TransScale.swift in Sources */,
@@ -781,7 +797,7 @@
 				C45323E725F8CCC8007D741C /* Readlines.swift in Sources */,
 				C424513E25E980A7005BE7DC /* ColumnPlot.swift in Sources */,
 				C4EFA4DF26236B7A0026BD9A /* Canvas.swift in Sources */,
-				C45323F325F8F157007D741C /* Positions.swift in Sources */,
+				C45323F325F8F157007D741C /* Horizontal.swift in Sources */,
 				C4B2F9FD2631B3F300CC5430 /* csv2Tests2.swift in Sources */,
 				C4EFA4DC26236B500026BD9A /* PropertiesList.swift in Sources */,
 				C4C0C49A26130F2F0072699C /* CSSsettings.swift in Sources */,
