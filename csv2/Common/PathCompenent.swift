@@ -13,7 +13,7 @@ import Foundation
 
 enum PathComponent {
     case
-        arcTo(end: Point, r: Double),               // Draw an arc to end with radius r
+        arcTo(end: Point, r: Double, large: Bool),  // Draw an arc to end with radius r
         arcAround(centre: Point, radius: Double, start: Double, end: Double),
                                     // Draw an arc at centre with radius from start angle to end
         bar(p0: Point, w: Double, y: Double),       // Draw a bar w wide from p0 to y
@@ -50,8 +50,8 @@ enum PathComponent {
         switch self {
         case .arcAround(let c, let r, let s, let e):
             return drawArc(centre: c, radius: r, start: s, end: e)
-        case .arcTo(let end, let r):
-            return " A \(r.f(1)),\(r.f(1)) 0,0,0 \(end.x.f(1)),\(end.y.f(1))"
+        case .arcTo(let end, let r, let l):
+            return " A \(r.f(1)),\(r.f(1)) 0,\(l ? "1" : "0"),0 \(end.x.f(1)),\(end.y.f(1))"
         case .cBezierBy(let dxy, let c1dxy, let c2dxy):
             return "c \(c1dxy.f(1)) \(c2dxy.f(1)) \(dxy.f(1))"
         case .cBezierTo(let xy, let c1xy, let c2xy):

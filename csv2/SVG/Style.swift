@@ -31,7 +31,7 @@ extension SVG {
                 result.append("""
                     \(id) path.\(cssClass) { stroke: \(colour)\(dashes) }
                     \(id) text.\(cssClass), \(id) rect.\(cssClass) { fill: \(colour); stroke: \(colour) }
-                    \(id) path.\(cssClass).fill { stroke: \(colour)\(dashes); fill: \(colour); fill-opacity: 0.75 }
+                    \(id) path.\(cssClass).fill { stroke: none\(dashes); fill: \(colour); fill-opacity: 0.75 }
                     """
                 )
             }
@@ -91,7 +91,7 @@ extension SVG {
         cssProps(&result, id: id, propsList: plotProps)
 
         result.append(
-            "\(id) rect.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }"
+            "\(id) path.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }"
         )
 
         if extra.hasContent { result.append(extra) }

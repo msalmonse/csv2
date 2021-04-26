@@ -12,9 +12,10 @@ extension PathComponent {
     func drawArc(centre: Point, radius: Double, start: Double, end: Double) -> String {
         let startPoint = centre + Vector(length: radius, angle: start)
         let endPoint = centre + Vector(length: radius, angle: end)
+        let large = abs(end - start) >= Double.pi
         return
             PathComponent.moveTo(xy: startPoint).path +
-            PathComponent.arcTo(end: endPoint, r: radius).path
+            PathComponent.arcTo(end: endPoint, r: radius, large: large).path
     }
 
     /// Generate a bar
