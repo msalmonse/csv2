@@ -41,7 +41,7 @@ svg#svg-ex2 { background-color: #ffedcc }
 #svg-ex2 path.plot08 { stroke: #f4a460 }
 #svg-ex2 text.plot08, #svg-ex2 rect.plot08 { fill: #f4a460; stroke: #f4a460 }
 #svg-ex2 path.plot08.fill { stroke: #f4a460; fill: #f4a460; fill-opacity: 0.75 }
-#svg-ex2 rect.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
+#svg-ex2 path.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
 </style>
 <text x="80.72" y="526.00" class="xlabel" >81</text>
 <text x="127.90" y="526.00" class="xlabel" >84</text>
