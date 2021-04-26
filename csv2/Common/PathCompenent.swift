@@ -48,6 +48,8 @@ enum PathComponent {
 
     var path: String {
         switch self {
+        case .arcAround(let c, let r, let s, let e):
+            return drawArc(centre: c, radius: r, start: s, end: e)
         case .arcTo(let end, let r):
             return " A \(r.f(1)),\(r.f(1)) 0,0,0 \(end.x.f(1)),\(end.y.f(1))"
         case .cBezierBy(let dxy, let c1dxy, let c2dxy):
@@ -77,8 +79,6 @@ enum PathComponent {
 
     var expand: Path? {
         switch self {
-        case .arcAround(let c, let r, let s, let e):
-            return drawArc(centre: c, radius: r, start: s, end: e)
         case .bar(let p0, let w, let y): return drawBar(p0: p0, w: w, y: y)
         case .blade(let w): return drawBlade(w: w)
         case .circle(let r): return drawCircle(r: r)

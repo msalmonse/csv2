@@ -118,6 +118,9 @@ struct Options: ParsableArguments {
     @Option(name: .long, help: "Opacity for plots")
     var opacity = Defaults.global.opacity
 
+    @Flag(name: .long, help: "Generate a pie chart")
+    var pie = false
+
     @Option(name: .long, parsing: .upToNextOption,
             help: "Generate a random SVG with: #plots [max value [min value [-ve offset]]]")
     var random: [Int] = []
@@ -137,7 +140,7 @@ struct Options: ParsableArguments {
     @Option(name: .long, help: "Plots to show as scattered")
     var scattered = Defaults.global.scattered
 
-    @Flag(name: .shortAndLong, help: "Use semicolons to seperate columns")
+    @Flag(name: .long, help: "Use semicolons to seperate columns")
     var semi = false
 
     @Option(name: .long, parsing: .upToNextOption,

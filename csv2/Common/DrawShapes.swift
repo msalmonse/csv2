@@ -9,13 +9,12 @@ import Foundation
 
 extension PathComponent {
 
-    func drawArc(centre: Point, radius: Double, start: Double, end: Double) -> Path {
+    func drawArc(centre: Point, radius: Double, start: Double, end: Double) -> String {
         let startPoint = centre + Vector(length: radius, angle: start)
         let endPoint = centre + Vector(length: radius, angle: end)
-        return Path([
-            PathComponent.moveTo(xy: startPoint),
-            .arcTo(end: endPoint, r: radius)
-        ])
+        return
+            PathComponent.moveTo(xy: startPoint).path +
+            PathComponent.arcTo(end: endPoint, r: radius).path
     }
 
     /// Generate a bar

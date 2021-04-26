@@ -62,4 +62,18 @@ extension Plot {
             plotter.plotTail()
         }
     }
+
+    func pieGen() {
+        plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
+
+        for row in settings.csv.headerRows..<csv.rowCt {
+            plotPie(row, settings.csv.headerColumns)
+        }
+
+        if settings.plotter.legends { legend() }
+        if let subTitle = subTitleLookup() { subTitleText(subTitle) }
+        if settings.plotter.title.hasContent { titleText() }
+
+        plotter.plotTail()
+    }
 }

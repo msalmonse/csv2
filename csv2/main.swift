@@ -67,7 +67,13 @@ if commonOpts.shapenames {
     if commonOpts.debug &== 8 { print(plotter, to: &standardError) }
 
     let plot = Plot(csv!, settings!, plotter)
-    plot.gen()
+
+    if commonOpts.pie {
+        plot.pieGen()
+    } else {
+        plot.gen()
+    }
+    
     output(plotter, to: commonOpts.outName)
 }
 
