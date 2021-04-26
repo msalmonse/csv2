@@ -16,6 +16,7 @@ extension csv2Tests {
 
         XCTAssertEqual(RGBAu8("#12345678", or: .clear), RGBAu8(r: 18, g: 52, b: 86, a: 120))
         XCTAssertEqual(RGBAu8("#123456", or: .clear), RGBAu8(r: 18, g: 52, b: 86, a: 255))
+        XCTAssertEqual(RGBAu8("#123a", or: .clear), RGBAu8(r: 17, g: 34, b: 51, a: 170))
         XCTAssertEqual(RGBAu8("#123", or: .clear), RGBAu8(r: 17, g: 34, b: 51, a: 255))
         XCTAssertNil(RGBAu8("#123456789"))
 

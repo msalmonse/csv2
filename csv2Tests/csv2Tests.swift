@@ -341,17 +341,19 @@ let plotData = """
 """
 
 // SVG path
-let pathPoints = Path([
-    .moveTo(x: 0, y: 1),
-    .lineTo(x: 1, y: 2),
-    .lineTo(x: 2, y: 4),
+let pathPoints = Path(
+    [
+    .moveTo(xy: Point(x: 0, y: 1)),
+    .lineTo(xy: Point(x: 1, y: 2)),
+    .lineTo(xy: Point(x: 2, y: 4)),
     .horizTo(x: 3.0),
     .vertTo(y: 8.0),
-    .moveTo(x: 4, y: 16),
-    .lineTo(x: 5, y: 32),
-    .moveBy(dx: -2, dy: -2),
+    .moveTo(xy: Point(x: 4, y: 16)),
+    .lineTo(xy: Point(x: 5, y: 32)),
+    .moveBy(dxy: Vector(dx: -2, dy: -2)),
     .circle(r: 3)
-])
+    ]
+)
 
 // swiftlint:disable line_length
 let pathTag = """

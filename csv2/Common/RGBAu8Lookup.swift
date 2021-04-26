@@ -58,6 +58,15 @@ extension RGBAu8 {
             g *= 17
             b *= 17
             a = 255
+        case 5:     // #rgba
+            if  !hexToUInt8(from: hex, first: 1, count: 1, to: &r) ||
+                !hexToUInt8(from: hex, first: 2, count: 1, to: &g) ||
+                !hexToUInt8(from: hex, first: 3, count: 1, to: &b) ||
+                !hexToUInt8(from: hex, first: 4, count: 1, to: &a) { return false }
+            r *= 17
+            g *= 17
+            b *= 17
+            a *= 17
         case 7:     // #rrggbb
             if  !hexToUInt8(from: hex, first: 1, count: 2, to: &r) ||
                 !hexToUInt8(from: hex, first: 3, count: 2, to: &g) ||
