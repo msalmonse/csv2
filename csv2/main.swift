@@ -66,7 +66,7 @@ if commonOpts.shapenames {
     let plotter = command.iAm.plotter(settings: settings!)
     if commonOpts.debug &== 8 { print(plotter, to: &standardError) }
 
-    let plot = Plot(csv!, settings!, plotter)
+    let plot = Plot(csv!, settings!, plotter, chartType: chartTypeSelect(commonOpts))
 
     if commonOpts.pie {
         plot.pieGen()
@@ -130,4 +130,8 @@ func trySpecialCases(_ settings: Settings?) {
         print(Canvas.canvasTag(settings))
         exit(0)
     }
+}
+
+func chartTypeSelect(_ opts: Options) -> ChartType {
+    return opts.pie ? .pieChart : .horizontal
 }
