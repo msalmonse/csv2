@@ -14,7 +14,7 @@ extension Settings {
         let headerRows: Int
         let nameHeader: Int
         let subTitleHeader: Int
-        let xTagHeader: Int
+        let xTagsHeader: Int
 
         // Index for x values in csv data
         let index: Int
@@ -34,7 +34,7 @@ extension Settings {
                                       in: Defaults.headerBounds) - 1,
             subTitleHeader: keyedIntValue(from: container, forKey: .subTitleHeader,
                                           defaults: defaults, in: Defaults.headerBounds) - 1,
-            xTagHeader: keyedIntValue(from: container, forKey: .xTagsHeader, defaults: defaults,
+            xTagsHeader: keyedIntValue(from: container, forKey: .xTagsHeader, defaults: defaults,
                                       in: Defaults.headerBounds) - 1,
             index: keyedIntValue(from: container, forKey: .index, defaults: defaults,
                                  in: Defaults.headerBounds) - 1,

@@ -47,6 +47,20 @@ struct Plane {
         self.init(top: top, bottom: top + height, left: left, right: left + width)
     }
 
+    /// Initializer for Plane
+    /// - Parameters:
+    ///   - left: left  edgeof plane
+    ///   - top: top edge of plane
+    ///   - height: height of plane
+    ///   - width: width of plane
+    ///   - ε: fuziness of edge
+
+    init(left: Double, top: Double, height: Int, width: Int, ε: Double = 1e-6) {
+        let height = Double(height)
+        let width = Double(width)
+        self.init(top: top, bottom: top + height, left: left, right: left + width)
+    }
+
     /// Horizontal midpoint
     var hMid: Double { (left + right)/2.0 }
 

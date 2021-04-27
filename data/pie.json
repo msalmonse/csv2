@@ -1,5 +1,7 @@
 {
 	"headerColumns": 1,
 	"headerRows": 1,
-	"title": "Household expenditure"
+	"title": "Household expenditure",
+	"width": 1000,
+	"xTagsHeader": 1
 }

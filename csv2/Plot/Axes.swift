@@ -32,7 +32,7 @@ extension Plot {
 
     func xTags() {
         let xiValues = xiList()
-        let k = settings.csv.xTagHeader
+        let k = settings.csv.xTagsHeader
         var tagsPath = Path()
 
         /// Fetch text from csv data

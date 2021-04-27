@@ -31,10 +31,3 @@ enum PlotterType {
         }
     }
 }
-
-enum ChartType {
-    case
-        horizontal,        // normal
-        pieChart,
-        vertical           // Not implemented
-}

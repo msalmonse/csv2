@@ -58,7 +58,7 @@ struct Horizontal: Positions {
         doIf(settings.plotter.xTitle.hasContent) { pos -= ceil(sizes.axes.spacing) }
         xTagsY = pos
         xTagsTopY = floor(pos - sizes.axes.size)
-        doIf(settings.csv.xTagHeader >= 0) { pos -= sizes.axes.spacing }
+        doIf(settings.csv.xTagsHeader >= 0) { pos -= sizes.axes.spacing }
         xTicksY = pos
         doIf(settings.dim.xTick >= 0) { pos -= sizes.label.spacing }
         bottomY = pos

@@ -59,6 +59,8 @@
 		C480848025E6776900BD0A24 /* Sides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* Sides.swift */; };
 		C480848325E6809400BD0A24 /* Sides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* Sides.swift */; };
 		C482B9FD25EE8D4D00E51A50 /* stderr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482B9FC25EE8D4D00E51A50 /* stderr.swift */; };
+		C4834ADD2637C7D60072C574 /* ChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4834ADC2637C7D60072C574 /* ChartType.swift */; };
+		C4834ADE2637C7D60072C574 /* ChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4834ADC2637C7D60072C574 /* ChartType.swift */; };
 		C48B723825F28A5E00B0752E /* appinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45053C025F0E865003FC346 /* appinfo.swift */; };
 		C48B822A25E28F7E00EAEAE3 /* csv2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */; };
 		C48B823625E2967100EAEAE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
@@ -134,8 +136,6 @@
 		C4CF2A1D2637147C00E858D1 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF29FB263556B400E858D1 /* Vector.swift */; };
 		C4CF2A212637177100E858D1 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A202637177100E858D1 /* PieChart.swift */; };
 		C4CF2A222637177100E858D1 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A202637177100E858D1 /* PieChart.swift */; };
-		C4CF2A26263717B700E858D1 /* PositionsSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A25263717B700E858D1 /* PositionsSelect.swift */; };
-		C4CF2A27263717B700E858D1 /* PositionsSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A25263717B700E858D1 /* PositionsSelect.swift */; };
 		C4CF2A2B26371B3F00E858D1 /* DoIf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A2A26371B3F00E858D1 /* DoIf.swift */; };
 		C4CF2A2C26371B3F00E858D1 /* DoIf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A2A26371B3F00E858D1 /* DoIf.swift */; };
 		C4EA5D1F25EB7B8A00E104E0 /* TransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */; };
@@ -209,6 +209,7 @@
 		C480847B25E4E97300BD0A24 /* ColumnPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnPlot.swift; sourceTree = "<group>"; };
 		C480847F25E6776900BD0A24 /* Sides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sides.swift; sourceTree = "<group>"; };
 		C482B9FC25EE8D4D00E51A50 /* stderr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stderr.swift; sourceTree = "<group>"; };
+		C4834ADC2637C7D60072C574 /* ChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartType.swift; sourceTree = "<group>"; };
 		C48B723525F224EF00B0752E /* svgIndexMake.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = svgIndexMake.sh; sourceTree = "<group>"; };
 		C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = csv2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2Tests.swift; sourceTree = "<group>"; };
@@ -252,7 +253,6 @@
 		C4CF2A072636BDA300E858D1 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		C4CF2A102636EF9600E858D1 /* Positions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Positions.swift; sourceTree = "<group>"; };
 		C4CF2A202637177100E858D1 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
-		C4CF2A25263717B700E858D1 /* PositionsSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionsSelect.swift; sourceTree = "<group>"; };
 		C4CF2A2A26371B3F00E858D1 /* DoIf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoIf.swift; sourceTree = "<group>"; };
 		C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransScale.swift; sourceTree = "<group>"; };
 		C4EA5D2725EB8F4D00E104E0 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
@@ -456,7 +456,6 @@
 				C45323F125F8F157007D741C /* Horizontal.swift */,
 				C4CF2A202637177100E858D1 /* PieChart.swift */,
 				C4CF2A102636EF9600E858D1 /* Positions.swift */,
-				C4CF2A25263717B700E858D1 /* PositionsSelect.swift */,
 			);
 			path = Positions;
 			sourceTree = "<group>";
@@ -476,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				C4EFA4D5262364EC0026BD9A /* Bar.swift */,
+				C4834ADC2637C7D60072C574 /* ChartType.swift */,
 				C4EA5D2725EB8F4D00E104E0 /* Colours.swift */,
 				C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */,
 				C4F20C102601DF4D005D2FE1 /* Dashes.swift */,
@@ -743,6 +743,7 @@
 				C4B2F9D3262C6BC000CC5430 /* PNGtext.swift in Sources */,
 				C453242525FA2C23007D741C /* DrawShapes.swift in Sources */,
 				C42A6E3C261EDBED00784F54 /* Transform.swift in Sources */,
+				C4834ADD2637C7D60072C574 /* ChartType.swift in Sources */,
 				C480848025E6776900BD0A24 /* Sides.swift in Sources */,
 				C453242C25FA5D99007D741C /* Extensions.swift in Sources */,
 				C4B2F9CC262C27B700CC5430 /* PNGpath.swift in Sources */,
@@ -756,7 +757,6 @@
 				C4C0C48F2612FCC70072699C /* Dimensions.swift in Sources */,
 				C4B2F9E3262EC7C200CC5430 /* PNGlogo.swift in Sources */,
 				C4B2F9EE263025FB00CC5430 /* Path.swift in Sources */,
-				C4CF2A26263717B700E858D1 /* PositionsSelect.swift in Sources */,
 				C446E81225F4BE4B007B1A05 /* PlotCommon.swift in Sources */,
 				C4C0C472260F85E40072699C /* Fonts.swift in Sources */,
 				C4EFA4BB2620A92B0026BD9A /* Canvasplotter.swift in Sources */,
@@ -817,7 +817,6 @@
 				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,
 				C45323E725F8CCC8007D741C /* Readlines.swift in Sources */,
 				C424513E25E980A7005BE7DC /* ColumnPlot.swift in Sources */,
-				C4CF2A27263717B700E858D1 /* PositionsSelect.swift in Sources */,
 				C4EFA4DF26236B7A0026BD9A /* Canvas.swift in Sources */,
 				C45323F325F8F157007D741C /* Horizontal.swift in Sources */,
 				C4B2F9FD2631B3F300CC5430 /* csv2Tests2.swift in Sources */,
@@ -833,6 +832,7 @@
 				C4F20C1726027B7C005D2FE1 /* Legends.swift in Sources */,
 				C446E81D25F4E0F7007B1A05 /* PlotCommon.swift in Sources */,
 				C4B2F9EF263025FB00CC5430 /* Path.swift in Sources */,
+				C4834ADE2637C7D60072C574 /* ChartType.swift in Sources */,
 				C4F20C0926012A67005D2FE1 /* Properties.swift in Sources */,
 				C4CF2A2C26371B3F00E858D1 /* DoIf.swift in Sources */,
 				C4C0C4B12613641A0072699C /* PlotterSettings.swift in Sources */,

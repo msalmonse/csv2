@@ -68,12 +68,10 @@ struct PieChart: Positions {
         titleY = pos
         doIf(settings.plotter.title.hasContent) { pos -= ceil(sizes.title.spacing) }
         xTitleY = pos
-        doIf(settings.plotter.xTitle.hasContent) { pos -= ceil(sizes.axes.spacing) }
         xTagsY = pos
         xTagsTopY = floor(pos - sizes.axes.size)
-        doIf(settings.csv.xTagHeader >= 0) { pos -= sizes.axes.spacing }
+        doIf(settings.csv.xTagsHeader >= 0) { pos -= sizes.axes.spacing }
         xTicksY = pos
-        doIf(settings.dim.xTick >= 0) { pos -= sizes.label.spacing }
         bottomY = pos
 
         // top
@@ -88,11 +86,8 @@ struct PieChart: Positions {
         // left
         pos = margin
         doIf((0.0..<settings.width).contains(settings.dim.reserveLeft)) { pos += settings.dim.reserveLeft }
-        doIf(settings.plotter.yTitle.hasContent) { pos += ceil(sizes.axes.spacing) }
         yTitleX = pos
-        doIf(settings.dim.yTick >= 0) { pos += sizes.label.size * 4.0 }
         yTickX = pos
-        pos += ceil(settings.css.strokeWidth)
         leftX = pos
 
         // legends are on the right
@@ -113,7 +108,6 @@ struct PieChart: Positions {
             }
         }
         // Allow for some space for tick labels
-        pos -= ceil(2.0 * sizes.label.size)
         rightX = pos
     }
 }

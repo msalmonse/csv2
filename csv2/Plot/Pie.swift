@@ -9,12 +9,10 @@ import Foundation
 
 extension Plot {
 
-    func plotPie(_ row: Int, _ col1: Int, x: Double = 1.0) {
+    func plotPie(_ row: Int, _ col1: Int, centre: Point, radius: Double) {
         let pi2e6 = Double.pi * 2.0e6       // 2πe6
         var arcLeft = pi2e6
         var start = 0.0
-        let centre = plotPlane.mid
-        let radius = round(plotPlane.height/2.5)
 
         let pieValues = csv.rowValues(row)
         var sum = pieValues[col1...].reduce(0.0) { $0 + ($1 ?? 0) }
@@ -34,6 +32,11 @@ extension Plot {
                 start = end
                 plotter.plotPath(path, props: propsList.plots[col], fill: true)
             }
+        }
+        let xtag = settings.csv.xTagsHeader
+        if xtag >= 0 {
+            let yPos = ceil(min(positions.xTagsY, centre.y + radius + sizes.axes.spacing * 2.0))
+            plotter.plotText(x: centre.x, y: yPos, text: csv.data[row][xtag], props: propsList.xTags)
         }
     }
 }

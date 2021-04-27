@@ -10,7 +10,6 @@ import Foundation
 extension Plot {
 
     /// Generate an  group with the plot lines
-    /// - Returns: Array of SVG elements
 
     func lineGroup() {
         plotter.plotClipStart(plotPlane: plotPlane)
@@ -19,13 +18,12 @@ extension Plot {
     }
 
     /// Generate a plotter document
-    /// - Returns: array of string elements
 
     func gen() {
         plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
         if settings.dim.xTick >= 0 { xTick() }
         if settings.dim.yTick >= 0 { yTick() }
-        if settings.csv.xTagHeader >= 0 { xTags() }
+        if settings.csv.xTagsHeader >= 0 { xTags() }
         axes()
         lineGroup()
         if settings.plotter.xTitle.hasContent {
@@ -45,7 +43,6 @@ extension Plot {
     /// - Parameters:
     ///   - name: shape name
     ///   - colour: stroke colour
-    /// - Returns: SVG as an array of strings
 
     func shapeGen(name: String, colour: String) {
         if let shape = Shape.lookup(name) {
@@ -63,12 +60,16 @@ extension Plot {
         }
     }
 
+    /// Generate a pie chart
+
     func pieGen() {
         plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
 
-        for row in settings.csv.headerRows..<csv.rowCt {
-            plotPie(row, settings.csv.headerColumns)
-            break
+        let radius = floor(min(plotPlane.height, ts.xpos(1.0) - ts.xpos(0.0)) * 0.4)
+        let row1 = settings.csv.headerRows
+        for row in row1..<csv.rowCt {
+            let centre = ts.pos(x: Double(row - row1), y: 1.0)
+            plotPie(row, settings.csv.headerColumns, centre: centre, radius: radius)
         }
 
         if settings.plotter.legends { legend() }

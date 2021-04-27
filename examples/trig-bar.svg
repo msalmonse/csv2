@@ -25,22 +25,22 @@ svg#svg-ex5 { background-color: #ffedcc }
 #svg-ex5 text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
 #svg-ex5 path.plot03 { stroke: #ff0000 }
 #svg-ex5 text.plot03, #svg-ex5 rect.plot03 { fill: #ff0000; stroke: #ff0000 }
-#svg-ex5 path.plot03.fill { stroke: #ff0000; fill: #ff0000; fill-opacity: 0.75 }
+#svg-ex5 path.plot03.fill { stroke: none; fill: #ff0000; fill-opacity: 0.75 }
 #svg-ex5 path.plot04 { stroke: #008000 }
 #svg-ex5 text.plot04, #svg-ex5 rect.plot04 { fill: #008000; stroke: #008000 }
-#svg-ex5 path.plot04.fill { stroke: #008000; fill: #008000; fill-opacity: 0.75 }
+#svg-ex5 path.plot04.fill { stroke: none; fill: #008000; fill-opacity: 0.75 }
 #svg-ex5 path.plot05 { stroke: #ff00ff }
 #svg-ex5 text.plot05, #svg-ex5 rect.plot05 { fill: #ff00ff; stroke: #ff00ff }
-#svg-ex5 path.plot05.fill { stroke: #ff00ff; fill: #ff00ff; fill-opacity: 0.75 }
+#svg-ex5 path.plot05.fill { stroke: none; fill: #ff00ff; fill-opacity: 0.75 }
 #svg-ex5 path.plot06 { stroke: #0000ff }
 #svg-ex5 text.plot06, #svg-ex5 rect.plot06 { fill: #0000ff; stroke: #0000ff }
-#svg-ex5 path.plot06.fill { stroke: #0000ff; fill: #0000ff; fill-opacity: 0.75 }
+#svg-ex5 path.plot06.fill { stroke: none; fill: #0000ff; fill-opacity: 0.75 }
 #svg-ex5 path.plot07 { stroke: #dc143c }
 #svg-ex5 text.plot07, #svg-ex5 rect.plot07 { fill: #dc143c; stroke: #dc143c }
-#svg-ex5 path.plot07.fill { stroke: #dc143c; fill: #dc143c; fill-opacity: 0.75 }
+#svg-ex5 path.plot07.fill { stroke: none; fill: #dc143c; fill-opacity: 0.75 }
 #svg-ex5 path.plot08 { stroke: #f4a460 }
 #svg-ex5 text.plot08, #svg-ex5 rect.plot08 { fill: #f4a460; stroke: #f4a460 }
-#svg-ex5 path.plot08.fill { stroke: #f4a460; fill: #f4a460; fill-opacity: 0.75 }
+#svg-ex5 path.plot08.fill { stroke: none; fill: #f4a460; fill-opacity: 0.75 }
 #svg-ex5 path.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
 </style>
 <text x="117.42" y="526.00" class="xlabel" >30</text>

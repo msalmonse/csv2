@@ -8,7 +8,7 @@
 import Foundation
 
 let command = getCommand()
-var commonOpts = command.options().constrained()
+var commonOpts = command.options()
 var defaults = commonOpts.defaults(for: command)
 
 if commonOpts.debug != 0 {
