@@ -258,7 +258,7 @@ struct Options: ParsableArguments {
             reserveLeft: reserve.hasIndex(3) ? reserve[3] : 0.0,
             reserveRight: reserve.hasIndex(2) ? reserve[2] : 0.0,
             reserveTop: reserve.hasIndex(1) ? reserve[1] : 0.0,
-            rowGrouping: rows,
+            rowGrouping: rows && !pie,          // in pie charts the data is in columns
             scattered: scattered,
             shapes: shapes,
             showDataPoints: showpoints,

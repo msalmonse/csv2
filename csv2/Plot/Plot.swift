@@ -93,7 +93,7 @@ class Plot: ReflectedStringConvertible {
         point00 = ts.pos(x: logx ? 1.0 : 0.0, y: logy ? 1.0 : 0.0)
 
         let plotCount = settings.inColumns ? csv.colCt : csv.rowCt
-        let plotFirst = settings.inColumns ? settings.csv.headerRows : settings.csv.headerColumns
+        let plotFirst = settings.inColumns ? settings.csv.headerColumns : settings.csv.headerRows
 
         // Initialize path info
         var propsList = PropertiesList(count: plotCount, settings: settings)

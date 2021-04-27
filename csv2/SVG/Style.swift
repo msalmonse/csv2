@@ -14,6 +14,7 @@ extension SVG {
         result.append("""
             \(id) text.legend { font-size: \(sizes.legend.size.f(1))px }
             \(id) text.legend.headline { font-size: \((sizes.legend.size * 1.25).f(1))px; font-weight: bold }
+            \(id) text.legend.pie { font-size: \(sizes.legend.size.f(1))px; text-anchor: middle }
             \(id) text.subtitle { font-size: \(sizes.subTitle.size.f(1))px; text-anchor: middle }
             \(id) text.title { font-size: \(sizes.title.size.f(1))px; text-anchor: middle }
             \(id) text.xlabel { font-size: \(sizes.label.size.f(1))px; text-anchor: middle }

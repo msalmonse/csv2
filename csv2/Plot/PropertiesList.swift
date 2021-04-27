@@ -13,6 +13,7 @@ struct PropertiesList {
     var legend: Properties
     var legendHeadline: Properties
     var legendBox: Properties
+    var pieLegend: Properties
     var subTitle: Properties
     var title: Properties
     var xLabel: Properties
@@ -38,8 +39,7 @@ struct PropertiesList {
         legend.textAlign = "start"
 
         legendBox = Properties.from(settings: settings)
-        legendBox.colour =
-            RGBAu8(settings.fg.legendsBox, or: .black).clamped(opacity: 0.4).cssRGBA
+        legendBox.colour = RGBAu8(settings.fg.legendsBox, or: .black).clamped(opacity: 0.4).cssRGBA
         legendBox.cssClass = "legend"
 
         legendHeadline = Properties.from(settings: settings)
@@ -48,6 +48,12 @@ struct PropertiesList {
         legendHeadline.fontColour = settings.fg.legends
         legendHeadline.fontSize = sizes.legend.size * 1.25
         legendHeadline.textAlign = "start"
+
+        pieLegend = Properties.from(settings: settings)
+        pieLegend.cssClass = "legend pie"
+        pieLegend.fontColour = settings.fg.legends
+        pieLegend.fontSize = sizes.legend.size
+        pieLegend.textAlign = "middle"
 
         subTitle = Properties.from(settings: settings)
         subTitle.cssClass = "subtitle"

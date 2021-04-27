@@ -18,9 +18,11 @@ svg#svg-ex3 { background-color: #ffedcc }
 #svg-ex3 text { font-family: serif }
 #svg-ex3 text.legend { font-size: 13.0px }
 #svg-ex3 text.legend.headline { font-size: 16.2px; font-weight: bold }
+#svg-ex3 text.legend.pie { font-size: 13.0px }
 #svg-ex3 text.subtitle { font-size: 15.0px; text-anchor: middle }
 #svg-ex3 text.title { font-size: 25.0px; text-anchor: middle }
 #svg-ex3 text.xlabel { font-size: 10.0px; text-anchor: middle }
+#svg-ex3 text.xtags { font-size: 10.0px; text-anchor: middle }
 #svg-ex3 text.xtitle, #svg-ex3 text.ytitle { font-size: 12.0px; text-anchor: middle }
 #svg-ex3 text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
 #svg-ex3 path.plot05 { stroke: #ff0000 }

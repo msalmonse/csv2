@@ -26,8 +26,8 @@ struct Vector {
     ///   - angle: angle of vector
 
     init(length: Double, angle: Double) {
-        let dx = length * sin(angle)
-        let dy = length * cos(angle)
+        let dx = length * cos(angle)
+        let dy = -length * sin(angle)
         self.init(dx: dx, dy: dy)
     }
 

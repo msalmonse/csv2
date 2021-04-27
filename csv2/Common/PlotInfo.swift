@@ -20,7 +20,7 @@ func plotClasses(
     _ ct: Int,
     _ props: inout [Properties]
     ) {
-    for i in first..<ct {
+    for i in props.indices {
         if settings.plot.cssClasses.hasIndex(i) && settings.plot.cssClasses[i].hasContent {
             props[i].cssClass = settings.plot.cssClasses[i]
         } else {

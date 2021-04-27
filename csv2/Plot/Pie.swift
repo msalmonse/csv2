@@ -35,8 +35,8 @@ extension Plot {
         }
         let xtag = settings.csv.xTagsHeader
         if xtag >= 0 {
-            let yPos = ceil(min(positions.xTagsY, centre.y + radius + sizes.axes.spacing * 2.0))
-            plotter.plotText(x: centre.x, y: yPos, text: csv.data[row][xtag], props: propsList.xTags)
+            let yPos = ceil(min(positions.xTagsY, centre.y + radius + sizes.legend.spacing * 2.0))
+            plotter.plotText(x: centre.x, y: yPos, text: csv.data[row][xtag], props: propsList.pieLegend)
         }
     }
 }
