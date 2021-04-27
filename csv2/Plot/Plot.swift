@@ -54,6 +54,7 @@ class Plot: ReflectedStringConvertible {
     var axesSize: Double { return sizes.axes.size }
     var labelSize: Double { return sizes.label.size }
     var legendSize: Double { return sizes.legend.size }
+    var pieLegendSize: Double { return sizes.pieLegend.size }
     var subTitleSize: Double { return sizes.subTitle.size }
     var titleSize: Double { return sizes.title.size }
 
