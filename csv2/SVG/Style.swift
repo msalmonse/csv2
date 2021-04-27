@@ -17,6 +17,7 @@ extension SVG {
             \(id) text.subtitle { font-size: \(sizes.subTitle.size.f(1))px; text-anchor: middle }
             \(id) text.title { font-size: \(sizes.title.size.f(1))px; text-anchor: middle }
             \(id) text.xlabel { font-size: \(sizes.label.size.f(1))px; text-anchor: middle }
+            \(id) text.xtags { font-size: \(sizes.label.size.f(1))px; text-anchor: middle }
             \(id) text.xtitle, \(id) text.ytitle { font-size: \(sizes.axes.size.f(1))px; text-anchor: middle }
             \(id) text.ylabel { font-size: \(sizes.label.size.f(1))px; text-anchor: end; dominant-baseline: middle }
             """

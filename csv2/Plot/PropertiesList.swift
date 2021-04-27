@@ -68,6 +68,7 @@ struct PropertiesList {
 
         xTags = Properties.from(settings: settings)
         xTags.colour = RGBAu8(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
+        xTags.cssClass = "xtags"
         xTags.fontColour = settings.fg.xTags
         xTags.fontSize = sizes.axes.size
         xTags.strokeWidth = 1.0
