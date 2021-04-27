@@ -20,7 +20,7 @@ extension PNG {
         }
     }
 
-    func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) {
+    func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
         if settings.plotter.logoURL.hasContent {
             let logoPlane = Plane(
                 left: positions.logoX, top: positions.logoY,
@@ -35,7 +35,7 @@ extension PNG {
         return
     }
 
-    func plotRect(_ plane: Plane, rx: Double, props: Properties) {
+    func plotRect(_ plane: Plane, rx: Double, styles: Styles) {
         return
     }
 

@@ -23,7 +23,7 @@ extension Plot {
         var prevDataPoint = Point.inf
         var prevPlotPoint = Point.inf
         var state: PlotState
-        let props: Properties
+        let styles: Styles
         weak var plot: Plot?
         let bar: Bar?
 
@@ -31,7 +31,7 @@ extension Plot {
         let ts: TransScale
 
         init(
-            props: Properties,
+            styles: Styles,
             ts: TransScale,
             limit: Double,
             plot: Plot,
@@ -39,11 +39,11 @@ extension Plot {
         ) {
             self.ts = ts
             self.limit = limit
-            self.props = props
+            self.styles = styles
             self.plot = plot
             self.bar = bar
 
-            switch (props.scattered, props.bar >= 0, bar != nil) {
+            switch (styles.scattered, styles.bar >= 0, bar != nil) {
             case (true,_,_): state = .scatter
             case(false,true,true): state = .staple
             default: state = .move
@@ -56,7 +56,7 @@ extension Plot {
             switch state {
             case .moved:
                 // single data point so mark it
-                if !props.pointed { shapeComponents.append(plotShape) }
+                if !styles.pointed { shapeComponents.append(plotShape) }
                 state = .move
             case .scatter, .staple, .clipped2: break
             default: state = .move
@@ -87,23 +87,23 @@ extension Plot {
                 shapeComponents.append(.moveTo(xy: pos))
                 state = .moved
                 // Data point?
-                if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
+                if !clipped && styles.pointed && !pos.close(prevDataPoint, limit: limit) {
                     shapeComponents.append(plotShape)
                     prevDataPoint = pos
                 }
             case .moved, .online:
-                if props.bezier == 0.0 || nextPlotPoint == nil {
+                if styles.bezier == 0.0 || nextPlotPoint == nil {
                     pathComponents.append(.lineTo(xy: pos))
                 } else {
                     // calculate the start of the quadratic bézier curve
-                    let qStart = pos.partWay(prevPlotPoint, part: props.bezier)
-                    let qEnd = pos.partWay(nextPlotPoint!, part: props.bezier)
+                    let qStart = pos.partWay(prevPlotPoint, part: styles.bezier)
+                    let qEnd = pos.partWay(nextPlotPoint!, part: styles.bezier)
                     pathComponents.append(.lineTo(xy: qStart))
                     pathComponents.append(.qBezierTo(xy: qEnd, cxy: pos))
                 }
                 state = clipped ? .clipped : .online
                 // Data point?
-                if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
+                if !clipped && styles.pointed && !pos.close(prevDataPoint, limit: limit) {
                     shapeComponents.append(.moveTo(xy: pos))
                     shapeComponents.append(plotShape)
                     prevDataPoint = pos
@@ -117,7 +117,7 @@ extension Plot {
                     state = clipped ? .clipped2 : .online
                 }
                 // Data point?
-                if !clipped && props.pointed && !pos.close(prevDataPoint, limit: limit) {
+                if !clipped && styles.pointed && !pos.close(prevDataPoint, limit: limit) {
                     shapeComponents.append(.moveTo(xy: pos))
                     shapeComponents.append(plotShape)
                     prevDataPoint = pos
@@ -129,7 +129,7 @@ extension Plot {
                 }
             case .staple:
                 if let (p0, _) = plot?.posClip(Point(x: pos.x, y: plot?.point00.y ?? 0.0)) {
-                    shapeComponents.append(bar!.path(p0: p0, y: pos.y, props.bar))
+                    shapeComponents.append(bar!.path(p0: p0, y: pos.y, styles.bar))
                 }
             case .clipped2:
                 // Ignore all data till we are not clipped, just move
@@ -158,24 +158,24 @@ extension Plot {
     /// - Parameters:
     ///   - xiValues: abscissa values
     ///   - yValues: ordinate values
-    ///   - props: plot properties
+    ///   - styles: plot properties
     ///   - staple: staple diagram details
 
     func plotCommon(
         _ xiValues: [XIvalue],
         _ yValues: [Double?],
-        _ props: Properties,
+        _ styles: Styles,
         bar: Bar?
     ) {
         let state = PlotCommonState(
-            props: props,
+            styles: styles,
             ts: ts,
             limit: limit,
             plot: self,
             bar: bar
         )
         var yɑ = Double.infinity
-        let plotShape = props.shape?.pathComponent(w: shapeWidth) ?? .circleStar(w: shapeWidth)
+        let plotShape = styles.shape?.pathComponent(w: shapeWidth) ?? .circleStar(w: shapeWidth)
 
         func xypos(_ i: Int) -> Point? {
             guard xiValues.hasIndex(i) else { return nil }
@@ -204,13 +204,13 @@ extension Plot {
             }
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
-        var plotProps = props
+        var plotProps = styles
         let fill = plotProps.bar >= 0
         if fill {
             if let rgba = RGBAu8(plotProps.fill) {
                 plotProps.fill = rgba.modify(alpha: 0.75).cssRGBA
             }
         }
-        plotter.plotPath(state.pathComponents + state.shapeComponents, props: plotProps, fill: fill)
+        plotter.plotPath(state.pathComponents + state.shapeComponents, styles: plotProps, fill: fill)
     }
 }

@@ -12,11 +12,11 @@ import Foundation
 protocol Plotter {
     func plotClipStart(plotPlane: Plane)
     func plotClipEnd()
-    func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList)
-    func plotPath(_ path: Path, props: Properties, fill: Bool)
+    func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList)
+    func plotPath(_ path: Path, styles: Styles, fill: Bool)
     func plotPrint()
     func plotTail()
-    func plotText(x: Double, y: Double, text: String, props: Properties)
+    func plotText(x: Double, y: Double, text: String, styles: Styles)
     func plotWrite(to url: URL) throws
 }
 

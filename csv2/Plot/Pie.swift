@@ -30,13 +30,13 @@ extension Plot {
                     ]
                 )
                 start = end
-                plotter.plotPath(path, props: propsList.plots[col], fill: true)
+                plotter.plotPath(path, styles: stylesList.plots[col], fill: true)
             }
         }
         let xtag = settings.csv.xTagsHeader
         if xtag >= 0 {
             let yPos = ceil(min(positions.xTagsY, centre.y + radius + sizes.pieLegend.spacing * 2.0))
-            plotter.plotText(x: centre.x, y: yPos, text: csv.data[row][xtag], props: propsList.pieLegend)
+            plotter.plotText(x: centre.x, y: yPos, text: csv.data[row][xtag], styles: stylesList.pieLegend)
         }
     }
 }

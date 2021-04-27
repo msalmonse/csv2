@@ -13,18 +13,18 @@ extension Plot {
     /// - Parameters:
     ///   - x: x position
     ///   - y: y position
-    ///   - props: path properties
+    ///   - styles: path properties
 
     private func scatteredLine(
         _ x: Double, _ y: Double,
-        _ props: Properties
+        _ styles: Styles
     ) {
-        guard props.shape != nil else { return }
+        guard styles.shape != nil else { return }
         plotter.plotPath(Path([
                 PathComponent.moveTo(xy: Point(x: x, y: y)),
-                props.shape!.pathComponent(w: shapeWidth)
+                styles.shape!.pathComponent(w: shapeWidth)
             ]),
-            props: props, fill: false
+            styles: styles, fill: false
         )
     }
 
@@ -34,20 +34,20 @@ extension Plot {
     ///   - mid: shape position
     ///   - right: right end of line
     ///   - y: y position
-    ///   - props: path properties
+    ///   - styles: path properties
 
     private func pointedLine(
         _ left: Double, _ mid: Double, _ right: Double, _ y: Double,
-        _ props: Properties
+        _ styles: Styles
     ) {
-        guard props.shape != nil else { return }
+        guard styles.shape != nil else { return }
         plotter.plotPath(Path([
                 PathComponent.moveTo(xy: Point(x: left, y: y)),
                 .horizTo(x: mid),
-                props.shape!.pathComponent(w: shapeWidth),
+                styles.shape!.pathComponent(w: shapeWidth),
                 .horizTo(x: right)
             ]),
-            props: props, fill: false
+            styles: styles, fill: false
         )
     }
 
@@ -56,17 +56,17 @@ extension Plot {
     ///   - left: left end of line
     ///   - right: right end of line
     ///   - y: y position
-    ///   - props: path properties
+    ///   - styles: path properties
 
     private func plainLine(
         _ left: Double, _ right: Double, _ y: Double,
-        _ props: Properties
+        _ styles: Styles
     ) {
         return plotter.plotPath(Path([
                 PathComponent.moveTo(xy: Point(x: left, y: y)),
                 .horizTo(x: right)
             ]),
-            props: props, fill: false
+            styles: styles, fill: false
         )
     }
 
@@ -92,28 +92,28 @@ extension Plot {
         let yStep = legendSize * 1.5
         var y = positions.legendY + yStep
         y += yStep/2.0
-        let plotProps = propsList.plots
+        let plotStyles = stylesList.plots
 
-        plotter.plotText(x: x, y: y, text: "Legends:", props: propsList.legendHeadline)
+        plotter.plotText(x: x, y: y, text: "Legends:", styles: stylesList.legendHeadline)
 
-        for i in plotProps.indices where i != index && plotProps[i].included {
+        for i in plotStyles.indices where i != index && plotStyles[i].included {
             y += yStep
             if y > height - yStep - yStep {
-                plotter.plotText(x: xLeft, y: y, text: "…", props: propsList.legend)
+                plotter.plotText(x: xLeft, y: y, text: "…", styles: stylesList.legend)
                 break
             }
-            var propsi = plotProps[i]
-            let text = shortened(propsi.name!)
-            propsi.cssClass = propsi.cssClass! + " legend"
-            propsi.fontSize = propsList.legend.fontSize
-            propsi.textAlign = propsList.legend.textAlign
-            plotter.plotText(x: xLeft, y: y, text: text, props: propsi)
+            var style = plotStyles[i]
+            let text = shortened(style.name!)
+            style.cssClass = style.cssClass! + " legend"
+            style.fontSize = stylesList.legend.fontSize
+            style.textAlign = stylesList.legend.textAlign
+            plotter.plotText(x: xLeft, y: y, text: text, styles: style)
             let lineY = y + yStep/2.0
-            if propsi.dashed || propsi.pointed || propsi.scattered { y += yStep }
-            switch (propsi.dashed, propsi.pointed, propsi.scattered) {
-            case (_,_,true): scatteredLine(xMid - shapeWidth, lineY, propsi)
-            case (_,true,false): pointedLine(xLeft, xMid, xRight, lineY, propsi)
-            case (true,_,false): plainLine(xLeft, xRight, lineY, propsi)
+            if style.dashed || style.pointed || style.scattered { y += yStep }
+            switch (style.dashed, style.pointed, style.scattered) {
+            case (_,_,true): scatteredLine(xMid - shapeWidth, lineY, style)
+            case (_,true,false): pointedLine(xLeft, xMid, xRight, lineY, style)
+            case (true,_,false): plainLine(xLeft, xRight, lineY, style)
             default: break
             }
         }
@@ -123,7 +123,7 @@ extension Plot {
                 left: x - legendSize, right: positions.legendRightX
             )
         plotter.plotPath(rectPath(rectPlane, rx: strokeWidth * 3.0),
-                            props: propsList.legendBox, fill: false
+                            styles: stylesList.legendBox, fill: false
                         )
     }
 }

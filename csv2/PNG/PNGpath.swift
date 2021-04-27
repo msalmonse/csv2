@@ -83,18 +83,18 @@ extension PNG {
     /// Draw a path on the PNG
     /// - Parameters:
     ///   - components: a list of points and what to do
-    ///   - props: plot properties
+    ///   - styles: plot properties
     ///   - fill: fill or stroke?
 
-    func plotPath(_ path: Path, props: Properties, fill: Bool) {
-        let colour = RGBAu8(props.cascade(fill ? .fill : .colour), or: .black)
-        let lineWidth = CGFloat(props.cascade(.strokeWidth))
+    func plotPath(_ path: Path, styles: Styles, fill: Bool) {
+        let colour = RGBAu8(styles.cascade(fill ? .fill : .colour), or: .black)
+        let lineWidth = CGFloat(styles.cascade(.strokeWidth))
         image.withCGContext { ctx in
             if let clipRect = clipRect { ctx.clip(to: clipRect)}
             var current = CGPoint.zero
             ctx.setLineWidth(lineWidth)
-            ctx.setLineCap(propsCap(props))
-            if let dashes = props.cascade(.dash) {
+            ctx.setLineCap(stylesCap(styles))
+            if let dashes = styles.cascade(.dash) {
                 ctx.setLineDash(phase: 0.0, lengths: dashParse(dashes))
             } else {
                 ctx.setLineDash(phase: 0.0, lengths: [])
@@ -113,11 +113,11 @@ extension PNG {
     }
 
     /// Calculate CGLineCap from propery
-    /// - Parameter props: plot properties
+    /// - Parameter styles: plot properties
     /// - Returns:  CGLineCap value
 
-    func propsCap(_ props: Properties) -> CGLineCap {
-        switch props.cascade(.strokeLineCap) ?? "round" {
+    func stylesCap(_ styles: Styles) -> CGLineCap {
+        switch styles.cascade(.strokeLineCap) ?? "round" {
         case "butt": return .butt
         case "square": return .square
         default: return .round

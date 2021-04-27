@@ -16,8 +16,8 @@ extension Plot {
     ///   - rows: the number of rows
 
     func coloursListGen(_ step: Double, _ colours: [String], _ rows: Int, _ columnWidth: Double) {
-        /// Calculate background props for colour
-        func bgProps(_ name: String) -> Properties {
+        /// Calculate background styles for colour
+        func bgSelect(_ name: String) -> Styles {
             switch RGBAu8(name, or: .clear).rgbValue {
             case 180...255: return midBG
             case 90...179: return darkBG
@@ -25,15 +25,15 @@ extension Plot {
             }
         }
 
-        var lightBG = Properties.from(settings: settings)
+        var lightBG = Styles.from(settings: settings)
         lightBG.fill = RGBAu8.lightBG.cssRGBA
         lightBG.cssClass = "lightBG"
 
-        var darkBG = Properties.from(settings: settings)
+        var darkBG = Styles.from(settings: settings)
         darkBG.fill = RGBAu8.darkBG.cssRGBA
         darkBG.cssClass = "darkBG"
 
-        var midBG = Properties.from(settings: settings)
+        var midBG = Styles.from(settings: settings)
         midBG.fill = RGBAu8.midBG.cssRGBA
         midBG.cssClass = "midBG"
 
@@ -46,31 +46,31 @@ extension Plot {
         var hBG: Double { hRect + 2.0 * strokeWidth }
         let rx = step * 0.2
 
-        var propsList = PropertiesList(count: colours.count, settings: settings)
-        for i in propsList.plots.indices {
-            propsList.plots[i].colour = colours[i]
-            propsList.plots[i].fill = colours[i]
+        var stylesList = StylesList(count: colours.count, settings: settings)
+        for i in stylesList.plots.indices {
+            stylesList.plots[i].colour = colours[i]
+            stylesList.plots[i].fill = colours[i]
             // Make text colour opaque so that it can be read
-            propsList.plots[i].fontColour =
+            stylesList.plots[i].fontColour =
                 RGBAu8(colours[i], or: .black).with(alpha: 255).cssRGBA
-            propsList.plots[i].fontSize = ceil(step * 0.75)
-            propsList.plots[i].textAlign = "start"
-            propsList.plots[i].cssClass = "colour\((i + 1).d0(2))"
+            stylesList.plots[i].fontSize = ceil(step * 0.75)
+            stylesList.plots[i].textAlign = "start"
+            stylesList.plots[i].cssClass = "colour\((i + 1).d0(2))"
         }
 
         var y = step + step
         var yRect: Double { y - hRect * 0.8 }
         var yBG: Double { yRect - strokeWidth }
 
-        plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
+        plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
 
         for i in colours.indices {
             let bg = Plane(left: lBG, top: yBG, height: hBG, width: wBG)
-            let propsBG = bgProps(colours[i])
-            plotter.plotPath(rectPath(bg, rx: rx), props: propsBG, fill: true)
-            plotter.plotText(x: xText, y: y, text: colours[i], props: propsList.plots[i])
+            let bgStyles = bgSelect(colours[i])
+            plotter.plotPath(rectPath(bg, rx: rx), styles: bgStyles, fill: true)
+            plotter.plotText(x: xText, y: y, text: colours[i], styles: stylesList.plots[i])
             let plane = Plane(left: lRect, top: yRect, height: hRect, width: wRect)
-            plotter.plotPath(rectPath(plane, rx: rx), props: propsList.plots[i], fill: true)
+            plotter.plotPath(rectPath(plane, rx: rx), styles: stylesList.plots[i], fill: true)
 
             if i % rows == (rows - 1) {
                 xText += columnWidth

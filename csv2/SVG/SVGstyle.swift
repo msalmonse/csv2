@@ -1,5 +1,5 @@
 //
-//  Style.swift
+//  SVGstyle.swift
 //  csv2svg
 //
 //  Created by Michael Salmon on 2021-03-26.
@@ -25,11 +25,11 @@ extension SVG {
         )
     }
 
-    private func cssProps(_ result: inout [String], id: String, propsList: [Properties]) {
-        for props in propsList {
-            if let cssClass = props.cssClass, let colour = props.colour {
+    private func plotCSS(_ result: inout [String], id: String, plotStyles: [Styles]) {
+        for style in plotStyles {
+            if let cssClass = style.cssClass, let colour = style.colour {
                 let dashes =
-                    props.dashed ? "; stroke-dasharray: \(props.dash ?? "-1"); stroke-linecap: butt" : ""
+                    style.dashed ? "; stroke-dasharray: \(style.dash ?? "-1"); stroke-linecap: butt" : ""
                 result.append("""
                     \(id) path.\(cssClass) { stroke: \(colour)\(dashes) }
                     \(id) text.\(cssClass), \(id) rect.\(cssClass) { fill: \(colour); stroke: \(colour) }
@@ -64,7 +64,7 @@ extension SVG {
     /// - Parameter extra: extra tags
     /// - Returns: css information in a string
 
-    func cssStyle(plotProps: [Properties], extra: String = "") {
+    func cssStyle(plotProps: [Styles], extra: String = "") {
         let id = hashID
         var result: [String] = ["<style>"]
         cssBG(&result, id: id)
@@ -90,7 +90,7 @@ extension SVG {
         cssFonts(&result, id: id)
 
         // Individual plot settings
-        cssProps(&result, id: id, propsList: plotProps)
+        plotCSS(&result, id: id, plotStyles: plotProps)
 
         result.append(
             "\(id) path.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }"

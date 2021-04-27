@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum StringProperties {
+enum StringStyles {
     case colour, cssClass, dash, fill, fontColour, fontFamily, strokeLineCap, textAlign, textBaseline
-    var path: KeyPath<Properties,String?> {
+    var path: KeyPath<Styles,String?> {
         switch self {
         case .colour: return \.colour
         case .cssClass: return \.cssClass
@@ -23,9 +23,9 @@ enum StringProperties {
         }
     }
 }
-enum DoubleProperties {
+enum DoubleStyles {
     case bezier, fontSize, strokeWidth
-    var path: KeyPath<Properties,Double> {
+    var path: KeyPath<Styles,Double> {
         switch self {
         case .bezier: return \.bezier
         case .fontSize: return \.fontSize
@@ -34,7 +34,7 @@ enum DoubleProperties {
     }
 }
 
-struct Properties {
+struct Styles {
     var bar = -1
     var bezier: Double = 0.0
     var bold = false
@@ -59,28 +59,28 @@ struct Properties {
     var textBaseline: String?
     var transform: Transform?
 
-    static var defaultProperties = Properties()
+    static var defaultStyles = Styles()
 
-    static func from(settings: Settings) -> Properties {
-        var props = Properties()
-        props.bezier = settings.plot.bezier
-        props.bold = settings.css.bold
-        props.fontFamily = settings.css.fontFamily
-        props.italic = settings.css.italic
+    static func from(settings: Settings) -> Styles {
+        var styles = Styles()
+        styles.bezier = settings.plot.bezier
+        styles.bold = settings.css.bold
+        styles.fontFamily = settings.css.fontFamily
+        styles.italic = settings.css.italic
 
-        return props
+        return styles
     }
 
-    func cascade(_ key: StringProperties) -> String? {
+    func cascade(_ key: StringStyles) -> String? {
         switch key {
-        case .fill: return fill ?? Self.defaultProperties.fill ?? cascade(.colour)
+        case .fill: return fill ?? Self.defaultStyles.fill ?? cascade(.colour)
         default:
-            return self[keyPath: key.path] ?? Self.defaultProperties[keyPath: key.path]
+            return self[keyPath: key.path] ?? Self.defaultStyles[keyPath: key.path]
         }
     }
 
-    func cascade(_ key: DoubleProperties) -> Double {
+    func cascade(_ key: DoubleStyles) -> Double {
         let val = self[keyPath: key.path]
-        return (val > 0.0) ? val : Self.defaultProperties[keyPath:key.path]
+        return (val > 0.0) ? val : Self.defaultStyles[keyPath:key.path]
     }
 }

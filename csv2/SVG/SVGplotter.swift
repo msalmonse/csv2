@@ -21,23 +21,23 @@ extension SVG {
         data.append("</g>\n")
     }
 
-    func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) {
+    func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
         data.append((xmlTag + svgTag))
         if settings.plotter.comment { data.append(comment) }
         defs(plotPlane: plotPlane)
-        cssStyle(plotProps: propsList.plots)
+        cssStyle(plotProps: stylesList.plots)
         if settings.plotter.logoURL.hasContent { logoImage(positions: positions) }
     }
 
     /// Create a plot command from a number of PathCommand's
     /// - Parameters:
     ///   - components: array of components to plot
-    ///   - props: path properties
+    ///   - styles: path properties
     /// - Returns: plot command string
 
-    func plotPath(_ path: Path, props: Properties, fill: Bool = false) {
+    func plotPath(_ path: Path, styles: Styles, fill: Bool = false) {
         var result = [ "<path" ]
-        if let cssClass = props.cssClass { result.append("class=\"\(cssClass)\(fill ? " fill" : "")\"") }
+        if let cssClass = styles.cssClass { result.append("class=\"\(cssClass)\(fill ? " fill" : "")\"") }
         result.append("d=\"")
         result.append(path.path)
         result.append("\" />\n")
@@ -63,16 +63,16 @@ extension SVG {
     ///   - x: x position
     ///   - y: y position
     ///   - text: text to add
-    ///   - props: text properties
+    ///   - styles: text properties
     /// - Returns: text string
 
-    func plotText(x: Double, y: Double, text: String, props: Properties) {
+    func plotText(x: Double, y: Double, text: String, styles: Styles) {
         var extra = ""
-        if let transform = props.transform {
+        if let transform = styles.transform {
             extra = """
                 transform="matrix(\(transform.csv))"
                 """
         }
-        textTag(x: x, y: y, text: text, cssClass: props.cascade(.cssClass)!, extra: extra)
+        textTag(x: x, y: y, text: text, cssClass: styles.cascade(.cssClass)!, extra: extra)
     }
 }

@@ -25,12 +25,12 @@ extension PNG {
     /// Calculate x position for string
     /// - Parameters:
     ///   - x: specified x position
-    ///   - props: properties including textAlign
+    ///   - styles: properties including textAlign
     ///   - textWidth: width of text
     /// - Returns: modified x
 
-    private func xPos(_ x: Double, _ props: Properties, _ textWidth: Double) -> Double {
-        switch props.cascade(.textAlign) ?? "" {
+    private func xPos(_ x: Double, _ styles: Styles, _ textWidth: Double) -> Double {
+        switch styles.cascade(.textAlign) ?? "" {
         case "end": return x - textWidth
         case "middle": return x - textWidth/2.0
         case "start": return x
@@ -39,16 +39,16 @@ extension PNG {
     }
 
     /// Lookup font based on properties
-    /// - Parameter props: properties
+    /// - Parameter styles: properties
     /// - Returns: font or nil
 
-    private func propsFont(_ props: Properties) -> CTFont? {
-        let family = props.cascade(.fontFamily) ?? "serif"
-        let size = CGFloat(props.cascade(.fontSize))
+    private func stylesFont(_ styles: Styles) -> CTFont? {
+        let family = styles.cascade(.fontFamily) ?? "serif"
+        let size = CGFloat(styles.cascade(.fontSize))
         var traits = CTFontSymbolicTraits()
         var fontDesc = CTFontDescriptorCreateWithNameAndSize(family as CFString, size)
 
-        switch (props.bold, props.italic) {
+        switch (styles.bold, styles.italic) {
         case (false, false): break
         case (true, false): traits = CTFontSymbolicTraits.traitBold
         case (false, true): traits = CTFontSymbolicTraits.traitItalic
@@ -65,26 +65,26 @@ extension PNG {
     ///   - x: x position
     ///   - y: y position
     ///   - text: text to draw
-    ///   - props: properties
+    ///   - styles: properties
 
-    func plotText(x: Double, y: Double, text: String, props: Properties) {
+    func plotText(x: Double, y: Double, text: String, styles: Styles) {
         image.withCGContext { ctx in
-            let colour = RGBAu8(props.cascade(.fontColour), or: .black)
+            let colour = RGBAu8(styles.cascade(.fontColour), or: .black)
             let attr = [
                 NSAttributedString.Key.foregroundColor: colour.cgColor as Any,
-                NSAttributedString.Key.font: propsFont(props) as Any
+                NSAttributedString.Key.font: stylesFont(styles) as Any
             ] as [NSAttributedString.Key: Any]
             let attrText = NSAttributedString(string: text, attributes: attr)
             let textWidth = Double(attrText.size().width)
             let line = CTLineCreateWithAttributedString(attrText)
             ctx.saveGState()
-            if let transform = props.transform {
+            if let transform = styles.transform {
                 ctx.concatenate(transform.cgTransform)
             }
             ctx.textMatrix = .identity
             ctx.translateBy(x: 0.0, y: CGFloat(height))
             ctx.scaleBy(x: 1.0, y: -1.0)
-            ctx.textPosition = CGPoint(x: xPos(x, props, textWidth), y: height - y)
+            ctx.textPosition = CGPoint(x: xPos(x, styles, textWidth), y: height - y)
             CTLineDraw(line, ctx)
             ctx.restoreGState()
         }

@@ -16,27 +16,27 @@ extension Plot {
         let xRight = width * 0.6
         let xText = width * 0.65
 
-        var propsList = PropertiesList(count: dashes.count, settings: settings)
-        for i in propsList.plots.indices {
-            propsList.plots[i].colour = colour
-            propsList.plots[i].dash = dashes[i]
-            propsList.plots[i].dashed = true
-            propsList.plots[i].fontSize = step * 0.5
-            propsList.plots[i].strokeLineCap = "butt"
-            propsList.plots[i].textAlign = "start"
-            propsList.plots[i].cssClass = "dash\((i + 1).d0(2))"
+        var stylesList = StylesList(count: dashes.count, settings: settings)
+        for i in stylesList.plots.indices {
+            stylesList.plots[i].colour = colour
+            stylesList.plots[i].dash = dashes[i]
+            stylesList.plots[i].dashed = true
+            stylesList.plots[i].fontSize = step * 0.5
+            stylesList.plots[i].strokeLineCap = "butt"
+            stylesList.plots[i].textAlign = "start"
+            stylesList.plots[i].cssClass = "dash\((i + 1).d0(2))"
         }
 
         var y = step
         var yPath: Double { y - step/10.0 }
 
-        plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
+        plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
 
         for i in dashes.indices {
             y += step
             let path = Path([ PathComponent.moveTo(xy: Point(x: xLeft, y: yPath)), .horizTo(x: xRight) ])
-            plotter.plotPath(path, props: propsList.plots[i], fill: false)
-            plotter.plotText(x: xText, y: y, text: dashes[i], props: propsList.plots[i])
+            plotter.plotPath(path, styles: stylesList.plots[i], fill: false)
+            plotter.plotText(x: xText, y: y, text: dashes[i], styles: stylesList.plots[i])
         }
 
         plotter.plotTail()

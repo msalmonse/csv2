@@ -51,10 +51,10 @@ extension Canvas {
     /// - Parameters:
     ///   - positions: the positioning of varoius points
     ///   - plotPlane: the plottable plane
-    ///   - propsList: a list of properties
+    ///   - stylesList: a list of properties
     /// - Returns: the JS to start
 
-    func plotHead(positions: Positions, plotPlane: Plane, propsList: PropertiesList) {
+    func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
         let id = settings.plotter.canvasID
         let name = "canvas_\(id)"
         let url = settings.plotter.logoURL
@@ -85,11 +85,11 @@ extension Canvas {
     ///   - x: x position
     ///   - y: y position
     ///   - text: text to write
-    ///   - props: text properties
+    ///   - styles: text properties
 
-    func plotText(x: Double, y: Double, text: String, props: Properties) {
+    func plotText(x: Double, y: Double, text: String, styles: Styles) {
         var result = [""]
-        ctx.sync(props, &result, isText: true)
+        ctx.sync(styles, &result, isText: true)
         result.append("ctx.fillText('\(text)', \(x.f(1)), \(y.f(1)))")
         ctx.resetTransform(&result)
         data.append(result.joined(separator: "\n    "))

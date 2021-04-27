@@ -39,8 +39,8 @@ class Plot: ReflectedStringConvertible {
     // Positions for various elements
     let positions: Positions
 
-    // Path Properties
-    let propsList: PropertiesList
+    // Path Styles
+    let stylesList: StylesList
 
     // limit of distance between data points
     let limit: Double
@@ -97,14 +97,14 @@ class Plot: ReflectedStringConvertible {
         let plotFirst = settings.inColumns ? settings.csv.headerColumns : settings.csv.headerRows
 
         // Initialize path info
-        var propsList = PropertiesList(count: plotCount, settings: settings)
+        var stylesList = StylesList(count: plotCount, settings: settings)
         // setup first so that the other functions can use them
-        plotFlags(settings, plotFirst, plotCount, &propsList.plots)
-        plotClasses(settings, plotFirst, plotCount, &propsList.plots)
-        plotColours(settings, plotFirst, plotCount, &propsList.plots)
-        plotDashes(settings, plotFirst, plotCount, plotPlane.width, &propsList.plots)
-        plotNames(settings, csv, plotFirst, plotCount, &propsList.plots)
-        plotShapes(settings, plotFirst, plotCount, index: settings.csv.index, &propsList.plots)
-        self.propsList = propsList
+        plotFlags(settings, plotFirst, plotCount, &stylesList.plots)
+        plotClasses(settings, plotFirst, plotCount, &stylesList.plots)
+        plotColours(settings, plotFirst, plotCount, &stylesList.plots)
+        plotDashes(settings, plotFirst, plotCount, plotPlane.width, &stylesList.plots)
+        plotNames(settings, csv, plotFirst, plotCount, &stylesList.plots)
+        plotShapes(settings, plotFirst, plotCount, index: settings.csv.index, &stylesList.plots)
+        self.stylesList = stylesList
     }
 }

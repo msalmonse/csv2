@@ -27,7 +27,7 @@ extension Plot {
     func titleText() {
         let x = width/2.0
         let y = positions.titleY
-        plotter.plotText(x: x, y: y, text: settings.plotter.title, props: propsList.title)
+        plotter.plotText(x: x, y: y, text: settings.plotter.title, styles: stylesList.title)
     }
 
     /// Add sub title to the svg
@@ -35,21 +35,21 @@ extension Plot {
     func subTitleText(_ subTitle: String) {
         let x = width/2.0
         let y = positions.subTitleY
-        plotter.plotText(x: x, y: y, text: subTitle, props: propsList.subTitle)
+        plotter.plotText(x: x, y: y, text: subTitle, styles: stylesList.subTitle)
     }
 
     /// Add title to the x axis
 
     func xTitleText(_ label: String, x: Double, y: Double) {
-        plotter.plotText(x: x, y: y, text: label, props: propsList.xTitle)
+        plotter.plotText(x: x, y: y, text: label, styles: stylesList.xTitle)
     }
 
     /// Add title to the y axis
 
     func yTitleText(_ label: String, x: Double, y: Double) {
-        var props = propsList.yTitle
-        props.transform = Transform.rotateAround(x: x, y: y, sin: 1.0, cos: 0.0)
-        plotter.plotText(x: x, y: y, text: label, props: props)
+        var styles = stylesList.yTitle
+        styles.transform = Transform.rotateAround(x: x, y: y, sin: 1.0, cos: 0.0)
+        plotter.plotText(x: x, y: y, text: label, styles: styles)
     }
 
     /// Format a value suitable to be used as a label
@@ -75,7 +75,7 @@ extension Plot {
     ///   - y: y position
 
     func xLabelText(_ label: String, x: Double, y: Double) {
-        plotter.plotText(x: x, y: y, text: label, props: propsList.xLabel)
+        plotter.plotText(x: x, y: y, text: label, styles: stylesList.xLabel)
     }
 
     /// Generate a text string for a y label
@@ -85,6 +85,6 @@ extension Plot {
     ///   - y: y position
 
     func yLabelText(_ label: String, x: Double, y: Double) {
-        plotter.plotText(x: x, y: y, text: label, props: propsList.yLabel)
+        plotter.plotText(x: x, y: y, text: label, styles: stylesList.yLabel)
     }
 }

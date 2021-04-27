@@ -50,16 +50,16 @@ fileprivate func jsAlign(_ textAlign: String) -> String {
     }
 }
 
-/// Create a font specification from the props
-/// - Parameter props: Properties
+/// Create a font specification from the styles
+/// - Parameter styles: Styles
 /// - Returns: Font specification
 
-fileprivate func propsFontSpec(from props: Properties) -> String {
+fileprivate func stylesFontSpec(from styles: Styles) -> String {
     var spec: [String] = []
-    if props.italic { spec.append("italic") }
-    if props.bold { spec.append("bold") }
-    spec.append("\(props.cascade(.fontSize).f(1))px")
-    spec.append(props.cascade(.fontFamily) ?? "serif")
+    if styles.italic { spec.append("italic") }
+    if styles.bold { spec.append("bold") }
+    spec.append("\(styles.cascade(.fontSize).f(1))px")
+    spec.append(styles.cascade(.fontFamily) ?? "serif")
 
     return spec.joined(separator: " ")
 }
@@ -68,43 +68,43 @@ extension CTX {
 
     /// Sync context with properties
     /// - Parameters:
-    ///   - props: properties to sync
+    ///   - styles: properties to sync
     ///   - result: javascript statemants
     ///   - isText: Use the text related properties
 
-    mutating func sync(_ props: Properties, _ result: inout [String], isText: Bool = false) {
+    mutating func sync(_ styles: Styles, _ result: inout [String], isText: Bool = false) {
         if isText {
-            let colour = props.cascade(.fontColour) ?? "black"
+            let colour = styles.cascade(.fontColour) ?? "black"
             self.syncOneString(key: \.fillStyle, colour, "fillStyle", result: &result)
 
-            let fontSpec = propsFontSpec(from: props)
+            let fontSpec = stylesFontSpec(from: styles)
             self.syncOneString(key: \.font, fontSpec, "font", result: &result)
 
-            let textAlign = jsAlign(props.cascade(.textAlign) ?? "start")
+            let textAlign = jsAlign(styles.cascade(.textAlign) ?? "start")
             self.syncOneString(key: \.textAlign, textAlign, "textAlign", result: &result)
 
-            let textBaseline = props.cascade(.textBaseline) ?? "alphabetic"
+            let textBaseline = styles.cascade(.textBaseline) ?? "alphabetic"
             self.syncOneString(key: \.textBaseline, textBaseline, "textBaseline", result: &result)
         } else {
-            let colour = props.cascade(.colour) ?? "transparent"
+            let colour = styles.cascade(.colour) ?? "transparent"
             self.syncOneString(key: \.strokeStyle, colour, "strokeStyle", result: &result)
 
-            let dashPattern = props.cascade(.dash) ?? ""
+            let dashPattern = styles.cascade(.dash) ?? ""
             if dashPattern != dash {
                 dash = dashPattern
                 result.append("ctx.setLineDash([\(dash)])")
             }
 
-            let fill = props.cascade(.fill) ?? "transparent"
+            let fill = styles.cascade(.fill) ?? "transparent"
             self.syncOneString(key: \.fillStyle, fill, "fillStyle", result: &result)
 
-            let strokeWidth = props.cascade(.strokeWidth)
+            let strokeWidth = styles.cascade(.strokeWidth)
             self.syncOneDouble(key: \.lineWidth, strokeWidth, "lineWidth", result: &result)
 
-            let strokeLineCap = props.cascade(.strokeLineCap) ?? "round"
+            let strokeLineCap = styles.cascade(.strokeLineCap) ?? "round"
             self.syncOneString(key: \.lineCap, strokeLineCap, "lineCap", result: &result)
         }
-        let transformMatrix = props.transform?.csv ?? ""
+        let transformMatrix = styles.transform?.csv ?? ""
         if transformMatrix != transform {
             transform = transformMatrix
             result.append("ctx.setTransform(\(transform))")

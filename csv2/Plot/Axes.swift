@@ -25,7 +25,7 @@ extension Plot {
             axesPath.append(.vertTo(y: plotPlane.top))
         }
 
-        plotter.plotPath(axesPath, props: propsList.axes, fill: false)
+        plotter.plotPath(axesPath, styles: stylesList.axes, fill: false)
     }
 
     /// Draw abcissa tags
@@ -65,11 +65,11 @@ extension Plot {
                     let xpos = ts.xpos(x)
                     tagsPath.append(.moveTo(xy: Point(x: xpos, y: positions.xTagsTopY)))
                     tagsPath.append(.vertTo(y: plotPlane.top))
-                    plotter.plotText(x: xpos, y: positions.xTagsY, text: text, props: propsList.xLabel)
+                    plotter.plotText(x: xpos, y: positions.xTagsY, text: text, styles: stylesList.xLabel)
                 }
             }
         }
-        plotter.plotPath(tagsPath, props: propsList.xTags, fill: false)
+        plotter.plotPath(tagsPath, styles: stylesList.xTags, fill: false)
     }
 
     /// Normalize tick value
@@ -141,7 +141,7 @@ extension Plot {
             }
         }
 
-        plotter.plotPath(tickPath, props: propsList.xLabel, fill: false)
+        plotter.plotPath(tickPath, styles: stylesList.xLabel, fill: false)
     }
 
     /// Draw horizontal ticks
@@ -177,6 +177,6 @@ extension Plot {
             }
         }
 
-        plotter.plotPath(tickPath, props: propsList.yLabel, fill: false)
+        plotter.plotPath(tickPath, styles: stylesList.yLabel, fill: false)
     }
 }

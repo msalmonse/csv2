@@ -15,11 +15,11 @@ extension Plot {
     func columnPlot() {
         let xiValues = settings.plot.sortx ? xiList().sorted() : xiList()
         let bar = barGet(xiValues)
-        for i in 0..<csv.colCt where i != index && propsList.plots[i].included {
+        for i in 0..<csv.colCt where i != index && stylesList.plots[i].included {
             let yValues = csv.columnValues(i)
             plotCommon(
                 xiValues, yValues,
-                propsList.plots[i],
+                stylesList.plots[i],
                 bar: bar
             )
         }

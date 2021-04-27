@@ -20,7 +20,7 @@ extension Plot {
     /// Generate a plotter document
 
     func gen() {
-        plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
+        plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
         if settings.dim.xTick >= 0 { xTick() }
         if settings.dim.yTick >= 0 { yTick() }
         if settings.csv.xTagsHeader >= 0 { xTags() }
@@ -46,16 +46,16 @@ extension Plot {
 
     func shapeGen(name: String, colour: String) {
         if let shape = Shape.lookup(name) {
-            var propsList = PropertiesList(count: 1, settings: settings)
-            propsList.plots[0].cssClass = name
-            propsList.plots[0].colour = colour
-            plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
+            var stylesList = StylesList(count: 1, settings: settings)
+            stylesList.plots[0].cssClass = name
+            stylesList.plots[0].colour = colour
+            plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
             let shapePath = Path([
                     PathComponent.moveTo(xy: Point(x: width/2.0, y: height/2.0)),
                     shape.pathComponent(w: shapeWidth)
                 ]
             )
-            plotter.plotPath(shapePath, props: propsList.plots[0], fill: false)
+            plotter.plotPath(shapePath, styles: stylesList.plots[0], fill: false)
             plotter.plotTail()
         }
     }
@@ -63,7 +63,7 @@ extension Plot {
     /// Generate a pie chart
 
     func pieGen() {
-        plotter.plotHead(positions: positions, plotPlane: plotPlane, propsList: propsList)
+        plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
 
         let radius = floor(min(plotPlane.height, ts.xpos(1.0) - ts.xpos(0.0)) * 0.4)
         let row1 = settings.csv.headerRows
