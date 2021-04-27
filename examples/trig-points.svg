@@ -18,7 +18,7 @@ svg#svg-ex4 { background-color: #ffedcc }
 #svg-ex4 text { font-family: serif }
 #svg-ex4 text.legend { font-size: 13.0px }
 #svg-ex4 text.legend.headline { font-size: 16.2px; font-weight: bold }
-#svg-ex4 text.legend.pie { font-size: 13.0px }
+#svg-ex4 text.legend.pie { font-size: 20.0px; text-anchor: middle }
 #svg-ex4 text.subtitle { font-size: 15.0px; text-anchor: middle }
 #svg-ex4 text.title { font-size: 25.0px; text-anchor: middle }
 #svg-ex4 text.xlabel { font-size: 10.0px; text-anchor: middle }
