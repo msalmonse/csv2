@@ -51,7 +51,7 @@ struct PropertiesList {
 
         pieLegend = Properties.from(settings: settings)
         pieLegend.cssClass = "legend pie"
-        pieLegend.fontColour = settings.fg.legends
+        pieLegend.fontColour = settings.fg.pieLegend
         pieLegend.fontSize = sizes.pieLegend.size
         pieLegend.textAlign = "middle"
 

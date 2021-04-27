@@ -15,6 +15,7 @@ extension Settings {
         let axes: String
         let legends: String
         let legendsBox: String
+        let pieLegend: String
         let subTitle: String
         let title: String
         let xLabel: String
@@ -40,6 +41,7 @@ extension Settings {
             axes: optionalKeyedStringValue(from: container, forKey: .axes, defaults: nil) ?? fg,
             legends: optionalKeyedStringValue(from: container, forKey: .legends, defaults: nil) ?? text,
             legendsBox: optionalKeyedStringValue(from: container, forKey: .legendsBox, defaults: nil) ?? fg,
+            pieLegend: optionalKeyedStringValue(from: container, forKey: .pieLegend, defaults: nil) ?? text,
             subTitle: optionalKeyedStringValue(from: container, forKey: .subTitle, defaults: nil) ?? text,
             title: optionalKeyedStringValue(from: container, forKey: .title, defaults: nil) ?? text,
             xLabel: optionalKeyedStringValue(from: container, forKey: .xLabel, defaults: nil) ?? text,

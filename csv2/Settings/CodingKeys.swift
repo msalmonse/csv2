@@ -48,6 +48,7 @@ extension Settings {
         case nameHeader
         case names
         case opacity
+        case pieLegend
         case reserveBottom
         case reserveLeft
         case reserveRight
