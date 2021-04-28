@@ -6,11 +6,17 @@ There are a number of options mainly intended for testing:
 Generate an HTML canvas tag.
 
 - `--colourslist` <sup>[1](#fn1)</sup><br/>
-This option generates an SVG with each of the colours included with the `--colours`
+This option generates a chart with each of the colours included with the `--colours`
 option followed by the internal colours list. Each colour is shown with a rectangle
 and the colour's name or hex code in the colour named.<br/>
 The `--bg` option can be used to set the background colour and the `--size` option to
 set the text size.
+
+- `--colournames`<br/>
+Print the names and `#rrggbbaa` values of all the named colours known by this program.
+
+- `--colournameslist` <sup>[1](#fn1)</sup><br/>
+Similar to `--colourslist` except that all the named colours are included, [e,g.](examples/colourNamesList.png).
 
 - `--dashlist` <sup>[1](#fn1)</sup><br/>
 Similar to `--colourlist` but for dashes.
@@ -25,7 +31,7 @@ maximum value. The final value is an negative offset to the minimum and maximum
 values as the argument parser has a problem with negative numbers.<br/>
 Due to a limitation in Swift Argument Parser these numbers can't be negative.<br/>
 The optional fourth argument is subtracted from the other two so that negative values can be used.<br/>
-More than 15 plots aren't really a good idea unless you have a big SVG.<br/>
+More than 15 plots aren't really a good idea unless you have a big chart.<br/>
 The data is random but follows a patterm that is more obvious in when displayed in columns.
 
 - `--shapenames`<br/>
