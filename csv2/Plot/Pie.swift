@@ -15,22 +15,30 @@ extension Plot {
         var start = 0.0
 
         let pieValues = csv.rowValues(row)
-        var sum = pieValues[col1...].reduce(0.0) { $0 + ($1 ?? 0) }
+        var sum = pieValues[col1...].reduce(0.0) { $0 + abs($1 ?? 0) }
         for col in pieValues.indices where col >= col1 {
             if let val = pieValues[col] {
-                let angle6 = min(round(arcLeft * val/sum), arcLeft)
-                sum -= val
+                let absVal = abs(val)
+                let angle6 = min(round(arcLeft * absVal/sum), arcLeft)
+                sum -= absVal
                 arcLeft -= angle6
                 let end = start + angle6/1.0e6
-                let path = Path(
-                    [
-                        .arcAround(centre: centre, radius: radius, start: start, end: end),
-                        .lineTo(xy: centre),
-                        .z
-                    ]
-                )
+                // Don't plot tiny slices
+                if radius * angle6/1.0e6 > strokeWidth {
+                    let path = Path(
+                        [
+                            .arcAround(centre: centre, radius: radius, start: start, end: end),
+                            .lineTo(xy: centre),
+                            .z
+                        ]
+                    )
+                    // Don't fill negative slices
+                    if val >= 0.0 {
+                        plotter.plotPath(path, styles: stylesList.plots[col], fill: true)
+                    }
+                    plotter.plotPath(path, styles: stylesList.plots[col], fill: false)
+                }
                 start = end
-                plotter.plotPath(path, styles: stylesList.plots[col], fill: true)
             }
         }
         let xtag = settings.csv.xTagsHeader
