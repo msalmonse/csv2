@@ -16,7 +16,7 @@ Most of the effort was put into generating the Canvas and SVG.
 
 -  The [usage](docs/usage.md) is available.
 -  As are some [examples](examples/examples.md).
--  Some of the options are mainly intended for [testing](docs/esting.md).
+-  Some of the options are mainly intended for [testing](docs/testing.md).
 -  Specifying colours is covered [here](docs/colours.md)
 -  SVG charts can be altered directly using [css](docs/css.md)
 
