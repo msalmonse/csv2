@@ -44,8 +44,8 @@ extension Options {
             nameHeader: nameheader,
             names: names,
             opacity: opacity,
-            reserveBottom: reserve.hasIndex(0) ? reserve[0] : 0.0,
-            reserveLeft: reserve.hasIndex(3) ? reserve[3] : 0.0,
+            reserveBottom: reserve.hasIndex(3) ? reserve[3] : 0.0,
+            reserveLeft: reserve.hasIndex(0) ? reserve[0] : 0.0,
             reserveRight: reserve.hasIndex(2) ? reserve[2] : 0.0,
             reserveTop: reserve.hasIndex(1) ? reserve[1] : 0.0,
             rowGrouping: rows && !pie,          // in pie charts the data is in columns
