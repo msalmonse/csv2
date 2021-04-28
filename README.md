@@ -14,10 +14,11 @@ Numbers are expected to be in English format i.e. `.` is the decimal seperator.
 JSON errors may cause a crash, probably without a helpful error message.<br/>
 Most of the effort was put into generating the Canvas and SVG.
 
--  The [usage](usage.md) is available.
+-  The [usage](docs/usage.md) is available.
 -  As are some [examples](examples/examples.md).
--  Some of the options are mainly intended for [testing](Testing.md).
--  Specifying colours is covered [here](Colours.md)
+-  Some of the options are mainly intended for [testing](docs/esting.md).
+-  Specifying colours is covered [here](docs/colours.md)
+-  SVG charts can be altered directly using [css](docs/css.md)
 
 ### Limitations
 
