@@ -4,7 +4,7 @@
 csv2 <canvas | png | svg> [<options>] [<csv-name> or -] [<json-name>] [out-name]
 ```
 
-This program take the data in a CSV file and settings in a [JSON file](json.md) to produce an SVG file. If the CSV file name is
+This program take the data in a CSV file and settings in a [JSON file](docs/json.md) to produce an SVG file. If the CSV file name is
 missing or `-` the the data is read from the standard input. If the JSON file is not specified then `.json` is appended to the CSV 
 file name. If the JSON file is missing then all defaults are used. If the svg file is not specified then the svg data is written to the 
 standard output.
@@ -47,8 +47,9 @@ The legends panel takes about 25 pixels with the default base font size, double 
 that with the default height of 600 pixels you can only count on 20 plots in the panel.
 
 The [logo](docs/json.md#logoURL) is displayed using an `<image>` element which is loaded when the SVG is displayed.
-At least some browsers don't load that image when the SVG is loaded in an HTML `<img>`. Using an `<svg>` does work though. 
-The same is true for Canvas charts but PNG charts have the logo loaded when it is created.
+At least some browsers don't load that image when the SVG is loaded in an HTML `<img>`. 
+The same is true for Canvas charts but PNG charts have the logo loaded when it is created. PNG charts only support
+bitmapped images but SVG charts can have SVG logos.
 
 This command uses the
 [Swift Argument Parser](https://github.com/apple/swift-argument-parser), which is, IMHO,
