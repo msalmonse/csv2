@@ -1,7 +1,7 @@
 # CSV to SVG converter
 
 ```
-csv2 <canvas | png | svg> [<options>] [<csv-name> or -] [<json-name>] [svg-name]
+csv2 <canvas | png | svg> [<options>] [<csv-name> or -] [<json-name>] [out-name]
 ```
 
 This program take the data in a CSV file and settings in a [JSON file](json.md) to produce an SVG file. If the CSV file name is
@@ -14,8 +14,10 @@ Numbers are expected to be in English format i.e. `.` is the decimal seperator.
 JSON errors may cause a crash, probably without a helpful error message.<br/>
 Most of the effort was put into generating the Canvas and SVG.
 
-The [usage](usage.md) is available as are some [examples](examples/examples.md).<br/>
-Some of the options are mainly intended for [testing](Testing.md).
+-  The [usage](usage.md) is available.
+-  As are some [examples](examples/examples.md).
+-  Some of the options are mainly intended for [testing](Testing.md).
+-  Specifying colours is covered [here](Colours.md)
 
 ### Limitations
 
