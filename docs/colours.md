@@ -14,4 +14,4 @@ presence of the decimal point, `0` is of course the same as `0` but `1` is quite
 4. Prefixing one of the above with `clear-` halves it's alpha, `clear-clear-` works two but it seems a bit pointless.
 
 ### <a id="names">Colour names</a>
-![Colour names list](examples/colourNamesList.png)
+![Colour names list](colourNamesList.png)
