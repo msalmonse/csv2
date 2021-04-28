@@ -53,6 +53,7 @@ The id of the canvas to write to.
 **Option:** `--colours`<sup>[6](#fn6)</sup><br/>
 The colours to be used to plot the column or row. The index, if present, must be included although never used.
 Columns or rows that aren't defined are assigned a colour sequentially from an internal list.
+More on colours can be found [here](colours.md).
 
 **comment** (Bool **true**)<br/>
 **Option:** `--nocomment` <sup>[8](#fn8)</sup><br/>
@@ -202,15 +203,15 @@ the list and assigned to scatter plots. If there are too few shape names or they
 looked up the a shape from an internal list is assigned.
 
 Recognized names are:
-1. ![blade](shapes/blade.svg) blade
-1. ![circle](shapes/circle.svg) circle
-1. ![circle star](shapes/circleStar.svg) circleStar
-1. ![cross](shapes/cross.svg) cross
-2. ![diamond](shapes/diamond.svg) diamond
-2. ![shuriken](shapes/shuriken.svg) shuriken
-3. ![square](shapes/square.svg) square
-4. ![star](shapes/star.svg) star
-5. ![triangle](shapes/triangle.svg) triangle
+1. ![blade](blade.svg) blade
+1. ![circle](circle.svg) circle
+1. ![circle star](circleStar.svg) circleStar
+1. ![cross](cross.svg) cross
+2. ![diamond](diamond.svg) diamond
+2. ![shuriken](shuriken.svg) shuriken
+3. ![square](square.svg) square
+4. ![star](star.svg) star
+5. ![triangle](triangle.svg) triangle
 
 **showDataPoints** (Int **0**)<br/>
 **Option:** `--datapoints`<br/>

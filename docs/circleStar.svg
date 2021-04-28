@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg id="ID-35da01" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<clipPath id="plotable">
+<rect x="3.0" y="1.0" width="-12.0" height="10.0" rx="0.0"  />
+</clipPath>
+</defs>
+<style>
+svg#ID-35da01 { background-color: transparent }
+#ID-35da01 path.lightBG { fill: rgba(220,220,220,0.667) }
+#ID-35da01 path.midBG { fill: rgba(120,120,120,0.667) }
+#ID-35da01 path.darkBG { fill: rgba(35,35,35,0.667) }
+#ID-35da01 g.plotarea { opacity: 1.0 }
+#ID-35da01 g.plotarea path:hover { stroke-width: 5.0 }
+#ID-35da01 path { stroke-width: 2.0; fill: none; stroke-linecap: round }
+#ID-35da01 path.axes { stroke: black }
+#ID-35da01 path.xlabel, #ID-35da01 path.ylabel { stroke: silver; stroke-width: 1 }
+#ID-35da01 text { font-family: serif }
+#ID-35da01 text.legend { font-size: 13.0px }
+#ID-35da01 text.legend.headline { font-size: 16.2px; font-weight: bold }
+#ID-35da01 text.legend.pie { font-size: 20.0px; text-anchor: middle }
+#ID-35da01 text.subtitle { font-size: 15.0px; text-anchor: middle }
+#ID-35da01 text.title { font-size: 25.0px; text-anchor: middle }
+#ID-35da01 text.xlabel { font-size: 10.0px; text-anchor: middle }
+#ID-35da01 text.xtags { font-size: 10.0px; text-anchor: middle }
+#ID-35da01 text.xtitle, #ID-35da01 text.ytitle { font-size: 12.0px; text-anchor: middle }
+#ID-35da01 text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
+#ID-35da01 path.circleStar { stroke: green }
+#ID-35da01 text.circleStar, #ID-35da01 rect.circleStar { fill: green; stroke: green }
+#ID-35da01 path.circleStar.fill { stroke: none; fill: green; fill-opacity: 0.75 }
+#ID-35da01 path.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
+</style>
+<path class="circleStar" d=" M 6.0,6.0 m -1.8,0.0 l -1.8,-3.5 l 3.5,1.8 l 3.5,-1.8 l -1.8,3.5 l 1.8,3.5 l -3.5,-1.8 l -3.5,1.8 l 1.8,-3.5 m 1.8,0.0 m 0.0,-4.2 c 2.3,0.0 4.2,2.3 4.2,4.2 c 0.0,2.3 -2.3,4.2 -4.2,4.2 c -2.3,0.0 -4.2,-2.3 -4.2,-4.2 c 0.0,-2.3 2.3,-4.2 4.2,-4.2 m 0.0,4.2 " />
+
+</svg>

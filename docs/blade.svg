@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg id="ID-37f4cc" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<clipPath id="plotable">
+<rect x="3.0" y="1.0" width="-12.0" height="10.0" rx="0.0"  />
+</clipPath>
+</defs>
+<style>
+svg#ID-37f4cc { background-color: transparent }
+#ID-37f4cc path.lightBG { fill: rgba(220,220,220,0.667) }
+#ID-37f4cc path.midBG { fill: rgba(120,120,120,0.667) }
+#ID-37f4cc path.darkBG { fill: rgba(35,35,35,0.667) }
+#ID-37f4cc g.plotarea { opacity: 1.0 }
+#ID-37f4cc g.plotarea path:hover { stroke-width: 5.0 }
+#ID-37f4cc path { stroke-width: 2.0; fill: none; stroke-linecap: round }
+#ID-37f4cc path.axes { stroke: black }
+#ID-37f4cc path.xlabel, #ID-37f4cc path.ylabel { stroke: silver; stroke-width: 1 }
+#ID-37f4cc text { font-family: serif }
+#ID-37f4cc text.legend { font-size: 13.0px }
+#ID-37f4cc text.legend.headline { font-size: 16.2px; font-weight: bold }
+#ID-37f4cc text.legend.pie { font-size: 20.0px; text-anchor: middle }
+#ID-37f4cc text.subtitle { font-size: 15.0px; text-anchor: middle }
+#ID-37f4cc text.title { font-size: 25.0px; text-anchor: middle }
+#ID-37f4cc text.xlabel { font-size: 10.0px; text-anchor: middle }
+#ID-37f4cc text.xtags { font-size: 10.0px; text-anchor: middle }
+#ID-37f4cc text.xtitle, #ID-37f4cc text.ytitle { font-size: 12.0px; text-anchor: middle }
+#ID-37f4cc text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
+#ID-37f4cc path.blade { stroke: green }
+#ID-37f4cc text.blade, #ID-37f4cc rect.blade { fill: green; stroke: green }
+#ID-37f4cc path.blade.fill { stroke: none; fill: green; fill-opacity: 0.75 }
+#ID-37f4cc path.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
+</style>
+<path class="blade" d=" M 6.0,6.0 m -1.8,0.9 l -1.8,-3.5 v -1.8 h 1.8 l 3.5,3.5 l 1.8,3.5 v 1.8 h -1.8 l -3.5,-3.5 m 1.8,-0.9 " />
+
+</svg>

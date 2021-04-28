@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg id="ID-bd2b00" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<clipPath id="plotable">
+<rect x="3.0" y="1.0" width="-12.0" height="10.0" rx="0.0"  />
+</clipPath>
+</defs>
+<style>
+svg#ID-bd2b00 { background-color: transparent }
+#ID-bd2b00 path.lightBG { fill: rgba(220,220,220,0.667) }
+#ID-bd2b00 path.midBG { fill: rgba(120,120,120,0.667) }
+#ID-bd2b00 path.darkBG { fill: rgba(35,35,35,0.667) }
+#ID-bd2b00 g.plotarea { opacity: 1.0 }
+#ID-bd2b00 g.plotarea path:hover { stroke-width: 5.0 }
+#ID-bd2b00 path { stroke-width: 2.0; fill: none; stroke-linecap: round }
+#ID-bd2b00 path.axes { stroke: black }
+#ID-bd2b00 path.xlabel, #ID-bd2b00 path.ylabel { stroke: silver; stroke-width: 1 }
+#ID-bd2b00 text { font-family: serif }
+#ID-bd2b00 text.legend { font-size: 13.0px }
+#ID-bd2b00 text.legend.headline { font-size: 16.2px; font-weight: bold }
+#ID-bd2b00 text.legend.pie { font-size: 20.0px; text-anchor: middle }
+#ID-bd2b00 text.subtitle { font-size: 15.0px; text-anchor: middle }
+#ID-bd2b00 text.title { font-size: 25.0px; text-anchor: middle }
+#ID-bd2b00 text.xlabel { font-size: 10.0px; text-anchor: middle }
+#ID-bd2b00 text.xtags { font-size: 10.0px; text-anchor: middle }
+#ID-bd2b00 text.xtitle, #ID-bd2b00 text.ytitle { font-size: 12.0px; text-anchor: middle }
+#ID-bd2b00 text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
+#ID-bd2b00 path.diamond { stroke: green }
+#ID-bd2b00 text.diamond, #ID-bd2b00 rect.diamond { fill: green; stroke: green }
+#ID-bd2b00 path.diamond.fill { stroke: none; fill: green; fill-opacity: 0.75 }
+#ID-bd2b00 path.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
+</style>
+<path class="diamond" d=" M 6.0,6.0 m -4.4,0.0 l 4.4,-4.4 l 4.4,4.4 l -4.4,4.4 l -4.4,-4.4 l 2.2,-2.2 m 2.2,2.2 " />
+
+</svg>

@@ -1,8 +1,11 @@
 CSV2 = test/csv2
 CANVASFILES = $(shell find data -name \*.canvas -size +0)
 CANVASTAGFILES = $(CANVASFILES:data/%.canvas=generated/%.canvastag)
+DOCFILES =\
+	docs/colourNamesList.png\
+	$(SHAPES:%=docs/%.svg)
+
 EXAMPLES =\
-	examples/colourNamesList.png\
 	examples/layout.svg\
 	examples/trig.svg\
 	examples/trig-2plots.svg\
@@ -13,6 +16,7 @@ JSFILES = $(CANVASFILES:data/%.canvas=generated/%.js)
 OPTFILES = $(wildcard data/*.opts)
 PNGOPTFILES = $(shell egrep -lv -- '--(css|nohover|svg)' data/*.opts)
 PNGFILES = $(PNGOPTFILES:data/%.opts=generated/%.png)
+SHAPES = $(shell $(CSV2) --shapenames)
 SVGFILES = $(OPTFILES:data/%.opts=generated/%.svg)
 TXTFILES = $(OPTFILES:data/%.opts=generated/%.txt)
 
@@ -20,12 +24,16 @@ JSINDEXMAKE = scripts/jsIndexMake.sh
 PNGINDEXMAKE = scripts/pngIndexMake.sh
 SVGINDEXMAKE = scripts/svgIndexMake.sh
 
-.PHONY:	all error.expected examples shapes
+.PHONY:	all docs error.expected examples shapes
 
 all:	generated/.made \
 	generated/svgindex.html \
 	generated/pngindex.html \
 	generated/jsindex.html
+
+docs: $(DOCFILES)
+
+examples: $(EXAMPLES)
 
 generated/.made:
 	-mkdir $(@D)
@@ -84,7 +92,8 @@ error.expected:
 out.svg out.js out.png:
 	touch $@
 
-examples: $(EXAMPLES)
+docs/%.svg: $(CSV2)
+	-@ $(CSV2) svg --nocomment --show $(@F:%.svg=%) --colours green -- - - $@
 
 examples/trig.svg: data/trig.csv examples/trig.json
 	-@ $(CSV2) svg --nocomment --cssid=svg-ex1 data/trig.csv examples/trig.json $@
@@ -106,6 +115,3 @@ examples/layout.svg: data/trig.csv examples/layout.json examples/layout.inc
 
 examples/colourNamesList.png:
 	-@ $(CSV2) png --bg cornsilk --size 12 --colournameslist -- - - $@
-
-shapes:
-	-@ scripts/shapeDoc.sh --colours green
