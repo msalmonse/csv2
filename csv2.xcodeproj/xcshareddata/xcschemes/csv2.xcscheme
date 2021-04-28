@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "svg --bg cornsilk --textcolour navy --fg maroon --pie"
+            argument = "png --bg cornsilk --textcolour navy --fg maroon --colournameslist --size 12"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -68,7 +68,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/out.svg"
+            argument = "${PROJECT_DIR}/out.png"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -2,6 +2,7 @@ CSV2 = test/csv2
 CANVASFILES = $(shell find data -name \*.canvas -size +0)
 CANVASTAGFILES = $(CANVASFILES:data/%.canvas=generated/%.canvastag)
 EXAMPLES =\
+	examples/colourNamesList.png\
 	examples/layout.svg\
 	examples/trig.svg\
 	examples/trig-2plots.svg\
@@ -17,7 +18,7 @@ TXTFILES = $(OPTFILES:data/%.opts=generated/%.txt)
 
 .PHONY:	all error.expected examples shapes
 
-all:	generated/.made examples \
+all:	generated/.made \
 	generated/svgindex.html \
 	generated/pngindex.html \
 	generated/jsindex.html
@@ -99,5 +100,7 @@ examples/trig-bar.svg: data/trig.csv examples/trig.json $(CSV2)
 examples/layout.svg: data/trig.csv examples/layout.json examples/layout.inc
 	-@ $(CSV2) svg data/trig.csv examples/layout.json $@
 
+examples/colourNamesList.png:
+	-@ $(CSV2) png --bg cornsilk --size 12 --colournameslist -- - - $@
 shapes:
 	-@ ./shapeDoc.sh --colours green

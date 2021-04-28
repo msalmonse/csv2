@@ -119,8 +119,8 @@ struct RGBAu8: CustomStringConvertible, Equatable {
         return text
     }
 
-    /// The average of red, gren, blue plus the max and min values
-    var rgbValue: Int { (Int(r) + Int(g) + Int(b) + Int(max(r, g, b)) + Int(min(r, g, b)))/5 }
+    /// The luminosity of the colour
+    var luminance: Int { 2126 * Int(r) + 7152 * Int(g) + 722 * Int(b) }
 
     // components packed together
     var u32: UInt32 { UInt32(UInt32(r) << 24 | UInt32(g) << 16 | UInt32(b) << 8 | UInt32(a)) }

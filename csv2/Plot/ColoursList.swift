@@ -18,10 +18,11 @@ extension Plot {
     func coloursListGen(_ step: Double, _ colours: [String], _ rows: Int, _ columnWidth: Double) {
         /// Calculate background styles for colour
         func bgSelect(_ name: String) -> Styles {
-            switch RGBAu8(name, or: .clear).rgbValue {
-            case 180...255: return midBG
-            case 90...179: return darkBG
-            default: return lightBG
+            let luma = RGBAu8(name, or: .clear).luminance
+            switch luma {
+            case 2200000...: return midBG
+            case 0...1500000: return lightBG
+            default: return darkBG
             }
         }
 
