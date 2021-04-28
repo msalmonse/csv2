@@ -58,7 +58,7 @@ class Plot: ReflectedStringConvertible {
     var subTitleSize: Double { return sizes.subTitle.size }
     var titleSize: Double { return sizes.title.size }
 
-    init(_ csv: CSV, _ settings: Settings, _ plotter: Plotter, chartType: ChartType = .horizontal) {
+    init(_ csv: CSV, _ settings: Settings, _ plotter: Plotter) {
         self.csv = csv
         self.settings = settings
         self.plotter = plotter
@@ -72,10 +72,10 @@ class Plot: ReflectedStringConvertible {
             top: -0.5 * height, bottom: 1.5 * height,
             left: -0.5 * width, right: 1.5 * width
         )
-        let dataPlane = chartType.dataPlane(csv, settings)
+        let dataPlane = settings.chartType.dataPlane(csv, settings)
         self.dataPlane = dataPlane
 
-        positions = chartType.positionsSelect(settings)
+        positions = settings.chartType.positionsSelect(settings)
 
         limit = settings.plot.dataPointDistance
 
@@ -98,6 +98,7 @@ class Plot: ReflectedStringConvertible {
 
         // Initialize path info
         var stylesList = StylesList(count: plotCount, settings: settings)
+
         // setup first so that the other functions can use them
         plotFlags(settings, plotFirst, plotCount, &stylesList.plots)
         plotClasses(settings, plotFirst, plotCount, &stylesList.plots)

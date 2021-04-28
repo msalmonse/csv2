@@ -78,4 +78,13 @@ extension Plot {
 
         plotter.plotTail()
     }
+
+    /// Generate a chart
+
+    func chartGen() {
+        switch settings.chartType {
+        case .pieChart: pieGen()
+        default: gen()
+        }
+    }
 }

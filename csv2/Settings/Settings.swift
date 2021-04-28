@@ -8,6 +8,9 @@
 import Foundation
 
 class Settings: Decodable, ReflectedStringConvertible {
+    // Type of chart
+    let chartType: ChartType
+
     // CSS settings
     let css: Settings.CSS
 
@@ -46,6 +49,16 @@ class Settings: Decodable, ReflectedStringConvertible {
 
     required init(from decoder: Decoder) {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
+
+        var chartType = defaults.chartType
+        if let chart = Self.optionalKeyedStringValue(from: container, forKey: .chartType) {
+            switch chart.lowercased() {
+            case "piechart": chartType = .pieChart
+            case "horizontal": chartType = .horizontal
+            default: break
+            }
+        }
+        self.chartType = chartType
 
         // Although this is a Defaults property it can be loaded from the JSON file
         defaults.bounded = Self.keyedBoolValue(from: container, forKey: .bounded, defaults: defaults)

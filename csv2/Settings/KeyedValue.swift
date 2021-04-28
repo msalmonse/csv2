@@ -240,7 +240,7 @@ extension Settings {
     static func optionalKeyedStringValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
         forKey key: CodingKeys,
-        defaults: Defaults?
+        defaults: Defaults? = nil
     ) -> String? {
         if container == nil || stringIsChanged(key, defaults) { return stringDefault(key, defaults) }
         return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? stringDefault(key, defaults)

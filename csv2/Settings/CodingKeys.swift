@@ -20,6 +20,7 @@ extension Settings {
         case bold
         case bounded
         case canvasID
+        case chartType
         case colours
         case comment
         case cssClasses

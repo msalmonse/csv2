@@ -31,6 +31,7 @@ struct Defaults {
     let bold: Bool
     var bounded: Bool
     let canvasID: String
+    let chartType: ChartType
     let colours: [String]
     let comment: Bool
     let cssClasses: [String]
@@ -93,6 +94,7 @@ struct Defaults {
         bold: false,
         bounded: true,
         canvasID: "csvplot",
+        chartType: .horizontal,
         colours: [],
         comment: true,
         cssClasses: [],

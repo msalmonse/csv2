@@ -38,17 +38,17 @@ extension Settings {
         let text = defaults.textColour
 
         return ForegroundColours(
-            axes: optionalKeyedStringValue(from: container, forKey: .axes, defaults: nil) ?? fg,
-            legends: optionalKeyedStringValue(from: container, forKey: .legends, defaults: nil) ?? text,
-            legendsBox: optionalKeyedStringValue(from: container, forKey: .legendsBox, defaults: nil) ?? fg,
-            pieLegend: optionalKeyedStringValue(from: container, forKey: .pieLegend, defaults: nil) ?? text,
-            subTitle: optionalKeyedStringValue(from: container, forKey: .subTitle, defaults: nil) ?? text,
-            title: optionalKeyedStringValue(from: container, forKey: .title, defaults: nil) ?? text,
-            xLabel: optionalKeyedStringValue(from: container, forKey: .xLabel, defaults: nil) ?? text,
-            xTags: optionalKeyedStringValue(from: container, forKey: .xTags, defaults: nil) ?? text,
-            xTitle: optionalKeyedStringValue(from: container, forKey: .xTitle, defaults: nil) ?? text,
-            yLabel: optionalKeyedStringValue(from: container, forKey: .yLabel, defaults: nil) ?? text,
-            yTitle: optionalKeyedStringValue(from: container, forKey: .yTitle, defaults: nil) ?? text
+            axes: optionalKeyedStringValue(from: container, forKey: .axes) ?? fg,
+            legends: optionalKeyedStringValue(from: container, forKey: .legends) ?? text,
+            legendsBox: optionalKeyedStringValue(from: container, forKey: .legendsBox) ?? fg,
+            pieLegend: optionalKeyedStringValue(from: container, forKey: .pieLegend) ?? text,
+            subTitle: optionalKeyedStringValue(from: container, forKey: .subTitle) ?? text,
+            title: optionalKeyedStringValue(from: container, forKey: .title) ?? text,
+            xLabel: optionalKeyedStringValue(from: container, forKey: .xLabel) ?? text,
+            xTags: optionalKeyedStringValue(from: container, forKey: .xTags) ?? text,
+            xTitle: optionalKeyedStringValue(from: container, forKey: .xTitle) ?? text,
+            yLabel: optionalKeyedStringValue(from: container, forKey: .yLabel) ?? text,
+            yTitle: optionalKeyedStringValue(from: container, forKey: .yTitle) ?? text
         )
     }
 
