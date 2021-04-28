@@ -162,11 +162,11 @@ extension RGBAu8 {
 
         if name.lowercased().hasPrefix("clear-") {
             if let rgba = lookup(String(name.dropFirst(6))) {
-                return rgba.with(alpha: 127)
+                return rgba.dividingBy(alpha: 2)
             }
         } else if name.lowercased().hasPrefix("clear") {
             if let rgba = lookup(String(name.dropFirst(5))) {
-                return rgba.with(alpha: 127)
+                return rgba.dividingBy(alpha: 2)
             }
         }
 

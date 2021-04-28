@@ -13,6 +13,7 @@ extension csv2Tests {
         XCTAssertEqual(ColourTranslate.lookup("black")!, .black)
         XCTAssertEqual(RGBAu8("clearblack"), RGBAu8(r: 0, g: 0, b: 0, a: 127))
         XCTAssertEqual(RGBAu8("clear-black"), RGBAu8(r: 0, g: 0, b: 0, a: 127))
+        XCTAssertEqual(RGBAu8("clear-clear-black"), RGBAu8(r: 0, g: 0, b: 0, a: 63))
 
         XCTAssertEqual(RGBAu8("#12345678", or: .clear), RGBAu8(r: 18, g: 52, b: 86, a: 120))
         XCTAssertEqual(RGBAu8("#123456", or: .clear), RGBAu8(r: 18, g: 52, b: 86, a: 255))

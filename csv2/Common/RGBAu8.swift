@@ -152,11 +152,19 @@ struct RGBAu8: CustomStringConvertible, Equatable {
         return RGBAu8(r: r, g: g, b: b, a: UInt8(u8val(min(a.cgfloat, opacity))))
     }
 
+    /// Modify the alpha by dividing
+    /// - Parameter divisor: alpha divisor
+    /// - Returns: New RGBA with modified alpha
+
+    func dividingBy(alpha divisor: UInt8) -> RGBAu8 {
+        return RGBAu8(r: r, g: g, b: b, a: a/divisor)
+    }
+
     /// Modiify the alpha by multiplyimg
     /// - Parameter alpha: multiplier
     /// - Returns: New RGBA with modified alpha
 
-    func modify(alpha: CGFloat) -> RGBAu8 {
+    func multiplyingBy(alpha: CGFloat) -> RGBAu8 {
         return RGBAu8(r: r, g: g, b: b, a: UInt8(u8val(a.cgfloat * alpha)))
     }
 }
