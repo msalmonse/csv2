@@ -16,6 +16,10 @@ PNGFILES = $(PNGOPTFILES:data/%.opts=generated/%.png)
 SVGFILES = $(OPTFILES:data/%.opts=generated/%.svg)
 TXTFILES = $(OPTFILES:data/%.opts=generated/%.txt)
 
+JSINDEXMAKE = scripts/jsIndexMake.sh
+PNGINDEXMAKE = scripts/pngIndexMake.sh
+SVGINDEXMAKE = scripts/svgIndexMake.sh
+
 .PHONY:	all error.expected examples shapes
 
 all:	generated/.made \
@@ -27,19 +31,19 @@ generated/.made:
 	-mkdir $(@D)
 	@ touch $@
 
-generated/svgindex.html: EXTRAS = generated/logo.svg out.svg svgIndexMake.sh $(EXAMPLES)
+generated/svgindex.html: EXTRAS = generated/logo.svg out.svg $(SVGINDEXMAKE) $(EXAMPLES)
 generated/svgindex.html: $(SVGFILES) $(TXTFILES) $(EXTRAS)
-	@ ./svgIndexMake.sh $@
+	@ $(SVGINDEXMAKE) $@
 	@ echo svgindex made
 
-generated/jsindex.html: EXTRAS = generated/logo.svg out.js jsIndexMake.sh
+generated/jsindex.html: EXTRAS = generated/logo.svg out.js $(JSINDEXMAKE)
 generated/jsindex.html: $(JSFILES) $(CANVASTAGFILES) $(TXTFILES) $(EXTRAS)
-	@ ./jsIndexMake.sh $@
+	@ $(JSINDEXMAKE) $@
 	@ echo jsindex made
 
-generated/pngindex.html: EXTRAS = generated/logo.svg out.png pngIndexMake.sh
+generated/pngindex.html: EXTRAS = generated/logo.svg out.png $(PNGINDEXMAKE)
 generated/pngindex.html: $(PNGFILES) $(TXTFILES) $(EXTRAS)
-	@ ./pngIndexMake.sh $@
+	@ $(PNGINDEXMAKE) $@
 	@ echo pngindex made
 
 generated/%.js: OPTS = $(shell cat $(@F:%.js=data/%.opts))
@@ -102,5 +106,6 @@ examples/layout.svg: data/trig.csv examples/layout.json examples/layout.inc
 
 examples/colourNamesList.png:
 	-@ $(CSV2) png --bg cornsilk --size 12 --colournameslist -- - - $@
+
 shapes:
-	-@ ./shapeDoc.sh --colours green
+	-@ scripts/shapeDoc.sh --colours green
