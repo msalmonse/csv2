@@ -42,7 +42,7 @@ taken from the JSON file or the defaults which in turn can be set from the comma
 
 There are no practical limits to the number of plots, one of my tests is to create an SVG from a CSV of 1000 rows of 1000 
 columns of random integers. There were no problems generating it but I haven't tried to view the results, I don't think that it would 
-be pleaseant. The bitmaps used to select plots though are limited to 63 plots, the rest will still be plotted but can't be enhanced. 
+be pleasant. The bitmaps used to select plots though are limited to 63 plots, the rest will still be plotted but can't be enhanced. 
 The legends panel takes about 25 pixels with the default base font size, double that if lines or shapes are displayed, which means 
 that with the default height of 600 pixels you can only count on 20 plots in the panel.
 
