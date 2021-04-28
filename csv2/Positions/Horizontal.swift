@@ -47,7 +47,7 @@ struct Horizontal: Positions {
 
         // Bottom
         var pos = settings.height - margin
-        doIf((0.0..<pos).contains(settings.dim.reserveBottom)) { pos -= settings.dim.reserveBottom }
+        doIf(0.0..<pos ~= settings.dim.reserveBottom) { pos -= settings.dim.reserveBottom }
         subTitleY = pos
         doIf(settings.plotter.subTitle.hasContent || settings.csv.subTitleHeader >= 0) {
             pos -= ceil(sizes.subTitle.spacing)
@@ -65,7 +65,7 @@ struct Horizontal: Positions {
 
         // top
         pos = margin
-        doIf((0.0..<bottomY).contains(settings.dim.reserveTop)) { pos += settings.dim.reserveTop }
+        doIf(0.0..<bottomY ~= settings.dim.reserveTop) { pos += settings.dim.reserveTop }
         topY = pos
         logoY = pos
         legendY = ceil(topY + max(sizes.legend.size * 2.0, logoHeight + margin))
@@ -74,7 +74,7 @@ struct Horizontal: Positions {
 
         // left
         pos = margin
-        doIf((0.0..<settings.width).contains(settings.dim.reserveLeft)) { pos += settings.dim.reserveLeft }
+        doIf(0.0..<settings.width ~= settings.dim.reserveLeft) { pos += settings.dim.reserveLeft }
         doIf(settings.plotter.yTitle.hasContent) { pos += ceil(sizes.axes.spacing) }
         yTitleX = pos
         doIf(settings.dim.yTick >= 0) { pos += sizes.label.size * 4.0 }
@@ -84,7 +84,7 @@ struct Horizontal: Positions {
 
         // legends are on the right
         pos = settings.width - margin
-        doIf((0.0..<pos).contains(settings.dim.reserveRight)) { pos -= settings.dim.reserveRight }
+        doIf(0.0..<pos ~= settings.dim.reserveRight) { pos -= settings.dim.reserveRight }
         logoX = pos - logoWidth
         legendRightX = pos
         if !settings.plotter.legends {

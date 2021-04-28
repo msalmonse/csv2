@@ -7,19 +7,6 @@
 
 import Foundation
 
-// Function to reduce cyclomatic complexity
-
-/// Test if a value is in range
-/// - Parameters:
-///   - r: range
-///   - val: value to test
-///   - alt: alternative value
-/// - Returns: val if in range. alt otherwise
-
-private func inRange(_ r: Range<Double>, _ val: Double, _ alt: Double = 0.0) -> Double {
-    return r.contains(val) ? val : alt
-}
-
 /// Various layout positions
 
 struct PieChart: Positions {
@@ -60,7 +47,7 @@ struct PieChart: Positions {
 
         // Bottom
         var pos = settings.height - margin
-        doIf((0.0..<pos).contains(settings.dim.reserveBottom)) { pos -= settings.dim.reserveBottom }
+        doIf(0.0..<pos ~= settings.dim.reserveBottom) { pos -= settings.dim.reserveBottom }
         subTitleY = pos
         doIf(settings.plotter.subTitle.hasContent || settings.csv.subTitleHeader >= 0) {
             pos -= ceil(sizes.subTitle.spacing)
@@ -76,7 +63,7 @@ struct PieChart: Positions {
 
         // top
         pos = margin
-        doIf((0.0..<bottomY).contains(settings.dim.reserveTop)) { pos += settings.dim.reserveTop }
+        doIf(0.0..<bottomY ~= settings.dim.reserveTop) { pos += settings.dim.reserveTop }
         topY = pos
         logoY = pos
         legendY = ceil(topY + max(sizes.legend.size * 2.0, logoHeight + margin))
@@ -85,14 +72,14 @@ struct PieChart: Positions {
 
         // left
         pos = margin
-        doIf((0.0..<settings.width).contains(settings.dim.reserveLeft)) { pos += settings.dim.reserveLeft }
+        doIf(0.0..<settings.width ~= settings.dim.reserveLeft) { pos += settings.dim.reserveLeft }
         yTitleX = pos
         yTickX = pos
         leftX = pos
 
         // legends are on the right
         pos = settings.width - margin
-        doIf((0.0..<pos).contains(settings.dim.reserveRight)) { pos -= settings.dim.reserveRight }
+        doIf(0.0..<pos ~= settings.dim.reserveRight) { pos -= settings.dim.reserveRight }
         logoX = pos - logoWidth
         legendRightX = pos
         if !settings.plotter.legends {
