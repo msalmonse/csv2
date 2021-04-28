@@ -17,8 +17,8 @@ Most of the effort was put into generating the Canvas and SVG.
 -  The [usage](docs/usage.md) is available.
 -  As are some [examples](examples/examples.md).
 -  Some of the options are mainly intended for [testing](docs/testing.md).
--  Specifying colours is covered [here](docs/colours.md)
--  SVG charts can be altered directly using [css](docs/css.md)
+-  Specifying colours is covered [here](docs/colours.md).
+-  SVG charts can be altered directly using [css](docs/css.md).
 
 ### Limitations
 
@@ -46,7 +46,9 @@ be pleaseant. The bitmaps used to select plots though are limited to 63 plots, t
 The legends panel takes about 25 pixels with the default base font size, double that if lines or shapes are displayed, which means 
 that with the default height of 600 pixels you can only count on 20 plots in the panel.
 
-The [logo](json.md#logoURL) is displayed using an `<image>` element which is loaded when the SVG is displayed. At least some browsers don't load that image when the SVG is loaded in an HTML `<img>`. Using an `<svg>` does work though.
+The [logo](docs/json.md#logoURL) is displayed using an `<image>` element which is loaded when the SVG is displayed.
+At least some browsers don't load that image when the SVG is loaded in an HTML `<img>`. Using an `<svg>` does work though. 
+The same is true for Canvas charts but PNG charts have the logo loaded when it is created.
 
 This command uses the
 [Swift Argument Parser](https://github.com/apple/swift-argument-parser), which is, IMHO,
