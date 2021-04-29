@@ -88,7 +88,7 @@ cat <<EOD
 <tr><th colspan="2" class="infoHeader">ICONS</th></tr>
 EOD
 
-for f in shapes/*.svg
+for f in docs/*.svg
 do
     cat <<EOD
 <tr>

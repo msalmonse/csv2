@@ -153,7 +153,7 @@ extension Plot {
                 }
             case .bar:
                 if let (p0, _) = plot?.posClip(Point(x: pos.x, y: plot?.point00.y ?? 0.0)) {
-                    shapeComponents.append(bar!.path(p0: p0, y: pos.y, styles.bar))
+                    pathComponents.append(bar!.path(p0: p0, y: pos.y, styles.bar))
                 }
             case .clipped2:
                 // Ignore all data till we are not clipped, just move
@@ -235,6 +235,7 @@ extension Plot {
                 plotProps.fill = rgba.multiplyingBy(alpha: 0.75).cssRGBA
             }
         }
-        plotter.plotPath(state.pathComponents + state.shapeComponents, styles: plotProps, fill: fill)
+        plotter.plotPath(state.pathComponents, styles: plotProps, fill: fill)
+        plotter.plotPath(state.shapeComponents, styles: plotProps, fill: false)
     }
 }
