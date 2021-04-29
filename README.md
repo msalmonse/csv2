@@ -1,18 +1,18 @@
-# CSV to PNG/Canvas/SVG converter
+# CSV to Canvas/PNG/SVG converter
 
 ```
 csv2 <canvas | png | svg> [<options>] [<csv-name> or -] [<json-name>] [out-name]
 ```
 
-This program take the data in a CSV file and settings in a [JSON file](docs/json.md) to produce an SVG file. If the CSV file name is
+This program take the data in a CSV file and settings in a [JSON file](docs/json.md) to produce a Canvas(JS), PNG or SVG file. If the CSV file name is
 missing or `-` the the data is read from the standard input. If the JSON file is not specified then `.json` is appended to the CSV 
-file name. If the JSON file is missing then all defaults are used. If the svg file is not specified then the svg data is written to the 
-standard output.
+file name. If the JSON file is missing then all defaults are used. If the output file is not specified then the data is written to the 
+standard output except for PNG data.
 
 The code handles most cases well but strange cases may fail. 
 Numbers are expected to be in English format i.e. `.` is the decimal seperator.
 JSON errors may cause a crash, probably without a helpful error message.<br/>
-Most of the effort was put into generating the Canvas and SVG.
+Most of the effort was put into generating the charts.
 
 -  The [usage](docs/usage.md) is available.
 -  As are some [examples](examples/examples.md).
