@@ -7,7 +7,29 @@
 
 import Foundation
 
-struct PlotOptions: OptionSet {
+struct PlotOptions: OptionSet, CustomStringConvertible, CustomDebugStringConvertible {
+    var debugDescription: String {
+        return "0x\(rawValue.x0(3)) = \(description)"
+    }
+
+    static var allNames: [(PlotOptions, String)] = [
+        (.bold,      "bold"),
+        (.dashed,    "dashed"),
+        (.filled,    "filled"),
+        (.included,  "included"),
+        (.italic,    "italic"),
+        (.pointed,   "pointed"),
+        (.scattered, "scattered")
+    ]
+
+    var description: String {
+        var opts: [String] = []
+        for (opt, name) in Self.allNames {
+            if self.contains(opt) { opts.append(name) }
+        }
+        return "[" + opts.joined(separator: ",") + "]"
+    }
+
     let rawValue: Int
 
     static let bold = PlotOptions(rawValue: 1 << 1)

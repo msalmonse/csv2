@@ -123,7 +123,7 @@ func plotShapes(
     _ styles: inout [Styles]
 ) {
     // Hop over not included and index plots
-    for i in first..<ct where i == settings.csv.index || !styles[i].options.isIncluded {
+    for i in first..<ct where i != settings.csv.index || !styles[i].options.isIncluded {
         // Only attach a shape if we are a scatter plot or a plot with data points
         if styles[i].options.isScattered || styles[i].options.isPointed {
             if settings.plot.shapes.hasIndex(i) && settings.plot.shapes[i].hasContent {
