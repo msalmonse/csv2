@@ -12,7 +12,7 @@ extension Plot {
     /// State of the plot
 
     enum PlotState {
-        case move, moved, online, clipped, clipped2, scatter, staple
+        case bar, move, moved, online, clipped, clipped2, scatter
     }
 
     /// Common state
@@ -43,9 +43,9 @@ extension Plot {
             self.plot = plot
             self.bar = bar
 
-            switch (styles.scattered, styles.bar >= 0, bar != nil) {
+            switch (styles.options.isScattered, styles.bar >= 0, bar != nil) {
             case (true,_,_): state = .scatter
-            case(false,true,true): state = .staple
+            case(false,true,true): state = .bar
             default: state = .move
             }
         }
@@ -56,9 +56,9 @@ extension Plot {
             switch state {
             case .moved:
                 // single data point so mark it
-                if !styles.pointed { shapeComponents.append(plotShape) }
+                if !styles.options.isPointed { shapeComponents.append(plotShape) }
                 state = .move
-            case .scatter, .staple, .clipped2: break
+            case .scatter, .bar, .clipped2: break
             default: state = .move
             }
         }
@@ -87,7 +87,7 @@ extension Plot {
                 shapeComponents.append(.moveTo(xy: pos))
                 state = .moved
                 // Data point?
-                if !clipped && styles.pointed && !pos.close(prevDataPoint, limit: limit) {
+                if !clipped && styles.options.isPointed && !pos.close(prevDataPoint, limit: limit) {
                     shapeComponents.append(plotShape)
                     prevDataPoint = pos
                 }
@@ -103,7 +103,7 @@ extension Plot {
                 }
                 state = clipped ? .clipped : .online
                 // Data point?
-                if !clipped && styles.pointed && !pos.close(prevDataPoint, limit: limit) {
+                if !clipped && styles.options.isPointed && !pos.close(prevDataPoint, limit: limit) {
                     shapeComponents.append(.moveTo(xy: pos))
                     shapeComponents.append(plotShape)
                     prevDataPoint = pos
@@ -117,7 +117,7 @@ extension Plot {
                     state = clipped ? .clipped2 : .online
                 }
                 // Data point?
-                if !clipped && styles.pointed && !pos.close(prevDataPoint, limit: limit) {
+                if !clipped && styles.options.isPointed && !pos.close(prevDataPoint, limit: limit) {
                     shapeComponents.append(.moveTo(xy: pos))
                     shapeComponents.append(plotShape)
                     prevDataPoint = pos
@@ -127,7 +127,7 @@ extension Plot {
                     shapeComponents.append(.moveTo(xy: pos))
                     shapeComponents.append(plotShape)
                 }
-            case .staple:
+            case .bar:
                 if let (p0, _) = plot?.posClip(Point(x: pos.x, y: plot?.point00.y ?? 0.0)) {
                     shapeComponents.append(bar!.path(p0: p0, y: pos.y, styles.bar))
                 }

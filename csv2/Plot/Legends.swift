@@ -96,7 +96,7 @@ extension Plot {
 
         plotter.plotText(x: x, y: y, text: "Legends:", styles: stylesList.legendHeadline)
 
-        for i in plotStyles.indices where i != index && plotStyles[i].included {
+        for i in plotStyles.indices where i != index && plotStyles[i].options.isIncluded {
             y += yStep
             if y > height - yStep - yStep {
                 plotter.plotText(x: xLeft, y: y, text: "…", styles: stylesList.legend)
@@ -109,8 +109,11 @@ extension Plot {
             style.textAlign = stylesList.legend.textAlign
             plotter.plotText(x: xLeft, y: y, text: text, styles: style)
             let lineY = y + yStep/2.0
-            if style.dashed || style.pointed || style.scattered { y += yStep }
-            switch (style.dashed, style.pointed, style.scattered) {
+            let dashed = style.options.isDashed
+            let pointed = style.options.isPointed
+            let scattered = style.options.isScattered
+            if dashed || pointed || scattered { y += yStep }
+            switch (dashed, pointed, scattered) {
             case (_,_,true): scatteredLine(xMid - shapeWidth, lineY, style)
             case (_,true,false): pointedLine(xLeft, xMid, xRight, lineY, style)
             case (true,_,false): plainLine(xLeft, xRight, lineY, style)

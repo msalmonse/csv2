@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "png --bg cornsilk --textcolour navy --fg maroon --colournameslist --size 12"
+            argument = "png --bg cornsilk --textcolour navy --fg maroon --showpoints=-1"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -60,11 +60,11 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/pie.csv"
+            argument = "${PROJECT_DIR}/data/trig.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/pie.json"
+            argument = "${PROJECT_DIR}/data/trig.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

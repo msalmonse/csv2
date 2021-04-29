@@ -94,6 +94,10 @@ Columns or rows that aren't defined are assigned a pattern sequentially from an 
 **Option:** `--distance`<br/>
 The minimum number of pixels between adjacent data points.
 
+**filled** (Int **0**)<br/>
+**Option:** `--filled`<br/>
+A bit vector of the plots to draw as as filled.<sup>[5](#fn5)</sup>
+
 **fontFamily** (String)<br/>
 **Option:** `--font`<br/>
 The font family to use for text.

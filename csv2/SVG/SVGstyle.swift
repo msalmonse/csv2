@@ -28,8 +28,8 @@ extension SVG {
     private func plotCSS(_ result: inout [String], id: String, plotStyles: [Styles]) {
         for style in plotStyles {
             if let cssClass = style.cssClass, let colour = style.colour {
-                let dashes =
-                    style.dashed ? "; stroke-dasharray: \(style.dash ?? "-1"); stroke-linecap: butt" : ""
+                let dashes = style.options.isDashed
+                    ? "; stroke-dasharray: \(style.dash ?? "-1"); stroke-linecap: butt" : ""
                 result.append("""
                     \(id) path.\(cssClass) { stroke: \(colour)\(dashes) }
                     \(id) text.\(cssClass), \(id) rect.\(cssClass) { fill: \(colour); stroke: \(colour) }

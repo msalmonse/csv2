@@ -41,6 +41,7 @@ struct Defaults {
     let dashedLines: Int
     let dashes: [String]
     let dataPointDistance: Double
+    let filled: Int
     let fontFamily: String
     let foregroundColour: String
     let headers: Int
@@ -104,6 +105,7 @@ struct Defaults {
         dashedLines: 0,
         dashes: [],
         dataPointDistance: 10.0,
+        filled: 0,
         fontFamily: "serif",
         foregroundColour: "black",
         headers: 0,

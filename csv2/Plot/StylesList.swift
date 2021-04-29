@@ -43,7 +43,7 @@ struct StylesList {
         legendBox.cssClass = "legend"
 
         legendHeadline = Styles.from(settings: settings)
-        legendHeadline.bold = true
+        legendHeadline.options.isBold = true
         legendHeadline.cssClass = "legend headline"
         legendHeadline.fontColour = settings.fg.legends
         legendHeadline.fontSize = sizes.legend.size * 1.25
@@ -105,12 +105,12 @@ struct StylesList {
 
     static func setDefaults(settings: Settings, sizes: FontSizes) {
         Styles.defaultStyles.bezier = settings.plot.bezier
-        Styles.defaultStyles.bold = settings.css.bold
+        Styles.defaultStyles.options.isBold = settings.css.bold
         Styles.defaultStyles.colour = defaults.foregroundColour
         Styles.defaultStyles.fill = "none"
         Styles.defaultStyles.fontColour = defaults.textColour
         Styles.defaultStyles.fontFamily = settings.css.fontFamily
-        Styles.defaultStyles.italic = settings.css.italic
+        Styles.defaultStyles.options.isItalic = settings.css.italic
         Styles.defaultStyles.strokeLineCap = "round"
         Styles.defaultStyles.strokeWidth = settings.css.strokeWidth
         Styles.defaultStyles.textAlign = "middle"

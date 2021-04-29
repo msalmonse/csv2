@@ -37,7 +37,6 @@ enum DoubleStyles {
 struct Styles {
     var bar = -1
     var bezier: Double = 0.0
-    var bold = false
     var colour: String?
     var cssClass: String?
     var dash: String?
@@ -46,11 +45,7 @@ struct Styles {
     var fontSize = 0.0
     var fontColour: String?
     var name: String?
-    var dashed = false
-    var included = false
-    var italic = false
-    var pointed = false
-    var scattered = false
+    var options = PlotOptions()
     var shape: Shape?
     var shapeWidth: Double { return strokeWidth * 1.75 }
     var strokeLineCap: String?
@@ -64,9 +59,9 @@ struct Styles {
     static func from(settings: Settings) -> Styles {
         var styles = Styles()
         styles.bezier = settings.plot.bezier
-        styles.bold = settings.css.bold
+        if settings.css.bold { styles.options += .bold }
         styles.fontFamily = settings.css.fontFamily
-        styles.italic = settings.css.italic
+        if settings.css.italic { styles.options += .italic }
 
         return styles
     }

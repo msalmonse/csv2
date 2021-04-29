@@ -15,7 +15,7 @@ extension Plot {
     func rowPlot() {
         let xiValues = settings.plot.sortx ? xiList().sorted() : xiList()
         let bar = barGet(xiValues)
-        for i in 0..<csv.rowCt where i != index && stylesList.plots[i].included {
+        for i in 0..<csv.rowCt where i != index && stylesList.plots[i].options.isIncluded {
             let yValues = csv.rowValues(i)
             plotCommon(
                 xiValues, yValues,

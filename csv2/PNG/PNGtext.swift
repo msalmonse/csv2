@@ -48,7 +48,7 @@ extension PNG {
         var traits = CTFontSymbolicTraits()
         var fontDesc = CTFontDescriptorCreateWithNameAndSize(family as CFString, size)
 
-        switch (styles.bold, styles.italic) {
+        switch (styles.options.isBold, styles.options.isItalic) {
         case (false, false): break
         case (true, false): traits = CTFontSymbolicTraits.traitBold
         case (false, true): traits = CTFontSymbolicTraits.traitItalic

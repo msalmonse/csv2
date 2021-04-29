@@ -30,6 +30,7 @@ extension Settings {
         case dashedLines
         case dashes
         case dataPointDistance
+        case filled
         case fontFamily
         case foregroundColours
         case headerColumns

@@ -69,6 +69,9 @@ struct Options: ParsableArguments {
     @Option(name: .long, help: "Minimum distance between data points")
     var distance = Defaults.global.dataPointDistance
 
+    @Option(name: .long, help: "Plots to show filled")
+    var filled = Defaults.global.filled
+
     @Option(name: .long, help: "Font family")
     var font = Defaults.global.fontFamily
 

@@ -20,7 +20,7 @@ extension Plot {
         for i in stylesList.plots.indices {
             stylesList.plots[i].colour = colour
             stylesList.plots[i].dash = dashes[i]
-            stylesList.plots[i].dashed = true
+            stylesList.plots[i].options += .dashed
             stylesList.plots[i].fontSize = step * 0.5
             stylesList.plots[i].strokeLineCap = "butt"
             stylesList.plots[i].textAlign = "start"

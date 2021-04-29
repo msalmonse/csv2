@@ -69,6 +69,8 @@
 		C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
 		C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
 		C49CC518263948620006FAC8 /* OptionDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49CC517263948620006FAC8 /* OptionDefaults.swift */; };
+		C49CC51B263A9A670006FAC8 /* PlotOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49CC51A263A9A670006FAC8 /* PlotOptions.swift */; };
+		C49CC51C263A9A670006FAC8 /* PlotOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49CC51A263A9A670006FAC8 /* PlotOptions.swift */; };
 		C4B2F968262576FF00CC5430 /* XIlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F967262576FF00CC5430 /* XIlist.swift */; };
 		C4B2F96B2625770300CC5430 /* XIlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F967262576FF00CC5430 /* XIlist.swift */; };
 		C4B2F98926272A4C00CC5430 /* ColourTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */; };
@@ -217,6 +219,7 @@
 		C49B7D6F25DC055400CEAB8C /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		C49CC517263948620006FAC8 /* OptionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionDefaults.swift; sourceTree = "<group>"; };
 		C49CC5192639DB4C0006FAC8 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
+		C49CC51A263A9A670006FAC8 /* PlotOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotOptions.swift; sourceTree = "<group>"; };
 		C4B2F967262576FF00CC5430 /* XIlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XIlist.swift; sourceTree = "<group>"; };
 		C4B2F9AD262B286400CC5430 /* SVGout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGout.swift; sourceTree = "<group>"; };
 		C4B2F9B4262B488400CC5430 /* CanvasOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasOut.swift; sourceTree = "<group>"; };
@@ -465,6 +468,7 @@
 				C4255F3E25E423A7002DFE80 /* PathCompenent.swift */,
 				C40CD44025ED2390003944FA /* Plane.swift */,
 				C45323FA25F90359007D741C /* PlotInfo.swift */,
+				C49CC51A263A9A670006FAC8 /* PlotOptions.swift */,
 				C4CF29FF263556EE00E858D1 /* Point.swift */,
 				C4B2FA042633F3D500CC5430 /* RGBAu8.swift */,
 				C4B2FA092634863000CC5430 /* RGBAu8Lookup.swift */,
@@ -724,6 +728,7 @@
 				C453242525FA2C23007D741C /* DrawShapes.swift in Sources */,
 				C42A6E3C261EDBED00784F54 /* Transform.swift in Sources */,
 				C4834ADD2637C7D60072C574 /* ChartType.swift in Sources */,
+				C49CC51B263A9A670006FAC8 /* PlotOptions.swift in Sources */,
 				C480848025E6776900BD0A24 /* Sides.swift in Sources */,
 				C453242C25FA5D99007D741C /* Extensions.swift in Sources */,
 				C4B2F9CC262C27B700CC5430 /* PNGpath.swift in Sources */,
@@ -807,6 +812,7 @@
 				C4C0C4AC26134AC70072699C /* CSVsettings.swift in Sources */,
 				C40CD43625ED007A003944FA /* Axes.swift in Sources */,
 				C4CF2A172637145700E858D1 /* Pie.swift in Sources */,
+				C49CC51C263A9A670006FAC8 /* PlotOptions.swift in Sources */,
 				C449F44F25EC1325006C67EB /* Text.swift in Sources */,
 				C4B2F9AF262B286400CC5430 /* SVGout.swift in Sources */,
 				C4F20C1726027B7C005D2FE1 /* Legends.swift in Sources */,

@@ -153,6 +153,7 @@ extension Settings {
     private static func intDefault(_ key: CodingKeys, _ defaults: Defaults) -> Int {
         switch key {
         case .dashedLines: return defaults.dashedLines
+        case .filled: return defaults.filled
         case .headerColumns: return defaults.headers
         case .headerRows: return defaults.headers
         case .height: return defaults.height

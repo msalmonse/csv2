@@ -30,6 +30,7 @@ extension Options {
             cssInclude: cmd.ownOptions(key: .css, default: Defaults.global.cssInclude),
             dashedLines: dashed,    dashes: dashes,
             dataPointDistance: distance,
+            filled: filled,
             fontFamily: font,
             foregroundColour: fg,
             headers: headers,

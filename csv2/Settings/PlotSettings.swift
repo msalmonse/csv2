@@ -19,6 +19,8 @@ extension Settings {
         let barWidth: Double
         // Use dashed lines
         let dashedLines: Int
+        // Which plots to fill
+        let filled: Int
         // Which plots to include
         let include: Int
         // Plots to show as scattered
@@ -65,6 +67,7 @@ extension Settings {
             barOffset: keyedDoubleValue(from: container, forKey: .barOffset, defaults: defaults),
             barWidth: keyedDoubleValue(from: container, forKey: .barWidth, defaults: defaults),
             dashedLines: keyedIntValue(from: container, forKey: .dashedLines, defaults: defaults),
+            filled: keyedIntValue(from: container, forKey: .filled, defaults: defaults),
             include: keyedIntValue(from: container, forKey: .include, defaults: defaults),
             scatterPlots: keyedIntValue(from: container, forKey: .scatterPlots, defaults: defaults),
             showDataPoints: keyedIntValue(from: container, forKey: .showDataPoints, defaults: defaults),
