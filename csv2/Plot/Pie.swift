@@ -29,7 +29,7 @@ extension Plot {
                         [
                             .arcAround(centre: centre, radius: radius, start: start, end: end),
                             .lineTo(xy: centre),
-                            .z
+                            .closePath
                         ]
                     )
                     // Don't fill negative slices

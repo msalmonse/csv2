@@ -58,11 +58,13 @@ extension Plot {
                 // single data point so mark it
                 if !styles.options[.pointed] { shapeComponents.append(plotShape) }
                 state = .move
-            case .scatter, .bar, .clipped2: break
+            case .scatter, .bar, .clipped2:
+                if !styles.options[.filled] { break }
+                fallthrough
             case .online:
                 if styles.options[.filled] {
                     pathComponents.append(.vertTo(y: plot!.point00.y))
-                    pathComponents.append(.z)
+                    pathComponents.append(.closePath)
                 }
                 state = .move
             default:
@@ -88,6 +90,8 @@ extension Plot {
                 return !clipped && styles.options[.pointed] && !pos.close(prevDataPoint, limit: limit)
             }
 
+            let filled = styles.options[.filled]
+
             if !clipped {
                 // move from a clipped state to an unclipped one
                 switch state {
@@ -98,7 +102,7 @@ extension Plot {
 
             switch state {
             case .move:
-                if styles.options[.filled] {
+                if filled {
                     pathComponents.append(.moveTo(xy: Point(x: pos.x, y: plot!.point00.y)))
                     pathComponents.append(.lineTo(xy: pos))
                 } else {
@@ -130,14 +134,10 @@ extension Plot {
                 }
             case .clipped:
                 // Draw line even if previously clipped but not if clipped now
+                pathComponents.append(.lineTo(xy: pos))
                 if clipped {
                     state = .clipped2
-                    if styles.options[.filled] {
-                        pathComponents.append(.vertTo(y: plot!.point00.y))
-                        pathComponents.append(.z)
-                    }
                 } else {
-                    pathComponents.append(.lineTo(xy: pos))
                     state = .online
                 }
                 // Data point?
@@ -156,8 +156,8 @@ extension Plot {
                     pathComponents.append(bar!.path(p0: p0, y: pos.y, styles.bar))
                 }
             case .clipped2:
-                // Ignore all data till we are not clipped, just move
-                pathComponents.append(.moveTo(xy: pos))
+                // Ignore all data till we are not clipped, just move unless we are filling
+                pathComponents.append(filled ? .lineTo(xy: pos) : .moveTo(xy: pos))
             }
             prevPlotPoint = pos
         }

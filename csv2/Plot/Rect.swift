@@ -23,7 +23,7 @@ extension Plot {
                 .horizTo(x: plane.right),
                 .vertTo(y: plane.bottom),
                 .horizTo(x: plane.left),
-                .z
+                .closePath
             ])
         } else {
             let left = plane.left
@@ -45,7 +45,7 @@ extension Plot {
                 .qBezierTo(xy: Point(x: left, y: bq), cxy: Point(x: left, y: bottom)),
                 .lineTo(xy: Point(x: left, y: tq)),
                 .qBezierTo(xy: Point(x: lq, y: top), cxy: Point(x: left, y: top)),
-                .z
+                .closePath
             ])
         }
     }

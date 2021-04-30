@@ -72,7 +72,7 @@ extension PNG {
             case .vertTo(let y):
                 current = CGPoint(x: current.x, y: CGFloat(y))
                 ctx.addLine(to: current)
-            case .z:
+            case .closePath:
                 ctx.closePath()
             default:
                 print("\(component) not implemented", to: &standardError)

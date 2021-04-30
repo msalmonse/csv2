@@ -24,6 +24,7 @@ enum PathComponent {
                                     // Draw cubic bezier curve to x,y with contol points c1x,c1y & c2x,c2y
         circle(r: Double),                          // Draw a circle of radius r
         circleStar(w: Double),                      // Draw a stared circle of width 2*w
+        closePath,                                  // close path
         cross(w: Double),                           // a cross of width 2 * w
         diamond(w: Double),                         // a diamond of width 2 * w
         horizBy(dx: Double),                        // Draw line horizontally by dx
@@ -40,8 +41,7 @@ enum PathComponent {
         star(w: Double),                            // Draw a star of width 2 * w
         triangle(w: Double),                        // Draw a triangle of width 2 * w
         vertBy(dy: Double),                         // Draw line vertically by dy
-        vertTo(y: Double),                          // Draw line vertically to y
-        z                                           // close path
+        vertTo(y: Double)                           // Draw line vertically to y
 
     /// Convert a command into a path string
     /// - Returns: path string
@@ -56,6 +56,7 @@ enum PathComponent {
             return "c \(c1dxy.f(1)) \(c2dxy.f(1)) \(dxy.f(1))"
         case .cBezierTo(let xy, let c1xy, let c2xy):
             return "C \(c1xy.f(1)) \(c2xy.f(1))) \(xy.f(1))"
+        case .closePath: return "Z"
         case .moveBy(let dxy): return "m \(dxy.f(1))"
         case .moveTo(let xy): return "M \(xy.f(1))"
         case .horizBy(let dx): return "h \(dx.f(1))"
@@ -68,7 +69,6 @@ enum PathComponent {
             return "Q \(cxy.f(1)), \(xy.f(1))"
         case .vertBy(let dy): return "v \(dy.f(1))"
         case .vertTo(let y): return "V \(y.f(1))"
-        case .z: return "Z"
         default:
             return self.expand!.path
         }
