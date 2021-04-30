@@ -7,7 +7,7 @@ Colours can be specified in the following ways:
     - `#rgba` e.g. `#fff7`
     - `#rrggbb` e.g. `#f0f8ff`
     - `@rrggbbaa` e.g. `#f0f8ff7f`
-    When an alpha isn't specified it is set to `255`
+    When an alpha isn't specified it is set to `255` i.e. `ff`
 3. Using `RGB()` or `RGBA()`. The red, green and blue values must be in the range `0...255` while the 
 alpha value can be `0...255` or `0.0...1.0`. The switch between the two alpha formats is determined by the
 presence of the decimal point, `0` is of course the same as `0` but `1` is quite different to `1.0`.
