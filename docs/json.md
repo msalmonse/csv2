@@ -3,7 +3,7 @@
 The settings file is [JSON](https://en.wikipedia.org/wiki/JSON) encoded and the following
 tags are supported, the data type and default value are shown in parathenses. Some values can be set from the command line and these are shown.
 
-**backgroundColour** (String)<br/>
+**backgroundColour** (String) <sup>[9](#fn9)</sup><br/>
 **Option:**`--bg`<br/>
 The background colour for the Canvas or SVG
 
@@ -49,7 +49,7 @@ Bounds check some parameters
 **Option:** `--canvas`<br/>
 The id of the canvas to write to.
 
-**colours** (Array of Strings)<br/>
+**colours** (Array of Strings) <sup>[9](#fn9)</sup><br/>
 **Option:** `--colours`<sup>[6](#fn6)</sup><br/>
 The colours to be used to plot the column or row. The index, if present, must be included although never used.
 Columns or rows that aren't defined are assigned a colour sequentially from an internal list.
@@ -96,11 +96,30 @@ The minimum number of pixels between adjacent data points.
 
 **filled** (Int **0**)<br/>
 **Option:** `--filled`<br/>
-A bit vector of the plots to draw as as filled.<sup>[5](#fn5)</sup>
+A bit vector of the plots to draw filled.<sup>[5](#fn5)</sup>
 
 **fontFamily** (String)<br/>
 **Option:** `--font`<br/>
 The font family to use for text.
+
+**foregroundColours** (Dictionary of Strings) <sup>[9](#fn9)</sup><br/>
+**Option:** `--fg`<br/>
+**Option:** `--textcolour`<br/>
+The colours of the elements on the chart separate from the plots can be set using the foregroundColours dictionary.
+Colours that aren't defined are set to the options above `--texrcolour` sets the text and  `--fg` sets the rest. The
+keys for the dictionary are:
+
+- **axes**: sets the colours for the abscissa, ordinate and grid. The grid has a lower alpha value making it appear lighter.
+- **legends**: the colour for the word "Legends".
+- **legendsBox**: the box around the legends where once again the alpha is lowered.
+- **pieLegend**: the text under pie charts.
+- **subTitle**: the text under the title.
+- **title**: the title.
+- **xLabel**: the value markers for the abscissa.
+- **xTags**: the extra markers for the abscissa.
+- **xTitle**: the text describing the abscissa.
+- **yLabel**: the value markers for the ordinate.
+- **yTitle**:  the text describing the ordinate.
 
 **headerColumns** (Int **0**)<br/>
 **Option:** `--headers`<sup>[4](#fn4)</sup><br/>
@@ -316,6 +335,8 @@ Hence `--reserve 1 2 3 4` is the same as `reserveLeft: 1`, `reserveTop: 2`, `res
 
 - <a id="fn8">8</a>: The command line arguments are the opposite of the JSON settings, `--noxxx` sets
 `xxx` to `false`.
+
+- <a id="fn9">9</a>: Specifying colours is covered [here](colours.md)
 
 - <a id="fncanvas">canvas</a>: Only when creating a Canvas plot
 
