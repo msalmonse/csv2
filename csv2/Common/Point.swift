@@ -79,4 +79,14 @@ struct Point: Equatable {
     static func + (left: Point, right: Vector) -> Point {
         return Point(x: left.x + right.dx, y: left.y + right.dy)
     }
+
+    /// Subtract a point from a point
+    /// - Parameters:
+    ///   - left: point
+    ///   - right: other point
+    /// - Returns: Vector between points
+
+    static func - (left: Point, right: Point) -> Vector {
+        return Vector(dx: left.x - right.x, dy: left.y - right.y)
+    }
 }

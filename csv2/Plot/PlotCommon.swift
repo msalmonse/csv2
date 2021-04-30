@@ -79,7 +79,7 @@ extension Plot {
 
         func plotOne(
             _ pos: Point,
-            clipped: Bool,
+            _ posPosition: Plane.PointPosition,
             nextPlotPoint: Point?,
             plotShape: PathComponent
         ) {
@@ -90,6 +90,7 @@ extension Plot {
                 return !clipped && styles.options[.pointed] && !pos.close(prevDataPoint, limit: limit)
             }
 
+            let clipped = !posPosition.isInside
             let filled = styles.options[.filled]
 
             if !clipped {
@@ -167,15 +168,16 @@ extension Plot {
     /// - Parameter pos: position
     /// - Returns: new position and indicator of clipping
 
-    private func posClip(_ pos: Point) -> (Point, Bool) {
+    private func posClip(_ pos: Point) -> (Point, Plane.PointPosition) {
+        let posPosition = allowedPlane.position(pos)
         var x = pos.x
         var y = pos.y
-        if x < allowedPlane.left { x = allowedPlane.left }
-        if x > allowedPlane.right { x = allowedPlane.right }
-        if y < allowedPlane.top { y = allowedPlane.top }
-        if y > allowedPlane.bottom { y = allowedPlane.bottom }
-        if x == pos.x && y == pos.y { return (pos, false) }
-        return (Point(x: x, y: y), true)
+        if posPosition[.left]  { x = allowedPlane.left }
+        if posPosition[.right] { x = allowedPlane.right }
+        if posPosition[.above] { y = allowedPlane.top }
+        if posPosition[.below] { y = allowedPlane.bottom }
+
+        return (Point(x: x, y: y), posPosition)
     }
 
     /// Plot a series of x and y values
@@ -221,10 +223,10 @@ extension Plot {
                     }
                     yɑ = pos!.y * settings.plot.smooth
                 }
-                let (pos, clipped) = posClip(ts.pos(pos!))
+                let (pos, posPosition) = posClip(ts.pos(pos!))
                 var nextPos = xypos(i + 1)
                 if nextPos != nil { (nextPos, _) = posClip(ts.pos(nextPos!)) }
-                state.plotOne(pos, clipped: clipped, nextPlotPoint: nextPos, plotShape: plotShape)
+                state.plotOne(pos, posPosition, nextPlotPoint: nextPos, plotShape: plotShape)
             }
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
