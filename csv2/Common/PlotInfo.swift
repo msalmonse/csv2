@@ -47,7 +47,7 @@ func plotColours(
             styles[i].colour = settings.plot.colours[i]
         } else if settings.plot.black {
             styles[i].colour = "black"
-        } else if styles[i].options.isIncluded {
+        } else if styles[i].options[.included] {
             styles[i].colour = Colours.nextColour()
         }
         styles[i].fontColour = styles[i].colour
@@ -73,7 +73,7 @@ func plotDashes(
     for i in first..<ct {
         if settings.plot.dashes.hasIndex(i) && !settings.plot.dashes[i].isEmpty {
             styles[i].dash = settings.plot.dashes[i].replacingOccurrences(of: " ", with: ",")
-        } else if styles[i].options.isDashed && styles[i].options.isIncluded {
+        } else if styles[i].options.isAll(of: [.dashed, .included]) {
             styles[i].dash = Dashes.nextDash(width)
         }
     }
@@ -123,9 +123,9 @@ func plotShapes(
     _ styles: inout [Styles]
 ) {
     // Hop over not included and index plots
-    for i in first..<ct where i != settings.csv.index || !styles[i].options.isIncluded {
+    for i in first..<ct where i != settings.csv.index || !styles[i].options[.included] {
         // Only attach a shape if we are a scatter plot or a plot with data points
-        if styles[i].options.isScattered || styles[i].options.isPointed {
+        if styles[i].options.isAny(of: [.scattered, .pointed]) {
             if settings.plot.shapes.hasIndex(i) && settings.plot.shapes[i].hasContent {
                 styles[i].shape = Shape.lookup(settings.plot.shapes[i]) ?? Shape.nextShape()
             } else {
@@ -150,11 +150,11 @@ func plotFlags(
 ) {
     for i in first..<min(ct, Int.bitWidth) {
         let mask = 1 << i
-        styles[i].options.isDashed = settings.plot.dashedLines &== mask
-        styles[i].options.isFilled = settings.plot.filled &== mask
-        styles[i].options.isIncluded = settings.plot.include &== mask
-        styles[i].options.isPointed = settings.plot.showDataPoints &== mask
-        styles[i].options.isScattered = settings.plot.scatterPlots &== mask
+        styles[i].options[.dashed] = settings.plot.dashedLines &== mask
+        styles[i].options[.filled] = settings.plot.filled &== mask
+        styles[i].options[.included] = settings.plot.include &== mask
+        styles[i].options[.pointed] = settings.plot.showDataPoints &== mask
+        styles[i].options[.scattered] = settings.plot.scatterPlots &== mask
         if settings.plot.bared &== mask { styles[i].bar = Bar.next }
     }
 }

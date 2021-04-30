@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// Collection of options for a plot
+
 struct PlotOptions: OptionSet, CustomStringConvertible, CustomDebugStringConvertible {
     var debugDescription: String {
         return "0x\(rawValue.x0(3)) = \(description)"
@@ -40,50 +42,26 @@ struct PlotOptions: OptionSet, CustomStringConvertible, CustomDebugStringConvert
     static let pointed = PlotOptions(rawValue: 1 << 6)
     static let scattered = PlotOptions(rawValue: 1 << 7)
 
-    // Convenience functions
-
-    var isBold: Bool {
-        get { self.contains(.bold) }
-        set { if newValue { self.insert(.bold) } else { self.remove(.bold) } }
-        }
-    var isDashed: Bool {
-        get { self.contains(.dashed) }
-        set { if newValue { self.insert(.dashed) } else { self.remove(.dashed) } }
-        }
-    var isFilled: Bool {
-        get { self.contains(.filled) }
-        set { if newValue { self.insert(.filled) } else { self.remove(.filled) } }
-        }
-    var isIncluded: Bool {
-        get { self.contains(.included) }
-        set { if newValue { self.insert(.included) } else { self.remove(.bold) } }
-        }
-    var isItalic: Bool {
-        get { self.contains(.italic) }
-        set { if newValue { self.insert(.italic) } else { self.remove(.italic) } }
-        }
-    var isPointed: Bool {
-        get { self.contains(.pointed) }
-        set { if newValue { self.insert(.pointed) } else { self.remove(.pointed) } }
-        }
-    var isScattered: Bool {
-        get { self.contains(.scattered) }
-        set { if newValue { self.insert(.scattered) } else { self.remove(.scattered) } }
-        }
-
-    /// Insert an element in a PlotOptions
-    /// - Parameters:
-    ///   - left: Plotoptions
-    ///   - right: element
-    static func += (left: inout PlotOptions, right: PlotOptions) {
-        left.insert(right)
+    subscript(_ index: PlotOptions) -> Bool {
+        get { contains(index) }
+        set(newValue) { if newValue { insert(index) } else { remove(index) } }
     }
 
-    /// Remove an element from a PlotOptions
-    /// - Parameters:
-    ///   - left: Plotoptions
-    ///   - right: element
-    static func -= (left: inout PlotOptions, right: PlotOptions) {
-        left.remove(right)
+    /// Test for any of a list
+    /// - Parameter opts: options to test
+    /// - Returns: true is any are set
+
+    func isAny(of opts: [PlotOptions]) -> Bool {
+        let any = PlotOptions(opts)
+        return !isDisjoint(with: any)
+    }
+
+    /// Test for all of a list
+    /// - Parameter opts: options to test
+    /// - Returns: true if all are set
+
+    func isAll(of opts: [PlotOptions]) -> Bool {
+        let all = PlotOptions(opts)
+        return intersection(all) == all
     }
 }

@@ -43,7 +43,7 @@ extension Plot {
             self.plot = plot
             self.bar = bar
 
-            switch (styles.options.isScattered, styles.bar >= 0, bar != nil) {
+            switch (styles.options[.scattered], styles.bar >= 0, bar != nil) {
             case (true,_,_): state = .scatter
             case(false,true,true): state = .bar
             default: state = .move
@@ -56,11 +56,11 @@ extension Plot {
             switch state {
             case .moved:
                 // single data point so mark it
-                if !styles.options.isPointed { shapeComponents.append(plotShape) }
+                if !styles.options[.pointed] { shapeComponents.append(plotShape) }
                 state = .move
             case .scatter, .bar, .clipped2: break
             case .online:
-                if styles.options.isFilled {
+                if styles.options[.filled] {
                     pathComponents.append(.vertTo(y: plot!.point00.y))
                     pathComponents.append(.z)
                 }
@@ -85,7 +85,7 @@ extension Plot {
             /// - Returns: true if yes
 
             func shouldAddDataPoint() -> Bool {
-                return !clipped && styles.options.isPointed && !pos.close(prevDataPoint, limit: limit)
+                return !clipped && styles.options[.pointed] && !pos.close(prevDataPoint, limit: limit)
             }
 
             if !clipped {
@@ -98,7 +98,7 @@ extension Plot {
 
             switch state {
             case .move:
-                if styles.options.isFilled {
+                if styles.options[.filled] {
                     pathComponents.append(.moveTo(xy: Point(x: pos.x, y: plot!.point00.y)))
                     pathComponents.append(.lineTo(xy: pos))
                 } else {
@@ -107,7 +107,7 @@ extension Plot {
                 shapeComponents.append(.moveTo(xy: pos))
                 state = .moved
                 // Data point?
-                if  shouldAddDataPoint() {
+                if shouldAddDataPoint() {
                     shapeComponents.append(plotShape)
                     prevDataPoint = pos
                 }
@@ -123,7 +123,7 @@ extension Plot {
                 }
                 state = clipped ? .clipped : .online
                 // Data point?
-                if !clipped && styles.options.isPointed && !pos.close(prevDataPoint, limit: limit) {
+                if shouldAddDataPoint() {
                     shapeComponents.append(.moveTo(xy: pos))
                     shapeComponents.append(plotShape)
                     prevDataPoint = pos
@@ -132,7 +132,7 @@ extension Plot {
                 // Draw line even if previously clipped but not if clipped now
                 if clipped {
                     state = .clipped2
-                    if styles.options.isFilled {
+                    if styles.options[.filled] {
                         pathComponents.append(.vertTo(y: plot!.point00.y))
                         pathComponents.append(.z)
                     }
@@ -229,7 +229,7 @@ extension Plot {
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
         var plotProps = styles
-        let fill = plotProps.bar >= 0 || styles.options.isFilled
+        let fill = plotProps.bar >= 0 || styles.options[.filled]
         if fill {
             if let rgba = RGBAu8(plotProps.fill) {
                 plotProps.fill = rgba.multiplyingBy(alpha: 0.75).cssRGBA

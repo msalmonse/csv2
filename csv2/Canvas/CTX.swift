@@ -56,8 +56,8 @@ fileprivate func jsAlign(_ textAlign: String) -> String {
 
 fileprivate func stylesFontSpec(from styles: Styles) -> String {
     var spec: [String] = []
-    if styles.options.isItalic { spec.append("italic") }
-    if styles.options.isBold { spec.append("bold") }
+    if styles.options[.italic] { spec.append("italic") }
+    if styles.options[.bold] { spec.append("bold") }
     spec.append("\(styles.cascade(.fontSize).f(1))px")
     spec.append(styles.cascade(.fontFamily) ?? "serif")
 

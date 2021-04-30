@@ -59,9 +59,9 @@ struct Styles {
     static func from(settings: Settings) -> Styles {
         var styles = Styles()
         styles.bezier = settings.plot.bezier
-        if settings.css.bold { styles.options += .bold }
+        styles.options[.bold] = settings.css.bold
         styles.fontFamily = settings.css.fontFamily
-        if settings.css.italic { styles.options += .italic }
+        styles.options[.italic] = settings.css.italic
 
         return styles
     }

@@ -96,7 +96,7 @@ extension Plot {
 
         plotter.plotText(x: x, y: y, text: "Legends:", styles: stylesList.legendHeadline)
 
-        for i in plotStyles.indices where i != index && plotStyles[i].options.isIncluded {
+        for i in plotStyles.indices where i != index && plotStyles[i].options[.included] {
             y += yStep
             if y > height - yStep - yStep {
                 plotter.plotText(x: xLeft, y: y, text: "…", styles: stylesList.legend)
@@ -109,11 +109,9 @@ extension Plot {
             style.textAlign = stylesList.legend.textAlign
             plotter.plotText(x: xLeft, y: y, text: text, styles: style)
             let lineY = y + yStep/2.0
-            let dashed = style.options.isDashed
-            let pointed = style.options.isPointed
-            let scattered = style.options.isScattered
-            if dashed || pointed || scattered { y += yStep }
-            switch (dashed, pointed, scattered) {
+            let options = style.options
+            if options.isAny(of: [.dashed, .pointed, .scattered]) { y += yStep }
+            switch (options[.dashed], options[.pointed], options[.scattered]) {
             case (_,_,true): scatteredLine(xMid - shapeWidth, lineY, style)
             case (_,true,false): pointedLine(xLeft, xMid, xRight, lineY, style)
             case (true,_,false): plainLine(xLeft, xRight, lineY, style)
@@ -125,8 +123,6 @@ extension Plot {
                 top: positions.legendY, bottom: y + yStep,
                 left: x - legendSize, right: positions.legendRightX
             )
-        plotter.plotPath(rectPath(rectPlane, rx: strokeWidth * 3.0),
-                            styles: stylesList.legendBox, fill: false
-                        )
+        plotter.plotPath(rectPath(rectPlane, rx: strokeWidth * 3.0), styles: stylesList.legendBox, fill: false)
     }
 }
