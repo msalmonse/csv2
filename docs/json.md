@@ -59,22 +59,22 @@ More on colours can be found [here](colours.md).
 **Option:** `--nocomment` <sup>[8](#fn8)</sup><br/>
 Add an identifying comment to the SVG
 
-<a id="cssClasses">**cssClasses** (Array of Strings)</a><sup>[svg](#fnsvg)</sup><br/>
+<a id="cssClasses">**cssClasses** (Array of Strings)</a> <sup>[svg](#fnsvg)</sup><br/>
 The elements of the SVG use CSS for styling with each plot having it's own class. The classes in this list are assigned
 to each row or column in turn including the index. Plots not included in this list are assigned an automatically generated class.<br/>
 There are no restrictions on the contents so that multiple classes can be attached to a plot by using a space seperated list for
 each entry.<br/>
 For more information see (css.md)[css.md]
 
-<a id="cssExtras">**cssExtras** (Array of Strings)</a><sup>[svg](#fnsvg)</sup><br/>
+<a id="cssExtras">**cssExtras** (Array of Strings)</a> <sup>[svg](#fnsvg)</sup><br/>
 The strings in this array are copied into a `<style>` tag.
 
-<a id="cssID">**cssID** (String)</a><sup>[svg](#fnsvg)</sup><br/>
+<a id="cssID">**cssID** (String)</a> <sup>[svg](#fnsvg)</sup><br/>
 **Option:** `--cssid`<br/>
 The style tags of SVG's can affect each other when they are included in an HTML document. For this reason every `<svg>` tag
 has an `id` defined. It can be this id or a random one. If the `cssID` is set to _"none"_ then no id is added to the SVG.
 
-<a id="cssInclude">**cssInclude** (String)</a><sup>[svg](#fnsvg)</sup><br/>
+<a id="cssInclude">**cssInclude** (String)</a> <sup>[svg](#fnsvg)</sup><br/>
 **Option:** `--css`<br/>
 The contents of the file named by this string are included in a separate `<style>` tag.
 
@@ -269,7 +269,7 @@ above then the csv is not checked. Embedded commas will probably cause problems.
 **N.B.** leading and trailing double quotes and spaces are stripped from csv data when
 it is read, they have no effect on how the data is interpreted.
 
-<a id="svgInclude">**svgInclude** (String)</a><sup>svg(#fnsvg)</sup><br/>
+<a id="svgInclude">**svgInclude** (String)</a> <sup>[svg](#fnsvg)</sup><br/>
 **Option:** `--svg`<br/>
 This options is the path of a file to include at the end the SVG, just before the `</svg>`
 
@@ -328,7 +328,7 @@ To simplify the calculation the `--bitmap` option can be used e.g.<br/>
 - <a id="fn6">6</a>: These options accept a list of words separated by spaces up until the next flag
 or option. If there are none before the file names then a `--` can be used to terminate the list.
 
-- <a id="fn7">7</a>: Although there are 4 paramaters there is only one command line option. The option can
+- <a id="fn7">7</a>: Although there are 4 parameters there is only one command line option. The option can
 have between 1 and 4 values, these values are assigned to the sides in turn.<br/>
 Hence `--reserve 1 2 3 4` is the same as `reserveLeft: 1`, `reserveTop: 2`, `reserveRight 3` and,
 `reserve Bottom: 4`.
