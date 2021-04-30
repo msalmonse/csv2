@@ -45,7 +45,7 @@ Use bold text.
 **Option:** `--nobounds` <sup>[8](#fn8)</sup><br/>
 Bounds check some parameters
 
-**canvas** (String)<sup>[canvas](#fncanvas)</sup><br/>
+**canvas** (String)<sup>[canvas only](#fncanvas)</sup><br/>
 **Option:** `--canvas`<br/>
 The id of the canvas to write to.
 
@@ -59,22 +59,22 @@ More on colours can be found [here](colours.md).
 **Option:** `--nocomment` <sup>[8](#fn8)</sup><br/>
 Add an identifying comment to the SVG
 
-<a id="cssClasses">**cssClasses** (Array of Strings)</a> <sup>[svg](#fnsvg)</sup><br/>
+<a id="cssClasses">**cssClasses** (Array of Strings)</a> <sup>[svg only](#fnsvg)</sup><br/>
 The elements of the SVG use CSS for styling with each plot having it's own class. The classes in this list are assigned
 to each row or column in turn including the index. Plots not included in this list are assigned an automatically generated class.<br/>
 There are no restrictions on the contents so that multiple classes can be attached to a plot by using a space seperated list for
 each entry.<br/>
 For more information see (css.md)[css.md]
 
-<a id="cssExtras">**cssExtras** (Array of Strings)</a> <sup>[svg](#fnsvg)</sup><br/>
+<a id="cssExtras">**cssExtras** (Array of Strings)</a> <sup>[svg only](#fnsvg)</sup><br/>
 The strings in this array are copied into a `<style>` tag.
 
-<a id="cssID">**cssID** (String)</a> <sup>[svg](#fnsvg)</sup><br/>
+<a id="cssID">**cssID** (String)</a> <sup>[svg only](#fnsvg)</sup><br/>
 **Option:** `--cssid`<br/>
 The style tags of SVG's can affect each other when they are included in an HTML document. For this reason every `<svg>` tag
 has an `id` defined. It can be this id or a random one. If the `cssID` is set to _"none"_ then no id is added to the SVG.
 
-<a id="cssInclude">**cssInclude** (String)</a> <sup>[svg](#fnsvg)</sup><br/>
+<a id="cssInclude">**cssInclude** (String)</a> <sup>[svg only](#fnsvg)</sup><br/>
 **Option:** `--css`<br/>
 The contents of the file named by this string are included in a separate `<style>` tag.
 
@@ -135,7 +135,7 @@ The number of rows that do not contain data.<sup>[1](#fn1)</sup>
 **Option:** `--height`<br/>
 The height of the generated Canvas or SVG
 
-**hover** (Bool **true**)<sup>[svg](#fnsvg)</sup><br/>
+**hover** (Bool **true**)<sup>[svg only](#fnsvg)</sup><br/>
 **Option:** `--nohover` <sup>[8](#fn8)</sup><br/>
 Add the css to emphasize the hovered over plot.
 
@@ -269,7 +269,7 @@ above then the csv is not checked. Embedded commas will probably cause problems.
 **N.B.** leading and trailing double quotes and spaces are stripped from csv data when
 it is read, they have no effect on how the data is interpreted.
 
-<a id="svgInclude">**svgInclude** (String)</a> <sup>[svg](#fnsvg)</sup><br/>
+<a id="svgInclude">**svgInclude** (String)</a> <sup>[svg only](#fnsvg)</sup><br/>
 **Option:** `--svg`<br/>
 This options is the path of a file to include at the end the SVG, just before the `</svg>`
 
