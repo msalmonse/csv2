@@ -104,7 +104,6 @@ extension Plot {
             }
             var style = plotStyles[i]
             let text = shortened(style.name!)
-            style.cssClass = style.cssClass! + " legend"
             style.fontSize = stylesList.legend.fontSize
             style.textAlign = stylesList.legend.textAlign
             plotter.plotText(x: xLeft, y: y, text: text, styles: style)
