@@ -22,6 +22,7 @@ extension Plot {
         var shapeComponents = Path()
         var prevDataPoint = Point.inf
         var prevPlotPoint = Point.inf
+        var prevPosPosition = Plane.PointPosition()
         var state: PlotState
         let styles: Styles
         weak var plot: Plot?
@@ -50,7 +51,15 @@ extension Plot {
             }
         }
 
+        /// Close the current if filling
+
+        func closePath() {
+            pathComponents.append(.vertTo(y: plot!.point00.y))
+            pathComponents.append(.closePath)
+        }
+
         /// Handle an x or y of nil
+        /// - Parameter plotShape: shape to plot if necessary
 
         func nilPlot(_ plotShape: PathComponent) {
             switch state {
@@ -62,13 +71,24 @@ extension Plot {
                 if !styles.options[.filled] { break }
                 fallthrough
             case .online:
-                if styles.options[.filled] {
-                    pathComponents.append(.vertTo(y: plot!.point00.y))
-                    pathComponents.append(.closePath)
-                }
+                if styles.options[.filled] { closePath() }
                 state = .move
             default:
                 state = .move
+            }
+        }
+
+        /// Add a data point
+        /// - Parameters:
+        ///   - plotShape: shape to use
+        ///   - pos: where to add it
+        ///   - clipped: was pos clipped?
+
+        func addDataPoint(_ plotShape: PathComponent, at pos: Point, clipped: Bool) {
+            if !clipped && styles.options[.pointed] && !pos.close(prevDataPoint, limit: limit) {
+                shapeComponents.append(.moveTo(xy: pos))
+                shapeComponents.append(plotShape)
+                prevDataPoint = pos
             }
         }
 
@@ -83,20 +103,16 @@ extension Plot {
             nextPlotPoint: Point?,
             plotShape: PathComponent
         ) {
-            /// Check to see if we should add a data point
-            /// - Returns: true if yes
-
-            func shouldAddDataPoint() -> Bool {
-                return !clipped && styles.options[.pointed] && !pos.close(prevDataPoint, limit: limit)
-            }
-
             let clipped = !posPosition.isInside
             let filled = styles.options[.filled]
+            let traversed = (posPosition[.above] && prevPosPosition[.below]) ||
+                (posPosition[.below] && prevPosPosition[.above])
 
             if !clipped {
                 // move from a clipped state to an unclipped one
                 switch state {
-                case .clipped, .clipped2: state = .online
+                case .clipped, .clipped2:
+                    state = .online
                 default: break
                 }
             }
@@ -109,13 +125,9 @@ extension Plot {
                 } else {
                     pathComponents.append(.moveTo(xy: pos))
                 }
-                shapeComponents.append(.moveTo(xy: pos))
                 state = .moved
                 // Data point?
-                if shouldAddDataPoint() {
-                    shapeComponents.append(plotShape)
-                    prevDataPoint = pos
-                }
+                addDataPoint(plotShape, at: pos, clipped: clipped)
             case .moved, .online:
                 if styles.bezier == 0.0 || nextPlotPoint == nil {
                     pathComponents.append(.lineTo(xy: pos))
@@ -128,11 +140,7 @@ extension Plot {
                 }
                 state = clipped ? .clipped : .online
                 // Data point?
-                if shouldAddDataPoint() {
-                    shapeComponents.append(.moveTo(xy: pos))
-                    shapeComponents.append(plotShape)
-                    prevDataPoint = pos
-                }
+                addDataPoint(plotShape, at: pos, clipped: clipped)
             case .clipped:
                 // Draw line even if previously clipped but not if clipped now
                 pathComponents.append(.lineTo(xy: pos))
@@ -142,11 +150,7 @@ extension Plot {
                     state = .online
                 }
                 // Data point?
-                if shouldAddDataPoint() {
-                    shapeComponents.append(.moveTo(xy: pos))
-                    shapeComponents.append(plotShape)
-                    prevDataPoint = pos
-                }
+                addDataPoint(plotShape, at: pos, clipped: clipped)
             case .scatter:
                 if !clipped {
                     shapeComponents.append(.moveTo(xy: pos))
@@ -157,10 +161,20 @@ extension Plot {
                     pathComponents.append(bar!.path(p0: p0, y: pos.y, styles.bar))
                 }
             case .clipped2:
-                // Ignore all data till we are not clipped, just move unless we are filling
-                pathComponents.append(filled ? .lineTo(xy: pos) : .moveTo(xy: pos))
+                if filled {
+                    if traversed {
+                        closePath()
+                        pathComponents.append(.moveTo(xy: Point(x: pos.x, y: plot!.point00.y)))
+                        pathComponents.append(.lineTo(xy: pos))
+                    } else {
+                        pathComponents.append(.lineTo(xy: pos))
+                    }
+                } else {
+                    pathComponents.append(.moveTo(xy: pos))
+                }
             }
             prevPlotPoint = pos
+            prevPosPosition = posPosition
         }
     }
 
@@ -172,7 +186,7 @@ extension Plot {
         let posPosition = allowedPlane.position(pos)
         var x = pos.x
         var y = pos.y
-        if posPosition[.left]  { x = allowedPlane.left }
+        if  posPosition[.left] { x = allowedPlane.left }
         if posPosition[.right] { x = allowedPlane.right }
         if posPosition[.above] { y = allowedPlane.top }
         if posPosition[.below] { y = allowedPlane.bottom }
@@ -204,8 +218,7 @@ extension Plot {
         let plotShape = styles.shape?.pathComponent(w: shapeWidth) ?? .circleStar(w: shapeWidth)
 
         func xypos(_ i: Int) -> Point? {
-            guard xiValues.hasIndex(i) else { return nil }
-            guard let x = xiValues[i].x else { return nil }
+            guard xiValues.hasIndex(i), let x = xiValues[i].x else { return nil }
             let j = xiValues[i].i
             guard yValues.hasIndex(j), let y = yValues[j] else { return nil }
             return Point(x: x, y: y)
