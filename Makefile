@@ -24,12 +24,18 @@ JSINDEXMAKE = scripts/jsIndexMake.sh
 PNGINDEXMAKE = scripts/pngIndexMake.sh
 SVGINDEXMAKE = scripts/svgIndexMake.sh
 
-.PHONY:	all docs error.expected examples shapes
+.PHONY:	all build docs error.expected examples release
 
 all:	generated/.made \
 	generated/svgindex.html \
 	generated/pngindex.html \
 	generated/jsindex.html
+
+build:
+	xcodebuild -scheme csv2 build
+
+release:
+	xcodebuild -scheme "Release csv2" build
 
 docs: $(DOCFILES)
 

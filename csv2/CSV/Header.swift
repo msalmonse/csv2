@@ -16,11 +16,11 @@ extension CSV {
     ///   - header: the row or column that has the names
     /// - Returns: column header
 
-    func columnHeader(_ column: Int, _ header: Int) -> String {
-        if data[header].hasIndex(column) && data[header][column].hasContent {
+    func columnHeader(_ column: Int, _ header: Int) -> String? {
+        if data.hasIndex(header) && data[header].hasIndex(column) && data[header][column].hasContent {
                 return data[header][column]
         }
-        return String(format: "Column %d", column + 1)
+        return nil
     }
 
     /// Extract name from column header
@@ -30,11 +30,11 @@ extension CSV {
     ///   - header: the row or column that has the names
     /// - Returns: row header
 
-    func rowHeader(_ row: Int, header: Int) -> String {
-        if row >= 0 && row < rowCt && data[row][header].hasContent {
+    func rowHeader(_ row: Int, header: Int) -> String? {
+        if data.hasIndex(row) && data[row].hasIndex(header) && data[row][header].hasContent {
             return data[row][header]
         }
-        return String(format: "Row %d", row + 1)
+        return nil
     }
 
     /// Extract name from row or header column
@@ -45,7 +45,7 @@ extension CSV {
     ///   - header: the row or column that has the names
     /// - Returns: row or column header
 
-    func headerText(_ i: Int, inColumns: Bool, header: Int) -> String {
+    func headerText(_ i: Int, _ inColumns: Bool, header: Int) -> String? {
         return inColumns ? columnHeader(i, header) : rowHeader(i, header: header)
     }
 

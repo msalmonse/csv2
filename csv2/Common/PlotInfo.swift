@@ -94,15 +94,20 @@ func plotNames(
     _ ct: Int,
     _ styles: inout [Styles]
 ) {
+    // Row or column name
+    func rcName(_ num: Int) -> String {
+        let rc = settings.inRows ? "Row" : "Column"
+        return "\(rc) \(num.d(1))"
+    }
+
     for i in first..<ct {
         if settings.plot.names.hasIndex(i) && settings.plot.names[i].hasContent {
             styles[i].name = settings.plot.names[i]
         } else if settings.headers > 0 && settings.csv.nameHeader >= 0 {
             styles[i].name =
-                csv.headerText(i, inColumns: settings.inColumns, header: settings.csv.nameHeader)
+                csv.headerText(i, settings.inColumns, header: settings.csv.nameHeader) ?? rcName(i + 1)
         } else {
-            styles[i].name =
-                csv.headerText(i, inColumns: settings.inColumns, header: settings.csv.nameHeader)
+            styles[i].name = rcName(i + 1)
         }
     }
 }
