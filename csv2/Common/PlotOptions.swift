@@ -42,7 +42,7 @@ struct PlotOptions: OptionSet, CustomStringConvertible, CustomDebugStringConvert
     static let pointed = PlotOptions(rawValue: 1 << 6)
     static let scattered = PlotOptions(rawValue: 1 << 7)
 
-    subscript(_ index: PlotOptions) -> Bool {
+    subscript(_ index: Self) -> Bool {
         get { contains(index) }
         set(newValue) { if newValue { insert(index) } else { remove(index) } }
     }

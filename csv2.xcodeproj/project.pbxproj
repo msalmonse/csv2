@@ -30,6 +30,8 @@
 		C446E81D25F4E0F7007B1A05 /* PlotCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E81125F4BE4B007B1A05 /* PlotCommon.swift */; };
 		C449F44F25EC1325006C67EB /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC825EBCE7300503486 /* Text.swift */; };
 		C45053C125F0E865003FC346 /* appinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45053C025F0E865003FC346 /* appinfo.swift */; };
+		C4507811263DA32000308C1D /* PointPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4507810263DA32000308C1D /* PointPosition.swift */; };
+		C4507812263DA46400308C1D /* PointPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4507810263DA32000308C1D /* PointPosition.swift */; };
 		C45323CB25F77F01007D741C /* ReflectedStringConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */; };
 		C45323D425F7C6D6007D741C /* ReflectedStringConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */; };
 		C45323E625F8CCC8007D741C /* Readlines.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323E525F8CCC8007D741C /* Readlines.swift */; };
@@ -191,6 +193,7 @@
 		C446E80825F4BAA3007B1A05 /* RowPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowPlot.swift; sourceTree = "<group>"; };
 		C446E81125F4BE4B007B1A05 /* PlotCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotCommon.swift; sourceTree = "<group>"; };
 		C45053C025F0E865003FC346 /* appinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appinfo.swift; sourceTree = "<group>"; };
+		C4507810263DA32000308C1D /* PointPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointPosition.swift; sourceTree = "<group>"; };
 		C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectedStringConvertable.swift; sourceTree = "<group>"; };
 		C45323E525F8CCC8007D741C /* Readlines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Readlines.swift; sourceTree = "<group>"; };
 		C45323EC25F8EF0D007D741C /* Gen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gen.swift; sourceTree = "<group>"; };
@@ -470,6 +473,7 @@
 				C45323FA25F90359007D741C /* PlotInfo.swift */,
 				C49CC51A263A9A670006FAC8 /* PlotOptions.swift */,
 				C4CF29FF263556EE00E858D1 /* Point.swift */,
+				C4507810263DA32000308C1D /* PointPosition.swift */,
 				C4B2FA042633F3D500CC5430 /* RGBAu8.swift */,
 				C4B2FA092634863000CC5430 /* RGBAu8Lookup.swift */,
 				C453243725FA7968007D741C /* Shapes.swift */,
@@ -703,6 +707,7 @@
 				C4FE4A0525F66E2C0076EF5E /* Defaults.swift in Sources */,
 				C4B2F968262576FF00CC5430 /* XIlist.swift in Sources */,
 				C446E80925F4BAA3007B1A05 /* RowPlot.swift in Sources */,
+				C4507811263DA32000308C1D /* PointPosition.swift in Sources */,
 				C49CC518263948620006FAC8 /* OptionDefaults.swift in Sources */,
 				C4C0C48A2612FBCD0072699C /* KeyedValue.swift in Sources */,
 				C4B2F9AE262B286400CC5430 /* SVGout.swift in Sources */,
@@ -795,6 +800,7 @@
 				C4C0C48B2612FBCD0072699C /* KeyedValue.swift in Sources */,
 				C45323EE25F8EF0D007D741C /* Gen.swift in Sources */,
 				C4CF2A1D2637147C00E858D1 /* Vector.swift in Sources */,
+				C4507812263DA46400308C1D /* PointPosition.swift in Sources */,
 				C480848325E6809400BD0A24 /* Sides.swift in Sources */,
 				C4C0C4A726133E650072699C /* PlotSettings.swift in Sources */,
 				C4CF2A142637142B00E858D1 /* Positions.swift in Sources */,

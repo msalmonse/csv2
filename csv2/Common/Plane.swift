@@ -9,36 +9,6 @@ import Foundation
 
 struct Plane {
 
-    struct PointPosition: OptionSet {
-        let rawValue: Int8
-
-        static let above = PointPosition(rawValue: 1 << 0)
-        static let below = PointPosition(rawValue: 1 << 1)
-        static let left = PointPosition(rawValue: 1 << 2)
-        static let right = PointPosition(rawValue: 1 << 3)
-
-        var isInside: Bool { isEmpty }
-
-        /// Have we traversed the plane?
-        /// - Parameter other: the othe end of our path
-        /// - Returns: truse if we have traversed the plane
-
-        func hasTraversed(_ other: PointPosition) -> Bool {
-            if isInside || other.isInside { return false }
-            if contains(.above) && other.contains(.below) { return true }
-            if contains(.below) && other.contains(.above) { return true }
-            if contains(.left) && other.contains(.right) { return true }
-            if contains(.right) && other.contains(.left) { return true }
-            if contains(.left) && other.contains(.right) { return true }
-            return false
-        }
-
-        subscript(_ index: Self) -> Bool {
-            get { contains(index) }
-            set(newValue) { if newValue { insert(index) } else { remove(index) } }
-        }
-    }
-
     /// The edges of the plane
 
     let top: Double
@@ -107,39 +77,6 @@ struct Plane {
     /// width i.e. right - left
     var width: Double { left > right ? left - right : right - left }
 
-    func position(_ point: Point) -> PointPosition {
-        var ptPos = PointPosition()
-
-        if left < right {
-            switch point.x {
-            case ..<left: ptPos[.left] = true
-            case left...right: break
-            default: ptPos[.right] = true
-            }
-        } else {
-            switch point.x {
-            case ..<right: ptPos[.right] = true
-            case right...left: break
-            default: ptPos[.left] = true
-            }
-        }
-
-        if top < bottom {
-            switch point.y {
-            case ..<top: ptPos[.above] = true
-            case top...bottom: break
-            default: ptPos[.below] = true
-            }
-        } else {
-            switch point.y {
-            case ..<bottom: ptPos[.below] = true
-            case bottom...top: break
-            default: ptPos[.above] = true
-            }
-        }
-
-        return ptPos
-    }
     /// Check for value between left and right
     /// - Parameter x: value to check
     /// - Returns: value lies in plane
