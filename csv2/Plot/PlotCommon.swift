@@ -105,8 +105,7 @@ extension Plot {
         ) {
             let clipped = !posPosition.isInside
             let filled = styles.options[.filled]
-            let traversed = (posPosition[.above] && prevPosPosition[.below]) ||
-                (posPosition[.below] && prevPosPosition[.above])
+            let traversed = posPosition.hasTraversed(prevPosPosition)
 
             if !clipped {
                 // move from a clipped state to an unclipped one

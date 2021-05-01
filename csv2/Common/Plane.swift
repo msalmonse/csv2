@@ -19,7 +19,21 @@ struct Plane {
 
         var isInside: Bool { isEmpty }
 
-        subscript(_ index: PointPosition) -> Bool {
+        /// Have we traversed the plane?
+        /// - Parameter other: the othe end of our path
+        /// - Returns: truse if we have traversed the plane
+
+        func hasTraversed(_ other: PointPosition) -> Bool {
+            if isInside || other.isInside { return false }
+            if contains(.above) && other.contains(.below) { return true }
+            if contains(.below) && other.contains(.above) { return true }
+            if contains(.left) && other.contains(.right) { return true }
+            if contains(.right) && other.contains(.left) { return true }
+            if contains(.left) && other.contains(.right) { return true }
+            return false
+        }
+
+        subscript(_ index: Self) -> Bool {
             get { contains(index) }
             set(newValue) { if newValue { insert(index) } else { remove(index) } }
         }
