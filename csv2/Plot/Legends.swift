@@ -109,12 +109,13 @@ extension Plot {
             plotter.plotText(x: xLeft, y: y, text: text, styles: style)
             let lineY = y + yStep/2.0
             let options = style.options
-            if options.isAny(of: [.dashed, .pointed, .scattered]) { y += yStep }
-            switch (options[.dashed], options[.pointed], options[.scattered]) {
-            case (_,_,true): scatteredLine(xMid - shapeWidth, lineY, style)
-            case (_,true,false): pointedLine(xLeft, xMid, xRight, lineY, style)
-            case (true,_,false): plainLine(xLeft, xRight, lineY, style)
-            default: break
+            if options.isAny(of: [.dashed, .pointed, .scattered]) {
+                y += yStep
+                switch options {
+                case .scattered: scatteredLine(xMid - shapeWidth, lineY, style)
+                case .pointed: pointedLine(xLeft, xMid, xRight, lineY, style)
+                default: plainLine(xLeft, xRight, lineY, style)
+                }
             }
         }
 

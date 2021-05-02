@@ -1,1 +1,1 @@
---black --dashed=-1
+--black --dashed=-1 --showpoints 4

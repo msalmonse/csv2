@@ -41,27 +41,4 @@ struct PlotOptions: OptionSet, CustomStringConvertible, CustomDebugStringConvert
     static let italic = PlotOptions(rawValue: 1 << 5)
     static let pointed = PlotOptions(rawValue: 1 << 6)
     static let scattered = PlotOptions(rawValue: 1 << 7)
-
-    subscript(_ index: Self) -> Bool {
-        get { contains(index) }
-        set(newValue) { if newValue { insert(index) } else { remove(index) } }
-    }
-
-    /// Test for any of a list
-    /// - Parameter opts: options to test
-    /// - Returns: true is any are set
-
-    func isAny(of opts: [PlotOptions]) -> Bool {
-        let any = PlotOptions(opts)
-        return !isDisjoint(with: any)
-    }
-
-    /// Test for all of a list
-    /// - Parameter opts: options to test
-    /// - Returns: true if all are set
-
-    func isAll(of opts: [PlotOptions]) -> Bool {
-        let all = PlotOptions(opts)
-        return intersection(all) == all
-    }
 }

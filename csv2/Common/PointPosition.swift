@@ -34,11 +34,6 @@ extension Plane {
             if contains(.left) && other.contains(.right) { return true }
             return false
         }
-
-        subscript(_ index: Self) -> Bool {
-            get { contains(index) }
-            set(newValue) { if newValue { insert(index) } else { remove(index) } }
-        }
     }
 
     /// Calculate position of a point
