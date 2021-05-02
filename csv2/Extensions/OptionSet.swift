@@ -47,11 +47,6 @@ extension OptionSet {
         return left.contains(right)
     }
 
-    static func ~= (left: Self, right: [Self.Element]) -> Bool {
-        let other = Self(right)
-        return left == other
-    }
-
     static func & (left: Self, right: Self) -> Self {
         return left.intersection(right)
     }

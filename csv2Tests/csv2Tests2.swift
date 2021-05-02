@@ -44,15 +44,13 @@ extension csv2Tests {
         options[.bold] = true
         XCTAssertFalse((options & .pointed)[.bold])
         XCTAssertTrue(options[.bold])
-        XCTAssertTrue(options ~= .bold)
-        XCTAssertTrue(options ~= [.bold])
-        XCTAssertFalse(options ~= [.bold, .pointed])
 
-        switch options & [.pointed, .bold] {
-        case .pointed: XCTAssert(false)
-        case [.pointed, .bold]: XCTAssert(false)
-        case [.bold]: XCTAssert(true)
-        default: XCTAssert(false)
-        }
+        options[.pointed] = true
+        XCTAssertTrue(options.isAny(of: [.bold, .italic]))
+        XCTAssertFalse(options.isAny(of: [.italic, .scattered]))
+        XCTAssertTrue(options.isAll(of: [.bold, .pointed]))
+        XCTAssertFalse(options.isAll(of: [.bold, .pointed, .italic]))
+        XCTAssertFalse(options.isOnly([.bold]))
+        XCTAssertTrue((options & .bold).isOnly([.bold]))
     }
 }

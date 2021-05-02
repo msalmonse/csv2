@@ -111,10 +111,9 @@ extension Plot {
             let options = style.options
             if options.isAny(of: [.dashed, .pointed, .scattered]) {
                 y += yStep
-                let dpsOptions = options & [.dashed, .pointed,.scattered]
-                if  dpsOptions[.scattered] {
+                if  options[.scattered] {
                     scatteredLine(xMid - shapeWidth, lineY, style)
-                } else if dpsOptions[.pointed] {
+                } else if options[.pointed] {
                     pointedLine(xLeft, xMid, xRight, lineY, style)
                 } else {
                     plainLine(xLeft, xRight, lineY, style)
