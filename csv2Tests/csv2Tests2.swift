@@ -36,4 +36,23 @@ extension csv2Tests {
         doIf(false) { val += 1 }
         XCTAssertEqual(val, 6)
     }
+
+    func testOptionSet() {
+        var options = PlotOptions()
+
+        XCTAssertFalse(options[.bold])
+        options[.bold] = true
+        XCTAssertFalse((options & .pointed)[.bold])
+        XCTAssertTrue(options[.bold])
+        XCTAssertTrue(options ~= .bold)
+        XCTAssertTrue(options ~= [.bold])
+        XCTAssertFalse(options ~= [.bold, .pointed])
+
+        switch options & [.pointed, .bold] {
+        case .pointed: XCTAssert(false)
+        case [.pointed, .bold]: XCTAssert(false)
+        case [.bold]: XCTAssert(true)
+        default: XCTAssert(false)
+        }
+    }
 }

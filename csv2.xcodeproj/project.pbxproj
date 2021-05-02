@@ -37,6 +37,10 @@
 		C4507819263EA08300308C1D /* OptionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4507818263EA08300308C1D /* OptionSet.swift */; };
 		C450781B263EA0ED00308C1D /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450781A263EA0ED00308C1D /* CGPoint.swift */; };
 		C450781C263EA0ED00308C1D /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C450781A263EA0ED00308C1D /* CGPoint.swift */; };
+		C450781D263EB3CF00308C1D /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4507816263E9FED00308C1D /* Double.swift */; };
+		C450781E263EB3E000308C1D /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4507814263E9F9400308C1D /* Int.swift */; };
+		C450781F263EB3E800308C1D /* OptionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4507818263EA08300308C1D /* OptionSet.swift */; };
+		C4507820263EB3EE00308C1D /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453242B25FA5D99007D741C /* Other.swift */; };
 		C45323CB25F77F01007D741C /* ReflectedStringConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */; };
 		C45323D425F7C6D6007D741C /* ReflectedStringConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */; };
 		C45323E625F8CCC8007D741C /* Readlines.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45323E525F8CCC8007D741C /* Readlines.swift */; };
@@ -829,8 +833,10 @@
 				C4C0C4A726133E650072699C /* PlotSettings.swift in Sources */,
 				C4CF2A142637142B00E858D1 /* Positions.swift in Sources */,
 				C46ADD11260714DA0046F427 /* Bitmap.swift in Sources */,
+				C4507820263EB3EE00308C1D /* Other.swift in Sources */,
 				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,
 				C45323E725F8CCC8007D741C /* Readlines.swift in Sources */,
+				C450781F263EB3E800308C1D /* OptionSet.swift in Sources */,
 				C424513E25E980A7005BE7DC /* ColumnPlot.swift in Sources */,
 				C4EFA4DF26236B7A0026BD9A /* Canvas.swift in Sources */,
 				C45323F325F8F157007D741C /* Horizontal.swift in Sources */,
@@ -855,6 +861,7 @@
 				C40CD44225ED2390003944FA /* Plane.swift in Sources */,
 				C4C0C469260F2E530072699C /* SVGstyle.swift in Sources */,
 				C4CF2A1A2637147800E858D1 /* Point.swift in Sources */,
+				C450781D263EB3CF00308C1D /* Double.swift in Sources */,
 				C40CD43D25ED02BE003944FA /* Header.swift in Sources */,
 				C4B2FA0B2634863000CC5430 /* RGBAu8Lookup.swift in Sources */,
 				C4C0C4B8261458F10072699C /* SearchPath.swift in Sources */,
@@ -863,6 +870,7 @@
 				C4EFA4E226236B810026BD9A /* Canvasplotter.swift in Sources */,
 				C48B822A25E28F7E00EAEAE3 /* csv2Tests.swift in Sources */,
 				C4C0C4752610C39B0072699C /* Fonts.swift in Sources */,
+				C450781E263EB3E000308C1D /* Int.swift in Sources */,
 				C450781C263EA0ED00308C1D /* CGPoint.swift in Sources */,
 				C4B2F98926272A4C00CC5430 /* ColourTranslate.swift in Sources */,
 				C4F8F876261C375C00DF76AE /* Plot.swift in Sources */,
