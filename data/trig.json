@@ -1,13 +1,20 @@
 {
 	"foregroundColours": {
 		"axes": "maroon",
+		"legends": "indigo",
 		"legendsBox": "indigo",
+		"subTitle": "darkcyan",
+		"title": "maroon",
+		"xLabel": "maroon",
 		"xTags": "violet",
-		"xTitle": "darkcyan"
+		"xTitle": "darkcyan",
+		"yLabel": "maroon",
+		"yTitle": "darkcyan"
 	},
 	"headerColumns": 2,
 	"headerRows": 2,
 	"index": 1,
+	"subTitleHeader": 2,
 	"title": "Trigonometric Functions",
 	"xTitle": "Angle",
 	"yTitle": "Function Value",
