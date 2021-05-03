@@ -1,4 +1,5 @@
 {
+	"foregroundColours": { "pieLegend": "maroon" },
 	"headerColumns": 1,
 	"headerRows": 1,
 	"title": "Household expenditure",
