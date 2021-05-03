@@ -25,7 +25,7 @@ extension SVG {
         data.append((xmlTag + svgTag))
         if settings.plotter.comment { data.append(comment) }
         defs(plotPlane: plotPlane)
-        cssStyle(plotProps: stylesList.plots)
+        cssStyle(stylesList)
         if settings.plotter.logoURL.hasContent { logoImage(positions: positions) }
     }
 

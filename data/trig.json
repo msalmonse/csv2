@@ -1,5 +1,10 @@
 {
-	"bad": 0,
+	"foregroundColours": {
+		"axes": "maroon",
+		"legendsBox": "indigo",
+		"xTags": "violet",
+		"xTitle": "darkcyan"
+	},
 	"headerColumns": 2,
 	"headerRows": 2,
 	"index": 1,

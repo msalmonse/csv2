@@ -65,7 +65,7 @@ extension Plot {
                     let xpos = ts.xpos(x)
                     tagsPath.append(.moveTo(xy: Point(x: xpos, y: positions.xTagsTopY)))
                     tagsPath.append(.vertTo(y: plotPlane.top))
-                    plotter.plotText(x: xpos, y: positions.xTagsY, text: text, styles: stylesList.xLabel)
+                    plotter.plotText(x: xpos, y: positions.xTagsY, text: text, styles: stylesList.xTags)
                 }
             }
         }

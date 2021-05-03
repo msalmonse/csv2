@@ -50,7 +50,7 @@ struct StylesList {
         legendHeadline.textAlign = "start"
 
         pieLegend = Styles.from(settings: settings)
-        pieLegend.cssClass = "legend pie"
+        pieLegend.cssClass = "pielegend"
         pieLegend.fontColour = settings.fg.pieLegend
         pieLegend.fontSize = sizes.pieLegend.size
         pieLegend.textAlign = "middle"

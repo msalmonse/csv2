@@ -8,22 +8,48 @@
 import Foundation
 
 extension SVG {
-    private func cssFonts(_ result: inout [String], id: String) {
-        // font sizes and anchors
-        let sizes = FontSizes(size: settings.dim.baseFontSize)
-        result.append("""
-            \(id) text.legend { font-size: \(sizes.legend.size.f(1))px }
-            \(id) text.legend.headline { font-size: \((sizes.legend.size * 1.25).f(1))px; font-weight: bold }
-            \(id) text.legend.pie { font-size: \(sizes.pieLegend.size.f(1))px; text-anchor: middle }
-            \(id) text.subtitle { font-size: \(sizes.subTitle.size.f(1))px; text-anchor: middle }
-            \(id) text.title { font-size: \(sizes.title.size.f(1))px; text-anchor: middle }
-            \(id) text.xlabel { font-size: \(sizes.label.size.f(1))px; text-anchor: middle }
-            \(id) text.xtags { font-size: \(sizes.label.size.f(1))px; text-anchor: middle }
-            \(id) text.xtitle, \(id) text.ytitle { font-size: \(sizes.axes.size.f(1))px; text-anchor: middle }
-            \(id) text.ylabel { font-size: \(sizes.label.size.f(1))px; text-anchor: end; dominant-baseline: middle }
-            """
-        )
+    /// Add styles for texts
+    /// - Parameters:
+    ///   - result: Where to append style
+    ///   - stylesList: list of styles
+    ///   - id: css id for svg
+
+    private func cssText(_ result: inout [String], _ stylesList: StylesList, id: String) {
+
+        /// Add the style for a text class
+        /// - Parameters:
+        ///   - styles: style to add
+        ///   - suffix: class suffix
+        ///   - extra: extra styling
+
+        func oneText(_ styles: Styles, suffix: String = "", extra: String = "") {
+            guard let cl = styles.cascade(.cssClass) else { return }
+            let anc = "text-anchor: " + (styles.cascade(.textAlign) ?? "start")
+            let clr = styles.cascade(.fontColour) ?? "black"
+            let size = "font-size: " + styles.cascade(.fontSize).f(1) + "px"
+            result.append("""
+                \(id) text.\(cl)\(suffix) { fill: \(clr); stroke: \(clr); \(size); \(anc); \(extra) }
+                """
+            )
+        }
+
+        oneText(stylesList.legend); oneText(stylesList.legend, suffix: ".headline")
+        oneText(stylesList.pieLegend)
+        oneText(stylesList.subTitle)
+        oneText(stylesList.title)
+        oneText(stylesList.xLabel)
+        oneText(stylesList.xTags)
+        oneText(stylesList.xTitle)
+        oneText(stylesList.yLabel, extra: "dominant-baseline: middle")
+        oneText(stylesList.yTitle)
     }
+
+    /// Add styles for plots
+
+    /// - Parameters:
+    ///   - result: where to add styles
+    ///   - id: id for svg
+    ///   - plotStyles: styles for the plots
 
     private func plotCSS(_ result: inout [String], id: String, plotStyles: [Styles]) {
         for style in plotStyles {
@@ -40,6 +66,9 @@ extension SVG {
         }
     }
 
+    /// Add extra css
+    /// - Parameter result: where to add styles
+
     private func cssIncludes(_ result: inout [String]) {
         if settings.css.extras.hasEntries {
             result.append("<style>\n" + settings.css.extras.joined(separator: "\n") + "</style>\n")
@@ -49,6 +78,11 @@ extension SVG {
             result.append("<style>\n" + include + "</style>")
         }
     }
+
+    /// Add css for the background
+    /// - Parameters:
+    ///   - result: where to add styles
+    ///   - id: id for svg
 
     private func cssBG(_ result: inout [String], id: String) {
         let bg = settings.css.backgroundColour.isEmpty ? "transparent" : settings.css.backgroundColour
@@ -64,7 +98,7 @@ extension SVG {
     /// - Parameter extra: extra tags
     /// - Returns: css information in a string
 
-    func cssStyle(plotProps: [Styles], extra: String = "") {
+    func cssStyle(_ stylesList: StylesList, extra: String = "") {
         let id = hashID
         var result: [String] = ["<style>"]
         cssBG(&result, id: id)
@@ -75,10 +109,12 @@ extension SVG {
         result.append(
             "\(id) path { stroke-width: \(strokeWidth.f(1)); fill: none; stroke-linecap: round }"
         )
-        result.append("\(id) path.axes { stroke: black }")
-        result.append(
-            "\(id) path.xlabel, \(id) path.ylabel { stroke: silver; stroke-width: 1 }"
-        )
+        var colour = stylesList.axes.cascade(.colour) ?? "black"
+        result.append("\(id) path.axes { stroke: \(colour) }")
+        colour = stylesList.xLabel.cascade(.colour) ?? "silver"
+        result.append("\(id) path.xlabel, \(id) path.ylabel { stroke: \(colour); stroke-width: 1 }")
+        colour = stylesList.yLabel.cascade(.colour) ?? "silver"
+        result.append("\(id) path.ylabel { stroke: \(colour); stroke-width: 1 }")
 
         var textCSS: [String] = []
         if settings.css.fontFamily.hasContent { textCSS.append("font-family: \(settings.css.fontFamily)") }
@@ -87,13 +123,14 @@ extension SVG {
         if textCSS.hasEntries { result.append("\(id) text { " + textCSS.joined(separator: ";") + " }") }
 
         // Font settings
-        cssFonts(&result, id: id)
+        cssText(&result, stylesList, id: id)
 
         // Individual plot settings
-        plotCSS(&result, id: id, plotStyles: plotProps)
+        plotCSS(&result, id: id, plotStyles: stylesList.plots)
 
+        colour = stylesList.legendBox.cascade(.colour) ?? "silver"
         result.append(
-            "\(id) path.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }"
+            "\(id) path.legend { stroke: \(colour); stroke-width: 1.5 }"
         )
 
         if extra.hasContent { result.append(extra) }
