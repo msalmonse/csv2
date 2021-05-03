@@ -234,6 +234,7 @@ struct StylesList {
     static private func yTitleStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var yTitle = Styles.from(settings: settings)
         yTitle.cssClass = "ytitle"
+        yTitle.fontColour = settings.fg.yTitle
         yTitle.fontSize = sizes.axes.size
         return yTitle
     }
