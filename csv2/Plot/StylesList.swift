@@ -23,6 +23,7 @@ struct StylesList {
     var legendBox: Styles
     var pieLabel: Styles
     var pieLegend: Styles
+    var pieSubLegend: Styles
     var subTitle: Styles
     var title: Styles
     var xLabel: Styles
@@ -43,6 +44,7 @@ struct StylesList {
         legendHeadline = Self.legendHeadlineStyle(settings: settings, sizes: sizes)
         pieLabel = Self.pieLabelStyle(settings: settings, sizes: sizes)
         pieLegend = Self.pieLegendStyle(settings: settings, sizes: sizes)
+        pieSubLegend = Self.pieSubLegendStyle(settings: settings, sizes: sizes)
         subTitle = Self.subTitleStyle(settings: settings, sizes: sizes)
         title = Self.titleStyle(settings: settings, sizes: sizes)
         xLabel = Self.xLabelStyle(settings: settings, sizes: sizes)
@@ -156,6 +158,21 @@ struct StylesList {
         pieLegend.fontSize = sizes.pieLegend.size
         pieLegend.textAlign = "middle"
         return pieLegend
+    }
+
+    /// Set pieSubLegend style
+    /// - Parameters:
+    ///   - settings: chart settings
+    ///   - sizes: font sizes
+    /// - Returns: pieSubLegend style
+
+    static private func pieSubLegendStyle(settings: Settings, sizes: FontSizes) -> Styles {
+        var pieSubLegend = Styles.from(settings: settings)
+        pieSubLegend.cssClass = "piesublegend"
+        pieSubLegend.fontColour = cssRGBA(settings.fg.pieLegend)
+        pieSubLegend.fontSize = sizes.pieSubLegend.size
+        pieSubLegend.textAlign = "middle"
+        return pieSubLegend
     }
 
     /// Set subTitle style

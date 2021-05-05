@@ -40,6 +40,7 @@ extension SVG {
         pieLabel.textAlign = "middle"; oneText(pieLabel, suffix: ".middle")
         pieLabel.textAlign = "end"; oneText(pieLabel, suffix: ".end")
         oneText(stylesList.pieLegend)
+        oneText(stylesList.pieSubLegend)
         oneText(stylesList.subTitle)
         oneText(stylesList.title)
         oneText(stylesList.xLabel)

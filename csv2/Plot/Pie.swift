@@ -16,6 +16,7 @@ extension Plot {
 
         let pieValues = csv.rowValues(row)
         var sum = pieValues[col1...].reduce(0.0) { $0 + abs($1 ?? 0) }
+        let total = sum
         for col in pieValues.indices where col >= col1 {
             if let val = pieValues[col] {
                 let absVal = abs(val)
@@ -78,9 +79,13 @@ extension Plot {
             }
         }
         let xtag = settings.csv.xTagsHeader
-        if xtag >= 0 {
-            let yPos = ceil(min(positions.xTagsY, centre.y + radius + sizes.pieLegend.spacing * 2.0))
-            plotter.plotText(x: centre.x, y: yPos, text: csv.data[row][xtag], styles: stylesList.pieLegend)
+        var yPos =
+            ceil(min(positions.xTagsY, centre.y + radius + sizes.pieLegend.spacing + sizes.pieLabel.spacing))
+        if xtag >= 0, csv.data[row].hasIndex(xtag) {
+            let text = csv.data[row][xtag]
+            plotter.plotText(x: centre.x, y: yPos, text: text, styles: stylesList.pieLegend)
+            yPos += sizes.pieSubLegend.spacing
         }
+        plotter.plotText(x: centre.x, y: yPos, text: "Total: \(total.f(0))", styles: stylesList.pieSubLegend)
     }
 }
