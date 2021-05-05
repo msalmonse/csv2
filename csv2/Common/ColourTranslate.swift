@@ -176,7 +176,7 @@ struct ColourTranslate {
         "white":                .white,
         "whitesmoke":           RGBAu8(r: 245, g: 245, b: 245),
         "yellow":               RGBAu8(r: 255, g: 255, b: 0),
-        "yellowgreen":          RGBAu8(r: 154, g: 205, b: 50),
+        "yellowgreen":          RGBAu8(r: 154, g: 205, b: 50)
     ]
 
     static var all: [String] { name2rgba.keys.map { $0 }.sorted() }

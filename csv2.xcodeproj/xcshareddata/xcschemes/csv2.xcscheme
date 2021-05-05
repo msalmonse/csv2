@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "png --dashed=-1 --showpoints 4"
+            argument = "png --pie"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -60,11 +60,11 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/trig.csv"
+            argument = "${PROJECT_DIR}/data/pie.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/trig.json"
+            argument = "${PROJECT_DIR}/data/pie.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

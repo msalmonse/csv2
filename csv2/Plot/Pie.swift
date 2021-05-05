@@ -38,6 +38,41 @@ extension Plot {
                     }
                     plotter.plotPath(path, styles: stylesList.plots[col], fill: false)
                 }
+
+                // add the label
+                if radius * angle6/1.0e6 > sizes.pieLabel.spacing {
+                    let mid = (start + end)/2.0
+                    let pi = Double.pi
+                    var offset: Double
+                    var align: String
+
+                    switch mid {
+                    // bottom
+                    case (pi * 0.375)..<(pi * 0.625):
+                        offset = radius + sizes.pieLabel.spacing
+                        align = "middle"
+                    // left
+                    case (pi * 0.625)..<(pi * 1.875):
+                        offset = radius + sizes.pieLabel.size
+                        align = "end"
+                    // top
+                    case (pi * 2.375)..<(pi * 2.625):
+                        offset = radius // + sizes.pieLabel.spacing * 0.125
+                        align = "middle"
+                    // right
+                    default:
+                        offset = radius + sizes.pieLabel.size
+                        align = "start"
+                    }
+                    let labelVector = Vector(length: offset, angle: -mid)
+                    let labelPos = centre + labelVector
+                    let labelVal = angle6/pi2e6 * 100
+                    let labelText = "\(labelVal.f(0))%"
+                    var labelStyles = stylesList.pieLabel
+                    labelStyles.textAlign = align
+                    plotter.plotText(x: labelPos.x, y: labelPos.y, text: labelText, styles: labelStyles)
+                }
+
                 start = end
             }
         }

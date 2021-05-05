@@ -112,6 +112,7 @@ keys for the dictionary are:
 - **axes**: sets the colours for the abscissa, ordinate and grid. The grid has a lower alpha value making it appear lighter.
 - **legends**: the colour for the word "Legends".
 - **legendsBox**: the box around the legends where once again the alpha is lowered.
+- **pieLabel**: the text beside pie slices, its default is a subdued pieLegend.
 - **pieLegend**: the text under pie charts.
 - **subTitle**: the text under the title.
 - **title**: the title.

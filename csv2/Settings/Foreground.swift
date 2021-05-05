@@ -15,6 +15,7 @@ extension Settings {
         let axes: String
         let legends: String
         let legendsBox: String
+        let pieLabel: String
         let pieLegend: String
         let subTitle: String
         let title: String
@@ -36,12 +37,15 @@ extension Settings {
     ) -> ForegroundColours {
         let fg = defaults.foregroundColour
         let text = defaults.textColour
+        let pieText = optionalKeyedStringValue(from: container, forKey: .pieLabel) ?? text
 
         return ForegroundColours(
             axes: optionalKeyedStringValue(from: container, forKey: .axes) ?? fg,
             legends: optionalKeyedStringValue(from: container, forKey: .legends) ?? text,
             legendsBox: optionalKeyedStringValue(from: container, forKey: .legendsBox) ?? fg,
-            pieLegend: optionalKeyedStringValue(from: container, forKey: .pieLegend) ?? text,
+            pieLabel: optionalKeyedStringValue(from: container, forKey: .pieLabel) ??
+                RGBAu8(pieText, or: .black).clamped(opacity: 0.75).cssRGBA,
+            pieLegend: pieText,
             subTitle: optionalKeyedStringValue(from: container, forKey: .subTitle) ?? text,
             title: optionalKeyedStringValue(from: container, forKey: .title) ?? text,
             xLabel: optionalKeyedStringValue(from: container, forKey: .xLabel) ?? text,

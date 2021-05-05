@@ -21,6 +21,7 @@ struct FontSizes {
     let axes: FontSizeAndSpacing
     let label: FontSizeAndSpacing
     let legend: FontSizeAndSpacing
+    let pieLabel: FontSizeAndSpacing
     let pieLegend: FontSizeAndSpacing
     let subTitle: FontSizeAndSpacing
     let title: FontSizeAndSpacing
@@ -29,6 +30,7 @@ struct FontSizes {
         axes = FontSizeAndSpacing(size * 1.2)
         label = FontSizeAndSpacing(size)
         legend = FontSizeAndSpacing(size * 1.30)
+        pieLabel = FontSizeAndSpacing(size)
         pieLegend = FontSizeAndSpacing(size * 2.0)
         subTitle = FontSizeAndSpacing(size * 1.5)
         title = FontSizeAndSpacing(size * 2.5)

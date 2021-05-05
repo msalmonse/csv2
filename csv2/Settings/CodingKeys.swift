@@ -50,6 +50,7 @@ extension Settings {
         case nameHeader
         case names
         case opacity
+        case pieLabel
         case pieLegend
         case reserveBottom
         case reserveLeft
