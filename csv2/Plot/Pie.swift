@@ -64,12 +64,13 @@ extension Plot {
                         offset = radius + sizes.pieLabel.size
                         align = "start"
                     }
-                    let labelVector = Vector(length: offset, angle: -mid)
+                    let labelVector = Vector(length: offset, angle: mid)
                     let labelPos = centre + labelVector
                     let labelVal = angle6/pi2e6 * 100
                     let labelText = "\(labelVal.f(0))%"
                     var labelStyles = stylesList.pieLabel
                     labelStyles.textAlign = align
+                    labelStyles.cssClass! += " " + align
                     plotter.plotText(x: labelPos.x, y: labelPos.y, text: labelText, styles: labelStyles)
                 }
 

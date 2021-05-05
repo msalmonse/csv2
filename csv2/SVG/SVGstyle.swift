@@ -34,6 +34,11 @@ extension SVG {
         }
 
         oneText(stylesList.legend); oneText(stylesList.legend, suffix: ".headline")
+        oneText(stylesList.pieLabel)
+        var pieLabel = stylesList.pieLabel
+        pieLabel.textAlign = "start"; oneText(pieLabel, suffix: ".start")
+        pieLabel.textAlign = "middle"; oneText(pieLabel, suffix: ".middle")
+        pieLabel.textAlign = "end"; oneText(pieLabel, suffix: ".end")
         oneText(stylesList.pieLegend)
         oneText(stylesList.subTitle)
         oneText(stylesList.title)
