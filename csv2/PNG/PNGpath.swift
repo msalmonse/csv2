@@ -23,10 +23,11 @@ extension PNG {
         } else {
             switch component {
             case .arcAround(let c, let r, let s, let e):
+                // SVG and CG can't agree on up and down so use -ve angles
                 ctx.addArc(
                     center: c.cgpoint, radius: CGFloat(r),
-                    startAngle: CGFloat(s), endAngle: CGFloat(e),
-                    clockwise: false
+                    startAngle: CGFloat(-s), endAngle: CGFloat(-e),
+                    clockwise: true
                 )
             case .cBezierBy(let dxy, let c1dxy, let c2dxy):
                 let end = current + dxy.cgvector
