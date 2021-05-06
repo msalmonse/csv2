@@ -138,7 +138,7 @@ extension RGBAu8 {
     /// - Returns: A matching RGBA or nil
 
     static func lookup(_ name: String?) -> RGBAu8? {
-        guard let name = name else { return nil }
+        guard let name = name?.lowercased() else { return nil }
         if name.isEmpty { return nil }
         if let cached = RGBAu8.cache[name] { return cached }
         if let rgba = ColourTranslate.lookup(name) { return rgba }
