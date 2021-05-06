@@ -56,6 +56,8 @@ extension Settings {
         // sort the x values before plotting
         let sortx: Bool
 
+        // pie chart labels
+        let pieLabel: Bool
         // pie chart sub legend
         let pieSubLegend: Bool
         let pieSubLegendPrefix: String
@@ -88,6 +90,7 @@ extension Settings {
             smooth:
                 keyedDoubleValue(from: container, forKey: .smooth, defaults: defaults, in: Defaults.smoothBounds),
             sortx: keyedBoolValue(from: container, forKey: .sortx, defaults: defaults),
+            pieLabel: keyedBoolValue(from: container, forKey: .pieLabel, defaults: defaults),
             pieSubLegend: keyedBoolValue(from: container, forKey: .pieSubLegend, defaults: defaults),
             pieSubLegendPrefix:
                 keyedStringValue(from: container, forKey: .pieSubLegendPrefix, defaults: defaults),

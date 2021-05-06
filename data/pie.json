@@ -2,6 +2,7 @@
 	"foregroundColours": { "pieLegend": "maroon" },
 	"headerColumns": 1,
 	"headerRows": 1,
+	"pieLabel": true,
 	"pieSubLegend": true,
 	"pieSubLegendPrefix": "Total: ",
 	"pieSubLegendSuffix": " SKR",

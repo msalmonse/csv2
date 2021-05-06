@@ -109,7 +109,7 @@ extension Plot {
                 }
 
                 // add the label
-                if radius * angle6/1.0e6 > sizes.pieLabel.spacing {
+                if settings.plot.pieLabel && radius * angle6/1.0e6 > sizes.pieLabel.spacing {
                     let mid = (start + end)/2.0
                     let percent = angle6/pi2e6 * 100.0
                     sliceLabel(centre: centre, radius: radius, mid: mid, percent: percent)

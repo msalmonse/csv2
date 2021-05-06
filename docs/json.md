@@ -112,7 +112,7 @@ keys for the dictionary are:
 - **axes**: sets the colours for the abscissa, ordinate and grid. The grid has a lower alpha value making it appear lighter.
 - **legends**: the colour for the word "Legends".
 - **legendsBox**: the box around the legends where once again the alpha is lowered.
-- **pieLabel**: the text beside pie slices, its default is a subdued pieLegend.
+- **pieLabel**: the text beside pie slices, its default is a less opaque pieLegend.
 - **pieLegend**: the text under pie charts.
 - **subTitle**: the text under the title.
 - **title**: the title.
@@ -195,6 +195,18 @@ The names are included with the colours associated with the plots under the plot
 **Option:** `--opacity`<br/>
 **Allowed values:** From 0 to 1.0
 The opacity of the plots.
+
+**pieLabel** (Bool **false**)<sup>[pie](#fnpie)</sup><br/>
+Display the percentage of each slice unless the slice is too small.
+
+**pieSubLegend** (Bool **false**)<sup>[pie](#fnpie)</sup><br/>
+Display the total under the pie chart legend, see [xTagsHeader](#xtags) below.
+
+**pieSubLegendPrefix** (String)<sup>[pie](#fnpie)</sup><br/>
+Text to add before the total on the sub legend line.
+
+**pieSubLegendSuffix** (String)<sup>[pie](#fnpie)</sup><br/>
+Text to add after the total on the sub legend line.
 
 **reserveBottom** (Double **0.0**)<br/>
 **Option:** `--reserve`<sup>[7](#fn7)</sup><br/>
@@ -290,6 +302,11 @@ The maximum value for the abscissa.<sup>[2](#fn2)</sup>
 **Option:** `--xmin`<br/>
 The minimum value for the abscissa.<sup>[2](#fn2)</sup>
 
+<a id="cssClasses">**xTagsHeader** (Int **0**)<a/><br/>
+**Option:** `--xtags`<br/>
+The row or column containing the extra tags to be displayed below the plot area.<br/>
+For pie charts this is the column that contains the text displayed below each chart.
+
 **xTick** (Double **0**)<br/>
 How often to print the abscissa values and draw a line.<sup>[3](#fn3)</sup>
 
@@ -340,5 +357,7 @@ Hence `--reserve 1 2 3 4` is the same as `reserveLeft: 1`, `reserveTop: 2`, `res
 - <a id="fn9">9</a>: Specifying colours is covered [here](colours.md)
 
 - <a id="fncanvas">canvas</a>: Only when creating a Canvas plot
+
+- <a id="fnpie">pie</a>: Only when creating a pie chart
 
 - <a id="fnsvg">svg</a>: Only when creating an SVG plot
