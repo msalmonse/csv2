@@ -302,7 +302,7 @@ The maximum value for the abscissa.<sup>[2](#fn2)</sup>
 **Option:** `--xmin`<br/>
 The minimum value for the abscissa.<sup>[2](#fn2)</sup>
 
-<a id="cssClasses">**xTagsHeader** (Int **0**)<a/><br/>
+<a id="xtags">**xTagsHeader** (Int **0**)<a/><br/>
 **Option:** `--xtags`<br/>
 The row or column containing the extra tags to be displayed below the plot area.<br/>
 For pie charts this is the column that contains the text displayed below each chart.
