@@ -55,6 +55,11 @@ extension Settings {
 
         // sort the x values before plotting
         let sortx: Bool
+
+        // pie chart sub legend
+        let pieSubLegend: Bool
+        let pieSubLegendPrefix: String
+        let pieSubLegendSuffix: String
     }
 
     /// Create a new Plot from JSON
@@ -82,7 +87,12 @@ extension Settings {
                 keyedDoubleValue(from: container, forKey: .bezier, defaults: defaults, in: Defaults.bezierBounds),
             smooth:
                 keyedDoubleValue(from: container, forKey: .smooth, defaults: defaults, in: Defaults.smoothBounds),
-            sortx: keyedBoolValue(from: container, forKey: .sortx, defaults: defaults)
+            sortx: keyedBoolValue(from: container, forKey: .sortx, defaults: defaults),
+            pieSubLegend: keyedBoolValue(from: container, forKey: .pieSubLegend, defaults: defaults),
+            pieSubLegendPrefix:
+                keyedStringValue(from: container, forKey: .pieSubLegendPrefix, defaults: defaults),
+            pieSubLegendSuffix:
+                keyedStringValue(from: container, forKey: .pieSubLegendSuffix, defaults: defaults)
         )
     }
 }

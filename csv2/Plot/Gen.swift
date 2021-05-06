@@ -65,7 +65,9 @@ extension Plot {
     func pieGen() {
         plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
 
-        let radius = floor(min(plotPlane.height, ts.xpos(1.0) - ts.xpos(0.0)) * 0.4)
+        let maxRadiusX = ts.xpos(1.0) - ts.xpos(0.0) - sizes.pieLabel.size * 4.0
+        let maxRadiusY = plotPlane.height - sizes.pieLabel.spacing * 2.0
+        let radius = floor(min(maxRadiusX, maxRadiusY) * 0.4)
         let row1 = settings.csv.headerRows
         for row in row1..<csv.rowCt {
             let centre = ts.pos(x: Double(row - row1), y: 1.0)

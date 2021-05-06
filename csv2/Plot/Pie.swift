@@ -9,6 +9,74 @@ import Foundation
 
 extension Plot {
 
+    /// Draw the circle at the centre of the plot and a ring around the outside
+    /// - Parameters:
+    ///   - centre: centre of the plot
+    ///   - radius: radius of the plot
+
+    private func circleRing(centre: Point, radius: Double) {
+        var styles = Styles()
+        styles.fill = "black"
+        styles.colour = "black"
+        styles.cssClass = "black"
+        styles.strokeWidth = 1.0
+        let centrePath = Path([.moveTo(xy: centre), .circle(r: 4.0)])
+        plotter.plotPath(centrePath, styles: styles, fill: true)
+        let ringPath = Path(
+            [
+                .arcAround(centre: centre, radius: radius, start: 0.0, end: Double.pi),
+                .arcAround(centre: centre, radius: radius, start: Double.pi, end: Double.pi * 2.0)
+            ]
+        )
+        plotter.plotPath(ringPath, styles: styles, fill: false)
+    }
+
+    /// Add a label to a slice
+    /// - Parameters:
+    ///   - centre: centre of the slice
+    ///   - radius: radius of the slice
+    ///   - mid: middle angle of the slice
+    ///   - percent: percentage of the total
+
+    private func sliceLabel(centre: Point, radius: Double, mid: Double, percent: Double) {
+        let pi = Double.pi
+        var offset: Double
+        var align: String
+
+        switch mid {
+        // bottom
+        case (pi * 0.375)..<(pi * 0.625):
+            offset = radius + sizes.pieLabel.spacing
+            align = "middle"
+        // left
+        case (pi * 0.625)..<(pi * 1.875):
+            offset = radius + sizes.pieLabel.size
+            align = "end"
+        // top
+        case (pi * 2.375)..<(pi * 2.625):
+            offset = radius // + sizes.pieLabel.spacing * 0.125
+            align = "middle"
+        // right
+        default:
+            offset = radius + sizes.pieLabel.size
+            align = "start"
+        }
+        let labelVector = Vector(length: offset, angle: mid)
+        let labelPos = centre + labelVector
+        let labelText = "\(percent.f(1))%"
+        var labelStyles = stylesList.pieLabel
+        labelStyles.textAlign = align
+        labelStyles.cssClass! += " " + align
+        plotter.plotText(x: labelPos.x, y: labelPos.y, text: labelText, styles: labelStyles)
+    }
+
+    /// Plot a pie chart for a row of data
+    /// - Parameters:
+    ///   - row: csv row number
+    ///   - col1: first column to plot
+    ///   - centre: centre of the circle
+    ///   - radius: circle's radius
+
     func plotPie(_ row: Int, _ col1: Int, centre: Point, radius: Double) {
         let pi2e6 = Double.pi * 2.0e6       // 2πe6
         var arcLeft = pi2e6
@@ -16,7 +84,7 @@ extension Plot {
 
         let pieValues = csv.rowValues(row)
         var sum = pieValues[col1...].reduce(0.0) { $0 + abs($1 ?? 0) }
-        let total = sum
+        let total = sum.f(0)
         for col in pieValues.indices where col >= col1 {
             if let val = pieValues[col] {
                 let absVal = abs(val)
@@ -43,41 +111,17 @@ extension Plot {
                 // add the label
                 if radius * angle6/1.0e6 > sizes.pieLabel.spacing {
                     let mid = (start + end)/2.0
-                    let pi = Double.pi
-                    var offset: Double
-                    var align: String
-
-                    switch mid {
-                    // bottom
-                    case (pi * 0.375)..<(pi * 0.625):
-                        offset = radius + sizes.pieLabel.spacing
-                        align = "middle"
-                    // left
-                    case (pi * 0.625)..<(pi * 1.875):
-                        offset = radius + sizes.pieLabel.size
-                        align = "end"
-                    // top
-                    case (pi * 2.375)..<(pi * 2.625):
-                        offset = radius // + sizes.pieLabel.spacing * 0.125
-                        align = "middle"
-                    // right
-                    default:
-                        offset = radius + sizes.pieLabel.size
-                        align = "start"
-                    }
-                    let labelVector = Vector(length: offset, angle: mid)
-                    let labelPos = centre + labelVector
-                    let labelVal = angle6/pi2e6 * 100
-                    let labelText = "\(labelVal.f(0))%"
-                    var labelStyles = stylesList.pieLabel
-                    labelStyles.textAlign = align
-                    labelStyles.cssClass! += " " + align
-                    plotter.plotText(x: labelPos.x, y: labelPos.y, text: labelText, styles: labelStyles)
+                    let percent = angle6/pi2e6 * 100.0
+                    sliceLabel(centre: centre, radius: radius, mid: mid, percent: percent)
                 }
 
                 start = end
             }
         }
+
+        // Now draw a black circle in the middle
+        circleRing(centre: centre, radius: radius)
+
         let xtag = settings.csv.xTagsHeader
         var yPos =
             ceil(min(positions.xTagsY, centre.y + radius + sizes.pieLegend.spacing + sizes.pieLabel.spacing))
@@ -86,6 +130,9 @@ extension Plot {
             plotter.plotText(x: centre.x, y: yPos, text: text, styles: stylesList.pieLegend)
             yPos += sizes.pieSubLegend.spacing
         }
-        plotter.plotText(x: centre.x, y: yPos, text: "Total: \(total.f(0))", styles: stylesList.pieSubLegend)
+        if settings.plot.pieSubLegend {
+            let text = settings.plot.pieSubLegendPrefix + total + settings.plot.pieSubLegendSuffix
+            plotter.plotText(x: centre.x, y: yPos, text: text, styles: stylesList.pieSubLegend)
+        }
     }
 }

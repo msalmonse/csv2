@@ -37,7 +37,7 @@ extension Settings {
     ) -> ForegroundColours {
         let fg = defaults.foregroundColour
         let text = defaults.textColour
-        let pieText = optionalKeyedStringValue(from: container, forKey: .pieLabel) ?? text
+        let pieText = optionalKeyedStringValue(from: container, forKey: .pieLegend) ?? text
 
         return ForegroundColours(
             axes: optionalKeyedStringValue(from: container, forKey: .axes) ?? fg,

@@ -52,6 +52,9 @@ extension Settings {
         case opacity
         case pieLabel
         case pieLegend
+        case pieSubLegend
+        case pieSubLegendPrefix
+        case pieSubLegendSuffix
         case reserveBottom
         case reserveLeft
         case reserveRight

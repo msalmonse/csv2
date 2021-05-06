@@ -2,6 +2,9 @@
 	"foregroundColours": { "pieLegend": "maroon" },
 	"headerColumns": 1,
 	"headerRows": 1,
+	"pieSubLegend": true,
+	"pieSubLegendPrefix": "Total: ",
+	"pieSubLegendSuffix": " SKR",
 	"title": "Household expenditure",
 	"width": 1000,
 	"xTagsHeader": 1

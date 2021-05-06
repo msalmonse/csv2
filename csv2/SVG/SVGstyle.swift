@@ -115,6 +115,8 @@ extension SVG {
         result.append(
             "\(id) path { stroke-width: \(strokeWidth.f(1)); fill: none; stroke-linecap: round }"
         )
+        result.append("\(id) path.black { stroke: black }")
+        result.append("\(id) path.black.fill { fill: black; stroke: black }")
         var colour = stylesList.axes.cascade(.colour) ?? "black"
         result.append("\(id) path.axes { stroke: \(colour) }")
         colour = stylesList.xLabel.cascade(.colour) ?? "silver"
