@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "canvas --colourslist"
+            argument = "svg --pie"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -60,15 +60,15 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/trig.csv"
+            argument = "${PROJECT_DIR}/data/pie.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/trig.json"
+            argument = "${PROJECT_DIR}/data/pie.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/out.js"
+            argument = "${PROJECT_DIR}/out.svg"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

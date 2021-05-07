@@ -65,13 +65,32 @@ extension Plot {
     func pieGen() {
         plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
 
-        let maxRadiusX = ts.xpos(1.0) - ts.xpos(0.0) - sizes.pieLabel.size * 4.0
-        let maxRadiusY = plotPlane.height - sizes.pieLabel.spacing * 2.0
-        let radius = floor(min(maxRadiusX, maxRadiusY) * 0.4)
         let row1 = settings.csv.headerRows
+
+        // calculate the size of the squares that can fit in plotPlane
+        // cols for number of columns, rows for number of rows and side for side of square
+        // cols * side <= width
+        // rows * side <= height
+        // rows * cols >= count
+        let rows = ceil(sqrt(Double(csv.rowCt - row1) * plotPlane.height/plotPlane.width))
+        let side = floor(plotPlane.height/rows)
+        let cols = Int(floor(plotPlane.width/side))
+
+        let maxRadiusX = side - sizes.pieLabel.size * 4.0
+        let maxRadiusY = side - sizes.pieLabel.spacing * 2.0
+        let radius = floor(min(maxRadiusX, maxRadiusY) * 0.4)
+
+        var rowY = plotPlane.top + side/2.0
+        var colX = plotPlane.left + side/2.0
+
         for row in row1..<csv.rowCt {
-            let centre = ts.pos(x: Double(row - row1), y: 1.0)
+            let centre = Point(x: colX, y: rowY)
             plotPie(row, settings.csv.headerColumns, centre: centre, radius: radius)
+            colX += side
+            if ((row - row1) % cols) == cols - 1 {
+                rowY += side
+                colX = plotPlane.left + side/2.0
+            }
         }
 
         if settings.plotter.legends { legend() }
