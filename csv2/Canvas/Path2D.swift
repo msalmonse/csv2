@@ -18,7 +18,7 @@ extension Canvas {
         var result: [String] = [""]
         let op = fill ? "fill" : "stroke"
 
-        ctx.sync(styles, &result)
+        ctx.sync(styles, &result, fill: fill)
 
         let pathText = path.path
         result.append("p = new Path2D('\(pathText)'); ctx.\(op)(p)")

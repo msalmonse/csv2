@@ -36,8 +36,6 @@ struct StylesList {
         let sizes = FontSizes(size: settings.dim.baseFontSize)
         plots = Array(repeating: Styles.from(settings: settings), count: ct)
 
-        Self.setDefaults(settings: settings, sizes: sizes)
-
         axes = Self.axesStyle(settings: settings, sizes: sizes)
         legend = Self.legendStyle(settings: settings, sizes: sizes)
         legendBox = Self.legendBoxStyle(settings: settings, sizes: sizes)
@@ -52,25 +50,6 @@ struct StylesList {
         xTitle = Self.xTitleStyle(settings: settings, sizes: sizes)
         yLabel = Self.yLabelStyle(settings: settings, sizes: sizes)
         yTitle = Self.yTitleStyle(settings: settings, sizes: sizes)
-    }
-
-    /// Set default properties
-    /// - Parameters:
-    ///   - settings: image settings
-    ///   - sizes: font sizes
-
-    static func setDefaults(settings: Settings, sizes: FontSizes) {
-        Styles.defaultStyles.bezier = settings.plot.bezier
-        Styles.defaultStyles.options[.bold] = settings.css.bold
-        Styles.defaultStyles.colour = defaults.foregroundColour
-        Styles.defaultStyles.fill = "none"
-        Styles.defaultStyles.fontColour = defaults.textColour
-        Styles.defaultStyles.fontFamily = settings.css.fontFamily
-        Styles.defaultStyles.options[.italic] = settings.css.italic
-        Styles.defaultStyles.strokeLineCap = "round"
-        Styles.defaultStyles.strokeWidth = settings.css.strokeWidth
-        Styles.defaultStyles.textAlign = "middle"
-        Styles.defaultStyles.textBaseline = "alphabetic"
     }
 
     /// Set axes style
@@ -97,7 +76,6 @@ struct StylesList {
         legend.cssClass = "legend"
         legend.fontColour = cssRGBA(settings.fg.legends)
         legend.fontSize = sizes.legend.size
-        legend.textAlign = "start"
         return legend
     }
 
@@ -110,6 +88,7 @@ struct StylesList {
     static private func legendBoxStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var legendBox = Styles.from(settings: settings)
         legendBox.colour = RGBAu8(settings.fg.legendsBox, or: .black).clamped(opacity: 0.4).cssRGBA
+        legendBox.fill = legendBox.colour
         legendBox.cssClass = "legend"
         return legendBox
     }
@@ -126,7 +105,6 @@ struct StylesList {
         legendHeadline.cssClass = "legend headline"
         legendHeadline.fontColour = settings.fg.legends
         legendHeadline.fontSize = sizes.legend.size * 1.25
-        legendHeadline.textAlign = "start"
         return legendHeadline
     }
 

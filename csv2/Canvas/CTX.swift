@@ -58,8 +58,8 @@ fileprivate func stylesFontSpec(from styles: Styles) -> String {
     var spec: [String] = []
     if styles.options[.italic] { spec.append("italic") }
     if styles.options[.bold] { spec.append("bold") }
-    spec.append("\(styles.cascade(.fontSize).f(1))px")
-    spec.append(styles.cascade(.fontFamily) ?? "serif")
+    spec.append("\(styles.fontSize.f(1))px")
+    spec.append(styles.fontFamily!)
 
     return spec.joined(separator: " ")
 }
@@ -72,37 +72,39 @@ extension CTX {
     ///   - result: javascript statemants
     ///   - isText: Use the text related properties
 
-    mutating func sync(_ styles: Styles, _ result: inout [String], isText: Bool = false) {
+    mutating func sync(_ styles: Styles, _ result: inout [String], isText: Bool = false, fill: Bool = false) {
         if isText {
-            let colour = styles.cascade(.fontColour) ?? "black"
+            let colour = styles.fontColour!
             self.syncOneString(key: \.fillStyle, colour, "fillStyle", result: &result)
 
             let fontSpec = stylesFontSpec(from: styles)
             self.syncOneString(key: \.font, fontSpec, "font", result: &result)
 
-            let textAlign = jsAlign(styles.cascade(.textAlign) ?? "start")
+            let textAlign = jsAlign(styles.textAlign!)
             self.syncOneString(key: \.textAlign, textAlign, "textAlign", result: &result)
 
-            let textBaseline = styles.cascade(.textBaseline) ?? "alphabetic"
+            let textBaseline = styles.textBaseline ?? "alphabetic"
             self.syncOneString(key: \.textBaseline, textBaseline, "textBaseline", result: &result)
         } else {
-            let colour = styles.cascade(.colour) ?? "transparent"
-            self.syncOneString(key: \.strokeStyle, colour, "strokeStyle", result: &result)
+            if fill {
+                let fill = styles.fill!
+                self.syncOneString(key: \.fillStyle, fill, "fillStyle", result: &result)
+            } else {
+                let colour = styles.colour!
+                self.syncOneString(key: \.strokeStyle, colour, "strokeStyle", result: &result)
 
-            let dashPattern = styles.cascade(.dash) ?? ""
-            if dashPattern != dash {
-                dash = dashPattern
-                result.append("ctx.setLineDash([\(dash)])")
+                let dashPattern = styles.dash!
+                if dashPattern != dash {
+                    dash = dashPattern
+                    result.append("ctx.setLineDash([\(dash)])")
+                }
+
+                let strokeWidth = styles.strokeWidth
+                self.syncOneDouble(key: \.lineWidth, strokeWidth, "lineWidth", result: &result)
+
+                let strokeLineCap = styles.strokeLineCap!
+                self.syncOneString(key: \.lineCap, strokeLineCap, "lineCap", result: &result)
             }
-
-            let fill = styles.cascade(.fill) ?? "transparent"
-            self.syncOneString(key: \.fillStyle, fill, "fillStyle", result: &result)
-
-            let strokeWidth = styles.cascade(.strokeWidth)
-            self.syncOneDouble(key: \.lineWidth, strokeWidth, "lineWidth", result: &result)
-
-            let strokeLineCap = styles.cascade(.strokeLineCap) ?? "round"
-            self.syncOneString(key: \.lineCap, strokeLineCap, "lineCap", result: &result)
         }
         let transformMatrix = styles.transform?.csv ?? ""
         if transformMatrix != transform {

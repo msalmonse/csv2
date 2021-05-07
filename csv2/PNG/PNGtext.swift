@@ -30,7 +30,7 @@ extension PNG {
     /// - Returns: modified x
 
     private func xPos(_ x: Double, _ styles: Styles, _ textWidth: Double) -> Double {
-        switch styles.cascade(.textAlign) ?? "" {
+        switch styles.textAlign! {
         case "end": return x - textWidth
         case "middle": return x - textWidth/2.0
         case "start": return x
@@ -43,8 +43,8 @@ extension PNG {
     /// - Returns: font or nil
 
     private func stylesFont(_ styles: Styles) -> CTFont? {
-        let family = styles.cascade(.fontFamily) ?? "serif"
-        let size = CGFloat(styles.cascade(.fontSize))
+        let family = styles.fontFamily!
+        let size = CGFloat(styles.fontSize)
         var traits = CTFontSymbolicTraits()
         var fontDesc = CTFontDescriptorCreateWithNameAndSize(family as CFString, size)
 
@@ -69,7 +69,7 @@ extension PNG {
 
     func plotText(x: Double, y: Double, text: String, styles: Styles) {
         image.withCGContext { ctx in
-            let colour = RGBAu8(styles.cascade(.fontColour), or: .black)
+            let colour = RGBAu8(styles.fontColour, or: .black)
             let attr = [
                 NSAttributedString.Key.foregroundColor: colour.cgColor as Any,
                 NSAttributedString.Key.font: stylesFont(styles) as Any

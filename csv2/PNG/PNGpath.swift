@@ -88,14 +88,14 @@ extension PNG {
     ///   - fill: fill or stroke?
 
     func plotPath(_ path: Path, styles: Styles, fill: Bool) {
-        let colour = RGBAu8(styles.cascade(fill ? .fill : .colour), or: .black)
-        let lineWidth = CGFloat(styles.cascade(.strokeWidth))
+        let colour = RGBAu8(fill ? styles.fill : styles.colour, or: .black)
+        let lineWidth = CGFloat(styles.strokeWidth)
         image.withCGContext { ctx in
             if let clipRect = clipRect { ctx.clip(to: clipRect)}
             var current = CGPoint.zero
             ctx.setLineWidth(lineWidth)
             ctx.setLineCap(stylesCap(styles))
-            if let dashes = styles.cascade(.dash) {
+            if let dashes = styles.dash {
                 ctx.setLineDash(phase: 0.0, lengths: dashParse(dashes))
             } else {
                 ctx.setLineDash(phase: 0.0, lengths: [])
@@ -118,7 +118,7 @@ extension PNG {
     /// - Returns:  CGLineCap value
 
     func stylesCap(_ styles: Styles) -> CGLineCap {
-        switch styles.cascade(.strokeLineCap) ?? "round" {
+        switch styles.strokeLineCap! {
         case "butt": return .butt
         case "square": return .square
         default: return .round

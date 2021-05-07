@@ -15,7 +15,7 @@ extension Plot {
     ///   - radius: radius of the plot
 
     private func circleRing(centre: Point, radius: Double) {
-        var styles = Styles()
+        var styles = Styles.from(settings: settings)
         styles.fill = "black"
         styles.colour = "black"
         styles.cssClass = "black"

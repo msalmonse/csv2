@@ -73,6 +73,6 @@ extension SVG {
                 transform="matrix(\(transform.csv))"
                 """
         }
-        textTag(x: x, y: y, text: text, cssClass: styles.cascade(.cssClass)!, extra: extra)
+        textTag(x: x, y: y, text: text, cssClass: styles.cssClass!, extra: extra)
     }
 }

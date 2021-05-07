@@ -23,10 +23,10 @@ extension SVG {
         ///   - extra: extra styling
 
         func oneText(_ styles: Styles, suffix: String = "", extra: String = "") {
-            guard let cl = styles.cascade(.cssClass) else { return }
-            let anc = "text-anchor: " + (styles.cascade(.textAlign) ?? "start")
-            let clr = styles.cascade(.fontColour) ?? "black"
-            let size = "font-size: " + styles.cascade(.fontSize).f(1) + "px"
+            guard let cl = styles.cssClass else { return }
+            let anc = "text-anchor: " + (styles.textAlign!)
+            let clr = styles.fontColour!
+            let size = "font-size: " + styles.fontSize.f(1) + "px"
             result.append("""
                 \(id) text.\(cl)\(suffix) { fill: \(clr); stroke: \(clr); \(size); \(anc); \(extra) }
                 """
@@ -61,7 +61,7 @@ extension SVG {
         for style in plotStyles {
             if let cssClass = style.cssClass, let colour = style.colour {
                 let dashes = style.options[.dashed]
-                    ? "; stroke-dasharray: \(style.dash ?? "-1"); stroke-linecap: butt" : ""
+                    ? "; stroke-dasharray: \(style.dash!); stroke-linecap: butt" : ""
                 result.append("""
                     \(id) path.\(cssClass) { stroke: \(colour)\(dashes) }
                     \(id) text.\(cssClass), \(id) rect.\(cssClass) { fill: \(colour); stroke: \(colour) }
@@ -117,11 +117,11 @@ extension SVG {
         )
         result.append("\(id) path.black { stroke: black }")
         result.append("\(id) path.black.fill { fill: black; stroke: black }")
-        var colour = stylesList.axes.cascade(.colour) ?? "black"
+        var colour = stylesList.axes.colour!
         result.append("\(id) path.axes { stroke: \(colour) }")
-        colour = stylesList.xLabel.cascade(.colour) ?? "silver"
+        colour = stylesList.xLabel.colour!
         result.append("\(id) path.xlabel, \(id) path.ylabel { stroke: \(colour); stroke-width: 1 }")
-        colour = stylesList.yLabel.cascade(.colour) ?? "silver"
+        colour = stylesList.yLabel.colour!
         result.append("\(id) path.ylabel { stroke: \(colour); stroke-width: 1 }")
 
         var textCSS: [String] = []
@@ -136,7 +136,7 @@ extension SVG {
         // Individual plot settings
         plotCSS(&result, id: id, plotStyles: stylesList.plots)
 
-        colour = stylesList.legendBox.cascade(.colour) ?? "silver"
+        colour = stylesList.legendBox.colour ?? "silver"
         result.append(
             "\(id) path.legend { stroke: \(colour); stroke-width: 1.5 }"
         )
