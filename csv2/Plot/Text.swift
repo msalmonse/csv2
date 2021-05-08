@@ -25,7 +25,7 @@ extension Plot {
     /// Add title to the svg
 
     func titleText() {
-        let x = width/2.0
+        let x = plotPlane.hMid
         let y = positions.titleY
         plotter.plotText(x: x, y: y, text: settings.plotter.title, styles: stylesList.title)
     }
@@ -33,7 +33,7 @@ extension Plot {
     /// Add sub title to the svg
 
     func subTitleText(_ subTitle: String) {
-        let x = width/2.0
+        let x = plotPlane.hMid
         let y = positions.subTitleY
         plotter.plotText(x: x, y: y, text: subTitle, styles: stylesList.subTitle)
     }
