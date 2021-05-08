@@ -76,6 +76,7 @@ struct StylesList {
         legend.cssClass = "legend"
         legend.fontColour = cssRGBA(settings.fg.legends)
         legend.fontSize = sizes.legend.size
+        legend.textAlign = "start"
         return legend
     }
 
@@ -105,6 +106,7 @@ struct StylesList {
         legendHeadline.cssClass = "legend headline"
         legendHeadline.fontColour = settings.fg.legends
         legendHeadline.fontSize = sizes.legend.size * 1.25
+        legendHeadline.textAlign = "start"
         return legendHeadline
     }
 
@@ -134,7 +136,6 @@ struct StylesList {
         pieLegend.cssClass = "pielegend"
         pieLegend.fontColour = cssRGBA(settings.fg.pieLegend)
         pieLegend.fontSize = sizes.pieLegend.size
-        pieLegend.textAlign = "middle"
         return pieLegend
     }
 
@@ -149,7 +150,6 @@ struct StylesList {
         pieSubLegend.cssClass = "piesublegend"
         pieSubLegend.fontColour = cssRGBA(settings.fg.pieLegend)
         pieSubLegend.fontSize = sizes.pieSubLegend.size
-        pieSubLegend.textAlign = "middle"
         return pieSubLegend
     }
 
@@ -256,6 +256,7 @@ struct StylesList {
         yTitle.cssClass = "ytitle"
         yTitle.fontColour = cssRGBA(settings.fg.yTitle)
         yTitle.fontSize = sizes.axes.size
+        yTitle.textAlign = "start"
         return yTitle
     }
 }
