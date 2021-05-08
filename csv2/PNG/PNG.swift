@@ -30,12 +30,17 @@ class PNG: Plotter {
 
         image = NSImage(size: NSSize(width: width, height: height))
         let bg = RGBAu8(settings.css.backgroundColour, or: .white)
-        image.backgroundColor = NSColor(cgColor: bg.cgColor)!
-        image.recache()
+
         image.lockFocus()
         ctx = NSGraphicsContext.current!.cgContext
         image.unlockFocus()
+
+        // flip coordinates
         ctx.scaleBy(x: 1.0, y: -1.0)
         ctx.translateBy(x: 0.0, y: -CGFloat(height))
+
+        // set background
+        ctx.setFillColor(bg.cgColor)
+        ctx.fill(CGRect(x: 0.0, y: 0.0, width: width, height: height))
     }
 }
