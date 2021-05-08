@@ -36,7 +36,7 @@ struct Styles {
         styles.options[.italic] = settings.css.italic
         styles.strokeLineCap = "round"
         styles.strokeWidth = settings.css.strokeWidth
-        styles.textAlign = "start"
+        styles.textAlign = "middle"
         styles.textBaseline = "alphabetic"
 
         return styles
