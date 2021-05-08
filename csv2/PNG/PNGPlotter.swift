@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AppKit
 
 extension PNG {
     func plotClipStart(plotPlane: Plane) {
@@ -15,9 +16,7 @@ extension PNG {
 
     func plotClipEnd() {
         clipRect = nil
-        image.withCGContext { ctx in
-            ctx.resetClip()
-        }
+        ctx.resetClip()
     }
 
     func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
@@ -44,7 +43,23 @@ extension PNG {
     }
 
     func plotWrite(to url: URL) throws {
-        if let pngData = image.pngData() {
+        // NSImage uses points for size so we rescale the image to match the intended size
+        let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)!
+        let scaleCtx = CGContext(
+            data: nil,
+            width: settings.dim.width,
+            height: settings.dim.height,
+            bitsPerComponent: cgImage.bitsPerComponent,
+            bytesPerRow: cgImage.bytesPerRow,
+            space: cgImage.colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!,
+            bitmapInfo: cgImage.bitmapInfo.rawValue
+        )!
+        scaleCtx.interpolationQuality = .high
+        scaleCtx.draw(cgImage, in: CGRect(origin: .zero, size: image.size))
+        let scaled = scaleCtx.makeImage()!
+
+        let imageRep = NSBitmapImageRep(cgImage: scaled)
+        if let pngData = imageRep.representation(using: .png, properties: [:]) {
             do {
                 try pngData.write(to: url)
             } catch {

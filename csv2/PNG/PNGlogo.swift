@@ -20,6 +20,7 @@ extension PNG {
     }
 
     func logo(_ plotPlane: Plane, from name: String) {
+        /*
         let height = Int(plotPlane.height)
         let width = Int(plotPlane.width)
         if let url = URL(string: name) {
@@ -49,5 +50,6 @@ extension PNG {
                 print(error, to: &standardError)
             }
         }
+         */
     }
 }

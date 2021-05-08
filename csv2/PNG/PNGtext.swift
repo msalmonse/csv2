@@ -68,25 +68,23 @@ extension PNG {
     ///   - styles: properties
 
     func plotText(x: Double, y: Double, text: String, styles: Styles) {
-        image.withCGContext { ctx in
-            let colour = RGBAu8(styles.fontColour, or: .black)
-            let attr = [
-                NSAttributedString.Key.foregroundColor: colour.cgColor as Any,
-                NSAttributedString.Key.font: stylesFont(styles) as Any
-            ] as [NSAttributedString.Key: Any]
-            let attrText = NSAttributedString(string: text, attributes: attr)
-            let textWidth = Double(attrText.size().width)
-            let line = CTLineCreateWithAttributedString(attrText)
-            ctx.saveGState()
-            if let transform = styles.transform {
-                ctx.concatenate(transform.cgTransform)
-            }
-            ctx.textMatrix = .identity
-            ctx.translateBy(x: 0.0, y: CGFloat(height))
-            ctx.scaleBy(x: 1.0, y: -1.0)
-            ctx.textPosition = CGPoint(x: xPos(x, styles, textWidth), y: height - y)
-            CTLineDraw(line, ctx)
-            ctx.restoreGState()
+        let colour = RGBAu8(styles.fontColour, or: .black)
+        let attr = [
+            NSAttributedString.Key.foregroundColor: colour.cgColor as Any,
+            NSAttributedString.Key.font: stylesFont(styles) as Any
+        ] as [NSAttributedString.Key: Any]
+        let attrText = NSAttributedString(string: text, attributes: attr)
+        let textWidth = Double(attrText.size().width)
+        let line = CTLineCreateWithAttributedString(attrText)
+        ctx.saveGState()
+        if let transform = styles.transform {
+            ctx.concatenate(transform.cgTransform)
         }
+        ctx.textMatrix = .identity
+        ctx.translateBy(x: 0.0, y: CGFloat(height))
+        ctx.scaleBy(x: 1.0, y: -1.0)
+        ctx.textPosition = CGPoint(x: xPos(x, styles, textWidth), y: height - y)
+        CTLineDraw(line, ctx)
+        ctx.restoreGState()
     }
 }

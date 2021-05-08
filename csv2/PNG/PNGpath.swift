@@ -90,26 +90,24 @@ extension PNG {
     func plotPath(_ path: Path, styles: Styles, fill: Bool) {
         let colour = RGBAu8(fill ? styles.fill : styles.colour, or: .black)
         let lineWidth = CGFloat(styles.strokeWidth)
-        image.withCGContext { ctx in
-            if let clipRect = clipRect { ctx.clip(to: clipRect)}
-            var current = CGPoint.zero
-            ctx.setLineWidth(lineWidth)
-            ctx.setLineCap(stylesCap(styles))
-            if let dashes = styles.dash {
-                ctx.setLineDash(phase: 0.0, lengths: dashParse(dashes))
-            } else {
-                ctx.setLineDash(phase: 0.0, lengths: [])
-            }
-            for component in path.components {
-                plotComponent(ctx, component: component, current: &current)
-            }
-            if fill {
-                ctx.setFillColor(colour.cgColor)
-                ctx.fillPath()
-            } else {
-                ctx.setStrokeColor(colour.cgColor)
-                ctx.strokePath()
-            }
+        if let clipRect = clipRect { ctx.clip(to: clipRect)}
+        var current = CGPoint.zero
+        ctx.setLineWidth(lineWidth)
+        ctx.setLineCap(stylesCap(styles))
+        if let dashes = styles.dash {
+            ctx.setLineDash(phase: 0.0, lengths: dashParse(dashes))
+        } else {
+            ctx.setLineDash(phase: 0.0, lengths: [])
+        }
+        for component in path.components {
+            plotComponent(ctx, component: component, current: &current)
+        }
+        if fill {
+            ctx.setFillColor(colour.cgColor)
+            ctx.fillPath()
+        } else {
+            ctx.setStrokeColor(colour.cgColor)
+            ctx.strokePath()
         }
     }
 

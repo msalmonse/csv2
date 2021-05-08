@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "svg --pie"
+            argument = "png --pie"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -68,7 +68,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/out.svg"
+            argument = "${PROJECT_DIR}/out.png"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

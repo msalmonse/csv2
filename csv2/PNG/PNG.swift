@@ -6,11 +6,12 @@
 //
 
 import Foundation
-import SwiftImage
+import AppKit
 
 class PNG: Plotter {
     // image data
-    var image: Image<PremultipliedRGBA<UInt8>>
+    var image: NSImage
+    var ctx: CGContext
 
     // clipping rectangle
     var clipRect: CGRect? = nil
@@ -27,11 +28,14 @@ class PNG: Plotter {
         height = Double(settings.dim.height)
         width = Double(settings.dim.width)
 
+        image = NSImage(size: NSSize(width: width, height: height))
         let bg = RGBAu8(settings.css.backgroundColour, or: .white)
-        let bgPixel = PremultipliedRGBA(bg.u32)
-        image = Image<PremultipliedRGBA<UInt8>>(
-            width: settings.dim.width, height: settings.dim.height,
-            pixel: bgPixel
-        )
+        image.backgroundColor = NSColor(cgColor: bg.cgColor)!
+        image.recache()
+        image.lockFocus()
+        ctx = NSGraphicsContext.current!.cgContext
+        image.unlockFocus()
+        ctx.scaleBy(x: 1.0, y: -1.0)
+        ctx.translateBy(x: 0.0, y: -CGFloat(height))
     }
 }

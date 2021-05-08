@@ -92,7 +92,6 @@
 		C4B2F9AF262B286400CC5430 /* SVGout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9AD262B286400CC5430 /* SVGout.swift */; };
 		C4B2F9B5262B488400CC5430 /* CanvasOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9B4262B488400CC5430 /* CanvasOut.swift */; };
 		C4B2F9B6262B488400CC5430 /* CanvasOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9B4262B488400CC5430 /* CanvasOut.swift */; };
-		C4B2F9BB262C173400CC5430 /* SwiftImage in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F9BA262C173400CC5430 /* SwiftImage */; };
 		C4B2F9C0262C177900CC5430 /* PNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9BF262C177900CC5430 /* PNG.swift */; };
 		C4B2F9C1262C177900CC5430 /* PNG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9BF262C177900CC5430 /* PNG.swift */; };
 		C4B2F9C7262C17D100CC5430 /* PNGPlotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9C6262C17D100CC5430 /* PNGPlotter.swift */; };
@@ -107,7 +106,6 @@
 		C4B2F9E4262EC7C200CC5430 /* PNGlogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9E2262EC7C200CC5430 /* PNGlogo.swift */; };
 		C4B2F9EE263025FB00CC5430 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9ED263025FB00CC5430 /* Path.swift */; };
 		C4B2F9EF263025FB00CC5430 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9ED263025FB00CC5430 /* Path.swift */; };
-		C4B2F9F3263031BF00CC5430 /* SwiftImage in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F9F2263031BF00CC5430 /* SwiftImage */; };
 		C4B2F9F72631636D00CC5430 /* Foreground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9F62631636C00CC5430 /* Foreground.swift */; };
 		C4B2F9F82631636D00CC5430 /* Foreground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9F62631636C00CC5430 /* Foreground.swift */; };
 		C4B2F9FD2631B3F300CC5430 /* csv2Tests2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9FB2631B3F300CC5430 /* csv2Tests2.swift */; };
@@ -293,7 +291,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B2F99726296AAE00CC5430 /* CSVParser in Frameworks */,
-				C4B2F9BB262C173400CC5430 /* SwiftImage in Frameworks */,
 				C4FE49FB25F643E30076EF5E /* ArgumentParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,7 +300,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B2F9AA26297EE300CC5430 /* ArgumentParser in Frameworks */,
-				C4B2F9F3263031BF00CC5430 /* SwiftImage in Frameworks */,
 				C4B2F9A826297EDD00CC5430 /* CSVParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -563,7 +559,6 @@
 			packageProductDependencies = (
 				C4FE49FA25F643E30076EF5E /* ArgumentParser */,
 				C4B2F99626296AAE00CC5430 /* CSVParser */,
-				C4B2F9BA262C173400CC5430 /* SwiftImage */,
 			);
 			productName = csv2svg;
 			productReference = C40A3AFB25DC01180016EB6D /* csv2 */;
@@ -588,7 +583,6 @@
 			packageProductDependencies = (
 				C4B2F9A726297EDD00CC5430 /* CSVParser */,
 				C4B2F9A926297EE300CC5430 /* ArgumentParser */,
-				C4B2F9F2263031BF00CC5430 /* SwiftImage */,
 			);
 			productName = csv2svgTests;
 			productReference = C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */;
@@ -623,7 +617,6 @@
 			packageReferences = (
 				C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
 				C4B2F99526296AAE00CC5430 /* XCRemoteSwiftPackageReference "CSVParser" */,
-				C4B2F9B9262C173400CC5430 /* XCRemoteSwiftPackageReference "swift-image" */,
 			);
 			productRefGroup = C40A3AFC25DC01180016EB6D /* Products */;
 			projectDirPath = "";
@@ -1133,14 +1126,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		C4B2F9B9262C173400CC5430 /* XCRemoteSwiftPackageReference "swift-image" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/koher/swift-image";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.7.1;
-			};
-		};
 		C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-argument-parser";
@@ -1176,16 +1161,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
 			productName = ArgumentParser;
-		};
-		C4B2F9BA262C173400CC5430 /* SwiftImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4B2F9B9262C173400CC5430 /* XCRemoteSwiftPackageReference "swift-image" */;
-			productName = SwiftImage;
-		};
-		C4B2F9F2263031BF00CC5430 /* SwiftImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4B2F9B9262C173400CC5430 /* XCRemoteSwiftPackageReference "swift-image" */;
-			productName = SwiftImage;
 		};
 		C4FE49FA25F643E30076EF5E /* ArgumentParser */ = {
 			isa = XCSwiftPackageProductDependency;
