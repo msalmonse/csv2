@@ -7,7 +7,6 @@
 
 import Foundation
 import AppKit
-import SwiftImage
 
 extension PNG {
 
