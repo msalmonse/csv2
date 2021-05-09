@@ -41,13 +41,14 @@ extension PNG {
         }
     }
 
-    /// Print the chart
+    /// Print the chart, not applicable
 
     func plotPrint() {
+        print("PNG needs an output file name.", to: &standardError)
         return
     }
 
-    /// End the chart
+    /// End the chart, nothing to do
 
     func plotTail() {
         return

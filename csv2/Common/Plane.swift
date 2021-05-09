@@ -77,6 +77,9 @@ struct Plane {
     /// width i.e. right - left
     var width: Double { left > right ? left - right : right - left }
 
+    /// A CGRect of the same dimensions
+    var cgrect: CGRect { CGRect(x: left, y: top, width: width, height: height) }
+
     /// Check for value between left and right
     /// - Parameter x: value to check
     /// - Returns: value lies in plane
@@ -101,5 +104,4 @@ struct Plane {
     func inPlane(_ x: Double, _ y: Double) -> Bool {
         return inHoriz(x) && inVert(y)
     }
-
 }
