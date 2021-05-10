@@ -21,7 +21,8 @@ class PDF: Plotter {
         let box = NSRect(x: 0, y: 0, width: settings.dim.width, height: settings.dim.height)
         page.setBounds(box, for: .mediaBox)
 
-        let bg = RGBAu8(settings.css.backgroundColour, or: .midBG)
-        page.add(action: .bg(colour: bg.cgColor))
+        if let bg = RGBAu8(settings.css.backgroundColour) {
+            page.add(action: .bg(colour: bg.cgColor))
+        }
     }
 }

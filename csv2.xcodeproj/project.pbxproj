@@ -110,8 +110,8 @@
 		C4B2F9D4262C6BC000CC5430 /* CGplotText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9D2262C6BC000CC5430 /* CGplotText.swift */; };
 		C4B2F9DC262E947000CC5430 /* Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9DB262E947000CC5430 /* Rect.swift */; };
 		C4B2F9DD262E947000CC5430 /* Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9DB262E947000CC5430 /* Rect.swift */; };
-		C4B2F9E3262EC7C200CC5430 /* PNGlogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9E2262EC7C200CC5430 /* PNGlogo.swift */; };
-		C4B2F9E4262EC7C200CC5430 /* PNGlogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9E2262EC7C200CC5430 /* PNGlogo.swift */; };
+		C4B2F9E3262EC7C200CC5430 /* CGlogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9E2262EC7C200CC5430 /* CGlogo.swift */; };
+		C4B2F9E4262EC7C200CC5430 /* CGlogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9E2262EC7C200CC5430 /* CGlogo.swift */; };
 		C4B2F9EE263025FB00CC5430 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9ED263025FB00CC5430 /* Path.swift */; };
 		C4B2F9EF263025FB00CC5430 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9ED263025FB00CC5430 /* Path.swift */; };
 		C4B2F9F72631636D00CC5430 /* Foreground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9F62631636C00CC5430 /* Foreground.swift */; };
@@ -253,7 +253,7 @@
 		C4B2F9CB262C27B700CC5430 /* CGplotPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGplotPath.swift; sourceTree = "<group>"; };
 		C4B2F9D2262C6BC000CC5430 /* CGplotText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGplotText.swift; sourceTree = "<group>"; };
 		C4B2F9DB262E947000CC5430 /* Rect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rect.swift; sourceTree = "<group>"; };
-		C4B2F9E2262EC7C200CC5430 /* PNGlogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGlogo.swift; sourceTree = "<group>"; };
+		C4B2F9E2262EC7C200CC5430 /* CGlogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGlogo.swift; sourceTree = "<group>"; };
 		C4B2F9ED263025FB00CC5430 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		C4B2F9F62631636C00CC5430 /* Foreground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foreground.swift; sourceTree = "<group>"; };
 		C4B2F9FB2631B3F300CC5430 /* csv2Tests2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2Tests2.swift; sourceTree = "<group>"; };
@@ -437,6 +437,7 @@
 		C49A0DC5264942AF00CF7E22 /* CG */ = {
 			isa = PBXGroup;
 			children = (
+				C4B2F9E2262EC7C200CC5430 /* CGlogo.swift */,
 				C4B2F9CB262C27B700CC5430 /* CGplotPath.swift */,
 				C4B2F9D2262C6BC000CC5430 /* CGplotText.swift */,
 			);
@@ -454,7 +455,6 @@
 			isa = PBXGroup;
 			children = (
 				C4B2F9BF262C177900CC5430 /* PNG.swift */,
-				C4B2F9E2262EC7C200CC5430 /* PNGlogo.swift */,
 				C4B2F9C6262C17D100CC5430 /* PNGPlotter.swift */,
 			);
 			path = PNG;
@@ -797,7 +797,7 @@
 				C4CF29FC263556B400E858D1 /* Vector.swift in Sources */,
 				C4CF2A0426368F5600E858D1 /* Pie.swift in Sources */,
 				C4C0C48F2612FCC70072699C /* Dimensions.swift in Sources */,
-				C4B2F9E3262EC7C200CC5430 /* PNGlogo.swift in Sources */,
+				C4B2F9E3262EC7C200CC5430 /* CGlogo.swift in Sources */,
 				C49A0DBA2648278300CF7E22 /* PDF.swift in Sources */,
 				C4B2F9EE263025FB00CC5430 /* Path.swift in Sources */,
 				C446E81225F4BE4B007B1A05 /* PlotCommon.swift in Sources */,
@@ -934,7 +934,7 @@
 				C4B2F98C26272AA500CC5430 /* Defaults.swift in Sources */,
 				C45323FC25F90359007D741C /* PlotInfo.swift in Sources */,
 				C453244E25FBEBA6007D741C /* ShowShape.swift in Sources */,
-				C4B2F9E4262EC7C200CC5430 /* PNGlogo.swift in Sources */,
+				C4B2F9E4262EC7C200CC5430 /* CGlogo.swift in Sources */,
 				C4B2F9D4262C6BC000CC5430 /* CGplotText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -37,7 +37,7 @@ extension PNG {
                 height: settings.plotter.logoHeight,
                 width: settings.plotter.logoWidth
             )
-            logo(logoPlane, from: settings.plotter.logoURL)
+            cgLogo(logoPlane, from: settings.plotter.logoURL, to: ctx)
         }
     }
 
@@ -59,7 +59,7 @@ extension PNG {
     ///   - styles: properties
 
     func plotText(x: Double, y: Double, text: String, styles: Styles) {
-        cgPlotText(x: x, y: y, text: text, styles: styles, to: ctx, height: height)
+        cgPlotText(xy: Point(x: x, y: y), text: text, styles: styles, to: ctx, height: height)
     }
 
     /// Print the chart, not applicable

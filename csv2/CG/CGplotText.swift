@@ -60,15 +60,13 @@ fileprivate func stylesFont(_ styles: Styles) -> CTFont? {
 
 /// Draw the text at the place specified with the properties specified
 /// - Parameters:
-///   - x: x position
-///   - y: y position
+///   - xy: the x and y position for the text
 ///   - text: text to draw
 ///   - styles: properties
 ///   - ctx: context to write to
 ///   - height: chart height
 
-// swiftlint:disable:next function_parameter_count
-func cgPlotText(x: Double, y: Double, text: String, styles: Styles, to ctx: CGContext, height: Double) {
+func cgPlotText(xy: Point, text: String, styles: Styles, to ctx: CGContext, height: Double) {
     let colour = RGBAu8(styles.fontColour, or: .black)
     let attr = [
         NSAttributedString.Key.foregroundColor: colour.cgColor as Any,
@@ -84,7 +82,7 @@ func cgPlotText(x: Double, y: Double, text: String, styles: Styles, to ctx: CGCo
     ctx.textMatrix = .identity
     ctx.translateBy(x: 0.0, y: CGFloat(height))
     ctx.scaleBy(x: 1.0, y: -1.0)
-    ctx.textPosition = CGPoint(x: xPos(x, styles, textWidth), y: height - y)
+    ctx.textPosition = CGPoint(x: xPos(xy.x, styles, textWidth), y: height - xy.y)
     CTLineDraw(line, ctx)
     ctx.restoreGState()
 }

@@ -10,29 +10,22 @@ import PDFKit
 
 class PDFPlotterPage: PDFPage {
     var actions: [PDFActions] = []
-    var height: CGFloat = 0.0
-    var width: CGFloat = 0.0
 
     override init() { super.init() }
-
-    override func setBounds(_ bounds: NSRect, for box: PDFDisplayBox) {
-        super.setBounds(bounds, for: box)
-        height = bounds.height
-    }
 
     override func draw(with box: PDFDisplayBox, to ctx: CGContext) {
         var clipRect: CGRect? = nil
 
         // flip coordinates
         ctx.scaleBy(x: 1.0, y: -1.0)
-        ctx.translateBy(x: 0.0, y: -height)
+        ctx.translateBy(x: 0.0, y: -bounds(for: box).height)
 
         for action in actions {
             switch action {
             case .bg(let colour):
                 // set background
                 ctx.setFillColor(colour)
-                ctx.fill(CGRect(x: 0.0, y: 0.0, width: width, height: height))
+                ctx.fill(bounds(for: box))
             case .clipEnd:
                 clipRect = nil
                 ctx.resetClip()
@@ -41,12 +34,14 @@ class PDFPlotterPage: PDFPage {
                     x: plotPlane.left, y: plotPlane.top,
                     width: plotPlane.width, height: plotPlane.height
                 )
+            case .logo(let logoPlane, let from):
+                cgLogo(logoPlane, from: from, to: ctx)
             case .plot(let path, let styles, let fill):
                 cgPlotPath(path, styles: styles, fill: fill, to: ctx, clippedBy: clipRect)
             case .text(let x, let y, let text, let styles):
-                cgPlotText(x: x, y: y, text: text, styles: styles, to: ctx, height: Double(height))
-            default:
-                break
+                cgPlotText(xy: Point(x: x, y: y), text: text, styles: styles, to: ctx,
+                           height: Double(bounds(for: box).height)
+                )
             }
         }
     }

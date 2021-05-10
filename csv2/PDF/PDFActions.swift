@@ -9,11 +9,16 @@ import Foundation
 
 enum PDFActions {
     case
+        // set background colour
         bg(colour: CGColor),
+        // start clipping
         clipStart(plotPlane: Plane),
+        // end clipping
         clipEnd,
-        head(positions: Positions, plotPlane: Plane, stylesList: StylesList),
+        // draw a logo
+        logo(logoPlane: Plane, from: String),
+        // plot a path
         plot(path: Path, styles: Styles, fill: Bool),
-        tail,
+        // write a text
         text(x: Double, y: Double, text: String, styles: Styles)
 }

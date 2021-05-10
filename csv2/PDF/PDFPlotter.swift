@@ -17,7 +17,14 @@ extension PDF {
     }
 
     func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
-        page.add(action: .head(positions: positions, plotPlane: plotPlane, stylesList: stylesList))
+        if settings.plotter.logoURL.hasContent {
+            let logoPlane = Plane(
+                left: positions.logoX, top: positions.logoY,
+                height: settings.plotter.logoHeight,
+                width: settings.plotter.logoWidth
+            )
+            page.add(action: .logo(logoPlane: logoPlane, from: settings.plotter.logoURL))
+        }
     }
 
     func plotPath(_ path: Path, styles: Styles, fill: Bool) {
@@ -28,9 +35,7 @@ extension PDF {
         return
     }
 
-    func plotTail() {
-        page.add(action: .tail)
-    }
+    func plotTail() { return }
 
     func plotText(x: Double, y: Double, text: String, styles: Styles) {
         page.add(action: .text(x: x, y: y, text: text, styles: styles))
