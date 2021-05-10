@@ -1,13 +1,13 @@
 # CSV to Canvas/PNG/SVG converter
 
 ```
-csv2 <canvas | png | svg> [<options>] [<csv-name> or -] [<json-name>] [out-name]
+csv2 <canvas | pdf | png | svg> [<options>] [<csv-name> or -] [<json-name>] [out-name]
 ```
 
-This program take the data in a CSV file and settings in a [JSON file](docs/json.md) to produce a Canvas(JS), PNG or SVG file. If the CSV file name is
-missing or `-` the the data is read from the standard input. If the JSON file is not specified then `.json` is appended to the CSV 
-file name. If the JSON file is missing then all defaults are used. If the output file is not specified then the data is written to the 
-standard output except for PNG data.
+This program take the data in a CSV file and settings in a [JSON file](docs/json.md) to produce a Canvas(JS), PDF, PNG or SVG
+file. If the CSV file name is missing or `-` the the data is read from the standard input. If the JSON file is not specified then `.json`
+is appended to the CSV  file name. If the JSON file is missing then all defaults are used. If the output file is not specified then the
+data is written to the  standard output except for PNG data.
 
 The code handles most cases well but strange cases may fail. 
 Numbers are expected to be in English format i.e. `.` is the decimal seperator.
