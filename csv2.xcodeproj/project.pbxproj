@@ -75,6 +75,14 @@
 		C48B822A25E28F7E00EAEAE3 /* csv2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */; };
 		C48B823625E2967100EAEAE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
 		C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
+		C49A0DBA2648278300CF7E22 /* PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DB92648278300CF7E22 /* PDF.swift */; };
+		C49A0DBB2648278700CF7E22 /* PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DB92648278300CF7E22 /* PDF.swift */; };
+		C49A0DBD264827D600CF7E22 /* PDFPlotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DBC264827D600CF7E22 /* PDFPlotter.swift */; };
+		C49A0DBE264827D600CF7E22 /* PDFPlotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DBC264827D600CF7E22 /* PDFPlotter.swift */; };
+		C49A0DC026491B5A00CF7E22 /* PDFPlotterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DBF26491B5A00CF7E22 /* PDFPlotterPage.swift */; };
+		C49A0DC126491B5A00CF7E22 /* PDFPlotterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DBF26491B5A00CF7E22 /* PDFPlotterPage.swift */; };
+		C49A0DC326491BAD00CF7E22 /* PDFActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DC226491BAD00CF7E22 /* PDFActions.swift */; };
+		C49A0DC426491BAD00CF7E22 /* PDFActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DC226491BAD00CF7E22 /* PDFActions.swift */; };
 		C49A7EC925EBCE7300503486 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC825EBCE7300503486 /* Text.swift */; };
 		C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
 		C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
@@ -227,6 +235,10 @@
 		C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2Tests.swift; sourceTree = "<group>"; };
 		C48B822B25E28F7E00EAEAE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C492BE0F25F3A2A10042A11E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C49A0DB92648278300CF7E22 /* PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDF.swift; sourceTree = "<group>"; };
+		C49A0DBC264827D600CF7E22 /* PDFPlotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPlotter.swift; sourceTree = "<group>"; };
+		C49A0DBF26491B5A00CF7E22 /* PDFPlotterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPlotterPage.swift; sourceTree = "<group>"; };
+		C49A0DC226491BAD00CF7E22 /* PDFActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFActions.swift; sourceTree = "<group>"; };
 		C49A7EC825EBCE7300503486 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		C49B7D6C25DC03B500CEAB8C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C49B7D6F25DC055400CEAB8C /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
@@ -337,6 +349,7 @@
 				C4F8F86D261C356F00DF76AE /* Common */,
 				C4F8F87B261C37E900DF76AE /* CSV */,
 				C4507813263E9F7700308C1D /* Extensions */,
+				C49A0DB82648275D00CF7E22 /* PDF */,
 				C4F8F873261C372900DF76AE /* Plot */,
 				C4B2F9BE262C175300CC5430 /* PNG */,
 				C4CF2A0B2636EEFD00E858D1 /* Positions */,
@@ -407,6 +420,17 @@
 				C48B822B25E28F7E00EAEAE3 /* Info.plist */,
 			);
 			path = csv2Tests;
+			sourceTree = "<group>";
+		};
+		C49A0DB82648275D00CF7E22 /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				C49A0DB92648278300CF7E22 /* PDF.swift */,
+				C49A0DC226491BAD00CF7E22 /* PDFActions.swift */,
+				C49A0DBC264827D600CF7E22 /* PDFPlotter.swift */,
+				C49A0DBF26491B5A00CF7E22 /* PDFPlotterPage.swift */,
+			);
+			path = PDF;
 			sourceTree = "<group>";
 		};
 		C4B2F9A626297EDD00CC5430 /* Frameworks */ = {
@@ -734,10 +758,12 @@
 				C4F20C112601DF4D005D2FE1 /* Dashes.swift in Sources */,
 				C4FE49FF25F6440F0076EF5E /* Options.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
+				C49A0DBD264827D600CF7E22 /* PDFPlotter.swift in Sources */,
 				C4B2F9C0262C177900CC5430 /* PNG.swift in Sources */,
 				C4B2FA052633F3D500CC5430 /* RGBAu8.swift in Sources */,
 				C4B2F9DC262E947000CC5430 /* Rect.swift in Sources */,
 				C4CF2A112636EF9600E858D1 /* Positions.swift in Sources */,
+				C49A0DC326491BAD00CF7E22 /* PDFActions.swift in Sources */,
 				C4EFA4D6262364EC0026BD9A /* Bar.swift in Sources */,
 				C4CF2A2B26371B3F00E858D1 /* DoIf.swift in Sources */,
 				C4CF2A00263556EE00E858D1 /* Point.swift in Sources */,
@@ -764,6 +790,7 @@
 				C4CF2A0426368F5600E858D1 /* Pie.swift in Sources */,
 				C4C0C48F2612FCC70072699C /* Dimensions.swift in Sources */,
 				C4B2F9E3262EC7C200CC5430 /* PNGlogo.swift in Sources */,
+				C49A0DBA2648278300CF7E22 /* PDF.swift in Sources */,
 				C4B2F9EE263025FB00CC5430 /* Path.swift in Sources */,
 				C446E81225F4BE4B007B1A05 /* PlotCommon.swift in Sources */,
 				C4C0C472260F85E40072699C /* Fonts.swift in Sources */,
@@ -780,6 +807,7 @@
 				C40CD43A25ED025F003944FA /* Header.swift in Sources */,
 				C4CF2A212637177100E858D1 /* PieChart.swift in Sources */,
 				C4507815263E9F9400308C1D /* Int.swift in Sources */,
+				C49A0DC026491B5A00CF7E22 /* PDFPlotterPage.swift in Sources */,
 				C4C0C4AB26134AC70072699C /* CSVsettings.swift in Sources */,
 				C460B673261CD5CD0051BB80 /* SVGplotter.swift in Sources */,
 				C460B677261DA8B30051BB80 /* Tags.swift in Sources */,
@@ -842,6 +870,7 @@
 				C40CD43625ED007A003944FA /* Axes.swift in Sources */,
 				C4CF2A172637145700E858D1 /* Pie.swift in Sources */,
 				C49CC51C263A9A670006FAC8 /* PlotOptions.swift in Sources */,
+				C49A0DC126491B5A00CF7E22 /* PDFPlotterPage.swift in Sources */,
 				C449F44F25EC1325006C67EB /* Text.swift in Sources */,
 				C4B2F9AF262B286400CC5430 /* SVGout.swift in Sources */,
 				C4F20C1726027B7C005D2FE1 /* Legends.swift in Sources */,
@@ -865,6 +894,7 @@
 				C4C0C4752610C39B0072699C /* Fonts.swift in Sources */,
 				C450781E263EB3E000308C1D /* Int.swift in Sources */,
 				C450781C263EA0ED00308C1D /* CGPoint.swift in Sources */,
+				C49A0DBE264827D600CF7E22 /* PDFPlotter.swift in Sources */,
 				C4B2F98926272A4C00CC5430 /* ColourTranslate.swift in Sources */,
 				C4F8F876261C375C00DF76AE /* Plot.swift in Sources */,
 				C4EFA4A4261EEBA70026BD9A /* Plotter.swift in Sources */,
@@ -882,8 +912,10 @@
 				C4BDCFBD261EFA0600D8C589 /* Transform.swift in Sources */,
 				C4B2F9C8262C17D100CC5430 /* PNGPlotter.swift in Sources */,
 				C453242625FA2C23007D741C /* DrawShapes.swift in Sources */,
+				C49A0DC426491BAD00CF7E22 /* PDFActions.swift in Sources */,
 				C4B2F9DD262E947000CC5430 /* Rect.swift in Sources */,
 				C4EFA4EF2623710A0026BD9A /* BarGet.swift in Sources */,
+				C49A0DBB2648278700CF7E22 /* PDF.swift in Sources */,
 				C4C0C4902612FCC70072699C /* Dimensions.swift in Sources */,
 				C4EFA4E526236B850026BD9A /* Path2D.swift in Sources */,
 				C4C0C495261300000072699C /* CodingKeys.swift in Sources */,

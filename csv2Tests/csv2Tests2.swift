@@ -53,4 +53,12 @@ extension csv2Tests {
         XCTAssertFalse(options.isOnly([.bold]))
         XCTAssertTrue((options & .bold).isOnly([.bold]))
     }
+
+    func testPDF() {
+        let settings = try? Settings.load(settingsJSON(true))
+        let pdf = PDF(settings!)
+        XCTAssertNotNil(pdf.doc.dataRepresentation())
+        let string = pdf.doc.string
+        XCTAssertNotNil(string)
+    }
 }
