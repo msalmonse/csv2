@@ -133,6 +133,7 @@ func getCommand() -> CSVplotterCommand {
         var command = try CSVplotter.parseAsRoot()
         switch command {
         case let canvasCmd as CSVplotter.Canvas: result = canvasCmd
+        case let pdfCmd as CSVplotter.PDF: result = pdfCmd
         case let pngCmd as CSVplotter.PNG: result = pngCmd
         case let svgCmd as CSVplotter.SVG: result = svgCmd
         default: try command.run(); exit(0)

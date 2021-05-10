@@ -41,6 +41,27 @@ extension PNG {
         }
     }
 
+    /// Draw a path on the PNG
+    /// - Parameters:
+    ///   - components: a list of points and what to do
+    ///   - styles: plot properties
+    ///   - fill: fill or stroke?
+
+    func plotPath(_ path: Path, styles: Styles, fill: Bool) {
+        cgPlotPath(path, styles: styles, fill: fill, to: ctx, clippedBy: clipRect)
+    }
+
+    /// Draw the text at the place specified with the properties specified
+    /// - Parameters:
+    ///   - x: x position
+    ///   - y: y position
+    ///   - text: text to draw
+    ///   - styles: properties
+
+    func plotText(x: Double, y: Double, text: String, styles: Styles) {
+        cgPlotText(x: x, y: y, text: text, styles: styles, to: ctx, height: height)
+    }
+
     /// Print the chart, not applicable
 
     func plotPrint() {

@@ -9,6 +9,7 @@ import Foundation
 
 enum PDFActions {
     case
+        bg(colour: CGColor),
         clipStart(plotPlane: Plane),
         clipEnd,
         head(positions: Positions, plotPlane: Plane, stylesList: StylesList),

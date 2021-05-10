@@ -9,11 +9,11 @@ import Foundation
 
 extension PDF {
     func plotClipStart(plotPlane: Plane) {
-        return
+        page.add(action: .clipStart(plotPlane: plotPlane))
     }
 
     func plotClipEnd() {
-        return
+        page.add(action: .clipEnd)
     }
 
     func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
