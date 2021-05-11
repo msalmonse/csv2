@@ -196,6 +196,15 @@ The names are included with the colours associated with the plots under the plot
 **Allowed values:** From 0 to 1.0
 The opacity of the plots.
 
+**pdf** (Dictionary of Strings) <sup>[pdf](#fnpdf)</sup><br/>
+Some of the pdf attributes can be defined here:
+
+- **author**: the author of the chart.
+- **keywords**: a list of keywords separated by `;`
+- **producer**: the creator of the data.
+- **subject**: the subject of the chart, if the `subTitleHeader` is defined and this entry is not the it is used.
+- **title**: the title of the chart, if this is not specified then the chart  `title` is used if defined.
+
 **pieLabel** (Bool **false**)<sup>[pie](#fnpie)</sup><br/>
 Display the percentage of each slice unless the slice is too small.
 
@@ -358,6 +367,8 @@ Hence `--reserve 1 2 3 4` is the same as `reserveLeft: 1`, `reserveTop: 2`, `res
 
 - <a id="fncanvas">canvas</a>: Only when creating a Canvas plot
 
-- <a id="fnpie">pie</a>: Only when creating a pie chart
+- <a id="fnpdf">pdf</a>: Only when creating a PDF chart
+
+- <a id="fnpie">pie</a>: Only when creating a Pie chart
 
 - <a id="fnsvg">svg</a>: Only when creating an SVG plot
