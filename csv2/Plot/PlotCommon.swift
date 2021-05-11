@@ -65,7 +65,10 @@ extension Plot {
             switch state {
             case .moved:
                 // single data point so mark it
-                if !styles.options[.pointed] { shapeComponents.append(plotShape) }
+                if !styles.options[.pointed] {
+                    shapeComponents.append(.moveTo(xy: prevPlotPoint))
+                    shapeComponents.append(plotShape)
+                }
                 state = .move
             case .scatter, .bar, .clipped2:
                 if !styles.options[.filled] { break }
