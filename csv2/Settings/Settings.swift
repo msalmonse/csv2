@@ -23,6 +23,9 @@ class Settings: Decodable, ReflectedStringConvertible {
     // Foreground colour settings
     let fg: Settings.ForegroundColours
 
+    // PDF related settings
+    let pdf: Settings.PDF
+
     // Plot related settings
     let plot: Settings.Plot
 
@@ -76,6 +79,10 @@ class Settings: Decodable, ReflectedStringConvertible {
         let fgContainer = try?
             container?.nestedContainer(keyedBy: Settings.CodingKeys.self, forKey: .foregroundColours)
         fg = Self.jsonForegroundColours(from: fgContainer, defaults: defaults)
+
+        let pdfContainer = try?
+            container?.nestedContainer(keyedBy: Settings.CodingKeys.self, forKey: .pdf)
+        pdf = Self.jsonPDF(from: pdfContainer, defaults: defaults)
     }
 
     /// Load contents of file into object

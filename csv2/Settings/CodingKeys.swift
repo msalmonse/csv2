@@ -9,6 +9,7 @@ import Foundation
 
 extension Settings {
     enum CodingKeys: CodingKey {
+        case author
         case axes
         case backgroundColour
         case bared
@@ -40,6 +41,7 @@ extension Settings {
         case include
         case index
         case italic
+        case keywords
         case legends
         case legendsBox
         case logoHeight
@@ -50,11 +52,13 @@ extension Settings {
         case nameHeader
         case names
         case opacity
+        case pdf
         case pieLabel
         case pieLegend
         case pieSubLegend
         case pieSubLegendPrefix
         case pieSubLegendSuffix
+        case producer
         case reserveBottom
         case reserveLeft
         case reserveRight
@@ -66,6 +70,7 @@ extension Settings {
         case smooth
         case sortx
         case strokeWidth
+        case subject
         case subTitle
         case subTitleHeader
         case svgInclude
