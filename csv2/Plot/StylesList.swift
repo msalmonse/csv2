@@ -103,7 +103,7 @@ struct StylesList {
     static private func legendHeadlineStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var legendHeadline = Styles.from(settings: settings)
         legendHeadline.options[.bold] = true
-        legendHeadline.cssClass = "legend headline"
+        legendHeadline.cssClass = "legendheadline"
         legendHeadline.fontColour = settings.fg.legends
         legendHeadline.fontSize = sizes.legend.size * 1.25
         legendHeadline.textAlign = "start"

@@ -33,7 +33,8 @@ extension SVG {
             )
         }
 
-        oneText(stylesList.legend); oneText(stylesList.legend, suffix: ".headline")
+        oneText(stylesList.legend)
+        oneText(stylesList.legendHeadline)
         oneText(stylesList.pieLabel)
         var pieLabel = stylesList.pieLabel
         pieLabel.textAlign = "start"; oneText(pieLabel, suffix: ".start")
@@ -57,14 +58,15 @@ extension SVG {
     ///   - id: id for svg
     ///   - plotStyles: styles for the plots
 
-    private func plotCSS(_ result: inout [String], id: String, plotStyles: [Styles]) {
+    private func plotCSS(_ result: inout [String], id: String, plotStyles: [Styles], size: Double) {
         for style in plotStyles {
             if let cssClass = style.cssClass, let colour = style.colour {
                 let dashes = style.options[.dashed]
                     ? "; stroke-dasharray: \(style.dash!); stroke-linecap: butt" : ""
+                let px = "font-size: " + size.f(1) + "px;"
                 result.append("""
                     \(id) path.\(cssClass) { stroke: \(colour)\(dashes) }
-                    \(id) text.\(cssClass), \(id) rect.\(cssClass) { fill: \(colour); stroke: \(colour) }
+                    \(id) text.\(cssClass), \(id) rect.\(cssClass) { \(px) fill: \(colour); stroke: \(colour) }
                     \(id) path.\(cssClass).fill { stroke: none\(dashes); fill: \(colour); fill-opacity: 0.75 }
                     """
                 )
@@ -134,7 +136,7 @@ extension SVG {
         cssText(&result, stylesList, id: id)
 
         // Individual plot settings
-        plotCSS(&result, id: id, plotStyles: stylesList.plots)
+        plotCSS(&result, id: id, plotStyles: stylesList.plots, size: stylesList.legend.fontSize)
 
         colour = stylesList.legendBox.colour ?? "silver"
         result.append(
