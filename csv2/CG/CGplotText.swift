@@ -36,6 +36,22 @@ fileprivate func xPos(_ x: Double, _ styles: Styles, _ textWidth: Double) -> Dou
     }
 }
 
+/// Calculate y position for string
+/// - Parameters:
+///   - y: string bottom
+///   - styles: text styles
+///   - font: font to use
+/// - Returns: the adjusted y position
+
+fileprivate func yPos(_ y: Double, _ styles: Styles, _ font: CTFont?) -> Double {
+    guard let font = font else { return y }
+    switch styles.textBaseline {
+    case "alphabetic": return y + Double(CTFontGetDescent(font))
+    case "middle": return y + Double(CTFontGetAscent(font)) * 0.4
+    default: return y
+    }
+}
+
 /// Lookup font based on properties
 /// - Parameter styles: properties
 /// - Returns: font or nil
@@ -68,9 +84,10 @@ fileprivate func stylesFont(_ styles: Styles) -> CTFont? {
 
 func cgPlotText(xy: Point, text: String, styles: Styles, to ctx: CGContext, height: Double) {
     let colour = RGBAu8(styles.fontColour, or: .black)
+    let font = stylesFont(styles)
     let attr = [
         NSAttributedString.Key.foregroundColor: colour.cgColor as Any,
-        NSAttributedString.Key.font: stylesFont(styles) as Any
+        NSAttributedString.Key.font: font as Any
     ] as [NSAttributedString.Key: Any]
     let attrText = NSAttributedString(string: text, attributes: attr)
     let textWidth = Double(attrText.size().width)
@@ -82,7 +99,7 @@ func cgPlotText(xy: Point, text: String, styles: Styles, to ctx: CGContext, heig
     ctx.textMatrix = .identity
     ctx.translateBy(x: 0.0, y: CGFloat(height))
     ctx.scaleBy(x: 1.0, y: -1.0)
-    ctx.textPosition = CGPoint(x: xPos(xy.x, styles, textWidth), y: height - xy.y)
+    ctx.textPosition = CGPoint(x: xPos(xy.x, styles, textWidth), y: height - yPos(xy.y, styles, font))
     CTLineDraw(line, ctx)
     ctx.restoreGState()
 }
