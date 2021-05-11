@@ -34,12 +34,13 @@ class SVG: Plotter, ReflectedStringConvertible {
         )
     }
     let svgTagEnd = "\n</svg>\n"
-    let comment = """
-    <!--
-        Created by \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) \(AppInfo.origin)
-      -->
+    var comment: String { """
+        <!--
+            \(settings.comment)
+          -->
 
-    """
+        """
+    }
 
     init(_ settings: Settings) {
         self.settings = settings

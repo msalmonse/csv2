@@ -39,7 +39,12 @@ class Settings: Decodable, ReflectedStringConvertible {
     var inColumns: Bool { return !csv.rowGrouping }
     var inRows: Bool { return csv.rowGrouping }
 
-    /// Check if a row or column is included
+    // Text to use in comments
+    let comment = """
+        Created by \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) \(AppInfo.origin)
+        """
+
+        /// Check if a row or column is included
     /// - Parameter i: row or column number
     /// - Returns: true if included
 
