@@ -14,6 +14,10 @@ EXAMPLES =\
 	examples/trig-80-120.svg
 JSFILES = $(CANVASFILES:data/%.canvas=generated/%.js)
 OPTFILES = $(wildcard data/*.opts)
+PDFOPTFILES = $(shell egrep -lv -- '--(css|nohover|svg)' data/*.opts)
+PDFFILES = $(PDFOPTFILES:data/%.opts=generated/%.pdf)
+PNGOPTFILES = $(shell egrep -lv -- '--(css|nohover|svg)' data/*.opts)
+PNGFILES = $(PNGOPTFILES:data/%.opts=generated/%.png)
 PNGOPTFILES = $(shell egrep -lv -- '--(css|nohover|svg)' data/*.opts)
 PNGFILES = $(PNGOPTFILES:data/%.opts=generated/%.png)
 SHAPES = $(shell $(CSV2) --shapenames)
@@ -24,18 +28,21 @@ JSINDEXMAKE = scripts/jsIndexMake.sh
 PNGINDEXMAKE = scripts/pngIndexMake.sh
 SVGINDEXMAKE = scripts/svgIndexMake.sh
 
-.PHONY:	all build docs error.expected examples release
+.PHONY:	all build docs error.expected examples pdf release
 
 all:	generated/.made \
 	generated/svgindex.html \
 	generated/pngindex.html \
-	generated/jsindex.html
+	generated/jsindex.html	\
+	pdf
 
 build:
 	xcodebuild -scheme csv2 build
 
 release:
 	xcodebuild -scheme "Release csv2" build
+
+pdf:	$(PDFFILES)
 
 docs: $(DOCFILES)
 
@@ -75,6 +82,10 @@ generated/trig+trig-inc.svg: data/trig.inc
 generated/%.svg: OPTS = $(shell cat $(@F:%.svg=data/%.opts))
 generated/%.svg: data/%.csv data/%.json data/%.opts $(CSV2)
 	-@ $(CSV2) svg $(OPTS) $(@F:%.svg=data/%.csv) $(@F:%.svg=data/%.json) $@
+
+generated/%.pdf: OPTS = $(shell cat $(@F:%.pdf=data/%.opts))
+generated/%.pdf: data/%.csv data/%.json data/%.opts $(CSV2)
+	-@ $(CSV2) pdf $(OPTS) $(@F:%.pdf=data/%.csv) $(@F:%.pdf=data/%.json) $@
 
 generated/%.png: OPTS = $(shell cat $(@F:%.png=data/%.opts))
 generated/%.png: data/%.csv data/%.json data/%.opts $(CSV2)
