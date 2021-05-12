@@ -12,7 +12,6 @@ extension Settings {
         // see PDFDocumentAttribute for meanings
         let author: String?
         let keywords: String?
-        let producer: String?
         let subject: String?
         let title: String?
     }
@@ -21,7 +20,6 @@ extension Settings {
         return PDF(
             author: optionalKeyedStringValue(from: container, forKey: .author),
             keywords: optionalKeyedStringValue(from: container, forKey: .keywords),
-            producer: optionalKeyedStringValue(from: container, forKey: .producer),
             subject: optionalKeyedStringValue(from: container, forKey: .subject),
             title: optionalKeyedStringValue(from: container, forKey: .title)
         )

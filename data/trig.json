@@ -14,6 +14,12 @@
 	"headerColumns": 2,
 	"headerRows": 2,
 	"index": 1,
+	"pdf": {
+		"author": "Alfred E. Newman",
+		"keywords": "sine; cosine; tangent; sine squared; cotangent; sine == cosine",
+		"producer": "Numbers",
+		"subject": "Various trigonometric functions"
+	},
 	"subTitleHeader": 2,
 	"title": "Trigonometric Functions",
 	"xTitle": "Angle",

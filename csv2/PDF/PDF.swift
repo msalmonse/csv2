@@ -42,7 +42,21 @@ extension PDFDocument {
         documentAttributes?[PDFDocumentAttribute.creationDateAttribute] = creationDate
         documentAttributes?[PDFDocumentAttribute.creatorAttribute] = settings.comment
 
-        if settings.plotter.title.hasContent {
+        if let author = settings.pdf.author {
+            documentAttributes?[PDFDocumentAttribute.authorAttribute] = author
+        }
+
+        if let keywords = settings.pdf.keywords {
+            documentAttributes?[PDFDocumentAttribute.keywordsAttribute] = keywords
+        }
+
+        if let subject = settings.pdf.subject {
+            documentAttributes?[PDFDocumentAttribute.subjectAttribute] = subject
+        }
+
+        if let title = settings.pdf.title {
+            documentAttributes?[PDFDocumentAttribute.titleAttribute] = title
+        } else if settings.plotter.title.hasContent {
             documentAttributes?[PDFDocumentAttribute.titleAttribute] = settings.plotter.title
         }
     }

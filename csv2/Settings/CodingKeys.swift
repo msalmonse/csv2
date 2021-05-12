@@ -58,7 +58,6 @@ extension Settings {
         case pieSubLegend
         case pieSubLegendPrefix
         case pieSubLegendSuffix
-        case producer
         case reserveBottom
         case reserveLeft
         case reserveRight

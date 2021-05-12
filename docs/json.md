@@ -201,8 +201,7 @@ Some of the pdf attributes can be defined here:
 
 - **author**: the author of the chart.
 - **keywords**: a list of keywords separated by `;`
-- **producer**: the creator of the data.
-- **subject**: the subject of the chart, if the `subTitleHeader` is defined and this entry is not the it is used.
+- **subject**: the subject of the chart.
 - **title**: the title of the chart, if this is not specified then the chart  `title` is used if defined.
 
 **pieLabel** (Bool **false**)<sup>[pie](#fnpie)</sup><br/>
