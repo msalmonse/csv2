@@ -25,17 +25,45 @@ extension Options {
             case .baroffset: baroffset = try getDouble(val0, key: .barOffset)
             case .barwidth: barwidth = try getDouble(val0, key: .barWidth)
             case .bezier: bezier = try getDouble(val0, key: .bezier)
-            // case .bg:
+            case .bg: bg = try getColour(val0, key: .backgroundColour)
             case .black: black = getBool(true, key: .black)
             case .bold: bold = getBool(true, key: .bold)
-            case .bounds: bounds = getBool(false, key: nil)
+            case .bounds: bounds = false
             case .bitmap: bitmap = try getIntArray(opt.valuesAt, key: nil)
             case .canvas: canvas = getString(val0, key: .canvasID)
-            case .canvastag: canvastag = getBool(true, key: nil)
+            case .canvastag: canvastag = true
             case .css: css = getString(val0, key: .cssInclude)
             case .cssid: cssid = getString(val0, key: .cssID)
-            // case .colours:
+            case .colournames: colournames = true
+            case .colournameslist: colournameslist = true
+            case .colours: colours = try getColourArray(opt.valuesAt, key: .colours)
+            case .colourslist: colourslist = true
             case .comment: comment = getBool(false, key: .comment)
+            case .dashed: dashed = try getInt(val0, key: .dashedLines)
+            case .dashes: dashes = getStringArray(opt.valuesAt, key: .dashes)
+            case .dasheslist: dasheslist = true
+            case .debug: debug = try getInt(val0, key: nil)
+            case .distance: distance = try getDouble(val0, key: .dataPointDistance)
+            case .fg: fg = try getColour(val0, key: nil)
+            case .filled: filled = try getInt(val0, key: .filled)
+            case .font: font = getString(val0, key: .fontFamily)
+            case .headers: headers = try getInt(val0, key: nil)
+            case .height: height = try getInt(val0, key: .height)
+            case .hover: hover = getBool(false, key: .hover)
+            case .include: include = try getInt(val0, key: .include)
+            case .index: index = try getInt(val0, key: .index)
+            case .italic: italic = getBool(true, key: .italic)
+            case .legends: legends = getBool(false, key: .legends)
+            case .logo: logo = getString(val0, key: .logoURL)
+            case .logx: logx = getBool(true, key: .logx)
+            case .logy: logy = getBool(true, key: .logy)
+            case .nameheader: nameheader = try getInt(val0, key: .nameHeader)
+            case .names: names = getStringArray(opt.valuesAt, key: .names)
+            case .opacity: opacity = try getDouble(val0, key: .opacity)
+            case .pie: pie = true
+            case .random: random = try getIntArray(opt.valuesAt, key: nil)
+            case .reserve: reserve = try getDoubleArray(opt.valuesAt, key: nil)
+            case .rows: rows = getBool(true, key: .rowGrouping)
             default: break
             }
         } catch {

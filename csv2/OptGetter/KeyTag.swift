@@ -55,7 +55,6 @@ extension Options {
         case rows
         case scattered
         case semi
-        case separator
         case shapenames
         case shapes
         case show

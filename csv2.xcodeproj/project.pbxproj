@@ -358,8 +358,8 @@
 		C40A3AFD25DC01180016EB6D /* csv2 */ = {
 			isa = PBXGroup;
 			children = (
-				C40A3AFE25DC01180016EB6D /* main.swift */,
 				C4569DB0265180B200D74DBD /* help.swift */,
+				C40A3AFE25DC01180016EB6D /* main.swift */,
 				C460B666261B3A590051BB80 /* Plotter.swift */,
 				C4BDCFB4261E156200D8C589 /* Canvas */,
 				C49A0DC5264942AF00CF7E22 /* CG */,

@@ -86,4 +86,40 @@ extension Options {
         return OptGetter.stringValue(val)
     }
 
+    /// Set a string array and tag it
+    /// - Parameters:
+    ///   - vals: array to get
+    ///   - key: key to tag
+
+    mutating func getStringArray(_ vals: [ValueAt], key: Settings.CodingKeys?) -> [String] {
+        if let key = key { onCommandLine.insert(key) }
+        return OptGetter.stringArray(vals)
+    }
+
+    /// Get a colour value and tag it
+    /// - Parameters:
+    ///   - val: colour to get
+    ///   - key: key to tag
+    /// - Throws: OptGetterError.illegalValue
+
+    mutating func getColour(_ val: ValueAt, key: Settings.CodingKeys?) throws -> String {
+        let colour = getString(val, key: key)
+        if RGBAu8.lookup(colour) != nil { return colour }
+        throw OptGetterError.illegalValue(type: "colour", valueAt: val)
+    }
+
+    /// Get a colour array and tag it
+    /// - Parameters:
+    ///   - vals: array to get
+    ///   - key: key to tag
+    /// - Throws: OptGetterError.illegalValue
+
+    mutating func getColourArray(_ vals: [ValueAt], key: Settings.CodingKeys?) throws -> [String] {
+        do {
+            if let key = key { onCommandLine.insert(key) }
+            return try vals.map { try getColour($0, key: nil) }
+        } catch {
+            throw error
+        }
+    }
 }
