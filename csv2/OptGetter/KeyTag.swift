@@ -28,7 +28,6 @@ extension Options {
         case comment
         case css
         case cssid
-        case csvName
         case dashed
         case dashes
         case dasheslist
@@ -50,7 +49,6 @@ extension Options {
         case nameheader
         case names
         case opacity
-        case outName
         case pie
         case random
         case reserve

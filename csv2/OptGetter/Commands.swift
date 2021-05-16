@@ -11,6 +11,15 @@ import OptGetter
 enum PlotterType: OptGetterTag {
     case canvas, help, helpCanvas, helpPdf, helpPng, helpSvg, pdf, png, svg
 
+    var isHelp: Bool {
+        switch self {
+        case .help, .helpCanvas, .helpPdf, .helpPng, .helpSvg:
+            return true
+        default:
+            return false
+        }
+    }
+
     func plotter(settings: Settings) -> Plotter {
         switch self {
         case .canvas: return Canvas(settings)
@@ -23,7 +32,7 @@ enum PlotterType: OptGetterTag {
     }
 }
 
-let cmds: [CmdToGet] = [
+private let cmds: [CmdToGet] = [
     CmdToGet(["canvas"], tag: PlotterType.canvas),
     CmdToGet(["help", "canvas"], tag: PlotterType.helpCanvas),
     CmdToGet(["help", "pdf"], tag: PlotterType.helpPdf),
@@ -36,5 +45,5 @@ let cmds: [CmdToGet] = [
 ]
 
 func getCommand() -> PlotterType {
-    return .help
+    return OptGetter.cmdGetter(cmds, args: CommandLine.arguments)?.tag as? PlotterType ?? .help
 }

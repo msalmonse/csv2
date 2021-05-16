@@ -186,57 +186,6 @@ struct Options {
         return ","
     }
 
-    /// Set a boolean value and tag it
-    /// - Parameters:
-    ///   - val: value to set
-    ///   - key: key to tag
-
-    mutating func getBool(_ val: Bool, key: Settings.CodingKeys?) -> Bool {
-        if let key = key { onCommandLine.insert(key) }
-        return val
-    }
-
-    /// Set a double value and tag it
-    /// - Parameters:
-    ///   - val: value to set
-    ///   - key: key to tag
-    /// - Throws: OptGetterError.illegalValue
-
-    mutating func getDouble(_ val: ValueAt, key: Settings.CodingKeys?) throws -> Double{
-        do {
-            if let key = key { onCommandLine.insert(key) }
-            return try OptGetter.doubleValue(val)
-        } catch {
-            throw error
-        }
-    }
-
-    /// Set an int value and tag it
-    /// - Parameters:
-    ///   - val: value to set
-    ///   - key: key to tag
-    /// - Throws: OptGetterError.illegalValue
-
-    mutating func getInt(_ val: ValueAt, key: Settings.CodingKeys?) throws -> Int {
-        do {
-            if let key = key { onCommandLine.insert(key) }
-            return try OptGetter.intValue(val)
-        } catch {
-            throw error
-        }
-    }
-
-    /// Set a string value and tag it
-    /// - Parameters:
-    ///   - val: value to set
-    ///   - key: key to tag
-
-    mutating func getString(_ val: ValueAt, key: Settings.CodingKeys?) -> String {
-        if let key = key { onCommandLine.insert(key) }
-        return OptGetter.stringValue(val)
-    }
-
-
     /// Fetch options from the command line
     /// - Parameter plotter: the type of chart to fet options for
     /// - Throws:
@@ -259,23 +208,19 @@ struct Options {
             let optGetter = try OptGetter(opts)
             let optsGot = try optGetter.parseArgs(args: CommandLine.arguments)
             for opt in optsGot {
-                // swiftlint:disable:next force_cast
-                let optTag = opt.tag as! Key
-                let val0 = opt.valuesAt[0]
-
-                switch optTag {
-                case .bared: bared = try getInt(val0, key: .bared)
-                case .baroffset: baroffset = try getDouble(val0, key: .barOffset)
-                case .barwidth: barwidth = try getDouble(val0, key: .barWidth)
-                case .bezier: bezier = try getDouble(val0, key: .bezier)
-                    // case .bg:
-                case .black: black = getBool(true, key: .black)
-                case .bold: bold = getBool(true, key: .bold)
-                case .bounds: bounds = getBool(false, key: nil)
-                // case .bitmap:
-                case .canvas: canvas = getString(val0, key: .canvasID)
-                default: break
-                }
+                try getOpt(opt: opt)
+            }
+            switch optGetter.remainingValuesAt.count {
+            case 3...:
+                outName = getString(optGetter.remainingValuesAt[2], key: nil)
+                fallthrough
+            case 2:
+                jsonName = getString(optGetter.remainingValuesAt[1], key: nil)
+                fallthrough
+            case 1:
+                csvName = getString(optGetter.remainingValuesAt[0], key: nil)
+            default:
+                break
             }
         } catch {
             throw error

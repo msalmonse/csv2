@@ -8,14 +8,25 @@
 import Foundation
 
 let command = getCommand()
-var commonOpts = command.options()
-var defaults = commonOpts.defaults(for: command)
-
-if commonOpts.debug != 0 {
-    print(commonOpts, to: &standardError)
+if command.isHelp {
+    help(command)
+    exit(0)
 }
 
-if commonOpts.version {
+var options = Options()
+do {
+    try options.getOpts(for: command)
+} catch {
+    print(error, to: &standardError)
+    exit(1)
+}
+var defaults = options.defaults()
+
+if options.debug != 0 {
+    print(options, to: &standardError)
+}
+
+if options.version {
     print("""
         \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) Built at \(AppInfo.builtAt)
         """,
@@ -24,52 +35,52 @@ if commonOpts.version {
     exit(0)
 }
 
-if commonOpts.shapenames {
+if options.shapenames {
     print(Shape.allNames())
-} else if commonOpts.show.hasContent {
-    showShape(shape: commonOpts.show, defaults: defaults, with: command.iAm, to: commonOpts.outName)
-} else if commonOpts.bitmap.hasEntries {
-    print(bitmap(commonOpts.bitmap))
-} else if commonOpts.colourslist {
-    showColoursList(defaults, namesList: false, with: command.iAm, to: commonOpts.outName)
-} else if commonOpts.colournames {
+} else if options.show.hasContent {
+    showShape(shape: options.show, defaults: defaults, with: command, to: options.outName)
+} else if options.bitmap.hasEntries {
+    print(bitmap(options.bitmap))
+} else if options.colourslist {
+    showColoursList(defaults, namesList: false, with: command, to: options.outName)
+} else if options.colournames {
     print(ColourTranslate.all.map { "\($0): \(ColourTranslate.lookup($0)!.hashRGBA)" }.joined(separator: "\n"))
-} else if commonOpts.colournameslist {
-    showColoursList(defaults, namesList: true, with: command.iAm, to: commonOpts.outName)
-} else if commonOpts.dasheslist {
-    showDashesList(defaults, with: command.iAm, to: commonOpts.outName)
+} else if options.colournameslist {
+    showColoursList(defaults, namesList: true, with: command, to: options.outName)
+} else if options.dasheslist {
+    showDashesList(defaults, with: command, to: options.outName)
 } else {
     // use a csvName of - to mean use stdin
-    if commonOpts.csvName == "-" { commonOpts.csvName = nil }
+    if options.csvName == "-" { options.csvName = nil }
 
-    if commonOpts.verbose && commonOpts.random.isEmpty {
-        print(commonOpts.csvName ?? "Missing CSV file name, using stdin", to: &standardError)
-        print(commonOpts.jsonName ?? "Missing JSON file name", to: &standardError)
+    if options.verbose && options.random.isEmpty {
+        print(options.csvName ?? "Missing CSV file name, using stdin", to: &standardError)
+        print(options.jsonName ?? "Missing JSON file name", to: &standardError)
     }
 
-    let jsonSource = jsonURL(commonOpts)
+    let jsonSource = jsonURL(options)
     SearchPath.add(jsonSource)
     let settings = try? Settings.load(jsonSource)
-    if commonOpts.debug &== 2 { print(settings ?? "Nil settings", to: &standardError) }
+    if options.debug &== 2 { print(settings ?? "Nil settings", to: &standardError) }
 
     trySpecialCases(settings)
 
-    if commonOpts.csvName != nil { SearchPath.add(commonOpts.csvName!) }
-    let csv = csvSelect(commonOpts, settings)
-    if commonOpts.debug &== 4 { print(csv ?? "Nil csv", to: &standardError) }
+    if options.csvName != nil { SearchPath.add(options.csvName!) }
+    let csv = csvSelect(options, settings)
+    if options.debug &== 4 { print(csv ?? "Nil csv", to: &standardError) }
 
     if csv == nil || csv!.colCt == 0 || csv!.rowCt == 0 || settings == nil {
         print("Error loading data.", to: &standardError)
         exit(1)
     }
 
-    let plotter = command.iAm.plotter(settings: settings!)
-    if commonOpts.debug &== 8 { print(plotter, to: &standardError) }
+    let plotter = command.plotter(settings: settings!)
+    if options.debug &== 8 { print(plotter, to: &standardError) }
 
     let plot = Plot(csv!, settings!, plotter)
     plot.chartGen()
 
-    output(plotter, to: commonOpts.outName)
+    output(plotter, to: options.outName)
 }
 
 /// Determine source of CSV data
@@ -121,7 +132,7 @@ func output(_ plotter: Plotter, to name: String?) {
 func trySpecialCases(_ settings: Settings?) {
     guard let settings = settings else { exit(1) }
 
-    if command.ownOptions(key: .canvastag, default: false) {
+    if options.canvastag {
         print(Canvas.canvasTag(settings))
         exit(0)
     }
