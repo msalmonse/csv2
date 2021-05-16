@@ -186,28 +186,66 @@ struct Options {
         return ","
     }
 
-    mutating func setBool(_ flag: inout Bool, _ val: Bool, key: Settings.CodingKeys) {
-        flag = val
-        onCommandLine.insert(key)
+    /// Set a boolean value and tag it
+    /// - Parameters:
+    ///   - val: value to set
+    ///   - key: key to tag
+
+    mutating func getBool(_ val: Bool, key: Settings.CodingKeys?) -> Bool {
+        if let key = key { onCommandLine.insert(key) }
+        return val
     }
 
-    mutating func setDouble(_ doubleOpt: inout Double, _ val: ValueAt, key: Settings.CodingKeys) throws {
+    /// Set a double value and tag it
+    /// - Parameters:
+    ///   - val: value to set
+    ///   - key: key to tag
+    /// - Throws: OptGetterError.illegalValue
+
+    mutating func getDouble(_ val: ValueAt, key: Settings.CodingKeys?) throws -> Double{
         do {
-            doubleOpt = try OptGetter.doubleValue(val)
-            onCommandLine.insert(key)
+            if let key = key { onCommandLine.insert(key) }
+            return try OptGetter.doubleValue(val)
         } catch {
             throw error
         }
     }
 
-    mutating func setInt(_ intOpt: inout Int, _ val: ValueAt, key: Settings.CodingKeys) throws {
+    /// Set an int value and tag it
+    /// - Parameters:
+    ///   - val: value to set
+    ///   - key: key to tag
+    /// - Throws: OptGetterError.illegalValue
+
+    mutating func getInt(_ val: ValueAt, key: Settings.CodingKeys?) throws -> Int {
         do {
-            intOpt = try OptGetter.intValue(val)
-            onCommandLine.insert(key)
+            if let key = key { onCommandLine.insert(key) }
+            return try OptGetter.intValue(val)
         } catch {
             throw error
         }
     }
+
+    /// Set a string value and tag it
+    /// - Parameters:
+    ///   - val: value to set
+    ///   - key: key to tag
+
+    mutating func getString(_ val: ValueAt, key: Settings.CodingKeys?) -> String {
+        if let key = key { onCommandLine.insert(key) }
+        return OptGetter.stringValue(val)
+    }
+
+
+    /// Fetch options from the command line
+    /// - Parameter plotter: the type of chart to fet options for
+    /// - Throws:
+    ///   - OptGetterError.duplicateArgument
+    ///   - OptGetterError.duplicateName
+    ///   - OptGetterError.illegalValue
+    ///   - OptGetterError.insufficientArguments
+    ///   - OptGetterError.tooManyOptions
+    ///   - OptGetterError.unknownName
 
     mutating func getOpts(for plotter: PlotterType) throws {
         var opts = commonOpts
@@ -224,9 +262,18 @@ struct Options {
                 // swiftlint:disable:next force_cast
                 let optTag = opt.tag as! Key
                 let val0 = opt.valuesAt[0]
+
                 switch optTag {
-                case .bared: try setInt(&bared, val0, key: .bared)
-                case .baroffset: try setDouble(&baroffset, val0, key: .barOffset)
+                case .bared: bared = try getInt(val0, key: .bared)
+                case .baroffset: baroffset = try getDouble(val0, key: .barOffset)
+                case .barwidth: barwidth = try getDouble(val0, key: .barWidth)
+                case .bezier: bezier = try getDouble(val0, key: .bezier)
+                    // case .bg:
+                case .black: black = getBool(true, key: .black)
+                case .bold: bold = getBool(true, key: .bold)
+                case .bounds: bounds = getBool(false, key: nil)
+                // case .bitmap:
+                case .canvas: canvas = getString(val0, key: .canvasID)
                 default: break
                 }
             }
