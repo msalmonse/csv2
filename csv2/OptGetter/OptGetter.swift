@@ -10,11 +10,10 @@ import OptGetter
 
 extension OptToGet {
     convenience init(
-        _ optTag: Options.Key
+        _ optTag: Options.Key,
         short: String? = nil,
         _ minMax: ClosedRange<UInt8> = 0...0,
         options: [OptGetter.Options] = [],
-        tag: OptGetterTag? = nil,
         usage: String? = nil,
         argTag: String? = nil
     ) {

@@ -20,7 +20,7 @@ private let svgOpts: [OptToGet] = [
     OptToGet(.svg, 1...1, usage: "Include file for svg elements", argTag: "<file>")
 ]
 
-private let opts: [OptToGet] = [
+private let commonOpts: [OptToGet] = [
     OptToGet(.bared, 1...1, options: [.minusOK], usage: "Plots to show as bars", argTag: "<bitmap>"),
     OptToGet(.baroffset, 1...1, usage: "Bar offset (-1 to calculate)", argTag: "<offset>"),
     OptToGet(.barwidth, 1...1, usage: "Bar width (-1 to calculate)"),
@@ -42,83 +42,60 @@ private let opts: [OptToGet] = [
     OptToGet(.font, 1...1, usage: "Font family", argTag: "<font name>"),
     OptToGet(.fg, 1...1, usage: "Colour for non-text items", argTag: "<colour>"),
     OptToGet(.headers, 1...1, usage: "Header rows or columns", argTag: "<n>"),
-    OptToGet(.height, 1...1, usage: "chart height", argTag: "<n>"),
+    OptToGet(.height, 1...1, usage: "Chart height", argTag: "<n>"),
     OptToGet(.index, 1...1, usage: "Index row or column", argTag: "<n>"),
     OptToGet(.italic, usage: "Use an italic font"),
     OptToGet(.include, 1...1, options: [.minusOK], usage: "Plots to include, default all", argTag: "<bitmap>"),
     OptToGet(.logo, 1...1, usage: "Image URL for top right corner", argTag: "<url>"),
     OptToGet(.logx, usage: "Set abcissa to log"),
+    OptToGet(.logy, usage: "Set ordinate to log"),
+    OptToGet(.nameheader, 1...1, usage: "Plot name row or column", argTag: "<n>"),
+    OptToGet(.names, 1...255, usage: "List of plot names", argTag: "<name>..."),
+    OptToGet(.bounds, usage: "Don't check options for bounds"),
+    OptToGet(.comment, usage: "Don't add csv2 comment to plot"),
+    OptToGet(.legends, usage: "Don't include plot names, colours, dashes and shapes"),
+    OptToGet(.opacity, usage: "Opacity for plots"),
+    OptToGet(.pie, usage: "Generate a pie chart"),
     OptToGet(
-        long: "logy", tag: Options.Key.logy,
-        usage: "Set ordinate to log"
-    ),
-    OptToGet(
-        long: "nameheader", 1...1, tag: Options.Key.nameheader,
-        usage: "Plot name row or column", argTag: "<n>"
-    ),
-    OptToGet(
-        long: "names", 1...255, tag: Options.Key.names,
-        usage: "List of plot names", argTag: "<name>..."
-    ),
-    OptToGet(
-        long: "nobounds", tag: Options.Key.bounds,
-        usage: "Don't check options for bounds"
-    ),
-    OptToGet(
-        long: "nocomment", tag: Options.Key.comment,
-        usage: "Don't add csv2 comment to plot"
-    ),
-    OptToGet(
-        long: "nolegends", tag: Options.Key.legends,
-        usage: "Don't include plot names, colours, dashes and shapes"
-    ),
-    OptToGet(
-        long: "opacity", tag: Options.Key.opacity,
-        usage: "Opacity for plots"
-    ),
-    OptToGet(
-        long: "pie", tag: Options.Key.pie,
-        usage: "Generate a pie chart"
-    ),
-    OptToGet(
-        long: "random", 1...3, options: [.minusOK], tag: Options.Key.random,
+        .random, 1...3, options: [.minusOK],
         usage: "Generate a random SVG with: #plots [max value [min value]]", argTag: "<n [n [n]]>"
     ),
     OptToGet(
-        long: "reserve", 1...4, tag: Options.Key.reserve,
+        .reserve, 1...4,
         usage: "Reserved space on the left [top [right [bottom]]]", argTag: "<n [n [n [n]]]>"
     ),
+    OptToGet(.rows, usage: "Group data by rows"),
     OptToGet(
-        long: "rows", tag: Options.Key.rows,
-        usage: "Group data by rows"
-    ),
-    OptToGet(
-        long: "scattered", 1...1, options: [.minusOK], tag: Options.Key.scattered,
+        .scattered, 1...1, options: [.minusOK],
         usage: "Plots to show as scatter plots", argTag: "<bitmap>"
     ),
-    OptToGet(
-        long: "semi", tag: Options.Key.semi,
-        usage: "Use semicolons to seperate columns"
-    ),
-    OptToGet(
-        long: "shapes", 1...255,  tag: Options.Key.shapes,
-        usage: "List of shapes to use", argTag: "<shape>..."
-    ),
-    OptToGet(
-        long: "shapenames", tag: Options.Key.shapenames,
-        usage: "Print a list of shape names"
-    ),
-    OptToGet(
-        long: "show", 1...1, tag: Options.Key.show,
-        usage: "Generate a plot with just the named shape @ 6X strokewidth", argTag: "<shape>"
-    ),
-    OptToGet(
-        long: "showpoints",  tag: Options.Key.showpoints
-    )
+    OptToGet(.semi, usage: "Use semicolons to seperate columns"),
+    OptToGet(.shapes, 1...255, usage: "List of shapes to use", argTag: "<shape>..."),
+    OptToGet(.shapenames, usage: "Print a list of shape names"),
+    OptToGet(.show, 1...1, usage: "Generate a plot with the shape @ 6X strokewidth", argTag: "<shape>"),
+    OptToGet(.showpoints, 1...1, options: [.minusOK], usage: "Data plots with points", argTag: "<bitmap>"),
+    OptToGet(.size, 1...1, usage: "Base font size", argTag: "<n>"),
+    OptToGet(.smooth, 1...1, usage: "EMA smoothing, 0 means none", argTag: "<n>"),
+    OptToGet(.sortx, usage: "Sort points by the x values before plotting"),
+    OptToGet(.stroke, 1...1, usage: "Stroke width", argTag: "<n>"),
+    OptToGet(.subheader, 1...1, usage: "Sub-title row or column source", argTag: "<n>"),
+    OptToGet(.subtitle, 1...1, usage: "Sub-title", argTag: "<text>"),
+    OptToGet(.textcolour, 1...1, usage: "Text colour", argTag: "<colour>"),
+    OptToGet(.title, 1...1, usage: "Chart title", argTag: "<text>"),
+    OptToGet(.tsv, usage: "Use tabs to seperate columns"),
+    OptToGet(.verbose, short: "v", usage: "Add extra information"),
+    OptToGet(.version, short: "V", usage: "Display version and exit"),
+    OptToGet(.width, 1...1, usage: "Chart width", argTag: "<n>"),
+    OptToGet(.xmax, 1...1, usage: "Abscissa maximum", argTag: "<n>"),
+    OptToGet(.xmin, 1...1, usage: "Abscissa minimum", argTag: "<n>"),
+    OptToGet(.xtags, 1...1, usage: "Row or column with abscissa tags", argTag: "<n>"),
+    OptToGet(.xtick, 1...1, usage: "Distance between abcissa ticks", argTag: "<n>"),
+    OptToGet(.ymax, 1...1, usage: "Ordinate maximum", argTag: "<n>"),
+    OptToGet(.ymin, 1...1, usage: "Ordinate minimum", argTag: "<n>"),
+    OptToGet(.xtick, 1...1, usage: "Distance between abcissa ticks", argTag: "<n>"),
 ]
 
 struct Options {
-    var svg = Defaults.global.svgInclude
     var bared = Defaults.global.bared
     var baroffset = Defaults.global.barOffset
     var barwidth = Defaults.global.barWidth
@@ -127,13 +104,14 @@ struct Options {
     var bezier = Defaults.global.bezier
     var black = Defaults.global.black
     var bold = Defaults.global.bold
-    var bounds = false
+    var bounds = true
     var canvas = Defaults.global.canvasID
     var canvastag = false
     var colourslist = false
     var colournames = false
     var colournameslist = false
     var colours: [String] = []
+    var comment = Defaults.global.comment
     var css = Defaults.global.cssInclude
     var cssid = Defaults.global.cssID
     var dashed = Defaults.global.dashedLines
@@ -150,13 +128,12 @@ struct Options {
     var index = Defaults.global.index
     var italic = Defaults.global.italic
     var include = Defaults.global.include
+    var legends = Defaults.global.legends
     var logo = Defaults.global.logoURL
     var logx = Defaults.global.logx
     var logy = Defaults.global.logy
     var nameheader = Defaults.global.nameHeader
     var names: [String] = []
-    var nocomment = !Defaults.global.comment
-    var nolegends = !Defaults.global.legends
     var opacity = Defaults.global.opacity
     var pie = false
     var random: [Int] = []
@@ -166,79 +143,95 @@ struct Options {
         Defaults.global.reserveRight,
         Defaults.global.reserveBottom
     ]
+    var rows = Defaults.global.rowGrouping
     var scattered = Defaults.global.scattered
     var semi = false
     var shapes: [String] = []
     var shapenames = false
     var show: String = ""
-
-    @Option(name: .long, help: "Data plots with points")
     var showpoints = Defaults.global.showDataPoints
-
-    @Option(name: .long, help: "Base font size")
     var size = Defaults.global.baseFontSize
-
-    @Option(name: .long, help: "EMA smoothing, 0 means none")
     var smooth = Defaults.global.smooth
-
-    @Flag(name: .long, help: "Sort points by the x values before plotting")
     var sortx = Defaults.global.sortx
-
-    @Option(name: .long, help: "Stroke width")
     var stroke = Defaults.global.strokeWidth
-
-    @Option(name: .long, help: "Sub-title row or column source")
     var subheader = Defaults.global.index
-
-    @Option(name: .long, help: "Sub-title")
     var subtitle: String = ""
-
-    @Option(name: .long, help: "Text colour")
+    var svg = Defaults.global.svgInclude
     var textcolour = Defaults.global.textColour
-
-    @Option(name: .long, help: "Title")
     var title: String = ""
-
-    @Flag(name: .shortAndLong, help: "Use tabs to seperate columns")
     var tsv = false
-
-    @Flag(name: .shortAndLong, help: "Add extra information")
     var verbose = false
-
-    @Flag(name: [.customShort("V"), .long], help: "Display version and exit")
     var version = false
-
-    @Option(name: .long, help: "SVG/Canvas width")
     var width = Defaults.global.width
-
-    @Option(name: .long, help: "Default abscissa maximum")
     var xmax = Defaults.global.xMax
-
-    @Option(name: .long, help: "Default abscissa minimum")
     var xmin = Defaults.global.xMin
-
-    @Option(name: .long, help: "Tag row or column")
     var xtags = Defaults.global.xTagsHeader
-
-    @Option(name: .long, help: "Default x tick")
     var xtick = Defaults.global.xTick
-
-    @Option(name: .long, help: "Default ordinate maximum")
     var ymax = Defaults.global.yMax
-
-    @Option(name: .long, help: "Default ordinate minimum")
     var ymin = Defaults.global.yMin
-
-    @Option(name: .long, help: "Default y tick")
     var ytick = Defaults.global.yTick
 
-    @Argument(help: "CSV file name, \"-\" means use stdin") var csvName: String?
-    @Argument(help: "JSON file name") var jsonName: String?
-    @Argument(help: "Output file name, default is to print to terminal") var outName: String?
+    // Positional parameters
+
+    var csvName: String?
+    var jsonName: String?
+    var outName: String?
+
+    // Indicator for options on the command line
+    var onCommandLine: Set<Settings.CodingKeys> = []
 
     var separator: String {
         if tsv { return "\t" }
         if semi { return ";" }
         return ","
+    }
+
+    mutating func setBool(_ flag: inout Bool, _ val: Bool, key: Settings.CodingKeys) {
+        flag = val
+        onCommandLine.insert(key)
+    }
+
+    mutating func setDouble(_ doubleOpt: inout Double, _ val: ValueAt, key: Settings.CodingKeys) throws {
+        do {
+            doubleOpt = try OptGetter.doubleValue(val)
+            onCommandLine.insert(key)
+        } catch {
+            throw error
+        }
+    }
+
+    mutating func setInt(_ intOpt: inout Int, _ val: ValueAt, key: Settings.CodingKeys) throws {
+        do {
+            intOpt = try OptGetter.intValue(val)
+            onCommandLine.insert(key)
+        } catch {
+            throw error
+        }
+    }
+
+    mutating func getOpts(for plotter: PlotterType) throws {
+        var opts = commonOpts
+        switch plotter {
+        case .canvas: opts += canvasOpts
+        case .svg: opts += svgOpts
+        default: break
+        }
+
+        do {
+            let optGetter = try OptGetter(opts)
+            let optsGot = try optGetter.parseArgs(args: CommandLine.arguments)
+            for opt in optsGot {
+                // swiftlint:disable:next force_cast
+                let optTag = opt.tag as! Key
+                let val0 = opt.valuesAt[0]
+                switch optTag {
+                case .bared: try setInt(&bared, val0, key: .bared)
+                case .baroffset: try setDouble(&baroffset, val0, key: .barOffset)
+                default: break
+                }
+            }
+        } catch {
+            throw error
+        }
     }
 }
