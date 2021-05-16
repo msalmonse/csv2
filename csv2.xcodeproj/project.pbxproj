@@ -58,6 +58,7 @@
 		C453243925FA7968007D741C /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453243725FA7968007D741C /* Shapes.swift */; };
 		C453244D25FBEBA6007D741C /* ShowShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453244C25FBEBA6007D741C /* ShowShape.swift */; };
 		C453244E25FBEBA6007D741C /* ShowShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453244C25FBEBA6007D741C /* ShowShape.swift */; };
+		C4569DA92651369900D74DBD /* OptGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DA82651369900D74DBD /* OptGetter.swift */; };
 		C460B667261B3A590051BB80 /* Plotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B666261B3A590051BB80 /* Plotter.swift */; };
 		C460B673261CD5CD0051BB80 /* SVGplotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B672261CD5CD0051BB80 /* SVGplotter.swift */; };
 		C460B677261DA8B30051BB80 /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B676261DA8B30051BB80 /* Tags.swift */; };
@@ -75,6 +76,9 @@
 		C48B822A25E28F7E00EAEAE3 /* csv2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */; };
 		C48B823625E2967100EAEAE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
 		C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
+		C499B3342650EAD600581AD0 /* OptGetter in Frameworks */ = {isa = PBXBuildFile; productRef = C499B3332650EAD600581AD0 /* OptGetter */; };
+		C499B3382650FD9900581AD0 /* KeyTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499B3372650FD9900581AD0 /* KeyTag.swift */; };
+		C499B3392650FD9900581AD0 /* KeyTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499B3372650FD9900581AD0 /* KeyTag.swift */; };
 		C49A0DBA2648278300CF7E22 /* PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DB92648278300CF7E22 /* PDF.swift */; };
 		C49A0DBB2648278700CF7E22 /* PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DB92648278300CF7E22 /* PDF.swift */; };
 		C49A0DBD264827D600CF7E22 /* PDFPlotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DBC264827D600CF7E22 /* PDFPlotter.swift */; };
@@ -97,7 +101,6 @@
 		C4B2F98C26272AA500CC5430 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE4A0425F66E2C0076EF5E /* Defaults.swift */; };
 		C4B2F99726296AAE00CC5430 /* CSVParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F99626296AAE00CC5430 /* CSVParser */; };
 		C4B2F9A826297EDD00CC5430 /* CSVParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F9A726297EDD00CC5430 /* CSVParser */; };
-		C4B2F9AA26297EE300CC5430 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4B2F9A926297EE300CC5430 /* ArgumentParser */; };
 		C4B2F9AE262B286400CC5430 /* SVGout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9AD262B286400CC5430 /* SVGout.swift */; };
 		C4B2F9AF262B286400CC5430 /* SVGout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9AD262B286400CC5430 /* SVGout.swift */; };
 		C4B2F9B5262B488400CC5430 /* CanvasOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F9B4262B488400CC5430 /* CanvasOut.swift */; };
@@ -190,7 +193,6 @@
 		C4F20C1726027B7C005D2FE1 /* Legends.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F20C1526027B7C005D2FE1 /* Legends.swift */; };
 		C4F8F875261C375C00DF76AE /* Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F8F874261C375C00DF76AE /* Plot.swift */; };
 		C4F8F876261C375C00DF76AE /* Plot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F8F874261C375C00DF76AE /* Plot.swift */; };
-		C4FE49FB25F643E30076EF5E /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = C4FE49FA25F643E30076EF5E /* ArgumentParser */; };
 		C4FE49FF25F6440F0076EF5E /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE49FE25F6440F0076EF5E /* Options.swift */; };
 		C4FE4A0525F66E2C0076EF5E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE4A0425F66E2C0076EF5E /* Defaults.swift */; };
 /* End PBXBuildFile section */
@@ -223,6 +225,7 @@
 		C453242B25FA5D99007D741C /* Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
 		C453243725FA7968007D741C /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		C453244C25FBEBA6007D741C /* ShowShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowShape.swift; sourceTree = "<group>"; };
+		C4569DA82651369900D74DBD /* OptGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptGetter.swift; sourceTree = "<group>"; };
 		C460B666261B3A590051BB80 /* Plotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plotter.swift; sourceTree = "<group>"; };
 		C460B672261CD5CD0051BB80 /* SVGplotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGplotter.swift; sourceTree = "<group>"; };
 		C460B676261DA8B30051BB80 /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
@@ -237,6 +240,7 @@
 		C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2Tests.swift; sourceTree = "<group>"; };
 		C48B822B25E28F7E00EAEAE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C492BE0F25F3A2A10042A11E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C499B3372650FD9900581AD0 /* KeyTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyTag.swift; sourceTree = "<group>"; };
 		C49A0DB92648278300CF7E22 /* PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDF.swift; sourceTree = "<group>"; };
 		C49A0DBC264827D600CF7E22 /* PDFPlotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPlotter.swift; sourceTree = "<group>"; };
 		C49A0DBF26491B5A00CF7E22 /* PDFPlotterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPlotterPage.swift; sourceTree = "<group>"; };
@@ -306,7 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B2F99726296AAE00CC5430 /* CSVParser in Frameworks */,
-				C4FE49FB25F643E30076EF5E /* ArgumentParser in Frameworks */,
+				C499B3342650EAD600581AD0 /* OptGetter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,7 +318,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4B2F9AA26297EE300CC5430 /* ArgumentParser in Frameworks */,
 				C4B2F9A826297EDD00CC5430 /* CSVParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,11 +356,11 @@
 				C4F8F86D261C356F00DF76AE /* Common */,
 				C4F8F87B261C37E900DF76AE /* CSV */,
 				C4507813263E9F7700308C1D /* Extensions */,
+				C4EFA4AF26202C250026BD9A /* OptGetter */,
 				C49A0DB82648275D00CF7E22 /* PDF */,
 				C4F8F873261C372900DF76AE /* Plot */,
 				C4B2F9BE262C175300CC5430 /* PNG */,
 				C4CF2A0B2636EEFD00E858D1 /* Positions */,
-				C4EFA4AF26202C250026BD9A /* SAP */,
 				C4C0C47C2612DF500072699C /* Settings */,
 				C453240125F938D0007D741C /* SVG */,
 				C453243025FA5DD6007D741C /* Utils */,
@@ -502,15 +505,17 @@
 			path = Positions;
 			sourceTree = "<group>";
 		};
-		C4EFA4AF26202C250026BD9A /* SAP */ = {
+		C4EFA4AF26202C250026BD9A /* OptGetter */ = {
 			isa = PBXGroup;
 			children = (
 				C4EFA4B026202C600026BD9A /* Commands.swift */,
 				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
+				C499B3372650FD9900581AD0 /* KeyTag.swift */,
+				C4569DA82651369900D74DBD /* OptGetter.swift */,
 				C4FE49FE25F6440F0076EF5E /* Options.swift */,
 				C49CC517263948620006FAC8 /* OptionDefaults.swift */,
 			);
-			path = SAP;
+			path = OptGetter;
 			sourceTree = "<group>";
 		};
 		C4F8F86D261C356F00DF76AE /* Common */ = {
@@ -593,8 +598,8 @@
 			);
 			name = csv2;
 			packageProductDependencies = (
-				C4FE49FA25F643E30076EF5E /* ArgumentParser */,
 				C4B2F99626296AAE00CC5430 /* CSVParser */,
+				C499B3332650EAD600581AD0 /* OptGetter */,
 			);
 			productName = csv2svg;
 			productReference = C40A3AFB25DC01180016EB6D /* csv2 */;
@@ -612,13 +617,12 @@
 			buildRules = (
 			);
 			dependencies = (
-				C4B2F9A326297EA000CC5430 /* PBXTargetDependency */,
+				C499B3362650EAF500581AD0 /* PBXTargetDependency */,
 				C4B2F9A126297E9900CC5430 /* PBXTargetDependency */,
 			);
 			name = csv2Tests;
 			packageProductDependencies = (
 				C4B2F9A726297EDD00CC5430 /* CSVParser */,
-				C4B2F9A926297EE300CC5430 /* ArgumentParser */,
 			);
 			productName = csv2svgTests;
 			productReference = C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */;
@@ -651,8 +655,8 @@
 			);
 			mainGroup = C40A3AF225DC01180016EB6D;
 			packageReferences = (
-				C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
 				C4B2F99526296AAE00CC5430 /* XCRemoteSwiftPackageReference "CSVParser" */,
+				C499B3322650EAD600581AD0 /* XCRemoteSwiftPackageReference "OptGetter" */,
 			);
 			productRefGroup = C40A3AFC25DC01180016EB6D /* Products */;
 			projectDirPath = "";
@@ -755,12 +759,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C45323FB25F90359007D741C /* PlotInfo.swift in Sources */,
+				C499B3382650FD9900581AD0 /* KeyTag.swift in Sources */,
 				C45053C125F0E865003FC346 /* appinfo.swift in Sources */,
 				C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */,
 				C4FE4A0525F66E2C0076EF5E /* Defaults.swift in Sources */,
 				C4B2F968262576FF00CC5430 /* XIlist.swift in Sources */,
 				C446E80925F4BAA3007B1A05 /* RowPlot.swift in Sources */,
 				C4507811263DA32000308C1D /* PointPosition.swift in Sources */,
+				C4569DA92651369900D74DBD /* OptGetter.swift in Sources */,
 				C49CC518263948620006FAC8 /* OptionDefaults.swift in Sources */,
 				C4C0C48A2612FBCD0072699C /* KeyedValue.swift in Sources */,
 				C4B2F9AE262B286400CC5430 /* SVGout.swift in Sources */,
@@ -867,6 +873,7 @@
 				C4C0C4A726133E650072699C /* PlotSettings.swift in Sources */,
 				C4CF2A142637142B00E858D1 /* Positions.swift in Sources */,
 				C46ADD11260714DA0046F427 /* Bitmap.swift in Sources */,
+				C499B3392650FD9900581AD0 /* KeyTag.swift in Sources */,
 				C4507820263EB3EE00308C1D /* Other.swift in Sources */,
 				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,
 				C45323E725F8CCC8007D741C /* Readlines.swift in Sources */,
@@ -948,13 +955,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C499B3362650EAF500581AD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = C499B3352650EAF500581AD0 /* OptGetter */;
+		};
 		C4B2F9A126297E9900CC5430 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = C4B2F9A026297E9900CC5430 /* CSVParser */;
-		};
-		C4B2F9A326297EA000CC5430 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = C4B2F9A226297EA000CC5430 /* ArgumentParser */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1164,6 +1171,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C499B3322650EAD600581AD0 /* XCRemoteSwiftPackageReference "OptGetter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/msalmonse/OptGetter.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.1;
+			};
+		};
 		C4B2F99526296AAE00CC5430 /* XCRemoteSwiftPackageReference "CSVParser" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/msalmonse/CSVParser.git";
@@ -1172,17 +1187,19 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-argument-parser";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C499B3332650EAD600581AD0 /* OptGetter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C499B3322650EAD600581AD0 /* XCRemoteSwiftPackageReference "OptGetter" */;
+			productName = OptGetter;
+		};
+		C499B3352650EAF500581AD0 /* OptGetter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C499B3322650EAD600581AD0 /* XCRemoteSwiftPackageReference "OptGetter" */;
+			productName = OptGetter;
+		};
 		C4B2F99626296AAE00CC5430 /* CSVParser */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C4B2F99526296AAE00CC5430 /* XCRemoteSwiftPackageReference "CSVParser" */;
@@ -1193,25 +1210,10 @@
 			package = C4B2F99526296AAE00CC5430 /* XCRemoteSwiftPackageReference "CSVParser" */;
 			productName = CSVParser;
 		};
-		C4B2F9A226297EA000CC5430 /* ArgumentParser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = ArgumentParser;
-		};
 		C4B2F9A726297EDD00CC5430 /* CSVParser */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C4B2F99526296AAE00CC5430 /* XCRemoteSwiftPackageReference "CSVParser" */;
 			productName = CSVParser;
-		};
-		C4B2F9A926297EE300CC5430 /* ArgumentParser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = ArgumentParser;
-		};
-		C4FE49FA25F643E30076EF5E /* ArgumentParser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C4FE49F925F643E30076EF5E /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = ArgumentParser;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

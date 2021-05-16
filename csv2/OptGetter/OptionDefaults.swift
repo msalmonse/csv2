@@ -12,7 +12,7 @@ extension Options {
     /// - Parameter cmd: plotter command type
     /// - Returns: defaults
 
-    func defaults(for cmd: CSVplotterCommand) -> Defaults {
+    func defaults() -> Defaults {
         return Defaults(
             backgroundColour: bg,
             bared: bared,           barOffset: baroffset,   barWidth: barwidth,

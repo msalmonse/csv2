@@ -19,16 +19,3 @@ protocol Plotter {
     func plotText(x: Double, y: Double, text: String, styles: Styles)
     func plotWrite(to url: URL) throws
 }
-
-enum PlotterType {
-    case canvas, pdf, png, svg
-
-    func plotter(settings: Settings) -> Plotter {
-        switch self {
-        case .canvas: return Canvas(settings)
-        case .pdf: return PDF(settings)
-        case .png: return PNG(settings)
-        case .svg: return SVG(settings)
-        }
-    }
-}

@@ -21,6 +21,9 @@ struct Defaults {
     static let smoothBounds = 0.0...0.99
     static let strokeWidthBounds = 0.1...100.0
 
+    // This set is used to tag those values set on the command line
+    let onCommandLine: Set<Settings.CodingKeys>
+
     let backgroundColour: String
     let bared: Int
     let barOffset: Double
@@ -85,6 +88,7 @@ struct Defaults {
     let yTick: Double
 
     static let global = Defaults(
+        onCommandLine: [],
         backgroundColour: "",
         bared: 0,
         barOffset: -1.0,
