@@ -65,6 +65,11 @@
 		C4569DAF265177DC00D74DBD /* OptionsGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DAD265177DC00D74DBD /* OptionsGet.swift */; };
 		C4569DB1265180B200D74DBD /* help.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DB0265180B200D74DBD /* help.swift */; };
 		C4569DB2265180B200D74DBD /* help.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DB0265180B200D74DBD /* help.swift */; };
+		C4569DB326523C0100D74DBD /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE49FE25F6440F0076EF5E /* Options.swift */; };
+		C4569DB426523C0500D74DBD /* OptionDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49CC517263948620006FAC8 /* OptionDefaults.swift */; };
+		C4569DB526523C0D00D74DBD /* OptGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DA82651369900D74DBD /* OptGetter.swift */; };
+		C4569DB626523C1A00D74DBD /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4B026202C600026BD9A /* Commands.swift */; };
+		C4569DB826523C6600D74DBD /* OptGetter in Frameworks */ = {isa = PBXBuildFile; productRef = C4569DB726523C6600D74DBD /* OptGetter */; };
 		C460B667261B3A590051BB80 /* Plotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B666261B3A590051BB80 /* Plotter.swift */; };
 		C460B673261CD5CD0051BB80 /* SVGplotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B672261CD5CD0051BB80 /* SVGplotter.swift */; };
 		C460B677261DA8B30051BB80 /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B676261DA8B30051BB80 /* Tags.swift */; };
@@ -328,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4B2F9A826297EDD00CC5430 /* CSVParser in Frameworks */,
+				C4569DB826523C6600D74DBD /* OptGetter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +641,7 @@
 			name = csv2Tests;
 			packageProductDependencies = (
 				C4B2F9A726297EDD00CC5430 /* CSVParser */,
+				C4569DB726523C6600D74DBD /* OptGetter */,
 			);
 			productName = csv2svgTests;
 			productReference = C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */;
@@ -901,6 +908,7 @@
 				C4C0C49A26130F2F0072699C /* CSSsettings.swift in Sources */,
 				C4B2F9F82631636D00CC5430 /* Foreground.swift in Sources */,
 				C48B723825F28A5E00B0752E /* appinfo.swift in Sources */,
+				C4569DB426523C0500D74DBD /* OptionDefaults.swift in Sources */,
 				C4C0C4AC26134AC70072699C /* CSVsettings.swift in Sources */,
 				C40CD43625ED007A003944FA /* Axes.swift in Sources */,
 				C4CF2A172637145700E858D1 /* Pie.swift in Sources */,
@@ -933,9 +941,12 @@
 				C450781C263EA0ED00308C1D /* CGPoint.swift in Sources */,
 				C49A0DBE264827D600CF7E22 /* PDFPlotter.swift in Sources */,
 				C4B2F98926272A4C00CC5430 /* ColourTranslate.swift in Sources */,
+				C4569DB626523C1A00D74DBD /* Commands.swift in Sources */,
 				C4F8F876261C375C00DF76AE /* Plot.swift in Sources */,
 				C4EFA4A4261EEBA70026BD9A /* Plotter.swift in Sources */,
+				C4569DB526523C0D00D74DBD /* OptGetter.swift in Sources */,
 				C4569DAF265177DC00D74DBD /* OptionsGet.swift in Sources */,
+				C4569DB326523C0100D74DBD /* Options.swift in Sources */,
 				C45323D425F7C6D6007D741C /* ReflectedStringConvertable.swift in Sources */,
 				C4569DB2265180B200D74DBD /* help.swift in Sources */,
 				C4B2F96B2625770300CC5430 /* XIlist.swift in Sources */,
@@ -1208,6 +1219,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C4569DB726523C6600D74DBD /* OptGetter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C499B3322650EAD600581AD0 /* XCRemoteSwiftPackageReference "OptGetter" */;
+			productName = OptGetter;
+		};
 		C499B3332650EAD600581AD0 /* OptGetter */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C499B3322650EAD600581AD0 /* XCRemoteSwiftPackageReference "OptGetter" */;

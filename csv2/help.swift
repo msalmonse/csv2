@@ -7,6 +7,6 @@
 
 import Foundation
 
-func help(_ command: PlotterType) {
+func help(_ command: CommandType) {
     return
 }

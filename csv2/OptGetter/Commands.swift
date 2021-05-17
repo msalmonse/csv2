@@ -8,7 +8,7 @@
 import Foundation
 import OptGetter
 
-enum PlotterType: OptGetterTag {
+enum CommandType: OptGetterTag {
     case canvas, help, helpCanvas, helpPdf, helpPng, helpSvg, pdf, png, svg
 
     var isHelp: Bool {
@@ -33,17 +33,20 @@ enum PlotterType: OptGetterTag {
 }
 
 private let cmds: [CmdToGet] = [
-    CmdToGet(["canvas"], tag: PlotterType.canvas),
-    CmdToGet(["help", "canvas"], tag: PlotterType.helpCanvas),
-    CmdToGet(["help", "pdf"], tag: PlotterType.helpPdf),
-    CmdToGet(["help", "png"], tag: PlotterType.helpPng),
-    CmdToGet(["help", "svg"], tag: PlotterType.helpSvg),
-    CmdToGet(["help"], tag: PlotterType.help),
-    CmdToGet(["pdf"], tag: PlotterType.pdf),
-    CmdToGet(["png"], tag: PlotterType.png),
-    CmdToGet(["svg"], tag: PlotterType.svg)
+    CmdToGet(["canvas"], tag: CommandType.canvas),
+    CmdToGet(["help", "canvas"], tag: CommandType.helpCanvas),
+    CmdToGet(["help", "pdf"], tag: CommandType.helpPdf),
+    CmdToGet(["help", "png"], tag: CommandType.helpPng),
+    CmdToGet(["help", "svg"], tag: CommandType.helpSvg),
+    CmdToGet(["help"], tag: CommandType.help),
+    CmdToGet(["pdf"], tag: CommandType.pdf),
+    CmdToGet(["png"], tag: CommandType.png),
+    CmdToGet(["svg"], tag: CommandType.svg)
 ]
 
-func getCommand() -> PlotterType {
-    return OptGetter.cmdGetter(cmds, args: CommandLine.arguments)?.tag as? PlotterType ?? .help
+func getCommand() -> CommandType {
+    // Check first for empty command line
+    if CommandLine.arguments.count == 1 { return .help }
+    // svg is the default plotter
+    return OptGetter.cmdGetter(cmds, args: CommandLine.arguments)?.tag as? CommandType ?? .svg
 }

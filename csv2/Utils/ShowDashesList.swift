@@ -15,7 +15,7 @@ import Foundation
 
 func showDashesList(
     _ defaults: Defaults,
-    with: PlotterType,
+    with: CommandType,
     to outName: String?
 ) {
     let size = 2.0 * defaults.baseFontSize

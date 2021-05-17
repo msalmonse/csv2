@@ -196,7 +196,7 @@ struct Options {
     ///   - OptGetterError.tooManyOptions
     ///   - OptGetterError.unknownName
 
-    mutating func getOpts(for plotter: PlotterType) throws {
+    mutating func getOpts(for plotter: CommandType) throws {
         var opts = commonOpts
         switch plotter {
         case .canvas: opts += canvasOpts

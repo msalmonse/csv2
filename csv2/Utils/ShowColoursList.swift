@@ -17,7 +17,7 @@ import Foundation
 func showColoursList(
     _ defaults: Defaults,
     namesList: Bool,
-    with: PlotterType,
+    with: CommandType,
     to outName: String?
 ) {
     let rowHeight = 2.5 * defaults.baseFontSize

@@ -10,6 +10,8 @@ import OptGetter
 
 extension Options {
 
+    // swiftlint:disable function_body_length
+
     /// Assign an option from the command line
     /// - Parameter opt: the opt to assign
     /// - Throws: OptGetterError.illegalValue
@@ -26,19 +28,19 @@ extension Options {
             case .barwidth: barwidth = try getDouble(val0, key: .barWidth)
             case .bezier: bezier = try getDouble(val0, key: .bezier)
             case .bg: bg = try getColour(val0, key: .backgroundColour)
+            case .bitmap: bitmap = try getIntArray(opt.valuesAt, key: nil)
             case .black: black = getBool(true, key: .black)
             case .bold: bold = getBool(true, key: .bold)
             case .bounds: bounds = false
-            case .bitmap: bitmap = try getIntArray(opt.valuesAt, key: nil)
             case .canvas: canvas = getString(val0, key: .canvasID)
             case .canvastag: canvastag = true
-            case .css: css = getString(val0, key: .cssInclude)
-            case .cssid: cssid = getString(val0, key: .cssID)
             case .colournames: colournames = true
             case .colournameslist: colournameslist = true
             case .colours: colours = try getColourArray(opt.valuesAt, key: .colours)
             case .colourslist: colourslist = true
             case .comment: comment = getBool(false, key: .comment)
+            case .css: css = getString(val0, key: .cssInclude)
+            case .cssid: cssid = getString(val0, key: .cssID)
             case .dashed: dashed = try getInt(val0, key: .dashedLines)
             case .dashes: dashes = getStringArray(opt.valuesAt, key: .dashes)
             case .dasheslist: dasheslist = true
@@ -64,7 +66,32 @@ extension Options {
             case .random: random = try getIntArray(opt.valuesAt, key: nil)
             case .reserve: reserve = try getDoubleArray(opt.valuesAt, key: nil)
             case .rows: rows = getBool(true, key: .rowGrouping)
-            default: break
+            case .scattered: scattered = try getInt(val0, key: .scatterPlots)
+            case .semi: semi = true
+            case .shapenames: shapenames = true
+            case .shapes: shapes = getStringArray(opt.valuesAt, key: .shapes)
+            case .show: show = getString(val0, key: nil)
+            case .showpoints: showpoints = try getInt(val0, key: .showDataPoints)
+            case .size: size = try getDouble(val0, key: .baseFontSize)
+            case .smooth: smooth = try getDouble(val0, key: .smooth)
+            case .sortx: sortx = getBool(true, key: .sortx)
+            case .stroke: stroke = try getDouble(val0, key: .strokeWidth)
+            case .subheader: subheader = try getInt(val0, key: .subTitleHeader)
+            case .subtitle: subtitle = getString(val0, key: .subTitle)
+            case .svg: svg = getString(val0, key: .svgInclude)
+            case .textcolour: textcolour = try getColour(val0, key: nil)
+            case .title: title = getString(val0, key: .title)
+            case .tsv: tsv = true
+            case .verbose: verbose = true
+            case .version: version = true
+            case .width: width = try getInt(val0, key: .width)
+            case .xmax: xmax = try getDouble(val0, key: .xMax)
+            case .xmin: xmin = try getDouble(val0, key: .xMin)
+            case .xtags: xtags = try getInt(val0, key: .xTags)
+            case .xtick: xtick = try getDouble(val0, key: .xTick)
+            case .ymax: ymax = try getDouble(val0, key: .yMax)
+            case .ymin: ymin = try getDouble(val0, key: .yMin)
+            case .ytick: ytick = try getDouble(val0, key: .yTick)
             }
         } catch {
             throw error
