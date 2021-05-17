@@ -56,14 +56,14 @@ enum Shape {
 
     /// Sequential table for shapes
     static let numberedShapes = [
-        Self.blade,
         Self.circle,
         Self.cross,
         Self.diamond,
         Self.shuriken,
         Self.square,
         Self.star,
-        Self.triangle
+        Self.triangle,
+        Self.blade
     ]
 
     static func lookup(_ name: String) -> Shape? {

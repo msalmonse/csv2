@@ -66,7 +66,7 @@ func helpUsage(_ execName: String) {
     printSpecificUsage(for: "Canvas", canvasUsage())
     printSpecificUsage(for: "PDF", pdfUsage())
     printSpecificUsage(for: "PNG", pngUsage())
-    printSpecificUsage(for: "SVG", svgUsage()
+    printSpecificUsage(for: "SVG", svgUsage())
     print("""
 
           * <bitmap> means an integer where each bit has a specific meaning

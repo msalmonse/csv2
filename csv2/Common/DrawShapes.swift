@@ -70,7 +70,7 @@ extension PathComponent {
     func drawCircle(r: Double) -> Path {
         let r = r * 1.2
         // the constant below from https://spencermortensen.com/articles/bezier-circle/
-        let c = 0.551915024494 * r
+        let c = (1.0 - 0.551915024494) * r
         return Path([
             Self.moveBy(dxy: Vector(dx: 0, dy: -r)),
             .cBezierBy(dxy: Vector(dx:  r, dy:  r), c1dxy: Vector(dx:  c, dy:  0), c2dxy: Vector(dx:  r, dy:  c)),
