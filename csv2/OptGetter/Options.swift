@@ -21,7 +21,7 @@ private let svgOpts: [OptToGet] = [
 ]
 
 private let commonOpts: [OptToGet] = [
-    OptToGet(.bared, 1...1, options: [.minusOK], usage: "Plots to show as bars", argTag: "<bitmap>"),
+    OptToGet(.bared, 1...1, options: [.minusOK], usage: "Plots to show as bars", argTag: "<bitmap*>"),
     OptToGet(.baroffset, 1...1, usage: "Bar offset (-1 to calculate)", argTag: "<offset>"),
     OptToGet(.barwidth, 1...1, usage: "Bar width (-1 to calculate)"),
     OptToGet(.bg, 1...1, usage: "Background colour", argTag: "<colour>"),
@@ -33,19 +33,19 @@ private let commonOpts: [OptToGet] = [
     OptToGet(.colournames, usage: "Print a list of all the colour names on it"),
     OptToGet(.colournameslist, usage: "Generate an image with all the colour names on it"),
     OptToGet(.colours, 1...255, options: [.multi], usage: "Colours to use for plots", argTag: "<colour>..."),
-    OptToGet(.dashed, 1...1, options: [.minusOK], usage: "Plots with dashed lines", argTag: "<bitmap>"),
+    OptToGet(.dashed, 1...1, options: [.minusOK], usage: "Plots with dashed lines", argTag: "<bitmap*>"),
     OptToGet(.dashes, 1...255, usage: "List of plot dash patterns to use", argTag: "<n,n...>..."),
     OptToGet(.dasheslist, usage: "Generate an image with all the dashes on it"),
-    OptToGet(.debug, short: "d", 1...1, usage: "Add debug info", argTag: "<bitmap>"),
+    OptToGet(.debug, short: "d", 1...1, usage: "Add debug info", argTag: "<bitmap*>"),
     OptToGet(.distance, 1...1, usage: "Minimum distance between data points", argTag: "<n>"),
-    OptToGet(.filled, 1...1, options: [.minusOK], usage: "Plots to show filled", argTag: "<bitmap>"),
+    OptToGet(.filled, 1...1, options: [.minusOK], usage: "Plots to show filled", argTag: "<bitmap*>"),
     OptToGet(.font, 1...1, usage: "Font family", argTag: "<font name>"),
-    OptToGet(.fg, 1...1, usage: "Colour for non-text items", argTag: "<colour>"),
+    OptToGet(.fg, 1...1, usage: "Foreground colour for non-text items", argTag: "<colour>"),
     OptToGet(.headers, 1...1, usage: "Header rows or columns", argTag: "<n>"),
     OptToGet(.height, 1...1, usage: "Chart height", argTag: "<n>"),
     OptToGet(.index, 1...1, usage: "Index row or column", argTag: "<n>"),
     OptToGet(.italic, usage: "Use an italic font"),
-    OptToGet(.include, 1...1, options: [.minusOK], usage: "Plots to include, default all", argTag: "<bitmap>"),
+    OptToGet(.include, 1...1, options: [.minusOK], usage: "Plots to include, default all", argTag: "<bitmap*>"),
     OptToGet(.logo, 1...1, usage: "Image URL for top right corner", argTag: "<url>"),
     OptToGet(.logx, usage: "Set abcissa to log"),
     OptToGet(.logy, usage: "Set ordinate to log"),
@@ -54,7 +54,7 @@ private let commonOpts: [OptToGet] = [
     OptToGet(.bounds, usage: "Don't check options for bounds"),
     OptToGet(.comment, usage: "Don't add csv2 comment to plot"),
     OptToGet(.legends, usage: "Don't include plot names, colours, dashes and shapes"),
-    OptToGet(.opacity, usage: "Opacity for plots"),
+    OptToGet(.opacity, 1...1, usage: "Opacity for plots"),
     OptToGet(.pie, usage: "Generate a pie chart"),
     OptToGet(
         .random, 1...3, options: [.minusOK],
@@ -67,20 +67,20 @@ private let commonOpts: [OptToGet] = [
     OptToGet(.rows, usage: "Group data by rows"),
     OptToGet(
         .scattered, 1...1, options: [.minusOK],
-        usage: "Plots to show as scatter plots", argTag: "<bitmap>"
+        usage: "Plots to show as scatter plots", argTag: "<bitmap*>"
     ),
     OptToGet(.semi, usage: "Use semicolons to seperate columns"),
     OptToGet(.shapes, 1...255, usage: "List of shapes to use", argTag: "<shape>..."),
     OptToGet(.shapenames, usage: "Print a list of shape names"),
     OptToGet(.show, 1...1, usage: "Generate a plot with the shape @ 6X strokewidth", argTag: "<shape>"),
-    OptToGet(.showpoints, 1...1, options: [.minusOK], usage: "Data plots with points", argTag: "<bitmap>"),
+    OptToGet(.showpoints, 1...1, options: [.minusOK], usage: "Data plots with points", argTag: "<bitmap*>"),
     OptToGet(.size, 1...1, usage: "Base font size", argTag: "<n>"),
     OptToGet(.smooth, 1...1, usage: "EMA smoothing, 0 means none", argTag: "<n>"),
     OptToGet(.sortx, usage: "Sort points by the x values before plotting"),
     OptToGet(.stroke, 1...1, usage: "Stroke width", argTag: "<n>"),
     OptToGet(.subheader, 1...1, usage: "Sub-title row or column source", argTag: "<n>"),
     OptToGet(.subtitle, 1...1, usage: "Sub-title", argTag: "<text>"),
-    OptToGet(.textcolour, 1...1, usage: "Text colour", argTag: "<colour>"),
+    OptToGet(.textcolour, 1...1, usage: "Foreground text colour", argTag: "<colour>"),
     OptToGet(.title, 1...1, usage: "Chart title", argTag: "<text>"),
     OptToGet(.tsv, usage: "Use tabs to seperate columns"),
     OptToGet(.verbose, short: "v", usage: "Add extra information"),
@@ -92,7 +92,7 @@ private let commonOpts: [OptToGet] = [
     OptToGet(.xtick, 1...1, usage: "Distance between abcissa ticks", argTag: "<n>"),
     OptToGet(.ymax, 1...1, usage: "Ordinate maximum", argTag: "<n>"),
     OptToGet(.ymin, 1...1, usage: "Ordinate minimum", argTag: "<n>"),
-    OptToGet(.xtick, 1...1, usage: "Distance between abcissa ticks", argTag: "<n>"),
+    OptToGet(.ytick, 1...1, usage: "Distance between ordinate ticks", argTag: "<n>"),
 ]
 
 struct Options {
@@ -196,9 +196,9 @@ struct Options {
     ///   - OptGetterError.tooManyOptions
     ///   - OptGetterError.unknownName
 
-    mutating func getOpts(for plotter: CommandType) throws {
+    mutating func getOpts(for command: CommandType, _ args: [String] = CommandLine.arguments) throws {
         var opts = commonOpts
-        switch plotter {
+        switch command {
         case .canvas: opts += canvasOpts
         case .svg: opts += svgOpts
         default: break
@@ -206,7 +206,7 @@ struct Options {
 
         do {
             let optGetter = try OptGetter(opts)
-            let optsGot = try optGetter.parseArgs(args: CommandLine.arguments)
+            let optsGot = try optGetter.parseArgs(args: args, command.optStart)
             for opt in optsGot {
                 try getOpt(opt: opt)
             }
@@ -226,4 +226,39 @@ struct Options {
             throw error
         }
     }
+}
+
+/// Get usage string for common options
+/// - Returns: usage string
+
+func commonUsage() -> String? {
+    return OptGetter.usage(commonOpts)
+}
+
+/// Get usage string for canvas
+/// - Returns: usage string
+
+func canvasUsage() -> String? {
+    return OptGetter.usage(canvasOpts)
+}
+
+/// Get usage string for PDF
+/// - Returns: usage string
+
+func pdfUsage() -> String? {
+    return nil
+}
+
+/// Get usage for PNG charts
+/// - Returns: usage string
+
+func pngUsage() -> String? {
+    return nil
+}
+
+/// Get usage for SVG charts
+/// - Returns: usage string
+
+func svgUsage() -> String? {
+    return OptGetter.usage(svgOpts)
 }

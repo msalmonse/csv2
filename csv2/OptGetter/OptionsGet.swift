@@ -20,7 +20,7 @@ extension Options {
         do {
             // swiftlint:disable:next force_cast
             let optTag = opt.tag as! Key
-            let val0 = opt.valuesAt[0]
+            let val0 = opt.valuesAt.hasIndex(0)  ? opt.valuesAt[0] : ValueAt.empty
 
             switch optTag {
             case .bared: bared = try getInt(val0, key: .bared)
