@@ -8,10 +8,10 @@
 import Foundation
 
 func printSpecificUsage(for chartType: String, _ optText: String?) {
-    if let text = optText {
+    optText.map {
         print("""
             \(chartType) specific options:
-            \(text)
+            \($0)
 
             """,
               to: &standardError
@@ -25,27 +25,58 @@ func helpMain(_ execName: String) {
         \(execName) takes a CSV encoded data file, formating options and generates an image.
         It can generate images in four formats:
             canvas, pdf, png, svg
-        More help is available on each, e.g. help canvas or on the options with help usage
+
+        More help is available on each, e.g. help canvas or on the options with help usage.
+        See also: https://github.com/msalmonse/csv2/blob/main/README.md
 
         """
     print(help, to: &standardError)
-    return
 }
 
 func helpCanvas(_ execName: String) {
-    return
+    let help = """
+
+        \(execName) can generate the JavaScript to create a chart in an HTML canvas.
+        It must be told the id of the tag as well as the size for it to work correctly.
+        The --canvastag option take the id and size defined and prints out the
+        corresponding canvas tag.
+
+        """
+    print(help, to: &standardError)
+    printSpecificUsage(for: "Canvas", canvasUsage())
 }
 
 func helpPDF(_ execName: String) {
-    return
+    let help = """
+
+        \(execName) can generate a PDF chart. Several PDF properties can be set via the
+        JSON file.
+
+        """
+    print(help, to: &standardError)
+    printSpecificUsage(for: "PDF", pdfUsage())
 }
 
 func helpPNG(_ execName: String) {
-    return
+    let help = """
+
+        \(execName) can generate a PNG image that has the same layout as the others.
+        As it is a pixel format there isn't the same smooth scaling as the vector formats.
+
+        """
+    print(help, to: &standardError)
+    printSpecificUsage(for: "PNG", pngUsage())
 }
 
 func helpSVG(_ execName: String) {
-    return
+    let help = """
+
+        \(execName) can generate an SVG image that plots the data as SVG paths. It is very
+        flexible in formatting and styling but isn't supported everywhere.
+
+        """
+    print(help, to: &standardError)
+    printSpecificUsage(for: "SVG", svgUsage())
 }
 
 func helpUsage(_ execName: String) {
@@ -53,9 +84,10 @@ func helpUsage(_ execName: String) {
 
         \(execName) <canvas|pdf|png|svg> [options] [csv file [json file [output file]]]
 
-          <csv file>          CSV data file name or - for stdin
-          <json file>         JSON settings file name
-          <output file>       Output file name, use stdout if omitted for canvas and svg
+        Arguments:
+          <csv file>             CSV data file name or - for stdin
+          <json file>            JSON settings file name
+          <output file>          Output file name, use stdout if omitted for canvas and svg
 
         Common options:
         \(commonUsage() ?? "")
@@ -69,7 +101,7 @@ func helpUsage(_ execName: String) {
     printSpecificUsage(for: "SVG", svgUsage())
     print("""
 
-          * <bitmap> means an integer where each bit has a specific meaning
+          ¹ <bitmap> means an integer where each bit has a specific meaning
 
         """,
           to: &standardError
@@ -86,7 +118,6 @@ func help(_ command: CommandType) {
     default:
         helpMain(execName())
     }
-    return
 }
 
 func execName() -> String {

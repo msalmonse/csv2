@@ -1,4 +1,4 @@
-# CSV to Canvas/PNG/SVG converter
+# CSV to Canvas/PDF/PNG/SVG converter
 
 ```
 csv2 <canvas | pdf | png | svg> [<options>] [<csv-name> or -] [<json-name>] [out-name]

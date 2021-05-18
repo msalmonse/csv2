@@ -8,20 +8,20 @@
 import Foundation
 import OptGetter
 
-private let canvasOpts: [OptToGet] = [
+private let canvasOpts: OptsToGet = [
     OptToGet(.canvas, 1...1, usage: "Canvas name", argTag: "<name>"),
     OptToGet(.canvastag, usage: "Print the canvas tag")
 ]
 
-private let svgOpts: [OptToGet] = [
+private let svgOpts: OptsToGet = [
     OptToGet(.css, 1...1, usage: "Include file for css styling", argTag: "<file>"),
     OptToGet(.cssid, 1...1, usage: "CSS id for SVG", argTag: "<name>"),
     OptToGet(.hover, usage: "Don't add CSS code to emphasize hovered plots"),
     OptToGet(.svg, 1...1, usage: "Include file for svg elements", argTag: "<file>")
 ]
 
-private let commonOpts: [OptToGet] = [
-    OptToGet(.bared, 1...1, options: [.minusOK], usage: "Plots to show as bars", argTag: "<bitmap*>"),
+private let commonOpts: OptsToGet = [
+    OptToGet(.bared, 1...1, options: [.minusOK], usage: "Plots to show as bars", argTag: "<bitmap¹>"),
     OptToGet(.baroffset, 1...1, usage: "Bar offset (-1 to calculate)", argTag: "<offset>"),
     OptToGet(.barwidth, 1...1, usage: "Bar width (-1 to calculate)"),
     OptToGet(.bg, 1...1, usage: "Background colour", argTag: "<colour>"),
@@ -33,19 +33,19 @@ private let commonOpts: [OptToGet] = [
     OptToGet(.colournames, usage: "Print a list of all the colour names on it"),
     OptToGet(.colournameslist, usage: "Generate an image with all the colour names on it"),
     OptToGet(.colours, 1...255, options: [.multi], usage: "Colours to use for plots", argTag: "<colour>..."),
-    OptToGet(.dashed, 1...1, options: [.minusOK], usage: "Plots with dashed lines", argTag: "<bitmap*>"),
+    OptToGet(.dashed, 1...1, options: [.minusOK], usage: "Plots with dashed lines", argTag: "<bitmap¹>"),
     OptToGet(.dashes, 1...255, usage: "List of plot dash patterns to use", argTag: "<n,n...>..."),
     OptToGet(.dasheslist, usage: "Generate an image with all the dashes on it"),
-    OptToGet(.debug, short: "d", 1...1, usage: "Add debug info", argTag: "<bitmap*>"),
+    OptToGet(.debug, short: "d", 1...1, usage: "Add debug info", argTag: "<bitmap¹>"),
     OptToGet(.distance, 1...1, usage: "Minimum distance between data points", argTag: "<n>"),
-    OptToGet(.filled, 1...1, options: [.minusOK], usage: "Plots to show filled", argTag: "<bitmap*>"),
+    OptToGet(.filled, 1...1, options: [.minusOK], usage: "Plots to show filled", argTag: "<bitmap¹>"),
     OptToGet(.font, 1...1, usage: "Font family", argTag: "<font name>"),
     OptToGet(.fg, 1...1, usage: "Foreground colour for non-text items", argTag: "<colour>"),
     OptToGet(.headers, 1...1, usage: "Header rows or columns", argTag: "<n>"),
     OptToGet(.height, 1...1, usage: "Chart height", argTag: "<n>"),
     OptToGet(.index, 1...1, usage: "Index row or column", argTag: "<n>"),
     OptToGet(.italic, usage: "Use an italic font"),
-    OptToGet(.include, 1...1, options: [.minusOK], usage: "Plots to include, default all", argTag: "<bitmap*>"),
+    OptToGet(.include, 1...1, options: [.minusOK], usage: "Plots to include, default all", argTag: "<bitmap¹>"),
     OptToGet(.logo, 1...1, usage: "Image URL for top right corner", argTag: "<url>"),
     OptToGet(.logx, usage: "Set abcissa to log"),
     OptToGet(.logy, usage: "Set ordinate to log"),
@@ -67,13 +67,13 @@ private let commonOpts: [OptToGet] = [
     OptToGet(.rows, usage: "Group data by rows"),
     OptToGet(
         .scattered, 1...1, options: [.minusOK],
-        usage: "Plots to show as scatter plots", argTag: "<bitmap*>"
+        usage: "Plots to show as scatter plots", argTag: "<bitmap¹>"
     ),
     OptToGet(.semi, usage: "Use semicolons to seperate columns"),
     OptToGet(.shapes, 1...255, usage: "List of shapes to use", argTag: "<shape>..."),
     OptToGet(.shapenames, usage: "Print a list of shape names"),
     OptToGet(.show, 1...1, usage: "Generate a plot with the shape @ 6X strokewidth", argTag: "<shape>"),
-    OptToGet(.showpoints, 1...1, options: [.minusOK], usage: "Data plots with points", argTag: "<bitmap*>"),
+    OptToGet(.showpoints, 1...1, options: [.minusOK], usage: "Data plots with points", argTag: "<bitmap¹>"),
     OptToGet(.size, 1...1, usage: "Base font size", argTag: "<n>"),
     OptToGet(.smooth, 1...1, usage: "EMA smoothing, 0 means none", argTag: "<n>"),
     OptToGet(.sortx, usage: "Sort points by the x values before plotting"),
@@ -232,14 +232,14 @@ struct Options {
 /// - Returns: usage string
 
 func commonUsage() -> String? {
-    return OptGetter.usage(commonOpts)
+    return OptGetter.usage(commonOpts, longFirst: true)
 }
 
 /// Get usage string for canvas
 /// - Returns: usage string
 
 func canvasUsage() -> String? {
-    return OptGetter.usage(canvasOpts)
+    return OptGetter.usage(canvasOpts, longFirst: true)
 }
 
 /// Get usage string for PDF
@@ -260,5 +260,5 @@ func pngUsage() -> String? {
 /// - Returns: usage string
 
 func svgUsage() -> String? {
-    return OptGetter.usage(svgOpts)
+    return OptGetter.usage(svgOpts, longFirst: true)
 }
