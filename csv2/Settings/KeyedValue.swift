@@ -18,16 +18,6 @@ extension Settings {
             )
     }
 
-    /// Check to see that the default value is the same as the global default
-    /// - Parameters:
-    ///   - key: Coding key for Settings
-    ///   - defaults: the command line defaults
-    /// - Returns: true if they are not the same
-
-    private static func boolIsChanged(_ key: CodingKeys, _ defaults: Defaults) -> Bool {
-        return boolDefault(key, defaults) != boolDefault(key, Defaults.global)
-    }
-
     /// Return the boolean default for the key
     /// - Parameters:
     ///   - key: Coding key for Settings
@@ -63,18 +53,8 @@ extension Settings {
         forKey key: CodingKeys,
         defaults: Defaults
     ) -> Bool {
-        if container == nil || boolIsChanged(key, defaults) { return boolDefault(key, defaults) }
+        if container == nil || defaults.fromCLI(key) { return boolDefault(key, defaults) }
         return (try? container!.decodeIfPresent(Bool.self, forKey: key)) ?? boolDefault(key, defaults)
-    }
-
-    /// Check to see that the default value is the same as the global default
-    /// - Parameters:
-    ///   - key: Coding key for Settings
-    ///   - defaults: the command line defaults
-    /// - Returns: true if they are the same
-
-    private static func doubleIsChanged(_ key: CodingKeys, _ defaults: Defaults) -> Bool {
-        return doubleDefault(key, defaults) != doubleDefault(key, Defaults.global)
     }
 
     /// Return the integer default for the key
@@ -124,7 +104,7 @@ extension Settings {
         in ok: ClosedRange<Double>? = nil
     ) -> Double {
         if container == nil { return doubleDefault(key, defaults) }
-        let val = doubleIsChanged(key, defaults) ? doubleDefault(key, defaults)
+        let val = defaults.fromCLI(key) ? doubleDefault(key, defaults)
             : (try? container!.decodeIfPresent(Double.self, forKey: key)) ?? doubleDefault(key, defaults)
         if defaults.bounded, let ok = ok, !ok.contains(val) {
             let okVal = doubleDefault(key, Defaults.global)
@@ -132,16 +112,6 @@ extension Settings {
             return okVal
         }
         return val
-    }
-
-    /// Check to see that the default value is the same as the global default
-    /// - Parameters:
-    ///   - key: Coding key for Settings
-    ///   - defaults: the command line defaults
-    /// - Returns: true if they are not the same
-
-    private static func intIsChanged(_ key: CodingKeys, _ defaults: Defaults) -> Bool {
-        return intDefault(key, defaults) != intDefault(key, Defaults.global)
     }
 
     /// Return the integer default for the key
@@ -185,7 +155,7 @@ extension Settings {
         in ok: ClosedRange<Int>? = nil
     ) -> Int {
         if container == nil { return intDefault(key, defaults) }
-        let val = intIsChanged(key, defaults) ? intDefault(key, defaults)
+        let val = defaults.fromCLI(key) ? intDefault(key, defaults)
             : (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? intDefault(key, defaults)
         if defaults.bounded, let ok = ok, !ok.contains(val) {
             let okVal = intDefault(key, Defaults.global)
@@ -193,17 +163,6 @@ extension Settings {
             return okVal
         }
         return val
-    }
-
-    /// Check to see that the default value is the same as the global default
-    /// - Parameters:
-    ///   - key: Coding key for Settings
-    ///   - defaults: the command line defaults
-    /// - Returns: true if they are not the same
-
-    private static func stringIsChanged(_ key: CodingKeys, _ defaults: Defaults?) -> Bool {
-        if defaults == nil { return false }
-        return stringDefault(key, defaults) != stringDefault(key, Defaults.global)
     }
 
     /// Return the string default for the key
@@ -243,7 +202,9 @@ extension Settings {
         forKey key: CodingKeys,
         defaults: Defaults? = nil
     ) -> String? {
-        if container == nil || stringIsChanged(key, defaults) { return stringDefault(key, defaults) }
+        if container == nil || (defaults != nil && defaults!.fromCLI(key)) {
+            return stringDefault(key, defaults)
+        }
         return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? stringDefault(key, defaults)
     }
 

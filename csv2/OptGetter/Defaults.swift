@@ -152,4 +152,8 @@ struct Defaults {
         yMin: Self.minDefault,
         yTick: 0.0
     )
+
+    func fromCLI(_ key: Settings.CodingKeys) -> Bool {
+        return onCommandLine.contains(key)
+    }
 }
