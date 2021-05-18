@@ -91,46 +91,49 @@ extension RGBAu8 {
             b: inout UInt8,
             a: inout UInt8
     ) -> Bool {
-        if !css.lowercased().hasPrefix("rgb") { return false }
-        let pattern = #"""
-            (?xi)
-            ^rgba?\(
-            \s*(?<r>\d+)\s*,            # red
-            \s*(?<g>\d+)\s*,            # green
-            \s*(?<b>\d+)                # blue
-            (?:\s*,\s*(                 # optional alpha
-            (?<a>[01]\.(?:\d+)?)        # floating point
-            |(?<a8>\d+)                 # or integer
-            )\s*
-            )?                          # alpha end
-            \)$
-            """#
-        let re = try? NSRegularExpression(pattern: pattern, options: [])
-        let cssRange = NSRange(css.startIndex..<css.endIndex, in: css)
-        a = 255
-        if let re = re, let match = re.matches(in: css, options: [], range: cssRange).first {
-            if let aRange = Range(match.range(withName: "a"), in: css), let aVal = Double(css[aRange]) {
-                if aVal > 1.0 { return false }
-                a = u8val(aVal)
-            } else if let aRange = Range(match.range(withName: "a8"), in: css), let aVal = UInt8(css[aRange]) {
-                a = aVal
-            }
+        /// Convert a String to an Int return true on success
+        /// - Parameters:
+        ///   - from: string to convert
+        ///   - to: value recipient
+        /// - Returns: true if successful
 
-            if let rRange = Range(match.range(withName: "r"), in: css), let rVal = UInt8(css[rRange]) {
-                r = rVal
-            } else { return false }
-
-            if let gRange = Range(match.range(withName: "g"), in: css), let gVal = UInt8(css[gRange]) {
-                g = gVal
-            } else { return false }
-
-            if let bRange = Range(match.range(withName: "b"), in: css), let bVal = UInt8(css[bRange]) {
-                b = bVal
-            } else { return false }
-
+        func cvt(from: String, to: inout UInt8) -> Bool {
+            guard let val = UInt8(from.trimmingCharacters(in: .whitespaces)) else { return false }
+            to = val
             return true
         }
-        return false
+
+        let css = css.lowercased()
+        if !css.hasSuffix(")") { return false }
+        if css.lowercased().hasPrefix("rgb(") {
+            let start = css.index(css.startIndex, offsetBy: 4)
+            let end = css.index(before: css.endIndex)
+            let numbers = (css[start..<end]).components(separatedBy: ",")
+            if numbers.count != 3 { return false }
+            a = 255
+            if  !cvt(from: numbers[0], to: &r) ||
+                !cvt(from: numbers[1], to: &g) ||
+                !cvt(from: numbers[2], to: &b) { return false }
+        } else if css.lowercased().hasPrefix("rgba(") {
+            let start = css.index(css.startIndex, offsetBy: 5)
+            let end = css.index(before: css.endIndex)
+            let numbers = (css[start..<end]).components(separatedBy: ",")
+            if numbers.count != 4 { return false }
+            if  !cvt(from: numbers[0], to: &r) ||
+                !cvt(from: numbers[1], to: &g) ||
+                !cvt(from: numbers[2], to: &b) { return false }
+            // a can be an Int or a Double
+            if !cvt(from: numbers[3], to: &a) {
+                // try as a double
+                guard let val = Double(numbers[3].trimmingCharacters(in: .whitespaces)) else { return false}
+                if val > 1.0 { return false }
+                a = val == 1.0 ? 255 : UInt8(floor(256.0 * val))
+            }
+        } else {
+            return false
+        }
+
+        return true
     }
 
     /// Lookup a known colour name or hex code
