@@ -38,6 +38,7 @@ extension Options {
         case font
         case headers
         case height
+        case help
         case hover
         case include
         case index

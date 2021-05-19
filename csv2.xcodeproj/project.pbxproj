@@ -23,6 +23,8 @@
 		C4255F3F25E423A7002DFE80 /* PathCompenent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* PathCompenent.swift */; };
 		C4255F4425E428B0002DFE80 /* PathCompenent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* PathCompenent.swift */; };
 		C4255F4725E428B5002DFE80 /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
+		C42782B52655318E004C3464 /* OptsToGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42782B42655318E004C3464 /* OptsToGet.swift */; };
+		C42782B62655318E004C3464 /* OptsToGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42782B42655318E004C3464 /* OptsToGet.swift */; };
 		C42A6E3C261EDBED00784F54 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A6E3B261EDBED00784F54 /* Transform.swift */; };
 		C446E80925F4BAA3007B1A05 /* RowPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E80825F4BAA3007B1A05 /* RowPlot.swift */; };
 		C446E80E25F4BAC1007B1A05 /* RowPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E80825F4BAA3007B1A05 /* RowPlot.swift */; };
@@ -218,6 +220,7 @@
 		C422C5C32608D0CC00676912 /* ShowColoursList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowColoursList.swift; sourceTree = "<group>"; };
 		C422C5CB2608D58500676912 /* ColoursList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoursList.swift; sourceTree = "<group>"; };
 		C4255F3E25E423A7002DFE80 /* PathCompenent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathCompenent.swift; sourceTree = "<group>"; };
+		C42782B42655318E004C3464 /* OptsToGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptsToGet.swift; sourceTree = "<group>"; };
 		C42A6E3B261EDBED00784F54 /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		C446E80825F4BAA3007B1A05 /* RowPlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowPlot.swift; sourceTree = "<group>"; };
 		C446E81125F4BE4B007B1A05 /* PlotCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotCommon.swift; sourceTree = "<group>"; };
@@ -530,6 +533,7 @@
 				C4569DAA2651760400D74DBD /* OptConvertor.swift */,
 				C4569DA82651369900D74DBD /* OptGetter.swift */,
 				C4FE49FE25F6440F0076EF5E /* Options.swift */,
+				C42782B42655318E004C3464 /* OptsToGet.swift */,
 				C4569DAD265177DC00D74DBD /* OptionsGet.swift */,
 				C49CC517263948620006FAC8 /* OptionDefaults.swift */,
 			);
@@ -840,6 +844,7 @@
 				C4C0C49926130F2F0072699C /* CSSsettings.swift in Sources */,
 				C4EFA4B126202C600026BD9A /* Commands.swift in Sources */,
 				C40CD44125ED2390003944FA /* Plane.swift in Sources */,
+				C42782B52655318E004C3464 /* OptsToGet.swift in Sources */,
 				C422C5CC2608D58500676912 /* ColoursList.swift in Sources */,
 				C4F20C0826012A67005D2FE1 /* Styles.swift in Sources */,
 				C450781B263EA0ED00308C1D /* CGPoint.swift in Sources */,
@@ -934,6 +939,7 @@
 				C4C0C4B8261458F10072699C /* SearchPath.swift in Sources */,
 				C4255F4425E428B0002DFE80 /* PathCompenent.swift in Sources */,
 				C4B2F9CD262C27B700CC5430 /* CGplotPath.swift in Sources */,
+				C42782B62655318E004C3464 /* OptsToGet.swift in Sources */,
 				C4EFA4E226236B810026BD9A /* Canvasplotter.swift in Sources */,
 				C48B822A25E28F7E00EAEAE3 /* csv2Tests.swift in Sources */,
 				C4C0C4752610C39B0072699C /* Fonts.swift in Sources */,

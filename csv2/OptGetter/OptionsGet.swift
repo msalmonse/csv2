@@ -50,6 +50,7 @@ extension Options {
             case .filled: filled = try getInt(val0, key: .filled)
             case .font: font = getString(val0, key: .fontFamily)
             case .headers: headers = try getInt(val0, key: nil)
+            case .help: helpAndExit()
             case .height: height = try getInt(val0, key: .height)
             case .hover: hover = getBool(false, key: .hover)
             case .include: include = try getInt(val0, key: .include)
@@ -96,5 +97,10 @@ extension Options {
         } catch {
             throw error
         }
+    }
+
+    func helpAndExit() {
+        help(command)
+        exit(0)
     }
 }
