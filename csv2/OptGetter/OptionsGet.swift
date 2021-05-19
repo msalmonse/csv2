@@ -20,7 +20,7 @@ extension Options {
         do {
             // swiftlint:disable:next force_cast
             let optTag = opt.tag as! Key
-            let val0 = opt.valuesAt.hasIndex(0)  ? opt.valuesAt[0] : ValueAt.empty
+            let val0 = opt.optValuesAt.hasIndex(0)  ? opt.optValuesAt[0] : OptValueAt.empty
 
             switch optTag {
             case .bared: bared = try getInt(val0, key: .bared)
@@ -28,7 +28,7 @@ extension Options {
             case .barwidth: barwidth = try getDouble(val0, key: .barWidth)
             case .bezier: bezier = try getDouble(val0, key: .bezier)
             case .bg: bg = try getColour(val0, key: .backgroundColour)
-            case .bitmap: bitmap = try getIntArray(opt.valuesAt, key: nil)
+            case .bitmap: bitmap = try getIntArray(opt.optValuesAt, key: nil)
             case .black: black = getBool(true, key: .black)
             case .bold: bold = getBool(true, key: .bold)
             case .bounds: bounds = false
@@ -36,13 +36,13 @@ extension Options {
             case .canvastag: canvastag = true
             case .colournames: colournames = true
             case .colournameslist: colournameslist = true
-            case .colours: colours = try getColourArray(opt.valuesAt, key: .colours)
+            case .colours: colours = try getColourArray(opt.optValuesAt, key: .colours)
             case .colourslist: colourslist = true
             case .comment: comment = getBool(false, key: .comment)
             case .css: css = getString(val0, key: .cssInclude)
             case .cssid: cssid = getString(val0, key: .cssID)
             case .dashed: dashed = try getInt(val0, key: .dashedLines)
-            case .dashes: dashes = getStringArray(opt.valuesAt, key: .dashes)
+            case .dashes: dashes = getStringArray(opt.optValuesAt, key: .dashes)
             case .dasheslist: dasheslist = true
             case .debug: debug = try getInt(val0, key: nil)
             case .distance: distance = try getDouble(val0, key: .dataPointDistance)
@@ -60,16 +60,16 @@ extension Options {
             case .logx: logx = getBool(true, key: .logx)
             case .logy: logy = getBool(true, key: .logy)
             case .nameheader: nameheader = try getInt(val0, key: .nameHeader)
-            case .names: names = getStringArray(opt.valuesAt, key: .names)
+            case .names: names = getStringArray(opt.optValuesAt, key: .names)
             case .opacity: opacity = try getDouble(val0, key: .opacity)
             case .pie: pie = true
-            case .random: random = try getIntArray(opt.valuesAt, key: nil)
-            case .reserve: reserve = try getDoubleArray(opt.valuesAt, key: nil)
+            case .random: random = try getIntArray(opt.optValuesAt, key: nil)
+            case .reserve: reserve = try getDoubleArray(opt.optValuesAt, key: nil)
             case .rows: rows = getBool(true, key: .rowGrouping)
             case .scattered: scattered = try getInt(val0, key: .scatterPlots)
             case .semi: semi = true
             case .shapenames: shapenames = true
-            case .shapes: shapes = getStringArray(opt.valuesAt, key: .shapes)
+            case .shapes: shapes = getStringArray(opt.optValuesAt, key: .shapes)
             case .show: show = getString(val0, key: nil)
             case .showpoints: showpoints = try getInt(val0, key: .showDataPoints)
             case .size: size = try getDouble(val0, key: .baseFontSize)

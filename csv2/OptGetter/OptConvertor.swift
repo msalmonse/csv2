@@ -26,10 +26,10 @@ extension Options {
     ///   - key: key to tag
     /// - Throws: OptGetterError.illegalValue
 
-    mutating func getDouble(_ val: ValueAt, key: Settings.CodingKeys?) throws -> Double {
+    mutating func getDouble(_ val: OptValueAt, key: Settings.CodingKeys?) throws -> Double {
         do {
             if let key = key { onCommandLine.insert(key) }
-            return try OptGetter.doubleValue(val)
+            return try val.doubleValue()
         } catch {
             throw error
         }
@@ -41,10 +41,10 @@ extension Options {
     ///   - key: key to tag
     /// - Throws: OptGetterError.illegalValue
 
-    mutating func getDoubleArray(_ vals: [ValueAt], key: Settings.CodingKeys?) throws -> [Double] {
+    mutating func getDoubleArray(_ vals: OptValuesAt, key: Settings.CodingKeys?) throws -> [Double] {
         do {
             if let key = key { onCommandLine.insert(key) }
-            return try OptGetter.doubleArray(vals)
+            return try OptValueAt.doubleArray(vals)
         }
     }
 
@@ -54,10 +54,10 @@ extension Options {
     ///   - key: key to tag
     /// - Throws: OptGetterError.illegalValue
 
-    mutating func getInt(_ val: ValueAt, key: Settings.CodingKeys?) throws -> Int {
+    mutating func getInt(_ val: OptValueAt, key: Settings.CodingKeys?) throws -> Int {
         do {
             if let key = key { onCommandLine.insert(key) }
-            return try OptGetter.intValue(val)
+            return try val.intValue()
         } catch {
             throw error
         }
@@ -69,10 +69,10 @@ extension Options {
     ///   - key: key to tag
     /// - Throws: OptGetterError.illegalValue
 
-    mutating func getIntArray(_ vals: [ValueAt], key: Settings.CodingKeys?) throws -> [Int] {
+    mutating func getIntArray(_ vals: OptValuesAt, key: Settings.CodingKeys?) throws -> [Int] {
         do {
             if let key = key { onCommandLine.insert(key) }
-            return try OptGetter.intArray(vals)
+            return try OptValueAt.intArray(vals)
         }
     }
 
@@ -81,9 +81,9 @@ extension Options {
     ///   - val: value to set
     ///   - key: key to tag
 
-    mutating func getString(_ val: ValueAt, key: Settings.CodingKeys?) -> String {
+    mutating func getString(_ val: OptValueAt, key: Settings.CodingKeys?) -> String {
         if let key = key { onCommandLine.insert(key) }
-        return OptGetter.stringValue(val)
+        return val.stringValue()
     }
 
     /// Set a string array and tag it
@@ -91,9 +91,9 @@ extension Options {
     ///   - vals: array to get
     ///   - key: key to tag
 
-    mutating func getStringArray(_ vals: [ValueAt], key: Settings.CodingKeys?) -> [String] {
+    mutating func getStringArray(_ vals: OptValuesAt, key: Settings.CodingKeys?) -> [String] {
         if let key = key { onCommandLine.insert(key) }
-        return OptGetter.stringArray(vals)
+        return OptValueAt.stringArray(vals)
     }
 
     /// Get a colour value and tag it
@@ -102,7 +102,7 @@ extension Options {
     ///   - key: key to tag
     /// - Throws: OptGetterError.illegalValue
 
-    mutating func getColour(_ val: ValueAt, key: Settings.CodingKeys?) throws -> String {
+    mutating func getColour(_ val: OptValueAt, key: Settings.CodingKeys?) throws -> String {
         let colour = getString(val, key: key)
         if RGBAu8.lookup(colour) != nil { return colour }
         throw OptGetterError.illegalValue(type: "colour", valueAt: val)
@@ -114,7 +114,7 @@ extension Options {
     ///   - key: key to tag
     /// - Throws: OptGetterError.illegalValue
 
-    mutating func getColourArray(_ vals: [ValueAt], key: Settings.CodingKeys?) throws -> [String] {
+    mutating func getColourArray(_ vals: OptValuesAt, key: Settings.CodingKeys?) throws -> [String] {
         do {
             if let key = key { onCommandLine.insert(key) }
             return try vals.map { try getColour($0, key: nil) }
