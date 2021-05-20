@@ -22,7 +22,7 @@ extension Options {
     ]
 
     static internal let commonOpts: OptsToGet = [
-        OptToGet(.bared, 1...1, options: [.minusOK], usage: "Plots to show as bars", argTag: "<bitmap¹>"),
+        OptToGet(.bared, 1...1, options: [.includeMinus], usage: "Plots to show as bars", argTag: "<bitmap¹>"),
         OptToGet(.baroffset, 1...1, usage: "Bar offset (-1 to calculate)", argTag: "<offset>"),
         OptToGet(.barwidth, 1...1, usage: "Bar width (-1 to calculate)"),
         OptToGet(.bg, 1...1, usage: "Background colour", argTag: "<colour>"),
@@ -34,20 +34,23 @@ extension Options {
         OptToGet(.colournames, usage: "Print a list of all the colour names on it"),
         OptToGet(.colournameslist, usage: "Generate an image with all the colour names on it"),
         OptToGet(.colours, 1...255, options: [.multi], usage: "Colours to use for plots", argTag: "<colour>..."),
-        OptToGet(.dashed, 1...1, options: [.minusOK], usage: "Plots with dashed lines", argTag: "<bitmap¹>"),
+        OptToGet(.dashed, 1...1, options: [.includeMinus], usage: "Plots with dashed lines", argTag: "<bitmap¹>"),
         OptToGet(.dashes, 1...255, usage: "List of plot dash patterns to use", argTag: "<n,n...>..."),
         OptToGet(.dasheslist, usage: "Generate an image with all the dashes on it"),
         OptToGet(.debug, short: "d", 1...1, usage: "Add debug info", argTag: "<bitmap¹>"),
         OptToGet(.distance, 1...1, usage: "Minimum distance between data points", argTag: "<n>"),
         OptToGet(.draft, 0...1, usage: "Mark the chart as a draft, argument sets the text", argTag: "[text]"),
-        OptToGet(.filled, 1...1, options: [.minusOK], usage: "Plots to show filled", argTag: "<bitmap¹>"),
+        OptToGet(.filled, 1...1, options: [.includeMinus], usage: "Plots to show filled", argTag: "<bitmap¹>"),
         OptToGet(.font, 1...1, usage: "Font family", argTag: "<font name>"),
         OptToGet(.fg, 1...1, usage: "Foreground colour for non-text items", argTag: "<colour>"),
         OptToGet(.headers, 1...1, usage: "Header rows or columns", argTag: "<n>"),
         OptToGet(.height, 1...1, usage: "Chart height", argTag: "<n>"),
         OptToGet(.index, 1...1, usage: "Index row or column", argTag: "<n>"),
         OptToGet(.italic, usage: "Use an italic font"),
-        OptToGet(.include, 1...1, options: [.minusOK], usage: "Plots to include, default all", argTag: "<bitmap¹>"),
+        OptToGet(
+            .include, 1...1, options: [.includeMinus],
+            usage: "Plots to include, default all", argTag: "<bitmap¹>"
+        ),
         OptToGet(.logo, 1...1, usage: "Image URL for top right corner", argTag: "<url>"),
         OptToGet(.logx, usage: "Set abcissa to log"),
         OptToGet(.logy, usage: "Set ordinate to log"),
@@ -59,7 +62,7 @@ extension Options {
         OptToGet(.opacity, 1...1, usage: "Opacity for plots"),
         OptToGet(.pie, usage: "Generate a pie chart"),
         OptToGet(
-            .random, 1...3, options: [.minusOK],
+            .random, 1...3, options: [.includeMinus],
             usage: "Generate a random SVG with: #plots [max value [min value]]", argTag: "<n [n [n]]>"
         ),
         OptToGet(
@@ -68,14 +71,14 @@ extension Options {
         ),
         OptToGet(.rows, usage: "Group data by rows"),
         OptToGet(
-            .scattered, 1...1, options: [.minusOK],
+            .scattered, 1...1, options: [.includeMinus],
             usage: "Plots to show as scatter plots", argTag: "<bitmap¹>"
         ),
         OptToGet(.semi, usage: "Use semicolons to seperate columns"),
         OptToGet(.shapes, 1...255, usage: "List of shapes to use", argTag: "<shape>..."),
         OptToGet(.shapenames, usage: "Print a list of shape names"),
         OptToGet(.show, 1...1, usage: "Generate a plot with the shape @ 6X strokewidth", argTag: "<shape>"),
-        OptToGet(.showpoints, 1...1, options: [.minusOK], usage: "Data plots with points", argTag: "<bitmap¹>"),
+        OptToGet(.showpoints, 1...1, options: [.includeMinus], usage: "Data plots with points", argTag: "<bitmap¹>"),
         OptToGet(.size, 1...1, usage: "Base font size", argTag: "<n>"),
         OptToGet(.smooth, 1...1, usage: "EMA smoothing, 0 means none", argTag: "<n>"),
         OptToGet(.sortx, usage: "Sort points by the x values before plotting"),

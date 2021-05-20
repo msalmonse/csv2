@@ -48,7 +48,7 @@ extension Options {
             case .distance: try setDouble(val0, key: .dataPointDistance)
             case .draft:
                 setBool(true, key: .draft)
-                if opt.optValuesAt.hasEntries { setString(val0, key: .draftText)}
+                if !val0.isEmpty { setString(val0, key: .draftText) }
             case .fg: setString(val0, key: .foregroundColour)
             case .filled: try setInt(val0, key: .filled)
             case .font: setString(val0, key: .fontFamily)
