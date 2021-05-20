@@ -78,6 +78,7 @@ struct StylesList {
         draft.cssClass = "draft"
         draft.fill = RGBAu8.clear.cssRGBA
         draft.fontColour = cssRGBA(settings.fg.draft)
+        draft.options[.stroked] = true
         draft.textAlign = "middle"
         draft.textBaseline = "middle"
 

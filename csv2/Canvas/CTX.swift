@@ -75,7 +75,11 @@ extension CTX {
     mutating func sync(_ styles: Styles, _ result: inout [String], isText: Bool = false, fill: Bool = false) {
         if isText {
             let colour = styles.fontColour!
-            self.syncOneString(key: \.fillStyle, colour, "fillStyle", result: &result)
+            let fill = styles.fill ?? colour
+            self.syncOneString(key: \.fillStyle, fill, "fillStyle", result: &result)
+            self.syncOneString(key: \.strokeStyle, colour, "strokeStyle", result: &result)
+            let strokeWidth = styles.strokeWidth
+            self.syncOneDouble(key: \.lineWidth, strokeWidth, "lineWidth", result: &result)
 
             let fontSpec = stylesFontSpec(from: styles)
             self.syncOneString(key: \.font, fontSpec, "font", result: &result)

@@ -90,7 +90,11 @@ extension Canvas {
     func plotText(x: Double, y: Double, text: String, styles: Styles) {
         var result = [""]
         ctx.sync(styles, &result, isText: true)
-        result.append("ctx.fillText('\(text)', \(x.f(1)), \(y.f(1)))")
+        if styles.options[.stroked] {
+            result.append("ctx.strokeText('\(text)', \(x.f(1)), \(y.f(1)))")
+        } else {
+            result.append("ctx.fillText('\(text)', \(x.f(1)), \(y.f(1)))")
+        }
         ctx.resetTransform(&result)
         data.append(result.joined(separator: "\n    "))
     }

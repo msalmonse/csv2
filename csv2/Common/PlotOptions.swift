@@ -21,7 +21,8 @@ struct PlotOptions: OptionSet, CustomStringConvertible, CustomDebugStringConvert
         (.included,  "included"),
         (.italic,    "italic"),
         (.pointed,   "pointed"),
-        (.scattered, "scattered")
+        (.scattered, "scattered"),
+        (.stroked,   "stroked")
     ]
 
     var description: String {
@@ -41,4 +42,5 @@ struct PlotOptions: OptionSet, CustomStringConvertible, CustomDebugStringConvert
     static let italic = PlotOptions(rawValue: 1 << 5)
     static let pointed = PlotOptions(rawValue: 1 << 6)
     static let scattered = PlotOptions(rawValue: 1 << 7)
+    static let stroked = PlotOptions(rawValue: 1 << 8)
 }
