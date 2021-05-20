@@ -7,6 +7,83 @@
 
 import Foundation
 
+/// Holder for default values
+
+enum DefaultValues: Equatable {
+    case boolValue(val: Bool)
+    case doubleValue(val: Double)
+    case intValue(val: Int)
+    case stringArray(val: [String])
+    case stringValue(val: String)
+
+    static let boolFalse = Self.boolValue(val: false)
+    static let boolTrue = Self.boolValue(val: true)
+    static let doubleMax = Self.doubleValue(val: Defaults.maxDefault)
+    static let doubleMin = Self.doubleValue(val: Defaults.minDefault)
+    static let doubleMinusOne = Self.doubleValue(val: -1.0)
+    static let doubleZero = Self.doubleValue(val: 0.0)
+    static let intMinusOne = Self.intValue(val: -1)
+    static let intZero = Self.intValue(val: 0)
+    static let stringArrayEmpty = Self.stringArray(val: [])
+    static let stringEmpty = Self.stringValue(val: "")
+}
+
+typealias DefaultDict = [Settings.CodingKeys: DefaultValues]
+typealias SettingsSet = Set<Settings.CodingKeys>
+
+private let globalDefaults: DefaultDict = [
+    .backgroundColour: .stringValue(val: "clear"),
+    .bared: .intZero,
+    .barOffset: .doubleMinusOne,
+    .barWidth: .doubleMinusOne,
+    .baseFontSize: .doubleValue(val: 10.0),
+    .bezier: .doubleZero,
+    .black: .boolFalse,
+    .bold: .boolFalse,
+    .bounded: .boolTrue,
+    .canvasID: .stringValue(val: "csvplot"),
+    .chartType: .stringValue(val: "horizontal"),
+    .comment: .boolTrue,
+    .dashedLines: .intZero,
+    .dataPointDistance: .doubleValue(val: 10.0),
+    .filled: .intZero,
+    .fontFamily: .stringValue(val: "serif"),
+    .foregroundColour: .stringValue(val: "black"),
+    .headerColumns: .intZero,
+    .headerRows: .intZero,
+    .height: .intValue(val: 600),
+    .hover: .boolTrue,
+    .include: .intMinusOne,
+    .index: .intZero,
+    .italic: .boolFalse,
+    .legends: .boolTrue,
+    .logoHeight: .doubleValue(val: 64.0),
+    .logoWidth: .doubleValue(val: 64.0),
+    .logx: .boolFalse,
+    .logy: .boolFalse,
+    .nameHeader: .intValue(val: 1),
+    .opacity: .doubleValue(val: 1.0),
+    .reserveBottom: .doubleZero,
+    .reserveLeft: .doubleZero,
+    .reserveRight: .doubleZero,
+    .reserveTop: .doubleZero,
+    .rowGrouping: .boolFalse,
+    .scatterPlots: .intZero,
+    .showDataPoints: .intZero,
+    .sortx: .boolFalse,
+    .smooth: .doubleZero,
+    .strokeWidth: .doubleValue(val: 2.0),
+    .subTitleHeader: .intZero,
+    .textcolour: .stringValue(val: "black"),
+    .width: .intValue(val: 800),
+    .xMax: .doubleMax,
+    .xMin: .doubleMin,
+    .xTagsHeader: .intZero,
+    .xTick: .doubleZero,
+    .yMax: .doubleMax,
+    .yMin: .doubleMin,
+    .yTick: .doubleZero
+]
 // App defaults
 
 struct Defaults {
@@ -21,139 +98,55 @@ struct Defaults {
     static let smoothBounds = 0.0...0.99
     static let strokeWidthBounds = 0.1...100.0
 
+    // Default values
+    var values = globalDefaults
+
     // This set is used to tag those values set on the command line
-    let onCommandLine: Set<Settings.CodingKeys>
+    var onCommandLine: SettingsSet = []
 
-    let backgroundColour: String
-    let bared: Int
-    let barOffset: Double
-    let barWidth: Double
-    let baseFontSize: Double
-    let bezier: Double
-    let black: Bool
-    let bold: Bool
-    var bounded: Bool
-    let canvasID: String
-    let chartType: ChartType
-    let colours: [String]
-    let comment: Bool
-    let cssClasses: [String]
-    let cssExtras: [String]
-    let cssID: String
-    let cssInclude: String
-    let dashedLines: Int
-    let dashes: [String]
-    let dataPointDistance: Double
-    let filled: Int
-    let fontFamily: String
-    let foregroundColour: String
-    let headers: Int
-    let height: Int
-    let hover: Bool
-    let include: Int
-    let index: Int
-    let italic: Bool
-    let legends: Bool
-    let logoHeight: Double
-    let logoURL: String
-    let logoWidth: Double
-    let logx: Bool
-    let logy: Bool
-    let nameHeader: Int
-    let names: [String]
-    let opacity: Double
-    let reserveBottom: Double
-    let reserveLeft: Double
-    let reserveRight: Double
-    let reserveTop: Double
-    let rowGrouping: Bool
-    let scattered: Int
-    let shapes: [String]
-    let showDataPoints: Int
-    let sortx: Bool
-    let smooth: Double
-    let strokeWidth: Double
-    let subTitle: String
-    let subTitleHeader: Int
-    let svgInclude: String
-    let textColour: String
-    let title: String
-    let width: Int
-    let xMax: Double
-    let xMin: Double
-    let xTagsHeader: Int
-    let xTick: Double
-    let yMax: Double
-    let yMin: Double
-    let yTick: Double
-
-    static let global = Defaults(
-        onCommandLine: [],
-        backgroundColour: "",
-        bared: 0,
-        barOffset: -1.0,
-        barWidth: -1.0,
-        baseFontSize: 10.0,
-        bezier: 0.0,
-        black: false,
-        bold: false,
-        bounded: true,
-        canvasID: "csvplot",
-        chartType: .horizontal,
-        colours: [],
-        comment: true,
-        cssClasses: [],
-        cssExtras: [],
-        cssID: "",
-        cssInclude: "",
-        dashedLines: 0,
-        dashes: [],
-        dataPointDistance: 10.0,
-        filled: 0,
-        fontFamily: "serif",
-        foregroundColour: "black",
-        headers: 0,
-        height: 600,
-        hover: true,
-        include: -1,
-        index: 0,
-        italic: false,
-        legends: true,
-        logoHeight: 64.0,
-        logoURL: "",
-        logoWidth: 64.0,
-        logx: false,
-        logy: false,
-        nameHeader: 1,
-        names: [],
-        opacity: 1.0,
-        reserveBottom: 0.0,
-        reserveLeft: 0.0,
-        reserveRight: 0.0,
-        reserveTop: 0.0,
-        rowGrouping: false,
-        scattered: 0,
-        shapes: [],
-        showDataPoints: 0,
-        sortx: false,
-        smooth: 0.0,
-        strokeWidth: 2.0,
-        subTitle: "",
-        subTitleHeader: 0,
-        svgInclude: "",
-        textColour: "black",
-        title: "",
-        width: 800,
-        xMax: Self.maxDefault,
-        xMin: Self.minDefault,
-        xTagsHeader: 0,
-        xTick: 0.0,
-        yMax: Self.maxDefault,
-        yMin: Self.minDefault,
-        yTick: 0.0
-    )
+    var bounded: Bool {
+        get { boolValue(.bounded) }
+        set { values[.bounded] = .boolValue(val: newValue) }
+    }
 
     func fromCLI(_ key: Settings.CodingKeys) -> Bool {
         return onCommandLine.contains(key)
     }
+
+    func boolValue(_ key: Settings.CodingKeys) -> Bool {
+        switch values[key] ?? .boolFalse {
+        case .boolValue(let val): return val
+        default: return false
+        }
+    }
+
+    func doubleValue(_ key: Settings.CodingKeys) -> Double {
+        switch values[key] ?? .doubleZero {
+        case .doubleValue(let val): return val
+        default: return 0.0
+        }
+    }
+
+    func intValue(_ key: Settings.CodingKeys) -> Int {
+        switch values[key] ?? .intZero {
+        case .intValue(let val): return val
+        default: return 0
+        }
+    }
+
+    func stringValue(_ key: Settings.CodingKeys) -> String {
+        switch values[key] ?? .stringArrayEmpty {
+        case .stringValue(let val): return val
+        default: return ""
+        }
+    }
+
+    func stringArray(_ key: Settings.CodingKeys) -> [String] {
+        switch values[key] ?? .stringArrayEmpty {
+        case .stringArray(let val): return val
+        default: return []
+        }
+    }
+
+    static var global = Defaults()
 }

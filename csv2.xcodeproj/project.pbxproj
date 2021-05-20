@@ -68,7 +68,6 @@
 		C4569DB1265180B200D74DBD /* help.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DB0265180B200D74DBD /* help.swift */; };
 		C4569DB2265180B200D74DBD /* help.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DB0265180B200D74DBD /* help.swift */; };
 		C4569DB326523C0100D74DBD /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE49FE25F6440F0076EF5E /* Options.swift */; };
-		C4569DB426523C0500D74DBD /* OptionDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49CC517263948620006FAC8 /* OptionDefaults.swift */; };
 		C4569DB526523C0D00D74DBD /* OptGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DA82651369900D74DBD /* OptGetter.swift */; };
 		C4569DB626523C1A00D74DBD /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4B026202C600026BD9A /* Commands.swift */; };
 		C4569DB826523C6600D74DBD /* OptGetter in Frameworks */ = {isa = PBXBuildFile; productRef = C4569DB726523C6600D74DBD /* OptGetter */; };
@@ -105,7 +104,6 @@
 		C49A7EC925EBCE7300503486 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC825EBCE7300503486 /* Text.swift */; };
 		C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
 		C49B7D7025DC055400CEAB8C /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
-		C49CC518263948620006FAC8 /* OptionDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49CC517263948620006FAC8 /* OptionDefaults.swift */; };
 		C49CC51B263A9A670006FAC8 /* PlotOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49CC51A263A9A670006FAC8 /* PlotOptions.swift */; };
 		C49CC51C263A9A670006FAC8 /* PlotOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49CC51A263A9A670006FAC8 /* PlotOptions.swift */; };
 		C4B2F968262576FF00CC5430 /* XIlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F967262576FF00CC5430 /* XIlist.swift */; };
@@ -266,7 +264,6 @@
 		C49A7EC825EBCE7300503486 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		C49B7D6C25DC03B500CEAB8C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C49B7D6F25DC055400CEAB8C /* CSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
-		C49CC517263948620006FAC8 /* OptionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionDefaults.swift; sourceTree = "<group>"; };
 		C49CC5192639DB4C0006FAC8 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		C49CC51A263A9A670006FAC8 /* PlotOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotOptions.swift; sourceTree = "<group>"; };
 		C4B2F967262576FF00CC5430 /* XIlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XIlist.swift; sourceTree = "<group>"; };
@@ -535,7 +532,6 @@
 				C4FE49FE25F6440F0076EF5E /* Options.swift */,
 				C42782B42655318E004C3464 /* OptsToGet.swift */,
 				C4569DAD265177DC00D74DBD /* OptionsGet.swift */,
-				C49CC517263948620006FAC8 /* OptionDefaults.swift */,
 			);
 			path = OptGetter;
 			sourceTree = "<group>";
@@ -790,7 +786,6 @@
 				C446E80925F4BAA3007B1A05 /* RowPlot.swift in Sources */,
 				C4507811263DA32000308C1D /* PointPosition.swift in Sources */,
 				C4569DA92651369900D74DBD /* OptGetter.swift in Sources */,
-				C49CC518263948620006FAC8 /* OptionDefaults.swift in Sources */,
 				C4C0C48A2612FBCD0072699C /* KeyedValue.swift in Sources */,
 				C4B2F9AE262B286400CC5430 /* SVGout.swift in Sources */,
 				C46ADD2126074CD60046F427 /* RandomCSV.swift in Sources */,
@@ -913,7 +908,6 @@
 				C4C0C49A26130F2F0072699C /* CSSsettings.swift in Sources */,
 				C4B2F9F82631636D00CC5430 /* Foreground.swift in Sources */,
 				C48B723825F28A5E00B0752E /* appinfo.swift in Sources */,
-				C4569DB426523C0500D74DBD /* OptionDefaults.swift in Sources */,
 				C4C0C4AC26134AC70072699C /* CSVsettings.swift in Sources */,
 				C40CD43625ED007A003944FA /* Axes.swift in Sources */,
 				C4CF2A172637145700E858D1 /* Pie.swift in Sources */,

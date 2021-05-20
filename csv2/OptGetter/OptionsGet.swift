@@ -23,76 +23,93 @@ extension Options {
             let val0 = opt.optValuesAt.hasIndex(0)  ? opt.optValuesAt[0] : OptValueAt.empty
 
             switch optTag {
-            case .bared: bared = try getInt(val0, key: .bared)
-            case .baroffset: baroffset = try getDouble(val0, key: .barOffset)
-            case .barwidth: barwidth = try getDouble(val0, key: .barWidth)
-            case .bezier: bezier = try getDouble(val0, key: .bezier)
-            case .bg: bg = try getColour(val0, key: .backgroundColour)
-            case .bitmap: bitmap = try getIntArray(opt.optValuesAt, key: nil)
-            case .black: black = getBool(true, key: .black)
-            case .bold: bold = getBool(true, key: .bold)
-            case .bounds: bounds = false
-            case .canvas: canvas = getString(val0, key: .canvasID)
+            case .bared: try getInt(val0, key: .bared)
+            case .baroffset: try getDouble(val0, key: .barOffset)
+            case .barwidth: try getDouble(val0, key: .barWidth)
+            case .bezier: try getDouble(val0, key: .bezier)
+            case .bg: getString(val0, key: .backgroundColour)
+            case .bitmap: bitmap = try OptValueAt.intArray(opt.optValuesAt)
+            case .black: getBool(true, key: .black)
+            case .bold: getBool(true, key: .bold)
+            case .bounds: getBool(false, key: .bounded)
+            case .canvas: getString(val0, key: .canvasID)
             case .canvastag: canvastag = true
             case .colournames: colournames = true
             case .colournameslist: colournameslist = true
-            case .colours: colours = try getColourArray(opt.optValuesAt, key: .colours)
+            case .colours: getStringArray(opt.optValuesAt, key: .colours)
             case .colourslist: colourslist = true
-            case .comment: comment = getBool(false, key: .comment)
-            case .css: css = getString(val0, key: .cssInclude)
-            case .cssid: cssid = getString(val0, key: .cssID)
-            case .dashed: dashed = try getInt(val0, key: .dashedLines)
-            case .dashes: dashes = getStringArray(opt.optValuesAt, key: .dashes)
+            case .comment: getBool(false, key: .comment)
+            case .css: getString(val0, key: .cssInclude)
+            case .cssid: getString(val0, key: .cssID)
+            case .dashed: try getInt(val0, key: .dashedLines)
+            case .dashes: getStringArray(opt.optValuesAt, key: .dashes)
             case .dasheslist: dasheslist = true
             case .debug: debug = try getInt(val0, key: nil)
-            case .distance: distance = try getDouble(val0, key: .dataPointDistance)
-            case .fg: fg = try getColour(val0, key: nil)
-            case .filled: filled = try getInt(val0, key: .filled)
-            case .font: font = getString(val0, key: .fontFamily)
-            case .headers: headers = try getInt(val0, key: nil)
+            case .distance: try getDouble(val0, key: .dataPointDistance)
+            case .fg: getString(val0, key: .foregroundColour)
+            case .filled: try getInt(val0, key: .filled)
+            case .font: getString(val0, key: .fontFamily)
+            case .headers: try getInt(val0, key: nil)
             case .help: helpAndExit()
-            case .height: height = try getInt(val0, key: .height)
-            case .hover: hover = getBool(false, key: .hover)
-            case .include: include = try getInt(val0, key: .include)
-            case .index: index = try getInt(val0, key: .index)
-            case .italic: italic = getBool(true, key: .italic)
-            case .legends: legends = getBool(false, key: .legends)
-            case .logo: logo = getString(val0, key: .logoURL)
-            case .logx: logx = getBool(true, key: .logx)
-            case .logy: logy = getBool(true, key: .logy)
-            case .nameheader: nameheader = try getInt(val0, key: .nameHeader)
-            case .names: names = getStringArray(opt.optValuesAt, key: .names)
-            case .opacity: opacity = try getDouble(val0, key: .opacity)
-            case .pie: pie = true
-            case .random: random = try getIntArray(opt.optValuesAt, key: nil)
-            case .reserve: reserve = try getDoubleArray(opt.optValuesAt, key: nil)
-            case .rows: rows = getBool(true, key: .rowGrouping)
-            case .scattered: scattered = try getInt(val0, key: .scatterPlots)
+            case .height: try getInt(val0, key: .height)
+            case .hover: getBool(false, key: .hover)
+            case .include: try getInt(val0, key: .include)
+            case .index: try getInt(val0, key: .index)
+            case .italic: getBool(true, key: .italic)
+            case .legends: getBool(false, key: .legends)
+            case .logo: getString(val0, key: .logoURL)
+            case .logx: getBool(true, key: .logx)
+            case .logy: getBool(true, key: .logy)
+            case .nameheader: try getInt(val0, key: .nameHeader)
+            case .names: getStringArray(opt.optValuesAt, key: .names)
+            case .opacity: try getDouble(val0, key: .opacity)
+            case .pie:
+                values.values[.chartType] = .stringValue(val: "piechart")
+                values.onCommandLine.insert(.chartType)
+            case .random: random = try OptValueAt.intArray(opt.optValuesAt)
+            case .reserve:
+                switch opt.optValuesAt.count {
+                case 4:
+                    try getDouble(opt.optValuesAt[3], key: .reserveBottom)
+                    fallthrough
+                case 3:
+                    try getDouble(opt.optValuesAt[2], key: .reserveRight)
+                    fallthrough
+                case 2:
+                    try getDouble(opt.optValuesAt[1], key: .reserveTop)
+                    fallthrough
+                case 1:
+                    try getDouble(opt.optValuesAt[1], key: .reserveLeft)
+                default:
+                    break
+                }
+            case .rows: getBool(true, key: .rowGrouping)
+            case .scattered: try getInt(val0, key: .scatterPlots)
             case .semi: semi = true
             case .shapenames: shapenames = true
-            case .shapes: shapes = getStringArray(opt.optValuesAt, key: .shapes)
-            case .show: show = getString(val0, key: nil)
-            case .showpoints: showpoints = try getInt(val0, key: .showDataPoints)
-            case .size: size = try getDouble(val0, key: .baseFontSize)
-            case .smooth: smooth = try getDouble(val0, key: .smooth)
-            case .sortx: sortx = getBool(true, key: .sortx)
-            case .stroke: stroke = try getDouble(val0, key: .strokeWidth)
-            case .subheader: subheader = try getInt(val0, key: .subTitleHeader)
-            case .subtitle: subtitle = getString(val0, key: .subTitle)
-            case .svg: svg = getString(val0, key: .svgInclude)
-            case .textcolour: textcolour = try getColour(val0, key: nil)
-            case .title: title = getString(val0, key: .title)
+            case .shapes: getStringArray(opt.optValuesAt, key: .shapes)
+            case .show: getString(val0, key: nil)
+            case .showpoints: try getInt(val0, key: .showDataPoints)
+            case .size: try getDouble(val0, key: .baseFontSize)
+            case .smooth: try getDouble(val0, key: .smooth)
+            case .sortx: getBool(true, key: .sortx)
+            case .stroke: try getDouble(val0, key: .strokeWidth)
+            case .subheader: try getInt(val0, key: .subTitleHeader)
+            case .subtitle: getString(val0, key: .subTitle)
+            case .svg: getString(val0, key: .svgInclude)
+            case .textcolour: getString(val0, key: .textcolour)
+            case .title: getString(val0, key: .title)
             case .tsv: tsv = true
             case .verbose: verbose = true
             case .version: version = true
-            case .width: width = try getInt(val0, key: .width)
-            case .xmax: xmax = try getDouble(val0, key: .xMax)
-            case .xmin: xmin = try getDouble(val0, key: .xMin)
-            case .xtags: xtags = try getInt(val0, key: .xTags)
-            case .xtick: xtick = try getDouble(val0, key: .xTick)
-            case .ymax: ymax = try getDouble(val0, key: .yMax)
-            case .ymin: ymin = try getDouble(val0, key: .yMin)
-            case .ytick: ytick = try getDouble(val0, key: .yTick)
+            case .width: try getInt(val0, key: .width)
+            case .xmax: try getDouble(val0, key: .xMax)
+            case .xmin: try getDouble(val0, key: .xMin)
+            case .xtags: try getInt(val0, key: .xTags)
+            case .xtick: try getDouble(val0, key: .xTick)
+            case .ymax: try getDouble(val0, key: .yMax)
+            case .ymin: try getDouble(val0, key: .yMin)
+            case .ytick: try getDouble(val0, key: .yTick)
             }
         } catch {
             throw error

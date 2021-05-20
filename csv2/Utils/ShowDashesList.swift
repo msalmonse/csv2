@@ -18,10 +18,10 @@ func showDashesList(
     with: CommandType,
     to outName: String?
 ) {
-    let size = 2.0 * defaults.baseFontSize
-    let count = defaults.dashes.count + Dashes.count
+    let size = 2.0 * defaults.doubleValue(.baseFontSize)
+    let count = defaults.stringArray(.dashes).count + Dashes.count
     let height = Double(count + 2) * size
-    let width = defaults.baseFontSize * 20.0
+    let width = defaults.doubleValue(.baseFontSize) * 20.0
 
     let settings = try? Settings.load(settingsJson(width, height))
 

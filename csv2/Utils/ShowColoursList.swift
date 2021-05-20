@@ -20,10 +20,11 @@ func showColoursList(
     with: CommandType,
     to outName: String?
 ) {
-    let rowHeight = 2.5 * defaults.baseFontSize
-    let colours = namesList ? ColourTranslate.all : defaults.colours + Colours.all
+    let baseFontSize = defaults.doubleValue(.baseFontSize)
+    let rowHeight = 2.5 * baseFontSize
+    let colours = namesList ? ColourTranslate.all : defaults.stringArray(.colours) + Colours.all
     let count = Double(colours.count)
-    let columnWidth = defaults.baseFontSize * 30.0
+    let columnWidth = baseFontSize * 30.0
 
     // Calculate the number of rows to maintain a 4:3 ratio but don't get too wide
     var rows = ceil(sqrt((3 * columnWidth * count)/(4 * rowHeight)))

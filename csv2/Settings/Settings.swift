@@ -58,13 +58,12 @@ class Settings: Decodable, ReflectedStringConvertible {
     required init(from decoder: Decoder) {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
-        var chartType = defaults.chartType
-        if let chart = Self.optionalKeyedStringValue(from: container, forKey: .chartType) {
-            switch chart.lowercased() {
-            case "piechart": chartType = .pieChart
-            case "horizontal": chartType = .horizontal
-            default: break
-            }
+        var chartType: ChartType = .horizontal
+        let chart = Self.keyedStringValue(from: container, forKey: .chartType, defaults: defaults)
+        switch chart.lowercased() {
+        case "piechart": chartType = .pieChart
+        case "horizontal": chartType = .horizontal
+        default: break
         }
         self.chartType = chartType
 

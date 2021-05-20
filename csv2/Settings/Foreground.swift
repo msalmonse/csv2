@@ -35,8 +35,8 @@ extension Settings {
     static func jsonForegroundColours(
         from container: KeyedDecodingContainer<CodingKeys>?, defaults: Defaults
     ) -> ForegroundColours {
-        let fg = defaults.foregroundColour
-        let text = defaults.textColour
+        let fg = defaults.stringValue(.foregroundColour)
+        let text = defaults.stringValue(.textcolour)
         let pieText = optionalKeyedStringValue(from: container, forKey: .pieLegend) ?? text
 
         return ForegroundColours(

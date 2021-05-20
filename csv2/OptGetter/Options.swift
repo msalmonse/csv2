@@ -9,80 +9,21 @@ import Foundation
 import OptGetter
 
 struct Options {
-    var bared = Defaults.global.bared
-    var baroffset = Defaults.global.barOffset
-    var barwidth = Defaults.global.barWidth
-    var bg = Defaults.global.backgroundColour
     var bitmap: [Int] = []
-    var bezier = Defaults.global.bezier
-    var black = Defaults.global.black
-    var bold = Defaults.global.bold
-    var bounds = true
-    var canvas = Defaults.global.canvasID
     var canvastag = false
     var colourslist = false
     var colournames = false
     var colournameslist = false
-    var colours: [String] = []
-    var comment = Defaults.global.comment
-    var css = Defaults.global.cssInclude
-    var cssid = Defaults.global.cssID
-    var dashed = Defaults.global.dashedLines
-    var dashes: [String] = []
     var dasheslist = false
     var debug = 0
-    var distance = Defaults.global.dataPointDistance
-    var filled = Defaults.global.filled
-    var font = Defaults.global.fontFamily
-    var fg = Defaults.global.foregroundColour
-    var headers = Defaults.global.headers
-    var height = Defaults.global.height
-    var hover = Defaults.global.hover
-    var index = Defaults.global.index
-    var italic = Defaults.global.italic
-    var include = Defaults.global.include
-    var legends = Defaults.global.legends
-    var logo = Defaults.global.logoURL
-    var logx = Defaults.global.logx
-    var logy = Defaults.global.logy
-    var nameheader = Defaults.global.nameHeader
-    var names: [String] = []
-    var opacity = Defaults.global.opacity
     var pie = false
     var random: [Int] = []
-    var reserve = [
-        Defaults.global.reserveLeft,
-        Defaults.global.reserveTop,
-        Defaults.global.reserveRight,
-        Defaults.global.reserveBottom
-    ]
-    var rows = Defaults.global.rowGrouping
-    var scattered = Defaults.global.scattered
     var semi = false
-    var shapes: [String] = []
     var shapenames = false
     var show: String = ""
-    var showpoints = Defaults.global.showDataPoints
-    var size = Defaults.global.baseFontSize
-    var smooth = Defaults.global.smooth
-    var sortx = Defaults.global.sortx
-    var stroke = Defaults.global.strokeWidth
-    var subheader = Defaults.global.index
-    var subtitle: String = ""
-    var svg = Defaults.global.svgInclude
-    var textcolour = Defaults.global.textColour
-    var title: String = ""
     var tsv = false
     var verbose = false
     var version = false
-    var width = Defaults.global.width
-    var xmax = Defaults.global.xMax
-    var xmin = Defaults.global.xMin
-    var xtags = Defaults.global.xTagsHeader
-    var xtick = Defaults.global.xTick
-    var ymax = Defaults.global.yMax
-    var ymin = Defaults.global.yMin
-    var ytick = Defaults.global.yTick
 
     // Positional parameters
 
@@ -90,8 +31,8 @@ struct Options {
     var jsonName: String?
     var outName: String?
 
-    // Indicator for options on the command line
-    var onCommandLine: Set<Settings.CodingKeys> = []
+    // Defaults
+    var values = Defaults()
 
     var separator: String {
         if tsv { return "\t" }
@@ -138,6 +79,13 @@ struct Options {
         } catch {
             throw error
         }
+    }
+
+    /// Create defaults from command line
+    /// - Returns: defaults
+
+    func defaults() -> Defaults {
+        return values
     }
 }
 

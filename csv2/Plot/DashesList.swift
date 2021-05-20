@@ -9,8 +9,8 @@ import Foundation
 
 extension Plot {
     func dashesListGen(_ step: Double, _ defaults: Defaults) {
-        let colour = defaults.colours.first ?? "black"
-        let dashes = defaults.dashes + Dashes.all(width * 3.0)
+        let colour = defaults.stringArray(.colours).first ?? "black"
+        let dashes = defaults.stringArray(.dashes) + Dashes.all(width * 3.0)
 
         let xLeft = width * 0.1
         let xRight = width * 0.6

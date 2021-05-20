@@ -20,8 +20,8 @@ func showShape(
     with: CommandType,
     to outName: String?
 ) {
-    let colour = defaults.colours.first ?? "black"
-    let wh = (defaults.strokeWidth * 6).f(0)
+    let colour = defaults.stringArray(.colours).first ?? "black"
+    let wh = (defaults.doubleValue(.strokeWidth) * 6).f(0)
 
     let settings = try? Settings.load(settingsJson(wh))
 

@@ -33,6 +33,7 @@ extension Settings {
         case dataPointDistance
         case filled
         case fontFamily
+        case foregroundColour
         case foregroundColours
         case headerColumns
         case headerRows
@@ -73,6 +74,7 @@ extension Settings {
         case subTitle
         case subTitleHeader
         case svgInclude
+        case textcolour
         case title
         case width
         case xLabel

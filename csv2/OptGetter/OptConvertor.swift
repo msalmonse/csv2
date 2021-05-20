@@ -15,8 +15,12 @@ extension Options {
     ///   - val: value to set
     ///   - key: key to tag
 
+    @discardableResult
     mutating func getBool(_ val: Bool, key: Settings.CodingKeys?) -> Bool {
-        if let key = key { onCommandLine.insert(key) }
+        if let key = key {
+            values.onCommandLine.insert(key)
+            values.values[key] = .boolValue(val: val)
+        }
         return val
     }
 
@@ -26,25 +30,17 @@ extension Options {
     ///   - key: key to tag
     /// - Throws: OptGetterError.illegalValue
 
+    @discardableResult
     mutating func getDouble(_ val: OptValueAt, key: Settings.CodingKeys?) throws -> Double {
         do {
-            if let key = key { onCommandLine.insert(key) }
-            return try val.doubleValue()
+            let dVal = try val.doubleValue()
+            if let key = key {
+                values.onCommandLine.insert(key)
+                values.values[key] = .doubleValue(val: dVal)
+            }
+            return dVal
         } catch {
             throw error
-        }
-    }
-
-    /// Get an double array and tag it
-    /// - Parameters:
-    ///   - vals: array to get
-    ///   - key: key to tag
-    /// - Throws: OptGetterError.illegalValue
-
-    mutating func getDoubleArray(_ vals: OptValuesAt, key: Settings.CodingKeys?) throws -> [Double] {
-        do {
-            if let key = key { onCommandLine.insert(key) }
-            return try OptValueAt.doubleArray(vals)
         }
     }
 
@@ -54,25 +50,17 @@ extension Options {
     ///   - key: key to tag
     /// - Throws: OptGetterError.illegalValue
 
+    @discardableResult
     mutating func getInt(_ val: OptValueAt, key: Settings.CodingKeys?) throws -> Int {
         do {
-            if let key = key { onCommandLine.insert(key) }
-            return try val.intValue()
+            let iVal = try val.intValue()
+            if let key = key {
+                values.onCommandLine.insert(key)
+                values.values[key] = .intValue(val: iVal)
+            }
+            return iVal
         } catch {
             throw error
-        }
-    }
-
-    /// Get an int array and tag it
-    /// - Parameters:
-    ///   - vals: array to get
-    ///   - key: key to tag
-    /// - Throws: OptGetterError.illegalValue
-
-    mutating func getIntArray(_ vals: OptValuesAt, key: Settings.CodingKeys?) throws -> [Int] {
-        do {
-            if let key = key { onCommandLine.insert(key) }
-            return try OptValueAt.intArray(vals)
         }
     }
 
@@ -81,9 +69,14 @@ extension Options {
     ///   - val: value to set
     ///   - key: key to tag
 
+    @discardableResult
     mutating func getString(_ val: OptValueAt, key: Settings.CodingKeys?) -> String {
-        if let key = key { onCommandLine.insert(key) }
-        return val.stringValue()
+        let sVal = val.stringValue()
+        if let key = key {
+            values.onCommandLine.insert(key)
+            values.values[key] = .stringValue(val: sVal)
+        }
+        return sVal
     }
 
     /// Set a string array and tag it
@@ -91,35 +84,13 @@ extension Options {
     ///   - vals: array to get
     ///   - key: key to tag
 
+    @discardableResult
     mutating func getStringArray(_ vals: OptValuesAt, key: Settings.CodingKeys?) -> [String] {
-        if let key = key { onCommandLine.insert(key) }
-        return OptValueAt.stringArray(vals)
-    }
-
-    /// Get a colour value and tag it
-    /// - Parameters:
-    ///   - val: colour to get
-    ///   - key: key to tag
-    /// - Throws: OptGetterError.illegalValue
-
-    mutating func getColour(_ val: OptValueAt, key: Settings.CodingKeys?) throws -> String {
-        let colour = getString(val, key: key)
-        if RGBAu8.lookup(colour) != nil { return colour }
-        throw OptGetterError.illegalValue(type: "colour", valueAt: val)
-    }
-
-    /// Get a colour array and tag it
-    /// - Parameters:
-    ///   - vals: array to get
-    ///   - key: key to tag
-    /// - Throws: OptGetterError.illegalValue
-
-    mutating func getColourArray(_ vals: OptValuesAt, key: Settings.CodingKeys?) throws -> [String] {
-        do {
-            if let key = key { onCommandLine.insert(key) }
-            return try vals.map { try getColour($0, key: nil) }
-        } catch {
-            throw error
+        let sVals = OptValueAt.stringArray(vals)
+        if let key = key {
+            values.onCommandLine.insert(key)
+            values.values[key] = .stringArray(val: sVals)
         }
+        return sVals
     }
 }
