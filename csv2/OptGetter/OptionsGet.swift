@@ -79,7 +79,7 @@ extension Options {
                     try getDouble(opt.optValuesAt[1], key: .reserveTop)
                     fallthrough
                 case 1:
-                    try getDouble(opt.optValuesAt[1], key: .reserveLeft)
+                    try getDouble(opt.optValuesAt[0], key: .reserveLeft)
                 default:
                     break
                 }
@@ -88,7 +88,7 @@ extension Options {
             case .semi: semi = true
             case .shapenames: shapenames = true
             case .shapes: getStringArray(opt.optValuesAt, key: .shapes)
-            case .show: getString(val0, key: nil)
+            case .show: show = val0.stringValue()
             case .showpoints: try getInt(val0, key: .showDataPoints)
             case .size: try getDouble(val0, key: .baseFontSize)
             case .smooth: try getDouble(val0, key: .smooth)
