@@ -31,6 +31,8 @@ extension Settings {
         case dashedLines
         case dashes
         case dataPointDistance
+        case draft
+        case draftText
         case filled
         case fontFamily
         case foregroundColour

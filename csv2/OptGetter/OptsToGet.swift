@@ -39,6 +39,7 @@ extension Options {
         OptToGet(.dasheslist, usage: "Generate an image with all the dashes on it"),
         OptToGet(.debug, short: "d", 1...1, usage: "Add debug info", argTag: "<bitmap¹>"),
         OptToGet(.distance, 1...1, usage: "Minimum distance between data points", argTag: "<n>"),
+        OptToGet(.draft, 0...1, usage: "Mark the chart as a draft, argument sets the text", argTag: "[text]"),
         OptToGet(.filled, 1...1, options: [.minusOK], usage: "Plots to show filled", argTag: "<bitmap¹>"),
         OptToGet(.font, 1...1, usage: "Font family", argTag: "<font name>"),
         OptToGet(.fg, 1...1, usage: "Foreground colour for non-text items", argTag: "<colour>"),

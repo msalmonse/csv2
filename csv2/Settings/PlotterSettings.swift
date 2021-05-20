@@ -18,6 +18,10 @@ extension Settings {
         // Include plot info in svg
         let comment: Bool
 
+        // Draft?
+        let draft: Bool
+        let draftText: String
+
         // Include plot info in svg
         let legends: Bool
 
@@ -49,6 +53,8 @@ extension Settings {
         return Plotter(
             canvasID: keyedStringValue(from: container, forKey: .canvasID, defaults: defaults),
             comment: keyedBoolValue(from: container, forKey: .comment, defaults: defaults),
+            draft: keyedBoolValue(from: container, forKey: .draft, defaults: defaults),
+            draftText: keyedStringValue(from: container, forKey: .draftText, defaults: defaults),
             legends: keyedBoolValue(from: container, forKey: .legends, defaults: defaults),
             logx: keyedBoolValue(from: container, forKey: .logx, defaults: defaults),
             logy: keyedBoolValue(from: container, forKey: .logy, defaults: defaults),

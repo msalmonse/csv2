@@ -16,11 +16,9 @@ extension Options {
     ///   - key: key to tag
 
     @discardableResult
-    mutating func getBool(_ val: Bool, key: Settings.CodingKeys?) -> Bool {
-        if let key = key {
-            values.onCommandLine.insert(key)
-            values.values[key] = .boolValue(val: val)
-        }
+    mutating func setBool(_ val: Bool, key: Settings.CodingKeys) -> Bool {
+        values.onCommandLine.insert(key)
+        values.values[key] = .boolValue(val: val)
         return val
     }
 
@@ -31,13 +29,11 @@ extension Options {
     /// - Throws: OptGetterError.illegalValue
 
     @discardableResult
-    mutating func getDouble(_ val: OptValueAt, key: Settings.CodingKeys?) throws -> Double {
+    mutating func setDouble(_ val: OptValueAt, key: Settings.CodingKeys) throws -> Double {
         do {
             let dVal = try val.doubleValue()
-            if let key = key {
-                values.onCommandLine.insert(key)
-                values.values[key] = .doubleValue(val: dVal)
-            }
+            values.onCommandLine.insert(key)
+            values.values[key] = .doubleValue(val: dVal)
             return dVal
         } catch {
             throw error
@@ -51,13 +47,11 @@ extension Options {
     /// - Throws: OptGetterError.illegalValue
 
     @discardableResult
-    mutating func getInt(_ val: OptValueAt, key: Settings.CodingKeys?) throws -> Int {
+    mutating func setInt(_ val: OptValueAt, key: Settings.CodingKeys) throws -> Int {
         do {
             let iVal = try val.intValue()
-            if let key = key {
-                values.onCommandLine.insert(key)
-                values.values[key] = .intValue(val: iVal)
-            }
+            values.onCommandLine.insert(key)
+            values.values[key] = .intValue(val: iVal)
             return iVal
         } catch {
             throw error
@@ -70,12 +64,10 @@ extension Options {
     ///   - key: key to tag
 
     @discardableResult
-    mutating func getString(_ val: OptValueAt, key: Settings.CodingKeys?) -> String {
+    mutating func setString(_ val: OptValueAt, key: Settings.CodingKeys) -> String {
         let sVal = val.stringValue()
-        if let key = key {
-            values.onCommandLine.insert(key)
-            values.values[key] = .stringValue(val: sVal)
-        }
+        values.onCommandLine.insert(key)
+        values.values[key] = .stringValue(val: sVal)
         return sVal
     }
 
@@ -85,12 +77,10 @@ extension Options {
     ///   - key: key to tag
 
     @discardableResult
-    mutating func getStringArray(_ vals: OptValuesAt, key: Settings.CodingKeys?) -> [String] {
+    mutating func setStringArray(_ vals: OptValuesAt, key: Settings.CodingKeys) -> [String] {
         let sVals = OptValueAt.stringArray(vals)
-        if let key = key {
-            values.onCommandLine.insert(key)
-            values.values[key] = .stringArray(val: sVals)
-        }
+        values.onCommandLine.insert(key)
+        values.values[key] = .stringArray(val: sVals)
         return sVals
     }
 }

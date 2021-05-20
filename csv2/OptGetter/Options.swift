@@ -66,13 +66,13 @@ struct Options {
             }
             switch optGetter.remainingValuesAt.count {
             case 3...:
-                outName = getString(optGetter.remainingValuesAt[2], key: nil)
+                outName = optGetter.remainingValuesAt[2].stringValue()
                 fallthrough
             case 2:
-                jsonName = getString(optGetter.remainingValuesAt[1], key: nil)
+                jsonName = optGetter.remainingValuesAt[1].stringValue()
                 fallthrough
             case 1:
-                csvName = getString(optGetter.remainingValuesAt[0], key: nil)
+                csvName = optGetter.remainingValuesAt[0].stringValue()
             default:
                 break
             }

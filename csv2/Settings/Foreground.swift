@@ -13,6 +13,7 @@ extension Settings {
 
     struct ForegroundColours {
         let axes: String
+        let draft: String
         let legends: String
         let legendsBox: String
         let pieLabel: String
@@ -41,6 +42,7 @@ extension Settings {
 
         return ForegroundColours(
             axes: optionalKeyedStringValue(from: container, forKey: .axes) ?? fg,
+            draft: optionalKeyedStringValue(from: container, forKey: .draft) ?? fg,
             legends: optionalKeyedStringValue(from: container, forKey: .legends) ?? text,
             legendsBox: optionalKeyedStringValue(from: container, forKey: .legendsBox) ?? fg,
             pieLabel: optionalKeyedStringValue(from: container, forKey: .pieLabel) ??

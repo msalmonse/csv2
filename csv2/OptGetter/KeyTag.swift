@@ -33,6 +33,7 @@ extension Options {
         case dasheslist
         case debug
         case distance
+        case draft
         case fg
         case filled
         case font
