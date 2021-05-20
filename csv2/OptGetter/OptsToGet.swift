@@ -78,7 +78,10 @@ extension Options {
         OptToGet(.shapes, 1...255, usage: "List of shapes to use", argTag: "<shape>..."),
         OptToGet(.shapenames, usage: "Print a list of shape names"),
         OptToGet(.show, 1...1, usage: "Generate a plot with the shape @ 6X strokewidth", argTag: "<shape>"),
-        OptToGet(.showpoints, 1...1, options: [.includeMinus], usage: "Data plots with points", argTag: "<bitmap¹>"),
+        OptToGet(
+            .showpoints, 1...1, options: [.includeMinus],
+            usage: "Data plots with points", argTag: "<bitmap¹>"
+        ),
         OptToGet(.size, 1...1, usage: "Base font size", argTag: "<n>"),
         OptToGet(.smooth, 1...1, usage: "EMA smoothing, 0 means none", argTag: "<n>"),
         OptToGet(.sortx, usage: "Sort points by the x values before plotting"),
