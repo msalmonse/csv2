@@ -26,13 +26,15 @@ extension SVG {
             guard let cl = styles.cssClass else { return }
             let anc = "text-anchor: " + (styles.textAlign!)
             let clr = styles.fontColour!
+            let fill = styles.fill ?? clr
             let size = "font-size: " + styles.fontSize.f(1) + "px"
             result.append("""
-                \(id) text.\(cl)\(suffix) { fill: \(clr); stroke: \(clr); \(size); \(anc); \(extra) }
+                \(id) text.\(cl)\(suffix) { fill: \(fill); stroke: \(clr); \(size); \(anc); \(extra) }
                 """
             )
         }
 
+        oneText(stylesList.draft)
         oneText(stylesList.legend)
         oneText(stylesList.legendHeadline)
         oneText(stylesList.pieLabel)

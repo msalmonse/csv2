@@ -52,12 +52,12 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "pdf --bg cornsilk --opacity=.3"
+            argument = "png --bg cornsilk --draft --"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--logo https://newcastlebeach.org/images/128x128-11.png"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "${PROJECT_DIR}/data/trig.csv"
@@ -68,7 +68,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/out.pdf"
+            argument = "${PROJECT_DIR}/out.png"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

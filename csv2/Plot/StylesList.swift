@@ -18,6 +18,7 @@ fileprivate func cssRGBA(_ colour: String?, or notFound: RGBAu8 = .black) -> Str
 struct StylesList {
     var plots: [Styles]
     var axes: Styles
+    var draft: Styles
     var legend: Styles
     var legendHeadline: Styles
     var legendBox: Styles
@@ -37,6 +38,7 @@ struct StylesList {
         plots = Array(repeating: Styles.from(settings: settings), count: ct)
 
         axes = Self.axesStyle(settings: settings, sizes: sizes)
+        draft = Self.draftStyle(settings: settings)
         legend = Self.legendStyle(settings: settings, sizes: sizes)
         legendBox = Self.legendBoxStyle(settings: settings, sizes: sizes)
         legendHeadline = Self.legendHeadlineStyle(settings: settings, sizes: sizes)
@@ -63,6 +65,34 @@ struct StylesList {
         axes.colour = cssRGBA(settings.fg.axes)
         axes.cssClass = "axes"
         return axes
+    }
+
+    /// Set legend style
+    /// - Parameters:
+    ///   - settings: chart settings
+    ///   - sizes: font sizes
+    /// - Returns: legend style
+
+    static private func draftStyle(settings: Settings) -> Styles {
+        var draft = Styles.from(settings: settings)
+        draft.cssClass = "draft"
+        draft.fill = RGBAu8.clear.cssRGBA
+        draft.fontColour = cssRGBA(settings.fg.draft)
+        draft.textAlign = "middle"
+        draft.textBaseline = "middle"
+
+        // calculate font size
+        let text = settings.plotter.draftText
+        let charSize = min(settings.width/Double(text.count), settings.height/2.0)
+        draft.fontSize = floor(charSize * 1.25)
+
+        // now the transform
+        let x = settings.width/2.0
+        let y = settings.height/2.0
+        let angle = atan(settings.height/settings.width)
+        draft.transform = Transform.rotateAround(x: x, y: y, sin: sin(angle), cos: cos(angle))
+
+        return draft
     }
 
     /// Set legend style

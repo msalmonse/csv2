@@ -36,6 +36,14 @@ extension Plot {
         if let subTitle = subTitleLookup() { subTitleText(subTitle) }
         if settings.plotter.title.hasContent { titleText() }
 
+        if settings.plotter.draft {
+            plotter.plotText(
+                x: width/2.0, y: height/2.0,
+                text: settings.plotter.draftText,
+                styles: stylesList.draft
+            )
+        }
+
         plotter.plotTail()
     }
 
