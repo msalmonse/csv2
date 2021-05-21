@@ -93,6 +93,7 @@ SVG specific options:
   -nohover               Don't add CSS code to emphasize hovered plots
   -svg <file>            Include file for svg elements
 
-
+```
+```
   ¹ <bitmap> means an integer where each bit has a specific meaning    
 ```

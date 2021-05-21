@@ -81,6 +81,7 @@ func helpSVG(_ execName: String) {
 
 func helpUsage(_ execName: String) {
     print("""
+        Generate a Canvas, PDF, PNG or SVG using data from a CSV file and settings from a JSON file.
 
         \(execName) <canvas|pdf|png|svg> [options] [csv file [json file [output file]]]
 
