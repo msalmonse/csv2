@@ -123,3 +123,10 @@ func pngUsage() -> String? {
 func svgUsage() -> String? {
     return OptGetter.usage(Options.svgOpts, longFirst: true, longOnly: true)
 }
+
+/// Get usage for positional parameters
+/// - Returns: usage string
+
+func positionalUsage() -> String? {
+    return OptGetter.positionalUsage(Options.positionalOpts)
+}

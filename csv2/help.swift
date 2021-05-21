@@ -85,9 +85,7 @@ func helpUsage(_ execName: String) {
         \(execName) <canvas|pdf|png|svg> [options] [csv file [json file [output file]]]
 
         Arguments:
-          <csv file>             CSV data file name or - for stdin
-          <json file>            JSON settings file name
-          <output file>          Output file name, use stdout if omitted for canvas and svg
+        \(positionalUsage() ?? "")
 
         Common options:
         \(commonUsage() ?? "")
