@@ -42,7 +42,7 @@ class csv2Tests: XCTestCase {
     func testSettings() throws {
         var settings = try? Settings.load(settingsJSON(true))
         XCTAssertNotNil(settings)
-        XCTAssertEqual(settings!.plot.bezier, Defaults.global.bezier)
+        XCTAssertEqual(settings!.plot.bezier, Defaults.global.doubleValue(.bezier))
         XCTAssertEqual(settings!.plot.colours.count, 3)
         XCTAssertTrue(settings!.inColumns)
         XCTAssertFalse(settings!.inRows)
