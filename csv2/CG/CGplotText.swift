@@ -74,6 +74,17 @@ fileprivate func stylesFont(_ styles: Styles) -> CTFont? {
     return CTFontCreateWithFontDescriptor(fontDesc, size, nil)
 }
 
+/// Calculate the strokewidth
+/// - Parameter styles: text styles
+/// - Returns: percentage strokewidth
+
+fileprivate func stylesWidth(_ styles: Styles) -> CGFloat {
+    if !styles.options[.stroked] { return 0.0 }
+    // stroke width is a %age
+    let percent = 100 * styles.strokeWidth/styles.fontSize
+    return CGFloat(percent)
+}
+
 /// Draw the text at the place specified with the properties specified
 /// - Parameters:
 ///   - xy: the x and y position for the text
@@ -87,7 +98,8 @@ func cgPlotText(xy: Point, text: String, styles: Styles, to ctx: CGContext, heig
     let font = stylesFont(styles)
     let attr = [
         NSAttributedString.Key.foregroundColor: colour.cgColor as Any,
-        NSAttributedString.Key.font: font as Any
+        NSAttributedString.Key.font: font as Any,
+        NSAttributedString.Key.strokeWidth: stylesWidth(styles) as Any
     ] as [NSAttributedString.Key: Any]
     let attrText = NSAttributedString(string: text, attributes: attr)
     let textWidth = Double(attrText.size().width)
