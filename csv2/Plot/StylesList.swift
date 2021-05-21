@@ -76,8 +76,8 @@ struct StylesList {
     static private func draftStyle(settings: Settings) -> Styles {
         var draft = Styles.from(settings: settings)
         draft.cssClass = "draft"
-        draft.fill = RGBAu8.clear.cssRGBA
         draft.fontColour = cssRGBA(settings.fg.draft)
+        draft.fontFamily = "sans-serif"
         draft.options[.stroked] = true
         draft.textAlign = "middle"
         draft.textBaseline = "middle"

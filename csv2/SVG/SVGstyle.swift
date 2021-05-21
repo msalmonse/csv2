@@ -26,7 +26,7 @@ extension SVG {
             guard let cl = styles.cssClass else { return }
             let anc = "text-anchor: " + (styles.textAlign!)
             let clr = styles.fontColour!
-            let fill = styles.fill ?? clr
+            let fill = styles.options[.stroked] ? "none" : clr
             let size = "font-size: " + styles.fontSize.f(1) + "px"
             result.append("""
                 \(id) text.\(cl)\(suffix) { fill: \(fill); stroke: \(clr); \(size); \(anc); \(extra) }
