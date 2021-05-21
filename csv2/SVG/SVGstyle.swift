@@ -8,6 +8,7 @@
 import Foundation
 
 extension SVG {
+
     /// Add styles for texts
     /// - Parameters:
     ///   - result: Where to append style
@@ -27,14 +28,20 @@ extension SVG {
             let anc = "text-anchor: " + (styles.textAlign!)
             let clr = styles.fontColour!
             let fill = styles.options[.stroked] ? "none" : clr
+            var fam = ""
+            if let styFam = styles.fontFamily {
+                if settings.css.fontFamily != styFam {
+                    fam = "font-family: \(styFam);"
+                }
+            }
             let size = "font-size: " + styles.fontSize.f(1) + "px"
             result.append("""
-                \(id) text.\(cl)\(suffix) { fill: \(fill); stroke: \(clr); \(size); \(anc); \(extra) }
+                \(id) text.\(cl)\(suffix) { fill: \(fill); stroke: \(clr); \(fam) \(size); \(anc); \(extra) }
                 """
             )
         }
 
-        oneText(stylesList.draft)
+        oneText(stylesList.draft, extra: "dominant-baseline: middle")
         oneText(stylesList.legend)
         oneText(stylesList.legendHeadline)
         oneText(stylesList.pieLabel)
