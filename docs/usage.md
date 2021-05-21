@@ -1,109 +1,98 @@
 ### csv2
 ```
-OVERVIEW: Generate a Canvas or SVG using data from a CSV file and settings from a JSON file.
+Generate a Canvas, PDF, PNG or SVG using data from a CSV file and settings from a JSON file.
 
-USAGE: csv2 <subcommand> [<options>] [<csv-name>] [<json-name>] [<out-name>]
-
-SUBCOMMANDS:
-    canvas                  Plot data on an HTML Canvas using JavaScript
-    pdf                     Plot data on a PDF page
-    png                     Plot data on a PNG image
-    svg (default)           Plot data in an SVG
-
-ARGUMENTS:
-    <csv-name>              CSV file name, "-" means use stdin
-    <json-name>             JSON file name
-    <out-name>              Output file name, default is to print to terminal
-    
+csv2 <canvas|pdf|png|svg> [options] [csv file [json file [output file]]]
 ```
+```
+Arguments:
+  <csv file>             CSV data file name or - for stdin
+  <json file>            JSON settings file name
+  <output file>          Output file name,
+                         use stdout if omitted for canvas and svg
+```
+```
+Common options:
+  -bared <bitmap¹>       Plots to show as bars
+  -baroffset <offset>    Bar offset (-1 to calculate)
+  -barwidth              Bar width (-1 to calculate)
+  -bezier <n>            Bézier curve smoothing, 0 means none
+  -bg <colour>           Background colour
+  -bitmap <n>...         Convert a list of rows or columns to a bitmap
+  -black                 Set undefined colours to black
+  -bold                  Set font-weight to bold
+  -colournames           Print a list of all the colour names on it
+  -colournameslist       Generate an image with all the colour names on it
+  -colours <colour>...   Colours to use for plots
+  -colourslist           Generate an image with all the colours on it
+  -dashed <bitmap¹>      Plots with dashed lines
+  -dashes <n,n...>...    List of plot dash patterns to use
+  -dasheslist            Generate an image with all the dashes on it
+  -debug <bitmap¹>       Add debug info
+  -distance <n>          Minimum distance between data points
+  -draft [text]          Mark the chart as a draft, argument sets the text
+  -fg <colour>           Foreground colour for non-text items
+  -filled <bitmap¹>      Plots to show filled
+  -font <font name>      Font family
+  -headers <n>           Header rows or columns
+  -height <n>            Chart height
+  -include <bitmap¹>     Plots to include, default all
+  -index <n>             Index row or column
+  -italic                Use an italic font
+  -logo <url>            Image URL for top right corner
+  -logx                  Set abcissa to log
+  -logy                  Set ordinate to log
+  -nameheader <n>        Plot name row or column
+  -names <name>...       List of plot names
+  -nobounds              Don't check options for bounds
+  -nocomment             Don't add csv2 comment to plot
+  -nolegends             Don't include plot names, colours, dashes and shapes
+  -opacity               Opacity for plots
+  -pie                   Generate a pie chart
+  -random <n [n [n]]>    Generate a random SVG with: #plots [max value [min
+                         value]]
+  -reserve <n [n [n [n]]]>
+                         Reserved space on the left [top [right [bottom]]]
+  -rows                  Group data by rows
+  -scattered <bitmap¹>   Plots to show as scatter plots
+  -semi                  Use semicolons to seperate columns
+  -shapenames            Print a list of shape names
+  -shapes <shape>...     List of shapes to use
+  -show <shape>          Generate a plot with the shape @ 6X strokewidth
+  -showpoints <bitmap¹>
+                         Data plots with points
+  -size <n>              Base font size
+  -smooth <n>            EMA smoothing, 0 means none
+  -sortx                 Sort points by the x values before plotting
+  -stroke <n>            Stroke width
+  -subheader <n>         Sub-title row or column source
+  -subtitle <text>       Sub-title
+  -textcolour <colour>   Foreground text colour
+  -title <text>          Chart title
+  -tsv                   Use tabs to seperate columns
+  -verbose               Add extra information
+  -version               Display version and exit
+  -width <n>             Chart width
+  -xmax <n>              Abscissa maximum
+  -xmin <n>              Abscissa minimum
+  -xtags <n>             Row or column with abscissa tags
+  -xtick <n>             Distance between abcissa ticks
+  -ymax <n>              Ordinate maximum
+  -ymin <n>              Ordinate minimum
+  -ytick <n>             Distance between ordinate ticks
+```
+```
+Canvas specific options:
+  -canvas <name>         Canvas name
+  -canvastag             Print the canvas tag
+```
+```
+SVG specific options:
+  -css <file>            Include file for css styling
+  -cssid <name>          CSS id for SVG
+  -nohover               Don't add CSS code to emphasize hovered plots
+  -svg <file>            Include file for svg elements
 
-```
-CANVAS OPTIONS:
-    --canvas <canvas>       Canvas name (default: csvplot)
-    --canvastag             Print the canvas tag for inclusion in an HTML file
-    
-```
 
-```
-SVG OPTIONS:
-  --css <css>             Default include file for css styling
-  --cssid <cssid>         Default id for SVG
-  --nohover               Don't add CSS code to emphasize hovered plots
-  --svg <svg>             Default include file for svg elements
-  
-```
-
-```
-COMMON OPTIONS:
-  --bared <bared>         Plots to show as bars (default: 0)
-  --baroffset <baroffset> Bar offset (-1 to calculate) (default: -1.0)
-  --barwidth <barwidth>   Bar width (-1 to calculate) (default: -1.0)
-  --bg <bg>               Background colour
-  --bitmap <bitmap>       Convert a list of rows or columns to a bitmap
-  --bezier <bezier>       Bézier curve smoothing, 0 means none (default: 0.0)
-  --black                 Set undefined colours to black
-  --bold                  Set font-weight to bold
-  --colourslist           Generate an image with all the colours on it
-  --colournames           Print a list of all the colour names on it
-  --colournameslist       Generate an image with all the colour names on it
-  --colours <colours>     List of plot colours to use, multiple entries until the next option
-  --dashed <dashed>       Plots to show as with dashed lines (default: 0)
-  --dashes <dashes>       List of plot dash patterns to use, multiple entries until the next
-                          option
-  --dasheslist            Generate an SVG with all the dashes on it
-  -d, --debug <debug>     Add debug info (default: 0)
-  --distance <distance>   Minimum distance between data points (default: 10.0)
-  --font <font>           Font family (default: serif)
-  --fg <fg>               Foreground colour (default: black)
-  --headers <headers>     Header rows or columns (default: 0)
-  --height <height>       SVG/Canvas height (default: 600)
-  --index <index>         Index row or column (default: 0)
-  --italic                Use an italic font
-  --include <include>     Rows or columns to include (default: -1)
-  --logo <logo>           Image URL for top right corner
-  --logx                  Set abcissa to log
-  --logy                  Set ordinate to log
-  --nameheader <nameheader>
-                          Plot name row or column (default: 1)
-  --names <names>         List of plot names, multiple entries until the next option
-  --nobounds              Don't check options for bounds
-  --nocomment             Don't add csv2 comment to plot
-  --nolegends             Don't include plot names, colours, dashes and shapes
-  --opacity <opacity>     Opacity for plots (default: 1.0)
-  --pie                   Generate a pie chart
-  --random <random>       Generate a random SVG with: #plots [max value [min value [-ve
-                          offset]]]
-  --reserve <reserve>     Reserved pixels on the left [top [right [bottom]]] (default: 0.0,
-                          0.0, 0.0, 0.0)
-  --rows                  Group data by rows
-  --scattered <scattered> Plots to show as scattered (default: 0)
-  --semi                  Use semicolons to seperate columns
-  --shapes <shapes>       List of shapes to use, multiple entries until the next option
-  --shapenames            Print a list of shape names
-  --show <show>           Generate a plot with just the named shape @ 6X strokewidth
-  --showpoints <showpoints>
-                          Data plots with points (default: 0)
-  --size <size>           Base font size (default: 10.0)
-  --smooth <smooth>       EMA smoothing, 0 means none (default: 0.0)
-  --sortx                 Sort points by the x values before plotting
-  --stroke <stroke>       Stroke width (default: 2.0)
-  --subheader <subheader> Sub-title row or column source (default: 0)
-  --subtitle <subtitle>   Sub-title
-  --textcolour <textcolour>
-                          Text colour (default: black)
-  --title <title>         Title
-  -t, --tsv               Use tabs to seperate columns
-  -v, --verbose           Add extra information
-  -V, --version           Display version and exit
-  --width <width>         SVG/Canvas width (default: 800)
-  --xmax <xmax>           Default abscissa maximum (default: -inf)
-  --xmin <xmin>           Default abscissa minimum (default: inf)
-  --xtags <xtags>         Tag row or column (default: 0)
-  --xtick <xtick>         Default x tick (default: 0.0)
-  --ymax <ymax>           Default ordinate maximum (default: -inf)
-  --ymin <ymin>           Default ordinate minimum (default: inf)
-  --ytick <ytick>         Default y tick (default: 0.0)
-
-  -h, --help              Show help information.
-    
+  ¹ <bitmap> means an integer where each bit has a specific meaning    
 ```

@@ -108,6 +108,6 @@ extension Options {
     static internal let positionalOpts: OptsToGet = [
         OptToGet(usage: "CSV data file name or - for stdin", argTag: "<csv file>"),
         OptToGet(usage: "JSON settings file name", argTag: "<json file>"),
-        OptToGet(usage: "Output file name, use stdout if omitted for canvas and svg", argTag: "<output file>")
+        OptToGet(usage: "Output file name,\nuse stdout if omitted for canvas and svg", argTag: "<output file>")
     ]
 }
