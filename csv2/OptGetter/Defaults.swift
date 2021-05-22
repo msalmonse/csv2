@@ -26,6 +26,20 @@ enum DefaultValues: Equatable {
     static let intZero = Self.intValue(val: 0)
     static let stringArrayEmpty = Self.stringArray(val: [])
     static let stringEmpty = Self.stringValue(val: "")
+
+    func unexpectedValue(expected: String, for key: Settings.CodingKeys) {
+        func printGot(_ got: String) {
+            print("Expected \(expected) but got \(got) for key: \(key)", to: &standardError)
+        }
+
+        switch self {
+        case .boolValue: printGot("Bool")
+        case .doubleValue: printGot("Double")
+        case .intValue: printGot("Int")
+        case .stringArray: printGot("String Array")
+        case .stringValue: printGot("String")
+        }
+    }
 }
 
 typealias DefaultDict = [Settings.CodingKeys: DefaultValues]
@@ -90,37 +104,52 @@ struct Defaults {
     }
 
     func boolValue(_ key: Settings.CodingKeys) -> Bool {
-        switch values[key] ?? .boolFalse {
+        let keyVal = values[key] ?? .boolFalse
+        switch keyVal {
         case .boolValue(let val): return val
-        default: return false
+        default:
+            keyVal.unexpectedValue(expected: "Bool", for: key)
+            return false
         }
     }
 
     func doubleValue(_ key: Settings.CodingKeys) -> Double {
-        switch values[key] ?? .doubleZero {
+        let keyVal = values[key] ?? .doubleZero
+        switch keyVal {
         case .doubleValue(let val): return val
-        default: return 0.0
+        default:
+            keyVal.unexpectedValue(expected: "Double", for: key)
+            return 0.0
         }
     }
 
     func intValue(_ key: Settings.CodingKeys) -> Int {
-        switch values[key] ?? .intZero {
+        let keyVal = values[key] ?? .intZero
+        switch keyVal {
         case .intValue(let val): return val
-        default: return 0
+        default:
+            keyVal.unexpectedValue(expected: "Int", for: key)
+            return 0
         }
     }
 
     func stringValue(_ key: Settings.CodingKeys) -> String {
-        switch values[key] ?? .stringArrayEmpty {
+        let keyVal = values[key] ?? .stringEmpty
+        switch keyVal {
         case .stringValue(let val): return val
-        default: return ""
+        default:
+            keyVal.unexpectedValue(expected: "String", for: key)
+            return ""
         }
     }
 
     func stringArray(_ key: Settings.CodingKeys) -> [String] {
-        switch values[key] ?? .stringArrayEmpty {
+        let keyVal = values[key] ?? .stringArrayEmpty
+        switch keyVal {
         case .stringArray(let val): return val
-        default: return []
+        default:
+            keyVal.unexpectedValue(expected: "String Array", for: key)
+            return []
         }
     }
 
