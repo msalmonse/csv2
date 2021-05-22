@@ -35,10 +35,9 @@ The legends panel is limited in size and hence the plot names are restricted to 
 characters. The names are only taken from the first header row or column if they aren't
 defined on the command line or in the JSON file.
 
-The command line options take precedence if they differ from the defaults. There is no way to reset a value defined in the JSON
-file back to the default.
+The command line options take precedence.
 There is no mixing of the colour values for example, they are all
-taken from the JSON file or the defaults which in turn can be set from the command line.
+taken from the JSON file or the command line.
 
 There are no practical limits to the number of plots, one of my tests is to create an SVG from a CSV of 1000 rows of 1000 
 columns of random integers. There were no problems generating it but I haven't tried to view the results, I don't think that it would 
@@ -48,14 +47,8 @@ that with the default height of 600 pixels you can only count on 20 plots in the
 
 The [logo](docs/json.md#logoURL) is displayed using an `<image>` element which is loaded when the SVG is displayed.
 At least some browsers don't load that image when the SVG is loaded in an HTML `<img>`. 
-The same is true for Canvas charts but PNG charts have the logo loaded when it is created. PNG charts only support
+The same is true for Canvas charts but PNG charts have the logo loaded when it is created. PDF and PNG charts only support
 bitmapped images but SVG charts can have SVG logos.
-
-This command uses the
-[Swift Argument Parser](https://github.com/apple/swift-argument-parser), which is, IMHO,
-excellent but has some limitations itself, in particular I noticed that `-d1` wasn't
-allowed, use `-d 1` instead. It also doesn't like negative numbers and can interpret them as options, whenever possible use
-`-d=-1` instead.
 
 ### Bugs
 Way too many options!

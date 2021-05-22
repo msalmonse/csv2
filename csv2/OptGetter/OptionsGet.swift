@@ -33,7 +33,6 @@ extension Options {
             case .bold: setBool(true, key: .bold)
             case .bounds: setBool(false, key: .bounded)
             case .canvas: setString(val0, key: .canvasID)
-            case .canvastag: canvastag = true
             case .colournames: colournames = true
             case .colournameslist: colournameslist = true
             case .colours: setStringArray(opt.optValuesAt, key: .colours)

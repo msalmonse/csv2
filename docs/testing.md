@@ -2,8 +2,9 @@
 
 There are a number of options mainly intended for testing:
 
-- `--canvastag` <sup>[1](#fn1)</sup><br/>
-Generate an HTML canvas tag.
+- `canvas tag`<br/>
+This isn't so much an option but a command, it will generate an HTML canvas tag
+based on the command line and JSON settings.
 
 - `--colourslist` <sup>[1](#fn1)</sup><br/>
 This option generates a chart with each of the colours included with the `--colours`
@@ -27,18 +28,14 @@ possible values attached to the option. The first is the number of rows and colu
 `--random 100` generates a matrix of 100 rows and 100 columns. The optional second
 parameter is the maximum value, if not supplied the a reasonable value is chosen.
 The optional third parameter is the minimum value, if not supplied it is the minus of the
-maximum value. The final value is an negative offset to the minimum and maximum
-values as the argument parser has a problem with negative numbers.<br/>
-Due to a limitation in Swift Argument Parser these numbers can't be negative.<br/>
-The optional fourth argument is subtracted from the other two so that negative values can be used.<br/>
-More than 15 plots aren't really a good idea unless you have a big chart.<br/>
-The data is random but follows a patterm that is more obvious in when displayed in columns.
+maximum value.
+More than 15 plots aren't really a good idea unless you have a big chart.
 
 - `--shapenames`<br/>
 This option lists the names of all the shapes as plain text.
 
 - `--show` <sup>[1](#fn1)</sup><br/>
-Generate an SVG with just the named shape. The width and height are six times the stroke-width (`--stroke`).
+Generate an image with just the named shape. The width and height are six times the stroke-width (`--stroke`).
 
 ### Footnotes
 

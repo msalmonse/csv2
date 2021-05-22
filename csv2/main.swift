@@ -63,8 +63,6 @@ if options.shapenames {
     let settings = try? Settings.load(jsonSource)
     if options.debug &== 2 { print(settings ?? "Nil settings", to: &standardError) }
 
-    trySpecialCases(settings)
-
     if options.csvName != nil { SearchPath.add(options.csvName!) }
     let csv = csvSelect(options, settings)
     if options.debug &== 4 { print(csv ?? "Nil csv", to: &standardError) }
@@ -123,17 +121,5 @@ func output(_ plotter: Plotter, to name: String?) {
         } catch {
             print(error, to: &standardError)
         }
-    }
-}
-
-/// Try any special cases before proceeding
-/// - Parameter settings: image settings
-
-func trySpecialCases(_ settings: Settings?) {
-    guard let settings = settings else { exit(1) }
-
-    if options.canvastag {
-        print(Canvas.canvasTag(settings))
-        exit(0)
     }
 }

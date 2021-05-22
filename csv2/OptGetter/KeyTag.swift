@@ -20,7 +20,6 @@ extension Options {
         case bold
         case bounds
         case canvas
-        case canvastag
         case colournames
         case colournameslist
         case colours

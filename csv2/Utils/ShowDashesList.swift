@@ -25,8 +25,6 @@ func showDashesList(
 
     let settings = try? Settings.load(settingsJson(width, height))
 
-    trySpecialCases(settings)
-
     let csv = CSV("")
     let plotter = with.plotter(settings: settings!)
     let plot = Plot(csv, settings!, plotter)

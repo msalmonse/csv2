@@ -10,8 +10,7 @@ import OptGetter
 
 extension Options {
     static internal let canvasOpts: OptsToGet = [
-        OptToGet(.canvas, 1...1, usage: "Canvas name", argTag: "<name>"),
-        OptToGet(.canvastag, usage: "Print the canvas tag")
+        OptToGet(.canvas, 1...1, usage: "Canvas name", argTag: "<name>")
     ]
 
     static internal let svgOpts: OptsToGet = [

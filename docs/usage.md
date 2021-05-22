@@ -84,7 +84,6 @@ Common options:
 ```
 Canvas specific options:
   -canvas <name>         Canvas name
-  -canvastag             Print the canvas tag
 ```
 ```
 SVG specific options:

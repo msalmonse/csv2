@@ -25,8 +25,6 @@ func showShape(
 
     let settings = try? Settings.load(settingsJson(wh))
 
-    trySpecialCases(settings)
-
     let csv = CSV("")
     let plotter = with.plotter(settings: settings!)
     let plot = Plot(csv, settings!, plotter)
