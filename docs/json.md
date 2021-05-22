@@ -94,6 +94,15 @@ Columns or rows that aren't defined are assigned a pattern sequentially from an 
 **Option:** `--distance`<br/>
 The minimum number of pixels between adjacent data points.
 
+**draft** (Bool **false**)<br/>
+**Option:** `--draft`<br/>
+Display *draftText*
+
+**draftText** (String **DRAFT**)<br/>
+**Option:** `--draft`<br/>
+The message to display if the chart is a draft.<br/>
+The option `--draft` can also set the text by following it with an argument.
+
 **filled** (Int **0**)<br/>
 **Option:** `--filled`<br/>
 A bit vector of the plots to draw filled.<sup>[5](#fn5)</sup>
@@ -110,6 +119,7 @@ Colours that aren't defined are set to the options above `--texrcolour` sets the
 keys for the dictionary are:
 
 - **axes**: sets the colours for the abscissa, ordinate and grid. The grid has a lower alpha value making it appear lighter.
+- **draft**: the colour for the draft text.
 - **legends**: the colour for the word "Legends".
 - **legendsBox**: the box around the legends where once again the alpha is lowered.
 - **pieLabel**: the text beside pie slices, its default is a less opaque pieLegend.
