@@ -41,20 +41,19 @@ struct Options {
     ///   - OptGetterError.tooManyOptions
     ///   - OptGetterError.unknownName
 
-    mutating func getOpts(for command: CommandType, _ args: [String] = CommandLine.arguments) throws {
+    mutating func getOpts(for command: MainCommandType, _ args: [String], _ start: Int) throws {
         var opts = Self.commonOpts
         switch command {
-        case .canvas, .canvasColourNames, .canvasColours, .canvasDashes, .canvasShape,
-             .canvastag, .canvastagColourNames, .canvastagColours, .canvastagDashes, .canvastagShape:
+        case .canvas, .canvastag:
             opts += Self.canvasOpts
-        case .svg, .svgColourNames, .svgColours, .svgDashes, .svgShape:
+        case .svg:
             opts += Self.svgOpts
         default: break
         }
 
         do {
             let optGetter = try OptGetter(opts, longOnly: true)
-            let optsGot = try optGetter.parseArgs(args: args, command.optStart)
+            let optsGot = try optGetter.parseArgs(args: args, start)
             for opt in optsGot {
                 try getOpt(opt: opt)
             }

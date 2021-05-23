@@ -52,7 +52,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "png --bg cornsilk --draft --pie"
+            argument = "png show shuriken --bg cornsilk "
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "list shapes"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

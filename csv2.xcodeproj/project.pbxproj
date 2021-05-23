@@ -71,6 +71,7 @@
 		C4569DB526523C0D00D74DBD /* OptGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DA82651369900D74DBD /* OptGetter.swift */; };
 		C4569DB626523C1A00D74DBD /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4B026202C600026BD9A /* Commands.swift */; };
 		C4569DB826523C6600D74DBD /* OptGetter in Frameworks */ = {isa = PBXBuildFile; productRef = C4569DB726523C6600D74DBD /* OptGetter */; };
+		C45E3269265A8A6200F15354 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E3268265A8A6200F15354 /* List.swift */; };
 		C460B667261B3A590051BB80 /* Plotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B666261B3A590051BB80 /* Plotter.swift */; };
 		C460B673261CD5CD0051BB80 /* SVGplotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B672261CD5CD0051BB80 /* SVGplotter.swift */; };
 		C460B677261DA8B30051BB80 /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B676261DA8B30051BB80 /* Tags.swift */; };
@@ -247,6 +248,7 @@
 		C4569DAA2651760400D74DBD /* OptConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptConvertor.swift; sourceTree = "<group>"; };
 		C4569DAD265177DC00D74DBD /* OptionsGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsGet.swift; sourceTree = "<group>"; };
 		C4569DB0265180B200D74DBD /* help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = help.swift; sourceTree = "<group>"; };
+		C45E3268265A8A6200F15354 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		C460B666261B3A590051BB80 /* Plotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plotter.swift; sourceTree = "<group>"; };
 		C460B672261CD5CD0051BB80 /* SVGplotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGplotter.swift; sourceTree = "<group>"; };
 		C460B676261DA8B30051BB80 /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 		C4AD7F6E2659860700CABB29 /* ListAndShow */ = {
 			isa = PBXGroup;
 			children = (
+				C45E3268265A8A6200F15354 /* List.swift */,
 				C422C5C32608D0CC00676912 /* ShowColoursList.swift */,
 				C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */,
 				C453244C25FBEBA6007D741C /* ShowShape.swift */,
@@ -884,6 +887,7 @@
 				C45323CB25F77F01007D741C /* ReflectedStringConvertable.swift in Sources */,
 				C46ADD10260714DA0046F427 /* Bitmap.swift in Sources */,
 				C4B2F9C7262C17D100CC5430 /* PNGPlotter.swift in Sources */,
+				C45E3269265A8A6200F15354 /* List.swift in Sources */,
 				C482B9FD25EE8D4D00E51A50 /* stderr.swift in Sources */,
 				C45323F225F8F157007D741C /* Horizontal.swift in Sources */,
 				C4AD7F6C26593A3800CABB29 /* CanvasTag.swift in Sources */,

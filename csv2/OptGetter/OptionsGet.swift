@@ -113,7 +113,7 @@ extension Options {
     }
 
     func helpAndExit() {
-        help(CommandType.help)
+        help(HelpCommandType.help)
         exit(0)
     }
 }

@@ -7,24 +7,31 @@
 
 import Foundation
 
-let command = getCommand()
-if command.isHelp {
-    help(command)
+var defaults: Defaults
+
+let command = getCommand(CommandLine.arguments)
+switch command {
+case .helpCommand(let helpCommand):
+    help(helpCommand)
     exit(0)
+case .listCommand(let listCommand):
+    list(listCommand)
+    exit(0)
+case .plotCommand(let main, let sub):
+    let start = main.count + sub.count
+    var options = Options()
+    do {
+        try options.getOpts(for: main, CommandLine.arguments, start)
+    } catch {
+        print(error, to: &standardError)
+        exit(1)
+    }
+
+    defaults = options.defaults()
+
+    if options.debug != 0 {
+        print(options, to: &standardError)
+    }
+
+    execCommand(main, sub, options)
 }
-
-var options = Options()
-do {
-    try options.getOpts(for: command)
-} catch {
-    print(error, to: &standardError)
-    exit(1)
-}
-
-var defaults = options.defaults()
-
-if options.debug != 0 {
-    print(options, to: &standardError)
-}
-
-execCommand(command, options)

@@ -17,7 +17,7 @@ import Foundation
 func showColoursList(
     _ defaults: Defaults,
     namesList: Bool,
-    with: CommandType,
+    with: MainCommandType,
     to outName: String?
 ) {
     let baseFontSize = defaults.doubleValue(.baseFontSize)

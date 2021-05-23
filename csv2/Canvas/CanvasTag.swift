@@ -10,6 +10,10 @@ import Foundation
 struct CanvasTag: Plotter {
     let settings: Settings
 
+    init(_ settings: Settings) {
+        self.settings = settings
+    }
+
     /// Generate a canvas tag
     /// - Parameter settings: Plot settings
     /// - Returns: Canvas tag

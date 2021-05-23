@@ -7,37 +7,22 @@
 
 import Foundation
 
-func execCommand(_ cmd: CommandType, _ options: Options) {
-    switch cmd {
-    case .canvas, .canvastag, .pdf, .png, .svg:
-        plotCommand(cmd, options)
-    case .canvasColourNames, .canvastagColourNames, .pdfColourNames, .pngColourNames, .svgColourNames:
-        showColoursList(options.defaults(), namesList: true, with: cmd, to: options.outName)
-    case .canvasColours, .canvastagColours, .pdfColours, .pngColours, .svgColours:
-        showColoursList(options.defaults(), namesList: false, with: cmd, to: options.outName)
-    case .canvasDashes, .canvastagDashes, .pdfDashes, .pngDashes, .svgDashes:
-        showDashesList(defaults, with: cmd, to: options.outName)
-    case .canvasShape, .pdfShape, .pngShape, .svgShape:
-        if CommandLine.arguments.count > 4 {
-            let name = CommandLine.arguments[4]
-            showShape(shape: name, defaults: defaults, with: cmd, to: options.outName)
-        }
-    case .canvastagShape:
-        if CommandLine.arguments.count > 5 {
-            let name = CommandLine.arguments[5]
-            showShape(shape: name, defaults: defaults, with: cmd, to: options.outName)
-        }
-    case .listColourNames:
-        print(colourNames())
-    case .listShapes:
-        print(Shape.allNames())
-    default:
-        print("Got command: \(cmd)", to: &standardError)
-        help(cmd)
+func execCommand(_ main: MainCommandType, _ sub: SubCommandType, _ options: Options) {
+    switch sub {
+    case .none:
+        plotCommand(main, sub, options)
+    case .colourNames:
+        showColoursList(options.defaults(), namesList: true, with: main, to: options.outName)
+    case .colours:
+        showColoursList(options.defaults(), namesList: false, with: main, to: options.outName)
+    case .dashes:
+        showDashesList(defaults, with: main, to: options.outName)
+    case .shapes(let name):
+        showShape(shape: name, defaults: defaults, with: main, to: options.outName)
     }
 }
 
-func plotCommand(_ cmd: CommandType, _ options: Options) {
+func plotCommand(_ main: MainCommandType, _ sub: SubCommandType, _ options: Options) {
     let jsonSource = jsonURL(options)
     SearchPath.add(jsonSource)
     let settings = try? Settings.load(jsonSource)
@@ -51,7 +36,7 @@ func plotCommand(_ cmd: CommandType, _ options: Options) {
         exit(1)
     }
 
-    let plotter = cmd.plotter(settings: settings!)
+    let plotter = main.plotter(settings: settings!)
     let plot = Plot(csv!, settings!, plotter)
     plot.chartGen()
 

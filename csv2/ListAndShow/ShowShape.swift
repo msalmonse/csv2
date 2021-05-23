@@ -17,7 +17,7 @@ import Foundation
 func showShape(
     shape: String,
     defaults: Defaults,
-    with: CommandType,
+    with: MainCommandType,
     to outName: String?
 ) {
     let colour = defaults.stringArray(.colours).first ?? "black"

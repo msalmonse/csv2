@@ -7,14 +7,6 @@
 
 import Foundation
 
-func printVersion() {
-    print("""
-        \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) Built at \(AppInfo.builtAt)
-        """,
-        to: &standardError
-    )
-}
-
 func printSpecificUsage(for chartType: String, _ optText: String?) {
     optText.map {
         print("""
@@ -116,18 +108,13 @@ func helpUsage(_ execName: String) {
     )
 }
 
-func help(_ command: CommandType) {
+func help(_ command: HelpCommandType) {
     switch command {
-    case .bitmap:
-        if CommandLine.arguments.count > 2 {
-            print(bitmap(Array(CommandLine.arguments[2...])))
-        }
     case .helpCanvas: helpCanvas(execName())
     case .helpPdf: helpPDF(execName())
     case .helpPng: helpPNG(execName())
     case .helpSvg: helpSVG(execName())
     case .helpUsage: helpUsage(execName())
-    case .version: printVersion()
     default:
         helpMain(execName())
     }

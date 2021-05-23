@@ -8,112 +8,103 @@
 import Foundation
 import OptGetter
 
-enum CommandType: OptGetterTag {
-    case
-        bitmap,
-        canvas, canvasColours, canvasColourNames, canvasDashes, canvasShape,
-        canvastag, canvastagColours, canvastagColourNames, canvastagDashes, canvastagShape,
-        listColourNames, listShapes,
-        help, helpCanvas, helpPdf, helpPng, helpSvg, helpUsage,
-        pdf, pdfColours, pdfColourNames, pdfDashes, pdfShape,
-        png, pngColours, pngColourNames, pngDashes, pngShape,
-        svg, svgColours, svgColourNames, svgDashes, svgShape,
-        unspec, version
+enum CommandType {
+    case helpCommand(help: HelpCommandType)
+    case listCommand(list: ListCommandType)
+    case plotCommand(main: MainCommandType, sub: SubCommandType)
+}
 
-    /// Is this a help command?
-    var isHelp: Bool {
+enum HelpCommandType: OptGetterTag {
+    case bitmap, help, helpCanvas, helpCommands, helpPdf, helpPng, helpSvg, helpUsage
+}
+
+enum ListCommandType: OptGetterTag {
+    case bitmap, listColourNames, listShapes, version
+}
+
+enum MainCommandType: OptGetterTag {
+    case canvas, canvastag,  pdf,  png,  svg, unspec
+
+    // number of arguments taken including path name
+    var count: Int {
         switch self {
-        case .bitmap, .help, .helpCanvas, .helpPdf, .helpPng, .helpSvg, .helpUsage, .version:
-            return true
-        default:
-            return false
+        case .unspec: return 1
+        default: return 2
         }
     }
-
-    /// What is the first argument to parse
-    var optStart: Int {
-        switch self {
-        case .unspec, .version:
-            return 1
-        case .bitmap, .canvas, .pdf, .png, .svg, .help:
-            return 2
-        case .listColourNames, .listShapes:
-            return 3
-        case .canvastag, .helpCanvas, .helpPdf, .helpPng, .helpSvg, .helpUsage:
-            return 3
-        case .canvasColourNames, .canvasColours, .canvasDashes, .canvasShape,
-             .pdfColourNames, .pdfColours, .pdfDashes, .pdfShape,
-             .pngColourNames, .pngColours, .pngDashes, .pngShape,
-             .svgColourNames, .svgColours, .svgDashes, .svgShape:
-            return 4
-        case .canvastagColourNames, .canvastagColours, .canvastagDashes, .canvastagShape:
-            return 5
-        }
-    }
-
-    /// Create a plotter object
-    /// - Parameter settings: chart settings
-    /// - Returns: plotter object
 
     func plotter(settings: Settings) -> Plotter {
         switch self {
-        case .canvas, .canvasColourNames, .canvasColours, .canvasDashes, .canvasShape:
-            return Canvas(settings)
-        case .canvastag, .canvastagColourNames, .canvastagColours, .canvastagDashes, .canvastagShape:
-            return CanvasTag(settings: settings)
-        case .pdf, .pdfColourNames, .pdfColours, .pdfDashes, .pdfShape:
-            return PDF(settings)
-        case .png, .pngColourNames, .pngColours, .pngDashes, .pngShape:
-            return PNG(settings)
-        case .svg, .svgColourNames, .svgColours, .svgDashes, .svgShape:
-            return SVG(settings)
-        default:
-            return SVG(settings)
+        case .canvas: return Canvas(settings)
+        case .canvastag: return CanvasTag(settings)
+        case .pdf: return PDF(settings)
+        case .png: return PNG(settings)
+        case .svg: return SVG(settings)
+        case .unspec: return SVG(settings)
         }
     }
 }
 
-private let cmds: [CmdToGet] = [
-    CmdToGet(["bitmap"], tag: CommandType.bitmap),
-    CmdToGet(["canvas", "tag", "show", "colournames"], tag: CommandType.canvastagColourNames),
-    CmdToGet(["canvas", "tag", "show", "colours"], tag: CommandType.canvastagColours),
-    CmdToGet(["canvas", "tag", "show", "dashes"], tag: CommandType.canvastagDashes),
-    CmdToGet(["canvas", "tag", "show"], tag: CommandType.canvastagDashes),
-    CmdToGet(["canvas", "tag"], tag: CommandType.canvastag),
-    CmdToGet(["canvas", "show", "colournames"], tag: CommandType.canvasColourNames),
-    CmdToGet(["canvas", "show", "colours"], tag: CommandType.canvasColours),
-    CmdToGet(["canvas", "show", "dashes"], tag: CommandType.canvasDashes),
-    CmdToGet(["canvas", "show"], tag: CommandType.canvasDashes),
-    CmdToGet(["canvas"], tag: CommandType.canvas),
-    CmdToGet(["help", "canvas"], tag: CommandType.helpCanvas),
-    CmdToGet(["help", "pdf"], tag: CommandType.helpPdf),
-    CmdToGet(["help", "png"], tag: CommandType.helpPng),
-    CmdToGet(["help", "svg"], tag: CommandType.helpSvg),
-    CmdToGet(["help", "usage"], tag: CommandType.helpUsage),
-    CmdToGet(["help"], tag: CommandType.help),
-    CmdToGet(["list", "colournames"], tag: CommandType.listColourNames),
-    CmdToGet(["list", "shapes"], tag: CommandType.listShapes),
-    CmdToGet(["pdf", "show", "colournames"], tag: CommandType.pdfColourNames),
-    CmdToGet(["pdf", "show", "colours"], tag: CommandType.pdfColours),
-    CmdToGet(["pdf", "show", "dashes"], tag: CommandType.pdfDashes),
-    CmdToGet(["pdf", "show"], tag: CommandType.pdfShape),
-    CmdToGet(["pdf"], tag: CommandType.pdf),
-    CmdToGet(["png", "show", "colournames"], tag: CommandType.pngColourNames),
-    CmdToGet(["png", "show", "colours"], tag: CommandType.pngColours),
-    CmdToGet(["png", "show", "dashes"], tag: CommandType.pngDashes),
-    CmdToGet(["png", "show"], tag: CommandType.pngShape),
-    CmdToGet(["png"], tag: CommandType.png),
-    CmdToGet(["svg", "show", "colournames"], tag: CommandType.svgColourNames),
-    CmdToGet(["svg", "show", "colours"], tag: CommandType.svgColours),
-    CmdToGet(["svg", "show", "dashes"], tag: CommandType.svgDashes),
-    CmdToGet(["svg", "show"], tag: CommandType.svgShape),
-    CmdToGet(["svg"], tag: CommandType.svg),
-    CmdToGet(["version"], tag: CommandType.version)
+enum SubCommandType: OptGetterTag {
+    case colourNames, colours, dashes, shapes(name: String), none
+
+    // number of arguments taken after main
+    var count: Int {
+        switch self {
+        case .none: return 0
+        default: return 2
+        }
+    }
+}
+
+private let plotCmds: [CmdToGet] = [
+    CmdToGet(["canvas"], tag: MainCommandType.canvas),
+    CmdToGet(["canvastag"], tag: MainCommandType.canvastag),
+    CmdToGet(["pdf"], tag: MainCommandType.pdf),
+    CmdToGet(["png"], tag: MainCommandType.png),
+    CmdToGet(["svg"], tag: MainCommandType.svg)
 ]
 
-func getCommand(_ args: [String] = CommandLine.arguments) -> CommandType {
+private let plotSubCmds: [CmdToGet] = [
+    CmdToGet(["show", "colournames"], tag: SubCommandType.colourNames),
+    CmdToGet(["show", "colours"], tag: SubCommandType.colours),
+    CmdToGet(["show", "dashes"], tag: SubCommandType.dashes)
+]
+
+private let listCmds: [CmdToGet] = [
+    CmdToGet(["bitmap"], tag: ListCommandType.bitmap),
+    CmdToGet(["list", "colournames"], tag: ListCommandType.listColourNames),
+    CmdToGet(["list", "shapes"], tag: ListCommandType.listShapes),
+    CmdToGet(["version"], tag: ListCommandType.version)
+]
+private let helpCmds: [CmdToGet] = [
+    CmdToGet(["help", "canvas"], tag: HelpCommandType.helpCanvas),
+    CmdToGet(["help", "pdf"], tag: HelpCommandType.helpPdf),
+    CmdToGet(["help", "png"], tag: HelpCommandType.helpPng),
+    CmdToGet(["help", "svg"], tag: HelpCommandType.helpSvg),
+    CmdToGet(["help", "usage"], tag: HelpCommandType.helpUsage),
+    CmdToGet(["help"], tag: HelpCommandType.help)
+]
+
+func getCommand(_ args: [String]) -> CommandType {
     // Check first for empty command line
-    if args.count == 1 { return .help }
-    // svg is the default plotter
-    return OptGetter.cmdGetter(cmds, args: args)?.tag as? CommandType ?? .unspec
+    if args.count == 1 { return .helpCommand(help: .help) }
+
+    if let main = (OptGetter.cmdGetter(plotCmds, args: args)?.tag as? MainCommandType) {
+        let start = main.count
+        var cmds = plotSubCmds
+        let name = args.hasIndex(start + 1) ? args[start + 1] : ""
+        cmds.append(CmdToGet(["show"], tag: SubCommandType.shapes(name: name)))
+
+        let sub = OptGetter.cmdGetter(cmds, args: args, start)?.tag as? SubCommandType ?? .none
+        return .plotCommand(main: main, sub: sub)
+    }
+    if let list = (OptGetter.cmdGetter(listCmds, args: args)?.tag as? ListCommandType) {
+        return .listCommand(list: list)
+    }
+    if let help = (OptGetter.cmdGetter(helpCmds, args: args)?.tag as? HelpCommandType) {
+        return .helpCommand(help: help)
+    }
+
+    return .plotCommand(main: .unspec, sub: .none)
 }
