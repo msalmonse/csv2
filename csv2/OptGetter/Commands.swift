@@ -9,7 +9,15 @@ import Foundation
 import OptGetter
 
 enum CommandType: OptGetterTag {
-    case canvas, canvastag, help, helpCanvas, helpPdf, helpPng, helpSvg, helpUsage, pdf, png, svg, unspec
+    case
+        bitmap,
+        canvas, canvastag, canvasColours, canvasColourNames, canvasDashes, canvasShape,
+        listColourNames, listShapes,
+        help, helpCanvas, helpPdf, helpPng, helpSvg, helpUsage,
+        pdf, pdfColours, pdfColourNames, pdfDashes, pdfShape,
+        png, pngColours, pngColourNames, pngDashes, pngShape,
+        svg, svgColours, svgColourNames, svgDashes, svgShape,
+        unspec
 
     /// Is this a help command?
     var isHelp: Bool {
@@ -25,10 +33,17 @@ enum CommandType: OptGetterTag {
     var optStart: Int {
         switch self {
         case .unspec: return 1
-        case .canvas, .pdf, .png, .svg, .help:
+        case .bitmap, .canvas, .pdf, .png, .svg, .help:
             return 2
+        case .listColourNames, .listShapes:
+            return 3
         case .canvastag, .helpCanvas, .helpPdf, .helpPng, .helpSvg, .helpUsage:
             return 3
+        case .canvasColourNames, .canvasColours, .canvasDashes, .canvasShape,
+             .pdfColourNames, .pdfColours, .pdfDashes, .pdfShape,
+             .pngColourNames, .pngColours, .pngDashes, .pngShape,
+             .svgColourNames, .svgColours, .svgDashes, .svgShape:
+            return 4
         }
     }
 
@@ -38,11 +53,16 @@ enum CommandType: OptGetterTag {
 
     func plotter(settings: Settings) -> Plotter {
         switch self {
-        case .canvas: return Canvas(settings)
-        case .canvastag: return CanvasTag(settings: settings)
-        case .pdf: return PDF(settings)
-        case .png: return PNG(settings)
-        case .svg: return SVG(settings)
+        case .canvas, .canvasColourNames, .canvasColours, .canvasDashes, .canvasShape:
+            return Canvas(settings)
+        case .canvastag:
+            return CanvasTag(settings: settings)
+        case .pdf, .pdfColourNames, .pdfColours, .pdfDashes, .pdfShape:
+            return PDF(settings)
+        case .png, .pngColourNames, .pngColours, .pngDashes, .pngShape:
+            return PNG(settings)
+        case .svg, .svgColourNames, .svgColours, .svgDashes, .svgShape:
+            return SVG(settings)
         default:
             return SVG(settings)
         }
@@ -50,7 +70,12 @@ enum CommandType: OptGetterTag {
 }
 
 private let cmds: [CmdToGet] = [
+    CmdToGet(["bitmap"], tag: CommandType.bitmap),
     CmdToGet(["canvas", "tag"], tag: CommandType.canvastag),
+    CmdToGet(["canvas", "show", "colournames"], tag: CommandType.canvasColourNames),
+    CmdToGet(["canvas", "show", "colours"], tag: CommandType.canvasColours),
+    CmdToGet(["canvas", "show", "dashes"], tag: CommandType.canvasDashes),
+    CmdToGet(["canvas", "show"], tag: CommandType.canvasDashes),
     CmdToGet(["canvas"], tag: CommandType.canvas),
     CmdToGet(["help", "canvas"], tag: CommandType.helpCanvas),
     CmdToGet(["help", "pdf"], tag: CommandType.helpPdf),
@@ -58,8 +83,22 @@ private let cmds: [CmdToGet] = [
     CmdToGet(["help", "svg"], tag: CommandType.helpSvg),
     CmdToGet(["help", "usage"], tag: CommandType.helpUsage),
     CmdToGet(["help"], tag: CommandType.help),
+    CmdToGet(["list", "colournames"], tag: CommandType.listColourNames),
+    CmdToGet(["list", "shapes"], tag: CommandType.listShapes),
+    CmdToGet(["pdf", "show", "colournames"], tag: CommandType.pdfColourNames),
+    CmdToGet(["pdf", "show", "colours"], tag: CommandType.pdfColours),
+    CmdToGet(["pdf", "show", "dashes"], tag: CommandType.pdfDashes),
+    CmdToGet(["pdf", "show"], tag: CommandType.pdfShape),
     CmdToGet(["pdf"], tag: CommandType.pdf),
+    CmdToGet(["png", "show", "colournames"], tag: CommandType.pngColourNames),
+    CmdToGet(["png", "show", "colours"], tag: CommandType.pngColours),
+    CmdToGet(["png", "show", "dashes"], tag: CommandType.pngDashes),
+    CmdToGet(["png", "show"], tag: CommandType.pngShape),
     CmdToGet(["png"], tag: CommandType.png),
+    CmdToGet(["svg", "show", "colournames"], tag: CommandType.svgColourNames),
+    CmdToGet(["svg", "show", "colours"], tag: CommandType.svgColours),
+    CmdToGet(["svg", "show", "dashes"], tag: CommandType.svgDashes),
+    CmdToGet(["svg", "show"], tag: CommandType.svgShape),
     CmdToGet(["svg"], tag: CommandType.svg)
 ]
 

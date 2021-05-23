@@ -11,11 +11,14 @@ import Foundation
 /// - Parameter plots: list of plot numbers
 /// - Returns: bitmap
 
-func bitmap(_ plots: [Int]) -> Int {
+func bitmap(_ plots: [String]) -> Int {
     var result = 0
 
-    for i in plots where i > 0 && i < 64 {
-        result |= 1 << (i - 1)
+    for plot in plots {
+        if let i = Int(plot) {
+            if (1...63).contains(i) { result |= 1 << (i - 1) }
+        }
     }
+
     return result
 }

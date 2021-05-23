@@ -108,6 +108,12 @@
 		C49CC51C263A9A670006FAC8 /* PlotOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49CC51A263A9A670006FAC8 /* PlotOptions.swift */; };
 		C4AD7F6C26593A3800CABB29 /* CanvasTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F6B26593A3800CABB29 /* CanvasTag.swift */; };
 		C4AD7F6D26593A3800CABB29 /* CanvasTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F6B26593A3800CABB29 /* CanvasTag.swift */; };
+		C4AD7F702659864100CABB29 /* ListColourNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F6F2659864100CABB29 /* ListColourNames.swift */; };
+		C4AD7F712659864100CABB29 /* ListColourNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F6F2659864100CABB29 /* ListColourNames.swift */; };
+		C4AD7F73265A0E6700CABB29 /* ExecCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F72265A0E6700CABB29 /* ExecCommand.swift */; };
+		C4AD7F74265A0E6700CABB29 /* ExecCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F72265A0E6700CABB29 /* ExecCommand.swift */; };
+		C4AD7F75265A120400CABB29 /* ShowDashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */; };
+		C4AD7F76265A120400CABB29 /* ShowColoursList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422C5C32608D0CC00676912 /* ShowColoursList.swift */; };
 		C4B2F968262576FF00CC5430 /* XIlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F967262576FF00CC5430 /* XIlist.swift */; };
 		C4B2F96B2625770300CC5430 /* XIlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B2F967262576FF00CC5430 /* XIlist.swift */; };
 		C4B2F98926272A4C00CC5430 /* ColourTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */; };
@@ -269,6 +275,8 @@
 		C49CC5192639DB4C0006FAC8 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		C49CC51A263A9A670006FAC8 /* PlotOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotOptions.swift; sourceTree = "<group>"; };
 		C4AD7F6B26593A3800CABB29 /* CanvasTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasTag.swift; sourceTree = "<group>"; };
+		C4AD7F6F2659864100CABB29 /* ListColourNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListColourNames.swift; sourceTree = "<group>"; };
+		C4AD7F72265A0E6700CABB29 /* ExecCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecCommand.swift; sourceTree = "<group>"; };
 		C4B2F967262576FF00CC5430 /* XIlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XIlist.swift; sourceTree = "<group>"; };
 		C4B2F9AD262B286400CC5430 /* SVGout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGout.swift; sourceTree = "<group>"; };
 		C4B2F9B4262B488400CC5430 /* CanvasOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasOut.swift; sourceTree = "<group>"; };
@@ -375,6 +383,7 @@
 				C4F8F86D261C356F00DF76AE /* Common */,
 				C4F8F87B261C37E900DF76AE /* CSV */,
 				C4507813263E9F7700308C1D /* Extensions */,
+				C4AD7F6E2659860700CABB29 /* ListAndShow */,
 				C4EFA4AF26202C250026BD9A /* OptGetter */,
 				C49A0DB82648275D00CF7E22 /* PDF */,
 				C4F8F873261C372900DF76AE /* Plot */,
@@ -430,9 +439,6 @@
 				C45323E525F8CCC8007D741C /* Readlines.swift */,
 				C45323CA25F77F01007D741C /* ReflectedStringConvertable.swift */,
 				C4C0C4B6261458F10072699C /* SearchPath.swift */,
-				C422C5C32608D0CC00676912 /* ShowColoursList.swift */,
-				C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */,
-				C453244C25FBEBA6007D741C /* ShowShape.swift */,
 				C482B9FC25EE8D4D00E51A50 /* stderr.swift */,
 			);
 			path = Utils;
@@ -467,6 +473,17 @@
 				C4B2F9D2262C6BC000CC5430 /* CGplotText.swift */,
 			);
 			path = CG;
+			sourceTree = "<group>";
+		};
+		C4AD7F6E2659860700CABB29 /* ListAndShow */ = {
+			isa = PBXGroup;
+			children = (
+				C4AD7F6F2659864100CABB29 /* ListColourNames.swift */,
+				C422C5C32608D0CC00676912 /* ShowColoursList.swift */,
+				C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */,
+				C453244C25FBEBA6007D741C /* ShowShape.swift */,
+			);
+			path = ListAndShow;
 			sourceTree = "<group>";
 		};
 		C4B2F9A626297EDD00CC5430 /* Frameworks */ = {
@@ -530,6 +547,7 @@
 			children = (
 				C4EFA4B026202C600026BD9A /* Commands.swift */,
 				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
+				C4AD7F72265A0E6700CABB29 /* ExecCommand.swift */,
 				C499B3372650FD9900581AD0 /* KeyTag.swift */,
 				C4569DAA2651760400D74DBD /* OptConvertor.swift */,
 				C4569DA82651369900D74DBD /* OptGetter.swift */,
@@ -829,7 +847,9 @@
 				C4C0C4862612E82A0072699C /* CodingKeys.swift in Sources */,
 				C40CD42C25ECD60F003944FA /* Axes.swift in Sources */,
 				C4CF29FC263556B400E858D1 /* Vector.swift in Sources */,
+				C4AD7F702659864100CABB29 /* ListColourNames.swift in Sources */,
 				C4CF2A0426368F5600E858D1 /* Pie.swift in Sources */,
+				C4AD7F73265A0E6700CABB29 /* ExecCommand.swift in Sources */,
 				C4C0C48F2612FCC70072699C /* Dimensions.swift in Sources */,
 				C4B2F9E3262EC7C200CC5430 /* CGlogo.swift in Sources */,
 				C49A0DBA2648278300CF7E22 /* PDF.swift in Sources */,
@@ -896,6 +916,7 @@
 				C45323EE25F8EF0D007D741C /* Gen.swift in Sources */,
 				C4CF2A1D2637147C00E858D1 /* Vector.swift in Sources */,
 				C4507812263DA46400308C1D /* PointPosition.swift in Sources */,
+				C4AD7F75265A120400CABB29 /* ShowDashesList.swift in Sources */,
 				C480848325E6809400BD0A24 /* Sides.swift in Sources */,
 				C4C0C4A726133E650072699C /* PlotSettings.swift in Sources */,
 				C4CF2A142637142B00E858D1 /* Positions.swift in Sources */,
@@ -924,6 +945,7 @@
 				C446E81D25F4E0F7007B1A05 /* PlotCommon.swift in Sources */,
 				C4B2F9EF263025FB00CC5430 /* Path.swift in Sources */,
 				C4834ADE2637C7D60072C574 /* ChartType.swift in Sources */,
+				C4AD7F74265A0E6700CABB29 /* ExecCommand.swift in Sources */,
 				C4F20C0926012A67005D2FE1 /* Styles.swift in Sources */,
 				C49A0DC8264AE19300CF7E22 /* PDFsettings.swift in Sources */,
 				C4569DAC2651760400D74DBD /* OptConvertor.swift in Sources */,
@@ -931,6 +953,7 @@
 				C4C0C4B12613641A0072699C /* PlotterSettings.swift in Sources */,
 				C40CD44225ED2390003944FA /* Plane.swift in Sources */,
 				C4C0C469260F2E530072699C /* SVGstyle.swift in Sources */,
+				C4AD7F712659864100CABB29 /* ListColourNames.swift in Sources */,
 				C4CF2A1A2637147800E858D1 /* Point.swift in Sources */,
 				C450781D263EB3CF00308C1D /* Double.swift in Sources */,
 				C40CD43D25ED02BE003944FA /* Header.swift in Sources */,
@@ -961,6 +984,7 @@
 				C4EA5D2B25EB90C900E104E0 /* Colours.swift in Sources */,
 				C4EFA4CC262166700026BD9A /* CTX.swift in Sources */,
 				C4B2F9B6262B488400CC5430 /* CanvasOut.swift in Sources */,
+				C4AD7F76265A120400CABB29 /* ShowColoursList.swift in Sources */,
 				C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */,
 				C4B2FA062633F3D500CC5430 /* RGBAu8.swift in Sources */,
 				C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */,
