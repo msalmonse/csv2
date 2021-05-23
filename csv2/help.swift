@@ -7,6 +7,14 @@
 
 import Foundation
 
+func printVersion() {
+    print("""
+        \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) Built at \(AppInfo.builtAt)
+        """,
+        to: &standardError
+    )
+}
+
 func printSpecificUsage(for chartType: String, _ optText: String?) {
     optText.map {
         print("""
@@ -19,6 +27,7 @@ func printSpecificUsage(for chartType: String, _ optText: String?) {
     }
 
 }
+
 func helpMain(_ execName: String) {
     let help = """
 
@@ -114,6 +123,7 @@ func help(_ command: CommandType) {
     case .helpPng: helpPNG(execName())
     case .helpSvg: helpSVG(execName())
     case .helpUsage: helpUsage(execName())
+    case .version: printVersion()
     default:
         helpMain(execName())
     }

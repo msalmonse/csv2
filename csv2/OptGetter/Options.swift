@@ -9,20 +9,12 @@ import Foundation
 import OptGetter
 
 struct Options {
-    var bitmap: [Int] = []
-    var colourslist = false
-    var colournames = false
-    var colournameslist = false
-    var dasheslist = false
     var debug = 0
     var pie = false
     var random: [Int] = []
     var semi = false
-    var shapenames = false
-    var show: String = ""
     var tsv = false
     var verbose = false
-    var version = false
 
     // Positional parameters
 

@@ -17,12 +17,12 @@ enum CommandType: OptGetterTag {
         pdf, pdfColours, pdfColourNames, pdfDashes, pdfShape,
         png, pngColours, pngColourNames, pngDashes, pngShape,
         svg, svgColours, svgColourNames, svgDashes, svgShape,
-        unspec
+        unspec, version
 
     /// Is this a help command?
     var isHelp: Bool {
         switch self {
-        case .help, .helpCanvas, .helpPdf, .helpPng, .helpSvg, .helpUsage:
+        case .help, .helpCanvas, .helpPdf, .helpPng, .helpSvg, .helpUsage, .version:
             return true
         default:
             return false
@@ -32,7 +32,8 @@ enum CommandType: OptGetterTag {
     /// What is the first argument to parse
     var optStart: Int {
         switch self {
-        case .unspec: return 1
+        case .unspec, .version:
+            return 1
         case .bitmap, .canvas, .pdf, .png, .svg, .help:
             return 2
         case .listColourNames, .listShapes:
@@ -99,7 +100,8 @@ private let cmds: [CmdToGet] = [
     CmdToGet(["svg", "show", "colours"], tag: CommandType.svgColours),
     CmdToGet(["svg", "show", "dashes"], tag: CommandType.svgDashes),
     CmdToGet(["svg", "show"], tag: CommandType.svgShape),
-    CmdToGet(["svg"], tag: CommandType.svg)
+    CmdToGet(["svg"], tag: CommandType.svg),
+    CmdToGet(["version"], tag: CommandType.version)
 ]
 
 func getCommand(_ args: [String] = CommandLine.arguments) -> CommandType {

@@ -28,21 +28,16 @@ extension Options {
             case .barwidth: try setDouble(val0, key: .barWidth)
             case .bezier: try setDouble(val0, key: .bezier)
             case .bg: setString(val0, key: .backgroundColour)
-            case .bitmap: bitmap = try OptValueAt.intArray(opt.optValuesAt)
             case .black: setBool(true, key: .black)
             case .bold: setBool(true, key: .bold)
             case .bounds: setBool(false, key: .bounded)
             case .canvas: setString(val0, key: .canvasID)
-            case .colournames: colournames = true
-            case .colournameslist: colournameslist = true
             case .colours: setStringArray(opt.optValuesAt, key: .colours)
-            case .colourslist: colourslist = true
             case .comment: setBool(false, key: .comment)
             case .css: setString(val0, key: .cssInclude)
             case .cssid: setString(val0, key: .cssID)
             case .dashed: try setInt(val0, key: .dashedLines)
             case .dashes: setStringArray(opt.optValuesAt, key: .dashes)
-            case .dasheslist: dasheslist = true
             case .debug: debug = try val0.intValue()
             case .distance: try setDouble(val0, key: .dataPointDistance)
             case .draft:
@@ -90,9 +85,7 @@ extension Options {
             case .rows: setBool(true, key: .rowGrouping)
             case .scattered: try setInt(val0, key: .scatterPlots)
             case .semi: semi = true
-            case .shapenames: shapenames = true
             case .shapes: setStringArray(opt.optValuesAt, key: .shapes)
-            case .show: show = val0.stringValue()
             case .showpoints: try setInt(val0, key: .showDataPoints)
             case .size: try setDouble(val0, key: .baseFontSize)
             case .smooth: try setDouble(val0, key: .smooth)
@@ -105,7 +98,6 @@ extension Options {
             case .title: setString(val0, key: .title)
             case .tsv: tsv = true
             case .verbose: verbose = true
-            case .version: version = true
             case .width: try setInt(val0, key: .width)
             case .xmax: try setDouble(val0, key: .xMax)
             case .xmin: try setDouble(val0, key: .xMin)

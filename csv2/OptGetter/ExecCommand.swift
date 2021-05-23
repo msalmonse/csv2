@@ -10,7 +10,9 @@ import Foundation
 func execCommand(_ cmd: CommandType, _ options: Options) {
     switch cmd {
     case .bitmap:
-        print(bitmap(Array(CommandLine.arguments[2...])))
+        if CommandLine.arguments.count > 2 {
+            print(bitmap(Array(CommandLine.arguments[2...])))
+        }
     case .canvas, .canvastag, .pdf, .png, .svg:
         plotCommand(cmd, options)
     case .canvasColourNames, .pdfColourNames, .pngColourNames, .svgColourNames:

@@ -15,21 +15,16 @@ extension Options {
         case barwidth
         case bezier
         case bg
-        case bitmap
         case black
         case bold
         case bounds
         case canvas
-        case colournames
-        case colournameslist
         case colours
-        case colourslist
         case comment
         case css
         case cssid
         case dashed
         case dashes
-        case dasheslist
         case debug
         case distance
         case draft
@@ -56,9 +51,7 @@ extension Options {
         case rows
         case scattered
         case semi
-        case shapenames
         case shapes
-        case show
         case showpoints
         case size
         case smooth
@@ -71,7 +64,6 @@ extension Options {
         case title
         case tsv
         case verbose
-        case version
         case width
         case xmax
         case xmin

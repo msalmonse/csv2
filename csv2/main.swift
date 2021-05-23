@@ -20,17 +20,11 @@ do {
     print(error, to: &standardError)
     exit(1)
 }
+
 var defaults = options.defaults()
 
 if options.debug != 0 {
     print(options, to: &standardError)
 }
 
-if options.version {
-    print("""
-        \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) Built at \(AppInfo.builtAt)
-        """,
-        to: &standardError
-    )
-    exit(0)
-}
+execCommand(command, options)
