@@ -108,8 +108,6 @@
 		C49CC51C263A9A670006FAC8 /* PlotOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49CC51A263A9A670006FAC8 /* PlotOptions.swift */; };
 		C4AD7F6C26593A3800CABB29 /* CanvasTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F6B26593A3800CABB29 /* CanvasTag.swift */; };
 		C4AD7F6D26593A3800CABB29 /* CanvasTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F6B26593A3800CABB29 /* CanvasTag.swift */; };
-		C4AD7F702659864100CABB29 /* ListColourNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F6F2659864100CABB29 /* ListColourNames.swift */; };
-		C4AD7F712659864100CABB29 /* ListColourNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F6F2659864100CABB29 /* ListColourNames.swift */; };
 		C4AD7F73265A0E6700CABB29 /* ExecCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F72265A0E6700CABB29 /* ExecCommand.swift */; };
 		C4AD7F74265A0E6700CABB29 /* ExecCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AD7F72265A0E6700CABB29 /* ExecCommand.swift */; };
 		C4AD7F75265A120400CABB29 /* ShowDashesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */; };
@@ -275,7 +273,6 @@
 		C49CC5192639DB4C0006FAC8 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 		C49CC51A263A9A670006FAC8 /* PlotOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotOptions.swift; sourceTree = "<group>"; };
 		C4AD7F6B26593A3800CABB29 /* CanvasTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasTag.swift; sourceTree = "<group>"; };
-		C4AD7F6F2659864100CABB29 /* ListColourNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListColourNames.swift; sourceTree = "<group>"; };
 		C4AD7F72265A0E6700CABB29 /* ExecCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecCommand.swift; sourceTree = "<group>"; };
 		C4B2F967262576FF00CC5430 /* XIlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XIlist.swift; sourceTree = "<group>"; };
 		C4B2F9AD262B286400CC5430 /* SVGout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGout.swift; sourceTree = "<group>"; };
@@ -478,7 +475,6 @@
 		C4AD7F6E2659860700CABB29 /* ListAndShow */ = {
 			isa = PBXGroup;
 			children = (
-				C4AD7F6F2659864100CABB29 /* ListColourNames.swift */,
 				C422C5C32608D0CC00676912 /* ShowColoursList.swift */,
 				C4F1B3932609DFFA0035AC62 /* ShowDashesList.swift */,
 				C453244C25FBEBA6007D741C /* ShowShape.swift */,
@@ -847,7 +843,6 @@
 				C4C0C4862612E82A0072699C /* CodingKeys.swift in Sources */,
 				C40CD42C25ECD60F003944FA /* Axes.swift in Sources */,
 				C4CF29FC263556B400E858D1 /* Vector.swift in Sources */,
-				C4AD7F702659864100CABB29 /* ListColourNames.swift in Sources */,
 				C4CF2A0426368F5600E858D1 /* Pie.swift in Sources */,
 				C4AD7F73265A0E6700CABB29 /* ExecCommand.swift in Sources */,
 				C4C0C48F2612FCC70072699C /* Dimensions.swift in Sources */,
@@ -953,7 +948,6 @@
 				C4C0C4B12613641A0072699C /* PlotterSettings.swift in Sources */,
 				C40CD44225ED2390003944FA /* Plane.swift in Sources */,
 				C4C0C469260F2E530072699C /* SVGstyle.swift in Sources */,
-				C4AD7F712659864100CABB29 /* ListColourNames.swift in Sources */,
 				C4CF2A1A2637147800E858D1 /* Point.swift in Sources */,
 				C450781D263EB3CF00308C1D /* Double.swift in Sources */,
 				C40CD43D25ED02BE003944FA /* Header.swift in Sources */,

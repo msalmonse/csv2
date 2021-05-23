@@ -9,17 +9,30 @@ import Foundation
 
 func execCommand(_ cmd: CommandType, _ options: Options) {
     switch cmd {
-    case .bitmap:
-        if CommandLine.arguments.count > 2 {
-            print(bitmap(Array(CommandLine.arguments[2...])))
-        }
     case .canvas, .canvastag, .pdf, .png, .svg:
         plotCommand(cmd, options)
-    case .canvasColourNames, .pdfColourNames, .pngColourNames, .svgColourNames:
+    case .canvasColourNames, .canvastagColourNames, .pdfColourNames, .pngColourNames, .svgColourNames:
         showColoursList(options.defaults(), namesList: true, with: cmd, to: options.outName)
-    case .canvasColours, .pdfColours, .pngColours, .svgColours:
+    case .canvasColours, .canvastagColours, .pdfColours, .pngColours, .svgColours:
         showColoursList(options.defaults(), namesList: false, with: cmd, to: options.outName)
+    case .canvasDashes, .canvastagDashes, .pdfDashes, .pngDashes, .svgDashes:
+        showDashesList(defaults, with: cmd, to: options.outName)
+    case .canvasShape, .pdfShape, .pngShape, .svgShape:
+        if CommandLine.arguments.count > 4 {
+            let name = CommandLine.arguments[4]
+            showShape(shape: name, defaults: defaults, with: cmd, to: options.outName)
+        }
+    case .canvastagShape:
+        if CommandLine.arguments.count > 5 {
+            let name = CommandLine.arguments[5]
+            showShape(shape: name, defaults: defaults, with: cmd, to: options.outName)
+        }
+    case .listColourNames:
+        print(colourNames())
+    case .listShapes:
+        print(Shape.allNames())
     default:
+        print("Got command: \(cmd)", to: &standardError)
         help(cmd)
     }
 }
@@ -40,7 +53,7 @@ func plotCommand(_ cmd: CommandType, _ options: Options) {
 
     let plotter = cmd.plotter(settings: settings!)
     let plot = Plot(csv!, settings!, plotter)
-    plot.gen()
+    plot.chartGen()
 
     output(plotter, to: options.outName)
 }
@@ -86,4 +99,13 @@ func output(_ plotter: Plotter, to name: String?) {
             print(error, to: &standardError)
         }
     }
+}
+
+/// Generate a list of all the colour names
+/// - Returns: colour name list
+
+func colourNames() -> String {
+    return
+        ColourTranslate.all.map { "\($0): \(ColourTranslate.lookup($0)!.hashRGBA)" }
+        .sorted().joined(separator: "\n")
 }

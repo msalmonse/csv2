@@ -11,7 +11,8 @@ import OptGetter
 enum CommandType: OptGetterTag {
     case
         bitmap,
-        canvas, canvastag, canvasColours, canvasColourNames, canvasDashes, canvasShape,
+        canvas, canvasColours, canvasColourNames, canvasDashes, canvasShape,
+        canvastag, canvastagColours, canvastagColourNames, canvastagDashes, canvastagShape,
         listColourNames, listShapes,
         help, helpCanvas, helpPdf, helpPng, helpSvg, helpUsage,
         pdf, pdfColours, pdfColourNames, pdfDashes, pdfShape,
@@ -22,7 +23,7 @@ enum CommandType: OptGetterTag {
     /// Is this a help command?
     var isHelp: Bool {
         switch self {
-        case .help, .helpCanvas, .helpPdf, .helpPng, .helpSvg, .helpUsage, .version:
+        case .bitmap, .help, .helpCanvas, .helpPdf, .helpPng, .helpSvg, .helpUsage, .version:
             return true
         default:
             return false
@@ -45,6 +46,8 @@ enum CommandType: OptGetterTag {
              .pngColourNames, .pngColours, .pngDashes, .pngShape,
              .svgColourNames, .svgColours, .svgDashes, .svgShape:
             return 4
+        case .canvastagColourNames, .canvastagColours, .canvastagDashes, .canvastagShape:
+            return 5
         }
     }
 
@@ -56,7 +59,7 @@ enum CommandType: OptGetterTag {
         switch self {
         case .canvas, .canvasColourNames, .canvasColours, .canvasDashes, .canvasShape:
             return Canvas(settings)
-        case .canvastag:
+        case .canvastag, .canvastagColourNames, .canvastagColours, .canvastagDashes, .canvastagShape:
             return CanvasTag(settings: settings)
         case .pdf, .pdfColourNames, .pdfColours, .pdfDashes, .pdfShape:
             return PDF(settings)
@@ -72,6 +75,10 @@ enum CommandType: OptGetterTag {
 
 private let cmds: [CmdToGet] = [
     CmdToGet(["bitmap"], tag: CommandType.bitmap),
+    CmdToGet(["canvas", "tag", "show", "colournames"], tag: CommandType.canvastagColourNames),
+    CmdToGet(["canvas", "tag", "show", "colours"], tag: CommandType.canvastagColours),
+    CmdToGet(["canvas", "tag", "show", "dashes"], tag: CommandType.canvastagDashes),
+    CmdToGet(["canvas", "tag", "show"], tag: CommandType.canvastagDashes),
     CmdToGet(["canvas", "tag"], tag: CommandType.canvastag),
     CmdToGet(["canvas", "show", "colournames"], tag: CommandType.canvasColourNames),
     CmdToGet(["canvas", "show", "colours"], tag: CommandType.canvasColours),

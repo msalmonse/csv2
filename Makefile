@@ -20,7 +20,7 @@ PNGOPTFILES = $(shell egrep -lv -- '--(css|nohover|svg)' data/*.opts)
 PNGFILES = $(PNGOPTFILES:data/%.opts=generated/%.png)
 PNGOPTFILES = $(shell egrep -lv -- '--(css|nohover|svg)' data/*.opts)
 PNGFILES = $(PNGOPTFILES:data/%.opts=generated/%.png)
-SHAPES = $(shell $(CSV2) --shapenames)
+SHAPES = $(shell $(CSV2) list shapes)
 SVGFILES = $(OPTFILES:data/%.opts=generated/%.svg)
 TXTFILES = $(OPTFILES:data/%.opts=generated/%.txt)
 
@@ -70,12 +70,13 @@ generated/pngindex.html: $(PNGFILES) $(TXTFILES) $(EXTRAS)
 generated/%.js: OPTS = $(shell cat $(@F:%.js=data/%.opts))
 generated/%.js: CANVAS = $(shell cat $(@F:%.js=data/%.canvas))
 generated/%.js: data/%.csv data/%.json data/%.opts generated/%.canvastag $(CSV2)
-	-@ $(CSV2) canvas --canvas $(CANVAS) $(OPTS) $(@F:%.js=data/%.csv) $(@F:%.js=data/%.json) $@
+	-@ $(CSV2) canvas $(OPTS) --canvas $(CANVAS) \
+		$(@F:%.js=data/%.csv) $(@F:%.js=data/%.json) $@
 
 generated/%.canvastag: OPTS = $(shell cat $(@F:%.canvastag=data/%.opts))
 generated/%.canvastag: CANVAS = $(shell cat $(@F:%.canvastag=data/%.canvas))
 generated/%.canvastag: data/%.csv data/%.json data/%.opts data/%.canvas $(CSV2)
-	-@ $(CSV2) canvas tag --canvas $(CANVAS) $(OPTS) \
+	-@ $(CSV2) canvas tag $(OPTS) --canvas $(CANVAS) \
 		$(@F:%.canvastag=data/%.csv) $(@F:%.canvastag=data/%.json) $@
 
 generated/trig+trig-inc.svg: data/trig.inc
@@ -113,7 +114,7 @@ out.svg out.js out.png:
 	touch $@
 
 docs/%.svg: $(CSV2)
-	-@ $(CSV2) svg --nocomment --show $(@F:%.svg=%) --colours green -- - - $@
+	-@ $(CSV2) svg show $(@F:%.svg=%) --nocomment --colours green -- - - $@
 
 examples/trig.svg: data/trig.csv examples/trig.json
 	-@ $(CSV2) svg --nocomment --cssid=svg-ex1 data/trig.csv examples/trig.json $@
@@ -134,4 +135,4 @@ examples/layout.svg: data/trig.csv examples/layout.json examples/layout.inc
 	-@ $(CSV2) svg data/trig.csv examples/layout.json $@
 
 examples/colourNamesList.png:
-	-@ $(CSV2) png --bg cornsilk --size 12 --colournameslist -- - - $@
+	-@ $(CSV2) png show colournames --bg cornsilk --size 12 -- - - $@

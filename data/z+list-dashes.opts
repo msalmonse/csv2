@@ -1,1 +1,1 @@
---colours crimson --bg=cornsilk --size=15 --dashes=10 --dasheslist --stroke=5
+show dashes --colours crimson --bg=cornsilk --size=15 --dashes=10 --stroke=5

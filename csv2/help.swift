@@ -118,6 +118,10 @@ func helpUsage(_ execName: String) {
 
 func help(_ command: CommandType) {
     switch command {
+    case .bitmap:
+        if CommandLine.arguments.count > 2 {
+            print(bitmap(Array(CommandLine.arguments[2...])))
+        }
     case .helpCanvas: helpCanvas(execName())
     case .helpPdf: helpPDF(execName())
     case .helpPng: helpPNG(execName())

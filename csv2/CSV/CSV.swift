@@ -29,7 +29,7 @@ class CSV: ReflectedStringConvertible, Equatable {
         do {
             try self.loadFromUrl(url, separatedBy: colsep)
         } catch {
-            print(error, to: &standardError)
+            print(error.localizedDescription, to: &standardError)
             throw(error)
         }
     }
