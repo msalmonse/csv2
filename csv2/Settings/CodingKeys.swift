@@ -76,6 +76,7 @@ extension Settings {
         case subTitle
         case subTitleHeader
         case svgInclude
+        case tagFile
         case textcolour
         case title
         case width

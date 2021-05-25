@@ -80,6 +80,7 @@ extension Options {
         OptToGet(.stroke, 1...1, usage: "Stroke width", argTag: "<n>"),
         OptToGet(.subheader, 1...1, usage: "Sub-title row or column source", argTag: "<n>"),
         OptToGet(.subtitle, 1...1, usage: "Sub-title", argTag: "<text>"),
+        OptToGet(.tag, 1...1, usage: "File to write canvas tag to", argTag: "<file>"),
         OptToGet(.textcolour, 1...1, usage: "Foreground text colour", argTag: "<colour>"),
         OptToGet(.title, 1...1, usage: "Chart title", argTag: "<text>"),
         OptToGet(.tsv, usage: "Use tabs to seperate columns"),
@@ -99,6 +100,6 @@ extension Options {
     static internal let positionalOpts: OptsToGet = [
         OptToGet(usage: "CSV data file name or - for stdin", argTag: "<csv file>"),
         OptToGet(usage: "JSON settings file name", argTag: "<json file>"),
-        OptToGet(usage: "Output file name,\nuse stdout if omitted for canvas and svg", argTag: "<output file>")
+        OptToGet(usage: "Output file name,\u{11}use stdout if omitted for canvas and svg", argTag: "<output file>")
     ]
 }

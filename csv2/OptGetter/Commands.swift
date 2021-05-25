@@ -23,7 +23,7 @@ enum ListCommandType: OptGetterTag {
 }
 
 enum MainCommandType: OptGetterTag {
-    case canvas, canvastag,  pdf,  png,  svg, unspec
+    case canvas,  pdf,  png,  svg, unspec
 
     // number of arguments taken including path name
     var count: Int {
@@ -36,7 +36,6 @@ enum MainCommandType: OptGetterTag {
     func plotter(settings: Settings) -> Plotter {
         switch self {
         case .canvas: return Canvas(settings)
-        case .canvastag: return CanvasTag(settings)
         case .pdf: return PDF(settings)
         case .png: return PNG(settings)
         case .svg: return SVG(settings)
@@ -58,31 +57,48 @@ enum SubCommandType: OptGetterTag {
 }
 
 private let plotCmds: [CmdToGet] = [
-    CmdToGet(["canvas"], tag: MainCommandType.canvas),
-    CmdToGet(["canvastag"], tag: MainCommandType.canvastag),
-    CmdToGet(["pdf"], tag: MainCommandType.pdf),
-    CmdToGet(["png"], tag: MainCommandType.png),
-    CmdToGet(["svg"], tag: MainCommandType.svg)
+    CmdToGet(["canvas"], tag: MainCommandType.canvas,
+             usage: "Generate javascript to draw the chart on a HTML5 canvas."),
+    CmdToGet(["pdf"], tag: MainCommandType.pdf,
+             usage: "Generate a PDF chart."),
+    CmdToGet(["png"], tag: MainCommandType.png,
+             usage: "Generate a PNG chart."),
+    CmdToGet(["svg"], tag: MainCommandType.svg,
+             usage: "Generate an SVG chart.")
 ]
 
 private let plotSubCmds: [CmdToGet] = [
-    CmdToGet(["show", "colournames"], tag: SubCommandType.colourNames),
-    CmdToGet(["show", "colours"], tag: SubCommandType.colours),
-    CmdToGet(["show", "dashes"], tag: SubCommandType.dashes)
+    CmdToGet(["show", "colournames"], tag: SubCommandType.colourNames,
+             usage: "Create a chart of all of the know colours"),
+    CmdToGet(["show", "colours"], tag: SubCommandType.colours,
+             usage: "Create a chart of the colours that are user defined and internally defined."),
+    CmdToGet(["show", "dashes"], tag: SubCommandType.dashes,
+             usage: "Create a chart of a the dashes that are user defined and internally defined.")
 ]
 
 private let listCmds: [CmdToGet] = [
-    CmdToGet(["bitmap"], tag: ListCommandType.bitmap),
-    CmdToGet(["list", "colournames"], tag: ListCommandType.listColourNames),
-    CmdToGet(["list", "shapes"], tag: ListCommandType.listShapes),
-    CmdToGet(["version"], tag: ListCommandType.version)
+    CmdToGet(["bitmap"], tag: ListCommandType.bitmap,
+             usage: "Take a list of rows or columns and print the corresponding bitmap"),
+    CmdToGet(["list", "colournames"], tag: ListCommandType.listColourNames,
+             usage: "List the colour names known to the program"),
+    CmdToGet(["list", "shapes"], tag: ListCommandType.listShapes,
+             usage: "List the shape names defined internally"),
+    CmdToGet(["version"], tag: ListCommandType.version,
+             usage: "List the version")
 ]
 private let helpCmds: [CmdToGet] = [
-    CmdToGet(["help", "canvas"], tag: HelpCommandType.helpCanvas),
-    CmdToGet(["help", "pdf"], tag: HelpCommandType.helpPdf),
-    CmdToGet(["help", "png"], tag: HelpCommandType.helpPng),
-    CmdToGet(["help", "svg"], tag: HelpCommandType.helpSvg),
-    CmdToGet(["help", "usage"], tag: HelpCommandType.helpUsage),
+    CmdToGet(["help", "canvas"], tag: HelpCommandType.helpCanvas,
+             usage: "Show help for the canvas chart type."),
+    CmdToGet(["help", "commands"], tag: HelpCommandType.helpCommands,
+             usage: "Show help on the available commands."),
+    CmdToGet(["help", "pdf"], tag: HelpCommandType.helpPdf,
+             usage: "Show help for the PDF chart type."),
+    CmdToGet(["help", "png"], tag: HelpCommandType.helpPng,
+             usage: "Show help for the PNG chart type."),
+    CmdToGet(["help", "svg"], tag: HelpCommandType.helpSvg,
+             usage: "Show help for the SVG chart type."),
+    CmdToGet(["help", "usage"], tag: HelpCommandType.helpUsage,
+             usage: "Show help on options."),
     CmdToGet(["help"], tag: HelpCommandType.help)
 ]
 
@@ -108,3 +124,11 @@ func getCommand(_ args: [String]) -> CommandType {
 
     return .plotCommand(main: .unspec, sub: .none)
 }
+
+func plotUsage() -> String { return OptGetter.cmdUsage(plotCmds) }
+
+func plotSubUsage() -> String { return OptGetter.cmdUsage(plotSubCmds) }
+
+func listUsage() -> String { return OptGetter.cmdUsage(listCmds) }
+
+func helpUsage() -> String { return OptGetter.cmdUsage(helpCmds) }

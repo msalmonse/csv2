@@ -44,7 +44,7 @@ struct Options {
     mutating func getOpts(for command: MainCommandType, _ args: [String], _ start: Int) throws {
         var opts = Self.commonOpts
         switch command {
-        case .canvas, .canvastag:
+        case .canvas:
             opts += Self.canvasOpts
         case .svg:
             opts += Self.svgOpts

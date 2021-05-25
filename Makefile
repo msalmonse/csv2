@@ -1,6 +1,5 @@
 CSV2 = test/csv2
 CANVASFILES = $(shell find data -name \*.canvas -size +0)
-CANVASTAGFILES = $(CANVASFILES:data/%.canvas=generated/%.canvastag)
 DOCFILES =\
 	docs/colourNamesList.png\
 	$(SHAPES:%=docs/%.svg)
@@ -58,7 +57,7 @@ generated/svgindex.html: $(SVGFILES) $(TXTFILES) $(EXTRAS)
 	@ echo svgindex made
 
 generated/jsindex.html: EXTRAS = generated/logo.svg out.js $(JSINDEXMAKE)
-generated/jsindex.html: $(JSFILES) $(CANVASTAGFILES) $(TXTFILES) $(EXTRAS)
+generated/jsindex.html: $(JSFILES) $(TXTFILES) $(EXTRAS)
 	@ $(JSINDEXMAKE) $@
 	@ echo jsindex made
 
@@ -69,8 +68,9 @@ generated/pngindex.html: $(PNGFILES) $(TXTFILES) $(EXTRAS)
 
 generated/%.js: OPTS = $(shell cat $(@F:%.js=data/%.opts))
 generated/%.js: CANVAS = $(shell cat $(@F:%.js=data/%.canvas))
-generated/%.js: data/%.csv data/%.json data/%.opts generated/%.canvastag $(CSV2)
+generated/%.js: data/%.csv data/%.json data/%.opts $(CSV2)
 	-@ $(CSV2) canvas $(OPTS) --canvas $(CANVAS) \
+		--tag $(@:%.js=%.canvastag) \
 		$(@F:%.js=data/%.csv) $(@F:%.js=data/%.json) $@
 
 generated/%.canvastag: OPTS = $(shell cat $(@F:%.canvastag=data/%.opts))

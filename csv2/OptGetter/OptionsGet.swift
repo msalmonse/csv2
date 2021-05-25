@@ -94,6 +94,7 @@ extension Options {
             case .subheader: try setInt(val0, key: .subTitleHeader)
             case .subtitle: setString(val0, key: .subTitle)
             case .svg: setString(val0, key: .svgInclude)
+            case .tag: setString(val0, key: .tagFile)
             case .textcolour: setString(val0, key: .textcolour)
             case .title: setString(val0, key: .title)
             case .tsv: tsv = true

@@ -35,6 +35,9 @@ extension Settings {
 
         let include: String
 
+        // file for canvastag
+        let tagFile: String
+
         // svg sub-title title, x axis title and y axis title
         let subTitle: String
         let title: String
@@ -62,6 +65,7 @@ extension Settings {
             logoURL: keyedStringValue(from: container, forKey: .logoURL, defaults: defaults),
             logoWidth: keyedDoubleValue(from: container, forKey: .logoHeight, defaults: defaults),
             include: keyedStringValue(from: container, forKey: .svgInclude, defaults: defaults),
+            tagFile: keyedStringValue(from: container, forKey: .tagFile, defaults: defaults),
             subTitle: keyedStringValue(from: container, forKey: .subTitle, defaults: defaults),
             title: keyedStringValue(from: container, forKey: .title, defaults: defaults),
             xTitle: keyedStringValue(from: container, forKey: .xTitle, defaults: defaults),

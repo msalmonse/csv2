@@ -60,6 +60,7 @@ extension Options {
         case subheader
         case subtitle
         case svg
+        case tag
         case textcolour
         case title
         case tsv

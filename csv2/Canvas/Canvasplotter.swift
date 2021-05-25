@@ -78,6 +78,22 @@ extension Canvas {
 
     func plotTail() {
         data.append("\n}\n")
+        if settings.plotter.tagFile.hasContent {
+            let id = settings.plotter.canvasID
+            let w = settings.dim.width
+            let h = settings.dim.height
+            let url = URL(fileURLWithPath: settings.plotter.tagFile)
+
+            if let tag = "<canvas id=\"\(id)\" width=\"\(w)\" height=\"\(h)\"></canvas>".data(using: .utf8) {
+                do {
+                    try tag.write(to: url)
+                } catch {
+                    print(error.localizedDescription, to: &standardError)
+                }
+            } else {
+                print("Error creating tag data", to: &standardError)
+            }
+        }
     }
 
     /// Write text to canvas

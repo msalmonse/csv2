@@ -304,6 +304,10 @@ it is read, they have no effect on how the data is interpreted.
 **Option:** `--svg`<br/>
 This options is the path of a file to include at the end the SVG, just before the `</svg>`
 
+**tagFile** (String)<sup>[canvas only](#fncanvas)</sup><br/>
+**Option:** `--tag`<br/>
+Name of the file to receive the `<canvas>` tag that the generated JavaScript expects to use.
+
 **title** (String)<br/>
 **Option:** `--title`<br/>
 The title attached to the Canvas or SVG
