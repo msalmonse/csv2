@@ -15,7 +15,7 @@ enum CommandType {
 }
 
 enum HelpCommandType: OptGetterTag {
-    case bitmap, help, helpCanvas, helpCommands, helpPdf, helpPng, helpSvg, helpUsage
+    case bitmap, help, helpCanvas, helpCommands, helpList, helpPdf, helpPng, helpShow, helpSvg, helpUsage
 }
 
 enum ListCommandType: OptGetterTag {
@@ -91,10 +91,14 @@ private let helpCmds: [CmdToGet] = [
              usage: "Show help for the canvas chart type."),
     CmdToGet(["help", "commands"], tag: HelpCommandType.helpCommands,
              usage: "Show help on the available commands."),
+    CmdToGet(["help", "list"], tag: HelpCommandType.helpList,
+             usage: "Show help on list commands"),
     CmdToGet(["help", "pdf"], tag: HelpCommandType.helpPdf,
              usage: "Show help for the PDF chart type."),
     CmdToGet(["help", "png"], tag: HelpCommandType.helpPng,
              usage: "Show help for the PNG chart type."),
+    CmdToGet(["help", "show"], tag: HelpCommandType.helpShow,
+             usage: "Show help on list commands"),
     CmdToGet(["help", "svg"], tag: HelpCommandType.helpSvg,
              usage: "Show help for the SVG chart type."),
     CmdToGet(["help", "usage"], tag: HelpCommandType.helpUsage,
@@ -125,10 +129,10 @@ func getCommand(_ args: [String]) -> CommandType {
     return .plotCommand(main: .unspec, sub: .none)
 }
 
-func plotUsage() -> String { return OptGetter.cmdUsage(plotCmds) }
+func plotUsage() -> String { return cmdUsage(plotCmds) }
 
-func plotSubUsage() -> String { return OptGetter.cmdUsage(plotSubCmds) }
+func listUsage() -> String { return cmdUsage(listCmds) }
 
-func listUsage() -> String { return OptGetter.cmdUsage(listCmds) }
+func showUsage() -> String { return cmdUsage(plotSubCmds) }
 
-func helpUsage() -> String { return OptGetter.cmdUsage(helpCmds) }
+func helpUsage() -> String { return cmdUsage(helpCmds) }

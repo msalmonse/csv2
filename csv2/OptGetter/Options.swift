@@ -86,14 +86,14 @@ struct Options {
 /// - Returns: usage string
 
 func commonUsage() -> String? {
-    return OptGetter.usage(Options.commonOpts, longFirst: true, longOnly: true)
+    return optUsage(Options.commonOpts)
 }
 
 /// Get usage string for canvas
 /// - Returns: usage string
 
 func canvasUsage() -> String? {
-    return OptGetter.usage(Options.canvasOpts, longFirst: true, longOnly: true)
+    return optUsage(Options.canvasOpts)
 }
 
 /// Get usage string for PDF
@@ -114,12 +114,20 @@ func pngUsage() -> String? {
 /// - Returns: usage string
 
 func svgUsage() -> String? {
-    return OptGetter.usage(Options.svgOpts, longFirst: true, longOnly: true)
+    return optUsage(Options.svgOpts)
 }
 
 /// Get usage for positional parameters
 /// - Returns: usage string
 
 func positionalUsage() -> String? {
-    return OptGetter.positionalUsage(Options.positionalOpts)
+    return positionalUsage(Options.positionalOpts)
+}
+
+func textWrap(_ text: String) -> String {
+    return textWrap([text])
+}
+
+func textWrap(_ text: [String]) -> String {
+    return paragraphWrap(text)
 }

@@ -8,9 +8,10 @@
 import Foundation
 
 func printSpecificUsage(for chartType: String, _ optText: String?) {
+    let indent = String(repeating: " ", count: UsageLeftRight.leftMargin)
     optText.map {
         print("""
-            \(chartType) specific options:
+            \(indent)\(chartType) specific options:
             \($0)
 
             """,
@@ -21,17 +22,20 @@ func printSpecificUsage(for chartType: String, _ optText: String?) {
 }
 
 func helpMain(_ execName: String) {
-    let help = """
-
-        \(execName) takes a CSV encoded data file, formating options and generates an image.
-        It can generate images in four formats:
-            canvas, pdf, png, svg
-
-        More help is available on each, e.g. help canvas or on the options with help usage.
-        See also: https://github.com/msalmonse/csv2/blob/main/README.md
-
-        """
-    print(help, to: &standardError)
+    let help = [
+            "",
+            """
+            \(execName) takes a CSV encoded data file, formating options and generates an image.
+            It can generate images in four formats: canvas, pdf, png, svg
+            """,
+            "",
+            """
+            More help is available on each, e.g. help canvas or on the options with help usage.
+            \u{11}See also: https://github.com/msalmonse/csv2/blob/main/README.md
+            """,
+            ""
+        ]
+    print(textWrap(help), to: &standardError)
 }
 
 func helpCanvas(_ execName: String) {
@@ -45,6 +49,20 @@ func helpCanvas(_ execName: String) {
         """
     print(help, to: &standardError)
     printSpecificUsage(for: "Canvas", canvasUsage())
+}
+
+func helpCommands(_ execName: String) {
+    let help = [
+            "",
+            """
+            The first argument on the command line is the main command.
+            It can optionally be followed by a show sub-command but normally isn't,
+            see "help show" for details.
+            """,
+            ""
+        ]
+    print(textWrap(help), to: &standardError)
+    print(plotUsage(), "\n", to: &standardError)
 }
 
 func helpPDF(_ execName: String) {
@@ -81,15 +99,17 @@ func helpSVG(_ execName: String) {
 }
 
 func helpUsage(_ execName: String) {
+    let indent = String(repeating: " ", count: UsageLeftRight.leftMargin)
     print("""
-        Generate a Canvas, PDF, PNG or SVG using data from a CSV file and settings from a JSON file.
+        
+        \(textWrap("Generate a Canvas, PDF, PNG or SVG using data from a CSV file and settings from a JSON file."))
 
-        \(execName) <canvas|pdf|png|svg> [options] [csv file [json file [output file]]]
+        \(indent)\(execName) <canvas|pdf|png|svg> [options] [csv file [json file [output file]]]
 
-        Arguments:
+        \(indent)Arguments:
         \(positionalUsage() ?? "")
 
-        Common options:
+        \(indent)Common options:
         \(commonUsage() ?? "")
 
         """,
@@ -101,7 +121,7 @@ func helpUsage(_ execName: String) {
     printSpecificUsage(for: "SVG", svgUsage())
     print("""
 
-          ¹ <bitmap> means an integer where each bit has a specific meaning
+        \(indent)  ¹ <bitmap> means an integer where each bit has a specific meaning
 
         """,
           to: &standardError
@@ -111,6 +131,7 @@ func helpUsage(_ execName: String) {
 func help(_ command: HelpCommandType) {
     switch command {
     case .helpCanvas: helpCanvas(execName())
+    case .helpCommands: helpCommands(execName())
     case .helpPdf: helpPDF(execName())
     case .helpPng: helpPNG(execName())
     case .helpSvg: helpSVG(execName())
