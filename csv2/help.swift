@@ -7,6 +7,11 @@
 
 import Foundation
 
+/// Print the usage for the options specific to a command
+/// - Parameters:
+///   - chartType: name for command
+///   - optText: optional usage text
+
 func printSpecificUsage(for chartType: String, _ optText: String?) {
     let indent = String(repeating: " ", count: UsageLeftRight.leftMargin)
     optText.map {
@@ -20,6 +25,9 @@ func printSpecificUsage(for chartType: String, _ optText: String?) {
     }
 
 }
+
+/// Main help text
+/// - Parameter execName: programs executable name
 
 func helpMain(_ execName: String) {
     let help = [
@@ -38,18 +46,26 @@ func helpMain(_ execName: String) {
     print(textWrap(help), to: &standardError)
 }
 
-func helpCanvas(_ execName: String) {
-    let help = """
+/// Help for canvas chart type
+/// - Parameter execName: programs executable name
 
+func helpCanvas(_ execName: String) {
+    let help = [
+        "",
+        """
         \(execName) can generate the JavaScript to create a chart in an HTML canvas.
         It must be told the id of the tag as well as the size for it to work correctly.
-        The --canvastag option take the id and size defined and prints out the
+        The --tag option take the id and size defined and prints out the
         corresponding canvas tag.
-
-        """
-    print(help, to: &standardError)
+        """,
+        ""
+    ]
+    print(textWrap(help), to: &standardError)
     printSpecificUsage(for: "Canvas", canvasUsage())
 }
+
+/// Help on main commands
+/// - Parameter execName: programs executable name
 
 func helpCommands(_ execName: String) {
     let help = [
@@ -65,43 +81,58 @@ func helpCommands(_ execName: String) {
     print(plotUsage(), "\n", to: &standardError)
 }
 
-func helpPDF(_ execName: String) {
-    let help = """
+/// Help for pdf chart type
+/// - Parameter execName: programs executable name
 
+func helpPDF(_ execName: String) {
+    let help = [
+        "",
+        """
         \(execName) can generate a PDF chart. Several PDF properties can be set via the
         JSON file.
-
-        """
-    print(help, to: &standardError)
+        """,
+        ""
+    ]
+    print(textWrap(help), to: &standardError)
     printSpecificUsage(for: "PDF", pdfUsage())
 }
 
-func helpPNG(_ execName: String) {
-    let help = """
+/// Help for png chart type
+/// - Parameter execName: programs executable name
 
+func helpPNG(_ execName: String) {
+    let help = [
+        "",
+        """
         \(execName) can generate a PNG image that has the same layout as the others.
         As it is a pixel format there isn't the same smooth scaling as the vector formats.
-
-        """
-    print(help, to: &standardError)
+        """,
+        ""
+    ]
+    print(textWrap(help), to: &standardError)
     printSpecificUsage(for: "PNG", pngUsage())
 }
 
 func helpSVG(_ execName: String) {
-    let help = """
-
+    let help = [
+        "",
+        """
         \(execName) can generate an SVG image that plots the data as SVG paths. It is very
         flexible in formatting and styling but isn't supported everywhere.
-
-        """
-    print(help, to: &standardError)
+        """,
+        ""
+    ]
+    print(textWrap(help), to: &standardError)
     printSpecificUsage(for: "SVG", svgUsage())
 }
+
+/// Help for option usage
+/// - Parameter execName: programs executable name
 
 func helpUsage(_ execName: String) {
     let indent = String(repeating: " ", count: UsageLeftRight.leftMargin)
     print("""
-        
+
         \(textWrap("Generate a Canvas, PDF, PNG or SVG using data from a CSV file and settings from a JSON file."))
 
         \(indent)\(execName) <canvas|pdf|png|svg> [options] [csv file [json file [output file]]]
@@ -128,6 +159,8 @@ func helpUsage(_ execName: String) {
     )
 }
 
+/// Help director
+/// - Parameter command: help command entered
 func help(_ command: HelpCommandType) {
     switch command {
     case .helpCanvas: helpCanvas(execName())
@@ -140,6 +173,9 @@ func help(_ command: HelpCommandType) {
         helpMain(execName())
     }
 }
+
+/// lookup executable basename
+/// - Returns: executables basename
 
 func execName() -> String {
     if CommandLine.arguments.isEmpty { return AppInfo.name }

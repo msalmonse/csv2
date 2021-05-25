@@ -52,23 +52,23 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "png show shuriken --bg cornsilk "
-            isEnabled = "NO">
+            argument = "png  --bg cornsilk "
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "list shapes"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--logo https://newcastlebeach.org/images/128x128-11.png"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/pie.csv"
+            argument = "${PROJECT_DIR}/data/row.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/pie.json"
+            argument = "${PROJECT_DIR}/data/rti.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
