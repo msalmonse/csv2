@@ -1,9 +1,11 @@
 ### csv2
+
 ```
 Generate a Canvas, PDF, PNG or SVG using data from a CSV file and settings from a JSON file.
 
 csv2 <canvas|pdf|png|svg> [options] [csv file [json file [output file]]]
 ```
+
 ```
 Arguments:
   <csv file>             CSV data file name or - for stdin
@@ -11,6 +13,7 @@ Arguments:
   <output file>          Output file name,
                          use stdout if omitted for canvas and svg
 ```
+
 ```
 Common options:
   -bared <bitmap¹>       Plots to show as bars
@@ -18,16 +21,11 @@ Common options:
   -barwidth              Bar width (-1 to calculate)
   -bezier <n>            Bézier curve smoothing, 0 means none
   -bg <colour>           Background colour
-  -bitmap <n>...         Convert a list of rows or columns to a bitmap
   -black                 Set undefined colours to black
   -bold                  Set font-weight to bold
-  -colournames           Print a list of all the colour names on it
-  -colournameslist       Generate an image with all the colour names on it
   -colours <colour>...   Colours to use for plots
-  -colourslist           Generate an image with all the colours on it
   -dashed <bitmap¹>      Plots with dashed lines
   -dashes <n,n...>...    List of plot dash patterns to use
-  -dasheslist            Generate an image with all the dashes on it
   -debug <bitmap¹>       Add debug info
   -distance <n>          Minimum distance between data points
   -draft [text]          Mark the chart as a draft, argument sets the text
@@ -56,9 +54,7 @@ Common options:
   -rows                  Group data by rows
   -scattered <bitmap¹>   Plots to show as scatter plots
   -semi                  Use semicolons to seperate columns
-  -shapenames            Print a list of shape names
   -shapes <shape>...     List of shapes to use
-  -show <shape>          Generate a plot with the shape @ 6X strokewidth
   -showpoints <bitmap¹>
                          Data plots with points
   -size <n>              Base font size
@@ -71,7 +67,6 @@ Common options:
   -title <text>          Chart title
   -tsv                   Use tabs to seperate columns
   -verbose               Add extra information
-  -version               Display version and exit
   -width <n>             Chart width
   -xmax <n>              Abscissa maximum
   -xmin <n>              Abscissa minimum
@@ -81,18 +76,21 @@ Common options:
   -ymin <n>              Ordinate minimum
   -ytick <n>             Distance between ordinate ticks
 ```
+
 ```
 Canvas specific options:
   -canvas <name>         Canvas name
+  -tag <file>            File to write canvas tag to
 ```
+
 ```
 SVG specific options:
   -css <file>            Include file for css styling
   -cssid <name>          CSS id for SVG
   -nohover               Don't add CSS code to emphasize hovered plots
   -svg <file>            Include file for svg elements
+```
 
 ```
-```
-  ¹ <bitmap> means an integer where each bit has a specific meaning    
+  ¹ <bitmap> means an integer where each bit has a specific meaning
 ```
