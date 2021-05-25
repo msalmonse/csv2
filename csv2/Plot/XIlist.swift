@@ -18,7 +18,7 @@ extension Plot {
                 return (-settings.csv.headerColumns..<csv.colCt).map { XIvalue(x: Double($0), i: $0) }
             } else {
                 let val = csv.rowValues(index)
-                return (0 ..< csv.rowCt).map { XIvalue(x: val[$0], i: $0) }
+                return (0 ..< csv.colCt).map { XIvalue(x: val[$0], i: $0) }
             }
         } else {
             if index < 0 {
