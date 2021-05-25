@@ -10,7 +10,8 @@ import OptGetter
 
 extension Options {
     static internal let canvasOpts: OptsToGet = [
-        OptToGet(.canvas, 1...1, usage: "Canvas name", argTag: "<name>")
+        OptToGet(.canvas, 1...1, usage: "Canvas name", argTag: "<name>"),
+        OptToGet(.tag, 1...1, usage: "File to write canvas tag to", argTag: "<file>")
     ]
 
     static internal let svgOpts: OptsToGet = [
@@ -80,7 +81,6 @@ extension Options {
         OptToGet(.stroke, 1...1, usage: "Stroke width", argTag: "<n>"),
         OptToGet(.subheader, 1...1, usage: "Sub-title row or column source", argTag: "<n>"),
         OptToGet(.subtitle, 1...1, usage: "Sub-title", argTag: "<text>"),
-        OptToGet(.tag, 1...1, usage: "File to write canvas tag to", argTag: "<file>"),
         OptToGet(.textcolour, 1...1, usage: "Foreground text colour", argTag: "<colour>"),
         OptToGet(.title, 1...1, usage: "Chart title", argTag: "<text>"),
         OptToGet(.tsv, usage: "Use tabs to seperate columns"),
