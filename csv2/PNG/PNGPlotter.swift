@@ -82,7 +82,9 @@ extension PNG {
     /// - Throws: file writing errors
 
     private func cgImageWrite(_ cgImage: CGImage, to url: URL) throws {
+        let colourProfile = NSBitmapImageRep.PropertyKey.colorSyncProfileData
         let imageRep = NSBitmapImageRep(cgImage: cgImage)
+        imageRep.setProperty(colourProfile, withValue: NSColorSpace.sRGB)
         if let pngData = imageRep.representation(using: .png, properties: [:]) {
             do {
                 try pngData.write(to: url)
