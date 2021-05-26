@@ -32,7 +32,10 @@ struct Options {
     }
 
     /// Fetch options from the command line
-    /// - Parameter plotter: the type of chart to fet options for
+    /// - Parameters:
+    ///   - command: the main command, used to select the option set
+    ///   - args: argument list
+    ///   - start: argument to begin with
     /// - Throws:
     ///   - OptGetterError.duplicateArgument
     ///   - OptGetterError.duplicateName
@@ -44,10 +47,9 @@ struct Options {
     mutating func getOpts(for command: MainCommandType, _ args: [String], _ start: Int) throws {
         var opts = Self.commonOpts
         switch command {
-        case .canvas:
-            opts += Self.canvasOpts
-        case .svg:
-            opts += Self.svgOpts
+        case .canvas: opts += Self.canvasOpts
+        case .help: opts = Self.helpOpts
+        case .svg: opts += Self.svgOpts
         default: break
         }
 
@@ -82,52 +84,66 @@ struct Options {
     }
 }
 
+/// Fetch options from the command line, exit on error
+/// - Parameters:
+///   - command: the main command, used to select the option set
+///   - start: argument to begin with
+
+func getOptsOrExit(for command: MainCommandType, _ start: Int) -> Options {
+    var options = Options()
+    do {
+        try options.getOpts(for: command, CommandLine.arguments, start)
+    } catch {
+        print(error, to: &standardError)
+        exit(1)
+    }
+
+    return options
+}
+
 /// Get usage string for common options
 /// - Returns: usage string
 
-func commonUsage() -> String? {
-    return optUsage(Options.commonOpts)
-}
+func commonOptsUsage() -> String? { return optUsage(Options.commonOpts) }
 
 /// Get usage string for canvas
 /// - Returns: usage string
 
-func canvasUsage() -> String? {
-    return optUsage(Options.canvasOpts)
-}
+func canvasOptsUsage() -> String? { return optUsage(Options.canvasOpts) }
+
+/// Get usage string for help options
+/// - Returns: usage string
+
+func helpOptsUsage() -> String? { return optUsage(Options.helpOpts) }
 
 /// Get usage string for PDF
 /// - Returns: usage string
 
-func pdfUsage() -> String? {
-    return nil
-}
+func pdfOptsUsage() -> String? { return nil }
 
 /// Get usage for PNG charts
 /// - Returns: usage string
 
-func pngUsage() -> String? {
-    return nil
-}
+func pngOptsUsage() -> String? { return nil }
 
 /// Get usage for SVG charts
 /// - Returns: usage string
 
-func svgUsage() -> String? {
-    return optUsage(Options.svgOpts)
-}
+func svgOptsUsage() -> String? { return optUsage(Options.svgOpts)}
 
 /// Get usage for positional parameters
 /// - Returns: usage string
 
-func positionalUsage() -> String? {
-    return positionalUsage(Options.positionalOpts)
-}
+func positionalArgsUsage() -> String? { return positionalUsage(Options.positionalOpts) }
 
-func textWrap(_ text: String) -> String {
-    return textWrap([text])
-}
+/// Wrap text
+/// - Parameter text: text to wrap
+/// - Returns: wrapped text
 
-func textWrap(_ text: [String]) -> String {
-    return paragraphWrap(text)
-}
+func textWrap(_ text: String) -> String { return textWrap([text]) }
+
+/// Wrap text array
+/// - Parameter text: Array of strings
+/// - Returns: wrapped text
+
+func textWrap(_ text: [String]) -> String { return paragraphWrap(text) }

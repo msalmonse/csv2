@@ -53,11 +53,11 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "png  --bg cornsilk "
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "list shapes"
-            isEnabled = "NO">
+            argument = "help list -left 0"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--logo https://newcastlebeach.org/images/128x128-11.png"
@@ -65,15 +65,15 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "${PROJECT_DIR}/data/row.csv"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "${PROJECT_DIR}/data/rti.json"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "${PROJECT_DIR}/out.png"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

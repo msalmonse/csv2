@@ -12,9 +12,40 @@ import OptGetter
 
 struct UsageLeftRight {
     static var leftMargin = 2
-    static var optIndent = 4
-    static var optLeft = 25
+    static var indent = 4
+    static var usageLeft = 25
     static var rightMargin = 65
+
+    /// Set the indent
+    /// - Parameter indent: new indent
+
+    static func setIndent(_ indent: Int) {
+        Self.indent = indent
+    }
+
+    /// Move the left margins keeping the offset the same
+    /// - Parameter left: new left margin
+
+    static func setLeft(_ left: Int) {
+        let change = leftMargin - left
+        leftMargin = left
+        indent -= change
+        usageLeft -= change
+    }
+
+    /// Set the right margin
+    /// - Parameter right: new right margin
+
+    static func setRight(_ right: Int) {
+        rightMargin = right
+    }
+
+    /// Set the usage left margin
+    /// - Parameter left: new usage left margin
+
+    static func setUsage(_ left: Int) {
+        usageLeft = left
+    }
 }
 
 /// Options usage
@@ -24,8 +55,8 @@ struct UsageLeftRight {
 func optUsage(_ opts: OptsToGet) -> String {
     return OptGetter.usage(
         opts, longOnly: true,
-        indent: UsageLeftRight.optIndent,
-        left: UsageLeftRight.optLeft,
+        indent: UsageLeftRight.indent,
+        left: UsageLeftRight.usageLeft,
         right: UsageLeftRight.rightMargin
     )
 }
@@ -37,8 +68,8 @@ func optUsage(_ opts: OptsToGet) -> String {
 func positionalUsage(_ opts: OptsToGet) -> String {
     return OptGetter.positionalUsage(
         opts,
-        indent: UsageLeftRight.optIndent,
-        left: UsageLeftRight.optLeft,
+        indent: UsageLeftRight.indent,
+        left: UsageLeftRight.usageLeft,
         right: UsageLeftRight.rightMargin
     )
 }
@@ -50,8 +81,8 @@ func positionalUsage(_ opts: OptsToGet) -> String {
 func cmdUsage(_ cmds: CmdsToGet) -> String {
     return OptGetter.cmdUsage(
         cmds,
-        indent: UsageLeftRight.optIndent,
-        left: UsageLeftRight.optLeft,
+        indent: UsageLeftRight.indent,
+        left: UsageLeftRight.usageLeft,
         right: UsageLeftRight.rightMargin
     )
 }

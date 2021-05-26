@@ -84,6 +84,14 @@ Canvas specific options:
 ```
 
 ```
+Help specific options:
+  -indent <n>          Indent for option usage
+  -left <n>            Left margin for help text
+  -right <n>           Right margin for help text
+  -usage <n>           Left margin for option usage
+```
+
+```
 SVG specific options:
   -css <file>            Include file for css styling
   -cssid <name>          CSS id for SVG

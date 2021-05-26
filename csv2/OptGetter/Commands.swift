@@ -15,7 +15,15 @@ enum CommandType {
 }
 
 enum HelpCommandType: OptGetterTag {
-    case bitmap, help, helpCanvas, helpCommands, helpList, helpPdf, helpPng, helpShow, helpSvg, helpUsage
+    case help, helpCanvas, helpCommands, helpList, helpPdf, helpPng, helpShow, helpSvg, helpUsage
+
+    var count: Int {
+        switch self {
+        case .help: return 2
+        default: return 3
+        }
+    }
+
 }
 
 enum ListCommandType: OptGetterTag {
@@ -23,7 +31,7 @@ enum ListCommandType: OptGetterTag {
 }
 
 enum MainCommandType: OptGetterTag {
-    case canvas,  pdf,  png,  svg, unspec
+    case canvas, help,  pdf,  png,  svg, unspec
 
     // number of arguments taken including path name
     var count: Int {
@@ -36,6 +44,7 @@ enum MainCommandType: OptGetterTag {
     func plotter(settings: Settings) -> Plotter {
         switch self {
         case .canvas: return Canvas(settings)
+        case .help: return SVG(settings)
         case .pdf: return PDF(settings)
         case .png: return PNG(settings)
         case .svg: return SVG(settings)
@@ -69,11 +78,11 @@ private let plotCmds: [CmdToGet] = [
 
 private let plotSubCmds: [CmdToGet] = [
     CmdToGet(["show", "colournames"], tag: SubCommandType.colourNames,
-             usage: "Create a chart of all of the know colours"),
+             usage: "Create a chart of all of the colours known to this program."),
     CmdToGet(["show", "colours"], tag: SubCommandType.colours,
-             usage: "Create a chart of the colours that are user defined and internally defined."),
+             usage: "Create a chart of the colours that are user defined as well as those internally defined."),
     CmdToGet(["show", "dashes"], tag: SubCommandType.dashes,
-             usage: "Create a chart of a the dashes that are user defined and internally defined.")
+             usage: "Create a chart of the dashes that are user defined as well as those internally defined.")
 ]
 
 private let listCmds: [CmdToGet] = [

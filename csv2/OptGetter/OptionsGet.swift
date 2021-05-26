@@ -53,8 +53,10 @@ extension Options {
             case .height: try setInt(val0, key: .height)
             case .hover: setBool(false, key: .hover)
             case .include: try setInt(val0, key: .include)
+            case .indent: UsageLeftRight.setIndent(try val0.intValue())
             case .index: try setInt(val0, key: .index)
             case .italic: setBool(true, key: .italic)
+            case .left: UsageLeftRight.setLeft(try val0.intValue())
             case .legends: setBool(false, key: .legends)
             case .logo: setString(val0, key: .logoURL)
             case .logx: setBool(true, key: .logx)
@@ -66,6 +68,7 @@ extension Options {
                 values.values[.chartType] = .stringValue(val: "piechart")
                 values.onCommandLine.insert(.chartType)
             case .random: random = try OptValueAt.intArray(opt.optValuesAt)
+            case .right: UsageLeftRight.setRight(try val0.intValue())
             case .reserve:
                 switch opt.optValuesAt.count {
                 case 4:
@@ -98,6 +101,7 @@ extension Options {
             case .textcolour: setString(val0, key: .textcolour)
             case .title: setString(val0, key: .title)
             case .tsv: tsv = true
+            case .usage: UsageLeftRight.setUsage(try val0.intValue())
             case .verbose: verbose = true
             case .width: try setInt(val0, key: .width)
             case .xmax: try setDouble(val0, key: .xMax)

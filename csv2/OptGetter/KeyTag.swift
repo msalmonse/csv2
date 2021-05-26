@@ -36,8 +36,10 @@ extension Options {
         case help
         case hover
         case include
+        case indent
         case index
         case italic
+        case left
         case legends
         case logo
         case logx
@@ -48,6 +50,7 @@ extension Options {
         case pie
         case random
         case reserve
+        case right
         case rows
         case scattered
         case semi
@@ -64,6 +67,7 @@ extension Options {
         case textcolour
         case title
         case tsv
+        case usage
         case verbose
         case width
         case xmax

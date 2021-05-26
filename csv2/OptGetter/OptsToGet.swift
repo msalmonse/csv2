@@ -14,6 +14,13 @@ extension Options {
         OptToGet(.tag, 1...1, usage: "File to write canvas tag to", argTag: "<file>")
     ]
 
+    static internal let helpOpts: OptsToGet = [
+        OptToGet(.indent, 1...1, usage: "Indent for option usage", argTag: "<n>"),
+        OptToGet(.left, 1...1, usage: "Left margin for help text", argTag: "<n>"),
+        OptToGet(.right, 1...1, usage: "Right margin for help text", argTag: "<n>"),
+        OptToGet(.usage, 1...1, usage: "Left margin for option usage", argTag: "<n>")
+    ]
+
     static internal let svgOpts: OptsToGet = [
         OptToGet(.css, 1...1, usage: "Include file for css styling", argTag: "<file>"),
         OptToGet(.cssid, 1...1, usage: "CSS id for SVG", argTag: "<name>"),

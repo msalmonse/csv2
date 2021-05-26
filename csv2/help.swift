@@ -44,6 +44,7 @@ func helpMain(_ execName: String) {
             ""
         ]
     print(textWrap(help), to: &standardError)
+    printSpecificUsage(for: "Help", helpOptsUsage())
 }
 
 /// Help for canvas chart type
@@ -61,7 +62,7 @@ func helpCanvas(_ execName: String) {
         ""
     ]
     print(textWrap(help), to: &standardError)
-    printSpecificUsage(for: "Canvas", canvasUsage())
+    printSpecificUsage(for: "Canvas", canvasOptsUsage())
 }
 
 /// Help on main commands
@@ -81,6 +82,23 @@ func helpCommands(_ execName: String) {
     print(plotUsage(), "\n", to: &standardError)
 }
 
+/// Help on list commands et al.
+/// - Parameter execName: programs executable name
+
+func helpList(_ execName: String) {
+    let help = [
+        "",
+        """
+        As well as the chart main commands there are a few commands that provide
+        information without generating a chart. These commands print internal
+        information to help with settings.
+        """,
+        ""
+    ]
+    print(textWrap(help), to: &standardError)
+    print(listUsage(), "\n", to: &standardError)
+}
+
 /// Help for pdf chart type
 /// - Parameter execName: programs executable name
 
@@ -94,7 +112,7 @@ func helpPDF(_ execName: String) {
         ""
     ]
     print(textWrap(help), to: &standardError)
-    printSpecificUsage(for: "PDF", pdfUsage())
+    printSpecificUsage(for: "PDF", pdfOptsUsage())
 }
 
 /// Help for png chart type
@@ -110,7 +128,24 @@ func helpPNG(_ execName: String) {
         ""
     ]
     print(textWrap(help), to: &standardError)
-    printSpecificUsage(for: "PNG", pngUsage())
+    printSpecificUsage(for: "PNG", pngOptsUsage())
+}
+
+/// Help on show sub commands
+/// - Parameter execName: programs executable name
+
+func helpShow(_ execName: String) {
+    let help = [
+        "",
+        """
+        There are a number of sub-commands that follow the main chart commands the generate
+        charts using internal information rather than from CSV data. They are intended
+        to help with deciding amongst formatting options.
+        """,
+        ""
+    ]
+    print(textWrap(help), to: &standardError)
+    print(showUsage(), "\n", to: &standardError)
 }
 
 func helpSVG(_ execName: String) {
@@ -123,7 +158,7 @@ func helpSVG(_ execName: String) {
         ""
     ]
     print(textWrap(help), to: &standardError)
-    printSpecificUsage(for: "SVG", svgUsage())
+    printSpecificUsage(for: "SVG", svgOptsUsage())
 }
 
 /// Help for option usage
@@ -138,18 +173,19 @@ func helpUsage(_ execName: String) {
         \(indent)\(execName) <canvas|pdf|png|svg> [options] [csv file [json file [output file]]]
 
         \(indent)Arguments:
-        \(positionalUsage() ?? "")
+        \(positionalArgsUsage() ?? "")
 
         \(indent)Common options:
-        \(commonUsage() ?? "")
+        \(commonOptsUsage() ?? "")
 
         """,
           to: &standardError
     )
-    printSpecificUsage(for: "Canvas", canvasUsage())
-    printSpecificUsage(for: "PDF", pdfUsage())
-    printSpecificUsage(for: "PNG", pngUsage())
-    printSpecificUsage(for: "SVG", svgUsage())
+    printSpecificUsage(for: "Canvas", canvasOptsUsage())
+    printSpecificUsage(for: "PDF", pdfOptsUsage())
+    printSpecificUsage(for: "PNG", pngOptsUsage())
+    printSpecificUsage(for: "SVG", svgOptsUsage())
+    printSpecificUsage(for: "Help", helpOptsUsage())
     print("""
 
         \(indent)  ¹ <bitmap> means an integer where each bit has a specific meaning
@@ -165,8 +201,10 @@ func help(_ command: HelpCommandType) {
     switch command {
     case .helpCanvas: helpCanvas(execName())
     case .helpCommands: helpCommands(execName())
+    case .helpList: helpList(execName())
     case .helpPdf: helpPDF(execName())
     case .helpPng: helpPNG(execName())
+    case .helpShow: helpShow(execName())
     case .helpSvg: helpSVG(execName())
     case .helpUsage: helpUsage(execName())
     default:

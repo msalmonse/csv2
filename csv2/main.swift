@@ -12,6 +12,7 @@ var defaults: Defaults
 let command = getCommand(CommandLine.arguments)
 switch command {
 case .helpCommand(let helpCommand):
+    _ = getOptsOrExit(for: .help, helpCommand.count)
     help(helpCommand)
     exit(0)
 case .listCommand(let listCommand):
@@ -19,13 +20,7 @@ case .listCommand(let listCommand):
     exit(0)
 case .plotCommand(let main, let sub):
     let start = main.count + sub.count
-    var options = Options()
-    do {
-        try options.getOpts(for: main, CommandLine.arguments, start)
-    } catch {
-        print(error, to: &standardError)
-        exit(1)
-    }
+    let options = getOptsOrExit(for: main, start)
 
     defaults = options.defaults()
 
