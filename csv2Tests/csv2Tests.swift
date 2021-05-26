@@ -10,18 +10,6 @@ import XCTest
 
 var defaults = Defaults.global
 
-func output(_ plotter: Plotter, to name: String?) {
-    if name == nil {
-        plotter.plotPrint()
-    } else {
-        do {
-            try plotter.plotWrite(to: URL(fileURLWithPath: name!))
-        } catch {
-            print(error, to: &standardError)
-        }
-    }
-}
-
 func trySpecialCases(_ settings: Settings?) { return }
 
 class csv2Tests: XCTestCase {
@@ -214,10 +202,10 @@ class csv2Tests: XCTestCase {
 
     func testBitmap() {
         XCTAssertEqual(bitmap([]), 0)
-        XCTAssertEqual(bitmap([64]), 0)
-        XCTAssertEqual(bitmap([0]), 0)
-        XCTAssertEqual(bitmap([1,3,5]), 21)
-        XCTAssertEqual(bitmap([1,1,1]), 1)
+        XCTAssertEqual(bitmap(["64"]), 0)
+        XCTAssertEqual(bitmap(["0"]), 0)
+        XCTAssertEqual(bitmap(["1","3","5"]), 21)
+        XCTAssertEqual(bitmap(["1","1","1"]), 1)
     }
 
     func testSearchPath() {
