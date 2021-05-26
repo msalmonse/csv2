@@ -19,7 +19,7 @@ extension PNG {
     private func cgImageWrite(_ cgImage: CGImage, to url: URL) throws {
         let colourProfile = NSBitmapImageRep.PropertyKey.colorSyncProfileData
         let imageRep = NSBitmapImageRep(cgImage: cgImage)
-        imageRep.setProperty(colourProfile, withValue: NSColorSpace.sRGB)
+        imageRep.setProperty(colourProfile, withValue: NSColorSpace.genericRGB)
         if let pngData = imageRep.representation(using: .png, properties: [:]) {
             do {
                 try pngData.write(to: url)
@@ -46,7 +46,7 @@ extension PNG {
                     height: settings.dim.height,
                     bitsPerComponent: cgImage.bitsPerComponent,
                     bytesPerRow: cgImage.bytesPerRow,
-                    space: cgImage.colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!,
+                    space: cgImage.colorSpace ?? CGColorSpace(name: CGColorSpace.genericRGBLinear)!,
                     bitmapInfo: cgImage.bitmapInfo.rawValue
                 )!
                 scaleCtx.interpolationQuality = .high
