@@ -16,7 +16,8 @@ extension Options {
 
     static internal let helpOpts: OptsToGet = [
         OptToGet(.indent, 1...1, usage: "Indent for option usage", argTag: "<n>"),
-        OptToGet(.left, 1...1, usage: "Left margin for help text", argTag: "<n>"),
+        OptToGet(.left, 1...1,
+                 usage: "Left margin for help text, this also affects indent and usage", argTag: "<n>"),
         OptToGet(.right, 1...1, usage: "Right margin for help text", argTag: "<n>"),
         OptToGet(.usage, 1...1, usage: "Left margin for option usage", argTag: "<n>")
     ]
