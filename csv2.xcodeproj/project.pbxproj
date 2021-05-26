@@ -215,6 +215,8 @@
 		C4FA4258265E435800D999CC /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E3268265A8A6200F15354 /* List.swift */; };
 		C4FA4259265E436F00D999CC /* Usage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FA4254265CE9CD00D999CC /* Usage.swift */; };
 		C4FA425A265E43FD00D999CC /* ColoursList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422C5CB2608D58500676912 /* ColoursList.swift */; };
+		C4FA425C265E454800D999CC /* PNGout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FA425B265E454800D999CC /* PNGout.swift */; };
+		C4FA425D265E454800D999CC /* PNGout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FA425B265E454800D999CC /* PNGout.swift */; };
 		C4FE49FF25F6440F0076EF5E /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE49FE25F6440F0076EF5E /* Options.swift */; };
 		C4FE4A0525F66E2C0076EF5E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE4A0425F66E2C0076EF5E /* Defaults.swift */; };
 /* End PBXBuildFile section */
@@ -328,6 +330,7 @@
 		C4F20C1526027B7C005D2FE1 /* Legends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Legends.swift; sourceTree = "<group>"; };
 		C4F8F874261C375C00DF76AE /* Plot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plot.swift; sourceTree = "<group>"; };
 		C4FA4254265CE9CD00D999CC /* Usage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usage.swift; sourceTree = "<group>"; };
+		C4FA425B265E454800D999CC /* PNGout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGout.swift; sourceTree = "<group>"; };
 		C4FE49FE25F6440F0076EF5E /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		C4FE4A0425F66E2C0076EF5E /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -502,6 +505,7 @@
 			children = (
 				C4B2F9BF262C177900CC5430 /* PNG.swift */,
 				C4B2F9C6262C17D100CC5430 /* PNGPlotter.swift */,
+				C4FA425B265E454800D999CC /* PNGout.swift */,
 			);
 			path = PNG;
 			sourceTree = "<group>";
@@ -846,6 +850,7 @@
 				C4EFA4BF2620D42C0026BD9A /* Path2D.swift in Sources */,
 				C4569DAE265177DC00D74DBD /* OptionsGet.swift in Sources */,
 				C4EFA4EC26236F3E0026BD9A /* BarGet.swift in Sources */,
+				C4FA425C265E454800D999CC /* PNGout.swift in Sources */,
 				C453243825FA7968007D741C /* Shapes.swift in Sources */,
 				C4C0C4862612E82A0072699C /* CodingKeys.swift in Sources */,
 				C40CD42C25ECD60F003944FA /* Axes.swift in Sources */,
@@ -979,6 +984,7 @@
 				C4569DB526523C0D00D74DBD /* OptGetter.swift in Sources */,
 				C4569DAF265177DC00D74DBD /* OptionsGet.swift in Sources */,
 				C4569DB326523C0100D74DBD /* Options.swift in Sources */,
+				C4FA425D265E454800D999CC /* PNGout.swift in Sources */,
 				C45323D425F7C6D6007D741C /* ReflectedStringConvertable.swift in Sources */,
 				C4FA4256265E433400D999CC /* DashesList.swift in Sources */,
 				C4569DB2265180B200D74DBD /* help.swift in Sources */,
