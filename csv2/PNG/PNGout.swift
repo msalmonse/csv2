@@ -14,7 +14,7 @@ extension PNG {
     /// - Parameters:
     ///   - cgImage: the image to write
     ///   - url: where to write
-    /// - Throws: file writing errors
+    /// - Throws: An error in the Cocoa domain, if there is an error writing to the `URL`.
 
     private func cgImageWrite(_ cgImage: CGImage, to url: URL) throws {
         let colourProfile = NSBitmapImageRep.PropertyKey.colorSyncProfileData
@@ -31,7 +31,7 @@ extension PNG {
 
     /// Write the image to a file after converting to png format
     /// - Parameter url: where to write
-    /// - Throws: any error to do with file writing
+    /// - Throws: An error in the Cocoa domain, if there is an error writing to the `URL`.
 
     func plotWrite(to url: URL) throws {
         do {
