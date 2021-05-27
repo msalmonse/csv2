@@ -217,6 +217,8 @@
 		C4FA425A265E43FD00D999CC /* ColoursList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422C5CB2608D58500676912 /* ColoursList.swift */; };
 		C4FA425C265E454800D999CC /* PNGout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FA425B265E454800D999CC /* PNGout.swift */; };
 		C4FA425D265E454800D999CC /* PNGout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FA425B265E454800D999CC /* PNGout.swift */; };
+		C4FA425F265FE42300D999CC /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FA425E265FE42300D999CC /* Encodable.swift */; };
+		C4FA4260265FE42300D999CC /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FA425E265FE42300D999CC /* Encodable.swift */; };
 		C4FE49FF25F6440F0076EF5E /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE49FE25F6440F0076EF5E /* Options.swift */; };
 		C4FE4A0525F66E2C0076EF5E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE4A0425F66E2C0076EF5E /* Defaults.swift */; };
 /* End PBXBuildFile section */
@@ -331,6 +333,7 @@
 		C4F8F874261C375C00DF76AE /* Plot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plot.swift; sourceTree = "<group>"; };
 		C4FA4254265CE9CD00D999CC /* Usage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usage.swift; sourceTree = "<group>"; };
 		C4FA425B265E454800D999CC /* PNGout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNGout.swift; sourceTree = "<group>"; };
+		C4FA425E265FE42300D999CC /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		C4FE49FE25F6440F0076EF5E /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		C4FE4A0425F66E2C0076EF5E /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -554,6 +557,7 @@
 			children = (
 				C4EFA4B026202C600026BD9A /* Commands.swift */,
 				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
+				C4FA425E265FE42300D999CC /* Encodable.swift */,
 				C4AD7F72265A0E6700CABB29 /* ExecCommand.swift */,
 				C499B3372650FD9900581AD0 /* KeyTag.swift */,
 				C4569DAA2651760400D74DBD /* OptConvertor.swift */,
@@ -821,6 +825,7 @@
 				C480847C25E4E97300BD0A24 /* ColumnPlot.swift in Sources */,
 				C4B2FA0A2634863000CC5430 /* RGBAu8Lookup.swift in Sources */,
 				C4F20C112601DF4D005D2FE1 /* Dashes.swift in Sources */,
+				C4FA425F265FE42300D999CC /* Encodable.swift in Sources */,
 				C4FE49FF25F6440F0076EF5E /* Options.swift in Sources */,
 				C49B7D6D25DC03B500CEAB8C /* Settings.swift in Sources */,
 				C49A0DBD264827D600CF7E22 /* PDFPlotter.swift in Sources */,
@@ -980,6 +985,7 @@
 				C4B2F98926272A4C00CC5430 /* ColourTranslate.swift in Sources */,
 				C4569DB626523C1A00D74DBD /* Commands.swift in Sources */,
 				C4F8F876261C375C00DF76AE /* Plot.swift in Sources */,
+				C4FA4260265FE42300D999CC /* Encodable.swift in Sources */,
 				C4EFA4A4261EEBA70026BD9A /* Plotter.swift in Sources */,
 				C4569DB526523C0D00D74DBD /* OptGetter.swift in Sources */,
 				C4569DAF265177DC00D74DBD /* OptionsGet.swift in Sources */,

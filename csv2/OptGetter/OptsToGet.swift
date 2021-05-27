@@ -10,99 +10,281 @@ import OptGetter
 
 extension Options {
     static internal let canvasOpts: OptsToGet = [
-        OptToGet(.canvas, 1...1, usage: "Canvas name", argTag: "<name>"),
-        OptToGet(.tag, 1...1, usage: "File to write canvas tag to", argTag: "<file>")
+        OptToGet(
+            .stringValue(key: .canvasID, name: "canvas"), .single,
+            usage: "Canvas name", argTag: "<name>"
+        ),
+        OptToGet(
+            .stringValue(key: .tagFile, name: "tag"), .single,
+            usage: "File to write canvas tag to", argTag: "<file>"
+        )
     ]
 
     static internal let helpOpts: OptsToGet = [
-        OptToGet(.indent, 1...1, usage: "Indent for option usage", argTag: "<n>"),
-        OptToGet(.left, 1...1,
-                 usage: "Left margin for help text, this also affects indent and usage", argTag: "<n>"),
-        OptToGet(.right, 1...1, usage: "Right margin for help text", argTag: "<n>"),
-        OptToGet(.usage, 1...1, usage: "Left margin for option usage", argTag: "<n>")
+        OptToGet(
+            .intSpecial(key: .indent, name: "indent"), .single,
+            usage: "Indent for option usage", argTag: "<n>"
+        ),
+        OptToGet(
+            .intSpecial(key: .left, name: "left"), .single,
+            usage: "Left margin for help text, this also affects indent and usage", argTag: "<n>"
+        ),
+        OptToGet(
+            .intSpecial(key: .right, name: "right"), .single,
+            usage: "Right margin for help text", argTag: "<n>"
+        ),
+        OptToGet(
+            .intSpecial(key: .usage, name: "usage"), .single,
+            usage: "Left margin for option usage", argTag: "<n>"
+        )
     ]
 
     static internal let svgOpts: OptsToGet = [
-        OptToGet(.css, 1...1, usage: "Include file for css styling", argTag: "<file>"),
-        OptToGet(.cssid, 1...1, usage: "CSS id for SVG", argTag: "<name>"),
-        OptToGet(.hover, usage: "Don't add CSS code to emphasize hovered plots"),
-        OptToGet(.svg, 1...1, usage: "Include file for svg elements", argTag: "<file>")
+        OptToGet(
+            .stringValue(key: .cssInclude, name: "css"), .single,
+            usage: "Include file for css styling", argTag: "<file>"
+        ),
+        OptToGet(
+            .stringValue(key: .cssID, name: "cssid"), .single,
+            usage: "CSS id for <SVG> tag", argTag: "<id>"
+        ),
+        OptToGet(
+            .boolValue(key: .hover, name: "hover"), options: [.flag],
+            usage: "Add CSS code to emphasize hovered plots, nohover to not add"
+        ),
+        OptToGet(
+            .stringValue(key: .svgInclude, name: "svg"), .single,
+            usage: "Include file for svg elements", argTag: "<file>"
+        )
     ]
 
     static internal let commonOpts: OptsToGet = [
-        OptToGet(.bared, 1...1, options: [.includeMinus], usage: "Plots to show as bars", argTag: "<bitmap¹>"),
-        OptToGet(.baroffset, 1...1, usage: "Bar offset (-1 to calculate)", argTag: "<offset>"),
-        OptToGet(.barwidth, 1...1, usage: "Bar width (-1 to calculate)"),
-        OptToGet(.bg, 1...1, usage: "Background colour", argTag: "<colour>"),
-        OptToGet(.bezier, 1...1, usage: "Bézier curve smoothing, 0 means none", argTag: "<n>"),
-        OptToGet(.black, usage: "Set undefined colours to black"),
-        OptToGet(.bold, usage: "Set font-weight to bold"),
-        OptToGet(.colours, 1...255, options: [.multi], usage: "Colours to use for plots", argTag: "<colour>..."),
-        OptToGet(.dashed, 1...1, options: [.includeMinus], usage: "Plots with dashed lines", argTag: "<bitmap¹>"),
-        OptToGet(.dashes, 1...255, usage: "List of plot dash patterns to use", argTag: "<n,n...>..."),
-        OptToGet(.debug, short: "d", 1...1, usage: "Add debug info", argTag: "<bitmap¹>"),
-        OptToGet(.distance, 1...1, usage: "Minimum distance between data points", argTag: "<n>"),
-        OptToGet(.draft, 0...1, usage: "Mark the chart as a draft, argument sets the text", argTag: "[text]"),
-        OptToGet(.filled, 1...1, options: [.includeMinus], usage: "Plots to show filled", argTag: "<bitmap¹>"),
-        OptToGet(.font, 1...1, usage: "Font family", argTag: "<font name>"),
-        OptToGet(.fg, 1...1, usage: "Foreground colour for non-text items", argTag: "<colour>"),
-        OptToGet(.headers, 1...1, usage: "Header rows or columns", argTag: "<n>"),
-        OptToGet(.height, 1...1, usage: "Chart height", argTag: "<n>"),
-        OptToGet(.index, 1...1, usage: "Index row or column", argTag: "<n>"),
-        OptToGet(.italic, usage: "Use an italic font"),
         OptToGet(
-            .include, 1...1, options: [.includeMinus],
+            .intValue(key: .bared, name: "bared"), .single, options: [.includeMinus],
+            usage: "Plots to show as bars", argTag: "<bitmap¹>"
+        ),
+        OptToGet(
+            .doubleValue(key: .barOffset, name: "baroffset"), .single,
+            usage: "Bar offset (-1 to calculate)", argTag: "<offset>"
+        ),
+        OptToGet(
+            .doubleValue(key: .barWidth, name: "barwidth"), .single,
+            usage: "Bar width (-1 to calculate)"
+        ),
+        OptToGet(
+            .stringValue(key: .backgroundColour, name: "bg"), .single,
+            usage: "Background colour", argTag: "<colour>"
+        ),
+        OptToGet(
+            .doubleValue(key: .bezier, name: "bezier"), .single,
+            usage: "Bézier curve smoothing, 0 means none", argTag: "<n>"
+        ),
+        OptToGet(
+            .boolValue(key: .black, name: "black"),
+            usage: "Set undefined colours to black"
+        ),
+        OptToGet(
+            .boolValue(key: .bold, name: "bold"),
+            usage: "Set font-weight to bold"
+        ),
+        OptToGet(
+            .boolValue(key: .bounded, name: "bounds"), options: [.flag],
+            usage: "Check options for bounds, nobounds to not check"
+        ),
+        OptToGet(
+            .stringArray(key: .colours, name: "colours"), .onePlus, options: [.multi],
+            usage: "Colours to use for plots", argTag: "<colour>..."
+        ),
+        OptToGet(
+            .boolValue(key: .comment, name: "comment"), options: [.flag],
+            usage: "Add csv2 comment to plot"
+        ),
+        OptToGet(
+            .intValue(key: .dashedLines, name: "dashed"), .single, options: [.includeMinus],
+            usage: "Plots with dashed lines", argTag: "<bitmap¹>"
+        ),
+        OptToGet(
+            .stringArray(key: .dashes, name: "dashes"), .onePlus,
+            usage: "List of plot dash patterns to use", argTag: "<n,n...>..."
+        ),
+        OptToGet(
+            .intSpecial(key: .debug, name: "debug"), .single,
+            usage: "Add debug info", argTag: "<bitmap¹>"
+        ),
+        OptToGet(
+            .doubleValue(key: .dataPointDistance, name: "distance"), .single,
+            usage: "Minimum distance between data points", argTag: "<n>"
+        ),
+        OptToGet(
+            .stringSpecial(key: .draft, name: "draft"), 0...1,
+            usage: "Mark the chart as a draft, argument sets the text", argTag: "[text]"
+        ),
+        OptToGet(
+            .intValue(key: .filled, name: "filled"), .single, options: [.includeMinus],
+            usage: "Plots to show filled", argTag: "<bitmap¹>"
+        ),
+        OptToGet(
+            .stringValue(key: .fontFamily, name: "font"), .single,
+            usage: "Font family", argTag: "<font name>"
+        ),
+        OptToGet(
+            .stringValue(key: .foregroundColour, name: "fg"), .single,
+            usage: "Foreground colour for non-text items", argTag: "<colour>"
+        ),
+        OptToGet(
+            .intSpecial(key: .headers, name: "headers"), .single,
+            usage: "Header rows or columns", argTag: "<n>"
+        ),
+        OptToGet(
+            .intValue(key: .height, name: "height"), .single,
+            usage: "Chart height", argTag: "<n>"
+        ),
+        OptToGet(
+            .intValue(key: .include, name: "include"), .single, options: [.includeMinus],
             usage: "Plots to include, default all", argTag: "<bitmap¹>"
         ),
-        OptToGet(.logo, 1...1, usage: "Image URL for top right corner", argTag: "<url>"),
-        OptToGet(.logx, usage: "Set abcissa to log"),
-        OptToGet(.logy, usage: "Set ordinate to log"),
-        OptToGet(.nameheader, 1...1, usage: "Plot name row or column", argTag: "<n>"),
-        OptToGet(.names, 1...255, usage: "List of plot names", argTag: "<name>..."),
-        OptToGet(.bounds, usage: "Don't check options for bounds"),
-        OptToGet(.comment, usage: "Don't add csv2 comment to plot"),
-        OptToGet(.legends, usage: "Don't include plot names, colours, dashes and shapes"),
-        OptToGet(.opacity, 1...1, usage: "Opacity for plots"),
-        OptToGet(.pie, usage: "Generate a pie chart"),
         OptToGet(
-            .random, 1...3, options: [.includeMinus],
+            .intValue(key: .index, name: "index"), .single,
+            usage: "Index row or column", argTag: "<n>"
+        ),
+        OptToGet(
+            .boolValue(key: .italic, name: "italic"),
+            usage: "Use an italic font"
+        ),
+        OptToGet(
+            .boolValue(key: .legends, name: "legends"), options: [.flag],
+            usage: "Don't include plot names, colours, dashes and shapes"
+        ),
+        OptToGet(
+            .stringValue(key: .logoURL, name: "logo"), .single,
+            usage: "Image URL for top right corner", argTag: "<url>"
+        ),
+        OptToGet(
+            .boolValue(key: .logx, name: "logx"),
+            usage: "Set abcissa to log"
+        ),
+        OptToGet(
+            .boolValue(key: .logy, name: "logy"),
+            usage: "Set ordinate to log"
+        ),
+        OptToGet(
+            .intValue(key: .nameHeader, name: "nameheader"), .single,
+            usage: "Plot name row or column", argTag: "<n>"
+        ),
+        OptToGet(
+            .stringArray(key: .names, name: "names"), .onePlus,
+            usage: "List of plot names", argTag: "<name>..."
+        ),
+        OptToGet(
+            .doubleValue(key: .opacity, name: "opacity"), .single,
+            usage: "Opacity for plots"
+        ),
+        OptToGet(
+            .boolSpecial(key: .pie, name: "pie"),
+            usage: "Generate a pie chart"
+        ),
+        OptToGet(
+            .intSpecialArray(key: .random, name: "random"), 1...3, options: [.includeMinus],
             usage: "Generate a random SVG with: #plots [max value [min value]]", argTag: "<n [n [n]]>"
         ),
         OptToGet(
-            .reserve, 1...4,
+            .doubleSpecialArray(key: .reserve, name: "reserve"), 1...4,
             usage: "Reserved space on the left [top [right [bottom]]]", argTag: "<n [n [n [n]]]>"
         ),
-        OptToGet(.rows, usage: "Group data by rows"),
         OptToGet(
-            .scattered, 1...1, options: [.includeMinus],
+            .boolValue(key: .rowGrouping, name: "rows"),
+            usage: "Group data by rows"
+        ),
+        OptToGet(
+            .intValue(key: .scatterPlots, name: "scattered"), .single, options: [.includeMinus],
             usage: "Plots to show as scatter plots", argTag: "<bitmap¹>"
         ),
-        OptToGet(.semi, usage: "Use semicolons to seperate columns"),
-        OptToGet(.shapes, 1...255, usage: "List of shapes to use", argTag: "<shape>..."),
         OptToGet(
-            .showpoints, 1...1, options: [.includeMinus],
+            .boolSpecial(key: .semi, name: "semi"),
+            usage: "Use semicolons to seperate columns"
+        ),
+        OptToGet(
+            .stringArray(key: .shapes, name: "shapes"), .onePlus,
+            usage: "List of shapes to use", argTag: "<shape>..."
+        ),
+        OptToGet(
+            .intValue(key: .showDataPoints, name: "showpoints"), .single, options: [.includeMinus],
             usage: "Data plots with points", argTag: "<bitmap¹>"
         ),
-        OptToGet(.size, 1...1, usage: "Base font size", argTag: "<n>"),
-        OptToGet(.smooth, 1...1, usage: "EMA smoothing, 0 means none", argTag: "<n>"),
-        OptToGet(.sortx, usage: "Sort points by the x values before plotting"),
-        OptToGet(.stroke, 1...1, usage: "Stroke width", argTag: "<n>"),
-        OptToGet(.subheader, 1...1, usage: "Sub-title row or column source", argTag: "<n>"),
-        OptToGet(.subtitle, 1...1, usage: "Sub-title", argTag: "<text>"),
-        OptToGet(.textcolour, 1...1, usage: "Foreground text colour", argTag: "<colour>"),
-        OptToGet(.title, 1...1, usage: "Chart title", argTag: "<text>"),
-        OptToGet(.tsv, usage: "Use tabs to seperate columns"),
-        OptToGet(.verbose, usage: "Add extra information"),
-        OptToGet(.width, 1...1, usage: "Chart width", argTag: "<n>"),
-        OptToGet(.xmax, 1...1, usage: "Abscissa maximum", argTag: "<n>"),
-        OptToGet(.xmin, 1...1, usage: "Abscissa minimum", argTag: "<n>"),
-        OptToGet(.xtags, 1...1, usage: "Row or column with abscissa tags", argTag: "<n>"),
-        OptToGet(.xtick, 1...1, usage: "Distance between abcissa ticks", argTag: "<n>"),
-        OptToGet(.ymax, 1...1, usage: "Ordinate maximum", argTag: "<n>"),
-        OptToGet(.ymin, 1...1, usage: "Ordinate minimum", argTag: "<n>"),
-        OptToGet(.ytick, 1...1, usage: "Distance between ordinate ticks", argTag: "<n>"),
-        OptToGet(long: "help", options: [.hidden], tag: Key.help),
-        OptToGet(long: "?", options: [.hidden], tag: Key.help)
+        OptToGet(
+            .doubleValue(key: .baseFontSize, name: "size"), .single,
+            usage: "Base font size", argTag: "<n>"
+        ),
+        OptToGet(
+            .doubleValue(key: .smooth, name: "smooth"), .single,
+            usage: "EMA smoothing, 0 means none", argTag: "<n>"
+        ),
+        OptToGet(
+            .boolValue(key: .sortx, name: "sortx"),
+            usage: "Sort points by the x values before plotting"
+        ),
+        OptToGet(
+            .doubleValue(key: .strokeWidth, name: "stroke"), .single,
+            usage: "Stroke width", argTag: "<n>"
+        ),
+        OptToGet(
+            .intValue(key: .subTitleHeader, name: "subheader"), .single,
+            usage: "Sub-title row or column source", argTag: "<n>"
+        ),
+        OptToGet(
+            .stringValue(key: .subTitle, name: "subtitle"), .single,
+            usage: "Sub-title", argTag: "<text>"
+        ),
+        OptToGet(
+            .stringValue(key: .textcolour, name: "textcolour"), .single,
+            usage: "Foreground text colour", argTag: "<colour>"
+        ),
+        OptToGet(
+            .stringValue(key: .title, name: "title"), .single,
+            usage: "Chart title", argTag: "<text>"
+        ),
+        OptToGet(
+            .boolSpecial(key: .tsv, name: "tsv"),
+            usage: "Use tabs to seperate columns"
+        ),
+        OptToGet(
+            .boolSpecial(key: .verbose, name: "verbose"),
+            usage: "Add extra information"
+        ),
+        OptToGet(
+            .intValue(key: .width, name: "width"), .single,
+            usage: "Chart width", argTag: "<n>"
+        ),
+        OptToGet(
+            .doubleValue(key: .xMax, name: "xmax"), .single,
+            usage: "Abscissa maximum", argTag: "<n>"
+        ),
+        OptToGet(
+            .doubleValue(key: .xMin, name: "xmin"), .single,
+            usage: "Abscissa minimum", argTag: "<n>"
+        ),
+        OptToGet(
+            .intValue(key: .xTags, name: "xtags"), .single,
+            usage: "Row or column with abscissa tags", argTag: "<n>"
+        ),
+        OptToGet(
+            .doubleValue(key: .xTick, name: "xtick"), .single,
+            usage: "Distance between abcissa ticks", argTag: "<n>"
+        ),
+        OptToGet(
+            .doubleValue(key: .yMax, name: "ymax"), .single,
+            usage: "Ordinate maximum", argTag: "<n>"
+        ),
+        OptToGet(
+            .doubleValue(key: .yMin, name: "ymin"), .single,
+            usage: "Ordinate minimum", argTag: "<n>"
+        ),
+        OptToGet(
+            .doubleValue(key: .yTick, name: "ytick"), .single,
+            usage: "Distance between ordinate ticks", argTag: "<n>"
+        ),
+        OptToGet(.boolSpecial(key: .help, name: "help"), options: [.hidden]),
+        OptToGet(.boolSpecial(key: .help, name: "?"), options: [.hidden])
     ]
 
     static internal let positionalOpts: OptsToGet = [

@@ -65,7 +65,7 @@ enum SubCommandType: OptGetterTag {
     }
 }
 
-private let plotCmds: [CmdToGet] = [
+let plotCmds: [CmdToGet] = [
     CmdToGet(["canvas"], tag: MainCommandType.canvas,
              usage: "Generate javascript to draw the chart on a HTML5 canvas."),
     CmdToGet(["pdf"], tag: MainCommandType.pdf,
@@ -76,7 +76,7 @@ private let plotCmds: [CmdToGet] = [
              usage: "Generate an SVG chart.")
 ]
 
-private let plotSubCmds: [CmdToGet] = [
+let plotSubCmds: [CmdToGet] = [
     CmdToGet(["show", "colournames"], tag: SubCommandType.colourNames,
              usage: "Create a chart of all of the colours known to this program."),
     CmdToGet(["show", "colours"], tag: SubCommandType.colours,
@@ -85,7 +85,7 @@ private let plotSubCmds: [CmdToGet] = [
              usage: "Create a chart of the dashes that are user defined as well as those internally defined.")
 ]
 
-private let listCmds: [CmdToGet] = [
+let listCmds: [CmdToGet] = [
     CmdToGet(["bitmap"], tag: ListCommandType.bitmap,
              usage: "Take a list of rows or columns and print the corresponding bitmap"),
     CmdToGet(["list", "colournames"], tag: ListCommandType.listColourNames,
@@ -95,11 +95,13 @@ private let listCmds: [CmdToGet] = [
     CmdToGet(["version"], tag: ListCommandType.version,
              usage: "List the version")
 ]
-private let helpCmds: [CmdToGet] = [
+let helpCmds: [CmdToGet] = [
     CmdToGet(["help", "canvas"], tag: HelpCommandType.helpCanvas,
              usage: "Show help for the canvas chart type."),
     CmdToGet(["help", "commands"], tag: HelpCommandType.helpCommands,
              usage: "Show help on the available commands."),
+    CmdToGet(["help", "json"],
+             usage: "Show help for getting usage as JSON"),
     CmdToGet(["help", "list"], tag: HelpCommandType.helpList,
              usage: "Show help on list commands"),
     CmdToGet(["help", "pdf"], tag: HelpCommandType.helpPdf,

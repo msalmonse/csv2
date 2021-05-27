@@ -31,3 +31,9 @@ extension Data {
         self.append(str.data(using: .utf8) ?? Data())
     }
 }
+
+extension ClosedRange where Bound == UInt8 {
+    static var none: ClosedRange<UInt8> { 0...1 }
+    static var onePlus: ClosedRange<UInt8> { 1...255 }
+    static var single: ClosedRange<UInt8> { 1...1 }
+}
