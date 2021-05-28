@@ -82,6 +82,28 @@ class Settings: Decodable, ReflectedStringConvertible {
         let pdfContainer = try?
             container?.nestedContainer(keyedBy: Settings.CodingKeys.self, forKey: .pdf)
         pdf = Self.jsonPDF(from: pdfContainer, defaults: defaults)
+
+        var values = SettingsValues()
+        for key in CodingKeys.allCases {
+            switch key.codingType {
+            case .isBool:
+                let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val)
+            case .isDouble:
+                let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val)
+            case .isInt:
+                let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val)
+            case .isString:
+                let val = Self.keyedStringSettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val)
+            case .isStringArray:
+                let val = Self.keyedStringArraySettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val)
+            case .isNone: break
+            }
+        }
     }
 
     /// Load contents of file into object

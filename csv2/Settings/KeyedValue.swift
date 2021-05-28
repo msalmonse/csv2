@@ -34,7 +34,23 @@ extension Settings {
         return (try? container!.decodeIfPresent(Bool.self, forKey: key)) ?? defaults.boolValue(key)
     }
 
-    /// Convenience function to decode a keyed Int
+    /// Return decoded Bool as a SettingsValue
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: key
+    ///   - defaults: the command line defaults
+    /// - Returns: decoded or default value as a SettingsValue
+
+    static func keyedBoolSettingsValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys,
+        defaults: Defaults
+    ) -> SettingsValue {
+        let val = keyedBoolValue(from: container, forKey: key, defaults: defaults)
+        return .boolValue(val: val)
+    }
+
+    /// Convenience function to decode a keyed Double
     /// - Parameters:
     ///   - container: decoded data container
     ///   - key: the key into the decoded data
@@ -57,6 +73,22 @@ extension Settings {
             return okVal
         }
         return val
+    }
+
+    /// Return decoded Double as a SettingsValue
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: key
+    ///   - defaults: the command line defaults
+    /// - Returns: decoded or default value as a SettingsValue
+
+    static func keyedDoubleSettingsValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys,
+        defaults: Defaults
+    ) -> SettingsValue {
+        let val = keyedDoubleValue(from: container, forKey: key, defaults: defaults)
+        return .doubleValue(val: val)
     }
 
     /// Convenience function to decode a keyed Int
@@ -82,6 +114,22 @@ extension Settings {
             return okVal
         }
         return val
+    }
+
+    /// Return decoded Int as a SettingsValue
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: key
+    ///   - defaults: the command line defaults
+    /// - Returns: decoded or default value as a SettingsValue
+
+    static func keyedIntSettingsValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys,
+        defaults: Defaults
+    ) -> SettingsValue {
+        let val = keyedIntValue(from: container, forKey: key, defaults: defaults)
+        return .intValue(val: val)
     }
 
     /// Return the string default for the key
@@ -131,6 +179,22 @@ extension Settings {
         return optionalKeyedStringValue(from: container, forKey: key, defaults: defaults) ?? ""
     }
 
+    /// Return decoded String as a SettingsValue
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: key
+    ///   - defaults: the command line defaults
+    /// - Returns: decoded or default value as a SettingsValue
+
+    static func keyedStringSettingsValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys,
+        defaults: Defaults
+    ) -> SettingsValue {
+        let val = keyedStringValue(from: container, forKey: key, defaults: defaults)
+        return .stringValue(val: val)
+    }
+
     /// Convenience function to decode a keyed String Array
     /// - Parameters:
     ///   - container: decoded data container
@@ -154,5 +218,21 @@ extension Settings {
         }
 
         return values
+    }
+
+    /// Return decoded StringArray as a SettingsValue
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: key
+    ///   - defaults: the command line defaults
+    /// - Returns: decoded or default value as a SettingsValue
+
+    static func keyedStringArraySettingsValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys,
+        defaults: Defaults
+    ) -> SettingsValue {
+        let val = keyedStringArray(from: container, forKey: key, defaults: defaults)
+        return .stringArray(val: val)
     }
 }
