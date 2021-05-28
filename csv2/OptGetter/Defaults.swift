@@ -61,38 +61,71 @@ struct Defaults {
         values = SettingsValues(values: initialDefaults)
     }
 
+    /// Should bounds be checked?
     var bounded: Bool {
         get { boolValue(.bounded) }
         set { values.setValue(.bounded, .boolValue(val: newValue)) }
     }
 
+    /// Indicate that a setting was found on the command line
+    /// - Parameter key: key found
+
     mutating func onCLI(_ key: Settings.CodingKeys) {
         onCommandLine.insert(key)
     }
+
+    /// Was a setting found on the command line
+    /// - Parameter key: setting key
+    /// - Returns: true if found
 
     func isOnCLI(_ key: Settings.CodingKeys) -> Bool {
         return onCommandLine.contains(key)
     }
 
+    /// Set a value in the SettingsValues dict
+    /// - Parameters:
+    ///   - key: key into dict
+    ///   - value: value to store
+
     mutating func setValue(_ key: Settings.CodingKeys, _ value: SettingsValue) {
         values.setValue(key, value)
     }
+
+    /// Fetch a Bool value
+    /// - Parameter key: key of value to fetch
+    /// - Returns: Bool value
 
     func boolValue(_ key: Settings.CodingKeys) -> Bool {
         return values.boolValue(key)
     }
 
+    /// Fetch a Double value
+    /// - Parameter key: key of value to fetch
+    /// - Returns: Double value
+
     func doubleValue(_ key: Settings.CodingKeys) -> Double {
         return values.doubleValue(key)
     }
+
+    /// Fetch an Int value
+    /// - Parameter key: key of value to fetch
+    /// - Returns: Int value
 
     func intValue(_ key: Settings.CodingKeys) -> Int {
         return values.intValue(key)
     }
 
+    /// Fetch a String value
+    /// - Parameter key: key of value to fetch
+    /// - Returns: String value
+
     func stringValue(_ key: Settings.CodingKeys) -> String {
         return values.stringValue(key)
     }
+
+    /// Fetch a String array
+    /// - Parameter key: key of array to fetch
+    /// - Returns: String array
 
     func stringArray(_ key: Settings.CodingKeys) -> [String] {
         return values.stringArray(key)

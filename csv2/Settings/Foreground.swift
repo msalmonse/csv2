@@ -57,5 +57,4 @@ extension Settings {
             yTitle: optionalKeyedStringValue(from: container, forKey: .yTitle) ?? text
         )
     }
-
 }

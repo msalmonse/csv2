@@ -87,6 +87,10 @@
 		C4834ADE2637C7D60072C574 /* ChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4834ADC2637C7D60072C574 /* ChartType.swift */; };
 		C48B03912660AA9900C6671F /* DictSetValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B03902660AA9900C6671F /* DictSetValues.swift */; };
 		C48B03922660AA9900C6671F /* DictSetValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B03902660AA9900C6671F /* DictSetValues.swift */; };
+		C48B039426611D3F00C6671F /* Nested.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B039326611D3F00C6671F /* Nested.swift */; };
+		C48B039526611D3F00C6671F /* Nested.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B039326611D3F00C6671F /* Nested.swift */; };
+		C48B039726612F0100C6671F /* GetSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B039626612F0100C6671F /* GetSet.swift */; };
+		C48B039826612F0100C6671F /* GetSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B039626612F0100C6671F /* GetSet.swift */; };
 		C48B723825F28A5E00B0752E /* appinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45053C025F0E865003FC346 /* appinfo.swift */; };
 		C48B822A25E28F7E00EAEAE3 /* csv2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */; };
 		C48B823625E2967100EAEAE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
@@ -270,6 +274,8 @@
 		C482B9FC25EE8D4D00E51A50 /* stderr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stderr.swift; sourceTree = "<group>"; };
 		C4834ADC2637C7D60072C574 /* ChartType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartType.swift; sourceTree = "<group>"; };
 		C48B03902660AA9900C6671F /* DictSetValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictSetValues.swift; sourceTree = "<group>"; };
+		C48B039326611D3F00C6671F /* Nested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nested.swift; sourceTree = "<group>"; };
+		C48B039626612F0100C6671F /* GetSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSet.swift; sourceTree = "<group>"; };
 		C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = csv2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2Tests.swift; sourceTree = "<group>"; };
 		C48B822B25E28F7E00EAEAE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -537,7 +543,9 @@
 				C48B03902660AA9900C6671F /* DictSetValues.swift */,
 				C4C0C48E2612FCC70072699C /* Dimensions.swift */,
 				C4B2F9F62631636C00CC5430 /* Foreground.swift */,
+				C48B039626612F0100C6671F /* GetSet.swift */,
 				C4C0C4892612FBCD0072699C /* KeyedValue.swift */,
+				C48B039326611D3F00C6671F /* Nested.swift */,
 				C49A0DC6264AE19300CF7E22 /* PDFsettings.swift */,
 				C4C0C4A526133E650072699C /* PlotSettings.swift */,
 				C4C0C4AF2613641A0072699C /* PlotterSettings.swift */,
@@ -865,6 +873,7 @@
 				C4C0C4862612E82A0072699C /* CodingKeys.swift in Sources */,
 				C40CD42C25ECD60F003944FA /* Axes.swift in Sources */,
 				C4CF29FC263556B400E858D1 /* Vector.swift in Sources */,
+				C48B039726612F0100C6671F /* GetSet.swift in Sources */,
 				C4CF2A0426368F5600E858D1 /* Pie.swift in Sources */,
 				C4AD7F73265A0E6700CABB29 /* ExecCommand.swift in Sources */,
 				C4C0C48F2612FCC70072699C /* Dimensions.swift in Sources */,
@@ -876,6 +885,7 @@
 				C4EFA4BB2620A92B0026BD9A /* Canvasplotter.swift in Sources */,
 				C402620925FF3E1D0042AEA5 /* XI.swift in Sources */,
 				C49A7EC925EBCE7300503486 /* Text.swift in Sources */,
+				C48B039426611D3F00C6671F /* Nested.swift in Sources */,
 				C49A0DC7264AE19300CF7E22 /* PDFsettings.swift in Sources */,
 				C4C0C49926130F2F0072699C /* CSSsettings.swift in Sources */,
 				C4EFA4B126202C600026BD9A /* Commands.swift in Sources */,
@@ -969,6 +979,7 @@
 				C49A0DC8264AE19300CF7E22 /* PDFsettings.swift in Sources */,
 				C4569DAC2651760400D74DBD /* OptConvertor.swift in Sources */,
 				C4CF2A2C26371B3F00E858D1 /* DoIf.swift in Sources */,
+				C48B039826612F0100C6671F /* GetSet.swift in Sources */,
 				C4C0C4B12613641A0072699C /* PlotterSettings.swift in Sources */,
 				C40CD44225ED2390003944FA /* Plane.swift in Sources */,
 				C4C0C469260F2E530072699C /* SVGstyle.swift in Sources */,
@@ -1012,6 +1023,7 @@
 				C4B2FA062633F3D500CC5430 /* RGBAu8.swift in Sources */,
 				C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */,
 				C4EFA4A7261EEBC50026BD9A /* SVGplotter.swift in Sources */,
+				C48B039526611D3F00C6671F /* Nested.swift in Sources */,
 				C4BDCFBD261EFA0600D8C589 /* Transform.swift in Sources */,
 				C4B2F9C8262C17D100CC5430 /* PNGPlotter.swift in Sources */,
 				C453242625FA2C23007D741C /* DrawShapes.swift in Sources */,

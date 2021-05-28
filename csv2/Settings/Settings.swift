@@ -8,6 +8,9 @@
 import Foundation
 
 class Settings: Decodable, ReflectedStringConvertible {
+    // Storage for settings
+    internal var values: SettingsValues
+
     // Type of chart
     let chartType: ChartType
 
@@ -55,7 +58,7 @@ class Settings: Decodable, ReflectedStringConvertible {
         return ((plot.include >> i) & 1) == 1
     }
 
-    required init(from decoder: Decoder) {
+    required init(from decoder: Decoder) throws {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
 
         var chartType: ChartType = .horizontal
@@ -83,26 +86,34 @@ class Settings: Decodable, ReflectedStringConvertible {
             container?.nestedContainer(keyedBy: Settings.CodingKeys.self, forKey: .pdf)
         pdf = Self.jsonPDF(from: pdfContainer, defaults: defaults)
 
-        var values = SettingsValues()
-        for key in CodingKeys.allCases {
-            switch key.codingType {
-            case .isBool:
-                let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
-                values.setValue(key, val)
-            case .isDouble:
-                let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
-                values.setValue(key, val)
-            case .isInt:
-                let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults)
-                values.setValue(key, val)
-            case .isString:
-                let val = Self.keyedStringSettingsValue(from: container, forKey: key, defaults: defaults)
-                values.setValue(key, val)
-            case .isStringArray:
-                let val = Self.keyedStringArraySettingsValue(from: container, forKey: key, defaults: defaults)
-                values.setValue(key, val)
-            case .isNone: break
+        do {
+            var values = SettingsValues()
+            for key in CodingKeys.allCases {
+                switch key.codingType {
+                case .isBool:
+                    let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
+                    values.setValue(key, val)
+                case .isDouble:
+                    let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
+                    values.setValue(key, val)
+                case .isInt:
+                    let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults)
+                    values.setValue(key, val)
+                case .isString:
+                    let val = Self.keyedStringSettingsValue(from: container, forKey: key, defaults: defaults)
+                    values.setValue(key, val)
+                case .isStringArray:
+                    let val = Self.keyedStringArraySettingsValue(from: container, forKey: key, defaults: defaults)
+                    values.setValue(key, val)
+                case .isNone: break
+                }
             }
+            try Self.loadForeground(from: container, defaults: defaults, into: &values)
+            try Self.loadPDF(from: container, defaults: defaults, into: &values)
+
+             self.values = values
+        } catch {
+            throw error
         }
     }
 

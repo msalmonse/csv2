@@ -73,7 +73,7 @@ struct SettingsValues {
 
     /// Set a value in the values dictionary
     /// - Parameters:
-    ///   - key: key to dict
+    ///   - key: key in domain
     ///   - value: value to insert
     ///   - domain: domain for key
 
@@ -87,7 +87,7 @@ struct SettingsValues {
 
     /// Lookup Bool value
     /// - Parameters:
-    ///   - key: key to dict
+    ///   - key: key in domain
     ///   - domain: domain for key
     /// - Returns: Bool from dict
 
@@ -103,7 +103,7 @@ struct SettingsValues {
 
     /// Lookup Double value
     /// - Parameters:
-    ///   - key: key to dict
+    ///   - key: key in domain
     ///   - domain: domain for key
     /// - Returns: Double from dict
 
@@ -119,7 +119,7 @@ struct SettingsValues {
 
     /// Lookup Int  value
     /// - Parameters:
-    ///   - key: key to dict
+    ///   - key: key in domain
     ///   - domain: domain for key
     /// - Returns: Int from dict
 
@@ -135,7 +135,7 @@ struct SettingsValues {
 
     /// Lookup String value
     /// - Parameters:
-    ///   - key: key to dict
+    ///   - key: key in domain
     ///   - domain: domain for key
     /// - Returns: String from dict
 
@@ -151,7 +151,7 @@ struct SettingsValues {
 
     /// Lookup String Array value
     /// - Parameters:
-    ///   - key: key to dict
+    ///   - key: key in domain
     ///   - domain: domain for key
     /// - Returns: String Array from dict
 
