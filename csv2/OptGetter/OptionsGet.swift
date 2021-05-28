@@ -25,8 +25,8 @@ extension Options {
                 switch key {
                 case .help: helpAndExit()
                 case .pie:
-                    values.values[.chartType] = .stringValue(val: "piechart")
-                    values.onCommandLine.insert(.chartType)
+                    values.setValue(.chartType, .stringValue(val: "piechart"))
+                    values.onCLI(.chartType)
                 case .semi: semi = true
                 case .tsv: tsv = true
                 case .verbose: verbose = true

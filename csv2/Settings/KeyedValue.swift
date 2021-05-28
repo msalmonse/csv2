@@ -30,7 +30,7 @@ extension Settings {
         forKey key: CodingKeys,
         defaults: Defaults
     ) -> Bool {
-        if container == nil || defaults.fromCLI(key) { return defaults.boolValue(key) }
+        if container == nil || defaults.isOnCLI(key) { return defaults.boolValue(key) }
         return (try? container!.decodeIfPresent(Bool.self, forKey: key)) ?? defaults.boolValue(key)
     }
 
@@ -49,7 +49,7 @@ extension Settings {
         in ok: ClosedRange<Double>? = nil
     ) -> Double {
         if container == nil { return defaults.doubleValue(key) }
-        let val = defaults.fromCLI(key) ? defaults.doubleValue(key)
+        let val = defaults.isOnCLI(key) ? defaults.doubleValue(key)
             : (try? container!.decodeIfPresent(Double.self, forKey: key)) ?? defaults.doubleValue(key)
         if defaults.bounded, let ok = ok, !ok.contains(val) {
             let okVal = Defaults.initial.doubleValue(key)
@@ -74,7 +74,7 @@ extension Settings {
         in ok: ClosedRange<Int>? = nil
     ) -> Int {
         if container == nil { return defaults.intValue(key) }
-        let val = defaults.fromCLI(key) ? defaults.intValue(key)
+        let val = defaults.isOnCLI(key) ? defaults.intValue(key)
             : (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? defaults.intValue(key)
         if defaults.bounded, let ok = ok, !ok.contains(val) {
             let okVal = Defaults.initial.intValue(key)
@@ -110,7 +110,7 @@ extension Settings {
         forKey key: CodingKeys,
         defaults: Defaults? = nil
     ) -> String? {
-        if container == nil || (defaults != nil && defaults!.fromCLI(key)) {
+        if container == nil || (defaults != nil && defaults!.isOnCLI(key)) {
             return stringDefault(key, defaults)
         }
         return (try? container!.decodeIfPresent(String.self, forKey: key)) ?? stringDefault(key, defaults)
@@ -143,7 +143,7 @@ extension Settings {
         forKey key: CodingKeys,
         defaults: Defaults
     ) -> [String] {
-        if container == nil || defaults.fromCLI(key) {
+        if container == nil || defaults.isOnCLI(key) {
             return defaults.stringArray(key)
         }
         var values: [String] = []

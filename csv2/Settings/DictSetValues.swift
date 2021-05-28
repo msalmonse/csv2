@@ -42,18 +42,57 @@ enum SettingsValue: Equatable {
     }
 }
 
+enum DomainKey {
+    case foreground
+    case pdf
+    case topLevel
+}
+
+struct CombinedKey: Hashable {
+    let domain: DomainKey
+    let key: Settings.CodingKeys
+}
+
 typealias SettingsDict = [Settings.CodingKeys: SettingsValue]
+typealias DomainDict = [CombinedKey: SettingsValue]
 typealias SettingsSet = Set<Settings.CodingKeys>
 
 struct SettingsValues {
-    var values: SettingsDict = [:]
+    private var values: DomainDict = [:]
 
-    mutating func setValue(_ key: Settings.CodingKeys, _ value: SettingsValue) {
-        values[key] = value
+    /// Initialize dictionary
+    /// - Parameters:
+    ///   - values: the initial values
+    ///   - domain: domain for values
+
+    init(values: SettingsDict = [:], in domain: DomainKey = .topLevel) {
+        for (key, val) in values {
+            self.values[CombinedKey(domain: domain, key: key)] = val
+        }
     }
-    
-    func boolValue(_ key: Settings.CodingKeys) -> Bool {
-        let keyVal = values[key] ?? .boolFalse
+
+    /// Set a value in the values dictionary
+    /// - Parameters:
+    ///   - key: key to dict
+    ///   - value: value to insert
+    ///   - domain: domain for key
+
+    mutating func setValue(
+        _ key: Settings.CodingKeys,
+        _ value: SettingsValue,
+        in domain: DomainKey = .topLevel
+    ) {
+        values[CombinedKey(domain: domain, key: key)] = value
+    }
+
+    /// Lookup Bool value
+    /// - Parameters:
+    ///   - key: key to dict
+    ///   - domain: domain for key
+    /// - Returns: Bool from dict
+
+    func boolValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Bool {
+        let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .boolFalse
         switch keyVal {
         case .boolValue(let val): return val
         default:
@@ -62,8 +101,14 @@ struct SettingsValues {
         }
     }
 
-    func doubleValue(_ key: Settings.CodingKeys) -> Double {
-        let keyVal = values[key] ?? .doubleZero
+    /// Lookup Double value
+    /// - Parameters:
+    ///   - key: key to dict
+    ///   - domain: domain for key
+    /// - Returns: Double from dict
+
+    func doubleValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Double {
+        let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .doubleZero
         switch keyVal {
         case .doubleValue(let val): return val
         default:
@@ -72,8 +117,14 @@ struct SettingsValues {
         }
     }
 
-    func intValue(_ key: Settings.CodingKeys) -> Int {
-        let keyVal = values[key] ?? .intZero
+    /// Lookup Int  value
+    /// - Parameters:
+    ///   - key: key to dict
+    ///   - domain: domain for key
+    /// - Returns: Int from dict
+
+    func intValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Int {
+        let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .intZero
         switch keyVal {
         case .intValue(let val): return val
         default:
@@ -82,8 +133,14 @@ struct SettingsValues {
         }
     }
 
-    func stringValue(_ key: Settings.CodingKeys) -> String {
-        let keyVal = values[key] ?? .stringEmpty
+    /// Lookup String value
+    /// - Parameters:
+    ///   - key: key to dict
+    ///   - domain: domain for key
+    /// - Returns: String from dict
+
+    func stringValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> String {
+        let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .stringEmpty
         switch keyVal {
         case .stringValue(let val): return val
         default:
@@ -92,8 +149,14 @@ struct SettingsValues {
         }
     }
 
-    func stringArray(_ key: Settings.CodingKeys) -> [String] {
-        let keyVal = values[key] ?? .stringArrayEmpty
+    /// Lookup String Array value
+    /// - Parameters:
+    ///   - key: key to dict
+    ///   - domain: domain for key
+    /// - Returns: String Array from dict
+
+    func stringArray(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> [String] {
+        let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .stringArrayEmpty
         switch keyVal {
         case .stringArray(let val): return val
         default:

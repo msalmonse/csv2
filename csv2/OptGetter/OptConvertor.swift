@@ -17,8 +17,8 @@ extension Options {
 
     @discardableResult
     mutating func setBool(_ val: Bool, key: Settings.CodingKeys) -> Bool {
-        values.onCommandLine.insert(key)
-        values.values[key] = .boolValue(val: val)
+        values.onCLI(key)
+        values.setValue(key, .boolValue(val: val))
         return val
     }
 
@@ -32,8 +32,8 @@ extension Options {
     mutating func setDouble(_ val: OptValueAt, key: Settings.CodingKeys) throws -> Double {
         do {
             let dVal = try val.doubleValue()
-            values.onCommandLine.insert(key)
-            values.values[key] = .doubleValue(val: dVal)
+            values.onCLI(key)
+            values.setValue(key, .doubleValue(val: dVal))
             return dVal
         } catch {
             throw error
@@ -50,8 +50,8 @@ extension Options {
     mutating func setInt(_ val: OptValueAt, key: Settings.CodingKeys) throws -> Int {
         do {
             let iVal = try val.intValue()
-            values.onCommandLine.insert(key)
-            values.values[key] = .intValue(val: iVal)
+            values.onCLI(key)
+            values.setValue(key, .intValue(val: iVal))
             return iVal
         } catch {
             throw error
@@ -66,8 +66,8 @@ extension Options {
     @discardableResult
     mutating func setString(_ val: OptValueAt, key: Settings.CodingKeys) -> String {
         let sVal = val.stringValue()
-        values.onCommandLine.insert(key)
-        values.values[key] = .stringValue(val: sVal)
+        values.onCLI(key)
+        values.setValue(key, .stringValue(val: sVal))
         return sVal
     }
 
@@ -79,8 +79,8 @@ extension Options {
     @discardableResult
     mutating func setStringArray(_ vals: OptValuesAt, key: Settings.CodingKeys) -> [String] {
         let sVals = OptValueAt.stringArray(vals)
-        values.onCommandLine.insert(key)
-        values.values[key] = .stringArray(val: sVals)
+        values.onCLI(key)
+        values.setValue(key, .stringArray(val: sVals))
         return sVals
     }
 }

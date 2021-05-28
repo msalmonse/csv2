@@ -52,10 +52,10 @@ struct Defaults {
     static let strokeWidthBounds = 0.1...100.0
 
     // Default values
-    var values: SettingsValues
+    private var values: SettingsValues
 
     // This set is used to tag those values set on the command line
-    var onCommandLine: SettingsSet = []
+    private var onCommandLine: SettingsSet = []
 
     init() {
         values = SettingsValues(values: initialDefaults)
@@ -66,8 +66,16 @@ struct Defaults {
         set { values.setValue(.bounded, .boolValue(val: newValue)) }
     }
 
-    func fromCLI(_ key: Settings.CodingKeys) -> Bool {
+    mutating func onCLI(_ key: Settings.CodingKeys) {
+        onCommandLine.insert(key)
+    }
+
+    func isOnCLI(_ key: Settings.CodingKeys) -> Bool {
         return onCommandLine.contains(key)
+    }
+
+    mutating func setValue(_ key: Settings.CodingKeys, _ value: SettingsValue) {
+        values.setValue(key, value)
     }
 
     func boolValue(_ key: Settings.CodingKeys) -> Bool {
