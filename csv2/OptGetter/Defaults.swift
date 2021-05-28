@@ -7,45 +7,7 @@
 
 import Foundation
 
-/// Holder for default values
-
-enum DefaultValues: Equatable {
-    case boolValue(val: Bool)
-    case doubleValue(val: Double)
-    case intValue(val: Int)
-    case stringArray(val: [String])
-    case stringValue(val: String)
-
-    static let boolFalse = Self.boolValue(val: false)
-    static let boolTrue = Self.boolValue(val: true)
-    static let doubleMax = Self.doubleValue(val: Defaults.maxDefault)
-    static let doubleMin = Self.doubleValue(val: Defaults.minDefault)
-    static let doubleMinusOne = Self.doubleValue(val: -1.0)
-    static let doubleZero = Self.doubleValue(val: 0.0)
-    static let intMinusOne = Self.intValue(val: -1)
-    static let intZero = Self.intValue(val: 0)
-    static let stringArrayEmpty = Self.stringArray(val: [])
-    static let stringEmpty = Self.stringValue(val: "")
-
-    func unexpectedValue(expected: String, for key: Settings.CodingKeys) {
-        func printGot(_ got: String) {
-            print("Expected \(expected) but got \(got) for key: \(key)", to: &standardError)
-        }
-
-        switch self {
-        case .boolValue: printGot("Bool")
-        case .doubleValue: printGot("Double")
-        case .intValue: printGot("Int")
-        case .stringArray: printGot("String Array")
-        case .stringValue: printGot("String")
-        }
-    }
-}
-
-typealias DefaultDict = [Settings.CodingKeys: DefaultValues]
-typealias SettingsSet = Set<Settings.CodingKeys>
-
-private let globalDefaults: DefaultDict = [
+private let initialDefaults: SettingsDict = [
     .backgroundColour: .stringValue(val: "clear"),
     .barOffset: .doubleMinusOne,
     .barWidth: .doubleMinusOne,
@@ -74,6 +36,7 @@ private let globalDefaults: DefaultDict = [
     .yMax: .doubleMax,
     .yMin: .doubleMin
 ]
+
 // App defaults
 
 struct Defaults {
@@ -89,14 +52,18 @@ struct Defaults {
     static let strokeWidthBounds = 0.1...100.0
 
     // Default values
-    var values = globalDefaults
+    var values: SettingsValues
 
     // This set is used to tag those values set on the command line
     var onCommandLine: SettingsSet = []
 
+    init() {
+        values = SettingsValues(values: initialDefaults)
+    }
+
     var bounded: Bool {
         get { boolValue(.bounded) }
-        set { values[.bounded] = .boolValue(val: newValue) }
+        set { values.setValue(.bounded, .boolValue(val: newValue)) }
     }
 
     func fromCLI(_ key: Settings.CodingKeys) -> Bool {
@@ -104,54 +71,24 @@ struct Defaults {
     }
 
     func boolValue(_ key: Settings.CodingKeys) -> Bool {
-        let keyVal = values[key] ?? .boolFalse
-        switch keyVal {
-        case .boolValue(let val): return val
-        default:
-            keyVal.unexpectedValue(expected: "Bool", for: key)
-            return false
-        }
+        return values.boolValue(key)
     }
 
     func doubleValue(_ key: Settings.CodingKeys) -> Double {
-        let keyVal = values[key] ?? .doubleZero
-        switch keyVal {
-        case .doubleValue(let val): return val
-        default:
-            keyVal.unexpectedValue(expected: "Double", for: key)
-            return 0.0
-        }
+        return values.doubleValue(key)
     }
 
     func intValue(_ key: Settings.CodingKeys) -> Int {
-        let keyVal = values[key] ?? .intZero
-        switch keyVal {
-        case .intValue(let val): return val
-        default:
-            keyVal.unexpectedValue(expected: "Int", for: key)
-            return 0
-        }
+        return values.intValue(key)
     }
 
     func stringValue(_ key: Settings.CodingKeys) -> String {
-        let keyVal = values[key] ?? .stringEmpty
-        switch keyVal {
-        case .stringValue(let val): return val
-        default:
-            keyVal.unexpectedValue(expected: "String", for: key)
-            return ""
-        }
+        return values.stringValue(key)
     }
 
     func stringArray(_ key: Settings.CodingKeys) -> [String] {
-        let keyVal = values[key] ?? .stringArrayEmpty
-        switch keyVal {
-        case .stringArray(let val): return val
-        default:
-            keyVal.unexpectedValue(expected: "String Array", for: key)
-            return []
-        }
+        return values.stringArray(key)
     }
 
-    static var global = Defaults()
+    static var initial = Defaults()
 }

@@ -52,7 +52,7 @@ extension Settings {
         let val = defaults.fromCLI(key) ? defaults.doubleValue(key)
             : (try? container!.decodeIfPresent(Double.self, forKey: key)) ?? defaults.doubleValue(key)
         if defaults.bounded, let ok = ok, !ok.contains(val) {
-            let okVal = Defaults.global.doubleValue(key)
+            let okVal = Defaults.initial.doubleValue(key)
             outOfRange(val: "\(val)", range: "\(ok)", substitute: "\(okVal)", key: key)
             return okVal
         }
@@ -77,7 +77,7 @@ extension Settings {
         let val = defaults.fromCLI(key) ? defaults.intValue(key)
             : (try? container!.decodeIfPresent(Int.self, forKey: key)) ?? defaults.intValue(key)
         if defaults.bounded, let ok = ok, !ok.contains(val) {
-            let okVal = Defaults.global.intValue(key)
+            let okVal = Defaults.initial.intValue(key)
             outOfRange(val: "\(val)", range: "\(ok)", substitute: "\(okVal)", key: key)
             return okVal
         }
