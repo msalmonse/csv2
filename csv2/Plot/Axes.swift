@@ -149,7 +149,7 @@ extension Plot {
     func yTick() {
         var tickPath = Path()
         var tick = tickNorm(
-            settings.dim.yTick,
+            settings.doubleValue(.yTick),
             dpp: dataPlane.height/plotPlane.height,
             minSize: labelSize * 1.25,
             maxSize: plotPlane.height/5.0,

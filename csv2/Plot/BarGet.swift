@@ -16,20 +16,25 @@ extension Plot {
 
     func barGet(_ xi: [XIvalue]) -> Bar? {
         if Bar.count <= 0 { return nil }
-        if settings.plot.barOffset >= 0.0 && settings.plot.barWidth > 0.0 {
-            return Bar(offset: settings.plot.barOffset, width: settings.plot.barWidth)
-        } else if settings.plot.barOffset >= 6.0 {
-            return Bar(offset: settings.plot.barOffset, width: settings.plot.barOffset - 2.0)
+        let barOffset = settings.doubleValue(.barOffset)
+        let barWidth = settings.doubleValue(.barWidth)
+        let inRows = settings.boolValue(.rowGrouping)
+        let headers = settings.intValue(inRows ? .headerRows : .headerColumns)
+
+        if barOffset >= 0.0 && barWidth > 0.0 {
+            return Bar(offset: barOffset, width: barWidth)
+        } else if barOffset >= 6.0 {
+            return Bar(offset: barOffset, width: barOffset - 2.0)
         }
-        let minδx = Bar.minSpan(xi, first: settings.headers)
+        let minδx = Bar.minSpan(xi, first: headers)
         if minδx < 0.0 { return nil }
         let minδpixels = ts.xpos(minδx) - point00.x
         if !Bar.spanOK(minδpixels) { return nil }
-        if settings.plot.barOffset >= 0.0 {
-            return Bar(offset: settings.plot.barOffset, width: minδpixels - settings.plot.barOffset - 2.0)
-        } else if settings.plot.barWidth > 0.0 {
-            let offset = minδpixels/Double(Bar.count) - settings.plot.barWidth
-            return Bar(offset: offset, width: settings.plot.barWidth)
+        if barOffset >= 0.0 {
+            return Bar(offset: barOffset, width: minδpixels - barOffset - 2.0)
+        } else if barWidth > 0.0 {
+            let offset = minδpixels/Double(Bar.count) - barWidth
+            return Bar(offset: offset, width: barWidth)
         }
         return Bar(pixels: minδpixels)
     }
