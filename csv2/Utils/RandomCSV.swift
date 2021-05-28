@@ -24,8 +24,10 @@ func randomCSV(_ opts: Options, _ settings: Settings?) -> String {
             max = 500
             min = -500
         } else {
-            max = settings!.dim.yMax != Defaults.maxDefault ? settings!.dim.yMax : settings!.height
-            min = settings!.dim.yMin != Defaults.minDefault ? settings!.dim.yMin : -max
+            max = settings!.doubleValue(.yMax) != Defaults.maxDefault
+                ? settings!.doubleValue(.yMax) : Double(settings!.intValue(.height))
+            min = settings!.doubleValue(.yMin) != Defaults.minDefault
+                ? settings!.doubleValue(.yMin) : -max
         }
     }
 

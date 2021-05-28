@@ -33,7 +33,7 @@ extension ChartType {
         switch self {
         case .horizontal: return Sides.fromData(csv, settings)
         case .pieChart:
-            return Plane(left: -0.5, top: 2.0, height: -2, width: csv.rowCt - settings.csv.headerRows)
+            return Plane(left: -0.5, top: 2.0, height: -2, width: csv.rowCt - settings.intValue(.headerRows))
         default: return Plane(top: 0.0, bottom: 0.0, left: 0.0, right: 0.0)
         }
     }

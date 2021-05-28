@@ -12,7 +12,7 @@ class SVG: Plotter, ReflectedStringConvertible {
     var data = Data()
 
     // plot widths
-    var strokeWidth: Double { settings.css.strokeWidth }
+    let strokeWidth: Double
     var shapeWidth: Double { strokeWidth * 1.75 }
 
     let settings: Settings
@@ -29,8 +29,9 @@ class SVG: Plotter, ReflectedStringConvertible {
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
     var svgTag: String {
         String(
-                format: "<svg %@ width=\"%.0f\" height=\"%.0f\" xmlns=\"http://www.w3.org/2000/svg\">\n",
-            svgID != "none" ? "id=\"\(svgID)\"" : "" , settings.width, settings.height
+                format: "<svg %@ width=\"%d\" height=\"%d\" xmlns=\"http://www.w3.org/2000/svg\">\n",
+            svgID != "none" ? "id=\"\(svgID)\"" : "" ,
+            settings.intValue(.width), settings.intValue(.height)
         )
     }
     let svgTagEnd = "\n</svg>\n"
@@ -44,10 +45,12 @@ class SVG: Plotter, ReflectedStringConvertible {
 
     init(_ settings: Settings) {
         self.settings = settings
-        svgID = settings.css.id.hasContent ? settings.css.id
+        let cssID = settings.stringValue(.cssID)
+        svgID = cssID.hasContent ? cssID
             : "ID-\(Int.random(in: 1...(1 << 24)).x0(6))"
-        height = settings.height
-        width = settings.width
+        height = Double(settings.intValue(.height))
+        strokeWidth = settings.doubleValue(.strokeWidth)
+        width = Double(settings.intValue(.width))
     }
 
     /// Generate the defs element
@@ -79,9 +82,9 @@ class SVG: Plotter, ReflectedStringConvertible {
     func logoImage(positions: Positions) {
         let x = positions.logoX
         let y = positions.logoY
-        let h = settings.plotter.logoHeight
-        let w = settings.plotter.logoWidth
-        let url = settings.plotter.logoURL
+        let h = settings.doubleValue(.logoHeight)
+        let w = settings.doubleValue(.logoWidth)
+        let url = settings.stringValue(.logoURL)
         data.append("""
             <image \(xy(x,y)) \(wh(w,h)) href="\(url)" class="logo" preserveAspectRatio="xMaxYMin" />
             """

@@ -30,7 +30,7 @@ extension SVG {
             let fill = styles.options[.stroked] ? "none" : clr
             var fam = ""
             if let styFam = styles.fontFamily {
-                if settings.css.fontFamily != styFam {
+                if settings.stringValue(.fontFamily) != styFam {
                     fam = "font-family: \(styFam);"
                 }
             }
@@ -87,11 +87,12 @@ extension SVG {
     /// - Parameter result: where to add styles
 
     private func cssIncludes(_ result: inout [String]) {
-        if settings.css.extras.hasEntries {
-            result.append("<style>\n" + settings.css.extras.joined(separator: "\n") + "</style>\n")
+        let extras = settings.stringArray(.cssExtras)
+        if extras.hasEntries {
+            result.append("<style>\n" + extras.joined(separator: "\n") + "</style>\n")
         }
 
-        if let url = SearchPath.search(settings.css.include), let include = try? String(contentsOf: url) {
+        if let url = SearchPath.search(settings.stringValue(.include)), let include = try? String(contentsOf: url) {
             result.append("<style>\n" + include + "</style>")
         }
     }
@@ -102,7 +103,8 @@ extension SVG {
     ///   - id: id for svg
 
     private func cssBG(_ result: inout [String], id: String) {
-        let bg = settings.css.backgroundColour.isEmpty ? "transparent" : settings.css.backgroundColour
+        let bgSetting = settings.stringValue(.backgroundColour)
+        let bg = bgSetting.isEmpty ? "transparent" : bgSetting
         result.append("svg\(id) { background-color: \(bg) }")
 
         // some backgrounds for colour lists
@@ -119,8 +121,8 @@ extension SVG {
         let id = hashID
         var result: [String] = ["<style>"]
         cssBG(&result, id: id)
-        result.append("\(id) g.plotarea { opacity: \(settings.css.opacity.f(1)) }")
-        if settings.css.hover {
+        result.append("\(id) g.plotarea { opacity: \(settings.doubleValue(.opacity).f(1)) }")
+        if settings.boolValue(.hover) {
             result.append("\(id) g.plotarea path:hover { stroke-width: \((strokeWidth * 2.5).f(1)) }")
         }
         result.append(
@@ -136,9 +138,12 @@ extension SVG {
         result.append("\(id) path.ylabel { stroke: \(colour); stroke-width: 1 }")
 
         var textCSS: [String] = []
-        if settings.css.fontFamily.hasContent { textCSS.append("font-family: \(settings.css.fontFamily)") }
-        if settings.css.bold { textCSS.append("font-weight: bold") }
-        if settings.css.italic { textCSS.append("font-style: italic") }
+        if settings.stringValue(.fontFamily).hasContent {
+            textCSS.append("font-family: \(settings.stringValue(.fontFamily))")
+
+        }
+        if settings.boolValue(.bold) { textCSS.append("font-weight: bold") }
+        if settings.boolValue(.italic) { textCSS.append("font-style: italic") }
         if textCSS.hasEntries { result.append("\(id) text { " + textCSS.joined(separator: ";") + " }") }
 
         // Font settings

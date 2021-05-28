@@ -14,49 +14,10 @@ class Settings: Decodable, ReflectedStringConvertible {
     // Type of chart
     let chartType: ChartType
 
-    // CSS settings
-    let css: Settings.CSS
-
-    // CSV related settings
-    let csv: Settings.CSV
-
-    // Dimension settings
-    let dim: Settings.Dimensions
-
-    // Foreground colour settings
-    let fg: Settings.ForegroundColours
-
-    // PDF related settings
-    let pdf: Settings.PDF
-
-    // Plot related settings
-    let plot: Settings.Plot
-
-    // Plotter related settings
-    let plotter: Settings.Plotter
-
-    // svg width and height
-    var height: Double { return Double(dim.height) }
-    var width: Double { return Double(dim.width) }
-
-    // Header rows and columns
-    var headers: Int { return inColumns ? csv.headerRows : csv.headerColumns }
-
-    var inColumns: Bool { return !csv.rowGrouping }
-    var inRows: Bool { return csv.rowGrouping }
-
     // Text to use in comments
     let comment = """
         Created by \(AppInfo.name): \(AppInfo.version) (\(AppInfo.branch):\(AppInfo.build)) \(AppInfo.origin)
         """
-
-        /// Check if a row or column is included
-    /// - Parameter i: row or column number
-    /// - Returns: true if included
-
-    func included(_ i: Int) -> Bool {
-        return ((plot.include >> i) & 1) == 1
-    }
 
     required init(from decoder: Decoder) throws {
         let container = try? decoder.container(keyedBy: CodingKeys.self)
@@ -72,19 +33,6 @@ class Settings: Decodable, ReflectedStringConvertible {
 
         // Although this is a Defaults property it can be loaded from the JSON file
         defaults.bounded = Self.keyedBoolValue(from: container, forKey: .bounded, defaults: defaults)
-        css = Self.jsonCSS(from: container, defaults: defaults)
-        csv = Self.jsonCSV(from: container, defaults: defaults)
-        dim = Self.jsonDimensions(from: container, defaults: defaults)
-        plot = Self.jsonPlot(from: container, defaults)
-        plotter = Self.jsonPlotter(from: container, defaults: defaults)
-
-        let fgContainer = try?
-            container?.nestedContainer(keyedBy: Settings.CodingKeys.self, forKey: .foregroundColours)
-        fg = Self.jsonForegroundColours(from: fgContainer, defaults: defaults)
-
-        let pdfContainer = try?
-            container?.nestedContainer(keyedBy: Settings.CodingKeys.self, forKey: .pdf)
-        pdf = Self.jsonPDF(from: pdfContainer, defaults: defaults)
 
         do {
             var values = SettingsValues()

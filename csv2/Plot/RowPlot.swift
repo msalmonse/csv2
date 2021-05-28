@@ -13,7 +13,7 @@ extension Plot {
     /// - Returns: An array of the path elements for the columns
 
     func rowPlot() {
-        let xiValues = settings.plot.sortx ? xiList().sorted() : xiList()
+        let xiValues = settings.boolValue(.sortx) ? xiList().sorted() : xiList()
         let bar = barGet(xiValues)
         for i in 0..<csv.rowCt where i != index && stylesList.plots[i].options[.included] {
             let yValues = csv.rowValues(i)

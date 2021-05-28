@@ -17,13 +17,14 @@ extension PDF {
     }
 
     func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
-        if settings.plotter.logoURL.hasContent {
+        let logoURL = settings.stringValue(.logoURL)
+        if settings.stringValue(.logoURL).hasContent {
             let logoPlane = Plane(
                 left: positions.logoX, top: positions.logoY,
-                height: settings.plotter.logoHeight,
-                width: settings.plotter.logoWidth
+                height: settings.doubleValue(.logoHeight),
+                width: settings.doubleValue(.logoWidth)
             )
-            page.add(action: .logo(logoPlane: logoPlane, from: settings.plotter.logoURL))
+            page.add(action: .logo(logoPlane: logoPlane, from: logoURL))
         }
     }
 

@@ -8,7 +8,7 @@
 import Foundation
 
 extension Settings {
-    
+
     /// Set a value in the SettingsValues dict
     /// - Parameters:
     ///   - key: key in domain

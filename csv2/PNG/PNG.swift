@@ -25,11 +25,11 @@ class PNG: Plotter {
 
     init(_ settings: Settings) {
         self.settings = settings
-        height = settings.height
-        width = settings.width
+        height = Double(settings.intValue(.height))
+        width = Double(settings.intValue(.width))
 
         image = NSImage(size: NSSize(width: width, height: height))
-        let bg = RGBAu8(settings.css.backgroundColour, or: .white)
+        let bg = RGBAu8(settings.stringValue(.backgroundColour), or: .white)
 
         image.lockFocus()
         ctx = NSGraphicsContext.current!.cgContext
