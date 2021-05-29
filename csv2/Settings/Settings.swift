@@ -43,45 +43,41 @@ class Settings: Decodable, ReflectedStringConvertible {
         // Although this is a Defaults property it can be loaded from the JSON file
         defaults.bounded = Self.keyedBoolValue(from: container, forKey: .bounded, defaults: defaults)
 
-        do {
-            var values = SettingsValues()
-            for key in CodingKeys.allCases {
-                switch key.codingType {
-                case .isBool:
-                    let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
-                    values.setValue(key, val)
-                case .isDouble:
-                    let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
-                    values.setValue(key, val)
-                case .isInt:
-                    let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults)
-                    values.setValue(key, val)
-                case .isInt1:
-                    let val = Self.keyedInt1SettingsValue(from: container, forKey: key, defaults: defaults)
-                    values.setValue(key, val)
-                case .isString:
-                    let val = Self.keyedStringSettingsValue(from: container, forKey: key, defaults: defaults)
-                    values.setValue(key, val)
-                case .isStringArray:
-                    let val = Self.keyedStringArraySettingsValue(from: container, forKey: key, defaults: defaults)
-                    values.setValue(key, val)
-                case .isNone: break
-                }
+        var values = SettingsValues()
+        for key in CodingKeys.allCases {
+            switch key.codingType {
+            case .isBool:
+                let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val)
+            case .isDouble:
+                let val = Self.keyedDoubleSettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val)
+            case .isInt:
+                let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val)
+            case .isInt1:
+                let val = Self.keyedInt1SettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val)
+            case .isString:
+                let val = Self.keyedStringSettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val)
+            case .isStringArray:
+                let val = Self.keyedStringArraySettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val)
+            case .isNone: break
             }
-            try Self.loadForeground(from: container, defaults: defaults, into: &values)
-            try Self.loadPDF(from: container, defaults: defaults, into: &values)
-
-            inRows = values.boolValue(.rowGrouping)
-            headers = values.intValue(inRows ? .headerRows : .headerColumns)
-            index = values.intValue(.index)
-            height = Double(values.intValue(.height))
-            width = Double(values.intValue(.width))
-            strokeWidth = values.doubleValue(.strokeWidth)
-
-            self.values = values
-        } catch {
-            throw error
         }
+        Self.loadForeground(from: container, defaults: defaults, into: &values)
+        Self.loadPDF(from: container, defaults: defaults, into: &values)
+
+        inRows = values.boolValue(.rowGrouping)
+        headers = values.intValue(inRows ? .headerRows : .headerColumns)
+        index = values.intValue(.index)
+        height = Double(values.intValue(.height))
+        width = Double(values.intValue(.width))
+        strokeWidth = values.doubleValue(.strokeWidth)
+
+        self.values = values
     }
 
     /// Load contents of file into object

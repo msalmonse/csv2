@@ -29,7 +29,7 @@ enum SettingsValue: Equatable {
 
     func unexpectedValue(expected: String, for key: Settings.CodingKeys) {
         func printGot(_ got: String) {
-            print("Expected \(expected) but got \(got) for key: \(key)", to: &standardError)
+            print("Expected \(expected) but got \(got) for key: \(key.name)", to: &standardError)
         }
 
         switch self {

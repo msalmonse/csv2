@@ -92,7 +92,8 @@ extension SVG {
             result.append("<style>\n" + extras.joined(separator: "\n") + "</style>\n")
         }
 
-        if let url = SearchPath.search(settings.stringValue(.include)), let include = try? String(contentsOf: url) {
+        if let url = SearchPath.search(settings.stringValue(.cssInclude)),
+           let include = try? String(contentsOf: url) {
             result.append("<style>\n" + include + "</style>")
         }
     }

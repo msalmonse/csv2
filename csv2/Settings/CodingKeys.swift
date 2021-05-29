@@ -119,8 +119,8 @@ extension Settings {
             case .chartType: return .isString
             case .colours: return .isStringArray
             case .comment: return .isBool
-            case .cssClasses: return .isString
-            case .cssExtras: return .isString
+            case .cssClasses: return .isStringArray
+            case .cssExtras: return .isStringArray
             case .cssID: return .isString
             case .cssInclude: return .isString
             case .dashedLines: return .isInt
@@ -151,9 +151,9 @@ extension Settings {
             case .names: return .isStringArray
             case .opacity: return .isDouble
             case .pdf: return .isNone
-            case .pieLabel: return .isString
+            case .pieLabel: return .isBool
             case .pieLegend: return .isString
-            case .pieSubLegend: return .isString
+            case .pieSubLegend: return .isBool
             case .pieSubLegendPrefix: return .isString
             case .pieSubLegendSuffix: return .isString
             case .reserveBottom: return .isDouble
@@ -186,7 +186,7 @@ extension Settings {
             case .yMax: return .isDouble
             case .yMin: return .isDouble
             case .yTick: return .isDouble
-            case .yTitle: return .isDouble
+            case .yTitle: return .isString
             }
         }
     }

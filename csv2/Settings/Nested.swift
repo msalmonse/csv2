@@ -25,19 +25,17 @@ extension Settings {
     ///   - container: JSON container
     ///   - defaults: default values
     ///   - values: storage for values
-    /// - Throws: `DecodingError.typeMismatch`
 
     static func loadForeground(
         from container: KeyedDecodingContainer<CodingKeys>?,
         defaults: Defaults,
         into values: inout SettingsValues
-    ) throws {
+    ) {
         let fg = defaults.stringValue(.foregroundColour)
         let text = defaults.stringValue(.textcolour)
         let pieText = optionalKeyedStringValue(from: container, forKey: .pieLegend) ?? text
         let pieLabel = RGBAu8(pieText, or: .black).clamped(opacity: 0.75).cssRGBA
-        do {
-            let nested = try container?.nestedContainer(keyedBy: CodingKeys.self, forKey: .foregroundColours)
+        if let nested = try? container?.nestedContainer(keyedBy: CodingKeys.self, forKey: .foregroundColours) {
             loadOne(from: nested, for: .axes, in: .foreground, or: fg, into: &values)
             loadOne(from: nested, for: .draft, in: .foreground, or: fg, into: &values)
             loadOne(from: nested, for: .legends, in: .foreground, or: text, into: &values)
@@ -51,8 +49,6 @@ extension Settings {
             loadOne(from: nested, for: .xTitle, in: .foreground, or: text, into: &values)
             loadOne(from: nested, for: .yLabel, in: .foreground, or: text, into: &values)
             loadOne(from: nested, for: .yTitle, in: .foreground, or: text, into: &values)
-        } catch {
-            throw error
         }
     }
 
@@ -61,21 +57,17 @@ extension Settings {
     ///   - container: JSON container
     ///   - defaults: default values
     ///   - values: storage for values
-    /// - Throws: `DecodingError.typeMismatch`
 
     static func loadPDF(
         from container: KeyedDecodingContainer<CodingKeys>?,
         defaults: Defaults,
         into values: inout SettingsValues
-    ) throws {
-        do {
-            let nested = try container?.nestedContainer(keyedBy: CodingKeys.self, forKey: .pdf)
+    ) {
+        if let nested = try? container?.nestedContainer(keyedBy: CodingKeys.self, forKey: .pdf) {
             for key in [Self.CodingKeys.author, .keywords, .subject, .title] {
                 let val = keyedStringSettingsValue(from: nested, forKey: key, defaults: defaults)
                 values.setValue(key, val, in: .pdf)
             }
-        } catch {
-            throw error
         }
     }
 }
