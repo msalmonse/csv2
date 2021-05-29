@@ -13,7 +13,7 @@ class SVG: Plotter, ReflectedStringConvertible {
 
     // plot widths
     let strokeWidth: Double
-    var shapeWidth: Double { strokeWidth * 1.75 }
+    var shapeWidth: Double
 
     let settings: Settings
 
@@ -49,7 +49,8 @@ class SVG: Plotter, ReflectedStringConvertible {
         svgID = cssID.hasContent ? cssID
             : "ID-\(Int.random(in: 1...(1 << 24)).x0(6))"
         height = settings.height
-        strokeWidth = settings.doubleValue(.strokeWidth)
+        shapeWidth = settings.shapeWidth
+        strokeWidth = settings.strokeWidth
         width = settings.width
     }
 

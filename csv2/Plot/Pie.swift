@@ -79,6 +79,7 @@ extension Plot {
 
     func plotPie(_ row: Int, _ col1: Int, centre: Point, radius: Double) {
         let pi2e6 = Double.pi * 2.0e6       // 2πe6
+        let pieLabel = settings.boolValue(.pieLabel)
         var arcLeft = pi2e6
         var start = 0.0
 
@@ -109,7 +110,7 @@ extension Plot {
                 }
 
                 // add the label
-                if settings.plot.pieLabel && radius * angle6/1.0e6 > sizes.pieLabel.spacing {
+                if  pieLabel && radius * angle6/1.0e6 > sizes.pieLabel.spacing {
                     let mid = (start + end)/2.0
                     let percent = angle6/pi2e6 * 100.0
                     sliceLabel(centre: centre, radius: radius, mid: mid, percent: percent)
@@ -122,7 +123,7 @@ extension Plot {
         // Now draw a black circle in the middle
         circleRing(centre: centre, radius: radius)
 
-        let xtag = settings.csv.xTagsHeader
+        let xtag = settings.intValue(.xTagsHeader)
         var yPos =
             ceil(min(positions.xTagsY, centre.y + radius + sizes.pieLegend.spacing + sizes.pieLabel.spacing))
         if xtag >= 0, csv.data[row].hasIndex(xtag) {
@@ -130,8 +131,8 @@ extension Plot {
             plotter.plotText(x: centre.x, y: yPos, text: text, styles: stylesList.pieLegend)
             yPos += sizes.pieSubLegend.spacing
         }
-        if settings.plot.pieSubLegend {
-            let text = settings.plot.pieSubLegendPrefix + total + settings.plot.pieSubLegendSuffix
+        if settings.boolValue(.pieSubLegend) {
+            let text = settings.stringValue(.pieSubLegendPrefix) + total + settings.stringValue(.pieSubLegendSuffix)
             plotter.plotText(x: centre.x, y: yPos, text: text, styles: stylesList.pieSubLegend)
         }
     }

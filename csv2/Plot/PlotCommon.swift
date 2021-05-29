@@ -218,6 +218,7 @@ extension Plot {
         )
         var yɑ = Double.infinity
         let plotShape = styles.shape?.pathComponent(w: shapeWidth) ?? .circleStar(w: shapeWidth)
+        let smooth = settings.doubleValue(.smooth)
 
         func xypos(_ i: Int) -> Point? {
             guard xiValues.hasIndex(i), let x = xiValues[i].x else { return nil }
@@ -231,12 +232,12 @@ extension Plot {
             if pos == nil {
                 state.nilPlot(plotShape)
             } else {
-                if settings.plot.smooth > 0.0 {
+                if smooth > 0.0 {
                     // Use exponential moving average
                     if yɑ != Double.infinity {
-                        pos = Point(x: pos!.x, y: (1 - settings.plot.smooth) * pos!.y + yɑ)
+                        pos = Point(x: pos!.x, y: (1 - smooth) * pos!.y + yɑ)
                     }
-                    yɑ = pos!.y * settings.plot.smooth
+                    yɑ = pos!.y * smooth
                 }
                 let (pos, posPosition) = posClip(ts.pos(pos!))
                 var nextPos = xypos(i + 1)

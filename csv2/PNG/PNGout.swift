@@ -36,14 +36,14 @@ extension PNG {
     func plotWrite(to url: URL) throws {
         do {
             let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)!
-            if cgImage.width == settings.dim.width {
+            if cgImage.width == settings.intValue(.width) {
                 try cgImageWrite(cgImage, to: url)
             } else {
                 // NSImage uses points for size so we rescale the image to match the intended size
                 let scaleCtx = CGContext(
                     data: nil,
-                    width: settings.dim.width,
-                    height: settings.dim.height,
+                    width: settings.intValue(.width),
+                    height: settings.intValue(.height),
                     bitsPerComponent: cgImage.bitsPerComponent,
                     bytesPerRow: cgImage.bytesPerRow,
                     space: cgImage.colorSpace ?? CGColorSpace(name: CGColorSpace.genericRGBLinear)!,

@@ -32,7 +32,7 @@ extension Plot {
 
     func xTags() {
         let xiValues = xiList()
-        let k = settings.csv.xTagsHeader
+        let k = settings.intValue(.xTagsHeader)
         var tagsPath = Path()
 
         /// Fetch text from csv data
@@ -113,7 +113,7 @@ extension Plot {
     func xTick() {
         var tickPath = Path()
         var tick = tickNorm(
-            settings.dim.xTick,
+            settings.doubleValue(.xTick),
             dpp: dataPlane.width/plotPlane.width,
             minSize: labelSize * 3.5,
             maxSize: plotPlane.width/5.0,

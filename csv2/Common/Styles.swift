@@ -20,7 +20,7 @@ struct Styles {
     var name: String?
     var options = PlotOptions()
     var shape: Shape?
-    var shapeWidth: Double { strokeWidth * 1.75 }
+    var shapeWidth = 0.0
     var strokeLineCap: String?
     var strokeWidth = 0.0
     var textAlign: String?
@@ -29,13 +29,14 @@ struct Styles {
 
     static func from(settings: Settings) -> Styles {
         var styles = Styles()
-        styles.bezier = settings.plot.bezier
+        styles.bezier = settings.doubleValue(.bezier)
         styles.dash = ""
-        styles.options[.bold] = settings.css.bold
-        styles.fontFamily = settings.css.fontFamily
-        styles.options[.italic] = settings.css.italic
+        styles.options[.bold] = settings.boolValue(.bold)
+        styles.fontFamily = settings.stringValue(.fontFamily)
+        styles.options[.italic] = settings.boolValue(.italic)
+        styles.shapeWidth = settings.shapeWidth
         styles.strokeLineCap = "round"
-        styles.strokeWidth = settings.css.strokeWidth
+        styles.strokeWidth = settings.strokeWidth
         styles.textAlign = "middle"
         styles.textBaseline = "alphabetic"
 

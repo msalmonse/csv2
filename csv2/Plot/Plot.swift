@@ -9,8 +9,8 @@ import Foundation
 
 class Plot: ReflectedStringConvertible {
     // plot widths
-    var strokeWidth: Double { settings.css.strokeWidth }
-    var shapeWidth: Double { strokeWidth * 1.75 }
+    let strokeWidth: Double
+    let shapeWidth: Double
 
     let csv: CSV
     let settings: Settings
@@ -63,10 +63,12 @@ class Plot: ReflectedStringConvertible {
         self.settings = settings
         self.plotter = plotter
 
-        sizes = FontSizes(size: settings.dim.baseFontSize)
+        sizes = FontSizes(size: settings.doubleValue(.baseFontSize))
 
         self.index = settings.index
         height = settings.height
+        shapeWidth = settings.shapeWidth
+        strokeWidth = settings.strokeWidth
         width = settings.width
         allowedPlane = Plane(
             top: -0.5 * height, bottom: 1.5 * height,

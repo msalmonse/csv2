@@ -16,13 +16,13 @@ extension Canvas {
     /// - Returns: the clipped lines
 
     func plotClipStart(plotPlane: Plane) {
-        let shapeWidth = settings.css.shapeWidth
+        let shapeWidth = settings.shapeWidth
         // Make plottable a bit bigger so that shapes aren't clipped
         let left = (plotPlane.left - shapeWidth * 2.0)
         let top = (plotPlane.top - shapeWidth * 2.0)
         let bottom = (plotPlane.bottom + shapeWidth * 4.0)
         let right = (plotPlane.right + shapeWidth * 4.0)
-        let opacity = settings.css.opacity
+        let opacity = settings.doubleValue(.opacity)
         var result = [""]
         result.append("ctx.save()")
         result.append("")
@@ -55,15 +55,15 @@ extension Canvas {
     /// - Returns: the JS to start
 
     func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
-        let id = settings.plotter.canvasID
+        let id = settings.stringValue(.canvasID)
         let name = "canvas_\(id)"
-        let url = settings.plotter.logoURL
+        let url = settings.stringValue(.logoURL)
         let logo = url.isEmpty ? "" : drawLogo(
             url: url, left: positions.logoX, top: positions.logoY,
-            width: settings.plotter.logoWidth, height: settings.plotter.logoHeight
+            width: settings.doubleValue(.logoWidth), height: settings.doubleValue(.logoHeight)
         )
-        let bg = settings.css.backgroundColour.isEmpty ? "" : bgRect()
-        let comment = settings.plotter.comment ? self.comment + "\n" : ""
+        let bg = settings.stringValue(.backgroundColour).isEmpty ? "" : bgRect()
+        let comment = settings.boolValue(.comment) ? self.comment + "\n" : ""
         data.append("""
             const \(name) = document.getElementById('\(id)');
             if (\(name).getContext) {
@@ -78,11 +78,12 @@ extension Canvas {
 
     func plotTail() {
         data.append("\n}\n")
-        if settings.plotter.tagFile.hasContent {
-            let id = settings.plotter.canvasID
-            let w = settings.dim.width
-            let h = settings.dim.height
-            let url = URL(fileURLWithPath: settings.plotter.tagFile)
+        let tagFile = settings.stringValue(.tagFile)
+        if tagFile.hasContent {
+            let id = settings.stringValue(.canvasID)
+            let w = settings.intValue(.width)
+            let h = settings.intValue(.height)
+            let url = URL(fileURLWithPath: tagFile)
 
             if let tag = "<canvas id=\"\(id)\" width=\"\(w)\" height=\"\(h)\"></canvas>".data(using: .utf8) {
                 do {
@@ -137,9 +138,9 @@ extension Canvas {
     }
 
     func bgRect() -> String {
-        let colour = RGBAu8(settings.css.backgroundColour, or: .white).cssRGBA
-        let width = settings.dim.width
-        let height = settings.dim.height
+        let colour = RGBAu8(settings.stringValue(.backgroundColour), or: .white).cssRGBA
+        let width = settings.intValue(.width)
+        let height = settings.intValue(.height)
         return """
             ctx.fillStyle = '\(colour)'
             ctx.fillRect(0,0,\(width),\(height))

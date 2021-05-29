@@ -21,10 +21,10 @@ class PDF: Plotter {
         page = PDFPlotterPage()
         doc.insert(page, at: 0)
 
-        let box = NSRect(x: 0, y: 0, width: settings.dim.width, height: settings.dim.height)
+        let box = NSRect(x: 0, y: 0, width: settings.intValue(.width), height: settings.intValue(.height))
         page.setBounds(box, for: .mediaBox)
 
-        if let bg = RGBAu8(settings.css.backgroundColour) {
+        if let bg = RGBAu8(settings.stringValue(.backgroundColour)) {
             page.add(action: .bg(colour: bg.cgColor))
         }
     }
@@ -42,22 +42,25 @@ extension PDFDocument {
         documentAttributes?[PDFDocumentAttribute.creationDateAttribute] = creationDate
         documentAttributes?[PDFDocumentAttribute.creatorAttribute] = settings.comment
 
-        if let author = settings.pdf.author {
+        let author = settings.stringValue(.author, in: .pdf)
+        if author.hasContent {
             documentAttributes?[PDFDocumentAttribute.authorAttribute] = author
         }
 
-        if let keywords = settings.pdf.keywords {
+        let keywords = settings.stringValue(.keywords, in: .pdf)
+        if keywords.hasContent {
             documentAttributes?[PDFDocumentAttribute.keywordsAttribute] = keywords
         }
 
-        if let subject = settings.pdf.subject {
+        let subject = settings.stringValue(.subject, in: .pdf)
+        if subject.hasContent {
             documentAttributes?[PDFDocumentAttribute.subjectAttribute] = subject
         }
 
-        if let title = settings.pdf.title {
+        var title = settings.stringValue(.title, in: .pdf)
+        if title.isEmpty { title = settings.stringValue(.title) }
+        if title.hasContent {
             documentAttributes?[PDFDocumentAttribute.titleAttribute] = title
-        } else if settings.plotter.title.hasContent {
-            documentAttributes?[PDFDocumentAttribute.titleAttribute] = settings.plotter.title
         }
     }
 }

@@ -16,6 +16,8 @@ class Settings: Decodable, ReflectedStringConvertible {
     let height: Double
     let index: Int
     let inRows: Bool
+    var shapeWidth: Double { strokeWidth * 1.75 }
+    let strokeWidth: Double
     let width: Double
 
     // Type of chart
@@ -74,6 +76,7 @@ class Settings: Decodable, ReflectedStringConvertible {
             index = values.intValue(.index)
             height = Double(values.intValue(.height))
             width = Double(values.intValue(.width))
+            strokeWidth = values.doubleValue(.strokeWidth)
 
             self.values = values
         } catch {
