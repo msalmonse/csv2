@@ -111,9 +111,26 @@ struct SettingsValues {
         let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .doubleZero
         switch keyVal {
         case .doubleValue(let val): return val
+        case .intValue(let val): return Double(val)
         default:
             keyVal.unexpectedValue(expected: "Double", for: key)
             return 0.0
+        }
+    }
+
+    /// Check string for content
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: True is string is found and not empty
+
+    func hasContent(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Bool {
+        guard let keyVal = values[CombinedKey(domain: domain, key: key)] else { return false }
+        switch keyVal {
+        case .stringValue(let val): return val.hasContent
+        default:
+            keyVal.unexpectedValue(expected: "String", for: key)
+            return false
         }
     }
 
@@ -130,6 +147,22 @@ struct SettingsValues {
         default:
             keyVal.unexpectedValue(expected: "Int", for: key)
             return 0
+        }
+    }
+
+    /// Lookup String value
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: String from dict or nil if missing
+
+    func optionalStringValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> String? {
+        guard let keyVal = values[CombinedKey(domain: domain, key: key)] else { return nil }
+        switch keyVal {
+        case .stringValue(let val): return val.isEmpty ? nil : val
+        default:
+            keyVal.unexpectedValue(expected: "String", for: key)
+            return nil
         }
     }
 

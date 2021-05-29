@@ -39,6 +39,16 @@ extension Settings {
         return values.doubleValue(key, in: domain)
     }
 
+    /// Check string for content
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: True is string is found and not empty
+
+    func hasContent(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Bool {
+        return values.hasContent(key, in: domain)
+    }
+
     /// Fetch an Int value
     /// - Parameters:
     ///   - key: key in domain
@@ -47,6 +57,16 @@ extension Settings {
 
     func intValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Int {
         return values.intValue(key, in: domain)
+    }
+
+    /// Lookup String value
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: String from dict or nil if missing
+
+    func optionalStringValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> String? {
+        return values.optionalStringValue(key, in: domain)
     }
 
     /// Fetch a String value

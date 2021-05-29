@@ -31,13 +31,13 @@ extension PNG {
     ///   - stylesList: all styles
 
     func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
-        if settings.plotter.logoURL.hasContent {
+        if settings.hasContent(.logoURL) {
             let logoPlane = Plane(
                 left: positions.logoX, top: positions.logoY,
-                height: settings.plotter.logoHeight,
-                width: settings.plotter.logoWidth
+                height: settings.doubleValue(.logoHeight),
+                width: settings.doubleValue(.logoWidth)
             )
-            cgLogo(logoPlane, from: settings.plotter.logoURL, to: ctx)
+            cgLogo(logoPlane, from: settings.stringValue(.logoURL), to: ctx)
         }
     }
 

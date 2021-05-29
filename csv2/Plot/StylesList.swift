@@ -34,7 +34,7 @@ struct StylesList {
     var yTitle: Styles
 
     init(count ct: Int, settings: Settings) {
-        let sizes = FontSizes(size: settings.dim.baseFontSize)
+        let sizes = FontSizes(size: settings.doubleValue(.baseFontSize))
         plots = Array(repeating: Styles.from(settings: settings), count: ct)
 
         axes = Self.axesStyle(settings: settings, sizes: sizes)
@@ -62,7 +62,7 @@ struct StylesList {
 
     static private func axesStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var axes = Styles.from(settings: settings)
-        axes.colour = cssRGBA(settings.fg.axes)
+        axes.colour = cssRGBA(settings.stringValue(.axes, in: .foreground))
         axes.cssClass = "axes"
         return axes
     }
@@ -76,7 +76,7 @@ struct StylesList {
     static private func draftStyle(settings: Settings) -> Styles {
         var draft = Styles.from(settings: settings)
         draft.cssClass = "draft"
-        draft.fontColour = cssRGBA(settings.fg.draft)
+        draft.fontColour = cssRGBA(settings.stringValue(.draft, in: .foreground))
         draft.fontFamily = "sans-serif"
         draft.options[.bold] = false
         draft.options[.italic] = false
@@ -85,7 +85,7 @@ struct StylesList {
         draft.textBaseline = "middle"
 
         // calculate font size
-        let text = settings.plotter.draftText
+        let text = settings.stringValue(.draftText)
         let charSize = min(settings.width/Double(text.count), settings.height/2.0)
         draft.fontSize = floor(charSize * 1.25)
 
@@ -107,7 +107,7 @@ struct StylesList {
     static private func legendStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var legend = Styles.from(settings: settings)
         legend.cssClass = "legend"
-        legend.fontColour = cssRGBA(settings.fg.legends)
+        legend.fontColour = cssRGBA(settings.stringValue(.legends, in: .foreground))
         legend.fontSize = sizes.legend.size
         legend.textAlign = "start"
         return legend
@@ -121,7 +121,8 @@ struct StylesList {
 
     static private func legendBoxStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var legendBox = Styles.from(settings: settings)
-        legendBox.colour = RGBAu8(settings.fg.legendsBox, or: .black).clamped(opacity: 0.4).cssRGBA
+        legendBox.colour =
+            RGBAu8(settings.stringValue(.legendsBox, in: .foreground), or: .black).clamped(opacity: 0.4).cssRGBA
         legendBox.fill = legendBox.colour
         legendBox.cssClass = "legend"
         return legendBox
@@ -137,7 +138,7 @@ struct StylesList {
         var legendHeadline = Styles.from(settings: settings)
         legendHeadline.options[.bold] = true
         legendHeadline.cssClass = "legendheadline"
-        legendHeadline.fontColour = settings.fg.legends
+        legendHeadline.fontColour = settings.stringValue(.legends, in: .foreground)
         legendHeadline.fontSize = sizes.legend.size * 1.25
         legendHeadline.textAlign = "start"
         return legendHeadline
@@ -152,7 +153,7 @@ struct StylesList {
     static private func pieLabelStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var pieLabel = Styles.from(settings: settings)
         pieLabel.cssClass = "pielabel"
-        pieLabel.fontColour = cssRGBA(settings.fg.pieLabel)
+        pieLabel.fontColour = cssRGBA(settings.stringValue(.pieLabel, in: .foreground))
         pieLabel.fontSize = sizes.pieLabel.size
         pieLabel.textAlign = ""
         return pieLabel
@@ -167,7 +168,7 @@ struct StylesList {
     static private func pieLegendStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var pieLegend = Styles.from(settings: settings)
         pieLegend.cssClass = "pielegend"
-        pieLegend.fontColour = cssRGBA(settings.fg.pieLegend)
+        pieLegend.fontColour = cssRGBA(settings.stringValue(.pieLegend, in: .foreground))
         pieLegend.fontSize = sizes.pieLegend.size
         return pieLegend
     }
@@ -181,7 +182,7 @@ struct StylesList {
     static private func pieSubLegendStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var pieSubLegend = Styles.from(settings: settings)
         pieSubLegend.cssClass = "piesublegend"
-        pieSubLegend.fontColour = cssRGBA(settings.fg.pieLegend)
+        pieSubLegend.fontColour = cssRGBA(settings.stringValue(.pieLegend, in: .foreground))
         pieSubLegend.fontSize = sizes.pieSubLegend.size
         return pieSubLegend
     }
@@ -195,7 +196,7 @@ struct StylesList {
     static private func subTitleStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var subTitle = Styles.from(settings: settings)
         subTitle.cssClass = "subtitle"
-        subTitle.fontColour = cssRGBA(settings.fg.subTitle)
+        subTitle.fontColour = cssRGBA(settings.stringValue(.subTitle, in: .foreground))
         subTitle.fontSize = sizes.subTitle.size
         return subTitle
     }
@@ -209,7 +210,7 @@ struct StylesList {
     static private func titleStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var title = Styles.from(settings: settings)
         title.cssClass = "title"
-        title.fontColour = cssRGBA(settings.fg.title)
+        title.fontColour = cssRGBA(settings.stringValue(.title, in: .foreground))
         title.fontSize = sizes.title.size
         return title
     }
@@ -222,9 +223,10 @@ struct StylesList {
 
     static private func xLabelStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var xLabel = Styles.from(settings: settings)
-        xLabel.colour = RGBAu8(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
+        xLabel.colour =
+            RGBAu8(settings.stringValue(.axes, in: .foreground), or: .black).clamped(opacity: 0.4).cssRGBA
         xLabel.cssClass = "xlabel"
-        xLabel.fontColour = cssRGBA(settings.fg.xLabel)
+        xLabel.fontColour = cssRGBA(settings.stringValue(.xLabel, in: .foreground))
         xLabel.fontSize = sizes.label.size
         xLabel.strokeWidth = 1.0
         return xLabel
@@ -238,9 +240,10 @@ struct StylesList {
 
     static private func xTagsStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var xTags = Styles.from(settings: settings)
-        xTags.colour = RGBAu8(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
+        xTags.colour =
+            RGBAu8(settings.stringValue(.axes, in: .foreground), or: .black).clamped(opacity: 0.4).cssRGBA
         xTags.cssClass = "xtags"
-        xTags.fontColour = cssRGBA(settings.fg.xTags)
+        xTags.fontColour = cssRGBA(settings.stringValue(.xTags, in: .foreground))
         xTags.fontSize = sizes.axes.size
         xTags.strokeWidth = 1.0
         return xTags
@@ -255,7 +258,7 @@ struct StylesList {
     static private func xTitleStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var xTitle = Styles.from(settings: settings)
         xTitle.cssClass = "xtitle"
-        xTitle.fontColour = cssRGBA(settings.fg.xTitle)
+        xTitle.fontColour = cssRGBA(settings.stringValue(.xTitle, in: .foreground))
         xTitle.fontSize = sizes.axes.size
         return xTitle
     }
@@ -268,9 +271,10 @@ struct StylesList {
 
     static private func yLabelStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var yLabel = Styles.from(settings: settings)
-        yLabel.colour = RGBAu8(settings.fg.axes, or: .black).clamped(opacity: 0.4).cssRGBA
+        yLabel.colour =
+            RGBAu8(settings.stringValue(.axes, in: .foreground), or: .black).clamped(opacity: 0.4).cssRGBA
         yLabel.cssClass = "ylabel"
-        yLabel.fontColour = cssRGBA(settings.fg.yLabel)
+        yLabel.fontColour = cssRGBA(settings.stringValue(.yLabel, in: .foreground))
         yLabel.fontSize = sizes.label.size
         yLabel.strokeWidth = 1.0
         yLabel.textAlign = "end"
@@ -287,7 +291,7 @@ struct StylesList {
     static private func yTitleStyle(settings: Settings, sizes: FontSizes) -> Styles {
         var yTitle = Styles.from(settings: settings)
         yTitle.cssClass = "ytitle"
-        yTitle.fontColour = cssRGBA(settings.fg.yTitle)
+        yTitle.fontColour = cssRGBA(settings.stringValue(.yTitle, in: .foreground))
         yTitle.fontSize = sizes.axes.size
         yTitle.textAlign = "start"
         return yTitle

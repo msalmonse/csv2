@@ -23,10 +23,10 @@ extension SVG {
 
     func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
         data.append((xmlTag + svgTag))
-        if settings.plotter.comment { data.append(comment) }
+        if settings.boolValue(.comment) { data.append(comment) }
         defs(plotPlane: plotPlane)
         cssStyle(stylesList)
-        if settings.plotter.logoURL.hasContent { logoImage(positions: positions) }
+        if settings.hasContent(.logoURL) { logoImage(positions: positions) }
     }
 
     /// Create a plot command from a number of PathCommand's
@@ -49,10 +49,11 @@ extension SVG {
     /// - Returns: end tag
 
     func plotTail() {
-        let include = settings.plotter.include.isEmpty ? "" : """
+        let includeFile = settings.stringValue(.include)
+        let include = includeFile.isEmpty ? "" : """
 
-            <!-- \(settings.plotter.include) -->
-            \(svgInclude(settings.plotter.include))
+            <!-- \(includeFile) -->
+            \(svgInclude(includeFile))
 
             """
         data.append((include + svgTagEnd))

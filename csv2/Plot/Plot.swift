@@ -79,7 +79,7 @@ class Plot: ReflectedStringConvertible {
 
         positions = settings.chartType.positionsSelect(settings)
 
-        limit = settings.plot.dataPointDistance
+        limit = settings.doubleValue(.dataPointDistance)
 
         let plotPlane = Plane(
             top: positions.topY, bottom: positions.bottomY,
@@ -87,16 +87,16 @@ class Plot: ReflectedStringConvertible {
         )
         self.plotPlane = plotPlane
 
-        let logx = settings.plotter.logx && dataPlane.left > 0.0
+        let logx = settings.boolValue(.logx) && dataPlane.left > 0.0
         self.logx = logx
-        let logy = settings.plotter.logy && dataPlane.bottom > 0.0
+        let logy = settings.boolValue(.logy) && dataPlane.bottom > 0.0
         self.logy = logy
 
         ts = TransScale(from: dataPlane, to: plotPlane, logx: logx, logy: logy)
         point00 = ts.pos(x: logx ? 1.0 : 0.0, y: logy ? 1.0 : 0.0)
 
-        let plotCount = settings.inColumns ? csv.colCt : csv.rowCt
-        let plotFirst = settings.inColumns ? settings.csv.headerColumns : settings.csv.headerRows
+        let plotCount = settings.inRows ? csv.rowCt : csv.colCt
+        let plotFirst = settings.headers
 
         // Initialize path info
         var stylesList = StylesList(count: plotCount, settings: settings)
@@ -107,7 +107,7 @@ class Plot: ReflectedStringConvertible {
         plotColours(settings, plotFirst, plotCount, &stylesList.plots)
         plotDashes(settings, plotFirst, plotCount, plotPlane.width, &stylesList.plots)
         plotNames(settings, csv, plotFirst, plotCount, &stylesList.plots)
-        plotShapes(settings, plotFirst, plotCount, index: settings.csv.index, &stylesList.plots)
+        plotShapes(settings, plotFirst, plotCount, index: settings.index, &stylesList.plots)
         self.stylesList = stylesList
     }
 }

@@ -13,11 +13,13 @@ extension Plot {
     /// - Returns: subtitle if found
 
     func subTitleLookup() -> String? {
-        if settings.plotter.subTitle.hasContent {
-            return settings.plotter.subTitle
-        } else if settings.csv.subTitleHeader >= 0 {
-            return
-                csv.subTitleText(inColumns: settings.inColumns, header: settings.csv.subTitleHeader)
+        let subTitle = settings.stringValue(.subTitle)
+        if subTitle.hasContent {
+            return subTitle
+        }
+        let subTitleHeader = settings.intValue(.subTitleHeader)
+        if subTitleHeader >= 0 {
+            return csv.subTitleText(inColumns: !settings.inRows, header: subTitleHeader)
         }
         return nil
     }
@@ -27,7 +29,7 @@ extension Plot {
     func titleText() {
         let x = plotPlane.hMid
         let y = positions.titleY
-        plotter.plotText(x: x, y: y, text: settings.plotter.title, styles: stylesList.title)
+        plotter.plotText(x: x, y: y, text: settings.stringValue(.title), styles: stylesList.title)
     }
 
     /// Add sub title to the svg

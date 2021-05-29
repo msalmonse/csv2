@@ -138,7 +138,7 @@ extension SVG {
         result.append("\(id) path.ylabel { stroke: \(colour); stroke-width: 1 }")
 
         var textCSS: [String] = []
-        if settings.stringValue(.fontFamily).hasContent {
+        if settings.hasContent(.fontFamily) {
             textCSS.append("font-family: \(settings.stringValue(.fontFamily))")
 
         }

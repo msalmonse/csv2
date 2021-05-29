@@ -13,7 +13,7 @@ extension Plot {
 
     func lineGroup() {
         plotter.plotClipStart(plotPlane: plotPlane)
-        settings.inColumns ? columnPlot() : rowPlot()
+        settings.inRows ? rowPlot() : columnPlot()
         plotter.plotClipEnd()
     }
 
@@ -21,25 +21,25 @@ extension Plot {
 
     func gen() {
         plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
-        if settings.dim.xTick >= 0 { xTick() }
-        if settings.dim.yTick >= 0 { yTick() }
-        if settings.csv.xTagsHeader >= 0 { xTags() }
+        if settings.doubleValue(.xTick) >= 0 { xTick() }
+        if settings.doubleValue(.yTick) >= 0 { yTick() }
+        if settings.intValue(.xTagsHeader) >= 0 { xTags() }
         axes()
         lineGroup()
-        if settings.plotter.xTitle.hasContent {
-            xTitleText(settings.plotter.xTitle, x: plotPlane.hMid, y: positions.xTitleY)
+        if settings.hasContent(.xTitle) {
+            xTitleText(settings.stringValue(.xTitle), x: plotPlane.hMid, y: positions.xTitleY)
         }
-        if settings.plotter.yTitle.hasContent {
-            yTitleText(settings.plotter.yTitle, x: positions.yTitleX, y: plotPlane.vMid)
+        if settings.hasContent(.yTitle) {
+            yTitleText(settings.stringValue(.yTitle), x: positions.yTitleX, y: plotPlane.vMid)
         }
-        if settings.plotter.legends { legend() }
+        if settings.boolValue(.legends) { legend() }
         if let subTitle = subTitleLookup() { subTitleText(subTitle) }
-        if settings.plotter.title.hasContent { titleText() }
+        if settings.hasContent(.title) { titleText() }
 
-        if settings.plotter.draft {
+        if settings.boolValue(.draft) {
             plotter.plotText(
                 x: width/2.0, y: height/2.0,
-                text: settings.plotter.draftText,
+                text: settings.stringValue(.draftText),
                 styles: stylesList.draft
             )
         }
@@ -83,7 +83,7 @@ extension Plot {
 
         plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
 
-        let row1 = settings.csv.headerRows
+        let row1 = settings.intValue(.headerRows)
         let pieCt = csv.rowCt - row1
 
         // calculate the size of the squares that can fit in plotPlane
@@ -113,13 +113,13 @@ extension Plot {
                 colX = leftMargin(min(colsPerRow, csv.rowCt - row)) + side/2.0
             }
             let centre = Point(x: colX, y: rowY)
-            plotPie(row, settings.csv.headerColumns, centre: centre, radius: radius)
+            plotPie(row, settings.intValue(.headerColumns), centre: centre, radius: radius)
             colX += side
         }
 
-        if settings.plotter.legends { legend() }
+        if settings.boolValue(.legends) { legend() }
         if let subTitle = subTitleLookup() { subTitleText(subTitle) }
-        if settings.plotter.title.hasContent { titleText() }
+        if settings.hasContent(.title) { titleText() }
 
         plotter.plotTail()
     }
