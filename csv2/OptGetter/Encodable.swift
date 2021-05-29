@@ -8,7 +8,7 @@
 import Foundation
 import OptGetter
 
-struct encodable: Encodable {
+struct OptGetterEncodable: Encodable {
     enum CodingKeys: CodingKey { case commands, arguments, options }
 
     let commands: [String: CmdsToGet] = [
@@ -24,6 +24,10 @@ struct encodable: Encodable {
         "help": Options.helpOpts,
         "svg": Options.svgOpts
     ]
+
+    /// Encode commands, arguments and options
+    /// - Parameter encoder: encoder for e.g. JSON
+    /// - Throws: Encoder errrors
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

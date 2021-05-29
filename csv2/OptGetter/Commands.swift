@@ -27,7 +27,7 @@ enum HelpCommandType: OptGetterTag {
 }
 
 enum ListCommandType: OptGetterTag {
-    case bitmap, listColourNames, listShapes, version
+    case bitmap, listColourNames, listJSON, listShapes, version
 }
 
 enum MainCommandType: OptGetterTag {
@@ -90,6 +90,8 @@ let listCmds: [CmdToGet] = [
              usage: "Take a list of rows or columns and print the corresponding bitmap"),
     CmdToGet(["list", "colournames"], tag: ListCommandType.listColourNames,
              usage: "List the colour names known to the program"),
+    CmdToGet(["list", "json"], tag: ListCommandType.listJSON,
+             usage: "Like 'help usage' but with the output in JSON"),
     CmdToGet(["list", "shapes"], tag: ListCommandType.listShapes,
              usage: "List the shape names defined internally"),
     CmdToGet(["version"], tag: ListCommandType.version,
@@ -100,8 +102,6 @@ let helpCmds: [CmdToGet] = [
              usage: "Show help for the canvas chart type."),
     CmdToGet(["help", "commands"], tag: HelpCommandType.helpCommands,
              usage: "Show help on the available commands."),
-    CmdToGet(["help", "json"],
-             usage: "Show help for getting usage as JSON"),
     CmdToGet(["help", "list"], tag: HelpCommandType.helpList,
              usage: "Show help on list commands"),
     CmdToGet(["help", "pdf"], tag: HelpCommandType.helpPdf,
