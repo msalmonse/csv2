@@ -8,9 +8,7 @@
 import XCTest
 @testable import csv2
 
-var defaults = Defaults.global
-
-func trySpecialCases(_ settings: Settings?) { return }
+var defaults = Defaults.initial
 
 class csv2Tests: XCTestCase {
 
@@ -27,36 +25,39 @@ class csv2Tests: XCTestCase {
         return data.joined(separator: "\r\n")
     }
 
-    func testSettings() throws {
-        var settings = try? Settings.load(settingsJSON(true))
-        XCTAssertNotNil(settings)
-        XCTAssertEqual(settings!.plot.bezier, Defaults.global.doubleValue(.bezier))
-        XCTAssertEqual(settings!.plot.colours.count, 3)
-        XCTAssertTrue(settings!.inColumns)
-        XCTAssertFalse(settings!.inRows)
-        XCTAssertFalse(settings!.csv.rowGrouping)
-        XCTAssertEqual(settings!.csv.index, testIndex - 1)
-        XCTAssertEqual(settings!.dim.height, testHeight)
-        XCTAssertEqual(settings!.plot.names[1], testName)
-        XCTAssertEqual(settings!.plotter.title, testTitle)
-        XCTAssertEqual(settings!.dim.width, testWidth)
-        XCTAssertEqual(settings!.dim.xMax, Defaults.maxDefault)
-        XCTAssertEqual(settings!.dim.yMax, testYMax)
+    func testSettings() {
+        if let settings = try? Settings.load(settingsJSON(true)) {
+            XCTAssertEqual(settings.doubleValue(.bezier), Defaults.initial.doubleValue(.bezier))
+            XCTAssertEqual(settings.stringArray(.colours).count, 3)
+            XCTAssertFalse(settings.inRows)
+            XCTAssertFalse(settings.boolValue(.rowGrouping))
+            XCTAssertEqual(settings.intValue(.index), testIndex - 1)
+            XCTAssertEqual(settings.intValue(.height), testHeight)
+            XCTAssertEqual(settings.stringArray(.names)[1], testName)
+            XCTAssertEqual(settings.stringValue(.title), testTitle)
+            XCTAssertEqual(settings.intValue(.width), testWidth)
+            XCTAssertEqual(settings.doubleValue(.xMax), Defaults.maxDefault)
+            XCTAssertEqual(settings.doubleValue(.yMax), testYMax)
+        } else {
+            XCTFail("Nil settings")
+        }
 
-        settings = try? Settings.load(settingsJSON(false))
-        XCTAssertNotNil(settings)
-        XCTAssertFalse(settings!.inColumns)
-        XCTAssertTrue(settings!.inRows)
-        XCTAssertTrue(settings!.csv.rowGrouping)
+        if let settings = try? Settings.load(settingsJSON(false)) {
+            XCTAssertTrue(settings.inRows)
+            XCTAssertTrue(settings.boolValue(.rowGrouping))
+        } else {
+            XCTFail("Nil settings")
+        }
 
-        settings = try? Settings.load(settingsJSON(true))
-        XCTAssertNotNil(settings)
-        XCTAssertTrue(settings!.inColumns)
-        XCTAssertFalse(settings!.inRows)
-        XCTAssertFalse(settings!.csv.rowGrouping)
+        if let settings = try? Settings.load(settingsJSON(true)) {
+            XCTAssertFalse(settings.inRows)
+            XCTAssertFalse(settings.boolValue(.rowGrouping))
+        } else {
+            XCTFail("Nil settings")
+        }
     }
 
-    func testCSV() throws {
+    func testCSV() {
         let csv = CSV(csvData)
 
         XCTAssertEqual(csv.data.count, 5)
@@ -263,13 +264,13 @@ class csv2Tests: XCTestCase {
 
     func testSettingsPerformance() throws {
         measure {
-            try? testSettings()
+            testSettings()
         }
     }
 
     func testCSVperformance() throws {
         measure {
-            try? testCSV()
+            testCSV()
         }
     }
 }

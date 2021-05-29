@@ -85,9 +85,10 @@ extension Settings {
     static func keyedDoubleSettingsValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
         forKey key: CodingKeys,
-        defaults: Defaults
+        defaults: Defaults,
+        in ok: ClosedRange<Double>? = nil
     ) -> SettingsValue {
-        let val = keyedDoubleValue(from: container, forKey: key, defaults: defaults)
+        let val = keyedDoubleValue(from: container, forKey: key, defaults: defaults, in: ok)
         return .doubleValue(val: val)
     }
 
@@ -126,9 +127,10 @@ extension Settings {
     static func keyedIntSettingsValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
         forKey key: CodingKeys,
-        defaults: Defaults
+        defaults: Defaults,
+        in ok: ClosedRange<Int>? = nil
     ) -> SettingsValue {
-        let val = keyedIntValue(from: container, forKey: key, defaults: defaults)
+        let val = keyedIntValue(from: container, forKey: key, defaults: defaults, in: ok)
         return .intValue(val: val)
     }
 
@@ -142,9 +144,10 @@ extension Settings {
     static func keyedInt1SettingsValue(
         from container: KeyedDecodingContainer<CodingKeys>?,
         forKey key: CodingKeys,
-        defaults: Defaults
+        defaults: Defaults,
+        in ok: ClosedRange<Int>? = nil
     ) -> SettingsValue {
-        let val = keyedIntValue(from: container, forKey: key, defaults: defaults) - 1
+        let val = keyedIntValue(from: container, forKey: key, defaults: defaults, in: ok) - 1
         return .intValue(val: val)
     }
 

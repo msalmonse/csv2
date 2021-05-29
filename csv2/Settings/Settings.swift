@@ -50,13 +50,16 @@ class Settings: Decodable, ReflectedStringConvertible {
                 let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
                 values.setValue(key, val)
             case .isDouble:
-                let val = Self.keyedDoubleSettingsValue(from: container, forKey: key, defaults: defaults)
+                let val = Self.keyedDoubleSettingsValue(from: container, forKey: key, defaults: defaults,
+                                                        in: key.doubleBounds)
                 values.setValue(key, val)
             case .isInt:
-                let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults)
+                let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults,
+                                                     in: key.intBounds)
                 values.setValue(key, val)
             case .isInt1:
-                let val = Self.keyedInt1SettingsValue(from: container, forKey: key, defaults: defaults)
+                let val = Self.keyedInt1SettingsValue(from: container, forKey: key, defaults: defaults,
+                                                      in: key.intBounds)
                 values.setValue(key, val)
             case .isString:
                 let val = Self.keyedStringSettingsValue(from: container, forKey: key, defaults: defaults)
