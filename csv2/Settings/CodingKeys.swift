@@ -9,7 +9,7 @@ import Foundation
 
 extension Settings {
     enum CodingType {
-        case isBool, isDouble, isInt, isString, isStringArray
+        case isBool, isDouble, isInt, isInt1, isString, isStringArray
         case isNone     // special cases
     }
 
@@ -137,7 +137,7 @@ extension Settings {
             case .height: return .isInt
             case .hover: return .isBool
             case .include: return .isInt
-            case .index: return .isInt
+            case .index: return .isInt1
             case .italic: return .isBool
             case .keywords: return .isString
             case .legends: return .isBool
@@ -147,7 +147,7 @@ extension Settings {
             case .logoWidth: return .isDouble
             case .logx: return .isBool
             case .logy: return .isBool
-            case .nameHeader: return .isInt
+            case .nameHeader: return .isInt1
             case .names: return .isStringArray
             case .opacity: return .isDouble
             case .pdf: return .isNone
@@ -169,7 +169,7 @@ extension Settings {
             case .strokeWidth: return .isDouble
             case .subject: return .isString
             case .subTitle: return .isString
-            case .subTitleHeader: return .isInt
+            case .subTitleHeader: return .isInt1
             case .svgInclude: return .isString
             case .tagFile: return .isString
             case .textcolour: return .isString
@@ -179,7 +179,7 @@ extension Settings {
             case .xMax: return .isDouble
             case .xMin: return .isDouble
             case .xTags: return .isString
-            case .xTagsHeader: return .isInt
+            case .xTagsHeader: return .isInt1
             case .xTick: return .isDouble
             case .xTitle: return .isString
             case .yLabel: return .isString

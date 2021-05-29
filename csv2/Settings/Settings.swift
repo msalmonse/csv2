@@ -11,6 +11,13 @@ class Settings: Decodable, ReflectedStringConvertible {
     // Storage for settings
     internal var values: SettingsValues
 
+    // Some shortcuts
+    let headers: Int
+    let height: Double
+    let index: Int
+    let inRows: Bool
+    let width: Double
+
     // Type of chart
     let chartType: ChartType
 
@@ -47,6 +54,9 @@ class Settings: Decodable, ReflectedStringConvertible {
                 case .isInt:
                     let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults)
                     values.setValue(key, val)
+                case .isInt1:
+                    let val = Self.keyedInt1SettingsValue(from: container, forKey: key, defaults: defaults)
+                    values.setValue(key, val)
                 case .isString:
                     let val = Self.keyedStringSettingsValue(from: container, forKey: key, defaults: defaults)
                     values.setValue(key, val)
@@ -59,7 +69,13 @@ class Settings: Decodable, ReflectedStringConvertible {
             try Self.loadForeground(from: container, defaults: defaults, into: &values)
             try Self.loadPDF(from: container, defaults: defaults, into: &values)
 
-             self.values = values
+            inRows = values.boolValue(.rowGrouping)
+            headers = values.intValue(inRows ? .headerRows : .headerColumns)
+            index = values.intValue(.index)
+            height = Double(values.intValue(.height))
+            width = Double(values.intValue(.width))
+
+            self.values = values
         } catch {
             throw error
         }

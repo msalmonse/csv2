@@ -98,15 +98,15 @@ func plotNames(
     _ ct: Int,
     _ styles: inout [Styles]
 ) {
-    let inRows = settings.boolValue(.rowGrouping)
-    let headers = settings.intValue(inRows ? .headerRows : .headerColumns)
+    let inRows = settings.inRows
+    let headers = settings.headers
     let nameHeader = settings.intValue(.nameHeader)
     let names = settings.stringArray(.names)
 
     // Row or column name
     func rcName(_ num: Int) -> String {
 
-        let rc = settings.boolValue(.rowGrouping) ? "Row" : "Column"
+        let rc = settings.inRows ? "Row" : "Column"
         return "\(rc) \(num.d(1))"
     }
 
@@ -122,7 +122,7 @@ func plotNames(
     }
 }
 
-/// Generate a list of names for the plots
+/// Generate a list of shapes for the plots
 /// - Parameters:
 ///   - settings: settings for plot
 ///   - first: first row or column with plot data
@@ -137,7 +137,6 @@ func plotShapes(
     index: Int,
     _ styles: inout [Styles]
 ) {
-    let index = settings.intValue(.index)
     let shapes = settings.stringArray(.shapes)
     // Hop over not included and index plots
     for i in first..<ct where i != index || !styles[i].options[.included] {

@@ -48,9 +48,9 @@ class SVG: Plotter, ReflectedStringConvertible {
         let cssID = settings.stringValue(.cssID)
         svgID = cssID.hasContent ? cssID
             : "ID-\(Int.random(in: 1...(1 << 24)).x0(6))"
-        height = Double(settings.intValue(.height))
+        height = settings.height
         strokeWidth = settings.doubleValue(.strokeWidth)
-        width = Double(settings.intValue(.width))
+        width = settings.width
     }
 
     /// Generate the defs element

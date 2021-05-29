@@ -25,8 +25,8 @@ class PNG: Plotter {
 
     init(_ settings: Settings) {
         self.settings = settings
-        height = Double(settings.intValue(.height))
-        width = Double(settings.intValue(.width))
+        height = settings.height
+        width = settings.width
 
         image = NSImage(size: NSSize(width: width, height: height))
         let bg = RGBAu8(settings.stringValue(.backgroundColour), or: .white)

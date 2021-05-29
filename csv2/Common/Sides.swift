@@ -16,8 +16,8 @@ struct Sides {
     /// - Returns: the left and right sides
 
     static func lrFromData(_ csv: CSV, _ settings: Settings) -> (l: Double, r: Double) {
-        let count = settings.boolValue(.rowGrouping) ? csv.colCt : csv.rowCt
-        let index = settings.intValue(.index)
+        let count = settings.inRows ? csv.colCt : csv.rowCt
+        let index = settings.index
         let xMaxSet = settings.doubleValue(.xMax) > Defaults.maxDefault
         let xMinSet = settings.doubleValue(.xMin) < Defaults.minDefault
         var left: Double
@@ -37,7 +37,7 @@ struct Sides {
                 min = 0.0
                 max = Double(count - 1)
             } else {
-                let inColumns = !settings.boolValue(.rowGrouping)
+                let inColumns = !settings.inRows
                 let headers = settings.intValue(inColumns ? .headerColumns : .headerRows)
                 (min, max) = csv.minMax(inColumns, index, from: headers)
                 // if min and max don't include 0 then include 0 if one is close
@@ -62,10 +62,10 @@ struct Sides {
     /// - Returns: the top and bottom sides
 
     static func tbFromData(_ csv: CSV, _ settings: Settings) -> (t: Double, b: Double) {
-        let index = settings.intValue(.index)
+        let index = settings.index
         let yMaxSet = settings.doubleValue(.yMax) > Defaults.maxDefault
         let yMinSet = settings.doubleValue(.yMin) < Defaults.minDefault
-        let count = settings.boolValue(.rowGrouping) ? csv.rowCt : csv.colCt
+        let count = settings.inRows ? csv.rowCt : csv.colCt
         var top: Double
         var bottom: Double
 
@@ -80,8 +80,8 @@ struct Sides {
             var max: Double = -Double.greatestFiniteMagnitude
             let included = settings.intValue(.include)
 
-            let inRows = settings.boolValue(.rowGrouping)
-            let headers = settings.intValue(inRows ? .headerRows : .headerColumns)
+            let inRows = settings.inRows
+            let headers = settings.headers
 
             for i in headers..<count where i != index && (included &== (1 << i)) {
                 (min, max) =

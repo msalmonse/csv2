@@ -65,7 +65,7 @@ class Plot: ReflectedStringConvertible {
 
         sizes = FontSizes(size: settings.dim.baseFontSize)
 
-        self.index = settings.csv.index
+        self.index = settings.index
         height = settings.height
         width = settings.width
         allowedPlane = Plane(

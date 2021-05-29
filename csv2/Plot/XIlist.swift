@@ -13,7 +13,7 @@ extension Plot {
     /// - Returns: list of x and i values
 
     func xiList() -> [XIvalue] {
-        if settings.boolValue(.rowGrouping) {
+        if settings.inRows {
             if index < 0 {
                 return (-settings.intValue(.headerColumns)..<csv.colCt).map { XIvalue(x: Double($0), i: $0) }
             } else {

@@ -132,6 +132,22 @@ extension Settings {
         return .intValue(val: val)
     }
 
+    /// Return decoded 1 based Int as a SettingsValue
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: key
+    ///   - defaults: the command line defaults
+    /// - Returns: decoded or default value as a SettingsValue after subtracting 1
+
+    static func keyedInt1SettingsValue(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys,
+        defaults: Defaults
+    ) -> SettingsValue {
+        let val = keyedIntValue(from: container, forKey: key, defaults: defaults) - 1
+        return .intValue(val: val)
+    }
+
     /// Return the string default for the key
     /// - Parameters:
     ///   - key: Coding key for Settings
