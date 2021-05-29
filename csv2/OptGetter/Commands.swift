@@ -15,7 +15,7 @@ enum CommandType {
 }
 
 enum HelpCommandType: OptGetterTag {
-    case help, helpCanvas, helpCommands, helpList, helpPdf, helpPng, helpShow, helpSvg, helpUsage
+    case help, helpCanvas, helpCommands, helpList, helpHelp, helpPdf, helpPng, helpShow, helpSvg, helpUsage
 
     var count: Int {
         switch self {
@@ -101,9 +101,11 @@ let helpCmds: [CmdToGet] = [
     CmdToGet(["help", "canvas"], tag: HelpCommandType.helpCanvas,
              usage: "Show help for the canvas chart type."),
     CmdToGet(["help", "commands"], tag: HelpCommandType.helpCommands,
-             usage: "Show help on the available commands."),
+             usage: "Show help on the available main commands."),
     CmdToGet(["help", "list"], tag: HelpCommandType.helpList,
              usage: "Show help on list commands"),
+    CmdToGet(["help", "help"], tag: HelpCommandType.helpHelp,
+             usage: "Help on what help there is."),
     CmdToGet(["help", "pdf"], tag: HelpCommandType.helpPdf,
              usage: "Show help for the PDF chart type."),
     CmdToGet(["help", "png"], tag: HelpCommandType.helpPng,

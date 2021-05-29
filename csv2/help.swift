@@ -38,7 +38,8 @@ func helpMain(_ execName: String) {
             """,
             "",
             """
-            More help is available on each, e.g. help canvas or on the options with help usage.
+            More help is available on each, e.g. "help canvas" or on the options with "help usage",
+            or why not "help help".
             \u{11}See also: https://github.com/msalmonse/csv2/blob/main/README.md
             """,
             ""
@@ -97,6 +98,22 @@ func helpList(_ execName: String) {
     ]
     print(textWrap(help), to: &standardError)
     print(listUsage(), "\n", to: &standardError)
+}
+
+/// Help on list commands et al.
+/// - Parameter execName: programs executable name
+
+func helpHelp(_ execName: String) {
+    let help = [
+        "",
+        """
+        There is help to be found on several topics, here is a list of what is available:
+        """,
+        ""
+    ]
+    print(textWrap(help), to: &standardError)
+    print(helpUsage(), "\n", to: &standardError)
+    printSpecificUsage(for: "Help", helpOptsUsage())
 }
 
 /// Help for pdf chart type
@@ -201,6 +218,7 @@ func help(_ command: HelpCommandType) {
     switch command {
     case .helpCanvas: helpCanvas(execName())
     case .helpCommands: helpCommands(execName())
+    case .helpHelp: helpHelp(execName())
     case .helpList: helpList(execName())
     case .helpPdf: helpPDF(execName())
     case .helpPng: helpPNG(execName())

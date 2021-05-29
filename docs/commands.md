@@ -43,6 +43,8 @@ commands print internal information to help with settings.
                          the corresponding bitmap
     list colournames     List the colour names known to the
                          program
+    list json            Like 'help usage' but with the output in
+                         JSON
     list shapes          List the shape names defined internally
     version              List the version
 ```
