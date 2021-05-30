@@ -13,7 +13,7 @@ import Foundation
 ///   - optText: optional usage text
 
 func printSpecificUsage(for chartType: String, _ optText: String?) {
-    let indent = String(repeating: " ", count: UsageLeftRight.leftMargin)
+    let indent = String(repeating: " ", count: UsageLeftRight.indent)
     optText.map {
         print("""
             \(indent)\(chartType) specific options:
@@ -71,14 +71,14 @@ func helpCanvas(_ execName: String) {
 
 func helpCommands(_ execName: String) {
     let help = [
-            "",
-            """
-            The first argument on the command line is the main command.
-            It can optionally be followed by a show sub-command but normally isn't,
-            see "help show" for details.
-            """,
-            ""
-        ]
+        "",
+        """
+        The first argument on the command line is the main command.
+        It can optionally be followed by a show sub-command but normally isn't,
+        see "help show" for details.
+        """,
+        ""
+    ]
     print(textWrap(help), to: &standardError)
     print(plotUsage(), "\n", to: &standardError)
 }
@@ -182,7 +182,7 @@ func helpSVG(_ execName: String) {
 /// - Parameter execName: programs executable name
 
 func helpUsage(_ execName: String) {
-    let indent = String(repeating: " ", count: UsageLeftRight.leftMargin)
+    let indent = String(repeating: " ", count: UsageLeftRight.indent)
     print("""
 
         \(textWrap("Generate a Canvas, PDF, PNG or SVG using data from a CSV file and settings from a JSON file."))

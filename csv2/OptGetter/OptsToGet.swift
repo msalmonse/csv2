@@ -27,11 +27,11 @@ extension Options {
         ),
         OptToGet(
             .intSpecial(key: .left, name: "left"), .single,
-            usage: "Left margin for help text, this also affects indent and usage", argTag: "<n>"
+            usage: "Left margin for help text", argTag: "<n>"
         ),
         OptToGet(
             .intSpecial(key: .right, name: "right"), .single,
-            usage: "Right margin for help text", argTag: "<n>"
+            usage: "Right margin for text", argTag: "<n>"
         ),
         OptToGet(
             .intSpecial(key: .usage, name: "usage"), .single,
