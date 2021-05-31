@@ -12,7 +12,7 @@ extension Plot {
     /// Generate an  group with the plot lines
 
     func lineGroup() {
-        plotter.plotClipStart(plotPlane: plotPlane)
+        plotter.plotClipStart(clipPlane: clipPlane)
         plotValues()
         plotter.plotClipEnd()
     }
@@ -20,7 +20,7 @@ extension Plot {
     /// Generate a plotter document
 
     func gen() {
-        plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
+        plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
         if settings.doubleValue(.xTick) >= 0 { xTick() }
         if settings.doubleValue(.yTick) >= 0 { yTick() }
         if settings.intValue(.xTagsHeader) >= 0 { xTags() }
@@ -57,7 +57,7 @@ extension Plot {
             var stylesList = StylesList(count: 1, settings: settings)
             stylesList.plots[0].cssClass = name
             stylesList.plots[0].colour = colour
-            plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
+            plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
             let shapePath = Path([
                     PathComponent.moveTo(xy: Point(x: width/2.0, y: height/2.0)),
                     shape.pathComponent(w: shapeWidth)
@@ -81,7 +81,7 @@ extension Plot {
             return floor(free/2.0)
         }
 
-        plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
+        plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
 
         let row1 = settings.intValue(.headerRows)
         let pieCt = csv.rowCt - row1

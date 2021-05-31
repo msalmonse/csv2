@@ -10,9 +10,9 @@ import Foundation
 /// The actual plotter used by the abstarct Plot class
 
 protocol Plotter {
-    func plotClipStart(plotPlane: Plane)
+    func plotClipStart(clipPlane: Plane)
     func plotClipEnd()
-    func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList)
+    func plotHead(positions: Positions, clipPlane: Plane, stylesList: StylesList)
     func plotPath(_ path: Path, styles: Styles, fill: Bool)
     func plotPrint()
     func plotTail()

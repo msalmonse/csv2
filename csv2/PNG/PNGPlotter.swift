@@ -12,9 +12,11 @@ extension PNG {
     /// Start clipping to plotPlane
     /// - Parameter plotPlane: the plane for plots
 
-    func plotClipStart(plotPlane: Plane) {
-        clipRect =
-            CGRect(x: plotPlane.left, y: plotPlane.top, width: plotPlane.width, height: plotPlane.height)
+    func plotClipStart(clipPlane: Plane) {
+        clipRect = CGRect(
+                    x: clipPlane.left, y: clipPlane.top,
+                    width: clipPlane.width, height: clipPlane.height
+                )
     }
 
     /// Stop clipping
@@ -30,7 +32,7 @@ extension PNG {
     ///   - plotPlane: where the plots will go
     ///   - stylesList: all styles
 
-    func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
+    func plotHead(positions: Positions, clipPlane: Plane, stylesList: StylesList) {
         if settings.hasContent(.logoURL) {
             let logoPlane = Plane(
                 left: positions.logoX, top: positions.logoY,

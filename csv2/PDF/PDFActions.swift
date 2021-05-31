@@ -12,7 +12,7 @@ enum PDFActions {
         // set background colour
         bg(colour: CGColor),
         // start clipping
-        clipStart(plotPlane: Plane),
+        clipStart(clipPlane: Plane),
         // end clipping
         clipEnd,
         // draw a logo

@@ -9,7 +9,7 @@ import Foundation
 
 extension SVG {
 
-    func plotClipStart(plotPlane: Plane) {
+    func plotClipStart(clipPlane: Plane) {
         data.append("""
             <g clip-path="url(#plotable)" class="plotarea">
 
@@ -21,10 +21,10 @@ extension SVG {
         data.append("</g>\n")
     }
 
-    func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
+    func plotHead(positions: Positions, clipPlane: Plane, stylesList: StylesList) {
         data.append((xmlTag + svgTag))
         if settings.boolValue(.comment) { data.append(comment) }
-        defs(plotPlane: plotPlane)
+        defs(clipPlane: clipPlane)
         cssStyle(stylesList)
         if settings.hasContent(.logoURL) { logoImage(positions: positions) }
     }

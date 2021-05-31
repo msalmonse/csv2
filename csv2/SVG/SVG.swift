@@ -57,12 +57,12 @@ class SVG: Plotter, ReflectedStringConvertible {
     /// Generate the defs element
     /// - Returns: the defs elements as a list
 
-    func defs(plotPlane: Plane) {
+    func defs(clipPlane: Plane) {
         // Make plottable a bit bigger so that shapes aren't clipped
-        let h = (plotPlane.bottom - plotPlane.top + shapeWidth * 4.0)
-        let w = (plotPlane.right - plotPlane.left + shapeWidth * 4.0)
-        let x = (plotPlane.left - shapeWidth * 2.0)
-        let y = (plotPlane.top - shapeWidth * 2.0)
+        let h = clipPlane.bottom
+        let w = clipPlane.right
+        let x = clipPlane.left
+        let y = clipPlane.top
         data.append("""
                 <defs>
                 <clipPath id="plotable">

@@ -23,6 +23,8 @@ class Plot: ReflectedStringConvertible {
     let dataPlane: Plane
     // the plot plane
     let plotPlane: Plane
+    // the clipping plane
+    let clipPlane: Plane
     // and the allowed drawing plain
     let allowedPlane: Plane
 
@@ -81,6 +83,12 @@ class Plot: ReflectedStringConvertible {
         positions = settings.chartType.positionsSelect(settings)
 
         limit = settings.doubleValue(.dataPointDistance)
+
+        let margin = 2.0 * shapeWidth
+        clipPlane = Plane(
+            top: positions.topY - margin, bottom: positions.bottomY + margin,
+            left: positions.leftX - margin, right: positions.rightX + margin
+        )
 
         let plotPlane = Plane(
             top: positions.topY, bottom: positions.bottomY,

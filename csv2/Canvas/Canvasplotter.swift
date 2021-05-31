@@ -15,13 +15,11 @@ extension Canvas {
     ///   - lines: the plot lines
     /// - Returns: the clipped lines
 
-    func plotClipStart(plotPlane: Plane) {
-        let shapeWidth = settings.shapeWidth
-        // Make plottable a bit bigger so that shapes aren't clipped
-        let left = (plotPlane.left - shapeWidth * 2.0)
-        let top = (plotPlane.top - shapeWidth * 2.0)
-        let bottom = (plotPlane.bottom + shapeWidth * 4.0)
-        let right = (plotPlane.right + shapeWidth * 4.0)
+    func plotClipStart(clipPlane: Plane) {
+        let left = clipPlane.left
+        let top = clipPlane.top
+        let bottom = clipPlane.bottom
+        let right = clipPlane.right
         let opacity = settings.doubleValue(.opacity)
         var result = [""]
         result.append("ctx.save()")
@@ -54,7 +52,7 @@ extension Canvas {
     ///   - stylesList: a list of properties
     /// - Returns: the JS to start
 
-    func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
+    func plotHead(positions: Positions, clipPlane: Plane, stylesList: StylesList) {
         let id = settings.stringValue(.canvasID, in: .canvas)
         let name = "canvas_\(id)"
         let url = settings.stringValue(.logoURL)

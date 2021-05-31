@@ -8,15 +8,15 @@
 import Foundation
 
 extension PDF {
-    func plotClipStart(plotPlane: Plane) {
-        page.add(action: .clipStart(plotPlane: plotPlane))
+    func plotClipStart(clipPlane: Plane) {
+        page.add(action: .clipStart(clipPlane: clipPlane))
     }
 
     func plotClipEnd() {
         page.add(action: .clipEnd)
     }
 
-    func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
+    func plotHead(positions: Positions, clipPlane: Plane, stylesList: StylesList) {
         let logoURL = settings.stringValue(.logoURL)
         if settings.stringValue(.logoURL).hasContent {
             let logoPlane = Plane(

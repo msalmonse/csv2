@@ -63,7 +63,7 @@ extension Plot {
         var yRect: Double { y - hRect * 0.8 }
         var yBG: Double { yRect - strokeWidth }
 
-        plotter.plotHead(positions: positions, plotPlane: plotPlane, stylesList: stylesList)
+        plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
 
         for i in colours.indices {
             let bg = Plane(left: lBG, top: yBG, height: hBG, width: wBG)
