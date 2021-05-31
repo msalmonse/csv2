@@ -87,12 +87,12 @@ extension SVG {
     /// - Parameter result: where to add styles
 
     private func cssIncludes(_ result: inout [String]) {
-        let extras = settings.stringArray(.cssExtras)
+        let extras = settings.stringArray(.cssExtras, in: .svg)
         if extras.hasEntries {
             result.append("<style>\n" + extras.joined(separator: "\n") + "</style>\n")
         }
 
-        if let url = SearchPath.search(settings.stringValue(.cssInclude)),
+        if let url = SearchPath.search(settings.stringValue(.cssInclude, in: .svg)),
            let include = try? String(contentsOf: url) {
             result.append("<style>\n" + include + "</style>")
         }

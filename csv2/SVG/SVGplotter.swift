@@ -49,7 +49,7 @@ extension SVG {
     /// - Returns: end tag
 
     func plotTail() {
-        let includeFile = settings.stringValue(.svgInclude)
+        let includeFile = settings.stringValue(.svgInclude, in: .svg)
         let include = includeFile.isEmpty ? "" : """
 
             <!-- \(includeFile) -->

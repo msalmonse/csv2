@@ -55,7 +55,7 @@ extension Canvas {
     /// - Returns: the JS to start
 
     func plotHead(positions: Positions, plotPlane: Plane, stylesList: StylesList) {
-        let id = settings.stringValue(.canvasID)
+        let id = settings.stringValue(.canvasID, in: .canvas)
         let name = "canvas_\(id)"
         let url = settings.stringValue(.logoURL)
         let logo = url.isEmpty ? "" : drawLogo(
@@ -78,9 +78,9 @@ extension Canvas {
 
     func plotTail() {
         data.append("\n}\n")
-        let tagFile = settings.stringValue(.tagFile)
+        let tagFile = settings.stringValue(.tagFile, in: .canvas)
         if tagFile.hasContent {
-            let id = settings.stringValue(.canvasID)
+            let id = settings.stringValue(.canvasID, in: .canvas)
             let w = settings.intValue(.width)
             let h = settings.intValue(.height)
             let url = URL(fileURLWithPath: tagFile)

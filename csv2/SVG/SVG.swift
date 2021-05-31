@@ -45,7 +45,7 @@ class SVG: Plotter, ReflectedStringConvertible {
 
     init(_ settings: Settings) {
         self.settings = settings
-        let cssID = settings.stringValue(.cssID)
+        let cssID = settings.stringValue(.cssID, in: .svg)
         svgID = cssID.hasContent ? cssID
             : "ID-\(Int.random(in: 1...(1 << 24)).x0(6))"
         height = settings.height

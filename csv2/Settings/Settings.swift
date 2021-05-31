@@ -46,25 +46,25 @@ class Settings: Decodable, ReflectedStringConvertible {
             switch key.codingType {
             case .isBool:
                 let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
-                values.setValue(key, val)
+                values.setValue(key, val, in: key.domain)
             case .isDouble:
                 let val = Self.keyedDoubleSettingsValue(from: container, forKey: key, defaults: defaults,
                                                         in: key.doubleBounds)
-                values.setValue(key, val)
+                values.setValue(key, val, in: key.domain)
             case .isInt:
                 let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults,
                                                      in: key.intBounds)
-                values.setValue(key, val)
+                values.setValue(key, val, in: key.domain)
             case .isInt1:
                 let val = Self.keyedInt1SettingsValue(from: container, forKey: key, defaults: defaults,
                                                       in: key.intBounds)
-                values.setValue(key, val)
+                values.setValue(key, val, in: key.domain)
             case .isString:
                 let val = Self.keyedStringSettingsValue(from: container, forKey: key, defaults: defaults)
-                values.setValue(key, val)
+                values.setValue(key, val, in: key.domain)
             case .isStringArray:
                 let val = Self.keyedStringArraySettingsValue(from: container, forKey: key, defaults: defaults)
-                values.setValue(key, val)
+                values.setValue(key, val, in: key.domain)
             case .isNone: break
             }
         }

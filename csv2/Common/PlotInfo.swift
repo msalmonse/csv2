@@ -20,7 +20,7 @@ func plotClasses(
     _ ct: Int,
     _ styles: inout [Styles]
     ) {
-    let cssClasses = settings.stringArray(.cssClasses)
+    let cssClasses = settings.stringArray(.cssClasses, in: .svg)
     for i in styles.indices {
         if cssClasses.hasIndex(i) && cssClasses[i].hasContent {
             styles[i].cssClass = cssClasses[i]
