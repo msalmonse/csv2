@@ -35,6 +35,7 @@ func plotCommand(_ main: MainCommandType, _ sub: SubCommandType, _ options: Opti
         print("Error loading data.", to: &standardError)
         exit(1)
     }
+    csv!.valuesFill()
 
     let plotter = main.plotter(settings: settings!)
     let plot = Plot(csv!, settings!, plotter)

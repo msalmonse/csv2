@@ -95,6 +95,10 @@
 		C48B822A25E28F7E00EAEAE3 /* csv2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */; };
 		C48B823625E2967100EAEAE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6C25DC03B500CEAB8C /* Settings.swift */; };
 		C48B823925E29A5600EAEAE3 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49B7D6F25DC055400CEAB8C /* CSV.swift */; };
+		C49890D626649AE2005EED3E /* CSVswap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49890D526649AE2005EED3E /* CSVswap.swift */; };
+		C49890D726649AE2005EED3E /* CSVswap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49890D526649AE2005EED3E /* CSVswap.swift */; };
+		C49890D92664B205005EED3E /* CSVminMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49890D82664B205005EED3E /* CSVminMax.swift */; };
+		C49890DA2664B205005EED3E /* CSVminMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49890D82664B205005EED3E /* CSVminMax.swift */; };
 		C499B3342650EAD600581AD0 /* OptGetter in Frameworks */ = {isa = PBXBuildFile; productRef = C499B3332650EAD600581AD0 /* OptGetter */; };
 		C499B3382650FD9900581AD0 /* KeyTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499B3372650FD9900581AD0 /* KeyTag.swift */; };
 		C499B3392650FD9900581AD0 /* KeyTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499B3372650FD9900581AD0 /* KeyTag.swift */; };
@@ -266,6 +270,8 @@
 		C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2Tests.swift; sourceTree = "<group>"; };
 		C48B822B25E28F7E00EAEAE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C492BE0F25F3A2A10042A11E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C49890D526649AE2005EED3E /* CSVswap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVswap.swift; sourceTree = "<group>"; };
+		C49890D82664B205005EED3E /* CSVminMax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVminMax.swift; sourceTree = "<group>"; };
 		C499B3372650FD9900581AD0 /* KeyTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyTag.swift; sourceTree = "<group>"; };
 		C49A0DB92648278300CF7E22 /* PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDF.swift; sourceTree = "<group>"; };
 		C49A0DBC264827D600CF7E22 /* PDFPlotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPlotter.swift; sourceTree = "<group>"; };
@@ -609,6 +615,8 @@
 			isa = PBXGroup;
 			children = (
 				C49B7D6F25DC055400CEAB8C /* CSV.swift */,
+				C49890D82664B205005EED3E /* CSVminMax.swift */,
+				C49890D526649AE2005EED3E /* CSVswap.swift */,
 				C40CD43925ED025F003944FA /* Header.swift */,
 			);
 			path = CSV;
@@ -824,6 +832,7 @@
 				C453244D25FBEBA6007D741C /* ShowShape.swift in Sources */,
 				C4C0C462260E589A0072699C /* SVGstyle.swift in Sources */,
 				C4F20C1626027B7C005D2FE1 /* Legends.swift in Sources */,
+				C49890D92664B205005EED3E /* CSVminMax.swift in Sources */,
 				C4EFA4F5262491BB0026BD9A /* ColourTranslate.swift in Sources */,
 				C4B2F9D3262C6BC000CC5430 /* CGplotText.swift in Sources */,
 				C453242525FA2C23007D741C /* DrawShapes.swift in Sources */,
@@ -892,6 +901,7 @@
 				C4255F3F25E423A7002DFE80 /* PathCompenent.swift in Sources */,
 				C422C5C42608D0CC00676912 /* ShowColoursList.swift in Sources */,
 				C4507817263E9FED00308C1D /* Double.swift in Sources */,
+				C49890D626649AE2005EED3E /* CSVswap.swift in Sources */,
 				C4EFA4C32620D5C40026BD9A /* CTX.swift in Sources */,
 				C4FA4255265CE9CD00D999CC /* Usage.swift in Sources */,
 			);
@@ -962,6 +972,7 @@
 				C4F8F876261C375C00DF76AE /* Plot.swift in Sources */,
 				C4FA4260265FE42300D999CC /* Encodable.swift in Sources */,
 				C4EFA4A4261EEBA70026BD9A /* Plotter.swift in Sources */,
+				C49890DA2664B205005EED3E /* CSVminMax.swift in Sources */,
 				C4569DB526523C0D00D74DBD /* OptGetter.swift in Sources */,
 				C4569DAF265177DC00D74DBD /* OptionsGet.swift in Sources */,
 				C4569DB326523C0100D74DBD /* Options.swift in Sources */,
@@ -976,6 +987,7 @@
 				C4EA5D2B25EB90C900E104E0 /* Colours.swift in Sources */,
 				C4EFA4CC262166700026BD9A /* CTX.swift in Sources */,
 				C4B2F9B6262B488400CC5430 /* CanvasOut.swift in Sources */,
+				C49890D726649AE2005EED3E /* CSVswap.swift in Sources */,
 				C4FA4257265E434A00D999CC /* RandomCSV.swift in Sources */,
 				C4AD7F76265A120400CABB29 /* ShowColoursList.swift in Sources */,
 				C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */,
@@ -1129,6 +1141,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

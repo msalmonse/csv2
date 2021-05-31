@@ -59,6 +59,7 @@ class Plot: ReflectedStringConvertible {
     var titleSize: Double { return sizes.title.size }
 
     init(_ csv: CSV, _ settings: Settings, _ plotter: Plotter) {
+        csv.valuesFill()
         self.csv = csv
         self.settings = settings
         self.plotter = plotter

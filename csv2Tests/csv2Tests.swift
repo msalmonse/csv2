@@ -65,6 +65,7 @@ class csv2Tests: XCTestCase {
             XCTAssertEqual(row.count, 5)
         }
 
+        csv.valuesFill()
         // Check for embedded space and trailing cr
         XCTAssertNil(csv.values[0][3], "embedded space")
         XCTAssertEqual(csv.data[0][3], "3  \"  5", "embedded spaces and double quote")
@@ -90,6 +91,17 @@ class csv2Tests: XCTestCase {
 
         let csvTab = CSV(csvData.replacingOccurrences(of: ",", with: "\t"), separatedBy: "\t")
         XCTAssertEqual(csv.data, csvTab.data)
+
+        let csvSwap = csv.swap()
+        XCTAssertNotEqual(csvSwap.data, csv.data)
+        csvSwap.valuesFill()
+
+        // Check for embedded space and trailing cr
+        XCTAssertNil(csvSwap.values[3][0], "embedded space")
+        XCTAssertEqual(csvSwap.data[3][0], "3  \"  5", "embedded spaces and double quote")
+        XCTAssertNotNil(csvSwap.values[3][1], "leading space")
+        XCTAssertNotNil(csvSwap.values[1][2], "trailing space")
+        XCTAssertNotNil(csvSwap.values[4][1], "trailing cr")
     }
 
     func testBigCsv() {
@@ -107,6 +119,7 @@ class csv2Tests: XCTestCase {
 
     func testPlot() throws {
         let csvPlot = CSV(plotData)
+        csvPlot.valuesFill()
 
         Colours.reset()
         var settings = try? Settings.load(settingsJSON(true))
@@ -168,6 +181,7 @@ class csv2Tests: XCTestCase {
 
     func testSides() {
         let csv = CSV(csvData)
+        csv.valuesFill()
         var settings = try? Settings.load(settingsJSON(true))
         XCTAssertNotNil(settings)
         var svg = SVG(settings!)
