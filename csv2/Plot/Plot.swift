@@ -96,8 +96,8 @@ class Plot: ReflectedStringConvertible {
         ts = TransScale(from: dataPlane, to: plotPlane, logx: logx, logy: logy)
         point00 = ts.pos(x: logx ? 1.0 : 0.0, y: logy ? 1.0 : 0.0)
 
-        let plotCount = settings.inRows ? csv.rowCt : csv.colCt
-        let plotFirst = settings.headers
+        let plotCount = settings.chartType.plotCount(csv)
+        let plotFirst = settings.intValue(.headerColumns)
 
         // Initialize path info
         var stylesList = StylesList(count: plotCount, settings: settings)

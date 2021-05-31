@@ -18,8 +18,7 @@ extension Plot {
         if Bar.count <= 0 { return nil }
         let barOffset = settings.doubleValue(.barOffset)
         let barWidth = settings.doubleValue(.barWidth)
-        let inRows = settings.inRows
-        let headers = settings.intValue(inRows ? .headerRows : .headerColumns)
+        let headers = settings.intValue(.headerColumns)
 
         if barOffset >= 0.0 && barWidth > 0.0 {
             return Bar(offset: barOffset, width: barWidth)

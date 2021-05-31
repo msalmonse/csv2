@@ -9,6 +9,19 @@ import Foundation
 
 struct Sides {
 
+    /// Set min and max after comparing with val
+    /// - Parameters:
+    ///   - val: value to compare
+    ///   - max: max so far
+    ///   - min: min so far
+
+    private static func setMinMax(_ val: Double?, max: inout Double, min: inout Double) {
+        if let val = val {
+            if val > max { max = val }
+            if val < min { min = val }
+        }
+    }
+
     /// Calculate the left and right sides of the data
     /// - Parameters:
     ///   - csv: csv values
@@ -16,7 +29,7 @@ struct Sides {
     /// - Returns: the left and right sides
 
     static func lrFromData(_ csv: CSV, _ settings: Settings) -> (l: Double, r: Double) {
-        let count = settings.inRows ? csv.colCt : csv.rowCt
+        let count = csv.colCt
         let index = settings.index
         let xMaxSet = settings.doubleValue(.xMax) > Defaults.maxDefault
         let xMinSet = settings.doubleValue(.xMin) < Defaults.minDefault
@@ -37,9 +50,16 @@ struct Sides {
                 min = 0.0
                 max = Double(count - 1)
             } else {
-                let inColumns = !settings.inRows
-                let headers = settings.intValue(inColumns ? .headerColumns : .headerRows)
-                (min, max) = csv.minMax(inColumns, index, from: headers)
+                min = Defaults.minDefault
+                max = Defaults.maxDefault
+                let start = settings.intValue(.headerColumns)
+                if csv.values.hasIndex(index) {
+                    let indexRow = csv.values[index]
+                    let end = indexRow.count
+                    if end > start {
+                        _ = indexRow[start..<end].map { setMinMax($0, max: &max, min: &min) }
+                    }
+                }
                 // if min and max don't include 0 then include 0 if one is close
                 if min > 0 && max > 0 && !settings.boolValue(.logx) {
                     if min < max/20.0 { min = 0.0 }
@@ -65,7 +85,7 @@ struct Sides {
         let index = settings.index
         let yMaxSet = settings.doubleValue(.yMax) > Defaults.maxDefault
         let yMinSet = settings.doubleValue(.yMin) < Defaults.minDefault
-        let count = settings.inRows ? csv.rowCt : csv.colCt
+        let count = csv.rowCt
         var top: Double
         var bottom: Double
 
@@ -80,12 +100,17 @@ struct Sides {
             var max: Double = -Double.greatestFiniteMagnitude
             let included = settings.intValue(.include)
 
-            let inRows = settings.inRows
-            let headers = settings.headers
+            let first = settings.intValue(.headerRows)
+            let start = settings.intValue(.headerColumns)
 
-            for i in headers..<count where i != index && (included &== (1 << i)) {
-                (min, max) =
-                    csv.minMax(!inRows, i, from: headers, min: min, max: max)
+            for i in first..<count where i != index && (included &== (1 << i)) {
+                if csv.values.hasIndex(i) {
+                    let valuesRow = csv.values[i]
+                    let end = valuesRow.count
+                    if end > start {
+                        _ = valuesRow[start..<end].map { setMinMax($0, max: &max, min: &min) }
+                    }
+                }
             }
             // if min and max don't include 0 then include 0 if one is close
             if min > 0 && max > 0 && !settings.boolValue(.logy) {

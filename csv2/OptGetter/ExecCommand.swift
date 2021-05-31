@@ -35,10 +35,9 @@ func plotCommand(_ main: MainCommandType, _ sub: SubCommandType, _ options: Opti
         print("Error loading data.", to: &standardError)
         exit(1)
     }
-    csv!.valuesFill()
 
     let plotter = main.plotter(settings: settings!)
-    let plot = Plot(csv!, settings!, plotter)
+    let plot = Plot(csvSwapOrNot(csv!, settings!), settings!, plotter)
     plot.chartGen()
 
     output(plotter, to: options.outName)
@@ -56,6 +55,20 @@ private func csvSelect(_ opts: Options, _ settings: Settings?) -> CSV? {
     case (true, false): return try? CSV(URL(fileURLWithPath: opts.csvName!), separatedBy: opts.separator)
     case(false, false): return CSV(readLines(), separatedBy: opts.separator)
     }
+}
+
+private func csvSwapOrNot(_ csv: CSV, _ settings: Settings) -> CSV {
+    let inRows = settings.boolValue(.rowGrouping)
+    switch settings.chartType {
+    case .horizontal: if inRows { return csv }
+    case .pieChart: if !inRows { return csv }
+    case .vertical: break
+    }
+
+    let swapped = csv.swap()
+    settings.swapRowsColumns()
+
+    return swapped
 }
 
 /// Determine JSON file URL

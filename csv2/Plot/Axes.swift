@@ -32,6 +32,7 @@ extension Plot {
 
     func xTags() {
         let xiValues = xiList()
+        let headers = settings.intValue(.headerColumns)
         let k = settings.intValue(.xTagsHeader)
         var tagsPath = Path()
 
@@ -42,22 +43,14 @@ extension Plot {
         /// - Returns: text if everything is OK
 
         func getText(_ i1: Int, _ i2: Int) -> String {
-            if settings.inRows {
-                if csv.data.hasIndex(i2) && csv.data[i2].hasIndex(i1) {
-                    return csv.data[i2][i1]
-                } else {
-                    return ""
-                }
+            if csv.data.hasIndex(i2) && csv.data[i2].hasIndex(i1) {
+                return csv.data[i2][i1]
             } else {
-                if csv.data.hasIndex(i1) && csv.data[i1].hasIndex(i2) {
-                    return csv.data[i1][i2]
-                } else {
-                    return ""
-                }
+                return ""
             }
         }
 
-        for i in xiValues.indices where i >= settings.headers {
+        for i in xiValues.indices where i >= headers {
             if let x = xiValues[i].x, dataPlane.inHoriz(x) {
                 let j = xiValues[i].i
                 let text = getText(j, k)

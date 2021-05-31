@@ -98,15 +98,15 @@ func plotNames(
     _ ct: Int,
     _ styles: inout [Styles]
 ) {
-    let inRows = settings.inRows
-    let headers = settings.headers
+    let inRows = settings.boolValue(.rowGrouping)
+    let headers = settings.intValue(.headerRows)
     let nameHeader = settings.intValue(.nameHeader)
     let names = settings.stringArray(.names)
 
     // Row or column name
     func rcName(_ num: Int) -> String {
 
-        let rc = settings.inRows ? "Row" : "Column"
+        let rc = inRows ? "Row" : "Column"
         return "\(rc) \(num.d(1))"
     }
 

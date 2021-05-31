@@ -51,20 +51,14 @@ extension CSV {
 
     /// Extract sub title from row or column
     /// - Parameters:
-    ///   - csv: csv object
-    ///   - inColumns: is data in rows or columns
     ///   - header: row or column with the sub title
     /// - Returns: sub title
 
-    func subTitleText(inColumns: Bool, header: Int) -> String {
+    func subTitleText(header: Int) -> String {
         guard header >= 0 else { return "" }
         var text: [String] = []
-        if inColumns {
-            text = data.hasIndex(header) ? data[header] : []
-        } else {
-            for row in data where row.hasIndex(header) {
-                text.append(row[header])
-            }
+        for row in data where row.hasIndex(header) {
+            text.append(row[header])
         }
 
         return text.joined(separator: " ").trimmingCharacters(in: .whitespaces)

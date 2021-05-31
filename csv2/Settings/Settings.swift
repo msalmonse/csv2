@@ -12,10 +12,8 @@ class Settings: Decodable, ReflectedStringConvertible {
     internal var values: SettingsValues
 
     // Some shortcuts
-    let headers: Int
     let height: Double
     let index: Int
-    let inRows: Bool
     var shapeWidth: Double { strokeWidth * 1.75 }
     let strokeWidth: Double
     let width: Double
@@ -73,8 +71,6 @@ class Settings: Decodable, ReflectedStringConvertible {
         Self.loadForeground(from: container, defaults: defaults, into: &values)
         Self.loadPDF(from: container, defaults: defaults, into: &values)
 
-        inRows = values.boolValue(.rowGrouping)
-        headers = values.intValue(inRows ? .headerRows : .headerColumns)
         index = values.intValue(.index)
         height = Double(values.intValue(.height))
         width = Double(values.intValue(.width))
@@ -116,5 +112,14 @@ class Settings: Decodable, ReflectedStringConvertible {
             print(error, to: &standardError)
             throw error
         }
+    }
+
+    /// Swap values for rows and columns
+
+    func swapRowsColumns() {
+        let headerRows = values.value(.headerRows)
+        let headerCols = values.value(.headerColumns)
+        values.setValue(.headerColumns, headerRows)
+        values.setValue(.headerRows, headerCols)
     }
 }

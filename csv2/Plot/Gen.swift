@@ -13,7 +13,7 @@ extension Plot {
 
     func lineGroup() {
         plotter.plotClipStart(plotPlane: plotPlane)
-        settings.inRows ? rowPlot() : columnPlot()
+        plotValues()
         plotter.plotClipEnd()
     }
 

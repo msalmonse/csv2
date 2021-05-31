@@ -43,9 +43,11 @@ enum SettingsValue: Equatable {
 }
 
 enum DomainKey {
+    case canvas
     case foreground
     case pdf
     case topLevel
+    case svg
 }
 
 struct CombinedKey: Hashable {
@@ -79,7 +81,7 @@ struct SettingsValues {
 
     mutating func setValue(
         _ key: Settings.CodingKeys,
-        _ value: SettingsValue,
+        _ value: SettingsValue?,
         in domain: DomainKey = .topLevel
     ) {
         values[CombinedKey(domain: domain, key: key)] = value
@@ -196,5 +198,15 @@ struct SettingsValues {
             keyVal.unexpectedValue(expected: "String Array", for: key)
             return []
         }
+    }
+
+    /// Lookup  value
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: Value or nil if missing
+
+    func value(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> SettingsValue? {
+        return values[CombinedKey(domain: domain, key: key)]
     }
 }

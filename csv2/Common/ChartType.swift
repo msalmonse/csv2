@@ -38,3 +38,14 @@ extension ChartType {
         }
     }
 }
+
+extension ChartType {
+    func plotCount(_ csv: CSV) -> Int {
+        switch self {
+        case .horizontal: return csv.rowCt
+            // For a piechart we treat each column as its own plot
+        case .pieChart: return csv.colCt
+        default: return 0
+        }
+    }
+}

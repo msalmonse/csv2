@@ -19,7 +19,7 @@ extension Plot {
         }
         let subTitleHeader = settings.intValue(.subTitleHeader)
         if subTitleHeader >= 0 {
-            return csv.subTitleText(inColumns: !settings.inRows, header: subTitleHeader)
+            return csv.subTitleText(header: subTitleHeader)
         }
         return nil
     }

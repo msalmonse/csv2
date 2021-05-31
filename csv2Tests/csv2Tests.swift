@@ -29,7 +29,6 @@ class csv2Tests: XCTestCase {
         if let settings = try? Settings.load(settingsJSON(true)) {
             XCTAssertEqual(settings.doubleValue(.bezier), Defaults.initial.doubleValue(.bezier))
             XCTAssertEqual(settings.stringArray(.colours).count, 3)
-            XCTAssertFalse(settings.inRows)
             XCTAssertFalse(settings.boolValue(.rowGrouping))
             XCTAssertEqual(settings.intValue(.index), testIndex - 1)
             XCTAssertEqual(settings.intValue(.height), testHeight)
@@ -43,14 +42,12 @@ class csv2Tests: XCTestCase {
         }
 
         if let settings = try? Settings.load(settingsJSON(false)) {
-            XCTAssertTrue(settings.inRows)
             XCTAssertTrue(settings.boolValue(.rowGrouping))
         } else {
             XCTFail("Nil settings")
         }
 
         if let settings = try? Settings.load(settingsJSON(true)) {
-            XCTAssertFalse(settings.inRows)
             XCTAssertFalse(settings.boolValue(.rowGrouping))
         } else {
             XCTFail("Nil settings")
@@ -72,22 +69,6 @@ class csv2Tests: XCTestCase {
         XCTAssertNotNil(csv.values[1][3], "leading space")
         XCTAssertNotNil(csv.values[2][1], "trailing space")
         XCTAssertNotNil(csv.values[1][4], "trailing cr")
-
-        var (min, max) = csv.columnMinMax(3)
-        XCTAssertEqual(min, -110.1)
-        XCTAssertEqual(max, 5220.6)
-
-        (min, max) = csv.columnMinMax(2, from: 2)
-        XCTAssertEqual(min, 129.9)
-        XCTAssertEqual(max, 152.7)
-
-        (min, max) = csv.rowMinMax(0, min: 0.0, max: 1000.0)
-        XCTAssertEqual(min, -1.0)
-        XCTAssertEqual(max, 1000.0)
-
-        (min, max) = csv.rowMinMax(3, from: 1)
-        XCTAssertEqual(min, 100.1)
-        XCTAssertEqual(max, 152.7)
 
         let csvTab = CSV(csvData.replacingOccurrences(of: ",", with: "\t"), separatedBy: "\t")
         XCTAssertEqual(csv.data, csvTab.data)
@@ -181,7 +162,6 @@ class csv2Tests: XCTestCase {
 
     func testSides() {
         let csv = CSV(csvData)
-        csv.valuesFill()
         var settings = try? Settings.load(settingsJSON(true))
         XCTAssertNotNil(settings)
         var svg = SVG(settings!)
@@ -189,18 +169,19 @@ class csv2Tests: XCTestCase {
 
         XCTAssertEqual(plot.dataPlane.top, testYMax)
         XCTAssertEqual(plot.dataPlane.bottom, -110.1)
-        XCTAssertEqual(plot.dataPlane.left, 0)
-        XCTAssertEqual(plot.dataPlane.right, 32)
+        XCTAssertEqual(plot.dataPlane.left, -1)
+        XCTAssertEqual(plot.dataPlane.right, 9.0)
 
         settings = try? Settings.load(settingsJSON(false))
         XCTAssertNotNil(settings)
         svg =  SVG(settings!)
-        plot = Plot(csv, settings!, svg)
+        // we need to swap the csv as we are working in columns
+        plot = Plot(csv.swap(), settings!, svg)
 
         XCTAssertEqual(plot.dataPlane.top, testYMax)
         XCTAssertEqual(plot.dataPlane.bottom, -110.1)
-        XCTAssertEqual(plot.dataPlane.left, -1.0)
-        XCTAssertEqual(plot.dataPlane.right, 9.0)
+        XCTAssertEqual(plot.dataPlane.left, 0.0)
+        XCTAssertEqual(plot.dataPlane.right, 32.0)
     }
 
     func testFormats() {

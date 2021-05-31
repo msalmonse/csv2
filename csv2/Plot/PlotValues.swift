@@ -1,5 +1,5 @@
 //
-//  PlotCommon.swift
+//  PlotValues.swift
 //  csv2svg
 //
 //  Created by Michael Salmon on 2021-03-07.
@@ -203,7 +203,7 @@ extension Plot {
     ///   - styles: plot properties
     ///   - staple: staple diagram details
 
-    func plotCommon(
+    func onePlot(
         _ xiValues: [XIvalue],
         _ yValues: [Double?],
         _ styles: Styles,
@@ -227,7 +227,7 @@ extension Plot {
             return Point(x: x, y: y)
         }
 
-        for i in settings.headers..<xiValues.count {
+        for i in settings.intValue(.headerColumns)..<xiValues.count {
             var pos = xypos(i)
             if pos == nil {
                 state.nilPlot(plotShape)
@@ -255,5 +255,21 @@ extension Plot {
         }
         plotter.plotPath(state.pathComponents, styles: plotProps, fill: fill)
         plotter.plotPath(state.shapeComponents, styles: plotProps, fill: false)
+    }
+
+    /// Plot the non-index and non header rows
+    /// - Returns: An array of the path elements for the columns
+
+    func plotValues() {
+        let xiValues = settings.boolValue(.sortx) ? xiList().sorted() : xiList()
+        let bar = barGet(xiValues)
+        for i in 0..<csv.rowCt where i != index && stylesList.plots[i].options[.included] {
+            let yValues = csv.rowValues(i)
+            onePlot(
+                xiValues, yValues,
+                stylesList.plots[i],
+                bar: bar
+            )
+        }
     }
 }
