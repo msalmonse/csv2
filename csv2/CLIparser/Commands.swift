@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import OptGetter
+import CLIparser
 
 enum CommandType {
     case helpCommand(help: HelpCommandType)
@@ -14,7 +14,7 @@ enum CommandType {
     case plotCommand(main: MainCommandType, sub: SubCommandType)
 }
 
-enum HelpCommandType: OptGetterTag {
+enum HelpCommandType: CLIparserTag {
     case help, helpCanvas, helpCommands, helpList, helpHelp, helpPdf, helpPng, helpShow, helpSvg, helpUsage
 
     var count: Int {
@@ -26,20 +26,12 @@ enum HelpCommandType: OptGetterTag {
 
 }
 
-enum ListCommandType: OptGetterTag {
+enum ListCommandType: CLIparserTag {
     case bitmap, listColourNames, listJSON, listShapes, version
 }
 
-enum MainCommandType: OptGetterTag {
+enum MainCommandType: CLIparserTag {
     case canvas, help,  pdf,  png,  svg, unspec
-
-    // number of arguments taken including path name
-    var count: Int {
-        switch self {
-        case .unspec: return 1
-        default: return 2
-        }
-    }
 
     func plotter(settings: Settings) -> Plotter {
         switch self {
@@ -53,16 +45,8 @@ enum MainCommandType: OptGetterTag {
     }
 }
 
-enum SubCommandType: OptGetterTag {
+enum SubCommandType: CLIparserTag {
     case colourNames, colours, dashes, shapes(name: String), none
-
-    // number of arguments taken after main
-    var count: Int {
-        switch self {
-        case .none: return 0
-        default: return 2
-        }
-    }
 }
 
 let plotCmds: [CmdToGet] = [
@@ -97,6 +81,7 @@ let listCmds: [CmdToGet] = [
     CmdToGet(["version"], tag: ListCommandType.version,
              usage: "List the version")
 ]
+
 let helpCmds: [CmdToGet] = [
     CmdToGet(["help", "canvas"], tag: HelpCommandType.helpCanvas,
              usage: "Show help for the canvas chart type."),
@@ -119,27 +104,37 @@ let helpCmds: [CmdToGet] = [
     CmdToGet(["help"], tag: HelpCommandType.help)
 ]
 
-func getCommand(_ args: [String]) -> CommandType {
-    // Check first for empty command line
-    if args.count == 1 { return .helpCommand(help: .help) }
+/// Create a CmdToGet for all shapes
+/// - Returns: CmdToGet array
 
-    if let main = (OptGetter.cmdGetter(plotCmds, args: args)?.tag as? MainCommandType) {
-        let start = main.count
-        var cmds = plotSubCmds
-        let name = args.hasIndex(start + 1) ? args[start + 1] : ""
-        cmds.append(CmdToGet(["show"], tag: SubCommandType.shapes(name: name)))
+private func shapeSubCmds() -> CmdsToGet {
+    var result: CmdsToGet = []
+    for name in Shape.allNamesList() {
+        let cmd = CmdToGet(["show", name], tag: SubCommandType.shapes(name: name))
+        result.append(cmd)
+    }
+    return result
+}
 
-        let sub = OptGetter.cmdGetter(cmds, args: args, start)?.tag as? SubCommandType ?? .none
-        return .plotCommand(main: main, sub: sub)
-    }
-    if let list = (OptGetter.cmdGetter(listCmds, args: args)?.tag as? ListCommandType) {
-        return .listCommand(list: list)
-    }
-    if let help = (OptGetter.cmdGetter(helpCmds, args: args)?.tag as? HelpCommandType) {
-        return .helpCommand(help: help)
-    }
+extension Options {
+    func getCommand(_ args: [String]) -> CommandType {
+        // Check first for empty command line
+        if args.count == 1 { return .helpCommand(help: .help) }
 
-    return .plotCommand(main: .unspec, sub: .none)
+        if let main = (argsList.commandParser(plotCmds)?.tag as? MainCommandType) {
+            let cmds = plotSubCmds + shapeSubCmds()
+            let sub = argsList.commandParser(cmds)?.tag as? SubCommandType ?? .none
+            return .plotCommand(main: main, sub: sub)
+        }
+        if let list = (argsList.commandParser(listCmds)?.tag as? ListCommandType) {
+            return .listCommand(list: list)
+        }
+        if let help = (argsList.commandParser(helpCmds)?.tag as? HelpCommandType) {
+            return .helpCommand(help: help)
+        }
+
+        return .plotCommand(main: .unspec, sub: .none)
+    }
 }
 
 func plotUsage() -> String { return cmdUsage(plotCmds) }

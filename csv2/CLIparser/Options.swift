@@ -6,9 +6,10 @@
 //
 
 import Foundation
-import OptGetter
+import CLIparser
 
 struct Options {
+    let argsList = ArgumentList(CommandLine.arguments, longOnly: true)
     var debug = 0
     var pie = false
     var random: [Int] = []
@@ -44,7 +45,7 @@ struct Options {
     ///   - OptGetterError.tooManyOptions
     ///   - OptGetterError.unknownName
 
-    mutating func getOpts(for command: MainCommandType, _ args: [String], _ start: Int) throws {
+    mutating func getOpts(for command: MainCommandType) throws {
         var opts = Self.commonOpts
         switch command {
         case .canvas: opts += Self.canvasOpts
@@ -54,22 +55,9 @@ struct Options {
         }
 
         do {
-            let optGetter = try OptGetter(opts, longOnly: true)
-            let optsGot = try optGetter.parseArgs(args: args, start)
+            let optsGot = try argsList.optionsParse(opts, Key.positionalValues)
             for opt in optsGot {
                 try getOpt(opt: opt)
-            }
-            switch optGetter.remainingValuesAt.count {
-            case 3...:
-                outName = optGetter.remainingValuesAt[2].stringValue()
-                fallthrough
-            case 2:
-                jsonName = optGetter.remainingValuesAt[1].stringValue()
-                fallthrough
-            case 1:
-                csvName = optGetter.remainingValuesAt[0].stringValue()
-            default:
-                break
             }
         } catch {
             throw error
@@ -82,23 +70,20 @@ struct Options {
     func defaults() -> Defaults {
         return values
     }
-}
 
-/// Fetch options from the command line, exit on error
-/// - Parameters:
-///   - command: the main command, used to select the option set
-///   - start: argument to begin with
+    /// Fetch options from the command line, exit on error
+    /// - Parameters:
+    ///   - command: the main command, used to select the option set
+    ///   - start: argument to begin with
 
-func getOptsOrExit(for command: MainCommandType, _ start: Int) -> Options {
-    var options = Options()
-    do {
-        try options.getOpts(for: command, CommandLine.arguments, start)
-    } catch {
-        print(error, to: &standardError)
-        exit(1)
+    mutating func getOptsOrExit(for command: MainCommandType) {
+        do {
+            try getOpts(for: command)
+        } catch {
+            print(error, to: &standardError)
+            exit(1)
+        }
     }
-
-    return options
 }
 
 /// Get usage string for common options

@@ -52,7 +52,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "png  --bg cornsilk -pie"
+            argument = "png  --bg cornsilk"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "png show triangle"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -64,11 +68,11 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/pie.csv"
+            argument = "${PROJECT_DIR}/data/little.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/pie.json"
+            argument = "${PROJECT_DIR}/data/cti.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

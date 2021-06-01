@@ -1,19 +1,19 @@
 //
-//  OptGetter.swift
+//  CLIparser.swift
 //  csv2
 //
 //  Created by Michael Salmon on 2021-05-16.
 //
 
 import Foundation
-import OptGetter
+import CLIparser
 
 extension OptToGet {
     convenience init(
-        _ optTag: Options.Key,
+        _ optTag: csv2.Options.Key,
         short: String? = nil,
         _ minMax: ClosedRange<UInt8> = 0...0,
-        options: [OptGetter.Options] = [],
+        options: [Options] = [],
         usage: String? = nil,
         argTag: String? = nil
     ) {

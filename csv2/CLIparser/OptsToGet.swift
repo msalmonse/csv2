@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import OptGetter
+import CLIparser
 
 extension Options {
     static internal let canvasOpts: OptsToGet = [

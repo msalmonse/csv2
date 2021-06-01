@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import OptGetter
+import CLIparser
 
 struct OptGetterEncodable: Encodable {
     enum CodingKeys: CodingKey { case commands, arguments, options }

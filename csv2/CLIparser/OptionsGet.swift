@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import OptGetter
+import CLIparser
 
 extension Options {
 
@@ -69,6 +69,7 @@ extension Options {
                 case .random: random = try OptValueAt.intArray(opt.optValuesAt)
                 }
             case .intValue(let key, _): try setInt(val0, key: key)
+            case .positionalValues: setPositional(OptValueAt.stringArray(opt.optValuesAt))
             case .stringArray(let key, _): setStringArray(opt.optValuesAt, key: key)
             case .stringSpecial(let key, _):
                 switch key {
@@ -80,6 +81,24 @@ extension Options {
             }
         } catch {
             throw error
+        }
+    }
+
+    /// Set the positional parameters
+    /// - Parameter values: array of strings
+
+    mutating func setPositional(_ values: [String]) {
+        switch values.count {
+        case 3:
+            outName = values[2]
+            fallthrough
+        case 2:
+            jsonName = values[1]
+            fallthrough
+        case 1:
+            csvName = values[0]
+        default:
+            break
         }
     }
 

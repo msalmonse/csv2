@@ -66,9 +66,16 @@ enum Shape {
         Self.blade
     ]
 
+    /// Lookup a shape by name
+    /// - Parameter name: shape name
+    /// - Returns: shape if found or nil
+
     static func lookup(_ name: String) -> Shape? {
         return namedShapes[ name ]
     }
+
+    /// Get the next shape in order
+    /// - Returns: the next shape
 
     static func nextShape() -> Shape {
         next += 1
@@ -76,7 +83,17 @@ enum Shape {
         return numberedShapes[ next ]
     }
 
+    /// Get the names of all shapes in a single String
+    /// - Returns: all names
+
     static func allNames() -> String {
         return namedShapes.keys.sorted().joined(separator: " ")
+    }
+
+    /// Get the names of all shapes as a list
+    /// - Returns: A list of all shape names
+
+    static func allNamesList() -> [String] {
+        return namedShapes.keys.sorted()
     }
 }

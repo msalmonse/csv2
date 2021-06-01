@@ -57,7 +57,7 @@
 		C453243925FA7968007D741C /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453243725FA7968007D741C /* Shapes.swift */; };
 		C453244D25FBEBA6007D741C /* ShowShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453244C25FBEBA6007D741C /* ShowShape.swift */; };
 		C453244E25FBEBA6007D741C /* ShowShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453244C25FBEBA6007D741C /* ShowShape.swift */; };
-		C4569DA92651369900D74DBD /* OptGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DA82651369900D74DBD /* OptGetter.swift */; };
+		C4569DA92651369900D74DBD /* CLIparser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DA82651369900D74DBD /* CLIparser.swift */; };
 		C4569DAB2651760400D74DBD /* OptConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DAA2651760400D74DBD /* OptConvertor.swift */; };
 		C4569DAC2651760400D74DBD /* OptConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DAA2651760400D74DBD /* OptConvertor.swift */; };
 		C4569DAE265177DC00D74DBD /* OptionsGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DAD265177DC00D74DBD /* OptionsGet.swift */; };
@@ -65,9 +65,8 @@
 		C4569DB1265180B200D74DBD /* help.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DB0265180B200D74DBD /* help.swift */; };
 		C4569DB2265180B200D74DBD /* help.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DB0265180B200D74DBD /* help.swift */; };
 		C4569DB326523C0100D74DBD /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FE49FE25F6440F0076EF5E /* Options.swift */; };
-		C4569DB526523C0D00D74DBD /* OptGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DA82651369900D74DBD /* OptGetter.swift */; };
+		C4569DB526523C0D00D74DBD /* CLIparser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4569DA82651369900D74DBD /* CLIparser.swift */; };
 		C4569DB626523C1A00D74DBD /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EFA4B026202C600026BD9A /* Commands.swift */; };
-		C4569DB826523C6600D74DBD /* OptGetter in Frameworks */ = {isa = PBXBuildFile; productRef = C4569DB726523C6600D74DBD /* OptGetter */; };
 		C45E3269265A8A6200F15354 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45E3268265A8A6200F15354 /* List.swift */; };
 		C460B667261B3A590051BB80 /* Plotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B666261B3A590051BB80 /* Plotter.swift */; };
 		C460B673261CD5CD0051BB80 /* SVGplotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B672261CD5CD0051BB80 /* SVGplotter.swift */; };
@@ -95,7 +94,8 @@
 		C49890D726649AE2005EED3E /* CSVswap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49890D526649AE2005EED3E /* CSVswap.swift */; };
 		C49890D92664B205005EED3E /* CSVvalues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49890D82664B205005EED3E /* CSVvalues.swift */; };
 		C49890DA2664B205005EED3E /* CSVvalues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49890D82664B205005EED3E /* CSVvalues.swift */; };
-		C499B3342650EAD600581AD0 /* OptGetter in Frameworks */ = {isa = PBXBuildFile; productRef = C499B3332650EAD600581AD0 /* OptGetter */; };
+		C49890DD26667379005EED3E /* CLIparser in Frameworks */ = {isa = PBXBuildFile; productRef = C49890DC26667379005EED3E /* CLIparser */; };
+		C49890DF26667393005EED3E /* CLIparser in Frameworks */ = {isa = PBXBuildFile; productRef = C49890DE26667393005EED3E /* CLIparser */; };
 		C499B3382650FD9900581AD0 /* KeyTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499B3372650FD9900581AD0 /* KeyTag.swift */; };
 		C499B3392650FD9900581AD0 /* KeyTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C499B3372650FD9900581AD0 /* KeyTag.swift */; };
 		C49A0DBA2648278300CF7E22 /* PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A0DB92648278300CF7E22 /* PDF.swift */; };
@@ -243,7 +243,7 @@
 		C453242B25FA5D99007D741C /* Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
 		C453243725FA7968007D741C /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		C453244C25FBEBA6007D741C /* ShowShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowShape.swift; sourceTree = "<group>"; };
-		C4569DA82651369900D74DBD /* OptGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptGetter.swift; sourceTree = "<group>"; };
+		C4569DA82651369900D74DBD /* CLIparser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLIparser.swift; sourceTree = "<group>"; };
 		C4569DAA2651760400D74DBD /* OptConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptConvertor.swift; sourceTree = "<group>"; };
 		C4569DAD265177DC00D74DBD /* OptionsGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsGet.swift; sourceTree = "<group>"; };
 		C4569DB0265180B200D74DBD /* help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = help.swift; sourceTree = "<group>"; };
@@ -331,8 +331,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C49890DD26667379005EED3E /* CLIparser in Frameworks */,
 				C4B2F99726296AAE00CC5430 /* CSVParser in Frameworks */,
-				C499B3342650EAD600581AD0 /* OptGetter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,8 +340,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C49890DF26667393005EED3E /* CLIparser in Frameworks */,
 				C4B2F9A826297EDD00CC5430 /* CSVParser in Frameworks */,
-				C4569DB826523C6600D74DBD /* OptGetter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,11 +377,11 @@
 				C460B666261B3A590051BB80 /* Plotter.swift */,
 				C4BDCFB4261E156200D8C589 /* Canvas */,
 				C49A0DC5264942AF00CF7E22 /* CG */,
+				C4EFA4AF26202C250026BD9A /* CLIparser */,
 				C4F8F86D261C356F00DF76AE /* Common */,
 				C4F8F87B261C37E900DF76AE /* CSV */,
 				C4507813263E9F7700308C1D /* Extensions */,
 				C4AD7F6E2659860700CABB29 /* ListAndShow */,
-				C4EFA4AF26202C250026BD9A /* OptGetter */,
 				C49A0DB82648275D00CF7E22 /* PDF */,
 				C4F8F873261C372900DF76AE /* Plot */,
 				C4B2F9BE262C175300CC5430 /* PNG */,
@@ -397,9 +397,9 @@
 			isa = PBXGroup;
 			children = (
 				C450781A263EA0ED00308C1D /* CGPoint.swift */,
+				C4569DA82651369900D74DBD /* CLIparser.swift */,
 				C4507816263E9FED00308C1D /* Double.swift */,
 				C4507814263E9F9400308C1D /* Int.swift */,
-				C4569DA82651369900D74DBD /* OptGetter.swift */,
 				C4507818263EA08300308C1D /* OptionSet.swift */,
 				C453242B25FA5D99007D741C /* Other.swift */,
 			);
@@ -536,7 +536,7 @@
 			path = Positions;
 			sourceTree = "<group>";
 		};
-		C4EFA4AF26202C250026BD9A /* OptGetter */ = {
+		C4EFA4AF26202C250026BD9A /* CLIparser */ = {
 			isa = PBXGroup;
 			children = (
 				C4EFA4B026202C600026BD9A /* Commands.swift */,
@@ -550,7 +550,7 @@
 				C4569DAD265177DC00D74DBD /* OptionsGet.swift */,
 				C4FA4254265CE9CD00D999CC /* Usage.swift */,
 			);
-			path = OptGetter;
+			path = CLIparser;
 			sourceTree = "<group>";
 		};
 		C4F8F86D261C356F00DF76AE /* Common */ = {
@@ -634,7 +634,7 @@
 			name = csv2;
 			packageProductDependencies = (
 				C4B2F99626296AAE00CC5430 /* CSVParser */,
-				C499B3332650EAD600581AD0 /* OptGetter */,
+				C49890DC26667379005EED3E /* CLIparser */,
 			);
 			productName = csv2svg;
 			productReference = C40A3AFB25DC01180016EB6D /* csv2 */;
@@ -658,7 +658,7 @@
 			name = csv2Tests;
 			packageProductDependencies = (
 				C4B2F9A726297EDD00CC5430 /* CSVParser */,
-				C4569DB726523C6600D74DBD /* OptGetter */,
+				C49890DE26667393005EED3E /* CLIparser */,
 			);
 			productName = csv2svgTests;
 			productReference = C48B822725E28F7E00EAEAE3 /* csv2Tests.xctest */;
@@ -692,7 +692,7 @@
 			mainGroup = C40A3AF225DC01180016EB6D;
 			packageReferences = (
 				C4B2F99526296AAE00CC5430 /* XCRemoteSwiftPackageReference "CSVParser" */,
-				C499B3322650EAD600581AD0 /* XCRemoteSwiftPackageReference "OptGetter" */,
+				C49890DB26667379005EED3E /* XCRemoteSwiftPackageReference "CLIparser" */,
 			);
 			productRefGroup = C40A3AFC25DC01180016EB6D /* Products */;
 			projectDirPath = "";
@@ -801,7 +801,7 @@
 				C4FE4A0525F66E2C0076EF5E /* Defaults.swift in Sources */,
 				C4B2F968262576FF00CC5430 /* XIlist.swift in Sources */,
 				C4507811263DA32000308C1D /* PointPosition.swift in Sources */,
-				C4569DA92651369900D74DBD /* OptGetter.swift in Sources */,
+				C4569DA92651369900D74DBD /* CLIparser.swift in Sources */,
 				C4C0C48A2612FBCD0072699C /* KeyedValue.swift in Sources */,
 				C4B2F9AE262B286400CC5430 /* SVGout.swift in Sources */,
 				C46ADD2126074CD60046F427 /* RandomCSV.swift in Sources */,
@@ -962,7 +962,7 @@
 				C4FA4260265FE42300D999CC /* Encodable.swift in Sources */,
 				C4EFA4A4261EEBA70026BD9A /* Plotter.swift in Sources */,
 				C49890DA2664B205005EED3E /* CSVvalues.swift in Sources */,
-				C4569DB526523C0D00D74DBD /* OptGetter.swift in Sources */,
+				C4569DB526523C0D00D74DBD /* CLIparser.swift in Sources */,
 				C4569DAF265177DC00D74DBD /* OptionsGet.swift in Sources */,
 				C4569DB326523C0100D74DBD /* Options.swift in Sources */,
 				C4FA425D265E454800D999CC /* PNGout.swift in Sources */,
@@ -1227,6 +1227,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C49890DB26667379005EED3E /* XCRemoteSwiftPackageReference "CLIparser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/msalmonse/CLIparser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.1;
+			};
+		};
 		C499B3322650EAD600581AD0 /* XCRemoteSwiftPackageReference "OptGetter" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/msalmonse/OptGetter.git";
@@ -1246,15 +1254,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C4569DB726523C6600D74DBD /* OptGetter */ = {
+		C49890DC26667379005EED3E /* CLIparser */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C499B3322650EAD600581AD0 /* XCRemoteSwiftPackageReference "OptGetter" */;
-			productName = OptGetter;
+			package = C49890DB26667379005EED3E /* XCRemoteSwiftPackageReference "CLIparser" */;
+			productName = CLIparser;
 		};
-		C499B3332650EAD600581AD0 /* OptGetter */ = {
+		C49890DE26667393005EED3E /* CLIparser */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C499B3322650EAD600581AD0 /* XCRemoteSwiftPackageReference "OptGetter" */;
-			productName = OptGetter;
+			package = C49890DB26667379005EED3E /* XCRemoteSwiftPackageReference "CLIparser" */;
+			productName = CLIparser;
 		};
 		C499B3352650EAF500581AD0 /* OptGetter */ = {
 			isa = XCSwiftPackageProductDependency;
