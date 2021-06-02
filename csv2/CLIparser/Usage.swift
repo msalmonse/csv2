@@ -61,7 +61,7 @@ struct UsageLeftRight {
 /// - Returns: usage string
 
 func optUsage(_ opts: OptsToGet) -> String {
-    return UsageLeftRight.usage().optUsage(opts, longOnly: true)
+    return UsageLeftRight.usage().optUsage(opts, options: [.longOnly])
 }
 
 /// Positional argument usage

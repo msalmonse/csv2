@@ -9,7 +9,7 @@ import Foundation
 import CLIparser
 
 struct Options {
-    let argsList = ArgumentList(CommandLine.arguments, longOnly: true)
+    let argsList = ArgumentList(options: [.longOnly])
     var debug = 0
     var pie = false
     var random: [Int] = []
@@ -35,15 +35,13 @@ struct Options {
     /// Fetch options from the command line
     /// - Parameters:
     ///   - command: the main command, used to select the option set
-    ///   - args: argument list
-    ///   - start: argument to begin with
     /// - Throws:
-    ///   - OptGetterError.duplicateArgument
-    ///   - OptGetterError.duplicateName
-    ///   - OptGetterError.illegalValue
-    ///   - OptGetterError.insufficientArguments
-    ///   - OptGetterError.tooManyOptions
-    ///   - OptGetterError.unknownName
+    ///   - CLIparserError.duplicateArgument
+    ///   - CLIparserError.duplicateName
+    ///   - CLIparserError.illegalValue
+    ///   - CLIparserError.insufficientArguments
+    ///   - CLIparserError.tooManyOptions
+    ///   - CLIparserError.unknownName
 
     mutating func getOpts(for command: MainCommandType) throws {
         var opts = Self.commonOpts

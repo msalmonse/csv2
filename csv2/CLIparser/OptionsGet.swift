@@ -12,7 +12,7 @@ extension Options {
 
     /// Assign an option from the command line
     /// - Parameter opt: the opt to assign
-    /// - Throws: OptGetterError.illegalValue
+    /// - Throws: CLIparserError.illegalValue
 
     mutating func getOpt(opt: OptGot) throws {
         do {

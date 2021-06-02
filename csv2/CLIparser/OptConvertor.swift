@@ -26,7 +26,7 @@ extension Options {
     /// - Parameters:
     ///   - val: value to set
     ///   - key: key to tag
-    /// - Throws: OptGetterError.illegalValue
+    /// - Throws: CLIparserError.illegalValue
 
     @discardableResult
     mutating func setDouble(_ val: OptValueAt, key: Settings.CodingKeys) throws -> Double {
@@ -44,7 +44,7 @@ extension Options {
     /// - Parameters:
     ///   - val: value to set
     ///   - key: key to tag
-    /// - Throws: OptGetterError.illegalValue
+    /// - Throws: CLIparserError.illegalValue
 
     @discardableResult
     mutating func setInt(_ val: OptValueAt, key: Settings.CodingKeys) throws -> Int {
