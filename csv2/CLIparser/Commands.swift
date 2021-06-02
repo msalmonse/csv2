@@ -9,9 +9,14 @@ import Foundation
 import CLIparser
 
 enum CommandType {
+    case abbrCommand(abbr: AbbrCommandType)
     case helpCommand(help: HelpCommandType)
     case listCommand(list: ListCommandType)
     case plotCommand(main: MainCommandType, sub: SubCommandType)
+}
+
+enum AbbrCommandType: CLIparserTag {
+    case abbr, abbrCanvas, abbrPDF, abbrPNG, abbrSVG
 }
 
 enum HelpCommandType: CLIparserTag {
@@ -104,6 +109,16 @@ let helpCmds: [CmdToGet] = [
     CmdToGet(["help"], tag: HelpCommandType.help)
 ]
 
+#if DEBUG
+let abbrCmds: CmdsToGet = [
+    CmdToGet(["abbr", "canvas"], tag: AbbrCommandType.abbrCanvas),
+    CmdToGet(["abbr", "pdf"], tag: AbbrCommandType.abbrPDF),
+    CmdToGet(["abbr", "png"], tag: AbbrCommandType.abbrPNG),
+    CmdToGet(["abbr", "svg"], tag: AbbrCommandType.abbrSVG),
+    CmdToGet(["abbr"], tag: AbbrCommandType.abbr)
+]
+#endif
+
 /// Create a CmdToGet for all shapes
 /// - Returns: CmdToGet array
 
@@ -132,6 +147,11 @@ extension Options {
         if let help = (argsList.commandParser(helpCmds)?.tag as? HelpCommandType) {
             return .helpCommand(help: help)
         }
+#if DEBUG
+        if let abbr = (argsList.commandParser(abbrCmds)?.tag as? AbbrCommandType) {
+            return .abbrCommand(abbr: abbr)
+        }
+#endif
 
         return .plotCommand(main: .unspec, sub: .none)
     }

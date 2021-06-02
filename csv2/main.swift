@@ -12,13 +12,13 @@ var defaults: Defaults
 var options = Options()
 let command = options.getCommand(CommandLine.arguments)
 switch command {
+case .abbrCommand(let abbr):
+    Options.abbrPrint(for: abbr)
 case .helpCommand(let helpCommand):
     options.getOptsOrExit(for: .help)
     help(helpCommand)
-    exit(0)
 case .listCommand(let listCommand):
     list(listCommand)
-    exit(0)
 case .plotCommand(let main, let sub):
     options.getOptsOrExit(for: main)
     defaults = options.defaults()

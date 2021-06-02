@@ -17,6 +17,8 @@
 		C40CD43D25ED02BE003944FA /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD43925ED025F003944FA /* Header.swift */; };
 		C40CD44125ED2390003944FA /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD44025ED2390003944FA /* Plane.swift */; };
 		C40CD44225ED2390003944FA /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD44025ED2390003944FA /* Plane.swift */; };
+		C41A9AC92667CDA4008CFDE9 /* Abbreviations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A9AC82667CDA4008CFDE9 /* Abbreviations.swift */; };
+		C41A9ACA2667CDA4008CFDE9 /* Abbreviations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A9AC82667CDA4008CFDE9 /* Abbreviations.swift */; };
 		C422C5C42608D0CC00676912 /* ShowColoursList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422C5C32608D0CC00676912 /* ShowColoursList.swift */; };
 		C422C5CC2608D58500676912 /* ColoursList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C422C5CB2608D58500676912 /* ColoursList.swift */; };
 		C4255F3F25E423A7002DFE80 /* PathCompenent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4255F3E25E423A7002DFE80 /* PathCompenent.swift */; };
@@ -222,6 +224,7 @@
 		C40CD42B25ECD60F003944FA /* Axes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Axes.swift; sourceTree = "<group>"; };
 		C40CD43925ED025F003944FA /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		C40CD44025ED2390003944FA /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		C41A9AC82667CDA4008CFDE9 /* Abbreviations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Abbreviations.swift; sourceTree = "<group>"; };
 		C422C5C32608D0CC00676912 /* ShowColoursList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowColoursList.swift; sourceTree = "<group>"; };
 		C422C5CB2608D58500676912 /* ColoursList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoursList.swift; sourceTree = "<group>"; };
 		C4255F3E25E423A7002DFE80 /* PathCompenent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathCompenent.swift; sourceTree = "<group>"; };
@@ -539,6 +542,7 @@
 		C4EFA4AF26202C250026BD9A /* CLIparser */ = {
 			isa = PBXGroup;
 			children = (
+				C41A9AC82667CDA4008CFDE9 /* Abbreviations.swift */,
 				C4EFA4B026202C600026BD9A /* Commands.swift */,
 				C4FE4A0425F66E2C0076EF5E /* Defaults.swift */,
 				C4FA425E265FE42300D999CC /* Encodable.swift */,
@@ -813,6 +817,7 @@
 				C49A0DBD264827D600CF7E22 /* PDFPlotter.swift in Sources */,
 				C4B2F9C0262C177900CC5430 /* PNG.swift in Sources */,
 				C4B2FA052633F3D500CC5430 /* RGBAu8.swift in Sources */,
+				C41A9AC92667CDA4008CFDE9 /* Abbreviations.swift in Sources */,
 				C4B2F9DC262E947000CC5430 /* Rect.swift in Sources */,
 				C4CF2A112636EF9600E858D1 /* Positions.swift in Sources */,
 				C49A0DC326491BAD00CF7E22 /* PDFActions.swift in Sources */,
@@ -966,6 +971,7 @@
 				C4569DAF265177DC00D74DBD /* OptionsGet.swift in Sources */,
 				C4569DB326523C0100D74DBD /* Options.swift in Sources */,
 				C4FA425D265E454800D999CC /* PNGout.swift in Sources */,
+				C41A9ACA2667CDA4008CFDE9 /* Abbreviations.swift in Sources */,
 				C45323D425F7C6D6007D741C /* ReflectedStringConvertable.swift in Sources */,
 				C4FA4256265E433400D999CC /* DashesList.swift in Sources */,
 				C4569DB2265180B200D74DBD /* help.swift in Sources */,
