@@ -12,6 +12,7 @@ extension OptToGet {
     convenience init(
         _ optTag: csv2.Options.Key,
         short: String? = nil,
+        aka: [String]? = nil,
         _ minMax: ClosedRange<UInt8> = 0...0,
         options: [Options] = [],
         usage: String? = nil,
@@ -20,6 +21,7 @@ extension OptToGet {
         self.init(
             short: short,
             long: optTag.longname,
+            aka: aka,
             minMax,
             options: options,
             tag: optTag,

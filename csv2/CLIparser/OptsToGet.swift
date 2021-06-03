@@ -92,7 +92,7 @@ extension Options {
             usage: "Check options for bounds, nobounds to not check"
         ),
         OptToGet(
-            .stringArray(key: .colours, name: "colours"), .onePlus, options: [.multi],
+            .stringArray(key: .colours, name: "colours"), aka: ["colors"], .onePlus, options: [.multi],
             usage: "Colours to use for plots", argTag: "<colour>..."
         ),
         OptToGet(
@@ -236,7 +236,7 @@ extension Options {
             usage: "Sub-title", argTag: "<text>"
         ),
         OptToGet(
-            .stringValue(key: .textcolour, name: "textcolour"), .single,
+            .stringValue(key: .textcolour, name: "textcolour"), aka: ["textcolor"], .single,
             usage: "Foreground text colour", argTag: "<colour>"
         ),
         OptToGet(

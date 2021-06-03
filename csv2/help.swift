@@ -13,7 +13,7 @@ import Foundation
 ///   - optText: optional usage text
 
 func printSpecificUsage(for chartType: String, _ optText: String?) {
-    let indent = String(repeating: " ", count: UsageLeftRight.indent)
+    let indent = String(repeating: " ", count: UsageLeftRight.leftMargin)
     optText.map {
         print("""
             \(indent)\(chartType) specific options:
@@ -182,7 +182,7 @@ func helpSVG(_ execName: String) {
 /// - Parameter execName: programs executable name
 
 func helpUsage(_ execName: String) {
-    let indent = String(repeating: " ", count: UsageLeftRight.indent)
+    let indent = String(repeating: " ", count: UsageLeftRight.leftMargin)
     print("""
 
         \(textWrap("Generate a Canvas, PDF, PNG or SVG using data from a CSV file and settings from a JSON file."))
