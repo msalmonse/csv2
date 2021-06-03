@@ -196,14 +196,6 @@ class csv2Tests: XCTestCase {
         XCTAssertNil(Shape.lookup("nothing"))
     }
 
-    func testBitmap() {
-        XCTAssertEqual(bitmap([]), 0)
-        XCTAssertEqual(bitmap(["64"]), 0)
-        XCTAssertEqual(bitmap(["0"]), 0)
-        XCTAssertEqual(bitmap(["1","3","5"]), 21)
-        XCTAssertEqual(bitmap(["1","1","1"]), 1)
-    }
-
     func testSearchPath() {
         _ = [ "/usr/bin", "/usr/local/bin", "/bin" ].map {
             SearchPath.add(URL(fileURLWithPath: $0, isDirectory: true))

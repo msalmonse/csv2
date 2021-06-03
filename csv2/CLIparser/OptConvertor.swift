@@ -83,4 +83,36 @@ extension Options {
         values.setValue(key, .stringArray(val: sVals))
         return sVals
     }
+
+    /// Convert a list of strings into a BitMap
+    /// - Parameters:
+    ///   - vals: list of values
+    ///   - key: key to tag
+    /// - Throws: CLIparserError.illegalValue
+    /// - Returns: BitMap
+
+    @discardableResult
+    mutating func setBitmap(_ vals: OptValuesAt, key: Settings.CodingKeys) throws -> BitMap {
+        if vals.count == 1 && vals[0].stringValue() == "all" { return BitMap.all }
+        var bitMap = BitMap.none
+        for val in vals {
+            let s = val.stringValue()
+            if let intVal = Int(s) {
+                if !(BitMap.okRange ~= intVal) { throw val.error("BitMap") }
+                bitMap[intVal] = true
+            } else {
+                let intRange = s.components(separatedBy: "-")
+                if intRange.count == 2, let rangeMin = Int(intRange[0]), let rangeMax = Int(intRange[1]) {
+                    if !(BitMap.okRange ~= rangeMin) { throw val.error("BitMap") }
+                    if !(BitMap.okRange ~= rangeMax) { throw val.error("BitMap") }
+                    for i in rangeMin...rangeMax {
+                        bitMap[i] = true
+                    }
+                } else {
+                    throw val.error("BitMap")
+                }
+            }
+        }
+        return bitMap
+    }
 }

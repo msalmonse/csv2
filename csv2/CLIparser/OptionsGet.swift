@@ -17,7 +17,7 @@ extension Options {
     mutating func getOpt(opt: OptGot) throws {
         do {
             // swiftlint:disable:next force_cast
-            let optTag = opt.tag as! Key
+            let optTag = opt.tag as! OptionsKey
             let val0 = opt.optValuesAt.hasIndex(0)  ? opt.optValuesAt[0] : OptValueAt.empty
 
             switch optTag {

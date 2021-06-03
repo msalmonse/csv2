@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import CLIparser
 @testable import csv2
 
 extension csv2Tests {
@@ -60,5 +61,61 @@ extension csv2Tests {
         XCTAssertNotNil(pdf.doc.dataRepresentation())
         let string = pdf.doc.string
         XCTAssertNotNil(string)
+    }
+
+    func testBitmap() {
+        let opts = [ OptToGet(short: "B", 1...255) ]
+        let args1 = [ "cmd", "-B", "1", "3-8", "10" ]
+        let expected1: UInt64 = (1 << 0) | (63 << 2) | (1 << 9)
+        let args2 = [ "cmd", "-B", "all" ]
+        let args3 = [ "cmd", "-B", "64" ]
+        let expected3: UInt64 = 1 << 63
+
+        do {
+            var options = Options()
+
+            var result = try ArgumentList(args1).optionsParse(opts)
+            XCTAssertEqual(result.count, 1)
+            XCTAssertEqual(
+                try options.setBitmap(result[0].optValuesAt, key: .include),
+                BitMap(rawValue: expected1)
+            )
+
+            result = try ArgumentList(args2).optionsParse(opts)
+            XCTAssertEqual(result.count, 1)
+            XCTAssertEqual(
+                try options.setBitmap(result[0].optValuesAt, key: .include),
+                BitMap.all
+            )
+
+            result = try ArgumentList(args3).optionsParse(opts)
+            XCTAssertEqual(result.count, 1)
+            XCTAssertEqual(
+                try options.setBitmap(result[0].optValuesAt, key: .include),
+                BitMap(rawValue: expected3)
+            )
+
+            result = try ArgumentList([ "cmd", "-B", "5a" ]).optionsParse(opts)
+            XCTAssertThrowsError(try options.setBitmap(result[0].optValuesAt, key: .include)) {
+                print($0.localizedDescription, to: &standardError)
+            }
+
+            result = try ArgumentList([ "cmd", "-B", "65" ]).optionsParse(opts)
+            XCTAssertThrowsError(try options.setBitmap(result[0].optValuesAt, key: .include)) {
+                print($0.localizedDescription, to: &standardError)
+            }
+
+            result = try ArgumentList([ "cmd", "-B", "0-64" ]).optionsParse(opts)
+            XCTAssertThrowsError(try options.setBitmap(result[0].optValuesAt, key: .include)) {
+                print($0.localizedDescription, to: &standardError)
+            }
+
+            result = try ArgumentList([ "cmd", "-B", "64-66" ]).optionsParse(opts)
+            XCTAssertThrowsError(try options.setBitmap(result[0].optValuesAt, key: .include)) {
+                print($0.localizedDescription, to: &standardError)
+            }
+        } catch {
+            print(error, to: &standardError)
+        }
     }
 }

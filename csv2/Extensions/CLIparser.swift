@@ -10,7 +10,7 @@ import CLIparser
 
 extension OptToGet {
     convenience init(
-        _ optTag: csv2.Options.Key,
+        _ optTag: OptionsKey,
         short: String? = nil,
         aka: [String]? = nil,
         _ minMax: ClosedRange<UInt8> = 0...0,

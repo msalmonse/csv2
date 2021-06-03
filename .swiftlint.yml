@@ -36,10 +36,6 @@ colon:
 cyclomatic_complexity:
   ignores_case_statements: true
 
-empty_count:
-  severity: warning
-  only_after_dot: true
-
 file_length:
   warning: 500
 

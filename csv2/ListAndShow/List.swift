@@ -12,10 +12,6 @@ import Foundation
 
 func list(_ command: ListCommandType) {
     switch command {
-    case .bitmap:
-        if CommandLine.arguments.count > 2 {
-            print(bitmap(Array(CommandLine.arguments[2...])))
-        }
     case .listColourNames:
         print(colourNames())
     case .listJSON:

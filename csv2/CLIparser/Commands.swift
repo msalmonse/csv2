@@ -32,7 +32,7 @@ enum HelpCommandType: CLIparserTag {
 }
 
 enum ListCommandType: CLIparserTag {
-    case bitmap, listColourNames, listJSON, listShapes, version
+    case listColourNames, listJSON, listShapes, version
 }
 
 enum MainCommandType: CLIparserTag {
@@ -75,8 +75,6 @@ let plotSubCmds: [CmdToGet] = [
 ]
 
 let listCmds: [CmdToGet] = [
-    CmdToGet(["bitmap"], tag: ListCommandType.bitmap,
-             usage: "Take a list of rows or columns and print the corresponding bitmap"),
     CmdToGet(["list", "colournames"], tag: ListCommandType.listColourNames,
              usage: "List the colour names known to the program"),
     CmdToGet(["list", "json"], tag: ListCommandType.listJSON,

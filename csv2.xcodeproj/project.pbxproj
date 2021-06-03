@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C402620925FF3E1D0042AEA5 /* XI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402620825FF3E1D0042AEA5 /* XI.swift */; };
 		C402620A25FF3E1D0042AEA5 /* XI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402620825FF3E1D0042AEA5 /* XI.swift */; };
+		C402935826693EEB0026363B /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402935726693EEB0026363B /* Bitmap.swift */; };
+		C402935926693EEB0026363B /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402935726693EEB0026363B /* Bitmap.swift */; };
 		C407EA8625EF98BA009E18E7 /* stderr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C482B9FC25EE8D4D00E51A50 /* stderr.swift */; };
 		C40A3AFF25DC01180016EB6D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40A3AFE25DC01180016EB6D /* main.swift */; };
 		C40CD42C25ECD60F003944FA /* Axes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CD42B25ECD60F003944FA /* Axes.swift */; };
@@ -74,8 +76,6 @@
 		C460B673261CD5CD0051BB80 /* SVGplotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B672261CD5CD0051BB80 /* SVGplotter.swift */; };
 		C460B677261DA8B30051BB80 /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C460B676261DA8B30051BB80 /* Tags.swift */; };
 		C46A3A7225DE8B4C00F6783A /* SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46A3A7125DE8B4C00F6783A /* SVG.swift */; };
-		C46ADD10260714DA0046F427 /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46ADD0F260714DA0046F427 /* Bitmap.swift */; };
-		C46ADD11260714DA0046F427 /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46ADD0F260714DA0046F427 /* Bitmap.swift */; };
 		C46ADD2126074CD60046F427 /* RandomCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46ADD2026074CD60046F427 /* RandomCSV.swift */; };
 		C480848025E6776900BD0A24 /* Sides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* Sides.swift */; };
 		C480848325E6809400BD0A24 /* Sides.swift in Sources */ = {isa = PBXBuildFile; fileRef = C480847F25E6776900BD0A24 /* Sides.swift */; };
@@ -219,6 +219,7 @@
 
 /* Begin PBXFileReference section */
 		C402620825FF3E1D0042AEA5 /* XI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XI.swift; sourceTree = "<group>"; };
+		C402935726693EEB0026363B /* Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
 		C40A3AFB25DC01180016EB6D /* csv2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = csv2; sourceTree = BUILT_PRODUCTS_DIR; };
 		C40A3AFE25DC01180016EB6D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C40CD42B25ECD60F003944FA /* Axes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Axes.swift; sourceTree = "<group>"; };
@@ -255,7 +256,6 @@
 		C460B672261CD5CD0051BB80 /* SVGplotter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGplotter.swift; sourceTree = "<group>"; };
 		C460B676261DA8B30051BB80 /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
 		C46A3A7125DE8B4C00F6783A /* SVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVG.swift; sourceTree = "<group>"; };
-		C46ADD0F260714DA0046F427 /* Bitmap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
 		C46ADD2026074CD60046F427 /* RandomCSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCSV.swift; sourceTree = "<group>"; };
 		C480847F25E6776900BD0A24 /* Sides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sides.swift; sourceTree = "<group>"; };
 		C482B9FC25EE8D4D00E51A50 /* stderr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stderr.swift; sourceTree = "<group>"; };
@@ -434,7 +434,6 @@
 		C453243025FA5DD6007D741C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				C46ADD0F260714DA0046F427 /* Bitmap.swift */,
 				C4CF2A2A26371B3F00E858D1 /* DoIf.swift */,
 				C46ADD2026074CD60046F427 /* RandomCSV.swift */,
 				C45323E525F8CCC8007D741C /* Readlines.swift */,
@@ -561,6 +560,7 @@
 			isa = PBXGroup;
 			children = (
 				C4EFA4D5262364EC0026BD9A /* Bar.swift */,
+				C402935726693EEB0026363B /* Bitmap.swift */,
 				C4834ADC2637C7D60072C574 /* ChartType.swift */,
 				C4EA5D2725EB8F4D00E104E0 /* Colours.swift */,
 				C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */,
@@ -820,6 +820,7 @@
 				C41A9AC92667CDA4008CFDE9 /* Abbreviations.swift in Sources */,
 				C4B2F9DC262E947000CC5430 /* Rect.swift in Sources */,
 				C4CF2A112636EF9600E858D1 /* Positions.swift in Sources */,
+				C402935826693EEB0026363B /* Bitmap.swift in Sources */,
 				C49A0DC326491BAD00CF7E22 /* PDFActions.swift in Sources */,
 				C4EFA4D6262364EC0026BD9A /* Bar.swift in Sources */,
 				C4CF2A2B26371B3F00E858D1 /* DoIf.swift in Sources */,
@@ -883,7 +884,6 @@
 				C460B667261B3A590051BB80 /* Plotter.swift in Sources */,
 				C4EA5D2825EB8F4D00E104E0 /* Colours.swift in Sources */,
 				C45323CB25F77F01007D741C /* ReflectedStringConvertable.swift in Sources */,
-				C46ADD10260714DA0046F427 /* Bitmap.swift in Sources */,
 				C4B2F9C7262C17D100CC5430 /* PNGPlotter.swift in Sources */,
 				C45E3269265A8A6200F15354 /* List.swift in Sources */,
 				C482B9FD25EE8D4D00E51A50 /* stderr.swift in Sources */,
@@ -918,7 +918,6 @@
 				C4AD7F75265A120400CABB29 /* ShowDashesList.swift in Sources */,
 				C480848325E6809400BD0A24 /* Sides.swift in Sources */,
 				C4CF2A142637142B00E858D1 /* Positions.swift in Sources */,
-				C46ADD11260714DA0046F427 /* Bitmap.swift in Sources */,
 				C499B3392650FD9900581AD0 /* KeyTag.swift in Sources */,
 				C4507820263EB3EE00308C1D /* Other.swift in Sources */,
 				C4255F4725E428B5002DFE80 /* SVG.swift in Sources */,
@@ -935,6 +934,7 @@
 				C49A0DC126491B5A00CF7E22 /* PDFPlotterPage.swift in Sources */,
 				C449F44F25EC1325006C67EB /* Text.swift in Sources */,
 				C4B2F9AF262B286400CC5430 /* SVGout.swift in Sources */,
+				C402935926693EEB0026363B /* Bitmap.swift in Sources */,
 				C4F20C1726027B7C005D2FE1 /* Legends.swift in Sources */,
 				C446E81D25F4E0F7007B1A05 /* PlotValues.swift in Sources */,
 				C4B2F9EF263025FB00CC5430 /* Path.swift in Sources */,

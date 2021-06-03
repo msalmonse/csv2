@@ -53,7 +53,7 @@ struct Options {
         }
 
         do {
-            let optsGot = try argsList.optionsParse(opts, Key.positionalValues)
+            let optsGot = try argsList.optionsParse(opts, OptionsKey.positionalValues)
             for opt in optsGot {
                 try getOpt(opt: opt)
             }
