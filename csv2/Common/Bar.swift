@@ -9,6 +9,7 @@ import Foundation
 
 struct Bar {
     static private var current = -1
+    static var none: Bool { current <= 0 }
     static var count: Int { current + 1 }
     static var next: Int {
         current += 1
@@ -22,7 +23,7 @@ struct Bar {
     init(offset: Double, width: Double) {
         self.width = width
         var offsets = Array(repeating: 0.0, count: Self.count)
-        let mid = Self.current/2
+        let mid = Self.current / 2
         if Self.current &== 1 {
             // even number of staples
             for i in offsets.indices {
@@ -38,8 +39,8 @@ struct Bar {
 
     init(pixels: Double) {
         let count = Double(Self.count)
-        let ppb = pixels/count                  // pixels per bar
-        let gap = max(2.0, ppb/16.0)
+        let ppb = pixels / count                  // pixels per bar
+        let gap = max(2.0, ppb / 16.0)
         let width = floor(ppb - gap)
         let offset = width + gap
         self.init(offset: offset, width: width)
@@ -68,6 +69,6 @@ extension Bar {
     /// - Returns: true if there are
 
     static func spanOK(_ diff: Double) -> Bool {
-        return Self.count > 0 && diff/Double(Self.count) > 5.0
+        return !Self.none && diff / Double(Self.count) > 5.0
     }
 }

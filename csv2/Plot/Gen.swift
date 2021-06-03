@@ -38,7 +38,7 @@ extension Plot {
 
         if settings.boolValue(.draft) {
             plotter.plotText(
-                x: width/2.0, y: height/2.0,
+                x: width / 2.0, y: height / 2.0,
                 text: settings.stringValue(.draftText),
                 styles: stylesList.draft
             )
@@ -59,7 +59,7 @@ extension Plot {
             stylesList.plots[0].colour = colour
             plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
             let shapePath = Path([
-                    PathComponent.moveTo(xy: Point(x: width/2.0, y: height/2.0)),
+                    PathComponent.moveTo(xy: Point(x: width / 2.0, y: height / 2.0)),
                     shape.pathComponent(w: shapeWidth)
                 ]
             )
@@ -73,12 +73,12 @@ extension Plot {
     func pieGen() {
         func leftMargin(_ ct: Int) -> Double {
             let free = plotPlane.width - Double(ct) * side
-            return floor(free/2.0)
+            return floor(free / 2.0)
         }
 
         func topMargin() -> Double {
             let free = plotPlane.height - rows * side
-            return floor(free/2.0)
+            return floor(free / 2.0)
         }
 
         plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
@@ -92,9 +92,9 @@ extension Plot {
         // rows * side <= height
         // rows * cols >= count
         // rows² <= count * height/width
-        var rows = ceil(sqrt(Double(pieCt) * plotPlane.height/plotPlane.width))
-        let side = floor(plotPlane.height/rows)
-        let cols = floor(plotPlane.width/side)
+        var rows = ceil(sqrt(Double(pieCt) * plotPlane.height / plotPlane.width))
+        let side = floor(plotPlane.height / rows)
+        let cols = floor(plotPlane.width / side)
         if cols * (rows - 1) >= Double(pieCt) {
             rows -= 1
         }
@@ -103,14 +103,14 @@ extension Plot {
         let maxRadiusY = side - sizes.pieLabel.spacing * 2.0
         let radius = floor(min(maxRadiusX, maxRadiusY) * 0.4)
 
-        var rowY = topMargin() - side/2.0
+        var rowY = topMargin() - side / 2.0
         var colX = 0.0
 
         let colsPerRow = Int(cols)
         for row in row1..<csv.rowCt {
             if ((row - row1) % colsPerRow) == 0 {
                 rowY += side
-                colX = leftMargin(min(colsPerRow, csv.rowCt - row)) + side/2.0
+                colX = leftMargin(min(colsPerRow, csv.rowCt - row)) + side / 2.0
             }
             let centre = Point(x: colX, y: rowY)
             plotPie(row, settings.intValue(.headerColumns), centre: centre, radius: radius)

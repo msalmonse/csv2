@@ -125,7 +125,7 @@ extension RGBAu8 {
             // a can be an Int or a Double
             if !cvt(from: numbers[3], to: &a) {
                 // try as a double
-                guard let val = Double(numbers[3].trimmingCharacters(in: .whitespaces)) else { return false}
+                guard let val = Double(numbers[3].trimmingCharacters(in: .whitespaces)) else { return false }
                 if val > 1.0 { return false }
                 a = val == 1.0 ? 255 : UInt8(floor(256.0 * val))
             }

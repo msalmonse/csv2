@@ -27,12 +27,12 @@ func showColoursList(
     let columnWidth = baseFontSize * 30.0
 
     // Calculate the number of rows to maintain a 4:3 ratio but don't get too wide
-    var rows = ceil(sqrt((3 * columnWidth * count)/(4 * rowHeight)))
-    if rows > count/2.0 { rows = count }
-    let cols = min(ceil(count/rows), floor(1250.0/columnWidth))
-    rows = ceil(count/cols)
+    var rows = ceil(sqrt((3 * columnWidth * count) / (4 * rowHeight)))
+    if rows > count / 2.0 { rows = count }
+    let cols = min(ceil(count / rows), floor(1250.0 / columnWidth))
+    rows = ceil(count / cols)
 
-    let height =  (rows + 3) * rowHeight
+    let height = (rows + 3) * rowHeight
     let width = (cols + 0.1) * columnWidth
     let settings = try? Settings.load(settingsJson(width, height))
 

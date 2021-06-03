@@ -34,18 +34,18 @@ struct TransScale {
         self.logy = logy
 
         if logx {
-            xMult = (to.right - to.left)/log10(from.right/from.left)
+            xMult = (to.right - to.left) / log10(from.right / from.left)
             xOffset = to.left - xMult * log10(from.left)
         } else {
-            xMult = (to.right - to.left)/(from.right - from.left)
+            xMult = (to.right - to.left) / (from.right - from.left)
             xOffset = to.left - xMult * from.left
         }
 
         if logy {
-            yMult = (to.top - to.bottom)/log10(from.top/from.bottom)
+            yMult = (to.top - to.bottom) / log10(from.top / from.bottom)
             yOffset = to.bottom - yMult * log10(from.bottom)
         } else {
-            yMult = (to.top - to.bottom)/(from.top - from.bottom)
+            yMult = (to.top - to.bottom) / (from.top - from.bottom)
             yOffset = to.bottom - yMult * from.bottom
         }
     }

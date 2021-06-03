@@ -82,7 +82,7 @@ extension Plot {
         isLog: Bool = false
     ) -> Double {
         let dppLocal = isLog ? log10(dpp) : dpp
-        let ppt = tick/dppLocal      // pixels per tick
+        let ppt = tick / dppLocal      // pixels per tick
         if ppt >= minSize && ppt <= maxSize { return tick }
         let raw = minSize * dppLocal
         var norm = 0.0
@@ -91,7 +91,7 @@ extension Plot {
             let pow10 = pow(10.0, floor(log10(raw)))
             norm = pow10
             // return the tick as an an integer times the power of 10 if not lag axis
-            if !isLog { norm *= ceil(raw/pow10) }
+            if !isLog { norm *= ceil(raw / pow10) }
             if norm > 0.1 && norm < 1.0 { norm = 1.0 }  // < .1 is where labels use e format
         } else {
             // raw is -ve as values are less than zero
@@ -107,9 +107,9 @@ extension Plot {
         var tickPath = Path()
         var tick = tickNorm(
             settings.doubleValue(.xTick),
-            dpp: dataPlane.width/plotPlane.width,
+            dpp: dataPlane.width / plotPlane.width,
             minSize: labelSize * 3.5,
-            maxSize: plotPlane.width/5.0,
+            maxSize: plotPlane.width / 5.0,
             isLog: logx
         )
         let intTick = (tick.rounded() == tick)
@@ -143,9 +143,9 @@ extension Plot {
         var tickPath = Path()
         var tick = tickNorm(
             settings.doubleValue(.yTick),
-            dpp: dataPlane.height/plotPlane.height,
+            dpp: dataPlane.height / plotPlane.height,
             minSize: labelSize * 1.25,
-            maxSize: plotPlane.height/5.0,
+            maxSize: plotPlane.height / 5.0,
             isLog: logy
         )
         let intTick = (tick.rounded() == tick)

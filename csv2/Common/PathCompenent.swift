@@ -48,27 +48,27 @@ enum PathComponent {
 
     var path: String {
         switch self {
-        case .arcAround(let c, let r, let s, let e):
+        case let .arcAround(c, r, s, e):
             return drawArc(centre: c, radius: r, start: s, end: e)
-        case .arcTo(let end, let r, let l):
+        case let .arcTo(end, r, l):
             return " A \(r.f(1)),\(r.f(1)) 0,\(l ? "1" : "0"),0 \(end.x.f(1)),\(end.y.f(1))"
-        case .cBezierBy(let dxy, let c1dxy, let c2dxy):
+        case let .cBezierBy(dxy, c1dxy, c2dxy):
             return "c \(c1dxy.f(1)) \(c2dxy.f(1)) \(dxy.f(1))"
-        case .cBezierTo(let xy, let c1xy, let c2xy):
+        case let .cBezierTo(xy, c1xy, c2xy):
             return "C \(c1xy.f(1)) \(c2xy.f(1))) \(xy.f(1))"
         case .closePath: return "Z"
-        case .moveBy(let dxy): return "m \(dxy.f(1))"
-        case .moveTo(let xy): return "M \(xy.f(1))"
-        case .horizBy(let dx): return "h \(dx.f(1))"
-        case .horizTo(let x): return "H \(x.f(1))"
-        case .lineBy(let dxy): return "l \(dxy.f(1))"
-        case .lineTo(let xy): return "L \(xy.f(1))"
-        case .qBezierBy(let dxy, let cdxy):
+        case let .moveBy(dxy): return "m \(dxy.f(1))"
+        case let .moveTo(xy): return "M \(xy.f(1))"
+        case let .horizBy(dx): return "h \(dx.f(1))"
+        case let .horizTo(x): return "H \(x.f(1))"
+        case let .lineBy(dxy): return "l \(dxy.f(1))"
+        case let .lineTo(xy): return "L \(xy.f(1))"
+        case let .qBezierBy(dxy, cdxy):
             return "q \(cdxy.f(1)), \(dxy.f(1))"
-        case .qBezierTo(let xy, let cxy):
+        case let .qBezierTo(xy, cxy):
             return "Q \(cxy.f(1)), \(xy.f(1))"
-        case .vertBy(let dy): return "v \(dy.f(1))"
-        case .vertTo(let y): return "V \(y.f(1))"
+        case let .vertBy(dy): return "v \(dy.f(1))"
+        case let .vertTo(y): return "V \(y.f(1))"
         default:
             return self.expand!.path
         }
@@ -79,16 +79,16 @@ enum PathComponent {
 
     var expand: Path? {
         switch self {
-        case .bar(let p0, let w, let y): return drawBar(p0: p0, w: w, y: y)
-        case .blade(let w): return drawBlade(w: w)
-        case .circle(let r): return drawCircle(r: r)
-        case .circleStar(let w): return drawCircleStar(w: w)
-        case .cross(let w): return drawCross(w: w)
-        case .diamond(let w): return drawDiamond(w: w)
-        case .shuriken(let w): return drawShuriken(w: w)
-        case .square(let w): return drawSquare(w: w)
-        case .star(let w): return drawStar(w: w)
-        case .triangle(let w): return drawTriangle(w: w)
+        case let .bar(p0, w, y): return drawBar(p0: p0, w: w, y: y)
+        case let .blade(w): return drawBlade(w: w)
+        case let .circle(r): return drawCircle(r: r)
+        case let .circleStar(w): return drawCircleStar(w: w)
+        case let .cross(w): return drawCross(w: w)
+        case let .diamond(w): return drawDiamond(w: w)
+        case let .shuriken(w): return drawShuriken(w: w)
+        case let .square(w): return drawSquare(w: w)
+        case let .star(w): return drawStar(w: w)
+        case let .triangle(w): return drawTriangle(w: w)
         default: return nil
         }
     }

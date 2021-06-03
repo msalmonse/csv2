@@ -174,7 +174,7 @@ class csv2Tests: XCTestCase {
 
         settings = try? Settings.load(settingsJSON(false))
         XCTAssertNotNil(settings)
-        svg =  SVG(settings!)
+        svg = SVG(settings!)
         // we need to swap the csv as we are working in columns
         plot = Plot(csv.swap(), settings!, svg)
 
@@ -185,10 +185,10 @@ class csv2Tests: XCTestCase {
     }
 
     func testFormats() {
-        XCTAssertEqual((10.0/3.0).e(2), "3.33e+00")
-        XCTAssertEqual((10.0/3.0).f(2), "3.33")
-        XCTAssertEqual((10.0/3.0).f(0), "3")
-        XCTAssertEqual((10.0/3.0).g(3), "3.33")
+        XCTAssertEqual((10.0 / 3.0).e(2), "3.33e+00")
+        XCTAssertEqual((10.0 / 3.0).f(2), "3.33")
+        XCTAssertEqual((10.0 / 3.0).f(0), "3")
+        XCTAssertEqual((10.0 / 3.0).g(3), "3.33")
     }
 
     func testShapes() {

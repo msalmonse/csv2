@@ -30,7 +30,7 @@ extension Transform {
 fileprivate func xPos(_ x: Double, _ styles: Styles, _ textWidth: Double) -> Double {
     switch styles.textAlign! {
     case "end": return x - textWidth
-    case "middle": return x - textWidth/2.0
+    case "middle": return x - textWidth / 2.0
     case "start": return x
     default: return x
     }
@@ -81,7 +81,7 @@ fileprivate func stylesFont(_ styles: Styles) -> CTFont? {
 fileprivate func stylesWidth(_ styles: Styles) -> CGFloat {
     if !styles.options[.stroked] { return 0.0 }
     // stroke width is a %age
-    let percent = 100 * styles.strokeWidth/styles.fontSize
+    let percent = 100 * styles.strokeWidth / styles.fontSize
     return CGFloat(percent)
 }
 

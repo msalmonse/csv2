@@ -59,6 +59,7 @@ extension Options {
     ]
 
     static internal let commonOpts: OptsToGet = [
+        // TODO: make bitmap a type
         OptToGet(
             .intValue(key: .bared, name: "bared"), .single, options: [.includeMinus],
             usage: "Plots to show as bars", argTag: "<bitmap¹>"
@@ -179,6 +180,7 @@ extension Options {
             .doubleValue(key: .opacity, name: "opacity"), .single,
             usage: "Opacity for plots"
         ),
+        // TODO: change to chart
         OptToGet(
             .boolSpecial(key: .pie, name: "pie"),
             usage: "Generate a pie chart"

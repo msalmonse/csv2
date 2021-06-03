@@ -29,7 +29,7 @@ class SVG: Plotter, ReflectedStringConvertible {
     let xmlTag = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
     var svgTag: String {
         String(
-                format: "<svg %@ width=\"%d\" height=\"%d\" xmlns=\"http://www.w3.org/2000/svg\">\n",
+            format: "<svg %@ width=\"%d\" height=\"%d\" xmlns=\"http://www.w3.org/2000/svg\">\n",
             svgID != "none" ? "id=\"\(svgID)\"" : "" ,
             settings.intValue(.width), settings.intValue(.height)
         )

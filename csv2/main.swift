@@ -19,7 +19,7 @@ case .helpCommand(let helpCommand):
     help(helpCommand)
 case .listCommand(let listCommand):
     list(listCommand)
-case .plotCommand(let main, let sub):
+case let .plotCommand(main, sub):
     options.getOptsOrExit(for: main)
     defaults = options.defaults()
     if options.debug != 0 {

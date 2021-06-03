@@ -28,7 +28,7 @@ extension Plot {
         }
 
         var y = step
-        var yPath: Double { y - step/10.0 }
+        var yPath: Double { y - step / 10.0 }
 
         plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
 

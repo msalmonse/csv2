@@ -62,9 +62,9 @@ struct Sides {
                 }
                 // if min and max don't include 0 then include 0 if one is close
                 if min > 0 && max > 0 && !settings.boolValue(.logx) {
-                    if min < max/20.0 { min = 0.0 }
+                    if min < max / 20.0 { min = 0.0 }
                 } else if min < 0 && max < 0 && !settings.boolValue(.logx) {
-                    if max < min/20.0 { max = 0.0 }
+                    if max < min / 20.0 { max = 0.0 }
                 }
             }
 
@@ -114,9 +114,9 @@ struct Sides {
             }
             // if min and max don't include 0 then include 0 if one is close
             if min > 0 && max > 0 && !settings.boolValue(.logy) {
-                if min < max/20.0 { min = 0.0 }
+                if min < max / 20.0 { min = 0.0 }
             } else if min < 0 && max < 0 && !settings.boolValue(.logy) {
-                if max < min/20.0 { max = 0.0 }
+                if max < min / 20.0 { max = 0.0 }
             }
 
             bottom = yMinSet ? settings.doubleValue(.yMin) : min

@@ -112,7 +112,7 @@ func pngOptsUsage() -> String? { return nil }
 /// Get usage for SVG charts
 /// - Returns: usage string
 
-func svgOptsUsage() -> String? { return optUsage(Options.svgOpts)}
+func svgOptsUsage() -> String? { return optUsage(Options.svgOpts) }
 
 /// Get usage for positional parameters
 /// - Returns: usage string

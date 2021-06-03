@@ -86,12 +86,12 @@ extension Plot {
     func legend() {
         if positions.legendLeftX >= width { return }
         let x = positions.legendLeftX
-        let xLeft = x + legendSize/2.0
-        let xRight = positions.legendRightX - legendSize/2.0
-        let xMid = (xLeft + xRight)/2.0
+        let xLeft = x + legendSize / 2.0
+        let xRight = positions.legendRightX - legendSize / 2.0
+        let xMid = (xLeft + xRight) / 2.0
         let yStep = legendSize * 1.5
         var y = positions.legendY + yStep
-        y += yStep/2.0
+        y += yStep / 2.0
         let plotStyles = stylesList.plots
 
         plotter.plotText(x: x, y: y, text: "Legends:", styles: stylesList.legendHeadline)
@@ -107,7 +107,7 @@ extension Plot {
             style.fontSize = stylesList.legend.fontSize
             style.textAlign = stylesList.legend.textAlign
             plotter.plotText(x: xLeft, y: y, text: text, styles: style)
-            let lineY = y + yStep/2.0
+            let lineY = y + yStep / 2.0
             let options = style.options
             if options.isAny(of: [.dashed, .pointed, .scattered]) {
                 y += yStep

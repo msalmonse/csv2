@@ -20,8 +20,8 @@ extension Plot {
         func bgSelect(_ name: String) -> Styles {
             let luma = RGBAu8(name, or: .clear).luminance
             switch luma {
-            case 2200000...: return midBG
-            case 0...1500000: return lightBG
+            case 2_200_000...: return midBG
+            case 0...1_500_000: return lightBG
             default: return darkBG
             }
         }

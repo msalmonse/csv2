@@ -20,20 +20,20 @@ fileprivate func plotComponent(_ ctx: CGContext, component: PathComponent, curre
         }
     } else {
         switch component {
-        case .arcAround(let c, let r, let s, let e):
+        case let .arcAround(c, r, s, e):
             // SVG and CG can't agree on up and down so use -ve angles
             ctx.addArc(
                 center: c.cgpoint, radius: CGFloat(r),
                 startAngle: CGFloat(-s), endAngle: CGFloat(-e),
                 clockwise: true
             )
-        case .cBezierBy(let dxy, let c1dxy, let c2dxy):
+        case let .cBezierBy(dxy, c1dxy, c2dxy):
             let end = current + dxy.cgvector
             let control1 = current + c1dxy.cgvector
             let control2 = current + c2dxy.cgvector
             ctx.addCurve(to: end, control1: control1, control2: control2)
             current = end
-        case .cBezierTo(let xy, let c1xy, let c2xy):
+        case let .cBezierTo(xy, c1xy, c2xy):
             let end = xy.cgpoint
             ctx.addCurve(to: end, control1: c1xy.cgpoint, control2: c2xy.cgpoint)
             current = end
@@ -55,12 +55,12 @@ fileprivate func plotComponent(_ ctx: CGContext, component: PathComponent, curre
         case .moveTo(let xy):
             current = xy.cgpoint
             ctx.move(to: current)
-        case .qBezierBy(let dxy, let cdxy):
+        case let .qBezierBy(dxy, cdxy):
             let end = current + dxy.cgvector
             let control = current + cdxy.cgvector
             ctx.addQuadCurve(to: end, control: control)
             current = end
-        case .qBezierTo(let xy, let cxy):
+        case let .qBezierTo(xy, cxy):
             let end = xy.cgpoint
             let control = cxy.cgpoint
             ctx.addQuadCurve(to: end, control: control)
@@ -90,7 +90,7 @@ fileprivate func plotComponent(_ ctx: CGContext, component: PathComponent, curre
 func cgPlotPath(_ path: Path, styles: Styles, fill: Bool, to ctx: CGContext, clippedBy clipRect: CGRect?) {
     let colour = RGBAu8(fill ? styles.fill : styles.colour, or: .black)
     let lineWidth = CGFloat(styles.strokeWidth)
-    if let clipRect = clipRect { ctx.clip(to: clipRect)}
+    if let clipRect = clipRect { ctx.clip(to: clipRect) }
     var current = CGPoint.zero
     ctx.setLineWidth(lineWidth)
     ctx.setLineCap(stylesCap(styles))

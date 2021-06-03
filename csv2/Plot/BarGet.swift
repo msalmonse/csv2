@@ -15,7 +15,7 @@ extension Plot {
     /// - Returns: Bar object if OK or nil
 
     func barGet(_ xi: [XIvalue]) -> Bar? {
-        if Bar.count <= 0 { return nil }
+        if Bar.none { return nil }
         let barOffset = settings.doubleValue(.barOffset)
         let barWidth = settings.doubleValue(.barWidth)
         let headers = settings.intValue(.headerColumns)
@@ -32,7 +32,7 @@ extension Plot {
         if barOffset >= 0.0 {
             return Bar(offset: barOffset, width: minδpixels - barOffset - 2.0)
         } else if barWidth > 0.0 {
-            let offset = minδpixels/Double(Bar.count) - barWidth
+            let offset = minδpixels / Double(Bar.count) - barWidth
             return Bar(offset: offset, width: barWidth)
         }
         return Bar(pixels: minδpixels)

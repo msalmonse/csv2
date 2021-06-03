@@ -36,9 +36,9 @@ func randomCSV(_ opts: Options, _ settings: Settings?) -> String {
     }
 
     var result: [String] = []
-    let ymid = (max + min)/2.0
-    let ymax = max + (max - ymid)/2.0
-    let ymin = min - (ymid - min)/2.0
+    let ymid = (max + min) / 2.0
+    let ymax = max + (max - ymid) / 2.0
+    let ymin = min - (ymid - min) / 2.0
 
     for _ in 0..<count {
         var row: [String] = []

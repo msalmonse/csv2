@@ -89,12 +89,12 @@ extension Plot {
         for col in pieValues.indices where col >= col1 {
             if let val = pieValues[col] {
                 let absVal = abs(val)
-                let angle6 = min(round(arcLeft * absVal/sum), arcLeft)
+                let angle6 = min(round(arcLeft * absVal / sum), arcLeft)
                 sum -= absVal
                 arcLeft -= angle6
-                let end = start + angle6/1.0e6
+                let end = start + angle6 / 1.0e6
                 // Don't plot tiny slices
-                if radius * angle6/1.0e6 > strokeWidth {
+                if radius * angle6 / 1.0e6 > strokeWidth {
                     let path = Path(
                         [
                             .arcAround(centre: centre, radius: radius, start: start, end: end),
@@ -110,9 +110,9 @@ extension Plot {
                 }
 
                 // add the label
-                if  pieLabel && radius * angle6/1.0e6 > sizes.pieLabel.spacing {
-                    let mid = (start + end)/2.0
-                    let percent = angle6/pi2e6 * 100.0
+                if  pieLabel && radius * angle6 / 1.0e6 > sizes.pieLabel.spacing {
+                    let mid = (start + end) / 2.0
+                    let percent = angle6 / pi2e6 * 100.0
                     sliceLabel(centre: centre, radius: radius, mid: mid, percent: percent)
                 }
 

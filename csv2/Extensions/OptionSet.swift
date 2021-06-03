@@ -37,7 +37,7 @@ extension OptionSet {
     /// - Returns: true if all are set
 
     func isOnly(_ opts: [Self.Element]) -> Bool {
-        let other  = Self(opts)
+        let other = Self(opts)
         return union(other) == other
     }
 

@@ -21,7 +21,7 @@ extension Options {
             let val0 = opt.optValuesAt.hasIndex(0)  ? opt.optValuesAt[0] : OptValueAt.empty
 
             switch optTag {
-            case .boolSpecial(let key, _):
+            case let .boolSpecial(key, _):
                 switch key {
                 case .help: helpAndExit()
                 case .pie:
@@ -31,9 +31,9 @@ extension Options {
                 case .tsv: tsv = true
                 case .verbose: verbose = true
                 }
-            case .boolValue(let key, _): setBool((opt.count > 0), key: key)
+            case let .boolValue(key, _): setBool((opt.count > 0), key: key)
             case .doubleArray: break
-            case .doubleSpecialArray(let key, _):
+            case let .doubleSpecialArray(key, _):
                 switch key {
                 case .reserve:
                     switch opt.optValuesAt.count {
@@ -52,8 +52,8 @@ extension Options {
                         break
                     }
                 }
-            case .doubleValue(let key, _): try setDouble(val0, key: key)
-            case .intSpecial(let key, _):
+            case let .doubleValue(key, _): try setDouble(val0, key: key)
+            case let .intSpecial(key, _):
                 switch key {
                 case .debug: debug = try val0.intValue()
                 case .headers:
@@ -64,20 +64,20 @@ extension Options {
                 case .right: UsageLeftRight.setRight(try val0.intValue())
                 case .usage: UsageLeftRight.setUsage(try val0.intValue())
                 }
-            case .intSpecialArray(let key, _):
+            case let .intSpecialArray(key, _):
                 switch key {
                 case .random: random = try OptValueAt.intArray(opt.optValuesAt)
                 }
-            case .intValue(let key, _): try setInt(val0, key: key)
+            case let .intValue(key, _): try setInt(val0, key: key)
             case .positionalValues: setPositional(OptValueAt.stringArray(opt.optValuesAt))
-            case .stringArray(let key, _): setStringArray(opt.optValuesAt, key: key)
-            case .stringSpecial(let key, _):
+            case let .stringArray(key, _): setStringArray(opt.optValuesAt, key: key)
+            case let .stringSpecial(key, _):
                 switch key {
                 case .draft:
                     setBool(true, key: .draft)
                     if !val0.isEmpty { setString(val0, key: .draftText) }
                 }
-            case .stringValue(let key, _): setString(val0, key: key)
+            case let .stringValue(key, _): setString(val0, key: key)
             }
         } catch {
             throw error

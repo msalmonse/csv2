@@ -8,7 +8,7 @@
 import Foundation
 
 extension UInt8 {
-    var cgfloat: CGFloat { CGFloat(self)/255.0 }
+    var cgfloat: CGFloat { CGFloat(self) / 255.0 }
 }
 
 fileprivate func u8val(_ val: CGFloat) -> UInt8 { UInt8(min(val * 256.0, 256)) }
@@ -157,7 +157,7 @@ struct RGBAu8: CustomStringConvertible, Equatable {
     /// - Returns: New RGBA with modified alpha
 
     func dividingBy(alpha divisor: UInt8) -> RGBAu8 {
-        return RGBAu8(r: r, g: g, b: b, a: a/divisor)
+        return RGBAu8(r: r, g: g, b: b, a: a / divisor)
     }
 
     /// Modiify the alpha by multiplyimg

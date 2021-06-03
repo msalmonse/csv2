@@ -86,13 +86,13 @@ struct StylesList {
 
         // calculate font size
         let text = settings.stringValue(.draftText)
-        let charSize = min(settings.width/Double(text.count), settings.height/2.0)
+        let charSize = min(settings.width / Double(text.count), settings.height / 2.0)
         draft.fontSize = floor(charSize * 1.25)
 
         // now the transform
-        let x = settings.width/2.0
-        let y = settings.height/2.0
-        let angle = atan(settings.height/settings.width)
+        let x = settings.width / 2.0
+        let y = settings.height / 2.0
+        let angle = atan(settings.height / settings.width)
         draft.transform = Transform.rotateAround(x: x, y: y, sin: sin(angle), cos: cos(angle))
 
         return draft

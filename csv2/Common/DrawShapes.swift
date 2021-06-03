@@ -28,9 +28,9 @@ extension PathComponent {
     func drawBar(p0: Point, w: Double, y: Double) -> Path {
         let x0 = p0.x
         let y0 = p0.y
-        let left = x0 - w/2.0
+        let left = x0 - w / 2.0
         let right = left + w
-        let r = w/32.0
+        let r = w / 32.0
         return Path([
             PathComponent.moveTo(xy: p0),
             .horizTo(x: left),
@@ -48,9 +48,9 @@ extension PathComponent {
     /// - Returns: path  for a blade
 
     func drawBlade(w: Double) -> Path {
-        let half = w/2.0
+        let half = w / 2.0
         return Path([
-             Self.moveBy(dxy: Vector(dx: -half, dy: half/2.0)),
+             Self.moveBy(dxy: Vector(dx: -half, dy: half / 2.0)),
             .lineBy(dxy: Vector(dx: -half, dy: -w)),
             .vertBy(dy: -half),
             .horizBy(dx: half),
@@ -59,7 +59,7 @@ extension PathComponent {
             .vertBy(dy: half),
             .horizBy(dx: -half),
             .lineBy(dxy: Vector(dx: -w, dy: -w)),
-            .moveBy(dxy: Vector(dx: half, dy: -half/2.0))
+            .moveBy(dxy: Vector(dx: half, dy: -half / 2.0))
         ])
     }
 
@@ -144,7 +144,7 @@ extension PathComponent {
     /// - Returns: path  for a shuriken
 
     func drawShuriken(w: Double) -> Path {
-        let half = w/2.0
+        let half = w / 2.0
         return Path([
             Self.moveBy(dxy: Vector(dx: -half, dy: -half)),
             //
@@ -190,7 +190,7 @@ extension PathComponent {
     /// - Returns: path  for a star
 
     func drawStar(w: Double) -> Path {
-        let half = w/2.0
+        let half = w / 2.0
         return Path([
             Self.moveBy(dxy: Vector(dx: -half, dy: 0.0)),
             .lineBy(dxy: Vector(dx: -half, dy: -w)), .lineBy(dxy: Vector(dx: w, dy: half)),
@@ -207,7 +207,7 @@ extension PathComponent {
 
     func drawTriangle(w: Double) -> Path {
         let w2 = w * 2.0
-        let half = w/2.0
+        let half = w / 2.0
         return Path([
             Self.moveBy(dxy: Vector(dx: 0.0, dy: -w)),
             .lineBy(dxy: Vector(dx: w, dy: w2)),

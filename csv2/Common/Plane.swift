@@ -63,10 +63,10 @@ struct Plane {
     }
 
     /// Horizontal midpoint
-    var hMid: Double { (left + right)/2.0 }
+    var hMid: Double { (left + right) / 2.0 }
 
     /// Vertical midpoint
-    var vMid: Double { (top + bottom)/2.0 }
+    var vMid: Double { (top + bottom) / 2.0 }
 
     /// Midpoint
     var mid: Point { Point(x: hMid, y: vMid) }
