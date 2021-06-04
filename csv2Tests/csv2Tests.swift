@@ -26,7 +26,7 @@ class csv2Tests: XCTestCase {
     }
 
     func testSettings() {
-        if let settings = try? Settings.load(settingsJSON(true)) {
+        if let settings = try? Settings.load(settingsJSON(true, bezier: 0.500001)) {
             XCTAssertEqual(settings.doubleValue(.bezier), Defaults.initial.doubleValue(.bezier))
             XCTAssertEqual(settings.stringArray(.colours).count, 3)
             XCTAssertFalse(settings.boolValue(.rowGrouping))
@@ -273,10 +273,10 @@ let testWidth = 501
 let testYMax = 25000.25
 
 // JSON string for tests
-func settingsJSON(_ cols: Bool) -> String {
+func settingsJSON(_ cols: Bool, bezier: Double = 0.0) -> String {
     return """
         {
-            "bezier": 0.500001,
+            "bezier": \(bezier),
             "colours": [ "silver", "red", "green" ],
             "cssID": "test",
             "headerColumns": 1,

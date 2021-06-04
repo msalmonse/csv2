@@ -183,7 +183,9 @@ struct SettingsValues {
     func intValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Int {
         let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .intZero
         switch keyVal {
-        case let .bitmapValue(val): return val.intValue
+        case let .bitmapValue(val):
+            print("BitMap converted to Int for \(key.stringValue)", to: &standardError)
+            return val.intValue
         case let .intValue(val): return val
         default:
             keyVal.unexpectedValue(expected: "Int", for: key)

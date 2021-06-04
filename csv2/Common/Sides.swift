@@ -98,12 +98,12 @@ struct Sides {
         } else {
             var min: Double = Double.greatestFiniteMagnitude
             var max: Double = -Double.greatestFiniteMagnitude
-            let included = settings.intValue(.include)
+            let included = settings.bitmapValue(.include)
 
             let first = settings.intValue(.headerRows)
             let start = settings.intValue(.headerColumns)
 
-            for i in first..<count where i != index && (included &== (1 << i)) {
+            for i in first..<count where i != index && included[i] {
                 if csv.values.hasIndex(i) {
                     let valuesRow = csv.values[i]
                     let end = valuesRow.count

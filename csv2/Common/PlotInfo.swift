@@ -164,20 +164,19 @@ func plotFlags(
     _ ct: Int,
     _ styles: inout [Styles]
 ) {
-    let bared = settings.intValue(.bared)
-    let dashedLines = settings.intValue(.dashedLines)
-    let filled = settings.intValue(.filled)
-    let include = settings.intValue(.include)
-    let pointed = settings.intValue(.showDataPoints)
-    let scattered = settings.intValue(.scatterPlots)
+    let bared = settings.bitmapValue(.bared)
+    let dashedLines = settings.bitmapValue(.dashedLines)
+    let filled = settings.bitmapValue(.filled)
+    let include = settings.bitmapValue(.include)
+    let pointed = settings.bitmapValue(.showDataPoints)
+    let scattered = settings.bitmapValue(.scatterPlots)
 
     for i in first..<min(ct, Int.bitWidth) {
-        let mask = 1 << i
-        styles[i].options[.dashed] = dashedLines &== mask
-        styles[i].options[.filled] = filled &== mask
-        styles[i].options[.included] = include &== mask
-        styles[i].options[.pointed] = pointed &== mask
-        styles[i].options[.scattered] = scattered &== mask
-        if bared &== mask { styles[i].bar = Bar.next }
+        styles[i].options[.dashed] = dashedLines[i]
+        styles[i].options[.filled] = filled[i]
+        styles[i].options[.included] = include[i]
+        styles[i].options[.pointed] = pointed[i]
+        styles[i].options[.scattered] = scattered[i]
+        if bared[i] { styles[i].bar = Bar.next }
     }
 }
