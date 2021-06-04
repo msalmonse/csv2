@@ -10,12 +10,14 @@ import Foundation
 /// Holder for settings values
 
 enum SettingsValue: Equatable {
+    case bitmapValue(val: BitMap)
     case boolValue(val: Bool)
     case doubleValue(val: Double)
     case intValue(val: Int)
     case stringArray(val: [String])
     case stringValue(val: String)
 
+    static let bitmapNone = Self.bitmapValue(val: BitMap.none)
     static let boolFalse = Self.boolValue(val: false)
     static let boolTrue = Self.boolValue(val: true)
     static let doubleMax = Self.doubleValue(val: Defaults.maxDefault)
@@ -33,6 +35,7 @@ enum SettingsValue: Equatable {
         }
 
         switch self {
+        case .bitmapValue: printGot("BitMap")
         case .boolValue: printGot("Bool")
         case .doubleValue: printGot("Double")
         case .intValue: printGot("Int")
@@ -87,6 +90,22 @@ struct SettingsValues {
         values[CombinedKey(domain: domain, key: key)] = value
     }
 
+    /// Lookup BitMap value
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: BitMap from dict
+
+    func bitmapValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> BitMap {
+        let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .bitmapNone
+        switch keyVal {
+        case let .bitmapValue(val): return val
+        default:
+            keyVal.unexpectedValue(expected: "BitMap", for: key)
+            return BitMap.none
+        }
+    }
+
     /// Lookup Bool value
     /// - Parameters:
     ///   - key: key in domain
@@ -96,7 +115,7 @@ struct SettingsValues {
     func boolValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Bool {
         let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .boolFalse
         switch keyVal {
-        case .boolValue(let val): return val
+        case let .boolValue(val): return val
         default:
             keyVal.unexpectedValue(expected: "Bool", for: key)
             return false
@@ -112,8 +131,8 @@ struct SettingsValues {
     func doubleValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Double {
         let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .doubleZero
         switch keyVal {
-        case .doubleValue(let val): return val
-        case .intValue(let val): return Double(val)
+        case let .doubleValue(val): return val
+        case let .intValue(val): return Double(val)
         default:
             keyVal.unexpectedValue(expected: "Double", for: key)
             return 0.0
@@ -129,7 +148,7 @@ struct SettingsValues {
     func hasContent(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Bool {
         guard let keyVal = values[CombinedKey(domain: domain, key: key)] else { return false }
         switch keyVal {
-        case .stringValue(let val): return val.hasContent
+        case let .stringValue(val): return val.hasContent
         default:
             keyVal.unexpectedValue(expected: "String", for: key)
             return false
@@ -145,7 +164,7 @@ struct SettingsValues {
     func intValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Int {
         let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .intZero
         switch keyVal {
-        case .intValue(let val): return val
+        case let .intValue(val): return val
         default:
             keyVal.unexpectedValue(expected: "Int", for: key)
             return 0
@@ -161,7 +180,7 @@ struct SettingsValues {
     func optionalStringValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> String? {
         guard let keyVal = values[CombinedKey(domain: domain, key: key)] else { return nil }
         switch keyVal {
-        case .stringValue(let val): return val.isEmpty ? nil : val
+        case let .stringValue(val): return val.isEmpty ? nil : val
         default:
             keyVal.unexpectedValue(expected: "String", for: key)
             return nil
@@ -177,7 +196,7 @@ struct SettingsValues {
     func stringValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> String {
         let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .stringEmpty
         switch keyVal {
-        case .stringValue(let val): return val
+        case let .stringValue(val): return val
         default:
             keyVal.unexpectedValue(expected: "String", for: key)
             return ""
@@ -193,7 +212,7 @@ struct SettingsValues {
     func stringArray(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> [String] {
         let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .stringArrayEmpty
         switch keyVal {
-        case .stringArray(let val): return val
+        case let .stringArray(val): return val
         default:
             keyVal.unexpectedValue(expected: "String Array", for: key)
             return []

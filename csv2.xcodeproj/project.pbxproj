@@ -29,6 +29,8 @@
 		C42782B52655318E004C3464 /* OptsToGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42782B42655318E004C3464 /* OptsToGet.swift */; };
 		C42782B62655318E004C3464 /* OptsToGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42782B42655318E004C3464 /* OptsToGet.swift */; };
 		C42A6E3C261EDBED00784F54 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A6E3B261EDBED00784F54 /* Transform.swift */; };
+		C44081292669E551009871B8 /* GetValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44081282669E551009871B8 /* GetValues.swift */; };
+		C440812A2669E551009871B8 /* GetValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44081282669E551009871B8 /* GetValues.swift */; };
 		C446E81225F4BE4B007B1A05 /* PlotValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E81125F4BE4B007B1A05 /* PlotValues.swift */; };
 		C446E81D25F4E0F7007B1A05 /* PlotValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E81125F4BE4B007B1A05 /* PlotValues.swift */; };
 		C449F44F25EC1325006C67EB /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC825EBCE7300503486 /* Text.swift */; };
@@ -231,6 +233,7 @@
 		C4255F3E25E423A7002DFE80 /* PathCompenent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathCompenent.swift; sourceTree = "<group>"; };
 		C42782B42655318E004C3464 /* OptsToGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptsToGet.swift; sourceTree = "<group>"; };
 		C42A6E3B261EDBED00784F54 /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
+		C44081282669E551009871B8 /* GetValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetValues.swift; sourceTree = "<group>"; };
 		C446E81125F4BE4B007B1A05 /* PlotValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotValues.swift; sourceTree = "<group>"; };
 		C45053C025F0E865003FC346 /* appinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appinfo.swift; sourceTree = "<group>"; };
 		C4507810263DA32000308C1D /* PointPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointPosition.swift; sourceTree = "<group>"; };
@@ -521,6 +524,7 @@
 				C4C0C4852612E82A0072699C /* CodingKeys.swift */,
 				C48B03902660AA9900C6671F /* DictSetValues.swift */,
 				C48B039626612F0100C6671F /* GetSet.swift */,
+				C44081282669E551009871B8 /* GetValues.swift */,
 				C4C0C4892612FBCD0072699C /* KeyedValue.swift */,
 				C48B039326611D3F00C6671F /* Nested.swift */,
 				C49B7D6C25DC03B500CEAB8C /* Settings.swift */,
@@ -854,6 +858,7 @@
 				C4AD7F73265A0E6700CABB29 /* ExecCommand.swift in Sources */,
 				C4B2F9E3262EC7C200CC5430 /* CGlogo.swift in Sources */,
 				C49A0DBA2648278300CF7E22 /* PDF.swift in Sources */,
+				C44081292669E551009871B8 /* GetValues.swift in Sources */,
 				C4B2F9EE263025FB00CC5430 /* Path.swift in Sources */,
 				C446E81225F4BE4B007B1A05 /* PlotValues.swift in Sources */,
 				C4C0C472260F85E40072699C /* Fonts.swift in Sources */,
@@ -910,6 +915,7 @@
 				C4B2F9C1262C177900CC5430 /* PNG.swift in Sources */,
 				C4F20C122601DF4D005D2FE1 /* Dashes.swift in Sources */,
 				C4EFA4AA261EEBCB0026BD9A /* Tags.swift in Sources */,
+				C440812A2669E551009871B8 /* GetValues.swift in Sources */,
 				C4C0C48B2612FBCD0072699C /* KeyedValue.swift in Sources */,
 				C45323EE25F8EF0D007D741C /* Gen.swift in Sources */,
 				C4CF2A1D2637147C00E858D1 /* Vector.swift in Sources */,

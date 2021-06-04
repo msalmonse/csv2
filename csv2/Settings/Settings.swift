@@ -27,56 +27,27 @@ class Settings: Decodable, ReflectedStringConvertible {
         """
 
     required init(from decoder: Decoder) throws {
-        let container = try? decoder.container(keyedBy: CodingKeys.self)
+        do {
+            let values = try Self.getValues(from: decoder)
 
-        var chartType: ChartType = .horizontal
-        let chart = Self.keyedStringValue(from: container, forKey: .chartType, defaults: defaults)
-        switch chart.lowercased() {
-        case "piechart": chartType = .pieChart
-        case "horizontal": chartType = .horizontal
-        default: break
-        }
-        self.chartType = chartType
-
-        // Although this is a Defaults property it can be loaded from the JSON file
-        defaults.bounded = Self.keyedBoolValue(from: container, forKey: .bounded, defaults: defaults)
-
-        var values = SettingsValues()
-        for key in CodingKeys.allCases {
-            switch key.codingType {
-            case .isBool:
-                let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
-                values.setValue(key, val, in: key.domain)
-            case .isDouble:
-                let val = Self.keyedDoubleSettingsValue(from: container, forKey: key, defaults: defaults,
-                                                        in: key.doubleBounds)
-                values.setValue(key, val, in: key.domain)
-            case .isInt:
-                let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults,
-                                                     in: key.intBounds)
-                values.setValue(key, val, in: key.domain)
-            case .isInt1:
-                let val = Self.keyedInt1SettingsValue(from: container, forKey: key, defaults: defaults,
-                                                      in: key.intBounds)
-                values.setValue(key, val, in: key.domain)
-            case .isString:
-                let val = Self.keyedStringSettingsValue(from: container, forKey: key, defaults: defaults)
-                values.setValue(key, val, in: key.domain)
-            case .isStringArray:
-                let val = Self.keyedStringArraySettingsValue(from: container, forKey: key, defaults: defaults)
-                values.setValue(key, val, in: key.domain)
-            case .isNone: break
+            var chartType: ChartType = .horizontal
+            let chart = values.stringValue(.chartType)
+            switch chart.lowercased() {
+            case "piechart": chartType = .pieChart
+            case "horizontal": chartType = .horizontal
+            default: break
             }
+            self.chartType = chartType
+
+            index = values.intValue(.index)
+            height = Double(values.intValue(.height))
+            width = Double(values.intValue(.width))
+            strokeWidth = values.doubleValue(.strokeWidth)
+
+            self.values = values
+        } catch {
+            throw error
         }
-        Self.loadForeground(from: container, defaults: defaults, into: &values)
-        Self.loadPDF(from: container, defaults: defaults, into: &values)
-
-        index = values.intValue(.index)
-        height = Double(values.intValue(.height))
-        width = Double(values.intValue(.width))
-        strokeWidth = values.doubleValue(.strokeWidth)
-
-        self.values = values
     }
 
     /// Load contents of file into object
