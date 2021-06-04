@@ -9,7 +9,7 @@ import Foundation
 
 extension Settings {
     enum CodingType {
-        case isBool, isDouble, isInt, isInt1, isString, isStringArray
+        case isBitMap, isBool, isDouble, isInt, isInt1, isString, isStringArray
         case isNone     // special cases
     }
 

@@ -19,6 +19,16 @@ extension Settings {
         values.setValue(key, value, in: domain)
     }
 
+    /// Fetch a BitMap value
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: Bool value
+
+    func bitmapValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> BitMap {
+        return values.bitmapValue(key, in: domain)
+    }
+
     /// Fetch a Bool value
     /// - Parameters:
     ///   - key: key in domain
@@ -47,6 +57,16 @@ extension Settings {
 
     func hasContent(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> Bool {
         return values.hasContent(key, in: domain)
+    }
+
+    /// Fetch an Int Array
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: Int Array
+
+    func intArray(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> [Int] {
+        return values.intArray(key, in: domain)
     }
 
     /// Fetch an Int value

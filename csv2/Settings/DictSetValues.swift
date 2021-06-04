@@ -13,6 +13,7 @@ enum SettingsValue: Equatable {
     case bitmapValue(val: BitMap)
     case boolValue(val: Bool)
     case doubleValue(val: Double)
+    case intArray(val: [Int])
     case intValue(val: Int)
     case stringArray(val: [String])
     case stringValue(val: String)
@@ -24,7 +25,7 @@ enum SettingsValue: Equatable {
     static let doubleMin = Self.doubleValue(val: Defaults.minDefault)
     static let doubleMinusOne = Self.doubleValue(val: -1.0)
     static let doubleZero = Self.doubleValue(val: 0.0)
-    static let intMinusOne = Self.intValue(val: -1)
+    static let intEmpty = Self.intArray(val: [])
     static let intZero = Self.intValue(val: 0)
     static let stringArrayEmpty = Self.stringArray(val: [])
     static let stringEmpty = Self.stringValue(val: "")
@@ -38,6 +39,7 @@ enum SettingsValue: Equatable {
         case .bitmapValue: printGot("BitMap")
         case .boolValue: printGot("Bool")
         case .doubleValue: printGot("Double")
+        case .intArray: printGot("Int Array")
         case .intValue: printGot("Int")
         case .stringArray: printGot("String Array")
         case .stringValue: printGot("String")
@@ -152,6 +154,23 @@ struct SettingsValues {
         default:
             keyVal.unexpectedValue(expected: "String", for: key)
             return false
+        }
+    }
+
+    /// Lookup Int  Array
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: Int Array from dict
+
+    func intArray(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> [Int] {
+        let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .intEmpty
+        switch keyVal {
+        case let .bitmapValue(val): return val.intArray()
+        case let .intArray(val): return val
+        default:
+            keyVal.unexpectedValue(expected: "Int Array", for: key)
+            return []
         }
     }
 

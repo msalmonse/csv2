@@ -22,7 +22,7 @@ private let initialDefaults: SettingsDict = [
     .foregroundColour: .stringValue(val: "black"),
     .height: .intValue(val: 600),
     .hover: .boolTrue,
-    .include: .intMinusOne,
+    .include: .bitmapValue(val: BitMap.all),
     .legends: .boolTrue,
     .logoHeight: .doubleValue(val: 64.0),
     .logoWidth: .doubleValue(val: 64.0),
@@ -91,6 +91,16 @@ struct Defaults {
         values.setValue(key, value)
     }
 
+    /// Fetch a BitMap value
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: Bool value
+
+    func bitmapValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> BitMap {
+        return values.bitmapValue(key, in: domain)
+    }
+
     /// Fetch a Bool value
     /// - Parameter key: key of value to fetch
     /// - Returns: Bool value
@@ -105,6 +115,16 @@ struct Defaults {
 
     func doubleValue(_ key: Settings.CodingKeys) -> Double {
         return values.doubleValue(key)
+    }
+
+    /// Fetch an Int Array
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: Int Array
+
+    func intArray(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> [Int] {
+        return values.intArray(key, in: domain)
     }
 
     /// Fetch an Int value

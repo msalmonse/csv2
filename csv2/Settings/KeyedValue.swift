@@ -92,6 +92,31 @@ extension Settings {
         return .doubleValue(val: val)
     }
 
+    /// Convenience function to decode a keyed Int Array
+    /// - Parameters:
+    ///   - container: decoded data container
+    ///   - key: the key into the decoded data
+    ///   - defaults: the command line defaults
+    /// - Returns: decoded or default value
+
+    static func keyedIntArray(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        forKey key: CodingKeys,
+        defaults: Defaults
+    ) -> [Int] {
+        if container == nil || defaults.isOnCLI(key) {
+            return defaults.intArray(key)
+        }
+        var values: [Int] = []
+        var arrayContainer = try? container?.nestedUnkeyedContainer(forKey: key)
+        if arrayContainer == nil { return defaults.intArray(key) }
+        while !arrayContainer!.isAtEnd {
+            values.append((try? arrayContainer?.decode(Int.self)) ?? 0)
+        }
+
+        return values
+    }
+
     /// Convenience function to decode a keyed Int
     /// - Parameters:
     ///   - container: decoded data container

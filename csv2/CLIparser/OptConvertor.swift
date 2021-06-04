@@ -116,6 +116,8 @@ extension Options {
             throw error
         }
 
+        values.onCLI(key)
+        values.setValue(key, .bitmapValue(val: bitMap))
         return bitMap
     }
 }

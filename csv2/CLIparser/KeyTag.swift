@@ -39,6 +39,7 @@ enum StringSpecialKey {
 
 enum OptionsKey: CLIparserTag {
     // generic tags
+    case bitmapValue(key: Settings.CodingKeys, name: String)
     case boolValue(key: Settings.CodingKeys, name: String)
     case boolSpecial(key: BoolSpecialKey, name: String)
     case doubleArray(key: Settings.CodingKeys, name: String)
@@ -54,18 +55,19 @@ enum OptionsKey: CLIparserTag {
 
     var longname: String {
         switch self {
-        case .boolValue(_, let name): return name
-        case .boolSpecial(_, let name): return name
-        case .doubleArray(_, let name): return name
-        case .doubleSpecialArray(_, let name): return name
-        case .doubleValue(_, let name): return name
-        case .intSpecial(_, let name): return name
-        case .intSpecialArray(_, let name): return name
-        case .intValue(_, let name): return name
+        case let .bitmapValue(_, name): return name
+        case let .boolValue(_, name): return name
+        case let .boolSpecial(_, name): return name
+        case let .doubleArray(_, name): return name
+        case let .doubleSpecialArray(_, name): return name
+        case let .doubleValue(_, name): return name
+        case let .intSpecial(_, name): return name
+        case let .intSpecialArray(_, name): return name
+        case let .intValue(_, name): return name
         case .positionalValues: return "positional"
-        case .stringArray(_, let name): return name
-        case .stringSpecial(_, let name): return name
-        case .stringValue(_, let name): return name
+        case let .stringArray(_, name): return name
+        case let .stringSpecial(_, name): return name
+        case let .stringValue(_, name): return name
         }
     }
 }

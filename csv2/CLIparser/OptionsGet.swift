@@ -21,6 +21,7 @@ extension Options {
             let val0 = opt.optValuesAt.hasIndex(0)  ? opt.optValuesAt[0] : OptValueAt.empty
 
             switch optTag {
+            case let .bitmapValue(key, _): try setBitmap(opt.optValuesAt, key: key)
             case let .boolSpecial(key, _):
                 switch key {
                 case .help: helpAndExit()

@@ -59,9 +59,8 @@ extension Options {
     ]
 
     static internal let commonOpts: OptsToGet = [
-        // TODO: make bitmap a type
         OptToGet(
-            .intValue(key: .bared, name: "bared"), .single, options: [.includeMinus],
+            .bitmapValue(key: .bared, name: "bared"), .onePlus, options: [.includeMinus],
             usage: "Plots to show as bars", argTag: "<bitmap¹>"
         ),
         OptToGet(
