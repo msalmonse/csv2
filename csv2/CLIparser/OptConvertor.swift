@@ -95,24 +95,27 @@ extension Options {
     mutating func setBitmap(_ vals: OptValuesAt, key: Settings.CodingKeys) throws -> BitMap {
         if vals.count == 1 && vals[0].stringValue() == "all" { return BitMap.all }
         var bitMap = BitMap.none
-        for val in vals {
-            let s = val.stringValue()
-            if let intVal = Int(s) {
-                if !(BitMap.okRange ~= intVal) { throw val.error("BitMap") }
-                bitMap[intVal] = true
-            } else {
-                let intRange = s.components(separatedBy: "-")
-                if intRange.count == 2, let rangeMin = Int(intRange[0]), let rangeMax = Int(intRange[1]) {
-                    if !(BitMap.okRange ~= rangeMin) { throw val.error("BitMap") }
-                    if !(BitMap.okRange ~= rangeMax) { throw val.error("BitMap") }
-                    for i in rangeMin...rangeMax {
+        var prev = 0
+        do {
+            for val in vals {
+                let intVal = try val.intValue()
+                if BitMap.okRange.contains(intVal) {
+                    bitMap[intVal] = true
+                    prev = intVal
+                } else if BitMap.okRange.contains(-intVal) {
+                    // negative values are the upper limit of a range
+                    for i in (prev + 1)...(-intVal) {
                         bitMap[i] = true
                     }
+                    prev = -intVal
                 } else {
-                    throw val.error("BitMap")
+                    throw val.error("bitmap")
                 }
             }
+        } catch {
+            throw error
         }
+
         return bitMap
     }
 }

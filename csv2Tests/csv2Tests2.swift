@@ -64,8 +64,8 @@ extension csv2Tests {
     }
 
     func testBitmap() {
-        let opts = [ OptToGet(short: "B", 1...255) ]
-        let args1 = [ "cmd", "-B", "1", "3-8", "10" ]
+        let opts = [ OptToGet(short: "B", 1...255, options: [.includeMinus]) ]
+        let args1 = [ "cmd", "-B", "1", "3", "-8", "10" ]
         let expected1: UInt64 = (1 << 0) | (63 << 2) | (1 << 9)
         let args2 = [ "cmd", "-B", "all" ]
         let args3 = [ "cmd", "-B", "64" ]
@@ -77,7 +77,7 @@ extension csv2Tests {
             var result = try ArgumentList(args1).optionsParse(opts)
             XCTAssertEqual(result.count, 1)
             XCTAssertEqual(
-                try options.setBitmap(result[0].optValuesAt, key: .include),
+                try? options.setBitmap(result[0].optValuesAt, key: .include),
                 BitMap(rawValue: expected1)
             )
 
@@ -105,17 +105,18 @@ extension csv2Tests {
                 print($0.localizedDescription, to: &standardError)
             }
 
-            result = try ArgumentList([ "cmd", "-B", "0-64" ]).optionsParse(opts)
+            result = try ArgumentList([ "cmd", "-B", "0", "-64" ]).optionsParse(opts)
             XCTAssertThrowsError(try options.setBitmap(result[0].optValuesAt, key: .include)) {
                 print($0.localizedDescription, to: &standardError)
             }
 
-            result = try ArgumentList([ "cmd", "-B", "64-66" ]).optionsParse(opts)
+            result = try ArgumentList([ "cmd", "-B", "64", "-66" ]).optionsParse(opts)
             XCTAssertThrowsError(try options.setBitmap(result[0].optValuesAt, key: .include)) {
                 print($0.localizedDescription, to: &standardError)
             }
         } catch {
             print(error, to: &standardError)
+            XCTFail(error.localizedDescription)
         }
     }
 }
