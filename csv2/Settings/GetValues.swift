@@ -70,16 +70,16 @@ extension Settings {
         var bitmap = BitMap.none
         var prev = 0
         for i in intValues {
-            if BitMap.okRange.contains(i) {
-                bitmap[i] = true
+            if bitmap.okWithOffset.contains(i) {
+                bitmap.append(i)
                 prev = 0
-            } else if BitMap.okRange.contains(-i) {
+            } else if bitmap.okWithOffset.contains(-i) {
                 for j in (prev + 1)...(-i) {
-                    bitmap[j] = true
+                    bitmap.append(j)
                 }
                 prev = -i
             } else {
-                throw "Value \(i) is out of range for key: \(key)"
+                throw ErrorMessage(message: "Value \(i) is out of range for key: \(key.stringValue)")
             }
         }
         return bitmap

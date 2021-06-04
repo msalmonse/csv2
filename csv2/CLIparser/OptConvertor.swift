@@ -99,13 +99,13 @@ extension Options {
         do {
             for val in vals {
                 let intVal = try val.intValue()
-                if BitMap.okRange.contains(intVal) {
-                    bitMap[intVal] = true
+                if bitMap.okWithOffset.contains(intVal) {
+                    bitMap.append(intVal)
                     prev = intVal
-                } else if BitMap.okRange.contains(-intVal) {
+                } else if bitMap.okWithOffset.contains(-intVal) {
                     // negative values are the upper limit of a range
                     for i in (prev + 1)...(-intVal) {
-                        bitMap[i] = true
+                        bitMap.append(i)
                     }
                     prev = -intVal
                 } else {

@@ -31,6 +31,8 @@
 		C42A6E3C261EDBED00784F54 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42A6E3B261EDBED00784F54 /* Transform.swift */; };
 		C44081292669E551009871B8 /* GetValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44081282669E551009871B8 /* GetValues.swift */; };
 		C440812A2669E551009871B8 /* GetValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44081282669E551009871B8 /* GetValues.swift */; };
+		C440812C266A5037009871B8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440812B266A5037009871B8 /* Errors.swift */; };
+		C440812D266A5037009871B8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440812B266A5037009871B8 /* Errors.swift */; };
 		C446E81225F4BE4B007B1A05 /* PlotValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E81125F4BE4B007B1A05 /* PlotValues.swift */; };
 		C446E81D25F4E0F7007B1A05 /* PlotValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E81125F4BE4B007B1A05 /* PlotValues.swift */; };
 		C449F44F25EC1325006C67EB /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC825EBCE7300503486 /* Text.swift */; };
@@ -234,6 +236,7 @@
 		C42782B42655318E004C3464 /* OptsToGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptsToGet.swift; sourceTree = "<group>"; };
 		C42A6E3B261EDBED00784F54 /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		C44081282669E551009871B8 /* GetValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetValues.swift; sourceTree = "<group>"; };
+		C440812B266A5037009871B8 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		C446E81125F4BE4B007B1A05 /* PlotValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotValues.swift; sourceTree = "<group>"; };
 		C45053C025F0E865003FC346 /* appinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appinfo.swift; sourceTree = "<group>"; };
 		C4507810263DA32000308C1D /* PointPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointPosition.swift; sourceTree = "<group>"; };
@@ -570,6 +573,7 @@
 				C4EFA4F4262491BB0026BD9A /* ColourTranslate.swift */,
 				C4F20C102601DF4D005D2FE1 /* Dashes.swift */,
 				C453242425FA2C23007D741C /* DrawShapes.swift */,
+				C440812B266A5037009871B8 /* Errors.swift */,
 				C4C0C471260F85E40072699C /* Fonts.swift */,
 				C4B2F9ED263025FB00CC5430 /* Path.swift */,
 				C4255F3E25E423A7002DFE80 /* PathCompenent.swift */,
@@ -876,6 +880,7 @@
 				C40CD43A25ED025F003944FA /* Header.swift in Sources */,
 				C4CF2A212637177100E858D1 /* PieChart.swift in Sources */,
 				C4507815263E9F9400308C1D /* Int.swift in Sources */,
+				C440812C266A5037009871B8 /* Errors.swift in Sources */,
 				C49A0DC026491B5A00CF7E22 /* PDFPlotterPage.swift in Sources */,
 				C460B673261CD5CD0051BB80 /* SVGplotter.swift in Sources */,
 				C460B677261DA8B30051BB80 /* Tags.swift in Sources */,
@@ -931,6 +936,7 @@
 				C450781F263EB3E800308C1D /* OptionSet.swift in Sources */,
 				C4EFA4DF26236B7A0026BD9A /* Canvas.swift in Sources */,
 				C45323F325F8F157007D741C /* Horizontal.swift in Sources */,
+				C440812D266A5037009871B8 /* Errors.swift in Sources */,
 				C4B2F9FD2631B3F300CC5430 /* csv2Tests2.swift in Sources */,
 				C4EFA4DC26236B500026BD9A /* StylesList.swift in Sources */,
 				C48B723825F28A5E00B0752E /* appinfo.swift in Sources */,

@@ -110,7 +110,7 @@ extension Settings.CodingKeys {
         case .author: return .isString
         case .axes: return .isString
         case .backgroundColour: return .isString
-        case .bared: return .isInt
+        case .bared: return .isBitMap
         case .barOffset: return .isDouble
         case .barWidth: return .isDouble
         case .baseFontSize: return .isDouble
@@ -126,12 +126,12 @@ extension Settings.CodingKeys {
         case .cssExtras: return .isStringArray
         case .cssID: return .isString
         case .cssInclude: return .isString
-        case .dashedLines: return .isInt
+        case .dashedLines: return .isBitMap
         case .dashes: return .isStringArray
         case .dataPointDistance: return .isDouble
         case .draft: return .isBool
         case .draftText: return .isString
-        case .filled: return .isInt
+        case .filled: return .isBitMap
         case .fontFamily: return .isString
         case .foregroundColour: return .isString
         case .foregroundColours: return .isNone
@@ -139,7 +139,7 @@ extension Settings.CodingKeys {
         case .headerRows: return .isInt
         case .height: return .isInt
         case .hover: return .isBool
-        case .include: return .isInt
+        case .include: return .isBitMap
         case .index: return .isInt1
         case .italic: return .isBool
         case .keywords: return .isString
@@ -164,9 +164,9 @@ extension Settings.CodingKeys {
         case .reserveRight: return .isDouble
         case .reserveTop: return .isDouble
         case .rowGrouping: return .isBool
-        case .scatterPlots: return .isInt
+        case .scatterPlots: return .isBitMap
         case .shapes: return .isStringArray
-        case .showDataPoints: return .isInt
+        case .showDataPoints: return .isBitMap
         case .smooth: return .isDouble
         case .sortx: return .isBool
         case .strokeWidth: return .isDouble

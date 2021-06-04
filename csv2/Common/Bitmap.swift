@@ -9,12 +9,34 @@ import Foundation
 
 struct BitMap: OptionSet {
     let rawValue: UInt64
-    static let okRange = 1...Int(UInt64.bitWidth)
+    /// BitMap stores values in the range 0..<64 but append uses a different range
+    /// usually 1..<65, offset is the difference between the two
+    let offset: Int
+    static let okRange = 0...Int(UInt64.bitWidth - 1)
+    let okWithOffset: ClosedRange<Int>
+
+    init(rawValue: UInt64, offset: Int = 1) {
+        self.rawValue = rawValue
+        self.offset = offset
+        okWithOffset = offset...(UInt64.bitWidth - 1 + offset)
+    }
+
+    init(rawValue: UInt64) {
+        self.init(rawValue: rawValue, offset: 1)
+    }
 
     static var all = Self(rawValue: ~0)
     static var none = Self(rawValue: 0)
 
-    func val(_ i: Int) -> BitMap { return BitMap(rawValue: 1 << (i - 1)) }
+    var intValue: Int { Int(bitPattern: UInt(rawValue)) }
+
+    mutating func append(_ i: Int) {
+        if okWithOffset ~= i { insert(val(i - offset)) }
+    }
+
+    func val(_ i: Int) -> BitMap {
+        return Self.okRange ~= i ? BitMap(rawValue: 1 << (i)) : BitMap.none
+    }
 
     subscript(_ index: Int) -> Bool {
         get { contains(val(index)) }
@@ -26,7 +48,7 @@ struct BitMap: OptionSet {
 
     func intArray() -> [Int] {
         var result: [Int] = []
-        for i in Self.okRange where self[i] { result.append(i) }
+        for i in Self.okRange where self[i] { result.append(i + offset) }
         return result
     }
 }

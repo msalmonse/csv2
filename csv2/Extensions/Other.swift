@@ -12,10 +12,6 @@ extension String {
     var hasContent: Bool { !self.isEmpty }
 }
 
-extension String: LocalizedError {
-    public var errorDescription: String? { self }
-}
-
 extension Array {
     /// Just a little sugar
     var hasEntries: Bool { !self.isEmpty }

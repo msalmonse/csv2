@@ -100,7 +100,7 @@ extension Options {
             usage: "Add csv2 comment to plot"
         ),
         OptToGet(
-            .intValue(key: .dashedLines, name: "dashed"), .single, options: [.includeMinus],
+            .bitmapValue(key: .dashedLines, name: "dashed"), .onePlus, options: [.includeMinus],
             usage: "Plots with dashed lines", argTag: "<bitmap¹>"
         ),
         OptToGet(
@@ -120,7 +120,7 @@ extension Options {
             usage: "Mark the chart as a draft, argument sets the text", argTag: "[text]"
         ),
         OptToGet(
-            .intValue(key: .filled, name: "filled"), .single, options: [.includeMinus],
+            .bitmapValue(key: .filled, name: "filled"), .onePlus, options: [.includeMinus],
             usage: "Plots to show filled", argTag: "<bitmap¹>"
         ),
         OptToGet(
@@ -140,7 +140,7 @@ extension Options {
             usage: "Chart height", argTag: "<n>"
         ),
         OptToGet(
-            .intValue(key: .include, name: "include"), .single, options: [.includeMinus],
+            .bitmapValue(key: .include, name: "include"), .onePlus, options: [.includeMinus],
             usage: "Plots to include, default all", argTag: "<bitmap¹>"
         ),
         OptToGet(
@@ -197,7 +197,7 @@ extension Options {
             usage: "Group data by rows"
         ),
         OptToGet(
-            .intValue(key: .scatterPlots, name: "scattered"), .single, options: [.includeMinus],
+            .bitmapValue(key: .scatterPlots, name: "scattered"), .onePlus, options: [.includeMinus],
             usage: "Plots to show as scatter plots", argTag: "<bitmap¹>"
         ),
         OptToGet(
@@ -209,7 +209,7 @@ extension Options {
             usage: "List of shapes to use", argTag: "<shape>..."
         ),
         OptToGet(
-            .intValue(key: .showDataPoints, name: "showpoints"), .single, options: [.includeMinus],
+            .bitmapValue(key: .showDataPoints, name: "showpoints"), .onePlus, options: [.includeMinus],
             usage: "Data plots with points", argTag: "<bitmap¹>"
         ),
         OptToGet(
