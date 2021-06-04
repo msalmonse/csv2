@@ -93,27 +93,30 @@ extension Options {
 
     @discardableResult
     mutating func setBitmap(_ vals: OptValuesAt, key: Settings.CodingKeys) throws -> BitMap {
-        if vals.count == 1 && vals[0].stringValue() == "all" { return BitMap.all }
         var bitMap = BitMap.none
-        var prev = 0
-        do {
-            for val in vals {
-                let intVal = try val.intValue()
-                if bitMap.okWithOffset.contains(intVal) {
-                    bitMap.append(intVal)
-                    prev = intVal
-                } else if bitMap.okWithOffset.contains(-intVal) {
-                    // negative values are the upper limit of a range
-                    for i in (prev + 1)...(-intVal) {
-                        bitMap.append(i)
+        if vals.count == 1 && vals[0].stringValue() == "all" {
+            bitMap = BitMap.all
+        } else {
+            var prev = 0
+            do {
+                for val in vals {
+                    let intVal = try val.intValue()
+                    if bitMap.okWithOffset.contains(intVal) {
+                        bitMap.append(intVal)
+                        prev = intVal
+                    } else if bitMap.okWithOffset.contains(-intVal) {
+                        // negative values are the upper limit of a range
+                        for i in (prev + 1)...(-intVal) {
+                            bitMap.append(i)
+                        }
+                        prev = -intVal
+                    } else {
+                        throw val.error("bitmap")
                     }
-                    prev = -intVal
-                } else {
-                    throw val.error("bitmap")
                 }
+            } catch {
+                throw error
             }
-        } catch {
-            throw error
         }
 
         values.onCLI(key)

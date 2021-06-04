@@ -52,7 +52,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "png  --bg cornsilk -bared -3 --"
+            argument = "png  --bg cornsilk --dashed=all --"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "png --black --dashed=all --showpoints 3 --"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

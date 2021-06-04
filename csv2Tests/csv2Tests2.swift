@@ -67,7 +67,7 @@ extension csv2Tests {
         let opts = [ OptToGet(short: "B", 1...255, options: [.includeMinus]) ]
         let args1 = [ "cmd", "-B", "1", "3", "-8", "10" ]
         let expected1: UInt64 = (1 << 0) | (63 << 2) | (1 << 9)
-        let args2 = [ "cmd", "-B", "all" ]
+        let args2 = [ "cmd", "-B=all" ]
         let args3 = [ "cmd", "-B", "64" ]
         let expected3: UInt64 = 1 << 63
 
