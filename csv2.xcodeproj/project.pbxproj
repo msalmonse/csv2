@@ -33,8 +33,8 @@
 		C440812A2669E551009871B8 /* GetValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44081282669E551009871B8 /* GetValues.swift */; };
 		C440812C266A5037009871B8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440812B266A5037009871B8 /* Errors.swift */; };
 		C440812D266A5037009871B8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C440812B266A5037009871B8 /* Errors.swift */; };
-		C446E81225F4BE4B007B1A05 /* PlotValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E81125F4BE4B007B1A05 /* PlotValues.swift */; };
-		C446E81D25F4E0F7007B1A05 /* PlotValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E81125F4BE4B007B1A05 /* PlotValues.swift */; };
+		C446E81225F4BE4B007B1A05 /* PlotHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E81125F4BE4B007B1A05 /* PlotHorizontal.swift */; };
+		C446E81D25F4E0F7007B1A05 /* PlotHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C446E81125F4BE4B007B1A05 /* PlotHorizontal.swift */; };
 		C449F44F25EC1325006C67EB /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A7EC825EBCE7300503486 /* Text.swift */; };
 		C45053C125F0E865003FC346 /* appinfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45053C025F0E865003FC346 /* appinfo.swift */; };
 		C4507811263DA32000308C1D /* PointPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4507810263DA32000308C1D /* PointPosition.swift */; };
@@ -175,6 +175,8 @@
 		C4CF2A222637177100E858D1 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A202637177100E858D1 /* PieChart.swift */; };
 		C4CF2A2B26371B3F00E858D1 /* DoIf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A2A26371B3F00E858D1 /* DoIf.swift */; };
 		C4CF2A2C26371B3F00E858D1 /* DoIf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CF2A2A26371B3F00E858D1 /* DoIf.swift */; };
+		C4CFDF0A266BBF96008A3DBA /* Vertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFDF09266BBF96008A3DBA /* Vertical.swift */; };
+		C4CFDF0B266BBF96008A3DBA /* Vertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4CFDF09266BBF96008A3DBA /* Vertical.swift */; };
 		C4EA5D1F25EB7B8A00E104E0 /* TransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */; };
 		C4EA5D2225EB7DFD00E104E0 /* TransScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */; };
 		C4EA5D2825EB8F4D00E104E0 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EA5D2725EB8F4D00E104E0 /* Colours.swift */; };
@@ -237,7 +239,7 @@
 		C42A6E3B261EDBED00784F54 /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		C44081282669E551009871B8 /* GetValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetValues.swift; sourceTree = "<group>"; };
 		C440812B266A5037009871B8 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		C446E81125F4BE4B007B1A05 /* PlotValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotValues.swift; sourceTree = "<group>"; };
+		C446E81125F4BE4B007B1A05 /* PlotHorizontal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotHorizontal.swift; sourceTree = "<group>"; };
 		C45053C025F0E865003FC346 /* appinfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appinfo.swift; sourceTree = "<group>"; };
 		C4507810263DA32000308C1D /* PointPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointPosition.swift; sourceTree = "<group>"; };
 		C4507814263E9F9400308C1D /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 		C4CF2A102636EF9600E858D1 /* Positions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Positions.swift; sourceTree = "<group>"; };
 		C4CF2A202637177100E858D1 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
 		C4CF2A2A26371B3F00E858D1 /* DoIf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoIf.swift; sourceTree = "<group>"; };
+		C4CFDF09266BBF96008A3DBA /* Vertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertical.swift; sourceTree = "<group>"; };
 		C4EA5D1E25EB7B8A00E104E0 /* TransScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransScale.swift; sourceTree = "<group>"; };
 		C4EA5D2725EB8F4D00E104E0 /* Colours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
 		C4EFA4B026202C600026BD9A /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
@@ -541,6 +544,7 @@
 				C45323F125F8F157007D741C /* Horizontal.swift */,
 				C4CF2A202637177100E858D1 /* PieChart.swift */,
 				C4CF2A102636EF9600E858D1 /* Positions.swift */,
+				C4CFDF09266BBF96008A3DBA /* Vertical.swift */,
 			);
 			path = Positions;
 			sourceTree = "<group>";
@@ -606,7 +610,7 @@
 				C4F20C1526027B7C005D2FE1 /* Legends.swift */,
 				C4CF2A0326368F5600E858D1 /* Pie.swift */,
 				C4F8F874261C375C00DF76AE /* Plot.swift */,
-				C446E81125F4BE4B007B1A05 /* PlotValues.swift */,
+				C446E81125F4BE4B007B1A05 /* PlotHorizontal.swift */,
 				C4B2F9DB262E947000CC5430 /* Rect.swift */,
 				C4EFA4C826215D650026BD9A /* StylesList.swift */,
 				C49A7EC825EBCE7300503486 /* Text.swift */,
@@ -849,6 +853,7 @@
 				C453242C25FA5D99007D741C /* Other.swift in Sources */,
 				C4B2F9CC262C27B700CC5430 /* CGplotPath.swift in Sources */,
 				C4EFA4BF2620D42C0026BD9A /* Path2D.swift in Sources */,
+				C4CFDF0A266BBF96008A3DBA /* Vertical.swift in Sources */,
 				C4569DAE265177DC00D74DBD /* OptionsGet.swift in Sources */,
 				C48B03912660AA9900C6671F /* DictSetValues.swift in Sources */,
 				C4EFA4EC26236F3E0026BD9A /* BarGet.swift in Sources */,
@@ -864,7 +869,7 @@
 				C49A0DBA2648278300CF7E22 /* PDF.swift in Sources */,
 				C44081292669E551009871B8 /* GetValues.swift in Sources */,
 				C4B2F9EE263025FB00CC5430 /* Path.swift in Sources */,
-				C446E81225F4BE4B007B1A05 /* PlotValues.swift in Sources */,
+				C446E81225F4BE4B007B1A05 /* PlotHorizontal.swift in Sources */,
 				C4C0C472260F85E40072699C /* Fonts.swift in Sources */,
 				C4EFA4BB2620A92B0026BD9A /* Canvasplotter.swift in Sources */,
 				C402620925FF3E1D0042AEA5 /* XI.swift in Sources */,
@@ -948,7 +953,7 @@
 				C4B2F9AF262B286400CC5430 /* SVGout.swift in Sources */,
 				C402935926693EEB0026363B /* Bitmap.swift in Sources */,
 				C4F20C1726027B7C005D2FE1 /* Legends.swift in Sources */,
-				C446E81D25F4E0F7007B1A05 /* PlotValues.swift in Sources */,
+				C446E81D25F4E0F7007B1A05 /* PlotHorizontal.swift in Sources */,
 				C4B2F9EF263025FB00CC5430 /* Path.swift in Sources */,
 				C4834ADE2637C7D60072C574 /* ChartType.swift in Sources */,
 				C4AD7F74265A0E6700CABB29 /* ExecCommand.swift in Sources */,
@@ -980,6 +985,7 @@
 				C4EFA4A4261EEBA70026BD9A /* Plotter.swift in Sources */,
 				C49890DA2664B205005EED3E /* CSVvalues.swift in Sources */,
 				C4569DB526523C0D00D74DBD /* CLIparser.swift in Sources */,
+				C4CFDF0B266BBF96008A3DBA /* Vertical.swift in Sources */,
 				C4569DAF265177DC00D74DBD /* OptionsGet.swift in Sources */,
 				C4569DB326523C0100D74DBD /* Options.swift in Sources */,
 				C4FA425D265E454800D999CC /* PNGout.swift in Sources */,

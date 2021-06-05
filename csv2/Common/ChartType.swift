@@ -23,7 +23,7 @@ extension ChartType {
         switch self {
         case .horizontal: return Horizontal(settings)
         case .pieChart: return PieChart(settings)
-        case .vertical: return Horizontal(settings)
+        case .vertical: return Vertical(settings)
         }
     }
 }
