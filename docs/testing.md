@@ -32,10 +32,13 @@ maximum value.
 More than 15 plots aren't really a good idea unless you have a big chart.
 
 - `list shapes`<br/>
-This option lists the names of all the shapes as plain text.
+This sub command lists the names of all the shapes as plain text.
 
 - `show <shape>` <sup>[1](#fn1)</sup><br/>
 Generate an image with just the named shape. The width and height are six times the stroke-width (`--stroke`).
+
+- `list json`<br/>
+This sub command is similar to `help usage` but the data is presented in JSON format.
 
 ### Footnotes
 
