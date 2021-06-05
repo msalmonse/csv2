@@ -2,25 +2,25 @@
 
 There are a number of options mainly intended for testing:
 
-- `canvas tag`<br/>
-This isn't so much an option but a command, it will generate an HTML canvas tag
-based on the command line and JSON settings.
+- `-tag <file>`<br/>
+This optiont will generate an HTML canvas tag based on the command line and JSON settings and write it to 
+the `file` specified.
 
-- `--colourslist` <sup>[1](#fn1)</sup><br/>
-This option generates a chart with each of the colours included with the `--colours`
+- `show colours` <sup>[1](#fn1)</sup><br/>
+This sub command generates a chart with each of the colours included with the `--colours`
 option followed by the internal colours list. Each colour is shown with a rectangle
 and the colour's name or hex code in the colour named.<br/>
 The `--bg` option can be used to set the background colour and the `--size` option to
 set the text size.
 
-- `--colournames`<br/>
+- `list colournames`<br/>
 Print the names and `#rrggbbaa` values of all the named colours known by this program.
 
-- `--colournameslist` <sup>[1](#fn1)</sup><br/>
-Similar to `--colourslist` except that all the named colours are included, [e,g.](examples/colourNamesList.png).
+- `show colournames` <sup>[1](#fn1)</sup><br/>
+Similar to `show colours` except that all the named colours are included, [e,g.](examples/colourNamesList.png).
 
-- `--dashlist` <sup>[1](#fn1)</sup><br/>
-Similar to `--colourlist` but for dashes.
+- `show dashes` <sup>[1](#fn1)</sup><br/>
+Similar to `show colours` but for dashes.
 
 - `--random`<br/>
 This option generates random CSV data that is then displayed as normal. There are four
@@ -31,10 +31,10 @@ The optional third parameter is the minimum value, if not supplied it is the min
 maximum value.
 More than 15 plots aren't really a good idea unless you have a big chart.
 
-- `--shapenames`<br/>
+- `list shapes`<br/>
 This option lists the names of all the shapes as plain text.
 
-- `--show` <sup>[1](#fn1)</sup><br/>
+- `show <shape>` <sup>[1](#fn1)</sup><br/>
 Generate an image with just the named shape. The width and height are six times the stroke-width (`--stroke`).
 
 ### Footnotes
