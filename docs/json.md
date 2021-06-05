@@ -359,11 +359,9 @@ the title attached to the ordinate
 
 - <a id="fn4">4</a>: `--headers` will set both headerColumns and headerRows
 
-- <a id="fn5">5</a>: A bit vector is an integer where each bit represents a plot
-e.g. _25 == 2<sup>4</sup> + 2<sup>3</sup> + 2<sup>0</sup>_ which would mean that the
-fifth, fourth and first row or column would be enabled. A value of -1 means all plots.<br/>
-To simplify the calculation the `--bitmap` option can be used e.g.<br/>
-`csv2 --bitmap 5 4 1` gives `25`.
+- <a id="fn5">5</a>:  a bit vector is a list of plot numbers like '1 2 3 4' corresponding to the rows or columns
+Negative numbers forms the upper bound on a range, '1 -4' is the same as '1 2 3 4'. The first number is initially 1 so in
+fact '-4' is all that is needed. 
 
 - <a id="fn6">6</a>: These options accept a list of words separated by spaces up until the next flag
 or option. If there are none before the file names then a `--` can be used to terminate the list.
