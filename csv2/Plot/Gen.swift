@@ -17,14 +17,14 @@ extension Plot {
         plotter.plotClipEnd()
     }
 
-    /// Generate a plotter document
+    /// Generate a horizontal chart
 
-    func horizontalGen() {
+    private func horizontalGen() {
         plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
         if settings.doubleValue(.xTick) >= 0 { xTick() }
         if settings.doubleValue(.yTick) >= 0 { yTick() }
         if settings.intValue(.xTagsHeader) >= 0 { xTags() }
-        axes()
+        horizontalAxes()
         lineGroup()
         if settings.hasContent(.xTitle) {
             xTitleText(settings.stringValue(.xTitle), x: plotPlane.hMid, y: positions.xTitleY)
@@ -32,6 +32,25 @@ extension Plot {
         if settings.hasContent(.yTitle) {
             yTitleText(settings.stringValue(.yTitle), x: positions.yTitleX, y: plotPlane.vMid)
         }
+        if settings.boolValue(.legends) { legend() }
+        if let subTitle = subTitleLookup() { subTitleText(subTitle) }
+        if settings.hasContent(.title) { titleText() }
+
+        if settings.boolValue(.draft) {
+            plotter.plotText(
+                x: width / 2.0, y: height / 2.0,
+                text: settings.stringValue(.draftText),
+                styles: stylesList.draft
+            )
+        }
+
+        plotter.plotTail()
+    }
+
+    /// Generate a vertical chart
+
+    private func verticalGen() {
+        plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
         if settings.boolValue(.legends) { legend() }
         if let subTitle = subTitleLookup() { subTitleText(subTitle) }
         if settings.hasContent(.title) { titleText() }
@@ -70,7 +89,7 @@ extension Plot {
 
     /// Generate a pie chart
 
-    func pieGen() {
+    private func pieGen() {
         func leftMargin(_ ct: Int) -> Double {
             let free = plotPlane.width - Double(ct) * side
             return floor(free / 2.0)
@@ -129,7 +148,8 @@ extension Plot {
     func chartGen() {
         switch settings.chartType {
         case .pieChart: pieGen()
-        default: horizontalGen()
+        case .horizontal: horizontalGen()
+        case .vertical: verticalGen()
         }
     }
 }

@@ -11,7 +11,7 @@ extension Plot {
 
     /// Draw axes
 
-    func axes() {
+    func horizontalAxes() {
         var axesPath = Path()
         let x0 = logy ? 1.0 : 0.0
         let y0 = logx ? 1.0 : 0.0
