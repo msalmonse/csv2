@@ -25,6 +25,8 @@ struct BitMap: OptionSet {
         self.init(rawValue: rawValue, offset: 1)
     }
 
+    private static var cache: [BitMap] = Self.okRange.map { BitMap(rawValue: 1 << $0) }
+
     static var all = Self(rawValue: ~0)
     static var none = Self(rawValue: 0)
 
@@ -35,7 +37,8 @@ struct BitMap: OptionSet {
     }
 
     func val(_ i: Int) -> BitMap {
-        return Self.okRange ~= i ? BitMap(rawValue: 1 << (i)) : BitMap.none
+        if !Self.cache.hasIndex(i) { return BitMap.none }
+        return Self.cache[i]
     }
 
     subscript(_ index: Int) -> Bool {

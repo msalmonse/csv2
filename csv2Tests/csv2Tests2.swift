@@ -66,7 +66,7 @@ extension csv2Tests {
     func testBitmap() {
         let opts = [ OptToGet(short: "B", 1...255, options: [.includeMinus]) ]
         let args1 = [ "cmd", "-B", "1", "3", "-8", "10" ]
-        let expected1: UInt64 = (1 << 0) | (63 << 2) | (1 << 9)
+        let expected1 = (1 << 0) | (63 << 2) | (1 << 9)
         let args2 = [ "cmd", "-B=all" ]
         let args3 = [ "cmd", "-B", "64" ]
         let expected3: UInt64 = 1 << 63
@@ -77,8 +77,8 @@ extension csv2Tests {
             var result = try ArgumentList(args1).optionsParse(opts)
             XCTAssertEqual(result.count, 1)
             XCTAssertEqual(
-                try? options.setBitmap(result[0].optValuesAt, key: .include),
-                BitMap(rawValue: expected1)
+                try? options.setBitmap(result[0].optValuesAt, key: .include).intValue,
+                expected1
             )
 
             result = try ArgumentList(args2).optionsParse(opts)
@@ -90,10 +90,9 @@ extension csv2Tests {
 
             result = try ArgumentList(args3).optionsParse(opts)
             XCTAssertEqual(result.count, 1)
-            XCTAssertEqual(
-                try options.setBitmap(result[0].optValuesAt, key: .include),
-                BitMap(rawValue: expected3)
-            )
+            let bitmap = try options.setBitmap(result[0].optValuesAt, key: .include)
+            XCTAssertEqual(bitmap, BitMap(rawValue: expected3))
+            XCTAssertEqual(bitmap.intArray(), [64])
 
             result = try ArgumentList([ "cmd", "-B", "5a" ]).optionsParse(opts)
             XCTAssertThrowsError(try options.setBitmap(result[0].optValuesAt, key: .include)) {
