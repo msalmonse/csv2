@@ -37,18 +37,6 @@ extension CSV {
         return nil
     }
 
-    /// Extract name from row or header column
-    /// - Parameters:
-    ///   - i: row or column number
-    ///   - csv: csv object
-    ///   - inColumn: is data arranged in columns
-    ///   - header: the row or column that has the names
-    /// - Returns: row or column header
-
-    func headerText(_ i: Int, _ inColumns: Bool, header: Int) -> String? {
-        return inColumns ? columnHeader(i, header) : rowHeader(i, header: header)
-    }
-
     /// Extract sub title from row or column
     /// - Parameters:
     ///   - header: row or column with the sub title

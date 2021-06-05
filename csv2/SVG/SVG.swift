@@ -59,8 +59,8 @@ class SVG: Plotter, ReflectedStringConvertible {
 
     func defs(clipPlane: Plane) {
         // Make plottable a bit bigger so that shapes aren't clipped
-        let h = clipPlane.bottom
-        let w = clipPlane.right
+        let h = clipPlane.height
+        let w = clipPlane.width
         let x = clipPlane.left
         let y = clipPlane.top
         data.append("""

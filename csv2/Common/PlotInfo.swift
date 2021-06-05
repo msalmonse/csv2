@@ -99,7 +99,7 @@ func plotNames(
     _ styles: inout [Styles]
 ) {
     let inRows = settings.boolValue(.rowGrouping)
-    let headers = settings.intValue(.headerRows)
+    let headers = settings.intValue(.headerColumns)
     let nameHeader = settings.intValue(.nameHeader)
     let names = settings.stringArray(.names)
 
@@ -115,7 +115,7 @@ func plotNames(
             styles[i].name = names[i]
         } else if headers > 0 && nameHeader >= 0 {
             styles[i].name =
-                csv.headerText(i, !inRows, header: nameHeader) ?? rcName(i + 1)
+                csv.rowHeader(i, header: nameHeader) ?? rcName(i + 1)
         } else {
             styles[i].name = rcName(i + 1)
         }

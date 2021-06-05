@@ -72,7 +72,7 @@ extension Settings {
         for i in intValues {
             if bitmap.okWithOffset.contains(i) {
                 bitmap.append(i)
-                prev = 0
+                prev = i
             } else if bitmap.okWithOffset.contains(-i) {
                 for j in (prev + 1)...(-i) {
                     bitmap.append(j)

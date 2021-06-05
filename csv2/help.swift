@@ -205,10 +205,10 @@ func helpUsage(_ execName: String) {
     printSpecificUsage(for: "Help", helpOptsUsage())
     let bitmap = [
         "",
-        "¹ <bitmap> means a series of plot numbers like '1 2 3 4'",
+        "¹ <bitmap> means a list of plot numbers like '1 2 3 4' corresponding to the rows or columns",
         "Negative numbers forms the upper bound on a range, '1 -4' is the same as '1 2 3 4'. " +
-        "The first number defaults to 1 so in fact '-4' is all that is needed.",
-        "The word 'all' means all i.e. '1 -64'",
+        "The first number is initially 1 so in fact '-4' is all that is needed.",
+        "The word 'all' means all i.e. '1 -64', only on the command line though.",
         "The list must be terminated by a '--', either as a long argument or a literal '--'.",
         ""
     ]

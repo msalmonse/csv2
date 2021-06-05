@@ -133,13 +133,13 @@ examples/trig-80-120.svg: data/trig.csv examples/trig.json $(CSV2)
 	-@ $(CSV2) svg --nocomment --cssid=svg-ex2 --xmin=80 --xmax=120 data/trig.csv examples/trig.json $@
 
 examples/trig-2plots.svg: data/trig.csv examples/trig.json $(CSV2)
-	-@ $(CSV2) svg --nocomment --cssid=svg-ex3 --include=80 data/trig.csv examples/trig.json $@
+	-@ $(CSV2) svg --nocomment --cssid=svg-ex3 --include 5 7 -- data/trig.csv examples/trig.json $@
 
 examples/trig-points.svg: data/trig.csv examples/trig.json $(CSV2)
-	-@ $(CSV2) svg --nocomment --cssid=svg-ex4 --showpoints=8 --scattered=16 data/trig.csv examples/trig.json $@
+	-@ $(CSV2) svg --nocomment --cssid=svg-ex4 --showpoints 4 --scattered 5 -- data/trig.csv examples/trig.json $@
 
 examples/trig-bar.svg: data/trig.csv examples/trig.json $(CSV2)
-	-@ $(CSV2) svg --nocomment --cssid=svg-ex5 --bared=128 --barwidth 10 --baroffset=0 data/trig.csv examples/trig.json $@
+	-@ $(CSV2) svg --nocomment --cssid=svg-ex5 --bared 8 --barwidth 10 --baroffset=0 data/trig.csv examples/trig.json $@
 
 examples/layout.svg: data/trig.csv examples/layout.json examples/layout.inc
 	-@ $(CSV2) svg data/trig.csv examples/layout.json $@

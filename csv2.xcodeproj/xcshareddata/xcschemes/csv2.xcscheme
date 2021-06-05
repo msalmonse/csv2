@@ -56,7 +56,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "png --black --dashed=all --showpoints 3 --"
+            argument = "svg"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -73,14 +73,22 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "${PROJECT_DIR}/data/little.csv"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "${PROJECT_DIR}/data/cti.json"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "${PROJECT_DIR}/data/trig.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/out.png"
+            argument = "${PROJECT_DIR}/examples/layout.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "${PROJECT_DIR}/out.svg"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
