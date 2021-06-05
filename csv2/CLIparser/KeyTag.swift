@@ -10,7 +10,6 @@ import CLIparser
 
 enum BoolSpecialKey {
     case help
-    case pie
     case semi
     case tsv
     case verbose

@@ -32,10 +32,14 @@ class Settings: Decodable, ReflectedStringConvertible {
 
             var chartType: ChartType = .horizontal
             let chart = values.stringValue(.chartType)
-            switch chart.lowercased() {
-            case "piechart": chartType = .pieChart
-            case "horizontal": chartType = .horizontal
-            default: break
+            if "horizontal".hasPrefix(chart) {
+                chartType = .horizontal
+            } else if "piechart".hasPrefix(chart) {
+                chartType = .pieChart
+            } else if "vertical".hasPrefix(chart) {
+                chartType = .vertical
+            } else {
+                throw ErrorMessage(message: "\"\(chart)\" is not a known chart type")
             }
             self.chartType = chartType
 

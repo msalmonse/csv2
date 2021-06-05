@@ -25,10 +25,13 @@ Common options:
   -bold                Set font-weight to bold
   -bounds              Check options for bounds, nobounds to
                        not check
+  -chart <type>        The type of chart, horizontal, pie or,
+                       vertical
   -colours <colour>...
                        Colours to use for plots
    aka: colors
-  -comment             Add csv2 comment to plot
+  -comment             Add csv2 comment to plot, nocomment to
+                       not add
   -dashed <bitmap¹>    Plots with dashed lines
   -dashes <n,n...>...
                        List of plot dash patterns to use
@@ -44,15 +47,14 @@ Common options:
   -include <bitmap¹>   Plots to include, default all
   -index <n>           Index row or column
   -italic              Use an italic font
-  -legends             Don't include plot names, colours,
-                       dashes and shapes
+  -legends             Show plot names, colours, dashes and
+                       shapes, nolegends to not
   -logo <url>          Image URL for top right corner
   -logx                Set abcissa to log
   -logy                Set ordinate to log
   -nameheader <n>      Plot name row or column
   -names <name>...     List of plot names
   -opacity             Opacity for plots
-  -pie                 Generate a pie chart
   -random <n [n [n]]>
                        Generate a random SVG with: #plots [max
                        value [min value]]

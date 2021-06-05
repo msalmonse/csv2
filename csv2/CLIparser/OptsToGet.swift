@@ -92,12 +92,16 @@ extension Options {
             usage: "Check options for bounds, nobounds to not check"
         ),
         OptToGet(
+            .stringValue(key: .chartType, name: "chart"), .single,
+            usage: "The type of chart, horizontal, pie or, vertical", argTag: "<type>"
+        ),
+        OptToGet(
             .stringArray(key: .colours, name: "colours"), aka: ["colors"], .onePlus, options: [.multi],
             usage: "Colours to use for plots", argTag: "<colour>..."
         ),
         OptToGet(
             .boolValue(key: .comment, name: "comment"), options: [.flag],
-            usage: "Add csv2 comment to plot"
+            usage: "Add csv2 comment to plot, nocomment to not add"
         ),
         OptToGet(
             .bitmapValue(key: .dashedLines, name: "dashed"), .onePlus, options: [.includeMinus],
@@ -153,7 +157,7 @@ extension Options {
         ),
         OptToGet(
             .boolValue(key: .legends, name: "legends"), options: [.flag],
-            usage: "Don't include plot names, colours, dashes and shapes"
+            usage: "Show plot names, colours, dashes and shapes, nolegends to not"
         ),
         OptToGet(
             .stringValue(key: .logoURL, name: "logo"), .single,
@@ -178,11 +182,6 @@ extension Options {
         OptToGet(
             .doubleValue(key: .opacity, name: "opacity"), .single,
             usage: "Opacity for plots"
-        ),
-        // TODO: change to chart
-        OptToGet(
-            .boolSpecial(key: .pie, name: "pie"),
-            usage: "Generate a pie chart"
         ),
         OptToGet(
             .intSpecialArray(key: .random, name: "random"), 1...3, options: [.includeMinus],

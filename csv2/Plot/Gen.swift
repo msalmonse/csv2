@@ -19,7 +19,7 @@ extension Plot {
 
     /// Generate a plotter document
 
-    func gen() {
+    func horizontalGen() {
         plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
         if settings.doubleValue(.xTick) >= 0 { xTick() }
         if settings.doubleValue(.yTick) >= 0 { yTick() }
@@ -129,7 +129,7 @@ extension Plot {
     func chartGen() {
         switch settings.chartType {
         case .pieChart: pieGen()
-        default: gen()
+        default: horizontalGen()
         }
     }
 }

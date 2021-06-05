@@ -25,9 +25,6 @@ extension Options {
             case let .boolSpecial(key, _):
                 switch key {
                 case .help: helpAndExit()
-                case .pie:
-                    values.setValue(.chartType, .stringValue(val: "piechart"))
-                    values.onCLI(.chartType)
                 case .semi: semi = true
                 case .tsv: tsv = true
                 case .verbose: verbose = true
