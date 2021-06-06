@@ -54,4 +54,8 @@ extension OptionSet {
     static func & (left: Self, right: [Self.Element]) -> Self {
         return left.intersection(Self(right))
     }
+
+    static func - (left: Self, right: Self) -> Self {
+        return left.subtracting(right)
+    }
 }

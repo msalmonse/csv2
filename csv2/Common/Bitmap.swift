@@ -25,6 +25,19 @@ struct BitMap: OptionSet {
         self.init(rawValue: rawValue, offset: 1)
     }
 
+    init(bitValue: Int) {
+        if Self.okRange ~= bitValue {
+            self.init(rawValue: 1 << bitValue)
+        } else {
+            self.init(rawValue: 0)
+        }
+    }
+
+    init(lsb: Int) {
+        let raw = ~(~0b0 << lsb)
+        self.init(rawValue: UInt64(raw))
+    }
+
     private static var cache: [BitMap] = Self.okRange.map { BitMap(rawValue: 1 << $0) }
 
     static var all = Self(rawValue: ~0)
@@ -32,18 +45,20 @@ struct BitMap: OptionSet {
 
     var intValue: Int { Int(bitPattern: UInt(rawValue)) }
 
-    mutating func append(_ i: Int) {
-        if okWithOffset ~= i { insert(val(i - offset)) }
+    @discardableResult
+    mutating func append(_ i: Int) -> BitMap {
+        if okWithOffset ~= i { insert(BitMap.val(i - offset)) }
+        return self
     }
 
-    func val(_ i: Int) -> BitMap {
+    static func val(_ i: Int) -> BitMap {
         if !Self.cache.hasIndex(i) { return BitMap.none }
         return Self.cache[i]
     }
 
     subscript(_ index: Int) -> Bool {
-        get { contains(val(index)) }
-        set(newValue) { if newValue { insert(val(index)) } else { remove(val(index)) } }
+        get { contains(BitMap.val(index)) }
+        set(newValue) { if newValue { insert(BitMap.val(index)) } else { remove(BitMap.val(index)) } }
     }
 
     /// Convert a BitMap to an Int Array
@@ -53,5 +68,12 @@ struct BitMap: OptionSet {
         var result: [Int] = []
         for i in Self.okRange where self[i] { result.append(i + offset) }
         return result
+    }
+
+    /// Invert a BitMap
+    /// - Parameter rhs: BitMap to invert
+    /// - Returns: Inverted BitMap
+    static prefix func ~ (rhs: BitMap) -> BitMap {
+        return BitMap(rawValue: ~rhs.rawValue, offset: rhs.offset)
     }
 }

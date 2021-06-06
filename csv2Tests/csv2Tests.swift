@@ -94,7 +94,7 @@ class csv2Tests: XCTestCase {
         XCTAssertNotNil(settings)
         let svg = SVG(settings!)
         let plot = Plot(csv, settings!, svg)
-        plot.gen()
+        plot.chartGen()
         XCTAssertFalse(svg.data.isEmpty)
     }
 
@@ -107,7 +107,7 @@ class csv2Tests: XCTestCase {
         XCTAssertNotNil(settings)
         var svg = SVG(settings!)
         var plot = Plot(csvPlot, settings!, svg)
-        plot.gen()
+        plot.chartGen()
         let colPlot = svg.data
 
         Colours.reset()
@@ -115,7 +115,7 @@ class csv2Tests: XCTestCase {
         XCTAssertNotNil(settings)
         svg = SVG(settings!)
         plot = Plot(csvPlot, settings!, svg)
-        plot.gen()
+        plot.chartGen()
         let rowPlot = svg.data
 
         XCTAssertEqual(colPlot, rowPlot)

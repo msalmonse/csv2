@@ -113,6 +113,15 @@ extension csv2Tests {
             XCTAssertThrowsError(try options.setBitmap(result[0].optValuesAt, key: .include)) {
                 print($0.localizedDescription, to: &standardError)
             }
+
+            // Test Invert
+            XCTAssertEqual(~BitMap.none, BitMap.all)
+
+            // Test single bit
+            XCTAssertEqual(BitMap(bitValue: 3), BitMap(rawValue: 8))
+
+            // Test least significant bits
+            XCTAssertEqual(BitMap(lsb: 5), BitMap(rawValue: 31))
         } catch {
             print(error, to: &standardError)
             XCTFail(error.localizedDescription)

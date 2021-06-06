@@ -11,9 +11,13 @@ extension Plot {
 
     /// Generate an  group with the plot lines
 
-    func horizontalGroup() {
+    func plotGroup() {
         plotter.plotClipStart(clipPlane: clipPlane)
-        plotHorizontal()
+        switch settings.chartType {
+        case .horizontal: plotHorizontal()
+        case .pieChart: plotPies()
+        case .vertical: plotVertical()
+        }
         plotter.plotClipEnd()
     }
 
@@ -25,7 +29,7 @@ extension Plot {
         if settings.doubleValue(.yTick) >= 0 { yTick() }
         if settings.intValue(.xTagsHeader) >= 0 { xTags() }
         horizontalAxes()
-        horizontalGroup()
+        plotGroup()
         if settings.hasContent(.xTitle) {
             xTitleText(settings.stringValue(.xTitle), x: plotPlane.hMid, y: positions.xTitleY)
         }
@@ -54,6 +58,8 @@ extension Plot {
         if settings.boolValue(.legends) { legend() }
         if let subTitle = subTitleLookup() { subTitleText(subTitle) }
         if settings.hasContent(.title) { titleText() }
+
+        plotGroup()
 
         if settings.boolValue(.draft) {
             plotter.plotText(

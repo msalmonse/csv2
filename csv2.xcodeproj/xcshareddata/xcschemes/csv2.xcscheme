@@ -56,7 +56,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "svg"
+            argument = "svg -chart vert"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -80,11 +80,11 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/trig.csv"
+            argument = "${PROJECT_DIR}/data/pie.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/examples/layout.json"
+            argument = "${PROJECT_DIR}/data/pie.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
