@@ -11,7 +11,7 @@ extension Plot {
 
     /// Generate an  group with the plot lines
 
-    func lineGroup() {
+    func horizontalGroup() {
         plotter.plotClipStart(clipPlane: clipPlane)
         plotHorizontal()
         plotter.plotClipEnd()
@@ -25,7 +25,7 @@ extension Plot {
         if settings.doubleValue(.yTick) >= 0 { yTick() }
         if settings.intValue(.xTagsHeader) >= 0 { xTags() }
         horizontalAxes()
-        lineGroup()
+        horizontalGroup()
         if settings.hasContent(.xTitle) {
             xTitleText(settings.stringValue(.xTitle), x: plotPlane.hMid, y: positions.xTitleY)
         }
@@ -90,51 +90,9 @@ extension Plot {
     /// Generate a pie chart
 
     private func pieGen() {
-        func leftMargin(_ ct: Int) -> Double {
-            let free = plotPlane.width - Double(ct) * side
-            return floor(free / 2.0)
-        }
-
-        func topMargin() -> Double {
-            let free = plotPlane.height - rows * side
-            return floor(free / 2.0)
-        }
-
         plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
 
-        let row1 = settings.intValue(.headerRows)
-        let pieCt = csv.rowCt - row1
-
-        // calculate the size of the squares that can fit in plotPlane
-        // cols for number of columns, rows for number of rows and side for side of square
-        // cols * side <= width
-        // rows * side <= height
-        // rows * cols >= count
-        // rows² <= count * height/width
-        var rows = ceil(sqrt(Double(pieCt) * plotPlane.height / plotPlane.width))
-        let side = floor(plotPlane.height / rows)
-        let cols = floor(plotPlane.width / side)
-        if cols * (rows - 1) >= Double(pieCt) {
-            rows -= 1
-        }
-
-        let maxRadiusX = side - sizes.pieLabel.size * 4.0
-        let maxRadiusY = side - sizes.pieLabel.spacing * 2.0
-        let radius = floor(min(maxRadiusX, maxRadiusY) * 0.4)
-
-        var rowY = topMargin() - side / 2.0
-        var colX = 0.0
-
-        let colsPerRow = Int(cols)
-        for row in row1..<csv.rowCt {
-            if ((row - row1) % colsPerRow) == 0 {
-                rowY += side
-                colX = leftMargin(min(colsPerRow, csv.rowCt - row)) + side / 2.0
-            }
-            let centre = Point(x: colX, y: rowY)
-            plotPie(row, settings.intValue(.headerColumns), centre: centre, radius: radius)
-            colX += side
-        }
+        plotPies()
 
         if settings.boolValue(.legends) { legend() }
         if let subTitle = subTitleLookup() { subTitleText(subTitle) }

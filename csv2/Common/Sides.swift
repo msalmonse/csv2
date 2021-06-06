@@ -126,9 +126,29 @@ struct Sides {
         return (t: top, b: bottom)
     }
 
-    static func fromData(_ csv: CSV, _ settings: Settings) -> Plane {
+    /// Calculate the plane that fits the data to be displayed with the abscissa horizontal
+    /// - Parameters:
+    ///   - csv: csv data
+    ///   - settings: chart settings
+    /// - Returns: the plane of the data
+
+    static func fromDataHorizontal(_ csv: CSV, _ settings: Settings) -> Plane {
         let (left, right) = lrFromData(csv, settings)
         let (top, bottom) = tbFromData(csv, settings)
+
+        return Plane(top: top, bottom: bottom, left: left, right: right)
+    }
+
+    /// Calculate the plane that fits the data to be displayed with the abscissa vertical
+    /// - Parameters:
+    ///   - csv: csv data
+    ///   - settings: chart settings
+    /// - Returns: the plane of the data
+
+    static func fromDataVertical(_ csv: CSV, _ settings: Settings) -> Plane {
+        let (left, right) = tbFromData(csv, settings)
+        let top = 0.0
+        let bottom = -1.0
 
         return Plane(top: top, bottom: bottom, left: left, right: right)
     }

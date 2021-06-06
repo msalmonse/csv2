@@ -31,10 +31,10 @@ extension ChartType {
 extension ChartType {
     func dataPlane(_ csv: CSV, _ settings: Settings) -> Plane {
         switch self {
-        case .horizontal: return Sides.fromData(csv, settings)
+        case .horizontal: return Sides.fromDataHorizontal(csv, settings)
         case .pieChart:
             return Plane(left: -0.5, top: 2.0, height: -2, width: csv.rowCt - settings.intValue(.headerRows))
-        default: return Plane(top: 0.0, bottom: 0.0, left: 0.0, right: 0.0)
+        case .vertical: return Sides.fromDataVertical(csv, settings)
         }
     }
 }
@@ -43,9 +43,9 @@ extension ChartType {
     func plotCount(_ csv: CSV) -> Int {
         switch self {
         case .horizontal: return csv.rowCt
-            // For a piechart we treat each column as its own plot
+            // For a piechart we treat each column as its own plot grouped by rows as a pie
         case .pieChart: return csv.colCt
-        default: return 0
+        case .vertical: return csv.colCt
         }
     }
 }

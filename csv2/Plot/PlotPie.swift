@@ -1,5 +1,5 @@
 //
-//  Pie.swift
+//  PlotPie.swift
 //  csv2
 //
 //  Created by Michael Salmon on 2021-04-26.
@@ -77,7 +77,7 @@ extension Plot {
     ///   - centre: centre of the circle
     ///   - radius: circle's radius
 
-    func plotPie(_ row: Int, _ col1: Int, centre: Point, radius: Double) {
+    func plotOnePie(_ row: Int, _ col1: Int, centre: Point, radius: Double) {
         let pi2e6 = Double.pi * 2.0e6       // 2πe6
         let pieLabel = settings.boolValue(.pieLabel)
         var arcLeft = pi2e6
@@ -135,5 +135,59 @@ extension Plot {
             let text = settings.stringValue(.pieSubLegendPrefix) + total + settings.stringValue(.pieSubLegendSuffix)
             plotter.plotText(x: centre.x, y: yPos, text: text, styles: stylesList.pieSubLegend)
         }
+    }
+
+    func plotPies() {
+        /// Calculate the margin on the left of the plot area
+        /// - Returns: margin
+
+        func leftMargin(_ ct: Int) -> Double {
+            let free = plotPlane.width - Double(ct) * side
+            return floor(free / 2.0)
+        }
+
+        /// Calculate the margin at the top of the plot area
+        /// - Returns: margin
+
+        func topMargin() -> Double {
+            let free = plotPlane.height - rows * side
+            return floor(free / 2.0)
+        }
+
+        let row1 = settings.intValue(.headerRows)
+        let pieCt = csv.rowCt - row1
+
+        // calculate the size of the squares that can fit in plotPlane
+        // cols for number of columns, rows for number of rows and side for side of square
+        // cols * side <= width
+        // rows * side <= height
+        // rows * cols >= count
+        // rows² <= count * height/width
+        var rows = ceil(sqrt(Double(pieCt) * plotPlane.height / plotPlane.width))
+        let side = floor(plotPlane.height / rows)
+        let cols = floor(plotPlane.width / side)
+        if cols * (rows - 1) >= Double(pieCt) {
+            rows -= 1
+        }
+
+        let maxRadiusX = side - sizes.pieLabel.size * 4.0
+        let maxRadiusY = side - sizes.pieLabel.spacing * 2.0
+        let radius = floor(min(maxRadiusX, maxRadiusY) * 0.4)
+
+        var rowY = topMargin() - side / 2.0
+        var colX = 0.0
+
+        let colsPerRow = Int(cols)
+        for row in row1..<csv.rowCt {
+            // time for a new row?
+            if ((row - row1) % colsPerRow) == 0 {
+                rowY += side
+                colX = leftMargin(min(colsPerRow, csv.rowCt - row)) + side / 2.0
+            }
+            let centre = Point(x: colX, y: rowY)
+            plotOnePie(row, settings.intValue(.headerColumns), centre: centre, radius: radius)
+            colX += side
+        }
+
     }
 }
