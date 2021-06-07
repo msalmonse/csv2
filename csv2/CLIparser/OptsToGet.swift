@@ -93,7 +93,14 @@ extension Options {
         ),
         OptToGet(
             .stringValue(key: .chartType, name: "chart"), .single,
-            usage: "The type of chart, horizontal, pie or, vertical", argTag: "<type>"
+            usage: """
+                The type of chart:
+                horizontal - index values horizontal and plot values vertical,
+                pie - a grid of pie chart plots or,
+                vertical - a list of values, like a bar chart only vertical.
+                A unique prefix is sufficient.
+                """,
+                argTag: "<type>"
         ),
         OptToGet(
             .stringArray(key: .colours, name: "colours"), aka: ["colors"], .onePlus, options: [.multi],
@@ -290,6 +297,6 @@ extension Options {
     static internal let positionalOpts: OptsToGet = [
         OptToGet(usage: "CSV data file name or - for stdin", argTag: "<csv file>"),
         OptToGet(usage: "JSON settings file name", argTag: "<json file>"),
-        OptToGet(usage: "Output file name,\u{11}use stdout if omitted for canvas and svg", argTag: "<output file>")
+        OptToGet(usage: "Output file name,\nor stdout if omitted for canvas and svg", argTag: "<output file>")
     ]
 }
