@@ -16,9 +16,9 @@ enum UsageStyle { case normal, textOnly, textWithIndent }
 
 struct UsageLeftRight {
     static var leftMargin = 2
-    static var leftUsage = 25
+    static var leftUsage = 20
     static var indent = 4
-    static var rightMargin = 65
+    static var rightMargin = 70
 
     static let leftMin = 0
     static let rightMax = 100
@@ -43,7 +43,7 @@ struct UsageLeftRight {
     /// - Parameter left: new left margin
 
     static func setLeft(_ left: Int) {
-        guard (leftMin...leftUsage) ~= indent else { return }
+        guard (leftMin...leftUsage) ~= left else { return }
         leftMargin = max(0, left)
     }
 
@@ -51,7 +51,7 @@ struct UsageLeftRight {
     /// - Parameter right: new right margin
 
     static func setRight(_ right: Int) {
-        guard (leftMargin...rightMax) ~= indent else { return }
+        guard (leftMargin...rightMax) ~= right else { return }
         rightMargin = right
     }
 
@@ -59,8 +59,18 @@ struct UsageLeftRight {
     /// - Parameter left: new usage left margin
 
     static func setUsage(_ left: Int) {
-        guard (indent...rightMargin) ~= indent else { return }
+        guard (indent...rightMargin) ~= left else { return }
         leftUsage = left
+    }
+
+    /// move evrything to the left when writing a markdown usage
+
+    static func setMarkDown() {
+        let undent = leftMargin
+        leftMargin = 0
+        leftUsage -= undent
+        indent -= undent
+        rightMargin -= undent
     }
 }
 

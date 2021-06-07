@@ -25,7 +25,9 @@ extension Options {
             case let .boolSpecial(key, _):
                 switch key {
                 case .help: helpAndExit()
-                case .md: markdown = true
+                case .md:
+                    markdown = true
+                    UsageLeftRight.setMarkDown()
                 case .semi: semi = true
                 case .tsv: tsv = true
                 case .verbose: verbose = true
