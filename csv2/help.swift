@@ -212,7 +212,7 @@ func helpUsage(_ execName: String) {
         "The list must be terminated by a '--', either as a long argument or a literal '--'.",
         ""
     ]
-    print(textWrap(bitmap), to: &standardError)
+    print(indentedTextWrap(bitmap), to: &standardError)
 }
 
 /// Help director

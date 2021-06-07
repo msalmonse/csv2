@@ -128,7 +128,7 @@ extension Options {
         ),
         OptToGet(
             .stringSpecial(key: .draft, name: "draft"), 0...1,
-            usage: "Mark the chart as a draft, argument sets the text", argTag: "[text]"
+            usage: "Mark the chart as a draft,\nthe optional argument sets the text", argTag: "[text]"
         ),
         OptToGet(
             .bitmapValue(key: .filled, name: "filled"), .onePlus, options: [.includeMinus],
@@ -192,7 +192,7 @@ extension Options {
         ),
         OptToGet(
             .intSpecialArray(key: .random, name: "random"), 1...3, options: [.includeMinus],
-            usage: "Generate a random SVG with: #plots [max value [min value]]", argTag: "<n [n [n]]>"
+            usage: "Generate a random SVG with:\n#plots [max value [min value]]", argTag: "<n [n [n]]>"
         ),
         OptToGet(
             .doubleSpecialArray(key: .reserve, name: "reserve"), 1...4,
@@ -208,7 +208,7 @@ extension Options {
         ),
         OptToGet(
             .boolSpecial(key: .semi, name: "semi"),
-            usage: "Use semicolons to seperate columns"
+            usage: "Use semicolons to separate columns"
         ),
         OptToGet(
             .stringArray(key: .shapes, name: "shapes"), .onePlus,

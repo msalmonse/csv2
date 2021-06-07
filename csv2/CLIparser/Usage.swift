@@ -8,6 +8,10 @@
 import Foundation
 import CLIparser
 
+/// Type of usage
+
+enum UsageStyle { case normal, textOnly, textWithIndent }
+
 /// Place holder for usage values
 
 struct UsageLeftRight {
@@ -19,8 +23,12 @@ struct UsageLeftRight {
     static let leftMin = 0
     static let rightMax = 100
 
-    static func usage(textOnly: Bool = false) -> Usage {
-        return Usage(tagLeft: indent, textLeft: textOnly ? leftMargin : leftUsage, textRight: rightMargin)
+    static func usage(_ style: UsageStyle = .normal) -> Usage {
+        switch style {
+        case .normal: return Usage(tagLeft: indent, textLeft: leftUsage, textRight: rightMargin)
+        case .textOnly: return Usage(tagLeft: indent, textLeft: leftMargin, textRight: rightMargin)
+        case .textWithIndent: return Usage(tagLeft: indent, textLeft: indent, textRight: rightMargin)
+        }
     }
 
     /// Set the indent
@@ -85,5 +93,13 @@ func cmdUsage(_ cmds: CmdsToGet) -> String {
 /// - Returns: wrapped text
 
 func paragraphWrap(_ texts: [String]) -> String {
-    return UsageLeftRight.usage(textOnly: true).paragraphWrap(texts)
+    return UsageLeftRight.usage(.textOnly).paragraphWrap(texts)
+}
+
+/// Wrap text
+/// - Parameter texts: text to wrap
+/// - Returns: indented wrapped text
+
+func indentedParagraphWrap(_ texts: [String]) -> String {
+    return UsageLeftRight.usage(.textWithIndent).paragraphWrap(texts)
 }

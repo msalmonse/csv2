@@ -130,3 +130,15 @@ func textWrap(_ text: String) -> String { return textWrap([text]) }
 /// - Returns: wrapped text
 
 func textWrap(_ text: [String]) -> String { return paragraphWrap(text) }
+
+/// Wrap text with indent
+/// - Parameter text: text to wrap
+/// - Returns: indented wrapped text
+
+func indentedTextWrap(_ text: String) -> String { return indentedTextWrap([text]) }
+
+/// Wrap text array with indent
+/// - Parameter text: Array of strings
+/// - Returns: indented wrapped text
+
+func indentedTextWrap(_ text: [String]) -> String { return indentedParagraphWrap(text) }
