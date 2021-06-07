@@ -25,6 +25,7 @@ extension Options {
             case let .boolSpecial(key, _):
                 switch key {
                 case .help: helpAndExit()
+                case .md: markdown = true
                 case .semi: semi = true
                 case .tsv: tsv = true
                 case .verbose: verbose = true
@@ -101,7 +102,7 @@ extension Options {
     }
 
     func helpAndExit() {
-        help(HelpCommandType.help)
+        help(HelpCommandType.help, self)
         exit(0)
     }
 }

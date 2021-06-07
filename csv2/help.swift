@@ -12,13 +12,13 @@ import Foundation
 ///   - chartType: name for command
 ///   - optText: optional usage text
 
-func printSpecificUsage(for chartType: String, _ optText: String?) {
+func printSpecificUsage(for chartType: String, _ optText: String?, _ afterText: String = "") {
     let indent = String(repeating: " ", count: UsageLeftRight.leftMargin)
     optText.map {
         print("""
             \(indent)\(chartType) specific options:
             \($0)
-
+            \(afterText)
             """,
               to: &standardError
         )
@@ -179,32 +179,36 @@ func helpSVG(_ execName: String) {
 }
 
 /// Help for option usage
-/// - Parameter execName: programs executable name
+/// - Parameters
+///   - execName: programs executable name
+///   - ticks: put back ticks between sections
 
-func helpUsage(_ execName: String) {
+func helpUsage(_ execName: String, _ markdown: Bool) {
     let indent = String(repeating: " ", count: UsageLeftRight.leftMargin)
+    let backTicks = markdown ? #"```"# : ""
+    let backTicks2 = markdown ? "\(backTicks)\n\n\(backTicks)" : ""
+    if markdown { print("## \(execName)", to: &standardError) }
     print("""
-
+        \(backTicks)
         \(textWrap("Generate a Canvas, PDF, PNG or SVG using data from a CSV file and settings from a JSON file."))
 
         \(indent)\(execName) <canvas|pdf|png|svg> [options] [csv file [json file [output file]]]
-
+        \(backTicks2)
         \(indent)Arguments:
         \(positionalArgsUsage() ?? "")
-
+        \(backTicks2)
         \(indent)Common options:
         \(commonOptsUsage() ?? "")
-
+        \(backTicks2)
         """,
           to: &standardError
     )
-    printSpecificUsage(for: "Canvas", canvasOptsUsage())
-    printSpecificUsage(for: "PDF", pdfOptsUsage())
-    printSpecificUsage(for: "PNG", pngOptsUsage())
-    printSpecificUsage(for: "SVG", svgOptsUsage())
-    printSpecificUsage(for: "Help", helpOptsUsage())
+    printSpecificUsage(for: "Canvas", canvasOptsUsage(), backTicks2)
+    printSpecificUsage(for: "PDF", pdfOptsUsage(), backTicks2)
+    printSpecificUsage(for: "PNG", pngOptsUsage(), backTicks2)
+    printSpecificUsage(for: "SVG", svgOptsUsage(), backTicks2)
+    printSpecificUsage(for: "Help", helpOptsUsage(), backTicks2)
     let bitmap = [
-        "",
         "¹ <bitmap> means a list of plot numbers like '1 2 3 4' corresponding to the rows or columns.",
         "Negative numbers forms the upper bound on a range, '1 -4' is the same as '1 2 3 4'. " +
         "The first number is initially 1 so in fact '-4' suffices.",
@@ -213,11 +217,12 @@ func helpUsage(_ execName: String) {
         ""
     ]
     print(indentedTextWrap(bitmap), to: &standardError)
+    print(backTicks, to: &standardError)
 }
 
 /// Help director
 /// - Parameter command: help command entered
-func help(_ command: HelpCommandType) {
+func help(_ command: HelpCommandType, _ options: Options) {
     switch command {
     case .helpCanvas: helpCanvas(execName())
     case .helpCommands: helpCommands(execName())
@@ -227,7 +232,7 @@ func help(_ command: HelpCommandType) {
     case .helpPng: helpPNG(execName())
     case .helpShow: helpShow(execName())
     case .helpSvg: helpSVG(execName())
-    case .helpUsage: helpUsage(execName())
+    case .helpUsage: helpUsage(execName(), options.markdown)
     default:
         helpMain(execName())
     }

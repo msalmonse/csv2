@@ -16,7 +16,7 @@ case .abbrCommand(let abbr):
     Options.abbrPrint(for: abbr)
 case .helpCommand(let helpCommand):
     options.getOptsOrExit(for: .help)
-    help(helpCommand)
+    help(helpCommand, options)
 case .listCommand(let listCommand):
     list(listCommand)
 case let .plotCommand(main, sub):

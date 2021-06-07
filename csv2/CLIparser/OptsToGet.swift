@@ -29,6 +29,7 @@ extension Options {
             .intSpecial(key: .left, name: "left"), .single,
             usage: "Left margin for help text", argTag: "<n>"
         ),
+        OptToGet(.boolSpecial(key: .md, name: "md"), options: [.hidden]),
         OptToGet(
             .intSpecial(key: .right, name: "right"), .single,
             usage: "Right margin for text", argTag: "<n>"

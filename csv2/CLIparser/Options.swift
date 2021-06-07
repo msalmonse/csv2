@@ -11,7 +11,7 @@ import CLIparser
 struct Options {
     let argsList = ArgumentList(options: [.longOnly])
     var debug = 0
-    var pie = false
+    var markdown = false       // add ``` etc to usage
     var random: [Int] = []
     var semi = false
     var tsv = false
