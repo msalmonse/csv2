@@ -9,7 +9,7 @@ import Foundation
 
 extension Plot {
 
-    /// Draw axes
+    /// Draw axes for horizontal plots
 
     func horizontalAxes() {
         var axesPath = Path()
@@ -20,6 +20,20 @@ extension Plot {
             axesPath.append(.moveTo(xy: Point(x: plotPlane.left, y: ts.ypos(x0))))
             axesPath.append(.horizTo(x: plotPlane.right))
         }
+        if dataPlane.inHoriz(y0) {
+            axesPath.append(.moveTo(xy: Point(x: ts.xpos(y0), y: plotPlane.bottom)))
+            axesPath.append(.vertTo(y: plotPlane.top))
+        }
+
+        plotter.plotPath(axesPath, styles: stylesList.axes, fill: false)
+    }
+
+    /// Draw axes for horizontal plots
+
+    func verticalAxes() {
+        var axesPath = Path()
+        let y0 = logx ? 1.0 : 0.0
+
         if dataPlane.inHoriz(y0) {
             axesPath.append(.moveTo(xy: Point(x: ts.xpos(y0), y: plotPlane.bottom)))
             axesPath.append(.vertTo(y: plotPlane.top))

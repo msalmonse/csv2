@@ -53,6 +53,7 @@ extension SVG {
         oneText(stylesList.pieSubLegend)
         oneText(stylesList.subTitle)
         oneText(stylesList.title)
+        oneText(stylesList.vTags)
         oneText(stylesList.xLabel)
         oneText(stylesList.xTags)
         oneText(stylesList.xTitle)

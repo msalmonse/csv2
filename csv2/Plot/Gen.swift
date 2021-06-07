@@ -25,8 +25,8 @@ extension Plot {
 
     private func horizontalGen() {
         plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
-        if settings.doubleValue(.xTick) >= 0 { xTick() }
-        if settings.doubleValue(.yTick) >= 0 { yTick() }
+        if settings.doubleValue(.xTick) >= 0.0 { xTick() }
+        if settings.doubleValue(.yTick) >= 0.0 { yTick() }
         if settings.intValue(.xTagsHeader) >= 0 { xTags() }
         horizontalAxes()
         plotGroup()
@@ -55,11 +55,13 @@ extension Plot {
 
     private func verticalGen() {
         plotter.plotHead(positions: positions, clipPlane: clipPlane, stylesList: stylesList)
+        if settings.doubleValue(.xTick) >= 0.0 { xTick() }
+        verticalAxes()
+        plotGroup()
+
         if settings.boolValue(.legends) { legend() }
         if let subTitle = subTitleLookup() { subTitleText(subTitle) }
         if settings.hasContent(.title) { titleText() }
-
-        plotGroup()
 
         if settings.boolValue(.draft) {
             plotter.plotText(

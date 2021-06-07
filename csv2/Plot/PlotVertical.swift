@@ -14,13 +14,15 @@ extension Plot {
         let first: Int
         let included: BitMap
         let left: Double
+        let mid: Double
         var tags: Int
 
-        init(left: Double, settings: Settings) {
+        init(left: Double, mid: Double, settings: Settings) {
             let headerColumns = settings.intValue(.headerColumns)
             first = headerColumns
             included = settings.bitmapValue(.include) - BitMap(lsb: headerColumns)
             self.left = left
+            self.mid = mid
             tags = settings.intValue(.xTagsHeader)
         }
 
@@ -49,11 +51,16 @@ extension Plot {
     /// Plot data vertically
 
     func plotVertical() {
-        var state = VerticalState(left: dataPlane.left, settings: settings)
+        var state = VerticalState(left: dataPlane.left, mid: dataPlane.hMid, settings: settings)
         let headerRows = settings.intValue(.headerRows)
 
         for row in csv.values.indices where row >= headerRows {
             plotOneRow(row, state: &state)
+            if let tag = csv.rowHeader(row, header: state.tags) {
+                let y = Double(state.nextDown())
+                let textPos = ts.pos(Point(x: state.mid, y: y))
+                plotter.plotText(x: textPos.x, y: textPos.y, text: tag, styles: stylesList.xTags)
+            }
             state.nextDown(2)
         }
     }
