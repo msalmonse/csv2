@@ -49,3 +49,23 @@ extension ChartType {
         }
     }
 }
+
+extension ChartType {
+    func plotFirst(_ settings: Settings) -> Int {
+        switch self {
+        case .horizontal: return settings.intValue(.headerRows)
+        case .pieChart: return settings.intValue(.headerColumns)
+        case .vertical: return settings.intValue(.headerColumns)
+        }
+    }
+}
+
+extension ChartType {
+    func nameInRows() -> Bool {
+        switch self {
+        case .horizontal: return false
+        case .pieChart: return true
+        case .vertical: return true
+        }
+    }
+}

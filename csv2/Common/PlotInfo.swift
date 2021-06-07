@@ -99,9 +99,10 @@ func plotNames(
     _ styles: inout [Styles]
 ) {
     let inRows = settings.boolValue(.rowGrouping)
-    let headers = settings.intValue(.headerColumns)
     let nameHeader = settings.intValue(.nameHeader)
+    let nameInRows = settings.chartType.nameInRows()
     let names = settings.stringArray(.names)
+    let headers = settings.intValue(nameInRows ? .headerRows : .headerColumns)
 
     // Row or column name
     func rcName(_ num: Int) -> String {
@@ -114,8 +115,9 @@ func plotNames(
         if names.hasIndex(i) && names[i].hasContent {
             styles[i].name = names[i]
         } else if headers > 0 && nameHeader >= 0 {
-            styles[i].name =
-                csv.rowHeader(i, header: nameHeader) ?? rcName(i + 1)
+            styles[i].name = nameInRows
+                ? csv.columnHeader(i, header: nameHeader) ?? rcName(i + 1)
+                : csv.rowHeader(i, header: nameHeader) ?? rcName(i + 1)
         } else {
             styles[i].name = rcName(i + 1)
         }

@@ -16,7 +16,7 @@ extension CSV {
     ///   - header: the row or column that has the names
     /// - Returns: column header
 
-    func columnHeader(_ column: Int, _ header: Int) -> String? {
+    func columnHeader(_ column: Int, header: Int) -> String? {
         if data.hasIndex(header) && data[header].hasIndex(column) && data[header][column].hasContent {
                 return data[header][column]
         }

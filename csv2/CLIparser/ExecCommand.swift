@@ -57,12 +57,18 @@ private func csvSelect(_ opts: Options, _ settings: Settings?) -> CSV? {
     }
 }
 
+/// Check for desired data orientation and swap if required
+/// - Parameters:
+///   - csv: CSV data
+///   - settings: chart settings
+/// - Returns: CSV with right orientation
+
 private func csvSwapOrNot(_ csv: CSV, _ settings: Settings) -> CSV {
     let inRows = settings.boolValue(.rowGrouping)
     switch settings.chartType {
     case .horizontal: if inRows { return csv }
     case .pieChart: if !inRows { return csv }
-    case .vertical: break
+    case .vertical: if !inRows { return csv }
     }
 
     let swapped = csv.swap()

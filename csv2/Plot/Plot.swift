@@ -105,7 +105,7 @@ class Plot: ReflectedStringConvertible {
         point00 = ts.pos(x: logx ? 1.0 : 0.0, y: logy ? 1.0 : 0.0)
 
         let plotCount = settings.chartType.plotCount(csv)
-        let plotFirst = settings.intValue(.headerColumns)
+        let plotFirst = settings.chartType.plotFirst(settings)
 
         // Initialize path info
         var stylesList = StylesList(count: plotCount, settings: settings)

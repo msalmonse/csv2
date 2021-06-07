@@ -52,43 +52,23 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "png  --bg cornsilk --dashed=all --"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "svg -chart vert"
+            argument = "png  --bg cornsilk  -chart vert"
             isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "png show triangle"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "help list -left 0"
-            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--logo https://newcastlebeach.org/images/128x128-11.png"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/little.csv"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/cti.json"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/pie.csv"
+            argument = "${PROJECT_DIR}/data/vert.csv"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/pie.json"
+            argument = "${PROJECT_DIR}/data/vert.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/out.svg"
+            argument = "${PROJECT_DIR}/out.png"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

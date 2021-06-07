@@ -146,9 +146,9 @@ struct Sides {
     /// - Returns: the plane of the data
 
     static func fromDataVertical(_ csv: CSV, _ settings: Settings) -> Plane {
-        let (left, right) = tbFromData(csv, settings)
-        let top = 0.0
-        let bottom = -1.0
+        let (right, left) = tbFromData(csv, settings)
+        let top = -2.0
+        let bottom = Double(csv.colCt * csv.rowCt)
 
         return Plane(top: top, bottom: bottom, left: left, right: right)
     }
