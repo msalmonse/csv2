@@ -102,10 +102,10 @@ extension Plot {
                 plotter.plotText(x: xLeft, y: y, text: "…", styles: stylesList.legend)
                 break
             }
-            var style = plotStyles[i]
+            let style = plotStyles[i]
+                .with(\.fontSize, of: stylesList.legend.fontSize)
+                .with(\.textAlign, of: stylesList.legend.textAlign)
             let text = shortened(style.name!)
-            style.fontSize = stylesList.legend.fontSize
-            style.textAlign = stylesList.legend.textAlign
             plotter.plotText(x: xLeft, y: y, text: text, styles: style)
             let lineY = y + yStep / 2.0
             let options = style.options

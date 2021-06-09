@@ -49,8 +49,8 @@ extension Plot {
     /// Add title to the y axis
 
     func yTitleText(_ label: String, x: Double, y: Double) {
-        var styles = stylesList.yTitle
-        styles.transform = Transform.rotateAround(x: x, y: y, sin: 1.0, cos: 0.0)
+        let styles = stylesList.yTitle
+            .with(\.transform, of: Transform.rotateAround(x: x, y: y, sin: 1.0, cos: 0.0))
         plotter.plotText(x: x, y: y, text: label, styles: styles)
     }
 

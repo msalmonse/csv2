@@ -27,7 +27,6 @@ struct StylesList {
     var pieSubLegend: Styles
     var subTitle: Styles
     var title: Styles
-    var vTags: Styles
     var xLabel: Styles
     var xTags: Styles
     var xTitle: Styles
@@ -50,8 +49,6 @@ struct StylesList {
         title = Self.titleStyle(settings: settings, sizes: sizes)
         xLabel = Self.xLabelStyle(settings: settings, sizes: sizes)
         xTags = Self.xTagsStyle(settings: settings, sizes: sizes)
-        vTags = xTags
-        vTags.textAlign = "start"
         xTitle = Self.xTitleStyle(settings: settings, sizes: sizes)
         yLabel = Self.yLabelStyle(settings: settings, sizes: sizes)
         yTitle = Self.yTitleStyle(settings: settings, sizes: sizes)
