@@ -27,6 +27,10 @@ struct Styles {
     var textBaseline: String?
     var transform: Transform?
 
+    /// Shortcut function to set many common values
+    /// - Parameter settings: chart settings
+    /// - Returns: new, patially filled Styles
+
     static func from(settings: Settings) -> Styles {
         var styles = Styles()
         styles.bezier = settings.doubleValue(.bezier)
@@ -41,5 +45,17 @@ struct Styles {
         styles.textBaseline = "alphabetic"
 
         return styles
+    }
+
+    /// Modify the instance
+    /// - Parameters:
+    ///   - key: the property to modify
+    ///   - value: the new value
+    /// - Returns: modified copy of the instance
+
+    func with<T>(_ key: WritableKeyPath<Self,T>, of value: T) -> Self {
+        var copy = self
+        copy[keyPath: key] = value
+        return copy
     }
 }
