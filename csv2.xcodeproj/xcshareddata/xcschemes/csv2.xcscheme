@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "png  --bg cornsilk  -chart vert -row"
+            argument = "png  --bg cornsilk  -chart vert  -text maroon "
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

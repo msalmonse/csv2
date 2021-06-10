@@ -61,6 +61,19 @@ struct BitMap: OptionSet {
         set(newValue) { if newValue { insert(BitMap.val(index)) } else { remove(BitMap.val(index)) } }
     }
 
+    /// Count the number of bits set in a BitMap
+    /// - Returns: bit count
+
+    func bitCount() -> Int {
+        var n = rawValue
+        var count = 0
+        while n != 0 {
+            count += 1
+            n &= n - 1
+        }
+        return count
+    }
+
     /// Convert a BitMap to an Int Array
     /// - Returns: An Int Array
 

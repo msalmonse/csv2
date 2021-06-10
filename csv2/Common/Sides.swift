@@ -148,7 +148,13 @@ struct Sides {
     static func fromDataVertical(_ csv: CSV, _ settings: Settings) -> Plane {
         let (right, left) = tbFromData(csv, settings)
         let top = -1.0
-        let bottom = Double(csv.colCt * (csv.rowCt + 3)) + 2.0
+        // Calculate which columns have data and are included
+        let included = settings.bitmapValue(.include)
+        let headerCols = BitMap(lsb: settings.intValue(.headerColumns))
+        let dataCols = BitMap(lsb: csv.colCt) - headerCols
+        let dataColsCt = (dataCols.intersection(included)).bitCount()
+        let dataRowCt = csv.rowCt - settings.intValue(.headerRows)
+        let bottom = Double((dataColsCt + 3) * dataRowCt) + 2.0
 
         return Plane(top: top, bottom: bottom, left: left, right: right)
     }
