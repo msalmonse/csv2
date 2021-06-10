@@ -11,8 +11,8 @@ extension UInt8 {
     var cgfloat: CGFloat { CGFloat(self) / 255.0 }
 }
 
-fileprivate func u8val(_ val: CGFloat) -> UInt8 { UInt8(min(val * 256.0, 256)) }
-fileprivate func u8val(_ val: Double) -> UInt8 { UInt8(min(val * 256.0, 256)) }
+fileprivate func u8val(_ val: CGFloat) -> UInt8 { UInt8(min(val * 256.0, 255)) }
+fileprivate func u8val(_ val: Double) -> UInt8 { UInt8(min(val * 256.0, 255)) }
 
 /// Colours with red, green, blue and, alpha UInt8 properties
 
