@@ -55,11 +55,7 @@ class CSV: ReflectedStringConvertible, Equatable {
     /// - Throws: whatever String throws
 
     func loadFromUrl(_ url: URL, separatedBy colsep: String = ",") throws {
-        do {
-            loadFrom(try String(contentsOf: url), separatedBy: colsep)
-        } catch {
-            throw(error)
-        }
+        loadFrom(try String(contentsOf: url), separatedBy: colsep)
     }
 
     /// Load data from a string

@@ -14,44 +14,40 @@ extension Settings {
         // Although this is a Defaults property it can be loaded from the JSON file
         defaults.bounded = Self.keyedBoolValue(from: container, forKey: .bounded, defaults: defaults)
 
-        do {
-            var values = SettingsValues()
-            for key in CodingKeys.allCases {
-                switch key.codingType {
-                case .isBitMap:
-                    let val = try getBitMap(from: container, for: key, defaults: defaults)
-                    values.setValue(key, .bitmapValue(val: val), in: key.domain)
-                case .isBool:
-                    let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
-                    values.setValue(key, val, in: key.domain)
-                case .isDouble:
-                    let val = Self.keyedDoubleSettingsValue(from: container, forKey: key, defaults: defaults,
-                                                            in: key.doubleBounds)
-                    values.setValue(key, val, in: key.domain)
-                case .isInt:
-                    let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults,
-                                                         in: key.intBounds)
-                    values.setValue(key, val, in: key.domain)
-                case .isInt1:
-                    let val = Self.keyedInt1SettingsValue(from: container, forKey: key, defaults: defaults,
-                                                          in: key.intBounds)
-                    values.setValue(key, val, in: key.domain)
-                case .isString:
-                    let val = Self.keyedStringSettingsValue(from: container, forKey: key, defaults: defaults)
-                    values.setValue(key, val, in: key.domain)
-                case .isStringArray:
-                    let val = Self.keyedStringArraySettingsValue(from: container, forKey: key, defaults: defaults)
-                    values.setValue(key, val, in: key.domain)
-                case .isNone: break
-                }
+        var values = SettingsValues()
+        for key in CodingKeys.allCases {
+            switch key.codingType {
+            case .isBitMap:
+                let val = try getBitMap(from: container, for: key, defaults: defaults)
+                values.setValue(key, .bitmapValue(val: val), in: key.domain)
+            case .isBool:
+                let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val, in: key.domain)
+            case .isDouble:
+                let val = Self.keyedDoubleSettingsValue(from: container, forKey: key, defaults: defaults,
+                                                        in: key.doubleBounds)
+                values.setValue(key, val, in: key.domain)
+            case .isInt:
+                let val = Self.keyedIntSettingsValue(from: container, forKey: key, defaults: defaults,
+                                                     in: key.intBounds)
+                values.setValue(key, val, in: key.domain)
+            case .isInt1:
+                let val = Self.keyedInt1SettingsValue(from: container, forKey: key, defaults: defaults,
+                                                      in: key.intBounds)
+                values.setValue(key, val, in: key.domain)
+            case .isString:
+                let val = Self.keyedStringSettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val, in: key.domain)
+            case .isStringArray:
+                let val = Self.keyedStringArraySettingsValue(from: container, forKey: key, defaults: defaults)
+                values.setValue(key, val, in: key.domain)
+            case .isNone: break
             }
-            Self.loadForeground(from: container, defaults: defaults, into: &values)
-            Self.loadPDF(from: container, defaults: defaults, into: &values)
-
-            return values
-        } catch {
-            throw error
         }
+        Self.loadForeground(from: container, defaults: defaults, into: &values)
+        Self.loadPDF(from: container, defaults: defaults, into: &values)
+
+        return values
     }
 }
 

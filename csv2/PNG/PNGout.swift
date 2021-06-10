@@ -21,11 +21,7 @@ extension PNG {
         let imageRep = NSBitmapImageRep(cgImage: cgImage)
         imageRep.setProperty(colourProfile, withValue: NSColorSpace.genericRGB)
         if let pngData = imageRep.representation(using: .png, properties: [:]) {
-            do {
-                try pngData.write(to: url)
-            } catch {
-                throw(error)
-            }
+            try pngData.write(to: url)
         }
     }
 
@@ -34,28 +30,24 @@ extension PNG {
     /// - Throws: An error in the Cocoa domain, if there is an error writing to the `URL`.
 
     func plotWrite(to url: URL) throws {
-        do {
-            let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)!
-            if cgImage.width == settings.intValue(.width) {
-                try cgImageWrite(cgImage, to: url)
-            } else {
-                // NSImage uses points for size so we rescale the image to match the intended size
-                let scaleCtx = CGContext(
-                    data: nil,
-                    width: settings.intValue(.width),
-                    height: settings.intValue(.height),
-                    bitsPerComponent: cgImage.bitsPerComponent,
-                    bytesPerRow: cgImage.bytesPerRow,
-                    space: cgImage.colorSpace ?? CGColorSpace(name: CGColorSpace.genericRGBLinear)!,
-                    bitmapInfo: cgImage.bitmapInfo.rawValue
-                )!
-                scaleCtx.interpolationQuality = .high
-                scaleCtx.draw(cgImage, in: CGRect(origin: .zero, size: image.size))
-                let scaled = scaleCtx.makeImage()!
-                try cgImageWrite(scaled, to: url)
-            }
-        } catch {
-            throw(error)
+        let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)!
+        if cgImage.width == settings.intValue(.width) {
+            try cgImageWrite(cgImage, to: url)
+        } else {
+            // NSImage uses points for size so we rescale the image to match the intended size
+            let scaleCtx = CGContext(
+                data: nil,
+                width: settings.intValue(.width),
+                height: settings.intValue(.height),
+                bitsPerComponent: cgImage.bitsPerComponent,
+                bytesPerRow: cgImage.bytesPerRow,
+                space: cgImage.colorSpace ?? CGColorSpace(name: CGColorSpace.genericRGBLinear)!,
+                bitmapInfo: cgImage.bitmapInfo.rawValue
+            )!
+            scaleCtx.interpolationQuality = .high
+            scaleCtx.draw(cgImage, in: CGRect(origin: .zero, size: image.size))
+            let scaled = scaleCtx.makeImage()!
+            try cgImageWrite(scaled, to: url)
         }
     }
 }

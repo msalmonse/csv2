@@ -27,31 +27,27 @@ class Settings: Decodable, ReflectedStringConvertible {
         """
 
     required init(from decoder: Decoder) throws {
-        do {
-            let values = try Self.getValues(from: decoder)
+        let values = try Self.getValues(from: decoder)
 
-            var chartType: ChartType = .horizontal
-            let chart = values.stringValue(.chartType)
-            if "horizontal".hasPrefix(chart) {
-                chartType = .horizontal
-            } else if "piechart".hasPrefix(chart) {
-                chartType = .pieChart
-            } else if "vertical".hasPrefix(chart) {
-                chartType = .vertical
-            } else {
-                throw ErrorMessage(message: "\"\(chart)\" is not a known chart type")
-            }
-            self.chartType = chartType
-
-            index = values.intValue(.index)
-            height = Double(values.intValue(.height))
-            width = Double(values.intValue(.width))
-            strokeWidth = values.doubleValue(.strokeWidth)
-
-            self.values = values
-        } catch {
-            throw error
+        var chartType: ChartType = .horizontal
+        let chart = values.stringValue(.chartType)
+        if "horizontal".hasPrefix(chart) {
+            chartType = .horizontal
+        } else if "piechart".hasPrefix(chart) {
+            chartType = .pieChart
+        } else if "vertical".hasPrefix(chart) {
+            chartType = .vertical
+        } else {
+            throw ErrorMessage(message: "\"\(chart)\" is not a known chart type")
         }
+        self.chartType = chartType
+
+        index = values.intValue(.index)
+        height = Double(values.intValue(.height))
+        width = Double(values.intValue(.width))
+        strokeWidth = values.doubleValue(.strokeWidth)
+
+        self.values = values
     }
 
     /// Load contents of file into object

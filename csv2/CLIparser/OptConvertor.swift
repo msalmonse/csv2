@@ -30,14 +30,10 @@ extension Options {
 
     @discardableResult
     mutating func setDouble(_ val: OptValueAt, key: Settings.CodingKeys) throws -> Double {
-        do {
-            let dVal = try val.doubleValue()
-            values.onCLI(key)
-            values.setValue(key, .doubleValue(val: dVal))
-            return dVal
-        } catch {
-            throw error
-        }
+        let dVal = try val.doubleValue()
+        values.onCLI(key)
+        values.setValue(key, .doubleValue(val: dVal))
+        return dVal
     }
 
     /// Get an int value and tag it
@@ -48,14 +44,10 @@ extension Options {
 
     @discardableResult
     mutating func setInt(_ val: OptValueAt, key: Settings.CodingKeys) throws -> Int {
-        do {
-            let iVal = try val.intValue()
-            values.onCLI(key)
-            values.setValue(key, .intValue(val: iVal))
-            return iVal
-        } catch {
-            throw error
-        }
+        let iVal = try val.intValue()
+        values.onCLI(key)
+        values.setValue(key, .intValue(val: iVal))
+        return iVal
     }
 
     /// Set a string value and tag it
@@ -98,24 +90,20 @@ extension Options {
             bitMap = BitMap.all
         } else {
             var prev = 0
-            do {
-                for val in vals {
-                    let intVal = try val.intValue()
-                    if bitMap.okWithOffset.contains(intVal) {
-                        bitMap.append(intVal)
-                        prev = intVal
-                    } else if bitMap.okWithOffset.contains(-intVal) {
-                        // negative values are the upper limit of a range
-                        for i in (prev + 1)...(-intVal) {
-                            bitMap.append(i)
-                        }
-                        prev = -intVal
-                    } else {
-                        throw val.error("bitmap")
+            for val in vals {
+                let intVal = try val.intValue()
+                if bitMap.okWithOffset.contains(intVal) {
+                    bitMap.append(intVal)
+                    prev = intVal
+                } else if bitMap.okWithOffset.contains(-intVal) {
+                    // negative values are the upper limit of a range
+                    for i in (prev + 1)...(-intVal) {
+                        bitMap.append(i)
                     }
+                    prev = -intVal
+                } else {
+                    throw val.error("bitmap")
                 }
-            } catch {
-                throw error
             }
         }
 

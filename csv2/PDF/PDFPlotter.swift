@@ -44,11 +44,7 @@ extension PDF {
 
     func plotWrite(to url: URL) throws {
         if let data = doc.dataRepresentation() {
-            do {
-                try data.write(to: url)
-            } catch {
-                throw(error)
-            }
+            try data.write(to: url)
         }
     }
 }

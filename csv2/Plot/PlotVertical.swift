@@ -64,6 +64,7 @@ extension Plot {
                 path.append(.horizTo(x: ts.xpos(state.zero)))
                 path.append(.closePath)
                 plotter.plotPath(path, styles: stylesList.plots[col], fill: true)
+                plotter.plotPath(path, styles: stylesList.plots[col], fill: false)
             }
         }
     }
@@ -71,7 +72,7 @@ extension Plot {
     /// Plot data vertically
 
     func plotVertical() {
-        var state = VerticalState(zero: min(0,0, dataPlane.left), mid: dataPlane.hMid, settings: settings)
+        var state = VerticalState(zero: max(0,0, dataPlane.left), mid: dataPlane.hMid, settings: settings)
         let headerRows = settings.intValue(.headerRows)
 
         let barHeight = ceil(ts.ypos(2.0) - ts.ypos(1.0))

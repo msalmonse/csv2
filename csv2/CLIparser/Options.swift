@@ -52,13 +52,9 @@ struct Options {
         default: break
         }
 
-        do {
-            let optsGot = try argsList.optionsParse(opts, OptionsKey.positionalValues)
-            for opt in optsGot {
-                try getOpt(opt: opt)
-            }
-        } catch {
-            throw error
+        let optsGot = try argsList.optionsParse(opts, OptionsKey.positionalValues)
+        for opt in optsGot {
+            try getOpt(opt: opt)
         }
     }
 

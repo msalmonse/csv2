@@ -20,10 +20,6 @@ extension Canvas {
     /// - Throws: any errors in writing
 
     func plotWrite(to url: URL) throws {
-        do {
-            try data.write(to: url)
-        } catch {
-            throw(error)
-        }
+        try data.write(to: url)
     }
 }
