@@ -126,15 +126,15 @@ struct RGBAu8: CustomStringConvertible, Equatable {
     var u32: UInt32 { UInt32(UInt32(r) << 24 | UInt32(g) << 16 | UInt32(b) << 8 | UInt32(a)) }
 
     // Standard colours
-    static var clear: RGBAu8 { RGBAu8(r: 0, g: 0, b: 0, a: 0) }
-    static var black: RGBAu8 { RGBAu8(r: 0, g: 0, b: 0, a: 255) }
-    static var grey:  RGBAu8 { RGBAu8(r: 128, g: 128, b: 128, a: 255) }
-    static var white: RGBAu8 { RGBAu8(r: 255, g: 255, b: 255, a: 255) }
+    static var clear = RGBAu8(r: 0, g: 0, b: 0, a: 0)
+    static var black = RGBAu8(r: 0, g: 0, b: 0, a: 255)
+    static var grey = RGBAu8(r: 128, g: 128, b: 128, a: 255)
+    static var white = RGBAu8(r: 255, g: 255, b: 255, a: 255)
 
     // Special colours
-    static var darkBG: RGBAu8 { RGBAu8(r: 35, g: 35, b: 35, a: 170) }
-    static var midBG: RGBAu8 { RGBAu8(r: 120, g: 120, b: 120, a: 170) }
-    static var lightBG: RGBAu8 { RGBAu8(r: 220, g: 220, b: 220, a: 170) }
+    static let darkBG = RGBAu8(r: 35, g: 35, b: 35, a: 170)
+    static var midBG = RGBAu8(r: 120, g: 120, b: 120, a: 170)
+    static var lightBG = RGBAu8(r: 220, g: 220, b: 220, a: 170)
 
     /// Create an RGBA with a new alpha
     /// - Parameter alpha: new alpha

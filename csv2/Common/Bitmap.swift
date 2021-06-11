@@ -38,7 +38,7 @@ struct BitMap: OptionSet {
         self.init(rawValue: UInt64(raw))
     }
 
-    private static var cache: [BitMap] = Self.okRange.map { BitMap(rawValue: 1 << $0) }
+    private static let cache: [BitMap] = Self.okRange.map { BitMap(rawValue: 1 << $0) }
 
     static var all = Self(rawValue: ~0)
     static var none = Self(rawValue: 0)

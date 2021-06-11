@@ -33,8 +33,8 @@ struct Sides {
         let index = settings.index
         let xMaxSet = settings.doubleValue(.xMax) > Defaults.maxDefault
         let xMinSet = settings.doubleValue(.xMin) < Defaults.minDefault
-        var left: Double
-        var right: Double
+        let left: Double
+        let right: Double
 
         if  xMaxSet && xMinSet {
             left = settings.doubleValue(.xMin)
@@ -86,8 +86,8 @@ struct Sides {
         let yMaxSet = settings.doubleValue(.yMax) > Defaults.maxDefault
         let yMinSet = settings.doubleValue(.yMin) < Defaults.minDefault
         let count = csv.rowCt
-        var top: Double
-        var bottom: Double
+        let top: Double
+        let bottom: Double
 
         if yMaxSet && yMinSet {
             bottom = settings.doubleValue(.yMin)
