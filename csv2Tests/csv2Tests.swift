@@ -28,7 +28,7 @@ class csv2Tests: XCTestCase {
     func testSettings() {
         if let settings = try? Settings.load(settingsJSON(true, bezier: 0.500001)) {
             XCTAssertEqual(settings.doubleValue(.bezier), Defaults.initial.doubleValue(.bezier))
-            XCTAssertEqual(settings.stringArray(.colours).count, 3)
+            XCTAssertEqual(settings.colourArray(.colours)!.count, 3)
             XCTAssertFalse(settings.boolValue(.rowGrouping))
             XCTAssertEqual(settings.intValue(.index), testIndex - 1)
             XCTAssertEqual(settings.intValue(.height), testHeight)
