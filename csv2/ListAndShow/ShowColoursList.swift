@@ -22,7 +22,7 @@ func showColoursList(
 ) {
     let baseFontSize = defaults.doubleValue(.baseFontSize)
     let rowHeight = 2.5 * baseFontSize
-    let colours = namesList ? ColourTranslate.all : defaults.stringArray(.colours) + Colours.all
+    let colours = namesList ? ColourTranslate.all : Colours.all
     let count = Double(colours.count)
     let columnWidth = baseFontSize * 30.0
 

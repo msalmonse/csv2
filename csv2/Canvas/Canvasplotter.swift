@@ -60,7 +60,7 @@ extension Canvas {
             url: url, left: positions.logoX, top: positions.logoY,
             width: settings.doubleValue(.logoWidth), height: settings.doubleValue(.logoHeight)
         )
-        let bg = settings.stringValue(.backgroundColour).isEmpty ? "" : bgRect()
+        let bg = settings.colourValue(.backgroundColour) != nil ? "" : bgRect()
         let comment = settings.boolValue(.comment) ? self.comment + "\n" : ""
         data.append("""
             const \(name) = document.getElementById('\(id)');
@@ -136,7 +136,7 @@ extension Canvas {
     }
 
     func bgRect() -> String {
-        let colour = RGBAu8(settings.stringValue(.backgroundColour), or: .white).cssRGBA
+        let colour = (settings.colourValue(.backgroundColour) ?? .white).cssRGBA
         let width = settings.intValue(.width)
         let height = settings.intValue(.height)
         return """

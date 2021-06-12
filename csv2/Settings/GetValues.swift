@@ -128,8 +128,10 @@ extension Settings {
         for s in strings {
             if let colour = RGBAu8.lookup(s) {
                 result.append(colour)
+            } else if s.isEmpty {
+                result.append(.black)
             } else {
-                throw ErrorMessage(message: "\"\(s)\" is not a colur for key: \(key.stringValue)")
+                throw ErrorMessage(message: "\"\(s)\" is not a colour for key: \(key.stringValue)")
             }
         }
         return result

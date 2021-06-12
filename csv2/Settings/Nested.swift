@@ -35,21 +35,20 @@ extension Settings {
         let text = defaults.colourValue(.textcolour)!
         let pieText = (try? getColour(from: container, for: .pieLegend, defaults: nil)) ?? text
         let pieLabel = pieText.clamped(opacity: 0.75)
-        if let nested = try? container?.nestedContainer(keyedBy: CodingKeys.self, forKey: .foregroundColours) {
-            loadOne(from: nested, for: .axes, in: .foreground, or: fg, into: &values)
-            loadOne(from: nested, for: .draft, in: .foreground, or: fg, into: &values)
-            loadOne(from: nested, for: .legends, in: .foreground, or: text, into: &values)
-            loadOne(from: nested, for: .legendsBox, in: .foreground, or: fg, into: &values)
-            loadOne(from: nested, for: .pieLabel, in: .foreground, or: pieLabel, into: &values)
-            values.setValue(.pieLegend, .colourValue(val: pieText), in: .foreground)
-            loadOne(from: nested, for: .subTitle, in: .foreground, or: text, into: &values)
-            loadOne(from: nested, for: .title, in: .foreground, or: text, into: &values)
-            loadOne(from: nested, for: .xLabel, in: .foreground, or: text, into: &values)
-            loadOne(from: nested, for: .xTags, in: .foreground, or: text, into: &values)
-            loadOne(from: nested, for: .xTitle, in: .foreground, or: text, into: &values)
-            loadOne(from: nested, for: .yLabel, in: .foreground, or: text, into: &values)
-            loadOne(from: nested, for: .yTitle, in: .foreground, or: text, into: &values)
-        }
+        let nested = try? container?.nestedContainer(keyedBy: CodingKeys.self, forKey: .foregroundColours)
+        loadOne(from: nested, for: .axes, in: .foreground, or: fg, into: &values)
+        loadOne(from: nested, for: .draft, in: .foreground, or: fg, into: &values)
+        loadOne(from: nested, for: .legends, in: .foreground, or: text, into: &values)
+        loadOne(from: nested, for: .legendsBox, in: .foreground, or: fg, into: &values)
+        loadOne(from: nested, for: .pieLabel, in: .foreground, or: pieLabel, into: &values)
+        values.setValue(.pieLegend, .colourValue(val: pieText), in: .foreground)
+        loadOne(from: nested, for: .subTitle, in: .foreground, or: text, into: &values)
+        loadOne(from: nested, for: .title, in: .foreground, or: text, into: &values)
+        loadOne(from: nested, for: .xLabel, in: .foreground, or: text, into: &values)
+        loadOne(from: nested, for: .xTags, in: .foreground, or: text, into: &values)
+        loadOne(from: nested, for: .xTitle, in: .foreground, or: text, into: &values)
+        loadOne(from: nested, for: .yLabel, in: .foreground, or: text, into: &values)
+        loadOne(from: nested, for: .yTitle, in: .foreground, or: text, into: &values)
     }
 
     /// Load the values from the pdf nested container

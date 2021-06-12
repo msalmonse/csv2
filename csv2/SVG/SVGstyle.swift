@@ -104,7 +104,7 @@ extension SVG {
     ///   - id: id for svg
 
     private func cssBG(_ result: inout [String], id: String) {
-        let bgSetting = settings.stringValue(.backgroundColour)
+        let bgSetting = settings.colourValue(.backgroundColour)?.cssRGBA ?? ""
         let bg = bgSetting.isEmpty ? "transparent" : bgSetting
         result.append("svg\(id) { background-color: \(bg) }")
 

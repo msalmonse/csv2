@@ -135,13 +135,15 @@ struct SettingsValues {
     /// - Returns: Colour from dict
 
     func colourValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> RGBAu8? {
-        let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .stringEmpty
-        switch keyVal {
-        case let .colourValue(val): return val
-        default:
-            keyVal.unexpectedValue(expected: "Colour", for: key)
-            return nil
+        if let keyVal = values[CombinedKey(domain: domain, key: key)] {
+            switch keyVal {
+            case let .colourValue(val): return val
+            default:
+                keyVal.unexpectedValue(expected: "Colour", for: key)
+                return nil
+            }
         }
+        return nil
     }
 
     /// Lookup Colour Array value
