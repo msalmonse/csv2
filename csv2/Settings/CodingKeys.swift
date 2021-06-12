@@ -9,7 +9,7 @@ import Foundation
 
 extension Settings {
     enum CodingType {
-        case isBitMap, isBool, isDouble, isInt, isInt1, isString, isStringArray
+        case isBitMap, isBool, isColour, isColourArray, isDouble, isInt, isInt1, isString, isStringArray
         case isNone     // special cases
     }
 
@@ -109,7 +109,7 @@ extension Settings.CodingKeys {
         switch self {
         case .author: return .isString
         case .axes: return .isString
-        case .backgroundColour: return .isString
+        case .backgroundColour: return .isColour
         case .bared: return .isBitMap
         case .barOffset: return .isDouble
         case .barWidth: return .isDouble
@@ -120,7 +120,7 @@ extension Settings.CodingKeys {
         case .bounded: return .isBool
         case .canvasID: return .isString
         case .chartType: return .isString
-        case .colours: return .isStringArray
+        case .colours: return .isColourArray
         case .comment: return .isBool
         case .cssClasses: return .isStringArray
         case .cssExtras: return .isStringArray
@@ -133,7 +133,7 @@ extension Settings.CodingKeys {
         case .draftText: return .isString
         case .filled: return .isBitMap
         case .fontFamily: return .isString
-        case .foregroundColour: return .isString
+        case .foregroundColour: return .isColour
         case .foregroundColours: return .isNone
         case .headerColumns: return .isInt
         case .headerRows: return .isInt
@@ -175,7 +175,7 @@ extension Settings.CodingKeys {
         case .subTitleHeader: return .isInt1
         case .svgInclude: return .isString
         case .tagFile: return .isString
-        case .textcolour: return .isString
+        case .textcolour: return .isColour
         case .title: return .isString
         case .width: return .isInt
         case .xLabel: return .isString

@@ -73,7 +73,7 @@ extension Options {
             usage: "Bar width (-1 to calculate)"
         ),
         OptToGet(
-            .stringValue(key: .backgroundColour, name: "bg"), .single,
+            .colourValue(key: .backgroundColour, name: "bg"), .single,
             usage: "Background colour", argTag: "<colour>"
         ),
         OptToGet(
@@ -104,7 +104,7 @@ extension Options {
                 argTag: "<type>"
         ),
         OptToGet(
-            .stringArray(key: .colours, name: "colours"), aka: ["colors"], .onePlus, options: [.multi],
+            .colourArray(key: .colours, name: "colours"), aka: ["colors"], .onePlus, options: [.multi],
             usage: "Colours to use for plots", argTag: "<colour>..."
         ),
         OptToGet(
@@ -140,7 +140,7 @@ extension Options {
             usage: "Font family", argTag: "<font name>"
         ),
         OptToGet(
-            .stringValue(key: .foregroundColour, name: "fg"), .single,
+            .colourValue(key: .foregroundColour, name: "fg"), .single,
             usage: "Foreground colour for non-text items", argTag: "<colour>"
         ),
         OptToGet(

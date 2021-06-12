@@ -42,6 +42,8 @@ enum OptionsKey: CLIparserTag {
     case bitmapValue(key: Settings.CodingKeys, name: String)
     case boolValue(key: Settings.CodingKeys, name: String)
     case boolSpecial(key: BoolSpecialKey, name: String)
+    case colourArray(key: Settings.CodingKeys, name: String)
+    case colourValue(key: Settings.CodingKeys, name: String)
     case doubleArray(key: Settings.CodingKeys, name: String)
     case doubleSpecialArray(key: DoubleArraySpecialKey, name: String)
     case doubleValue(key: Settings.CodingKeys, name: String)
@@ -58,6 +60,8 @@ enum OptionsKey: CLIparserTag {
         case let .bitmapValue(_, name): return name
         case let .boolValue(_, name): return name
         case let .boolSpecial(_, name): return name
+        case let .colourArray(_, name): return name
+        case let .colourValue(_, name): return name
         case let .doubleArray(_, name): return name
         case let .doubleSpecialArray(_, name): return name
         case let .doubleValue(_, name): return name

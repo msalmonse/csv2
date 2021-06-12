@@ -23,6 +23,12 @@ extension Settings {
             case .isBool:
                 let val = Self.keyedBoolSettingsValue(from: container, forKey: key, defaults: defaults)
                 values.setValue(key, val, in: key.domain)
+            case .isColour:
+                let val = try Self.getColour(from: container, for: key, defaults: defaults)
+                values.setValue(key, .colourValue(val: val), in: key.domain)
+            case .isColourArray:
+                let vals = try Self.getColourArray(from: container, for: key, defaults: defaults)
+                values.setValue(key, .colourArray(val: vals), in: key.domain)
             case .isDouble:
                 let val = Self.keyedDoubleSettingsValue(from: container, forKey: key, defaults: defaults,
                                                         in: key.doubleBounds)
@@ -79,5 +85,50 @@ extension Settings {
             }
         }
         return bitmap
+    }
+}
+
+extension Settings {
+    static func getColour(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        for key: CodingKeys,
+        defaults: Defaults
+    ) throws -> RGBAu8 {
+        // First check the defaults
+        if container == nil || defaults.isOnCLI(key) {
+            if let colour = defaults.colourValue(key) {
+                return colour
+            }
+        }
+        let s = Self.keyedStringValue(from: container, forKey: key, defaults: defaults)
+        if let colour = RGBAu8.lookup(s) {
+            return colour
+        }
+        throw ErrorMessage(message: "\"\(s)\" is not a colur for key: \(key.stringValue)")
+    }
+}
+
+extension Settings {
+    static func getColourArray(
+        from container: KeyedDecodingContainer<CodingKeys>?,
+        for key: CodingKeys,
+        defaults: Defaults
+    ) throws -> [RGBAu8] {
+        // First check the defaults
+        if container == nil || defaults.isOnCLI(key) {
+            if let colours = defaults.colourArray(key) {
+                return colours
+            }
+        }
+        var result: [RGBAu8] = []
+        let strings = Self.keyedStringArray(from: container, forKey: key, defaults: defaults)
+        for s in strings {
+            if let colour = RGBAu8.lookup(s) {
+                result.append(colour)
+            } else {
+                throw ErrorMessage(message: "\"\(s)\" is not a colur for key: \(key.stringValue)")
+            }
+        }
+        return result
     }
 }

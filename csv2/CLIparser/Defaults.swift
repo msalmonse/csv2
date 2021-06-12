@@ -8,7 +8,7 @@
 import Foundation
 
 private let initialDefaults: SettingsDict = [
-    .backgroundColour: .stringValue(val: "clear"),
+    .backgroundColour: .colourValue(val: .clear),
     .barOffset: .doubleMinusOne,
     .barWidth: .doubleMinusOne,
     .baseFontSize: .doubleValue(val: 10.0),
@@ -19,7 +19,7 @@ private let initialDefaults: SettingsDict = [
     .dataPointDistance: .doubleValue(val: 10.0),
     .draftText: .stringValue(val: "DRAFT"),
     .fontFamily: .stringValue(val: "serif"),
-    .foregroundColour: .stringValue(val: "black"),
+    .foregroundColour: .colourValue(val: .black),
     .height: .intValue(val: 600),
     .hover: .boolTrue,
     .include: .bitmapValue(val: BitMap.all),
@@ -29,7 +29,7 @@ private let initialDefaults: SettingsDict = [
     .nameHeader: .intValue(val: 1),
     .opacity: .doubleValue(val: 1.0),
     .strokeWidth: .doubleValue(val: 2.0),
-    .textcolour: .stringValue(val: "black"),
+    .textcolour: .colourValue(val: .black),
     .width: .intValue(val: 800),
     .xMax: .doubleMax,
     .xMin: .doubleMin,
@@ -107,6 +107,26 @@ struct Defaults {
 
     func boolValue(_ key: Settings.CodingKeys) -> Bool {
         return values.boolValue(key)
+    }
+
+    /// Fetch a Colour value
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: String value
+
+    func colourValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> RGBAu8? {
+        return values.colourValue(key, in: domain)
+    }
+
+    /// Fetch a Colour array
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: String array
+
+    func colourArray(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> [RGBAu8]? {
+        return values.colourArray(key, in: domain)
     }
 
     /// Fetch a Double value

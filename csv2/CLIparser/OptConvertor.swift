@@ -22,6 +22,44 @@ extension Options {
         return val
     }
 
+    /// Set a Colour value and tag it
+    /// - Parameters:
+    ///   - val: value to set
+    ///   - key: key to tag
+    /// - Throws: CLIparserError.illegalValue
+
+    @discardableResult
+    mutating func setColour(_ val: OptValueAt, key: Settings.CodingKeys) throws -> RGBAu8? {
+        let sVal = val.stringValue()
+        if let colour = RGBAu8.lookup(sVal) {
+            values.onCLI(key)
+            values.setValue(key, .colourValue(val: colour))
+            return colour
+        }
+        throw val.error("Colour")
+    }
+
+    /// Set a Colour array and tag it
+    /// - Parameters:
+    ///   - vals: array to get
+    ///   - key: key to tag
+    /// - Throws: CLIparserError.illegalValue
+
+    @discardableResult
+    mutating func setColourArray(_ vals: OptValuesAt, key: Settings.CodingKeys) throws -> [RGBAu8]? {
+        var result: [RGBAu8] = []
+        for val in vals {
+            if let colour = RGBAu8.lookup(val.stringValue()) {
+                result.append(colour)
+            } else {
+                throw val.error("Colour")
+            }
+        }
+        values.onCLI(key)
+        values.setValue(key, .colourArray(val: result))
+        return result
+    }
+
     /// Set a double value and tag it
     /// - Parameters:
     ///   - val: value to set

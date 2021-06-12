@@ -32,6 +32,8 @@ extension Options {
             case .verbose: verbose = true
             }
         case let .boolValue(key, _): setBool((opt.count > 0), key: key)
+        case let .colourArray(key, _): try setColourArray(opt.optValuesAt, key: key)
+        case let .colourValue(key, _): try setColour(val0, key: key)
         case .doubleArray: break
         case let .doubleSpecialArray(key, _):
             switch key {

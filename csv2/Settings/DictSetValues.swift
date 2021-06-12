@@ -12,6 +12,8 @@ import Foundation
 enum SettingsValue: Equatable {
     case bitmapValue(val: BitMap)
     case boolValue(val: Bool)
+    case colourArray(val: [RGBAu8])
+    case colourValue(val: RGBAu8)
     case doubleValue(val: Double)
     case intArray(val: [Int])
     case intValue(val: Int)
@@ -38,6 +40,8 @@ enum SettingsValue: Equatable {
         switch self {
         case .bitmapValue: printGot("BitMap")
         case .boolValue: printGot("Bool")
+        case .colourArray: printGot("Colour Array")
+        case .colourValue: printGot("Colour")
         case .doubleValue: printGot("Double")
         case .intArray: printGot("Int Array")
         case .intValue: printGot("Int")
@@ -121,6 +125,38 @@ struct SettingsValues {
         default:
             keyVal.unexpectedValue(expected: "Bool", for: key)
             return false
+        }
+    }
+
+    /// Lookup Colour value
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: Colour from dict
+
+    func colourValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> RGBAu8? {
+        let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .stringEmpty
+        switch keyVal {
+        case let .colourValue(val): return val
+        default:
+            keyVal.unexpectedValue(expected: "Colour", for: key)
+            return nil
+        }
+    }
+
+    /// Lookup Colour Array value
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: Colour Array from dict
+
+    func colourArray(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> [RGBAu8]? {
+        let keyVal = values[CombinedKey(domain: domain, key: key)] ?? .stringArrayEmpty
+        switch keyVal {
+        case let .colourArray(val): return val
+        default:
+            keyVal.unexpectedValue(expected: "Colour Array", for: key)
+            return nil
         }
     }
 

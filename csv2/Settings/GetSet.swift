@@ -39,6 +39,26 @@ extension Settings {
         return values.boolValue(key, in: domain)
     }
 
+    /// Fetch a Colour value
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: String value
+
+    func colourValue(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> RGBAu8? {
+        return values.colourValue(key, in: domain)
+    }
+
+    /// Fetch a Colour array
+    /// - Parameters:
+    ///   - key: key in domain
+    ///   - domain: domain for key
+    /// - Returns: String array
+
+    func colourArray(_ key: Settings.CodingKeys, in domain: DomainKey = .topLevel) -> [RGBAu8]? {
+        return values.colourArray(key, in: domain)
+    }
+
     /// Fetch a Double value
     /// - Parameters:
     ///   - key: key in domain
