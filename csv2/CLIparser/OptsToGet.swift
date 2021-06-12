@@ -244,7 +244,7 @@ extension Options {
             usage: "Sub-title", argTag: "<text>"
         ),
         OptToGet(
-            .stringValue(key: .textcolour, name: "textcolour"), aka: ["textcolor"], .single,
+            .colourValue(key: .textcolour, name: "textcolour"), aka: ["textcolor"], .single,
             usage: "Foreground text colour", argTag: "<colour>"
         ),
         OptToGet(

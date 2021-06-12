@@ -249,8 +249,8 @@ extension Plot {
         var plotProps = styles
         let fill = plotProps.bar >= 0 || styles.options[.filled]
         if fill {
-            if let rgba = RGBAu8(plotProps.fill) {
-                plotProps.fill = rgba.multiplyingBy(alpha: 0.75).cssRGBA
+            if let rgba = plotProps.fill {
+                plotProps.fill = rgba.multiplyingBy(alpha: 0.75)
             }
         }
         plotter.plotPath(state.pathComponents, styles: plotProps, fill: fill)

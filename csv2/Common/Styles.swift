@@ -10,13 +10,13 @@ import Foundation
 struct Styles {
     var bar = -1
     var bezier: Double = 0.0
-    var colour: String?
+    var colour: RGBAu8?
     var cssClass: String?
     var dash: String?
-    var fill: String?
+    var fill: RGBAu8?
     var fontFamily: String?
     var fontSize = 0.0
-    var fontColour: String?
+    var fontColour: RGBAu8?
     var name: String?
     var options = PlotOptions()
     var shape: Shape?

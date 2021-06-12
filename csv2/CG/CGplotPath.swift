@@ -88,7 +88,7 @@ fileprivate func plotComponent(_ ctx: CGContext, component: PathComponent, curre
 ///   - clipRect: clipping rectangle
 
 func cgPlotPath(_ path: Path, styles: Styles, fill: Bool, to ctx: CGContext, clippedBy clipRect: CGRect?) {
-    let colour = RGBAu8(fill ? styles.fill : styles.colour, or: .black)
+    let colour = (fill ? styles.fill : styles.colour) ?? .black
     let lineWidth = CGFloat(styles.strokeWidth)
     if let clipRect = clipRect { ctx.clip(to: clipRect) }
     var current = CGPoint.zero

@@ -76,8 +76,8 @@ extension CTX {
         if isText {
             let colour = styles.fontColour!
             let fill = styles.fill ?? colour
-            self.syncOneString(key: \.fillStyle, fill, "fillStyle", result: &result)
-            self.syncOneString(key: \.strokeStyle, colour, "strokeStyle", result: &result)
+            self.syncOneString(key: \.fillStyle, fill.cssRGBA, "fillStyle", result: &result)
+            self.syncOneString(key: \.strokeStyle, colour.cssRGBA, "strokeStyle", result: &result)
             let strokeWidth = styles.strokeWidth
             self.syncOneDouble(key: \.lineWidth, strokeWidth, "lineWidth", result: &result)
 
@@ -92,10 +92,10 @@ extension CTX {
         } else {
             if fill {
                 let fill = styles.fill!
-                self.syncOneString(key: \.fillStyle, fill, "fillStyle", result: &result)
+                self.syncOneString(key: \.fillStyle, fill.cssRGBA, "fillStyle", result: &result)
             } else {
                 let colour = styles.colour!
-                self.syncOneString(key: \.strokeStyle, colour, "strokeStyle", result: &result)
+                self.syncOneString(key: \.strokeStyle, colour.cssRGBA, "strokeStyle", result: &result)
 
                 let dashPattern = styles.dash!
                 if dashPattern != dash {

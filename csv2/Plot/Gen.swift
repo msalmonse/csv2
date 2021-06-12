@@ -79,7 +79,7 @@ extension Plot {
     ///   - name: shape name
     ///   - colour: stroke colour
 
-    func shapeGen(name: String, colour: String) {
+    func shapeGen(name: String, colour: RGBAu8) {
         if let shape = Shape.lookup(name) {
             var stylesList = StylesList(count: 1, settings: settings)
             stylesList.plots[0].cssClass = name

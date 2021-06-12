@@ -31,10 +31,10 @@ class Colours {
     /// Get the colour in the sequence
     /// - Returns: next colour
 
-    static func nextColour() -> String {
+    static func nextColour() -> RGBAu8 {
         next += 1
         if next >= colourList.count { next = 0 }
-        return colourList[ next ]
+        return RGBAu8.lookup(colourList[ next ])!
     }
 
     /// Reset the colour sequence

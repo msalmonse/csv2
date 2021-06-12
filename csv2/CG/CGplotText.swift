@@ -94,7 +94,7 @@ fileprivate func stylesWidth(_ styles: Styles) -> CGFloat {
 ///   - height: chart height
 
 func cgPlotText(xy: Point, text: String, styles: Styles, to ctx: CGContext, height: Double) {
-    let colour = RGBAu8(styles.fontColour, or: .black)
+    let colour = styles.fontColour ?? .black
     let font = stylesFont(styles)
     let attr = [
         NSAttributedString.Key.foregroundColor: colour.cgColor as Any,

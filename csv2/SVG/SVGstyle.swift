@@ -26,7 +26,7 @@ extension SVG {
         func oneText(_ styles: Styles, suffix: String = "", extra: String = "") {
             guard let cl = styles.cssClass else { return }
             let anc = "text-anchor: " + (styles.textAlign!)
-            let clr = styles.fontColour!
+            let clr = styles.fontColour!.cssRGBA
             let fill = styles.options[.stroked] ? "none" : clr
             var fam = ""
             if let styFam = styles.fontFamily {
@@ -153,7 +153,7 @@ extension SVG {
         // Individual plot settings
         plotCSS(&result, id: id, plotStyles: stylesList.plots, size: stylesList.legend.fontSize)
 
-        colour = stylesList.legendBox.colour ?? "silver"
+        colour = stylesList.legendBox.colour ?? .black.with(alpha: 128)
         result.append(
             "\(id) path.legend { stroke: \(colour); stroke-width: 1.5 }"
         )

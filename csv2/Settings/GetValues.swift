@@ -92,19 +92,22 @@ extension Settings {
     static func getColour(
         from container: KeyedDecodingContainer<CodingKeys>?,
         for key: CodingKeys,
-        defaults: Defaults
+        defaults: Defaults?
     ) throws -> RGBAu8 {
         // First check the defaults
-        if container == nil || defaults.isOnCLI(key) {
-            if let colour = defaults.colourValue(key) {
+        if container == nil || (defaults?.isOnCLI(key) ?? false) {
+            if let colour = defaults?.colourValue(key) {
                 return colour
             }
         }
-        let s = Self.keyedStringValue(from: container, forKey: key, defaults: defaults)
-        if let colour = RGBAu8.lookup(s) {
+        if let s = Self.optionalKeyedStringValue(from: container, forKey: key, defaults: nil) {
+            if let colour = RGBAu8.lookup(s) {
+                return colour
+            }
+        } else if let colour = defaults?.colourValue(key) {
             return colour
         }
-        throw ErrorMessage(message: "\"\(s)\" is not a colur for key: \(key.stringValue)")
+        throw ErrorMessage(message: "Colour not found for key: \(key.stringValue)")
     }
 }
 

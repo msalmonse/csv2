@@ -13,11 +13,11 @@ extension Settings {
         from container: KeyedDecodingContainer<CodingKeys>?,
         for key: CodingKeys,
         in domain: DomainKey,
-        or notFound: String,
+        or notFound: RGBAu8?,
         into values: inout SettingsValues
     ) {
-        let val = optionalKeyedStringValue(from: container, forKey: key) ?? notFound
-        values.setValue(key, .stringValue(val: val), in: domain)
+        let val = (try? getColour(from: container, for: key, defaults: nil)) ?? notFound
+        values.setValue(key, .colourValue(val: val!), in: domain)
     }
 
     /// Load the values from the foregroundColours nested container
@@ -31,17 +31,17 @@ extension Settings {
         defaults: Defaults,
         into values: inout SettingsValues
     ) {
-        let fg = defaults.stringValue(.foregroundColour)
-        let text = defaults.stringValue(.textcolour)
-        let pieText = optionalKeyedStringValue(from: container, forKey: .pieLegend) ?? text
-        let pieLabel = RGBAu8(pieText, or: .black).clamped(opacity: 0.75).cssRGBA
+        let fg = defaults.colourValue(.foregroundColour)!
+        let text = defaults.colourValue(.textcolour)!
+        let pieText = (try? getColour(from: container, for: .pieLegend, defaults: nil)) ?? text
+        let pieLabel = pieText.clamped(opacity: 0.75)
         if let nested = try? container?.nestedContainer(keyedBy: CodingKeys.self, forKey: .foregroundColours) {
             loadOne(from: nested, for: .axes, in: .foreground, or: fg, into: &values)
             loadOne(from: nested, for: .draft, in: .foreground, or: fg, into: &values)
             loadOne(from: nested, for: .legends, in: .foreground, or: text, into: &values)
             loadOne(from: nested, for: .legendsBox, in: .foreground, or: fg, into: &values)
             loadOne(from: nested, for: .pieLabel, in: .foreground, or: pieLabel, into: &values)
-            values.setValue(.pieLegend, .stringValue(val:pieText), in: .foreground)
+            values.setValue(.pieLegend, .colourValue(val: pieText), in: .foreground)
             loadOne(from: nested, for: .subTitle, in: .foreground, or: text, into: &values)
             loadOne(from: nested, for: .title, in: .foreground, or: text, into: &values)
             loadOne(from: nested, for: .xLabel, in: .foreground, or: text, into: &values)

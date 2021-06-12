@@ -43,13 +43,13 @@ func plotColours(
     _ ct: Int,
     _ styles: inout [Styles]
     ) {
-    let colours = settings.stringArray(.colours)
+    let colours = settings.colourArray(.colours) ?? []
     let black = settings.boolValue(.black)
     for i in first..<ct {
-        if colours.hasIndex(i) && colours[i].hasContent {
+        if colours.hasIndex(i) {
             styles[i].colour = colours[i]
         } else if black {
-            styles[i].colour = "black"
+            styles[i].colour = .black
         } else if styles[i].options[.included] {
             styles[i].colour = Colours.nextColour()
         }

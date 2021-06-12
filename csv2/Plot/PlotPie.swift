@@ -16,8 +16,8 @@ extension Plot {
 
     private func circleRing(centre: Point, radius: Double) {
         var styles = Styles.from(settings: settings)
-        styles.fill = "black"
-        styles.colour = "black"
+        styles.fill = .black
+        styles.colour = .black
         styles.cssClass = "black"
         styles.strokeWidth = 1.0
         let centrePath = Path([.moveTo(xy: centre), .circle(r: 4.0)])
