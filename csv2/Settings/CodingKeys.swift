@@ -223,7 +223,7 @@ extension Settings.CodingKeys {
     /// Where a key should be.
     var domain: DomainKey {
         switch self {
-        case .canvasID, .tagFile: return .canvas
+        case .canvasID: return .canvas
         case .cssID, .cssExtras, .cssClasses, .cssInclude, .svgInclude: return .svg
         default: return .topLevel
         }

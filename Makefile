@@ -83,12 +83,6 @@ generated/%.js: data/%.csv data/%.json data/%.opts $(CSV2)
 		--tag $(@:%.js=%.canvastag) \
 		$(@F:%.js=data/%.csv) $(@F:%.js=data/%.json) $@
 
-generated/%.canvastag: OPTS = $(shell cat $(@F:%.canvastag=data/%.opts))
-generated/%.canvastag: CANVAS = $(shell cat $(@F:%.canvastag=data/%.canvas))
-generated/%.canvastag: data/%.csv data/%.json data/%.opts data/%.canvas $(CSV2)
-	-@ $(CSV2) canvastag $(OPTS) --canvas $(CANVAS) \
-		$(@F:%.canvastag=data/%.csv) $(@F:%.canvastag=data/%.json) $@
-
 generated/trig+trig-inc.svg: data/trig.inc
 
 generated/%.svg: OPTS = $(shell cat $(@F:%.svg=data/%.opts))
@@ -97,7 +91,8 @@ generated/%.svg: data/%.csv data/%.json data/%.opts $(CSV2)
 
 generated/%.pdf: OPTS = $(shell cat $(@F:%.pdf=data/%.opts))
 generated/%.pdf: data/%.csv data/%.json data/%.opts $(CSV2)
-	-@ $(CSV2) pdf $(OPTS) $(@F:%.pdf=data/%.csv) $(@F:%.pdf=data/%.json) $@
+	-@ $(CSV2) pdf $(OPTS) --tag $(@:%.pdf=%.pdftag) \
+		$(@F:%.pdf=data/%.csv) $(@F:%.pdf=data/%.json) $@
 
 generated/%.png: OPTS = $(shell cat $(@F:%.png=data/%.opts))
 generated/%.png: data/%.csv data/%.json data/%.opts $(CSV2)

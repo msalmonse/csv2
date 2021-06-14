@@ -243,5 +243,5 @@ func help(_ command: HelpCommandType, _ options: Options) {
 
 func execName() -> String {
     if CommandLine.arguments.isEmpty { return AppInfo.name }
-    return CommandLine.arguments[0].components(separatedBy: "/").last ?? AppInfo.name
+    return (CommandLine.arguments[0] as NSString).lastPathComponent
 }

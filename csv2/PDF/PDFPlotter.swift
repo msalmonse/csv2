@@ -46,5 +46,20 @@ extension PDF {
         if let data = doc.dataRepresentation() {
             try data.write(to: url)
         }
+        let tagFile = settings.stringValue(.tagFile)
+        if tagFile.hasContent {
+            let w = settings.intValue(.width)
+            let h = settings.intValue(.height)
+            let source = url.lastPathComponent
+            let url = URL(fileURLWithPath: tagFile)
+
+            if let tag = """
+                <object type="application/pdf" data="\(source)" width="\(w)" height="\(h)"></object>
+                """.data(using: .utf8) {
+                try tag.write(to: url)
+            } else {
+                print("Error creating tag data", to: &standardError)
+            }
+        }
     }
 }

@@ -48,6 +48,7 @@ struct Options {
         switch command {
         case .canvas: opts += Self.canvasOpts
         case .help: opts = Self.helpOpts
+        case .pdf: opts += Self.pdfOpts
         case .svg: opts += Self.svgOpts
         default: break
         }
@@ -98,7 +99,7 @@ func helpOptsUsage() -> String? { return optUsage(Options.helpOpts) }
 /// Get usage string for PDF
 /// - Returns: usage string
 
-func pdfOptsUsage() -> String? { return nil }
+func pdfOptsUsage() -> String? { return optUsage(Options.pdfOpts) }
 
 /// Get usage for PNG charts
 /// - Returns: usage string

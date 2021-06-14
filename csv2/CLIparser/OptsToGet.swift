@@ -40,6 +40,13 @@ extension Options {
         )
     ]
 
+    static internal let pdfOpts: OptsToGet = [
+        OptToGet(
+            .stringValue(key: .tagFile, name: "tag"), .single,
+            usage: "File to write pdf object tag to", argTag: "<file>"
+        )
+    ]
+
     static internal let svgOpts: OptsToGet = [
         OptToGet(
             .stringValue(key: .cssInclude, name: "css"), .single,

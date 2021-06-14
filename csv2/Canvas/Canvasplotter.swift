@@ -76,7 +76,7 @@ extension Canvas {
 
     func plotTail() {
         data.append("\n}\n")
-        let tagFile = settings.stringValue(.tagFile, in: .canvas)
+        let tagFile = settings.stringValue(.tagFile)
         if tagFile.hasContent {
             let id = settings.stringValue(.canvasID, in: .canvas)
             let w = settings.intValue(.width)
