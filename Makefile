@@ -24,6 +24,7 @@ SVGFILES = $(OPTFILES:data/%.opts=generated/%.svg)
 TXTFILES = $(OPTFILES:data/%.opts=generated/%.txt)
 
 JSINDEXMAKE = scripts/jsIndexMake.sh
+PDFINDEXMAKE = scripts/pdfIndexMake.sh
 PNGINDEXMAKE = scripts/pngIndexMake.sh
 SVGINDEXMAKE = scripts/svgIndexMake.sh
 
@@ -33,7 +34,7 @@ all:	generated/.made \
 	generated/svgindex.html \
 	generated/pngindex.html \
 	generated/jsindex.html	\
-	pdf
+	generated/pdfindex.html
 
 clean:
 	- rm -rfv generated
@@ -49,7 +50,7 @@ canvas: generated/jsindex.html
 
 png: generated/pngindex.html
 
-pdf:	$(PDFFILES)
+pdf:	generated/pdfindex.html
 
 svg: generated/svgindex.html
 
@@ -70,6 +71,11 @@ generated/jsindex.html: EXTRAS = generated/logo.svg out.js $(JSINDEXMAKE)
 generated/jsindex.html: $(JSFILES) $(TXTFILES) $(EXTRAS)
 	@ $(JSINDEXMAKE) $@
 	@ echo jsindex made
+
+generated/pdfindex.html: EXTRAS = out.pdf $(PDFINDEXMAKE)
+generated/pdfindex.html: $(PDFFILES) $(TXTFILES) $(EXTRAS)
+	@ $(PDFINDEXMAKE) $@
+	@ echo pdfindex made
 
 generated/pngindex.html: EXTRAS = generated/logo.svg out.png $(PNGINDEXMAKE)
 generated/pngindex.html: $(PNGFILES) $(TXTFILES) $(EXTRAS)
