@@ -72,6 +72,7 @@ done
 cat <<EOD
 <tr><th colspan="2" class="infoHeader">
 <a href="jsindex.html">JS Index</a>
+<a href="pdfindex.html">PDF Index</a>
 <a href="svgindex.html">SVG Index</a>
 </th></tr>
 </table>

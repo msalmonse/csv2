@@ -2,7 +2,8 @@ CSV2 = test/csv2
 CANVASFILES = $(shell find data -name \*.canvas -size +0)
 DOCFILES =\
 	docs/colourNamesList.png\
-	$(SHAPES:%=docs/%.svg)
+	$(SHAPES:%=docs/%.svg) \
+	docs/usage.md
 
 EXAMPLES =\
 	examples/layout.svg\
@@ -125,7 +126,11 @@ out.svg out.js out.png:
 	touch $@
 
 docs/%.svg: $(CSV2)
-	-@ $(CSV2) svg show $(@F:%.svg=%) --nocomment --colours green -- - - $@
+	-@ $(CSV2) svg show $(@F:%.svg=%) -cssid $(@F:%.svg=%) -colours green \
+		-nocomment -- - - $@
+
+docs/usage.md:	$(CSV2)
+	-@ $(CSV2) help usage -md >& $@
 
 examples/trig.svg: data/trig.csv examples/trig.json
 	-@ $(CSV2) svg --nocomment --cssid=svg-ex1 data/trig.csv examples/trig.json $@

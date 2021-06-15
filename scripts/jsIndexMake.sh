@@ -59,6 +59,7 @@ done
 # Footers
 cat <<EOD
 <tr><th colspan="2" class="infoHeader">
+<a href="pdfindex.html">PDF Index</a>
 <a href="pngindex.html">PNG Index</a>
 <a href="svgindex.html">SVG Index</a>
 </th></tr>

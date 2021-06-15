@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg id="ID-67f5ce" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+<svg id="cross" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <clipPath id="plotable">
-<rect x="3.0" y="1.0" width="-12.0" height="10.0" rx="0.0"  />
+<rect x="3.0" y="1.0" width="12.0" height="10.0" rx="0.0"  />
 </clipPath>
 </defs>
 <style>
-svg#ID-67f5ce { background-color: transparent }
-#ID-67f5ce path.lightBG { fill: rgba(220,220,220,0.667) }
-#ID-67f5ce path.midBG { fill: rgba(120,120,120,0.667) }
-#ID-67f5ce path.darkBG { fill: rgba(35,35,35,0.667) }
-#ID-67f5ce g.plotarea { opacity: 1.0 }
-#ID-67f5ce g.plotarea path:hover { stroke-width: 5.0 }
-#ID-67f5ce path { stroke-width: 2.0; fill: none; stroke-linecap: round }
-#ID-67f5ce path.axes { stroke: black }
-#ID-67f5ce path.xlabel, #ID-67f5ce path.ylabel { stroke: silver; stroke-width: 1 }
-#ID-67f5ce text { font-family: serif }
-#ID-67f5ce text.legend { font-size: 13.0px }
-#ID-67f5ce text.legend.headline { font-size: 16.2px; font-weight: bold }
-#ID-67f5ce text.legend.pie { font-size: 20.0px; text-anchor: middle }
-#ID-67f5ce text.subtitle { font-size: 15.0px; text-anchor: middle }
-#ID-67f5ce text.title { font-size: 25.0px; text-anchor: middle }
-#ID-67f5ce text.xlabel { font-size: 10.0px; text-anchor: middle }
-#ID-67f5ce text.xtags { font-size: 10.0px; text-anchor: middle }
-#ID-67f5ce text.xtitle, #ID-67f5ce text.ytitle { font-size: 12.0px; text-anchor: middle }
-#ID-67f5ce text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
-#ID-67f5ce path.cross { stroke: green }
-#ID-67f5ce text.cross, #ID-67f5ce rect.cross { fill: green; stroke: green }
-#ID-67f5ce path.cross.fill { stroke: none; fill: green; fill-opacity: 0.75 }
-#ID-67f5ce path.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
+svg#cross { background-color: rgba(0,0,0,0.000) }
+#cross path.lightBG { fill: rgba(220,220,220,0.667) }
+#cross path.midBG { fill: rgba(120,120,120,0.667) }
+#cross path.darkBG { fill: rgba(35,35,35,0.667) }
+#cross g.plotarea { opacity: 1.0 }
+#cross g.plotarea path:hover { stroke-width: 5.0 }
+#cross path { stroke-width: 2.0; fill: none; stroke-linecap: round }
+#cross path.black { stroke: black }
+#cross path.black.fill { fill: black; stroke: black }
+#cross path.axes { stroke: rgba(0,0,0,1.000) }
+#cross path.xlabel, #cross path.ylabel { stroke: rgba(0,0,0,0.400); stroke-width: 1 }
+#cross path.ylabel { stroke: rgba(0,0,0,0.400); stroke-width: 1 }
+#cross text { font-family: serif }
+#cross text.draft { fill: none; stroke: rgba(0,0,0,1.000); font-family: sans-serif; font-size: 3.0px; text-anchor: middle; dominant-baseline: middle }
+#cross text.legend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 13.0px; text-anchor: start;  }
+#cross text.legendheadline { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 16.2px; text-anchor: start;  }
+#cross text.pielabel { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: ;  }
+#cross text.pielabel.start { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: start;  }
+#cross text.pielabel.middle { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: middle;  }
+#cross text.pielabel.end { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: end;  }
+#cross text.pielegend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 20.0px; text-anchor: middle;  }
+#cross text.piesublegend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.5px; text-anchor: middle;  }
+#cross text.subtitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 15.0px; text-anchor: middle;  }
+#cross text.title { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 25.0px; text-anchor: middle;  }
+#cross text.xlabel { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: middle;  }
+#cross text.xtags { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.0px; text-anchor: middle;  }
+#cross text.xtitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.0px; text-anchor: middle;  }
+#cross text.ylabel { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
+#cross text.ytitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.0px; text-anchor: start;  }
+#cross path.cross { stroke: rgba(0,128,0,1.000) }
+#cross text.cross, #cross rect.cross { font-size: 13.0px; fill: rgba(0,128,0,1.000); stroke: rgba(0,128,0,1.000) }
+#cross path.cross.fill { stroke: none; fill: rgba(0,128,0,1.000); fill-opacity: 0.75 }
+#cross path.legend { stroke: rgba(0,0,0,0.400); stroke-width: 1.5 }
 </style>
 <path class="cross" d=" M 6.0,6.0 m -2.1,0.0 l -1.4,-0.7 v 1.4 l 1.4,-0.7 m 2.1,-2.1 l -0.7,-1.4 h 1.4 l -0.7,1.4 m 2.1,2.1 l 1.4,-0.7 v 1.4 l -1.4,-0.7 m -2.1,2.1 l -0.7,1.4 h 1.4 l -0.7,-1.4 m 0.0,-1.4 " />
 

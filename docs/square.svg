@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg id="ID-c5a34c" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
+<svg id="square" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <clipPath id="plotable">
-<rect x="3.0" y="1.0" width="-12.0" height="10.0" rx="0.0"  />
+<rect x="3.0" y="1.0" width="12.0" height="10.0" rx="0.0"  />
 </clipPath>
 </defs>
 <style>
-svg#ID-c5a34c { background-color: transparent }
-#ID-c5a34c path.lightBG { fill: rgba(220,220,220,0.667) }
-#ID-c5a34c path.midBG { fill: rgba(120,120,120,0.667) }
-#ID-c5a34c path.darkBG { fill: rgba(35,35,35,0.667) }
-#ID-c5a34c g.plotarea { opacity: 1.0 }
-#ID-c5a34c g.plotarea path:hover { stroke-width: 5.0 }
-#ID-c5a34c path { stroke-width: 2.0; fill: none; stroke-linecap: round }
-#ID-c5a34c path.axes { stroke: black }
-#ID-c5a34c path.xlabel, #ID-c5a34c path.ylabel { stroke: silver; stroke-width: 1 }
-#ID-c5a34c text { font-family: serif }
-#ID-c5a34c text.legend { font-size: 13.0px }
-#ID-c5a34c text.legend.headline { font-size: 16.2px; font-weight: bold }
-#ID-c5a34c text.legend.pie { font-size: 20.0px; text-anchor: middle }
-#ID-c5a34c text.subtitle { font-size: 15.0px; text-anchor: middle }
-#ID-c5a34c text.title { font-size: 25.0px; text-anchor: middle }
-#ID-c5a34c text.xlabel { font-size: 10.0px; text-anchor: middle }
-#ID-c5a34c text.xtags { font-size: 10.0px; text-anchor: middle }
-#ID-c5a34c text.xtitle, #ID-c5a34c text.ytitle { font-size: 12.0px; text-anchor: middle }
-#ID-c5a34c text.ylabel { font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
-#ID-c5a34c path.square { stroke: green }
-#ID-c5a34c text.square, #ID-c5a34c rect.square { fill: green; stroke: green }
-#ID-c5a34c path.square.fill { stroke: none; fill: green; fill-opacity: 0.75 }
-#ID-c5a34c path.legend { fill: silver; stroke: silver; fill-opacity: 0.1; stroke-width: 1.5 }
+svg#square { background-color: rgba(0,0,0,0.000) }
+#square path.lightBG { fill: rgba(220,220,220,0.667) }
+#square path.midBG { fill: rgba(120,120,120,0.667) }
+#square path.darkBG { fill: rgba(35,35,35,0.667) }
+#square g.plotarea { opacity: 1.0 }
+#square g.plotarea path:hover { stroke-width: 5.0 }
+#square path { stroke-width: 2.0; fill: none; stroke-linecap: round }
+#square path.black { stroke: black }
+#square path.black.fill { fill: black; stroke: black }
+#square path.axes { stroke: rgba(0,0,0,1.000) }
+#square path.xlabel, #square path.ylabel { stroke: rgba(0,0,0,0.400); stroke-width: 1 }
+#square path.ylabel { stroke: rgba(0,0,0,0.400); stroke-width: 1 }
+#square text { font-family: serif }
+#square text.draft { fill: none; stroke: rgba(0,0,0,1.000); font-family: sans-serif; font-size: 3.0px; text-anchor: middle; dominant-baseline: middle }
+#square text.legend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 13.0px; text-anchor: start;  }
+#square text.legendheadline { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 16.2px; text-anchor: start;  }
+#square text.pielabel { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: ;  }
+#square text.pielabel.start { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: start;  }
+#square text.pielabel.middle { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: middle;  }
+#square text.pielabel.end { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: end;  }
+#square text.pielegend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 20.0px; text-anchor: middle;  }
+#square text.piesublegend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.5px; text-anchor: middle;  }
+#square text.subtitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 15.0px; text-anchor: middle;  }
+#square text.title { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 25.0px; text-anchor: middle;  }
+#square text.xlabel { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: middle;  }
+#square text.xtags { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.0px; text-anchor: middle;  }
+#square text.xtitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.0px; text-anchor: middle;  }
+#square text.ylabel { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
+#square text.ytitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.0px; text-anchor: start;  }
+#square path.square { stroke: rgba(0,128,0,1.000) }
+#square text.square, #square rect.square { font-size: 13.0px; fill: rgba(0,128,0,1.000); stroke: rgba(0,128,0,1.000) }
+#square path.square.fill { stroke: none; fill: rgba(0,128,0,1.000); fill-opacity: 0.75 }
+#square path.legend { stroke: rgba(0,0,0,0.400); stroke-width: 1.5 }
 </style>
 <path class="square" d=" M 6.0,6.0 m -3.5,-3.5 h 7.0 v 7.0 h -7.0 v -7.0 h 3.5 m 0.0,3.5 " />
 

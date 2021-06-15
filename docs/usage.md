@@ -8,131 +8,128 @@ csv2 <canvas|pdf|png|svg> [options] [csv file [json file [output file]]]
 
 ```
 Arguments:
-  <csv file>      CSV data file name or - for stdin
-  <json file>     JSON settings file name
-  <output file>   Output file name,
-                  or stdout if omitted for canvas and svg
+  <csv file>       CSV data file name or - for stdin
+  <json file>      JSON settings file name
+  <output file>    Output file name,
+                   or stdout if omitted for canvas and svg
 ```
 
 ```
 Common options:
   -bared <bitmap¹>
-                  Plots to show as bars
+                   Plots to show as bars
   -baroffset <offset>
-                  Bar offset (-1 to calculate)
-  -barwidth       Bar width (-1 to calculate)
-  -bezier <n>     Bézier curve smoothing, 0 means none
-  -bg <colour>    Background colour
-  -black          Set undefined colours to black
-  -bold           Set font-weight to bold
-  -bounds         Check options for bounds, nobounds to not check
-  -chart <type>   The type of chart:
-                  horizontal - index values horizontal and plot
-                  values vertical,
-                  pie - a grid of pie chart plots or,
-                  vertical - a list of values, like a bar chart only
-                  vertical.
-                  A unique prefix is sufficient.
+                   Bar offset (-1 to calculate)
+  -barwidth        Bar width (-1 to calculate)
+  -bezier <n>      Bézier curve smoothing, 0 means none
+  -bg <colour>     Background colour
+  -black           Set undefined colours to black
+  -bold            Set font-weight to bold
+  -bounds          Check options for bounds, nobounds to not check
+  -chart <type>    The type of chart:
+                   horizontal - index values horizontal and plot
+                   values vertical,
+                   pie - a grid of pie chart plots or,
+                   vertical - a list of values, like a bar chart
+                   only vertical.
+                   A unique prefix is sufficient.
   -colours <colour>...
-                  Colours to use for plots
+                   Colours to use for plots
    aka: colors
-  -comment        Add csv2 comment to plot, nocomment to not add
+  -comment         Add csv2 comment to plot, nocomment to not add
   -dashed <bitmap¹>
-                  Plots with dashed lines
+                   Plots with dashed lines
   -dashes <n,n...>...
-                  List of plot dash patterns to use
+                   List of plot dash patterns to use
   -debug <bitmap¹>
-                  Add debug info
-  -distance <n>   Minimum distance between data points
-  -draft [text]   Mark the chart as a draft,
-                  the optional argument sets the text
-  -fg <colour>    Foreground colour for non-text items
+                   Add debug info
+  -distance <n>    Minimum distance between data points
+  -draft [text]    Mark the chart as a draft,
+                   the optional argument sets the text
+  -fg <colour>     Foreground colour for non-text items
   -filled <bitmap¹>
-                  Plots to show filled
+                   Plots to show filled
   -font <font name>
-                  Font family
-  -headers <n>    Header rows or columns
-  -height <n>     Chart height
+                   Font family
+  -headers <n>     Header rows or columns
+  -height <n>      Chart height
   -include <bitmap¹>
-                  Plots to include, default all
-  -index <n>      Index row or column
-  -italic         Use an italic font
-  -legends        Show plot names, colours, dashes and shapes,
-                  nolegends to not
-  -logo <url>     Image URL for top right corner
-  -logx           Set abcissa to log
-  -logy           Set ordinate to log
+                   Plots to include, default all
+  -index <n>       Index row or column
+  -italic          Use an italic font
+  -legends         Show plot names, colours, dashes and shapes,
+                   nolegends to not
+  -logo <url>      Image URL for top right corner
+  -logx            Set abcissa to log
+  -logy            Set ordinate to log
   -nameheader <n>
-                  Plot name row or column
+                   Plot name row or column
   -names <name>...
-                  List of plot names
-  -opacity        Opacity for plots
+                   List of plot names
+  -opacity         Opacity for plots
   -random <n [n [n]]>
-                  Generate a random SVG with:
-                  #plots [max value [min value]]
+                   Generate a random SVG with:
+                   #plots [max value [min value]]
   -reserve <n [n [n [n]]]>
-                  Reserved space on the left [top [right [bottom]]]
-  -rows           Group data by rows
+                   Reserved space on the left [top [right [bottom]]]
+  -rows            Group data by rows
   -scattered <bitmap¹>
-                  Plots to show as scatter plots
-  -semi           Use semicolons to separate columns
+                   Plots to show as scatter plots
+  -semi            Use semicolons to separate columns
   -shapes <shape>...
-                  List of shapes to use
+                   List of shapes to use
   -showpoints <bitmap¹>
-                  Data plots with points
-  -size <n>       Base font size
-  -smooth <n>     EMA smoothing, 0 means none
-  -sortx          Sort points by the x values before plotting
-  -stroke <n>     Stroke width
-  -subheader <n>
-                  Sub-title row or column source
+                   Data plots with points
+  -size <n>        Base font size
+  -smooth <n>      EMA smoothing, 0 means none
+  -sortx           Sort points by the x values before plotting
+  -stroke <n>      Stroke width
+  -subheader <n>   Sub-title row or column source
   -subtitle <text>
-                  Sub-title
+                   Sub-title
   -textcolour <colour>
-                  Foreground text colour
+                   Foreground text colour
    aka: textcolor
-  -title <text>   Chart title
-  -tsv            Use tabs to seperate columns
-  -verbose        Add extra information
-  -width <n>      Chart width
-  -xmax <n>       Abscissa maximum
-  -xmin <n>       Abscissa minimum
-  -xtags <n>      Row or column with abscissa tags
-  -xtick <n>      Distance between abcissa ticks
-  -ymax <n>       Ordinate maximum
-  -ymin <n>       Ordinate minimum
-  -ytick <n>      Distance between ordinate ticks
+  -title <text>    Chart title
+  -tsv             Use tabs to seperate columns
+  -verbose         Add extra information
+  -width <n>       Chart width
+  -xmax <n>        Abscissa maximum
+  -xmin <n>        Abscissa minimum
+  -xtags <n>       Row or column with abscissa tags
+  -xtick <n>       Distance between abcissa ticks
+  -ymax <n>        Ordinate maximum
+  -ymin <n>        Ordinate minimum
+  -ytick <n>       Distance between ordinate ticks
 ```
 
 ```
 Canvas specific options:
-  -canvas <name>
-                  Canvas name
+  -canvas <name>   Canvas name
 ```
 
 ```
 SVG specific options:
-  -css <file>     Include file for css styling
-  -cssid <id>     CSS id for <SVG> tag
-  -hover          Add CSS code to emphasize hovered plots, nohover
-                  to not add
-  -svg <file>     Include file for svg elements
+  -css <file>      Include file for css styling
+  -cssid <id>      CSS id for <SVG> tag
+  -hover           Add CSS code to emphasize hovered plots, nohover
+                   to not add
+  -svg <file>      Include file for svg elements
 ```
 
 ```
 Help specific options:
-  -indent <n>     Indent for option usage
-  -left <n>       Left margin for help text
-  -right <n>      Right margin for text
-  -usage <n>      Left margin for option usage
+  -indent <n>      Indent for option usage
+  -left <n>        Left margin for help text
+  -right <n>       Right margin for text
+  -usage <n>       Left margin for option usage
 ```
 
 ```
   ¹ <bitmap> means a list of plot numbers like '1 2 3 4'
-  corresponding to the rows or columns.
-  Negative numbers forms the upper bound on a range, '1 -4' is the
-  same as '1 2 3 4'. The first number is initially 1 so in fact '-4'
-  suffices.
+  corresponding to the rows or columns. Negative numbers form the
+  upper bound on a range, i.e. '1 -4' is the same as '1 2 3 4'. The
+  first number is initially 1 so in fact '-4' suffices.
   The word 'all' means all i.e. '1 -64', only on the command line
   though.
   The list must be terminated by a '--', either as a long argument
