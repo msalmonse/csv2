@@ -209,8 +209,8 @@ func helpUsage(_ execName: String, _ markdown: Bool) {
     printSpecificUsage(for: "SVG", svgOptsUsage(), backTicks2)
     printSpecificUsage(for: "Help", helpOptsUsage(), backTicks2)
     let bitmap = [
-        "¹ <bitmap> means a list of plot numbers like '1 2 3 4' corresponding to the rows or columns.",
-        "Negative numbers forms the upper bound on a range, '1 -4' is the same as '1 2 3 4'. " +
+        "¹ <bitmap> means a list of plot numbers like '1 2 3 4' corresponding to the rows or columns. " +
+        "Negative numbers form the upper bound on a range, i.e. '1 -4' is the same as '1 2 3 4'. " +
         "The first number is initially 1 so in fact '-4' suffices.",
         "The word 'all' means all i.e. '1 -64', only on the command line though.",
         "The list must be terminated by a '--', either as a long argument or a literal '--'.",

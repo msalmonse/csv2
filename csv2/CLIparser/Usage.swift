@@ -16,7 +16,7 @@ enum UsageStyle { case normal, textOnly, textWithIndent }
 
 struct UsageLeftRight {
     static var leftMargin = 2
-    static var leftUsage = 20
+    static var leftUsage = 21
     static var indent = 4
     static var rightMargin = 70
 
@@ -74,11 +74,21 @@ struct UsageLeftRight {
     }
 }
 
+/// Count the number of opts that will have usage entries
+/// - Parameter opts: options to get
+/// - Returns: count of options with usage
+
+func usageCount(_ opts: OptsToGet) -> Int {
+    let count = opts.reduce(0) { $1.options.isHidden ? $0 : $0 + 1 }
+    return count
+}
+
 /// Options usage
 /// - Parameter opts: options for usage
 /// - Returns: usage string
 
-func optUsage(_ opts: OptsToGet) -> String {
+func optUsage(_ opts: OptsToGet) -> String? {
+    if usageCount(opts) == 0 { return nil }
     return UsageLeftRight.usage().optUsage(opts, options: [.longOnly])
 }
 
