@@ -84,8 +84,8 @@ struct StylesList {
         // now the transform
         let x = settings.width / 2.0
         let y = settings.height / 2.0
-        let angle = atan(settings.height / settings.width)
-        draft.transform = Transform.rotateAround(x: x, y: y, sin: sin(angle), cos: cos(angle))
+        let hyp = sqrt(x * x + y * y)
+        draft.transform = Transform.rotateAround(x: x, y: y, sin: y / hyp, cos: x / hyp)
 
         return draft
     }
