@@ -76,6 +76,7 @@ extension Canvas {
 
     func plotTail() {
         data.append("\n}\n")
+#if DEBUG
         let tagFile = settings.stringValue(.tagFile)
         if tagFile.hasContent {
             let id = settings.stringValue(.canvasID, in: .canvas)
@@ -93,6 +94,7 @@ extension Canvas {
                 print("Error creating tag data", to: &standardError)
             }
         }
+#endif
     }
 
     /// Write text to canvas

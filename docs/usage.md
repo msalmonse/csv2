@@ -108,7 +108,6 @@ Common options:
 Canvas specific options:
   -canvas <name>
                   Canvas name
-  -tag <file>     File to write canvas tag to
 ```
 
 ```

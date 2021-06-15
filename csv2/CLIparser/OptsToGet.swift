@@ -15,7 +15,7 @@ extension Options {
             usage: "Canvas name", argTag: "<name>"
         ),
         OptToGet(
-            .stringValue(key: .tagFile, name: "tag"), .single,
+            .stringValue(key: .tagFile, name: "tag"), .single, options: [.hidden],
             usage: "File to write canvas tag to", argTag: "<file>"
         )
     ]
@@ -42,7 +42,7 @@ extension Options {
 
     static internal let pdfOpts: OptsToGet = [
         OptToGet(
-            .stringValue(key: .tagFile, name: "tag"), .single,
+            .stringValue(key: .tagFile, name: "tag"), .single, options: [.hidden],
             usage: "File to write pdf object tag to", argTag: "<file>"
         )
     ]

@@ -46,6 +46,7 @@ extension PDF {
         if let data = doc.dataRepresentation() {
             try data.write(to: url)
         }
+#if DEBUG
         let tagFile = settings.stringValue(.tagFile)
         if tagFile.hasContent {
             let w = settings.intValue(.width) + 6
@@ -61,5 +62,6 @@ extension PDF {
                 print("Error creating tag data", to: &standardError)
             }
         }
+#endif
     }
 }
