@@ -15,7 +15,7 @@ extension Options {
             usage: "Canvas name", argTag: "<name>"
         ),
         OptToGet(
-            .stringValue(key: .tagFile, name: "tag"), .single, options: [.hidden],
+            .stringValue(key: .tagFile, name: "tag"), .single, option: .hidden,
             usage: "File to write canvas tag to", argTag: "<file>"
         )
     ]
@@ -29,7 +29,7 @@ extension Options {
             .intSpecial(key: .left, name: "left"), .single,
             usage: "Left margin for help text", argTag: "<n>"
         ),
-        OptToGet(.boolSpecial(key: .md, name: "md"), options: [.hidden]),
+        OptToGet(.boolSpecial(key: .md, name: "md"), option: .hidden),
         OptToGet(
             .intSpecial(key: .right, name: "right"), .single,
             usage: "Right margin for text", argTag: "<n>"
@@ -42,7 +42,7 @@ extension Options {
 
     static internal let pdfOpts: OptsToGet = [
         OptToGet(
-            .stringValue(key: .tagFile, name: "tag"), .single, options: [.hidden],
+            .stringValue(key: .tagFile, name: "tag"), .single, option: .hidden,
             usage: "File to write pdf object tag to", argTag: "<file>"
         )
     ]
@@ -57,7 +57,7 @@ extension Options {
             usage: "CSS id for <SVG> tag", argTag: "<id>"
         ),
         OptToGet(
-            .boolValue(key: .hover, name: "hover"), options: [.flag],
+            .boolValue(key: .hover, name: "hover"), option: .flag,
             usage: "Add CSS code to emphasize hovered plots, nohover to not add"
         ),
         OptToGet(
@@ -68,7 +68,7 @@ extension Options {
 
     static internal let commonOpts: OptsToGet = [
         OptToGet(
-            .bitmapValue(key: .bared, name: "bared"), .onePlus, options: [.includeMinus],
+            .bitmapValue(key: .bared, name: "bared"), .onePlus, option: .includeMinus,
             usage: "Plots to show as bars", argTag: "<bitmap¹>"
         ),
         OptToGet(
@@ -96,7 +96,7 @@ extension Options {
             usage: "Set font-weight to bold"
         ),
         OptToGet(
-            .boolValue(key: .bounded, name: "bounds"), options: [.flag],
+            .boolValue(key: .bounded, name: "bounds"), option: .flag,
             usage: "Check options for bounds, nobounds to not check"
         ),
         OptToGet(
@@ -111,15 +111,15 @@ extension Options {
                 argTag: "<type>"
         ),
         OptToGet(
-            .colourArray(key: .colours, name: "colours"), aka: ["colors"], .onePlus, options: [.multi],
+            .colourArray(key: .colours, name: "colours"), aka: ["colors"], .onePlus, option: .multi,
             usage: "Colours to use for plots", argTag: "<colour>..."
         ),
         OptToGet(
-            .boolValue(key: .comment, name: "comment"), options: [.flag],
+            .boolValue(key: .comment, name: "comment"), option: .flag,
             usage: "Add csv2 comment to plot, nocomment to not add"
         ),
         OptToGet(
-            .bitmapValue(key: .dashedLines, name: "dashed"), .onePlus, options: [.includeMinus],
+            .bitmapValue(key: .dashedLines, name: "dashed"), .onePlus, option: .includeMinus,
             usage: "Plots with dashed lines", argTag: "<bitmap¹>"
         ),
         OptToGet(
@@ -139,7 +139,7 @@ extension Options {
             usage: "Mark the chart as a draft,\nthe optional argument sets the text", argTag: "[text]"
         ),
         OptToGet(
-            .bitmapValue(key: .filled, name: "filled"), .onePlus, options: [.includeMinus],
+            .bitmapValue(key: .filled, name: "filled"), .onePlus, option: .includeMinus,
             usage: "Plots to show filled", argTag: "<bitmap¹>"
         ),
         OptToGet(
@@ -159,7 +159,7 @@ extension Options {
             usage: "Chart height", argTag: "<n>"
         ),
         OptToGet(
-            .bitmapValue(key: .include, name: "include"), .onePlus, options: [.includeMinus],
+            .bitmapValue(key: .include, name: "include"), .onePlus, option: .includeMinus,
             usage: "Plots to include, default all", argTag: "<bitmap¹>"
         ),
         OptToGet(
@@ -171,7 +171,7 @@ extension Options {
             usage: "Use an italic font"
         ),
         OptToGet(
-            .boolValue(key: .legends, name: "legends"), options: [.flag],
+            .boolValue(key: .legends, name: "legends"), option: .flag,
             usage: "Show plot names, colours, dashes and shapes, nolegends to not"
         ),
         OptToGet(
@@ -199,7 +199,7 @@ extension Options {
             usage: "Opacity for plots"
         ),
         OptToGet(
-            .intSpecialArray(key: .random, name: "random"), 1...3, options: [.includeMinus],
+            .intSpecialArray(key: .random, name: "random"), 1...3, option: .includeMinus,
             usage: "Generate a random SVG with:\n#plots [max value [min value]]", argTag: "<n [n [n]]>"
         ),
         OptToGet(
@@ -211,7 +211,7 @@ extension Options {
             usage: "Group data by rows"
         ),
         OptToGet(
-            .bitmapValue(key: .scatterPlots, name: "scattered"), .onePlus, options: [.includeMinus],
+            .bitmapValue(key: .scatterPlots, name: "scattered"), .onePlus, option: .includeMinus,
             usage: "Plots to show as scatter plots", argTag: "<bitmap¹>"
         ),
         OptToGet(
@@ -223,7 +223,7 @@ extension Options {
             usage: "List of shapes to use", argTag: "<shape>..."
         ),
         OptToGet(
-            .bitmapValue(key: .showDataPoints, name: "showpoints"), .onePlus, options: [.includeMinus],
+            .bitmapValue(key: .showDataPoints, name: "showpoints"), .onePlus, option: .includeMinus,
             usage: "Data plots with points", argTag: "<bitmap¹>"
         ),
         OptToGet(
@@ -298,8 +298,8 @@ extension Options {
             .doubleValue(key: .yTick, name: "ytick"), .single,
             usage: "Distance between ordinate ticks", argTag: "<n>"
         ),
-        OptToGet(.boolSpecial(key: .help, name: "help"), options: [.hidden]),
-        OptToGet(.boolSpecial(key: .help, name: "?"), options: [.hidden])
+        OptToGet(.boolSpecial(key: .help, name: "help"), option: .hidden),
+        OptToGet(.boolSpecial(key: .help, name: "?"), option: .hidden)
     ]
 
     static internal let positionalOpts: OptsToGet = [
