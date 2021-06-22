@@ -10,14 +10,29 @@ import CLIparser
 
 extension Options {
 
+    private static let boolValues = [
+        "yes":  true,
+        "true": true,
+        "1": true,
+        "no": false,
+        "false": false,
+        "0": false
+    ]
+
+    func boolValue(_ opt: OptGot, fromEnvironment: Bool, val0: OptValueAt) throws -> Bool {
+        if !fromEnvironment { return opt.count > 0 }
+        if let val = Options.boolValues[(opt.stringValue ?? "").lowercased()] { return val }
+        throw val0.error("Boolean")
+    }
+
     /// Assign an option from the command line
     /// - Parameter opt: the opt to assign
     /// - Throws: CLIparserError.illegalValue
 
-    mutating func getOpt(opt: OptGot) throws {
+    mutating func getOpt(opt: OptGot, fromEnvironment: Bool = false) throws {
         // swiftlint:disable:next force_cast
         let optTag = opt.tag as! OptionsKey
-        let val0 = opt.optValuesAt.hasIndex(0)  ? opt.optValuesAt[0] : OptValueAt.empty
+        let val0 = opt.optValuesAt.hasIndex(0) ? opt.optValuesAt[0] : OptValueAt.empty
 
         switch optTag {
         case let .bitmapValue(key, _): try setBitmap(opt.optValuesAt, key: key)
@@ -31,7 +46,8 @@ extension Options {
             case .tsv: tsv = true
             case .verbose: verbose = true
             }
-        case let .boolValue(key, _): setBool((opt.count > 0), key: key)
+        case let .boolValue(key, _):
+            setBool(try boolValue(opt, fromEnvironment: fromEnvironment, val0: val0), key: key)
         case let .colourArray(key, _): try setColourArray(opt.optValuesAt, key: key)
         case let .colourValue(key, _): try setColour(val0, key: key)
         case .doubleArray: break
@@ -50,8 +66,7 @@ extension Options {
                     fallthrough
                 case 1:
                     try setDouble(opt.optValuesAt[0], key: .reserveLeft)
-                default:
-                    break
+                default: throw val0.error("Double Array")
                 }
             }
         case let .doubleValue(key, _): try setDouble(val0, key: key)

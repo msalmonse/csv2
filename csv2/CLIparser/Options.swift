@@ -8,6 +8,8 @@
 import Foundation
 import CLIparser
 
+/// The main object for parsing the command line arguments
+
 struct Options {
     let argsList = ArgumentList(options: [.longOnly])
     var debug = 0
@@ -51,6 +53,11 @@ struct Options {
         case .pdf: opts += Self.pdfOpts
         case .svg: opts += Self.svgOpts
         default: break
+        }
+
+        let envGot = environmentParse(opts)
+        for opt in envGot {
+            try getOpt(opt: opt, fromEnvironment: true)
         }
 
         let optsGot = try argsList.optionsParse(opts, OptionsKey.positionalValues)

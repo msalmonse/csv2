@@ -58,7 +58,7 @@ extension Options {
         ),
         OptToGet(
             .boolValue(key: .hover, name: "hover"), option: .flag,
-            usage: "Add CSS code to emphasize hovered plots, nohover to not add"
+            usage: "Add CSS code to emphasize hovered plots, nohover to not add", env: "CVS2_HOVER"
         ),
         OptToGet(
             .stringValue(key: .svgInclude, name: "svg"), .single,
@@ -81,11 +81,11 @@ extension Options {
         ),
         OptToGet(
             .colourValue(key: .backgroundColour, name: "bg"), .single,
-            usage: "Background colour", argTag: "<colour>"
+            usage: "Background colour", argTag: "<colour>", env: "CSV2_BACKGROUND_COLOUR"
         ),
         OptToGet(
             .doubleValue(key: .bezier, name: "bezier"), .single,
-            usage: "Bézier curve smoothing, 0 means none", argTag: "<n>"
+            usage: "Bézier curve smoothing, 0 means none", argTag: "<n>", env: "CVS2_BEZIER"
         ),
         OptToGet(
             .boolValue(key: .black, name: "black"),
@@ -97,7 +97,7 @@ extension Options {
         ),
         OptToGet(
             .boolValue(key: .bounded, name: "bounds"), option: .flag,
-            usage: "Check options for bounds, nobounds to not check"
+            usage: "Check options for bounds, nobounds to not check", env: "CVS2_BOUNDS"
         ),
         OptToGet(
             .stringValue(key: .chartType, name: "chart"), .single,
@@ -148,7 +148,7 @@ extension Options {
         ),
         OptToGet(
             .colourValue(key: .foregroundColour, name: "fg"), .single,
-            usage: "Foreground colour for non-text items", argTag: "<colour>"
+            usage: "Foreground colour for non-text items", argTag: "<colour>", env: "CSV2_FOREGROUND_COLOUR"
         ),
         OptToGet(
             .intSpecial(key: .headers, name: "headers"), .single,
@@ -156,7 +156,7 @@ extension Options {
         ),
         OptToGet(
             .intValue(key: .height, name: "height"), .single,
-            usage: "Chart height", argTag: "<n>"
+            usage: "Chart height", argTag: "<n>", env: "CSV2_HEIGHT"
         ),
         OptToGet(
             .bitmapValue(key: .include, name: "include"), .onePlus, option: .includeMinus,
@@ -252,7 +252,7 @@ extension Options {
         ),
         OptToGet(
             .colourValue(key: .textcolour, name: "textcolour"), aka: ["textcolor"], .single,
-            usage: "Foreground text colour", argTag: "<colour>"
+            usage: "Foreground text colour", argTag: "<colour>", env: "CSV2_TEXT_COLOUR"
         ),
         OptToGet(
             .stringValue(key: .title, name: "title"), .single,
@@ -268,7 +268,7 @@ extension Options {
         ),
         OptToGet(
             .intValue(key: .width, name: "width"), .single,
-            usage: "Chart width", argTag: "<n>"
+            usage: "Chart width", argTag: "<n>", env: "CSV2_WIDTH"
         ),
         OptToGet(
             .doubleValue(key: .xMax, name: "xmax"), .single,

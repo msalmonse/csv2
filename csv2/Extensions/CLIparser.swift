@@ -16,7 +16,8 @@ extension OptToGet {
         _ minMax: ClosedRange<UInt8> = 0...0,
         options: [Options],
         usage: String? = nil,
-        argTag: String? = nil
+        argTag: String? = nil,
+        env: String? = nil
     ) {
         self.init(
             short: short,
@@ -26,7 +27,8 @@ extension OptToGet {
             options: options,
             tag: optTag,
             usage: usage,
-            argTag: argTag
+            argTag: argTag,
+            env: env
         )
     }
 
@@ -37,7 +39,8 @@ extension OptToGet {
         _ minMax: ClosedRange<UInt8> = 0...0,
         option: Options,
         usage: String? = nil,
-        argTag: String? = nil
+        argTag: String? = nil,
+        env: String? = nil
     ) {
         self.init(
             short: short,
@@ -47,7 +50,8 @@ extension OptToGet {
             options: [option] ,
             tag: optTag,
             usage: usage,
-            argTag: argTag
+            argTag: argTag,
+            env: env
         )
     }
 
@@ -57,7 +61,8 @@ extension OptToGet {
         aka: [String]? = nil,
         _ minMax: ClosedRange<UInt8> = 0...0,
         usage: String? = nil,
-        argTag: String? = nil
+        argTag: String? = nil,
+        env: String? = nil
     ) {
         self.init(
             short: short,
@@ -67,7 +72,8 @@ extension OptToGet {
             options: [],
             tag: optTag,
             usage: usage,
-            argTag: argTag
+            argTag: argTag,
+            env: env
         )
     }
 }

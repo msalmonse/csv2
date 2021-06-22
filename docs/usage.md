@@ -22,10 +22,13 @@ Common options:
                    Bar offset (-1 to calculate)
   -barwidth        Bar width (-1 to calculate)
   -bezier <n>      Bézier curve smoothing, 0 means none
+   environment variable: CVS2_BEZIER
   -bg <colour>     Background colour
+   environment variable: CSV2_BACKGROUND_COLOUR
   -black           Set undefined colours to black
   -bold            Set font-weight to bold
   -bounds          Check options for bounds, nobounds to not check
+   environment variable: CVS2_BOUNDS
   -chart <type>    The type of chart:
                    horizontal - index values horizontal and plot
                    values vertical,
@@ -47,12 +50,14 @@ Common options:
   -draft [text]    Mark the chart as a draft,
                    the optional argument sets the text
   -fg <colour>     Foreground colour for non-text items
+   environment variable: CSV2_FOREGROUND_COLOUR
   -filled <bitmap¹>
                    Plots to show filled
   -font <font name>
                    Font family
   -headers <n>     Header rows or columns
   -height <n>      Chart height
+   environment variable: CSV2_HEIGHT
   -include <bitmap¹>
                    Plots to include, default all
   -index <n>       Index row or column
@@ -90,10 +95,12 @@ Common options:
   -textcolour <colour>
                    Foreground text colour
    aka: textcolor
+   environment variable: CSV2_TEXT_COLOUR
   -title <text>    Chart title
   -tsv             Use tabs to seperate columns
   -verbose         Add extra information
   -width <n>       Chart width
+   environment variable: CSV2_WIDTH
   -xmax <n>        Abscissa maximum
   -xmin <n>        Abscissa minimum
   -xtags <n>       Row or column with abscissa tags
@@ -114,6 +121,7 @@ SVG specific options:
   -cssid <id>      CSS id for <SVG> tag
   -hover           Add CSS code to emphasize hovered plots, nohover
                    to not add
+   environment variable: CVS2_HOVER
   -svg <file>      Include file for svg elements
 ```
 
