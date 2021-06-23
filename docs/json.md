@@ -67,7 +67,7 @@ Use bold text.
 
 Bounds check some parameters
 
-#### canvas (String)<sup>[canvas only](#fncanvas)</sup>
+#### canvas (String) <sup>[canvas only](#fncanvas)</sup>
 - **Command Line Option:** `--canvas`
 
 The id of the canvas to write to.
@@ -83,9 +83,9 @@ More on colours can be found [here](colours.md).
 - **Command Line Option:** `--comment` <sup>[8](#fn8)</sup>
 - **Default value**: `true`
 
-Add an identifying comment to the SVG
+Add an identifying comment to the chart.
 
-#### cssClasses (Array of Strings)<sup>[svg only](#fnsvg)</sup>
+#### cssClasses (Array of Strings) <sup>[svg only](#fnsvg)</sup>
 
 The elements of the SVG use CSS for styling with each plot having it's own class. The
 classes in this list are assigned to each row or column in turn including the index. Plots
@@ -199,7 +199,7 @@ The number of rows that do not contain data.<sup>[1](#fn1)</sup>
 
 The height of the generated Canvas or SVG
 
-#### hover (Bool)<sup>[svg only](#fnsvg)</sup>
+#### hover (Bool) <sup>[svg only](#fnsvg)</sup>
 - **Command Line Option:** `--hover` <sup>[8](#fn8)</sup>
 - **Default value**: `true`
 
@@ -294,21 +294,21 @@ Some of the pdf attributes can be defined here:
 - **title**: the title of the chart,
 if this is not specified then the chart `title` is used if defined.
 
-#### pieLabel (Bool)<sup>[pie](#fnpie)</sup>
+#### pieLabel (Bool) <sup>[pie](#fnpie)</sup>
 - **Default value**: `false`
 
 Display the percentage of each slice unless the slice is too small.
 
-#### pieSubLegend (Bool)<sup>[pie](#fnpie)</sup>
+#### pieSubLegend (Bool) <sup>[pie](#fnpie)</sup>
 - **Default value**: `false`
 
 Display the total under the pie chart legend, see [xTagsHeader](#xtags) below.
 
-#### pieSubLegendPrefix (String)<sup>[pie](#fnpie)</sup>
+#### pieSubLegendPrefix (String) <sup>[pie](#fnpie)</sup>
 
 Text to add before the total on the sub legend line.
 
-#### pieSubLegendSuffix (String)<sup>[pie](#fnpie)</sup>
+#### pieSubLegendSuffix (String) <sup>[pie](#fnpie)</sup>
 
 Text to add after the total on the sub legend line.
 
@@ -414,13 +414,13 @@ above then the csv is not checked. Embedded commas will probably cause problems.
 
 This options is the path of a file to include at the end the SVG, just before the `</svg>`
 
-#### tagFile** (String)<sup>[canvas only](#fncanvas)</sup>
+#### tagFile** (String) <sup>[canvas only](#fncanvas)</sup>
 - **Command Line Option:** `--tag`
 
 Name of the file to receive the `<canvas>` tag that the generated JavaScript expects to
 use.
 
-#### tagFile** (String)<sup>[pdf only](#fnpdf)</sup>
+#### tagFile** (String) <sup>[pdf only](#fnpdf)</sup>
 - **Command Line Option:** `--tag`
 
 Name of the file to receive the `<object>` tag that can be use to embed the pdf in
@@ -429,7 +429,7 @@ an HTML file.
 #### title** (String)
 - **Command Line Option:** `--title`
 
-The title attached to the Canvas or SVG
+The title attached to the chart
 
 #### width (Int)
 - **Command Line Option:** `--width`
