@@ -55,6 +55,7 @@ Common options:
                    Plots to show filled
   -font <font name>
                    Font family
+   environment variable: CVS2_FONT_FAMILY
   -headers <n>     Header rows or columns
   -height <n>      Chart height
    environment variable: CSV2_HEIGHT
@@ -65,6 +66,7 @@ Common options:
   -legends         Show plot names, colours, dashes and shapes,
                    nolegends to not
   -logo <url>      Image URL for top right corner
+   environment variable: CSV2_LOGO_URL
   -logx            Set abcissa to log
   -logy            Set ordinate to log
   -nameheader <n>
@@ -86,9 +88,11 @@ Common options:
   -showpoints <bitmap¹>
                    Data plots with points
   -size <n>        Base font size
+   environment variable: CSV2_BASE_FONT_SIZE
   -smooth <n>      EMA smoothing, 0 means none
   -sortx           Sort points by the x values before plotting
   -stroke <n>      Stroke width
+   environment variable: CSV2_STROKE_WIDTH
   -subheader <n>   Sub-title row or column source
   -subtitle <text>
                    Sub-title

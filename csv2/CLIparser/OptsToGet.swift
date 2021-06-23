@@ -144,7 +144,7 @@ extension Options {
         ),
         OptToGet(
             .stringValue(key: .fontFamily, name: "font"), .single,
-            usage: "Font family", argTag: "<font name>"
+            usage: "Font family", argTag: "<font name>", env: "CVS2_FONT_FAMILY"
         ),
         OptToGet(
             .colourValue(key: .foregroundColour, name: "fg"), .single,
@@ -176,7 +176,7 @@ extension Options {
         ),
         OptToGet(
             .stringValue(key: .logoURL, name: "logo"), .single,
-            usage: "Image URL for top right corner", argTag: "<url>"
+            usage: "Image URL for top right corner", argTag: "<url>", env: "CSV2_LOGO_URL"
         ),
         OptToGet(
             .boolValue(key: .logx, name: "logx"),
@@ -228,7 +228,7 @@ extension Options {
         ),
         OptToGet(
             .doubleValue(key: .baseFontSize, name: "size"), .single,
-            usage: "Base font size", argTag: "<n>"
+            usage: "Base font size", argTag: "<n>", env: "CSV2_BASE_FONT_SIZE"
         ),
         OptToGet(
             .doubleValue(key: .smooth, name: "smooth"), .single,
@@ -240,7 +240,7 @@ extension Options {
         ),
         OptToGet(
             .doubleValue(key: .strokeWidth, name: "stroke"), .single,
-            usage: "Stroke width", argTag: "<n>"
+            usage: "Stroke width", argTag: "<n>", env: "CSV2_STROKE_WIDTH"
         ),
         OptToGet(
             .intValue(key: .subTitleHeader, name: "subheader"), .single,

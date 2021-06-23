@@ -45,7 +45,7 @@ be pleasant. The bitmaps used to select plots though are limited to 63 plots, th
 The legends panel takes about 25 pixels with the default base font size, double that if lines or shapes are displayed, which means 
 that with the default height of 600 pixels you can only count on 20 plots in the panel.
 
-The [logo](docs/json.md#logoURL) is displayed using an `<image>` element which is loaded when the SVG is displayed.
+The [logo](docs/json.md#logourl) is displayed using an `<image>` element which is loaded when the SVG is displayed.
 At least some browsers don't load that image when the SVG is loaded in an HTML `<img>`. 
 The same is true for Canvas charts but PNG charts have the logo loaded when it is created. PDF and PNG charts only support
 bitmapped images but SVG charts can have SVG logos.
