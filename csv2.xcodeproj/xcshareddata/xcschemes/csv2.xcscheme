@@ -85,27 +85,19 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "png  --bg cornsilk  -text maroon "
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--logo https://newcastlebeach.org/images/128x128-11.png"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/plot.csv"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "png show triangle --colours green --nocomment -- - -"
+            argument = "svg -chart pie"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/data/plot.json"
-            isEnabled = "NO">
+            argument = "${PROJECT_DIR}/data/pie.csv"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "${PROJECT_DIR}/out.png"
+            argument = "${PROJECT_DIR}/data/pie.json"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "${PROJECT_DIR}/out.svg"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -20,12 +20,15 @@ extension Plot {
         styles.colour = .black
         styles.cssClass = "black"
         styles.strokeWidth = 1.0
-        let centrePath = Path([.moveTo(xy: centre), .circle(r: 4.0)])
-        plotter.plotPath(centrePath, styles: styles, fill: true)
+        // let centrePath = Path([.moveTo(xy: centre), .circle(r: 4.0)])
+        // plotter.plotPath(centrePath, styles: styles, fill: true)
         let ringPath = Path(
             [
-                .arcAround(centre: centre, radius: radius, start: 0.0, end: Double.pi),
-                .arcAround(centre: centre, radius: radius, start: Double.pi, end: Double.pi * 2.0)
+                .arcAround(centre: centre, radius: radius, start: 0.0, end: Double.pi, cw: true, onPath: false),
+                .arcAround(
+                    centre: centre, radius: radius, start: Double.pi, end: Double.pi * 2.0,
+                    cw: true, onPath: false
+                )
             ]
         )
         plotter.plotPath(ringPath, styles: styles, fill: false)
@@ -80,6 +83,7 @@ extension Plot {
     func plotOnePie(_ row: Int, _ col1: Int, centre: Point, radius: Double) {
         let pi2e6 = Double.pi * 2.0e6       // 2πe6
         let pieLabel = settings.boolValue(.pieLabel)
+        let insideRadius = max(radius / 5.0, strokeWidth * 3.0)
         var arcLeft = pi2e6
         var start = 0.0
 
@@ -97,8 +101,14 @@ extension Plot {
                 if radius * angle6 / 1.0e6 > strokeWidth {
                     let path = Path(
                         [
-                            .arcAround(centre: centre, radius: radius, start: start, end: end),
-                            .lineTo(xy: centre),
+                            .arcAround(
+                                centre: centre, radius: radius, start: start, end: end,
+                                cw: true, onPath: false
+                            ),
+                            .arcAround(
+                                centre: centre, radius: insideRadius, start: end, end: start,
+                                cw: false, onPath: true
+                            ),
                             .closePath
                         ]
                     )
@@ -120,7 +130,9 @@ extension Plot {
             }
         }
 
-        // Now draw a black circle in the middle
+        // Now draw a black ring in the middle
+        circleRing(centre: centre, radius: insideRadius)
+        // and one on the outside
         circleRing(centre: centre, radius: radius)
 
         let xtag = settings.intValue(.xTagsHeader)

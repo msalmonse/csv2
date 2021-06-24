@@ -9,13 +9,34 @@ import Foundation
 
 extension PathComponent {
 
-    func drawArc(centre: Point, radius: Double, start: Double, end: Double) -> String {
+    /// Draw an arc
+    /// - Parameters:
+    ///   - centre: centre of arc
+    ///   - radius: radius of arc
+    ///   - start: start angle
+    ///   - end: end angle
+    ///   - cw: draw clockwise
+    ///   - onPath: path already started
+    /// - Returns: path string
+
+    // swiftlint:disable:next function_parameter_count
+    func drawArc(centre: Point, radius: Double, start: Double, end: Double, cw: Bool, onPath: Bool) -> String {
         let startPoint = centre + Vector(length: radius, angle: start)
         let endPoint = centre + Vector(length: radius, angle: end)
-        let large = abs(end - start) >= Double.pi
+        let largeSweep: String
+        if cw {
+            largeSweep = ((end - start) >= Double.pi) ? "1,0" : "0,0"
+        } else {
+            largeSweep = ((start - end) >= Double.pi) ? "1,1" : "0,1"
+        }
+        let toStart: PathComponent
+        if onPath {
+            toStart = PathComponent.lineTo(xy: startPoint)
+        } else {
+            toStart = PathComponent.moveTo(xy: startPoint)
+        }
         return
-            PathComponent.moveTo(xy: startPoint).path +
-            PathComponent.arcTo(end: endPoint, r: radius, large: large).path
+            toStart.path + PathComponent.arcTo(end: endPoint, r: radius, largeSweep: largeSweep).path
     }
 
     /// Generate a bar

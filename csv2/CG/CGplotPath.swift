@@ -20,12 +20,12 @@ fileprivate func plotComponent(_ ctx: CGContext, component: PathComponent, curre
         }
     } else {
         switch component {
-        case let .arcAround(c, r, s, e):
+        case let .arcAround(c, r, s, e, cw, _):
             // SVG and CG can't agree on up and down so use -ve angles
             ctx.addArc(
                 center: c.cgpoint, radius: CGFloat(r),
                 startAngle: CGFloat(-s), endAngle: CGFloat(-e),
-                clockwise: true
+                clockwise: cw
             )
         case let .cBezierBy(dxy, c1dxy, c2dxy):
             let end = current + dxy.cgvector

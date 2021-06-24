@@ -13,9 +13,11 @@ import Foundation
 
 enum PathComponent {
     case
-        arcTo(end: Point, r: Double, large: Bool),  // Draw an arc to end with radius r
-        arcAround(centre: Point, radius: Double, start: Double, end: Double),
-                                    // Draw an arc at centre with radius from start angle to end
+        arcAround(centre: Point, radius: Double, start: Double, end: Double, cw: Bool, onPath: Bool),
+                                    // Draw an arc at centre with radius from start angle to end.
+                                    // Draw clockwise? Is the path already started?
+        arcTo(end: Point, r: Double, largeSweep: String),
+                                    // Draw an arc to end with radius r
         bar(p0: Point, w: Double, y: Double),       // Draw a bar w wide from p0 to y
         blade(w: Double),                           // Draw a blade of width 2 * w
         cBezierBy(dxy: Vector, c1dxy: Vector, c2dxy: Vector),
@@ -48,10 +50,10 @@ enum PathComponent {
 
     var path: String {
         switch self {
-        case let .arcAround(c, r, s, e):
-            return drawArc(centre: c, radius: r, start: s, end: e)
+        case let .arcAround(c, r, s, e, cw, on):
+            return drawArc(centre: c, radius: r, start: s, end: e, cw: cw, onPath: on)
         case let .arcTo(end, r, l):
-            return " A \(r.f(1)),\(r.f(1)) 0,\(l ? "1" : "0"),0 \(end.x.f(1)),\(end.y.f(1))"
+            return " A \(r.f(1)),\(r.f(1)) 0,\(l) \(end.x.f(1)),\(end.y.f(1))"
         case let .cBezierBy(dxy, c1dxy, c2dxy):
             return "c \(c1dxy.f(1)) \(c2dxy.f(1)) \(dxy.f(1))"
         case let .cBezierTo(xy, c1xy, c2xy):
