@@ -39,6 +39,26 @@ extension PathComponent {
             toStart.path + PathComponent.arcTo(end: endPoint, r: radius, largeSweep: largeSweep).path
     }
 
+    /// Draw a relative arc
+    /// - Parameters:
+    ///   - centre: offset to centre of arc
+    ///   - radius: radius of arc
+    ///   - start: start angle
+    ///   - end: end angle
+    ///   - cw: draw clockwise
+    /// - Returns: path string
+
+    func drawArcRelative(centre: Vector, radius: Double, start: Double, end: Double, cw: Bool) -> String {
+        let endPoint = centre + Vector(length: radius, angle: end)
+        let largeSweep: String
+        if cw {
+            largeSweep = ((end - start) >= Double.pi) ? "1,0" : "0,0"
+        } else {
+            largeSweep = ((start - end) >= Double.pi) ? "1,1" : "0,1"
+        }
+        return PathComponent.arcBy(end: endPoint, r: radius, largeSweep: largeSweep).path
+    }
+
     /// Generate a bar
     /// - Parameters:
     ///   - p0: the origin
@@ -90,15 +110,12 @@ extension PathComponent {
 
     func drawCircle(r: Double) -> Path {
         let r = r * 1.2
-        // the constant below from https://spencermortensen.com/articles/bezier-circle/
-        let c = (1.0 - 0.551915024494) * r
         return Path([
-            Self.moveBy(dxy: Vector(dx: 0, dy: -r)),
-            .cBezierBy(dxy: Vector(dx:  r, dy:  r), c1dxy: Vector(dx:  c, dy:  0), c2dxy: Vector(dx:  r, dy:  c)),
-            .cBezierBy(dxy: Vector(dx: -r, dy:  r), c1dxy: Vector(dx:  0, dy:  c), c2dxy: Vector(dx: -c, dy:  r)),
-            .cBezierBy(dxy: Vector(dx: -r, dy: -r), c1dxy: Vector(dx: -c, dy:  0), c2dxy: Vector(dx: -r, dy: -c)),
-            .cBezierBy(dxy: Vector(dx:  r, dy: -r), c1dxy: Vector(dx:  0, dy: -c), c2dxy: Vector(dx:  c, dy: -r)),
-            .moveBy(dxy: Vector(dx: 0, dy: r))
+            Self.moveBy(dxy: Vector(dx: r, dy: 0)),
+            .arcRelative(centre: Vector(dx: -r, dy: 0), radius: r, start: 0, end: 2.5, cw: true),
+            .arcRelative(centre: Vector(length: -r, angle: 2.5), radius: r, start: 2.5, end: 5, cw: true),
+            .arcRelative(centre: Vector(length: -r, angle: 5), radius: r, start: 5, end: 6.5, cw: true),
+            .moveBy(dxy: Vector(dx: -r, dy: 0))
         ])
     }
 

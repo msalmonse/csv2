@@ -16,6 +16,11 @@ enum PathComponent {
         arcAround(centre: Point, radius: Double, start: Double, end: Double, cw: Bool, onPath: Bool),
                                     // Draw an arc at centre with radius from start angle to end.
                                     // Draw clockwise? Is the path already started?
+        arcRelative(centre: Vector, radius: Double, start: Double, end: Double, cw: Bool),
+                                    // Draw an arc at centre with radius from start angle to end.
+                                    // Draw clockwise? Is the path already started?
+        arcBy(end: Vector, r: Double, largeSweep: String),
+                                    // Draw an arc to end with radius r
         arcTo(end: Point, r: Double, largeSweep: String),
                                     // Draw an arc to end with radius r
         bar(p0: Point, w: Double, y: Double),       // Draw a bar w wide from p0 to y
@@ -52,6 +57,10 @@ enum PathComponent {
         switch self {
         case let .arcAround(c, r, s, e, cw, on):
             return drawArc(centre: c, radius: r, start: s, end: e, cw: cw, onPath: on)
+        case let .arcBy(end, r, l):
+            return " a \(r.f(1)),\(r.f(1)) 0,\(l) \(end.dx.f(1)),\(end.dy.f(1))"
+        case let .arcRelative(c, r, s, e, cw):
+            return drawArcRelative(centre: c, radius: r, start: s, end: e, cw: cw)
         case let .arcTo(end, r, l):
             return " A \(r.f(1)),\(r.f(1)) 0,\(l) \(end.x.f(1)),\(end.y.f(1))"
         case let .cBezierBy(dxy, c1dxy, c2dxy):

@@ -27,6 +27,15 @@ fileprivate func plotComponent(_ ctx: CGContext, component: PathComponent, curre
                 startAngle: CGFloat(-s), endAngle: CGFloat(-e),
                 clockwise: cw
             )
+        case let .arcRelative(dc, r, s, e, cw):
+            current += dc.cgvector  // current is now at centre
+            // SVG and CG can't agree on up and down so use -ve angles
+            ctx.addArc(
+                center: current, radius: CGFloat(r),
+                startAngle: CGFloat(-s), endAngle: CGFloat(-e),
+                clockwise: cw
+            )
+            current += Vector(length: r, angle: e).cgvector     // move current to endpoint
         case let .cBezierBy(dxy, c1dxy, c2dxy):
             let end = current + dxy.cgvector
             let control1 = current + c1dxy.cgvector

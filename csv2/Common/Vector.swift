@@ -44,4 +44,14 @@ struct Vector {
     func f(_ precision: Int, separatedBy: String = ",") -> String {
         return "\(dx.f(precision))\(separatedBy)\(dy.f(precision))"
     }
+
+    /// Add two vectors
+    /// - Parameters:
+    ///   - lhs: one vector
+    ///   - rhs: the other vector
+    /// - Returns: sum of two vectors as a vector
+
+    static func + (lhs: Vector, rhs: Vector) -> Vector {
+        return Vector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
+    }
 }
