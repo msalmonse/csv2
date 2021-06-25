@@ -278,7 +278,7 @@
 		C48B822925E28F7E00EAEAE3 /* csv2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = csv2Tests.swift; sourceTree = "<group>"; };
 		C48B822B25E28F7E00EAEAE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C492BE0F25F3A2A10042A11E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		C496FEE92685CCCB002ADF8C /* todo.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = todo.md; sourceTree = "<group>"; };
+		C496FEE92685CCCB002ADF8C /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		C49890D526649AE2005EED3E /* CSVswap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVswap.swift; sourceTree = "<group>"; };
 		C49890D82664B205005EED3E /* CSVvalues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVvalues.swift; sourceTree = "<group>"; };
 		C499B3372650FD9900581AD0 /* KeyTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyTag.swift; sourceTree = "<group>"; };
@@ -428,7 +428,7 @@
 				C49CC5192639DB4C0006FAC8 /* docs */,
 				C4C0C4BF2615A1E80072699C /* examples */,
 				C492BE0F25F3A2A10042A11E /* README.md */,
-				C496FEE92685CCCB002ADF8C /* todo.md */,
+				C496FEE92685CCCB002ADF8C /* TODO.md */,
 			);
 			name = Docs;
 			sourceTree = "<group>";
