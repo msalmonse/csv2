@@ -130,9 +130,13 @@ private func shapeSubCmds() -> CmdsToGet {
 }
 
 extension Options {
-    func getCommand(_ args: [String]) -> CommandType {
-        // Check first for empty command line
-        if args.count == 1 { return .helpCommand(help: .help) }
+
+    /// Get the command from the command line
+    /// - Returns: command or .unspec if none
+
+    func getCommand() -> CommandType {
+        // check to see if there are any arguments
+        if !argsList.argsLeft { return .helpCommand(help: .help) }
 
         if let main = (argsList.commandParser(plotCmds)?.tag as? MainCommandType) {
             let cmds = plotSubCmds + shapeSubCmds()

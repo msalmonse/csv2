@@ -17,7 +17,7 @@ func execCommand(_ main: MainCommandType, _ sub: SubCommandType, _ options: Opti
         showColoursList(options.defaults(), namesList: false, with: main, to: options.outName)
     case .dashes:
         showDashesList(defaults, with: main, to: options.outName)
-    case .shapes(let name):
+    case let .shapes(name):
         showShape(shape: name, defaults: defaults, with: main, to: options.outName)
     }
 }

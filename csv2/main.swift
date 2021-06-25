@@ -10,14 +10,14 @@ import Foundation
 var defaults: Defaults
 
 var options = Options()
-let command = options.getCommand(CommandLine.arguments)
+let command = options.getCommand()
 switch command {
-case .abbrCommand(let abbr):
+case let .abbrCommand(abbr):
     Options.abbrPrint(for: abbr)
-case .helpCommand(let helpCommand):
+case let .helpCommand(helpCommand):
     options.getOptsOrExit(for: .help)
     help(helpCommand, options)
-case .listCommand(let listCommand):
+case let .listCommand(listCommand):
     list(listCommand)
 case let .plotCommand(main, sub):
     options.getOptsOrExit(for: main)

@@ -13,6 +13,7 @@ import Foundation
 ///   - component: current command
 ///   - current: current position
 
+// swiftlint:disable:next function_body_length
 fileprivate func plotComponent(_ ctx: CGContext, component: PathComponent, current: inout CGPoint) {
     if let path = component.expand {
         for component in path.components {
@@ -46,22 +47,22 @@ fileprivate func plotComponent(_ ctx: CGContext, component: PathComponent, curre
             let end = xy.cgpoint
             ctx.addCurve(to: end, control1: c1xy.cgpoint, control2: c2xy.cgpoint)
             current = end
-        case .horizBy(let dx):
+        case let .horizBy(dx):
             current += CGVector(dx: dx, dy: 0.0)
             ctx.addLine(to: current)
-        case .horizTo(let x):
+        case let .horizTo(x):
             current = CGPoint(x: CGFloat(x), y: current.y)
             ctx.addLine(to: current)
-        case .lineBy(let dxy):
+        case let .lineBy(dxy):
             current += dxy.cgvector
             ctx.addLine(to: current)
-        case .lineTo(let xy):
+        case let .lineTo(xy):
             current = xy.cgpoint
             ctx.addLine(to: current)
-        case .moveBy(let dxy):
+        case let .moveBy(dxy):
             current += dxy.cgvector
             ctx.move(to: current)
-        case .moveTo(let xy):
+        case let .moveTo(xy):
             current = xy.cgpoint
             ctx.move(to: current)
         case let .qBezierBy(dxy, cdxy):
@@ -74,10 +75,10 @@ fileprivate func plotComponent(_ ctx: CGContext, component: PathComponent, curre
             let control = cxy.cgpoint
             ctx.addQuadCurve(to: end, control: control)
             current = end
-        case .vertBy(let dy):
+        case let .vertBy(dy):
             current += CGVector(dx: 0.0, dy: dy)
             ctx.addLine(to: current)
-        case .vertTo(let y):
+        case let .vertTo(y):
             current = CGPoint(x: current.x, y: CGFloat(y))
             ctx.addLine(to: current)
         case .closePath:
