@@ -6,7 +6,7 @@
 </clipPath>
 </defs>
 <style>
-svg#svg-ex3 { background-color: #ffedcc }
+svg#svg-ex3 { background-color: rgba(255,237,204,1.000) }
 #svg-ex3 path.lightBG { fill: rgba(220,220,220,0.667) }
 #svg-ex3 path.midBG { fill: rgba(120,120,120,0.667) }
 #svg-ex3 path.darkBG { fill: rgba(35,35,35,0.667) }
@@ -21,11 +21,11 @@ svg#svg-ex3 { background-color: #ffedcc }
 #svg-ex3 text { font-family: serif }
 #svg-ex3 text.draft { fill: none; stroke: rgba(0,0,0,1.000); font-family: sans-serif; font-size: 200.0px; text-anchor: middle; dominant-baseline: middle }
 #svg-ex3 text.legend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 13.0px; text-anchor: start;  }
-#svg-ex3 text.legendheadline { fill: ; stroke: ;  font-size: 16.2px; text-anchor: start;  }
-#svg-ex3 text.pielabel { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: ;  }
-#svg-ex3 text.pielabel.start { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: start;  }
-#svg-ex3 text.pielabel.middle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: middle;  }
-#svg-ex3 text.pielabel.end { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: end;  }
+#svg-ex3 text.legendheadline { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 16.2px; text-anchor: start;  }
+#svg-ex3 text.pielabel { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: ;  }
+#svg-ex3 text.pielabel.start { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: start;  }
+#svg-ex3 text.pielabel.middle { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: middle;  }
+#svg-ex3 text.pielabel.end { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: end;  }
 #svg-ex3 text.pielegend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 20.0px; text-anchor: middle;  }
 #svg-ex3 text.piesublegend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.5px; text-anchor: middle;  }
 #svg-ex3 text.subtitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 15.0px; text-anchor: middle;  }
@@ -35,12 +35,12 @@ svg#svg-ex3 { background-color: #ffedcc }
 #svg-ex3 text.xtitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.0px; text-anchor: middle;  }
 #svg-ex3 text.ylabel { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
 #svg-ex3 text.ytitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.0px; text-anchor: start;  }
-#svg-ex3 path.plot05 { stroke: #ff0000 }
-#svg-ex3 text.plot05, #svg-ex3 rect.plot05 { font-size: 13.0px; fill: #ff0000; stroke: #ff0000 }
-#svg-ex3 path.plot05.fill { stroke: none; fill: #ff0000; fill-opacity: 0.75 }
-#svg-ex3 path.plot07 { stroke: #008000 }
-#svg-ex3 text.plot07, #svg-ex3 rect.plot07 { font-size: 13.0px; fill: #008000; stroke: #008000 }
-#svg-ex3 path.plot07.fill { stroke: none; fill: #008000; fill-opacity: 0.75 }
+#svg-ex3 path.plot05 { stroke: rgba(255,0,0,1.000) }
+#svg-ex3 text.plot05, #svg-ex3 rect.plot05 { font-size: 13.0px; fill: rgba(255,0,0,1.000); stroke: rgba(255,0,0,1.000) }
+#svg-ex3 path.plot05.fill { stroke: none; fill: rgba(255,0,0,1.000); fill-opacity: 0.75 }
+#svg-ex3 path.plot07 { stroke: rgba(0,128,0,1.000) }
+#svg-ex3 text.plot07, #svg-ex3 rect.plot07 { font-size: 13.0px; fill: rgba(0,128,0,1.000); stroke: rgba(0,128,0,1.000) }
+#svg-ex3 path.plot07.fill { stroke: none; fill: rgba(0,128,0,1.000); fill-opacity: 0.75 }
 #svg-ex3 path.legend { stroke: rgba(0,0,0,0.400); stroke-width: 1.5 }
 </style>
 <text x="117.42" y="526.00" class="xlabel" >30</text>

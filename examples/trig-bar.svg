@@ -6,7 +6,7 @@
 </clipPath>
 </defs>
 <style>
-svg#svg-ex5 { background-color: #ffedcc }
+svg#svg-ex5 { background-color: rgba(255,237,204,1.000) }
 #svg-ex5 path.lightBG { fill: rgba(220,220,220,0.667) }
 #svg-ex5 path.midBG { fill: rgba(120,120,120,0.667) }
 #svg-ex5 path.darkBG { fill: rgba(35,35,35,0.667) }
@@ -21,11 +21,11 @@ svg#svg-ex5 { background-color: #ffedcc }
 #svg-ex5 text { font-family: serif }
 #svg-ex5 text.draft { fill: none; stroke: rgba(0,0,0,1.000); font-family: sans-serif; font-size: 200.0px; text-anchor: middle; dominant-baseline: middle }
 #svg-ex5 text.legend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 13.0px; text-anchor: start;  }
-#svg-ex5 text.legendheadline { fill: ; stroke: ;  font-size: 16.2px; text-anchor: start;  }
-#svg-ex5 text.pielabel { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: ;  }
-#svg-ex5 text.pielabel.start { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: start;  }
-#svg-ex5 text.pielabel.middle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: middle;  }
-#svg-ex5 text.pielabel.end { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: end;  }
+#svg-ex5 text.legendheadline { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 16.2px; text-anchor: start;  }
+#svg-ex5 text.pielabel { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: ;  }
+#svg-ex5 text.pielabel.start { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: start;  }
+#svg-ex5 text.pielabel.middle { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: middle;  }
+#svg-ex5 text.pielabel.end { fill: rgba(0,0,0,0.753); stroke: rgba(0,0,0,0.753);  font-size: 10.0px; text-anchor: end;  }
 #svg-ex5 text.pielegend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 20.0px; text-anchor: middle;  }
 #svg-ex5 text.piesublegend { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.5px; text-anchor: middle;  }
 #svg-ex5 text.subtitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 15.0px; text-anchor: middle;  }
@@ -35,24 +35,30 @@ svg#svg-ex5 { background-color: #ffedcc }
 #svg-ex5 text.xtitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.0px; text-anchor: middle;  }
 #svg-ex5 text.ylabel { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 10.0px; text-anchor: end; dominant-baseline: middle }
 #svg-ex5 text.ytitle { fill: rgba(0,0,0,1.000); stroke: rgba(0,0,0,1.000);  font-size: 12.0px; text-anchor: start;  }
-#svg-ex5 path.plot03 { stroke: #ff0000 }
-#svg-ex5 text.plot03, #svg-ex5 rect.plot03 { font-size: 13.0px; fill: #ff0000; stroke: #ff0000 }
-#svg-ex5 path.plot03.fill { stroke: none; fill: #ff0000; fill-opacity: 0.75 }
-#svg-ex5 path.plot04 { stroke: #008000 }
-#svg-ex5 text.plot04, #svg-ex5 rect.plot04 { font-size: 13.0px; fill: #008000; stroke: #008000 }
-#svg-ex5 path.plot04.fill { stroke: none; fill: #008000; fill-opacity: 0.75 }
-#svg-ex5 path.plot05 { stroke: #ff00ff }
-#svg-ex5 text.plot05, #svg-ex5 rect.plot05 { font-size: 13.0px; fill: #ff00ff; stroke: #ff00ff }
-#svg-ex5 path.plot05.fill { stroke: none; fill: #ff00ff; fill-opacity: 0.75 }
-#svg-ex5 path.plot06 { stroke: #0000ff }
-#svg-ex5 text.plot06, #svg-ex5 rect.plot06 { font-size: 13.0px; fill: #0000ff; stroke: #0000ff }
-#svg-ex5 path.plot06.fill { stroke: none; fill: #0000ff; fill-opacity: 0.75 }
-#svg-ex5 path.plot07 { stroke: #dc143c }
-#svg-ex5 text.plot07, #svg-ex5 rect.plot07 { font-size: 13.0px; fill: #dc143c; stroke: #dc143c }
-#svg-ex5 path.plot07.fill { stroke: none; fill: #dc143c; fill-opacity: 0.75 }
-#svg-ex5 path.plot08 { stroke: #f4a460 }
-#svg-ex5 text.plot08, #svg-ex5 rect.plot08 { font-size: 13.0px; fill: #f4a460; stroke: #f4a460 }
-#svg-ex5 path.plot08.fill { stroke: none; fill: #f4a460; fill-opacity: 0.75 }
+#svg-ex5 path.plot01 { stroke: rgba(255,0,0,1.000) }
+#svg-ex5 text.plot01, #svg-ex5 rect.plot01 { font-size: 13.0px; fill: rgba(255,0,0,1.000); stroke: rgba(255,0,0,1.000) }
+#svg-ex5 path.plot01.fill { stroke: none; fill: rgba(255,0,0,1.000); fill-opacity: 0.75 }
+#svg-ex5 path.plot02 { stroke: rgba(0,128,0,1.000) }
+#svg-ex5 text.plot02, #svg-ex5 rect.plot02 { font-size: 13.0px; fill: rgba(0,128,0,1.000); stroke: rgba(0,128,0,1.000) }
+#svg-ex5 path.plot02.fill { stroke: none; fill: rgba(0,128,0,1.000); fill-opacity: 0.75 }
+#svg-ex5 path.plot03 { stroke: rgba(255,0,255,1.000) }
+#svg-ex5 text.plot03, #svg-ex5 rect.plot03 { font-size: 13.0px; fill: rgba(255,0,255,1.000); stroke: rgba(255,0,255,1.000) }
+#svg-ex5 path.plot03.fill { stroke: none; fill: rgba(255,0,255,1.000); fill-opacity: 0.75 }
+#svg-ex5 path.plot04 { stroke: rgba(0,0,255,1.000) }
+#svg-ex5 text.plot04, #svg-ex5 rect.plot04 { font-size: 13.0px; fill: rgba(0,0,255,1.000); stroke: rgba(0,0,255,1.000) }
+#svg-ex5 path.plot04.fill { stroke: none; fill: rgba(0,0,255,1.000); fill-opacity: 0.75 }
+#svg-ex5 path.plot05 { stroke: rgba(220,20,60,1.000) }
+#svg-ex5 text.plot05, #svg-ex5 rect.plot05 { font-size: 13.0px; fill: rgba(220,20,60,1.000); stroke: rgba(220,20,60,1.000) }
+#svg-ex5 path.plot05.fill { stroke: none; fill: rgba(220,20,60,1.000); fill-opacity: 0.75 }
+#svg-ex5 path.plot06 { stroke: rgba(244,164,96,1.000) }
+#svg-ex5 text.plot06, #svg-ex5 rect.plot06 { font-size: 13.0px; fill: rgba(244,164,96,1.000); stroke: rgba(244,164,96,1.000) }
+#svg-ex5 path.plot06.fill { stroke: none; fill: rgba(244,164,96,1.000); fill-opacity: 0.75 }
+#svg-ex5 path.plot07 { stroke: rgba(139,0,139,1.000) }
+#svg-ex5 text.plot07, #svg-ex5 rect.plot07 { font-size: 13.0px; fill: rgba(139,0,139,1.000); stroke: rgba(139,0,139,1.000) }
+#svg-ex5 path.plot07.fill { stroke: none; fill: rgba(139,0,139,1.000); fill-opacity: 0.75 }
+#svg-ex5 path.plot08 { stroke: rgba(255,140,0,1.000) }
+#svg-ex5 text.plot08, #svg-ex5 rect.plot08 { font-size: 13.0px; fill: rgba(255,140,0,1.000); stroke: rgba(255,140,0,1.000) }
+#svg-ex5 path.plot08.fill { stroke: none; fill: rgba(255,140,0,1.000); fill-opacity: 0.75 }
 #svg-ex5 path.legend { stroke: rgba(0,0,0,0.400); stroke-width: 1.5 }
 </style>
 <text x="117.42" y="526.00" class="xlabel" >30</text>
@@ -83,6 +89,8 @@ svg#svg-ex5 { background-color: #ffedcc }
 <path class="ylabel" d=" M 65.0,218.6 H 694.0 M 65.0,302.9 H 694.0 M 65.0,176.5 H 694.0 M 65.0,345.0 H 694.0 M 65.0,134.4 H 694.0 M 65.0,387.1 H 694.0 M 65.0,92.2 H 694.0 M 65.0,429.2 H 694.0 M 65.0,50.1 H 694.0 M 65.0,471.4 H 694.0 M 65.0,8.0 H 694.0 M 65.0,513.5 H 694.0 " />
 <path class="axes" d=" M 65.0,260.8 H 694.0 M 65.0,513.5 V 8.0 " />
 <g clip-path="url(#plotable)" class="plotarea">
+<path class="plot02" d=" M 65.0,260.8 " />
+<path class="plot02" d=" M 65.0,260.8 m -1.8,0.0 l -1.8,-3.5 l 3.5,1.8 l 3.5,-1.8 l -1.8,3.5 l 1.8,3.5 l -3.5,-1.8 l -3.5,1.8 l 1.8,-3.5 m 1.8,0.0 m 4.2,0.0  a 4.2,4.2 0,0,0 -7.6,-2.5  a 4.2,4.2 0,0,0 4.6,6.5  a 4.2,4.2 0,0,0 2.9,-4.9 m -4.2,0.0 " />
 <path class="plot03" d=" M 65.0,260.8 L 69.4,253.4 L 73.7,246.1 L 78.1,238.8 L 82.5,231.5 L 86.8,224.3 L 91.2,217.1 L 95.6,210.1 L 99.9,203.1 L 104.3,196.3 L 108.7,189.5 L 113.0,182.9 L 117.4,176.5 L 121.8,170.2 L 126.2,164.1 L 130.5,158.2 L 134.9,152.4 L 139.3,146.9 L 143.6,141.6 L 148.0,136.5 L 152.4,131.7 L 156.7,127.1 L 161.1,122.7 L 165.5,118.6 L 169.8,114.8 L 174.2,111.3 L 178.6,108.0 L 182.9,105.1 L 187.3,102.4 L 191.7,100.0 L 196.0,98.0 L 200.4,96.2 L 204.8,94.8 L 209.1,93.7 L 213.5,92.9 L 217.9,92.4 L 222.2,92.2 L 226.6,92.4 L 231.0,92.9 L 235.4,93.7 L 239.7,94.8 L 244.1,96.2 L 248.5,98.0 L 252.8,100.0 L 257.2,102.4 L 261.6,105.1 L 265.9,108.0 L 270.3,111.3 L 274.7,114.8 L 279.0,118.6 L 283.4,122.7 L 287.8,127.1 L 292.1,131.7 L 296.5,136.5 L 300.9,141.6 L 305.2,146.9 L 309.6,152.4 L 314.0,158.2 L 318.3,164.1 L 322.7,170.2 L 327.1,176.5 L 331.5,182.9 L 335.8,189.5 L 340.2,196.3 L 344.6,203.1 L 348.9,210.1 L 353.3,217.1 L 357.7,224.3 L 362.0,231.5 L 366.4,238.8 L 370.8,246.1 L 375.1,253.4 L 379.5,260.8 L 383.9,268.1 L 388.2,275.4 L 392.6,282.7 L 397.0,290.0 L 401.3,297.2 L 405.7,304.4 L 410.1,311.4 L 414.4,318.4 L 418.8,325.2 L 423.2,332.0 L 427.5,338.6 L 431.9,345.0 L 436.3,351.3 L 440.7,357.4 L 445.0,363.3 L 449.4,369.1 L 453.8,374.6 L 458.1,379.9 L 462.5,385.0 L 466.9,389.8 L 471.2,394.4 L 475.6,398.8 L 480.0,402.9 L 484.3,406.7 L 488.7,410.2 L 493.1,413.5 L 497.4,416.4 L 501.8,419.1 L 506.2,421.5 L 510.5,423.5 L 514.9,425.3 L 519.3,426.7 L 523.6,427.8 L 528.0,428.6 L 532.4,429.1 L 536.8,429.2 L 541.1,429.1 L 545.5,428.6 L 549.9,427.8 L 554.2,426.7 L 558.6,425.3 L 563.0,423.5 L 567.3,421.5 L 571.7,419.1 L 576.1,416.4 L 580.4,413.5 L 584.8,410.2 L 589.2,406.7 L 593.5,402.9 L 597.9,398.8 L 602.3,394.4 L 606.6,389.8 L 611.0,385.0 L 615.4,379.9 L 619.7,374.6 L 624.1,369.1 L 628.5,363.3 L 632.8,357.4 L 637.2,351.3 L 641.6,345.0 L 646.0,338.6 L 650.3,332.0 L 654.7,325.2 L 659.1,318.4 L 663.4,311.4 L 667.8,304.4 L 672.2,297.2 L 676.5,290.0 L 680.9,282.7 L 685.3,275.4 L 689.6,268.1 L 694.0,260.8 " />
 <path class="plot03" d="  " />
 <path class="plot04" d=" M 65.0,92.2 L 69.4,92.4 L 73.7,92.9 L 78.1,93.7 L 82.5,94.8 L 86.8,96.2 L 91.2,98.0 L 95.6,100.0 L 99.9,102.4 L 104.3,105.1 L 108.7,108.0 L 113.0,111.3 L 117.4,114.8 L 121.8,118.6 L 126.2,122.7 L 130.5,127.1 L 134.9,131.7 L 139.3,136.5 L 143.6,141.6 L 148.0,146.9 L 152.4,152.4 L 156.7,158.2 L 161.1,164.1 L 165.5,170.2 L 169.8,176.5 L 174.2,182.9 L 178.6,189.5 L 182.9,196.3 L 187.3,203.1 L 191.7,210.1 L 196.0,217.1 L 200.4,224.3 L 204.8,231.5 L 209.1,238.8 L 213.5,246.1 L 217.9,253.4 L 222.2,260.8 L 226.6,268.1 L 231.0,275.4 L 235.4,282.7 L 239.7,290.0 L 244.1,297.2 L 248.5,304.4 L 252.8,311.4 L 257.2,318.4 L 261.6,325.2 L 265.9,332.0 L 270.3,338.6 L 274.7,345.0 L 279.0,351.3 L 283.4,357.4 L 287.8,363.3 L 292.1,369.1 L 296.5,374.6 L 300.9,379.9 L 305.2,385.0 L 309.6,389.8 L 314.0,394.4 L 318.3,398.8 L 322.7,402.9 L 327.1,406.7 L 331.5,410.2 L 335.8,413.5 L 340.2,416.4 L 344.6,419.1 L 348.9,421.5 L 353.3,423.5 L 357.7,425.3 L 362.0,426.7 L 366.4,427.8 L 370.8,428.6 L 375.1,429.1 L 379.5,429.2 L 383.9,429.1 L 388.2,428.6 L 392.6,427.8 L 397.0,426.7 L 401.3,425.3 L 405.7,423.5 L 410.1,421.5 L 414.4,419.1 L 418.8,416.4 L 423.2,413.5 L 427.5,410.2 L 431.9,406.7 L 436.3,402.9 L 440.7,398.8 L 445.0,394.4 L 449.4,389.8 L 453.8,385.0 L 458.1,379.9 L 462.5,374.6 L 466.9,369.1 L 471.2,363.3 L 475.6,357.4 L 480.0,351.3 L 484.3,345.0 L 488.7,338.6 L 493.1,332.0 L 497.4,325.2 L 501.8,318.4 L 506.2,311.4 L 510.5,304.4 L 514.9,297.2 L 519.3,290.0 L 523.6,282.7 L 528.0,275.4 L 532.4,268.1 L 536.8,260.8 L 541.1,253.4 L 545.5,246.1 L 549.9,238.8 L 554.2,231.5 L 558.6,224.3 L 563.0,217.1 L 567.3,210.1 L 571.7,203.1 L 576.1,196.3 L 580.4,189.5 L 584.8,182.9 L 589.2,176.5 L 593.5,170.2 L 597.9,164.1 L 602.3,158.2 L 606.6,152.4 L 611.0,146.9 L 615.4,141.6 L 619.7,136.5 L 624.1,131.7 L 628.5,127.1 L 632.8,122.7 L 637.2,118.6 L 641.6,114.8 L 646.0,111.3 L 650.3,108.0 L 654.7,105.1 L 659.1,102.4 L 663.4,100.0 L 667.8,98.0 L 672.2,96.2 L 676.5,94.8 L 680.9,93.7 L 685.3,92.9 L 689.6,92.4 L 694.0,92.2 " />
@@ -94,18 +102,19 @@ svg#svg-ex5 { background-color: #ffedcc }
 <path class="plot07" d=" M 69.4,-300.0 L 73.7,-300.0 L 78.1,-300.0 M 82.5,-300.0 M 86.8,-300.0 M 91.2,-300.0 L 95.6,-273.7 L 99.9,-202.2 L 104.3,-146.0 L 108.7,-100.6 L 113.0,-62.9 L 117.4,-31.1 L 121.8,-3.7 L 126.2,20.1 L 130.5,41.2 L 134.9,59.9 L 139.3,76.9 L 143.6,92.2 L 148.0,106.3 L 152.4,119.4 L 156.7,131.5 L 161.1,142.8 L 165.5,153.4 L 169.8,163.5 L 174.2,173.0 L 178.6,182.2 L 182.9,191.0 L 187.3,199.4 L 191.7,207.6 L 196.0,215.6 L 200.4,223.4 L 204.8,231.0 L 209.1,238.6 L 213.5,246.0 L 217.9,253.4 L 222.2,260.8 L 226.6,268.1 L 231.0,275.5 L 235.4,282.9 L 239.7,290.5 L 244.1,298.1 L 248.5,305.9 L 252.8,313.9 L 257.2,322.1 L 261.6,330.5 L 265.9,339.3 L 270.3,348.5 L 274.7,358.0 L 279.0,368.1 L 283.4,378.7 L 287.8,390.0 L 292.1,402.1 L 296.5,415.2 L 300.9,429.2 L 305.2,444.6 L 309.6,461.6 L 314.0,480.3 L 318.3,501.4 L 322.7,525.2 L 327.1,552.6 L 331.5,584.4 L 335.8,622.1 L 340.2,667.5 L 344.6,723.7 L 348.9,795.2 L 353.3,889.6 L 357.7,900.0 L 362.0,900.0 M 366.4,900.0 M 370.8,900.0 M 375.1,900.0 M 379.5,900.0 M 383.9,-300.0 M 388.2,-300.0 M 392.6,-300.0 M 397.0,-300.0 M 401.3,-300.0 M 405.7,-300.0 L 410.1,-273.7 L 414.4,-202.2 L 418.8,-146.0 L 423.2,-100.6 L 427.5,-62.9 L 431.9,-31.1 L 436.3,-3.7 L 440.7,20.1 L 445.0,41.2 L 449.4,59.9 L 453.8,76.9 L 458.1,92.2 L 462.5,106.3 L 466.9,119.4 L 471.2,131.5 L 475.6,142.8 L 480.0,153.4 L 484.3,163.5 L 488.7,173.0 L 493.1,182.2 L 497.4,191.0 L 501.8,199.4 L 506.2,207.6 L 510.5,215.6 L 514.9,223.4 L 519.3,231.0 L 523.6,238.6 L 528.0,246.0 L 532.4,253.4 L 536.8,260.7 L 541.1,268.1 L 545.5,275.5 L 549.9,282.9 L 554.2,290.5 L 558.6,298.1 L 563.0,305.9 L 567.3,313.9 L 571.7,322.1 L 576.1,330.5 L 580.4,339.3 L 584.8,348.5 L 589.2,358.0 L 593.5,368.1 L 597.9,378.7 L 602.3,390.0 L 606.6,402.1 L 611.0,415.2 L 615.4,429.2 L 619.7,444.6 L 624.1,461.6 L 628.5,480.3 L 632.8,501.4 L 637.2,525.2 L 641.6,552.6 L 646.0,584.4 L 650.3,622.1 L 654.7,667.5 L 659.1,723.7 L 663.4,795.2 L 667.8,889.6 L 672.2,900.0 L 676.5,900.0 M 680.9,900.0 M 685.3,900.0 M 689.6,900.0 M 694.0,900.0 " />
 <path class="plot07" d="  " />
 <path class="plot08 fill" d=" M 143.6,141.6 M 458.1,379.9 " />
-<path class="plot08" d=" M 143.6,141.6 m -1.8,0.0 l -1.8,-3.5 l 3.5,1.8 l 3.5,-1.8 l -1.8,3.5 l 1.8,3.5 l -3.5,-1.8 l -3.5,1.8 l 1.8,-3.5 m 1.8,0.0 m 0.0,-4.2 c 1.9,0.0 4.2,1.9 4.2,4.2 c 0.0,1.9 -1.9,4.2 -4.2,4.2 c -1.9,0.0 -4.2,-1.9 -4.2,-4.2 c 0.0,-1.9 1.9,-4.2 4.2,-4.2 m 0.0,4.2 M 458.1,379.9 m -1.8,0.0 l -1.8,-3.5 l 3.5,1.8 l 3.5,-1.8 l -1.8,3.5 l 1.8,3.5 l -3.5,-1.8 l -3.5,1.8 l 1.8,-3.5 m 1.8,0.0 m 0.0,-4.2 c 1.9,0.0 4.2,1.9 4.2,4.2 c 0.0,1.9 -1.9,4.2 -4.2,4.2 c -1.9,0.0 -4.2,-1.9 -4.2,-4.2 c 0.0,-1.9 1.9,-4.2 4.2,-4.2 m 0.0,4.2 " />
+<path class="plot08" d=" M 143.6,141.6 m -1.8,0.0 l -1.8,-3.5 l 3.5,1.8 l 3.5,-1.8 l -1.8,3.5 l 1.8,3.5 l -3.5,-1.8 l -3.5,1.8 l 1.8,-3.5 m 1.8,0.0 m 4.2,0.0  a 4.2,4.2 0,0,0 -7.6,-2.5  a 4.2,4.2 0,0,0 4.6,6.5  a 4.2,4.2 0,0,0 2.9,-4.9 m -4.2,0.0 M 458.1,379.9 m -1.8,0.0 l -1.8,-3.5 l 3.5,1.8 l 3.5,-1.8 l -1.8,3.5 l 1.8,3.5 l -3.5,-1.8 l -3.5,1.8 l 1.8,-3.5 m 1.8,0.0 m 4.2,0.0  a 4.2,4.2 0,0,0 -7.6,-2.5  a 4.2,4.2 0,0,0 4.6,6.5  a 4.2,4.2 0,0,0 2.9,-4.9 m -4.2,0.0 " />
 </g>
 <text x="379.50" y="541.00" class="xtitle" >Degrees</text>
 <text x="23.00" y="260.75" class="ytitle" transform="matrix(0.00,-1.00,1.00,0.00,-237.75,283.75)">Function Value</text>
 <text x="714.00" y="63.25" class="legendheadline" >Legends:</text>
-<text x="720.50" y="82.75" class="plot03" >sin(n)</text>
-<text x="720.50" y="102.25" class="plot04" >cos(n)</text>
-<text x="720.50" y="121.75" class="plot05" >tan(n)</text>
-<text x="720.50" y="141.25" class="plot06" >sin²(n)</text>
-<text x="720.50" y="160.75" class="plot07" >cot(n)</text>
-<text x="720.50" y="180.25" class="plot08" >sin=cos</text>
-<path class="legend" d=" M 786.0,34.0 Q 792.0,34.0, 792.0,40.0 L 792.0,193.8 Q 792.0,199.8, 786.0,199.8 L 707.0,199.8 Q 701.0,199.8, 701.0,193.8 L 701.0,40.0 Q 701.0,34.0, 707.0,34.0 Z " />
+<text x="720.50" y="82.75" class="plot02" >π</text>
+<text x="720.50" y="102.25" class="plot03" >sin(n)</text>
+<text x="720.50" y="121.75" class="plot04" >cos(n)</text>
+<text x="720.50" y="141.25" class="plot05" >tan(n)</text>
+<text x="720.50" y="160.75" class="plot06" >sin²(n)</text>
+<text x="720.50" y="180.25" class="plot07" >cot(n)</text>
+<text x="720.50" y="199.75" class="plot08" >sin=cos</text>
+<path class="legend" d=" M 786.0,34.0 Q 792.0,34.0, 792.0,40.0 L 792.0,213.2 Q 792.0,219.2, 786.0,219.2 L 707.0,219.2 Q 701.0,219.2, 701.0,213.2 L 701.0,40.0 Q 701.0,34.0, 707.0,34.0 Z " />
 <text x="379.50" y="592.00" class="subtitle" >Data by numbers®</text>
 <text x="379.50" y="573.00" class="title" >Trigonometric Functions</text>
 
