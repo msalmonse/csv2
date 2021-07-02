@@ -102,7 +102,7 @@ struct Sides {
                         _ = valuesRow[start..<end].map { setMinMax($0, max: &max, min: &min) }
                     } else {
                         for j in start..<end {
-                            if let val = valuesRow[i] {
+                            if let val = valuesRow[j] {
                                 stackedMax[j] += val
                                 if stackedMax[j] > max { max = stackedMax[j] }
                             }

@@ -9,8 +9,11 @@ import Foundation
 
 struct Bar {
     static private var current = -1
+    /// Are there any bars?
     static var none: Bool { current < 0 }
+    /// How many bars?
     static var count: Int { current + 1 }
+    /// The next bar number
     static var next: Int {
         current += 1
         return current
@@ -19,6 +22,11 @@ struct Bar {
     /// Staple width
     let width: Double
     let offsets: [Double]
+
+    /// Initialize a bar object
+    /// - Parameters:
+    ///   - offset: the offset between bars
+    ///   - width: the width of each bar
 
     init(offset: Double, width: Double) {
         self.width = width
@@ -37,17 +45,27 @@ struct Bar {
         self.offsets = offsets
     }
 
+    /// Initialize a bar object
+    /// - Parameter pixels: the number of pixels to distribute
+
     init(pixels: Double) {
         let count = Double(Self.count)
-        let ppb = pixels / count                  // pixels per bar
-        let gap = max(2.0, ppb / 16.0)
-        let width = floor(ppb - gap)
+        let pixelsPerBar = pixels / count
+        let gap = max(2.0, pixelsPerBar / 16.0)
+        let width = floor(pixelsPerBar - gap)
         let offset = width + gap
         self.init(offset: offset, width: width)
     }
 
-    func path(p0: Point, y: Double, _ n: Int) -> PathComponent {
-        return .bar(p0: Point(x: p0.x + offsets[n], y: p0.y), w: width, y: y)
+    /// Calculate the path to display a bar
+    /// - Parameters:
+    ///   - origin: The bottom of the bar
+    ///   - end: The top or bottom of the bar
+    ///   - n: The number of the bar
+    /// - Returns: PathComponent to draw the bar
+
+    func path(origin: Point, end: Double, _ n: Int) -> PathComponent {
+        return .bar(origin: Point(x: origin.x + offsets[n], y: origin.y), w: width, end: end)
     }
 }
 

@@ -61,25 +61,21 @@ extension PathComponent {
 
     /// Generate a bar
     /// - Parameters:
-    ///   - p0: the origin
+    ///   - origin: the origin
     ///   - w: width of the bar
-    ///   - y: top or bottom of the bar
+    ///   - end: top or bottom of the bar
     /// - Returns: path to create the bar
 
-    func drawBar(p0: Point, w: Double, y: Double) -> Path {
-        let x0 = p0.x
-        let y0 = p0.y
+    func drawBar(origin: Point, w: Double, end: Double) -> Path {
+        let x0 = origin.x
         let left = x0 - w / 2.0
         let right = left + w
-        let r = w / 32.0
         return Path([
-            PathComponent.moveTo(xy: p0),
+            PathComponent.moveTo(xy: origin),
             .horizTo(x: left),
-            .vertTo(y: y + r),
-            .qBezierTo(xy: Point(x: left + r, y: y), cxy: Point(x: left, y: y)),
-            .horizBy(dx: w - 2.0 * r),
-            .qBezierTo(xy: Point(x: right, y: y + r), cxy: Point(x: right, y: y)),
-            .vertTo(y: y0),
+            .vertTo(y: end),
+            .horizTo(x: right),
+            .vertTo(y: origin.y),
             .closePath
         ])
     }

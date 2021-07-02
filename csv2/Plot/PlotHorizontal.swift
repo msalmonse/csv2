@@ -40,14 +40,22 @@ extension Plot {
         ) {
             self.ts = ts
             self.limit = limit
-            self.styles = styles
+            if styles.options.canSmooth {
+                self.styles = styles
+            } else {
+                self.styles = styles.with(\.bezier, of: 0.0)
+            }
             self.plot = plot
             self.bar = bar
 
-            switch (styles.options[.scattered], styles.bar >= 0, bar != nil) {
-            case (true,_,_): state = .scatter
-            case(false,true,true): state = .bar
-            default: state = .move
+            if styles.options[.scattered] {
+                state = .scatter
+            } else if styles.options[.stacked] && bar != nil {
+                state = .stacked
+            } else if styles.bar >= 0 && bar != nil {
+                state = .bar
+            } else {
+                state = .move
             }
         }
 
@@ -70,7 +78,7 @@ extension Plot {
                     shapeComponents.append(plotShape)
                 }
                 state = .move
-            case .scatter, .bar, .clipped2:
+            case .scatter, .bar, .clipped2, .stacked:
                 if !styles.options[.filled] { break }
                 fallthrough
             case .online:
@@ -95,6 +103,20 @@ extension Plot {
             }
         }
 
+        /// Check to see if we have gone from clipped to not clipped and set the state if we have
+        /// - Parameter clipped: was the position clipped?
+
+        func clipCheck(_ clipped: Bool) {
+            if !clipped {
+                // move from a clipped state to an unclipped one
+                switch state {
+                case .clipped, .clipped2:
+                    state = .online
+                default: break
+                }
+            }
+        }
+
         /// Plot a single point
         /// - Parameters:
         ///   - pos: position to plot
@@ -110,14 +132,7 @@ extension Plot {
             let filled = styles.options[.filled]
             let traversed = posPosition.hasTraversed(prevPosPosition)
 
-            if !clipped {
-                // move from a clipped state to an unclipped one
-                switch state {
-                case .clipped, .clipped2:
-                    state = .online
-                default: break
-                }
-            }
+            clipCheck(clipped)
 
             switch state {
             case .move:
@@ -159,11 +174,20 @@ extension Plot {
                     shapeComponents.append(plotShape)
                 }
             case .bar:
-                if let (p0, _) = plot?.posClip(Point(x: pos.x, y: plot?.point00.y ?? 0.0)) {
-                    pathComponents.append(bar!.path(p0: p0, y: pos.y, styles.bar))
+                if let (origin, _) = plot?.posClip(Point(x: pos.x, y: plot?.point00.y ?? 0.0)) {
+                    pathComponents.append(bar!.path(origin: origin, end: pos.y, styles.bar))
                 }
             case .stacked:
-                break
+                let origin: Point
+                if let bottom = plot?.stackPlotTop[pos.x] {
+                    origin = Point(x: pos.x, y: bottom)
+                } else if let (p00, _) = plot?.posClip(Point(x: pos.x, y: plot?.point00.y ?? 0.0)) {
+                    origin = p00
+                } else {
+                    break
+                }
+                pathComponents.append(bar!.path(origin: origin, end: pos.y, (plot?.stackBar)!))
+                plot?.stackPlotTop[pos.x] = pos.y
             case .clipped2:
                 if filled {
                     if traversed {
@@ -220,36 +244,52 @@ extension Plot {
         )
         var yɑ = Double.infinity
         let plotShape = styles.shape?.pathComponent(w: shapeWidth) ?? .circleStar(w: shapeWidth)
-        let smooth = settings.doubleValue(.smooth)
+        let smooth = styles.options.canSmooth ? settings.doubleValue(.smooth) : 0.0
 
-        func xypos(_ i: Int) -> Point? {
+        /// Get the x and y values indexed by i
+        /// - Parameter i: index
+        /// - Returns: x and y values
+
+        func xyData(_ i: Int) -> Point? {
             guard xiValues.hasIndex(i), let x = xiValues[i].x else { return nil }
             let j = xiValues[i].i
             guard yValues.hasIndex(j), let y = yValues[j] else { return nil }
+            guard y >= 0 || styles.options.negativesOK else { return nil }
             return Point(x: x, y: y)
         }
 
         for i in settings.intValue(.headerColumns)..<xiValues.count {
-            var pos = xypos(i)
-            if pos == nil {
+            var dataPos = xyData(i)
+            if dataPos == nil {
                 state.nilPlot(plotShape)
             } else {
                 if smooth > 0.0 {
                     // Use exponential moving average
                     if yɑ != Double.infinity {
-                        pos = Point(x: pos!.x, y: (1 - smooth) * pos!.y + yɑ)
+                        dataPos = Point(x: dataPos!.x, y: (1 - smooth) * dataPos!.y + yɑ)
                     }
-                    yɑ = pos!.y * smooth
+                    yɑ = dataPos!.y * smooth
                 }
-                let (pos, posPosition) = posClip(ts.pos(pos!))
-                var nextPos = xypos(i + 1)
-                if nextPos != nil { (nextPos, _) = posClip(ts.pos(nextPos!)) }
-                state.plotOne(pos, posPosition, nextPlotPoint: nextPos, plotShape: plotShape)
+                if styles.options[.stacked] {
+                    let x = dataPos!.x
+                    let y = dataPos!.y + (stackDataTop[x] ?? 0.0)
+                    dataPos = Point(x: x, y: y)
+                    stackDataTop[x] = y
+                }
+                let (plotPos, posPosition) = posClip(ts.pos(dataPos!))
+                let nextDataPos = xyData(i + 1)
+                let nextPlotPos: Point?
+                if nextDataPos == nil {
+                    nextPlotPos = nil
+                } else {
+                    (nextPlotPos, _) = posClip(ts.pos(nextDataPos!))
+                }
+                state.plotOne(plotPos, posPosition, nextPlotPoint: nextPlotPos, plotShape: plotShape)
             }
         }
         state.nilPlot(plotShape)        // handle any trailing singletons
         var plotProps = styles
-        let fill = plotProps.bar >= 0 || styles.options[.filled]
+        let fill = plotProps.options.isFilled
         if fill {
             if let rgba = plotProps.fill {
                 plotProps.fill = rgba.multiplyingBy(alpha: 0.75)

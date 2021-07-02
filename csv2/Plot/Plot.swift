@@ -28,10 +28,10 @@ class Plot: ReflectedStringConvertible {
     // and the allowed drawing plain
     let allowedPlane: Plane
 
-    // Convert between the data plane and the plot plane
+    /// Convert between the data plane and the plot plane
     let ts: TransScale
 
-    // The position of 0,0 or 1,1 if log scales
+    /// The position of 0,0 or 1,1 if log scales
     let point00: Point
 
     // Plot area height and width
@@ -44,9 +44,10 @@ class Plot: ReflectedStringConvertible {
     // Path Styles
     let stylesList: StylesList
 
-    // StckedPlots related data
+    // StackedPlots related data
     let stackBar: Int?
-    let stackTop: [Double: Double] = [:]
+    var stackPlotTop: [Double: Double] = [:]        // Top of stack in plotPlane
+    var stackDataTop: [Double: Double] = [:]        // Top of stack in dataPlane
 
     // limit of distance between data points
     let limit: Double

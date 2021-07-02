@@ -180,12 +180,15 @@ func plotFlags(
     }
 
     for i in first..<min(ct, Int.bitWidth) {
+        if bared[i] {
+            styles[i].bar = Bar.next
+            styles[i].options[.bared] = true
+        }
         styles[i].options[.dashed] = dashedLines[i]
         styles[i].options[.filled] = filled[i]
         styles[i].options[.included] = include[i]
         styles[i].options[.pointed] = pointed[i]
         styles[i].options[.scattered] = scattered[i]
         styles[i].options[.stacked] = stacked[i]
-        if bared[i] { styles[i].bar = Bar.next }
     }
 }

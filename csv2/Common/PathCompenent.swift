@@ -23,7 +23,7 @@ enum PathComponent {
                                     // Draw an arc to end with radius r
         arcTo(end: Point, r: Double, largeSweep: String),
                                     // Draw an arc to end with radius r
-        bar(p0: Point, w: Double, y: Double),       // Draw a bar w wide from p0 to y
+        bar(origin: Point, w: Double, end: Double), // Draw a bar w wide from origin to y
         blade(w: Double),                           // Draw a blade of width 2 * w
         cBezierBy(dxy: Vector, c1dxy: Vector, c2dxy: Vector),
                                     // Draw cubic bezier curve by dx,dy with contol points c1dx,c1dy & c2dx,c2dy
@@ -90,7 +90,7 @@ enum PathComponent {
 
     var expand: Path? {
         switch self {
-        case let .bar(p0, w, y): return drawBar(p0: p0, w: w, y: y)
+        case let .bar(origin, w, end): return drawBar(origin: origin, w: w, end: end)
         case let .blade(w): return drawBlade(w: w)
         case let .circle(r): return drawCircle(r: r)
         case let .circleStar(w): return drawCircleStar(w: w)

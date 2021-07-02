@@ -15,6 +15,7 @@ struct PlotOptions: OptionSet, CustomStringConvertible, CustomDebugStringConvert
     }
 
     static var allNames: [(PlotOptions, String)] = [
+        (.bared,     "bared"),
         (.bold,      "bold"),
         (.dashed,    "dashed"),
         (.filled,    "filled"),
@@ -36,13 +37,30 @@ struct PlotOptions: OptionSet, CustomStringConvertible, CustomDebugStringConvert
 
     let rawValue: Int
 
-    static let bold = PlotOptions(rawValue: 1 << 1)
-    static let dashed = PlotOptions(rawValue: 1 << 2)
-    static let filled = PlotOptions(rawValue: 1 << 3)
-    static let included = PlotOptions(rawValue: 1 << 4)
-    static let italic = PlotOptions(rawValue: 1 << 5)
-    static let pointed = PlotOptions(rawValue: 1 << 6)
-    static let scattered = PlotOptions(rawValue: 1 << 7)
-    static let stacked = PlotOptions(rawValue: 1 << 8)
-    static let stroked = PlotOptions(rawValue: 1 << 9)
+    private func nextBit() -> PlotOptions {
+        return PlotOptions(rawValue: rawValue << 1)
+    }
+
+    static let bared = PlotOptions(rawValue: 1 << 0)
+    static let bold = PlotOptions.bared.nextBit()
+    static let dashed = PlotOptions.bold.nextBit()
+    static let filled = PlotOptions.dashed.nextBit()
+    static let included = PlotOptions.filled.nextBit()
+    static let italic = PlotOptions.included.nextBit()
+    static let pointed = PlotOptions.italic.nextBit()
+    static let scattered = PlotOptions.pointed.nextBit()
+    static let stacked = PlotOptions.scattered.nextBit()
+    static let stroked = PlotOptions.stacked.nextBit()
+
+    // Which plot types are filled
+    static let willFill = PlotOptions([.bared, .filled, .stacked])
+    var isFilled: Bool { !isDisjoint(with: Self.willFill) }
+
+    // Which plot types can be smoothed
+    static let noSmoothing = PlotOptions([.bared, .scattered, .stacked])
+    var canSmooth: Bool { isDisjoint(with: Self.noSmoothing) }
+
+    // Which plot types can have negative values
+    static let noNegitives = PlotOptions([.stacked])
+    var negativesOK: Bool { isDisjoint(with: Self.noNegitives) }
 }
