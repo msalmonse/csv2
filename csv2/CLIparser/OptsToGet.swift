@@ -275,31 +275,31 @@ extension Options {
             usage: "Chart width", argTag: "<n>", env: "CSV2_WIDTH"
         ),
         OptToGet(
-            .doubleValue(key: .xMax, name: "xmax"), .single,
+            .doubleValue(key: .xMax, name: "xmax"), .single, option: .includeMinus,
             usage: "Abscissa maximum", argTag: "<n>"
         ),
         OptToGet(
-            .doubleValue(key: .xMin, name: "xmin"), .single,
+            .doubleValue(key: .xMin, name: "xmin"), .single, option: .includeMinus,
             usage: "Abscissa minimum", argTag: "<n>"
         ),
         OptToGet(
-            .intValue(key: .xTags, name: "xtags"), .single,
+            .intValue(key: .xTagsHeader, name: "xtags"), .single,
             usage: "Row or column with abscissa tags", argTag: "<n>"
         ),
         OptToGet(
-            .doubleValue(key: .xTick, name: "xtick"), .single,
+            .doubleValue(key: .xTick, name: "xtick"), .single, option: .includeMinus,
             usage: "Distance between abcissa ticks", argTag: "<n>"
         ),
         OptToGet(
-            .doubleValue(key: .yMax, name: "ymax"), .single,
+            .doubleValue(key: .yMax, name: "ymax"), .single, option: .includeMinus,
             usage: "Ordinate maximum", argTag: "<n>"
         ),
         OptToGet(
-            .doubleValue(key: .yMin, name: "ymin"), .single,
+            .doubleValue(key: .yMin, name: "ymin"), .single, option: .includeMinus,
             usage: "Ordinate minimum", argTag: "<n>"
         ),
         OptToGet(
-            .doubleValue(key: .yTick, name: "ytick"), .single,
+            .doubleValue(key: .yTick, name: "ytick"), .single, option: .includeMinus,
             usage: "Distance between ordinate ticks", argTag: "<n>"
         ),
         OptToGet(.boolSpecial(key: .help, name: "help"), option: .hidden),
