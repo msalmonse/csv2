@@ -9,7 +9,7 @@ import Foundation
 
 struct Bar {
     static private var current = -1
-    static var none: Bool { current <= 0 }
+    static var none: Bool { current < 0 }
     static var count: Int { current + 1 }
     static var next: Int {
         current += 1

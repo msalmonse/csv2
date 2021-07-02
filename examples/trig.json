@@ -1,5 +1,6 @@
 {
 	"backgroundColour": "#ffedcc",
+	"headerColumns": 2,
 	"headerRows": 2,
 	"index": 1,
 	"subTitleHeader": 2,

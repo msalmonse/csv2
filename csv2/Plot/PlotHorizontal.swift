@@ -162,6 +162,8 @@ extension Plot {
                 if let (p0, _) = plot?.posClip(Point(x: pos.x, y: plot?.point00.y ?? 0.0)) {
                     pathComponents.append(bar!.path(p0: p0, y: pos.y, styles.bar))
                 }
+            case .stacked:
+                break
             case .clipped2:
                 if filled {
                     if traversed {
