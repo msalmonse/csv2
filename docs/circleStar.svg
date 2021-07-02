@@ -40,6 +40,6 @@ svg#circleStar { background-color: rgba(0,0,0,0.000) }
 #circleStar path.circleStar.fill { stroke: none; fill: rgba(0,128,0,1.000); fill-opacity: 0.75 }
 #circleStar path.legend { stroke: rgba(0,0,0,0.400); stroke-width: 1.5 }
 </style>
-<path class="circleStar" d=" M 6.0,6.0 m -1.8,0.0 l -1.8,-3.5 l 3.5,1.8 l 3.5,-1.8 l -1.8,3.5 l 1.8,3.5 l -3.5,-1.8 l -3.5,1.8 l 1.8,-3.5 m 1.8,0.0 m 0.0,-4.2 c 1.9,0.0 4.2,1.9 4.2,4.2 c 0.0,1.9 -1.9,4.2 -4.2,4.2 c -1.9,0.0 -4.2,-1.9 -4.2,-4.2 c 0.0,-1.9 1.9,-4.2 4.2,-4.2 m 0.0,4.2 " />
+<path class="circleStar" d=" M 6.0,6.0 m -1.8,0.0 l -1.8,-3.5 l 3.5,1.8 l 3.5,-1.8 l -1.8,3.5 l 1.8,3.5 l -3.5,-1.8 l -3.5,1.8 l 1.8,-3.5 m 1.8,0.0 m 4.2,0.0  a 4.2,4.2 0,0,0 -7.6,-2.5  a 4.2,4.2 0,0,0 4.6,6.5  a 4.2,4.2 0,0,0 2.9,-4.9 m -4.2,0.0 " />
 
 </svg>
