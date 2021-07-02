@@ -164,7 +164,8 @@ func plotFlags(
     _ settings: Settings,
     _ first: Int,
     _ ct: Int,
-    _ styles: inout [Styles]
+    _ styles: inout [Styles],
+    _ stackBar: inout Int
 ) {
     let bared = settings.bitmapValue(.bared)
     let dashedLines = settings.bitmapValue(.dashedLines)
@@ -172,6 +173,11 @@ func plotFlags(
     let include = settings.bitmapValue(.include)
     let pointed = settings.bitmapValue(.showDataPoints)
     let scattered = settings.bitmapValue(.scatterPlots)
+    let stacked = settings.bitmapValue(.stackedPlots)
+
+    if stacked != BitMap.none {
+        stackBar = Bar.next
+    }
 
     for i in first..<min(ct, Int.bitWidth) {
         styles[i].options[.dashed] = dashedLines[i]
@@ -179,6 +185,7 @@ func plotFlags(
         styles[i].options[.included] = include[i]
         styles[i].options[.pointed] = pointed[i]
         styles[i].options[.scattered] = scattered[i]
+        styles[i].options[.stacked] = stacked[i]
         if bared[i] { styles[i].bar = Bar.next }
     }
 }

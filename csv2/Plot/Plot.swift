@@ -44,6 +44,10 @@ class Plot: ReflectedStringConvertible {
     // Path Styles
     let stylesList: StylesList
 
+    // StckedPlots related data
+    let stackBar: Int?
+    let stackTop: [Double: Double] = [:]
+
     // limit of distance between data points
     let limit: Double
 
@@ -111,7 +115,10 @@ class Plot: ReflectedStringConvertible {
         var stylesList = StylesList(count: plotCount, settings: settings)
 
         // setup first so that the other functions can use them
-        plotFlags(settings, plotFirst, plotCount, &stylesList.plots)
+        var stackBar = -1
+        plotFlags(settings, plotFirst, plotCount, &stylesList.plots, &stackBar)
+        self.stackBar = stackBar
+
         plotClasses(settings, plotFirst, plotCount, &stylesList.plots)
         plotColours(settings, plotFirst, plotCount, &stylesList.plots)
         plotDashes(settings, plotFirst, plotCount, plotPlane.width, &stylesList.plots)

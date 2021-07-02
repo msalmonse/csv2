@@ -12,7 +12,7 @@ extension Plot {
     /// State of the plot
 
     enum PlotState {
-        case bar, move, moved, online, clipped, clipped2, scatter
+        case bar, move, moved, online, clipped, clipped2, scatter, stacked
     }
 
     /// Common state

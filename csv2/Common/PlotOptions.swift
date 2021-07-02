@@ -22,6 +22,7 @@ struct PlotOptions: OptionSet, CustomStringConvertible, CustomDebugStringConvert
         (.italic,    "italic"),
         (.pointed,   "pointed"),
         (.scattered, "scattered"),
+        (.stacked,   "stacked"),
         (.stroked,   "stroked")
     ]
 
@@ -42,5 +43,6 @@ struct PlotOptions: OptionSet, CustomStringConvertible, CustomDebugStringConvert
     static let italic = PlotOptions(rawValue: 1 << 5)
     static let pointed = PlotOptions(rawValue: 1 << 6)
     static let scattered = PlotOptions(rawValue: 1 << 7)
-    static let stroked = PlotOptions(rawValue: 1 << 8)
+    static let stacked = PlotOptions(rawValue: 1 << 8)
+    static let stroked = PlotOptions(rawValue: 1 << 9)
 }

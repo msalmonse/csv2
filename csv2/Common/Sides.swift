@@ -28,7 +28,7 @@ struct Sides {
     ///   - settings: settings
     /// - Returns: the left and right sides
 
-    static func lrFromData(_ csv: CSV, _ settings: Settings) -> (l: Double, r: Double) {
+    private static func lrFromData(_ csv: CSV, _ settings: Settings) -> (l: Double, r: Double) {
         let count = csv.colCt
         let index = settings.index
         let xMaxSet = settings.doubleValue(.xMax) > Defaults.maxDefault
@@ -75,6 +75,44 @@ struct Sides {
         return (l: left, r: right)
     }
 
+    /// Calculate to top and bottom from the csv values
+    /// - Parameters:
+    ///   - csv: csv data
+    ///   - settings: chart data
+    ///   - count: number of rows
+    ///   - min: minimum found
+    ///   - max: maximum found
+
+    static func tbCalc(_ csv: CSV, _ settings: Settings, count: Int, min: inout Double, max: inout Double) {
+        let index = settings.index
+        let included = settings.bitmapValue(.include)
+        let stacked = settings.bitmapValue(.stackedPlots)
+        if stacked != BitMap.none { min = 0.0 }
+        var stackedMax = Array(repeating: 0.0, count: csv.colCt)
+
+        let first = settings.intValue(.headerRows)
+        let start = settings.intValue(.headerColumns)
+
+        for i in first..<count where i != index && included[i] {
+            if csv.values.hasIndex(i) {
+                let valuesRow = csv.values[i]
+                let end = valuesRow.count
+                if end > start {
+                    if !stacked[i] {
+                        _ = valuesRow[start..<end].map { setMinMax($0, max: &max, min: &min) }
+                    } else {
+                        for j in start..<end {
+                            if let val = valuesRow[i] {
+                                stackedMax[j] += val
+                                if stackedMax[j] > max { max = stackedMax[j] }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     /// Calculate the top and bottom values of the data
     /// - Parameters:
     ///   - csv: csv values
@@ -82,7 +120,6 @@ struct Sides {
     /// - Returns: the top and bottom sides
 
     static func tbFromData(_ csv: CSV, _ settings: Settings) -> (t: Double, b: Double) {
-        let index = settings.index
         let yMaxSet = settings.doubleValue(.yMax) > Defaults.maxDefault
         let yMinSet = settings.doubleValue(.yMin) < Defaults.minDefault
         let count = csv.rowCt
@@ -98,20 +135,9 @@ struct Sides {
         } else {
             var min: Double = Double.greatestFiniteMagnitude
             var max: Double = -Double.greatestFiniteMagnitude
-            let included = settings.bitmapValue(.include)
 
-            let first = settings.intValue(.headerRows)
-            let start = settings.intValue(.headerColumns)
+            tbCalc(csv, settings, count: count, min: &min, max: &max)
 
-            for i in first..<count where i != index && included[i] {
-                if csv.values.hasIndex(i) {
-                    let valuesRow = csv.values[i]
-                    let end = valuesRow.count
-                    if end > start {
-                        _ = valuesRow[start..<end].map { setMinMax($0, max: &max, min: &min) }
-                    }
-                }
-            }
             // if min and max don't include 0 then include 0 if one is close
             if min > 0 && max > 0 && !settings.boolValue(.logy) {
                 if min < max / 20.0 { min = 0.0 }

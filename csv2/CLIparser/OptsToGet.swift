@@ -239,6 +239,10 @@ extension Options {
             usage: "Sort points by the x values before plotting"
         ),
         OptToGet(
+            .bitmapValue(key: .stackedPlots, name: "stacked"), .onePlus, option: .includeMinus,
+            usage: "Plots stacked", argTag: "<bitmap¹>"
+        ),
+        OptToGet(
             .doubleValue(key: .strokeWidth, name: "stroke"), .single,
             usage: "Stroke width", argTag: "<n>", env: "CSV2_STROKE_WIDTH"
         ),

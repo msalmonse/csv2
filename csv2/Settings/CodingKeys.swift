@@ -76,6 +76,7 @@ extension Settings {
         case showDataPoints
         case smooth
         case sortx
+        case stackedPlots
         case strokeWidth
         case subject
         case subTitle
@@ -169,6 +170,7 @@ extension Settings.CodingKeys {
         case .showDataPoints: return .isBitMap
         case .smooth: return .isDouble
         case .sortx: return .isBool
+        case .stackedPlots: return .isBitMap
         case .strokeWidth: return .isDouble
         case .subject: return .isString
         case .subTitle: return .isString
