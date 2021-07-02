@@ -156,7 +156,7 @@ The font family to use for text.
 
 #### foregroundColours (Dictionary of Colours) <sup>[9](#fn9)</sup>
 - **Default value**: `black`
-- **Command Line Option:** `--fg`<br/>
+- **Command Line Option:** `--fg`
 - **Environment variable:** `CSV2_FOREGROUND_COLOUR`
 - **Command Line Option:** `--textcolour`
 - **Environment variable:** `CSV2_TEXT_COLOUR`
@@ -368,6 +368,8 @@ Recognized names are:
 
 #### showDataPoints (BitMap)
 - **Command Line Option:** `--datapoints`
+- **Command Line Option:** `--pointed`
+- **Command Line Option:** `--showpoints`
 - **Default value**: `none`
 
 A bit vector of the plots to draw with data points.<sup>[5](#fn5)</sup>

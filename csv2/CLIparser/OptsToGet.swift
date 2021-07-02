@@ -199,6 +199,10 @@ extension Options {
             usage: "Opacity for plots"
         ),
         OptToGet(
+            .bitmapValue(key: .showDataPoints, name: "pointed"), aka: ["datapoints", "showpoints"],
+            .onePlus, option: .includeMinus, usage: "Data plots with points", argTag: "<bitmap¹>"
+        ),
+        OptToGet(
             .intSpecialArray(key: .random, name: "random"), 1...3, option: .includeMinus,
             usage: "Generate a random SVG with:\n#plots [max value [min value]]", argTag: "<n [n [n]]>"
         ),
@@ -221,10 +225,6 @@ extension Options {
         OptToGet(
             .stringArray(key: .shapes, name: "shapes"), .onePlus,
             usage: "List of shapes to use", argTag: "<shape>..."
-        ),
-        OptToGet(
-            .bitmapValue(key: .showDataPoints, name: "showpoints"), .onePlus, option: .includeMinus,
-            usage: "Data plots with points", argTag: "<bitmap¹>"
         ),
         OptToGet(
             .doubleValue(key: .baseFontSize, name: "size"), .single,

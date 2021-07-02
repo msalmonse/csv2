@@ -74,6 +74,9 @@ Common options:
   -names <name>...
                    List of plot names
   -opacity         Opacity for plots
+  -pointed <bitmap¹>
+                   Data plots with points
+   aka: datapoints, showpoints
   -random <n [n [n]]>
                    Generate a random SVG with:
                    #plots [max value [min value]]
@@ -85,12 +88,12 @@ Common options:
   -semi            Use semicolons to separate columns
   -shapes <shape>...
                    List of shapes to use
-  -showpoints <bitmap¹>
-                   Data plots with points
   -size <n>        Base font size
    environment variable: CSV2_BASE_FONT_SIZE
   -smooth <n>      EMA smoothing, 0 means none
   -sortx           Sort points by the x values before plotting
+  -stacked <bitmap¹>
+                   Plots stacked
   -stroke <n>      Stroke width
    environment variable: CSV2_STROKE_WIDTH
   -subheader <n>   Sub-title row or column source
